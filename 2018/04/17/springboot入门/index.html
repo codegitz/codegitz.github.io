@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html class="full-height">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>Codegitz&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="springboot入门   /* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */ /* Author: Nicolas Hery - http://nicolashery.com */ /* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */ /* Sourc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Codegitz&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/2018/04/17/springboot入门/index.html">
+<meta property="og:site_name" content="Codegitz&#39;s Blog">
+<meta property="og:description" content="springboot入门   /* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */ /* Author: Nicolas Hery - http://nicolashery.com */ /* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */ /* Sourc">
+<meta property="og:image" content="https://i.imgur.com/713ylux.png">
+<meta property="og:image" content="https://i.imgur.com/cVYlEyt.png">
+<meta property="og:image" content="https://i.imgur.com/SpKPWkA.png">
+<meta property="og:image" content="https://i.imgur.com/7nVkMZC.png">
+<meta property="og:image" content="https://i.imgur.com/xWXQhai.png">
+<meta property="og:image" content="https://i.imgur.com/IvQRfgf.png">
+<meta property="og:image" content="https://i.imgur.com/qfEeU5F.png">
+<meta property="og:image" content="https://i.imgur.com/ZajWhqK.png">
+<meta property="og:image" content="https://i.imgur.com/mjiYZ1Y.png">
+<meta property="og:updated_time" content="2018-04-20T01:58:32.412Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Codegitz&#39;s Blog">
+<meta name="twitter:description" content="springboot入门   /* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */ /* Author: Nicolas Hery - http://nicolashery.com */ /* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */ /* Sourc">
+<meta name="twitter:image" content="https://i.imgur.com/713ylux.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/codegitz/TestCapacity/7acf45f27b3185ef97e94f69889d4c0253b12723/a5ea21%5B1%5D.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/layout.css">
+  
+
+</head>
+
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Codegitz</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item" href="/about">
+                About
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item flex-1" href="/about">
+                About
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>Null</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Img8049893_f.jpg">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Codegitz</span>
+                <span class="post-date sub-title">at: 2018-04-17</span>
+            </div>
+            
+                <div>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <script src="/assets/js/APlayer.min.js"> </script><!DOCTYPE html>
+<html>
+<head>
+<title>springboot入门</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h1>springboot 入门</h1>
+<h1>1.springboot简介</h1>
+<p>简化spring应用的一个框架
+整个spring技术的一个大整合“spring全家桶”
+J2EE的一站式解决方案</p>
+<p>优点：
+- 快速创建独立运行的Spring项目以及与主流框架集成
+- 使用嵌入式的Servlet容器，应用无需打包成war包
+- starters自动依赖与版本控制
+- 大量的自动配置，简化开发，也可以修改默认值
+- 无需配置XML，无代码生成，开箱即用
+- 准生产环境的运行时应用监控
+- 与云计算的天然集成</p>
+<p>缺点：
+- 入门容易深入难，需要十分了解spring底层API才能深入</p>
+<h1>2.微服务</h1>
+<p>2014，Martin Fowler
+微服务：架构风格
+一个应用应该是一组小型服务，可以通过HTTP的方式进行互通
+单体应用：ALL IN ONE
+<img src="https://i.imgur.com/713ylux.png">
+微服务：每一个功能元素最终都是一个可独立替换和独立升级的软件单元
+详细参照微服务文档
+<img src="https://i.imgur.com/cVYlEyt.png"></p>
+<p>环境约束
+- jdk1.8 :Spring Boot 1.7及以上，java -version&quot;1.8.0-112&quot;
+- maven3.x :maven3.3以上版本，ApacheMaven3.3.9
+- IntellijIDEA2017：intellijIDEA2017.2.2x64、STS
+- SpringBoot 1.5.9RELEASE：1.5.9</p>
+<p>我的版本：
+<code>F:\maven\apache-maven-3.5.2-bin\apache-maven-3.5.2\bin&gt; mvn -v
+Apache Maven 3.5.2 (138edd61fd100ec658bfa2d307c43b76940a5d7d; 2017-10-18T15:58:13+08:00)
+Maven home: F:\maven\apache-maven-3.5.2-bin\apache-maven-3.5.2\bin\..
+Java version: 1.8.0_131, vendor: Oracle Corporation
+Java home: C:\Program Files\Java\jdk1.8.0_131\jre
+Default locale: zh_CN, platform encoding: GBK
+OS name: &quot;windows 10&quot;, version: &quot;10.0&quot;, arch: &quot;amd64&quot;, family: &quot;windows&quot;</code>
+maven设置：
+给mavensettings.xml配置文件的profile标签添加
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">&lt;profiles&gt;</div><div class="line">  &lt;profile&gt;</div><div class="line">      &lt;id&gt;jdk-1.8&lt;/id&gt;&lt;/p&gt;</div><div class="line">&lt;pre&gt;&lt;code&gt;  &amp;lt;activation&amp;gt;</div><div class="line">    &amp;lt;activeByDefault&amp;gt;true&amp;lt;/activeByDefault&amp;gt;</div><div class="line">    &amp;lt;jdk&amp;gt;1.8&amp;lt;/jdk&amp;gt;</div><div class="line">  &amp;lt;/activation&amp;gt;</div><div class="line"></div><div class="line">  &amp;lt;properties&amp;gt;</div><div class="line">      &amp;lt;maven.compiler.source&amp;gt;1.8&amp;lt;/maven.compiler.source&amp;gt;</div><div class="line">      &amp;lt;maven.compiler.target&amp;gt;1.8&amp;lt;/maven.compiler.target&amp;gt;</div><div class="line">      &amp;lt;maven.compiler.compilerVersion&amp;gt;1.8&amp;lt;/maven.compiler.compilerVersion&amp;gt;</div><div class="line">  &amp;lt;/properties&amp;gt;</div><div class="line">&lt;/code&gt;&lt;/pre&gt;</div><div class="line"></div><div class="line">&lt;p&gt;&lt;/profile&gt;</div><div class="line">&lt;/profiles&gt;</div><div class="line">```&lt;/p&gt;</div><div class="line">&lt;h2&gt;SpringBoot Helloworld&lt;/h2&gt;</div><div class="line">&lt;p&gt;一个功能，浏览器发送hello请求，服务器接受请求，响应并且返回hello world字符串&lt;/p&gt;</div><div class="line">&lt;h3&gt;1.创建一个maven工程(jar)&lt;/h3&gt;</div><div class="line">&lt;h3&gt;2.导入Sringboot相关依赖&lt;/h3&gt;</div><div class="line">&lt;p&gt;&lt;code&gt;&amp;lt;parent&amp;gt;</div><div class="line">    &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;</div><div class="line">    &amp;lt;artifactId&amp;gt;spring-boot-starter-parent&amp;lt;/artifactId&amp;gt;</div><div class="line">    &amp;lt;version&amp;gt;1.5.9.RELEASE&amp;lt;/version&amp;gt;</div><div class="line">&amp;lt;/parent&amp;gt;</div><div class="line">&amp;lt;dependencies&amp;gt;</div><div class="line">    &amp;lt;dependency&amp;gt;</div><div class="line">        &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;</div><div class="line">        &amp;lt;artifactId&amp;gt;spring-boot-starter-web&amp;lt;/artifactId&amp;gt;</div><div class="line">    &amp;lt;/dependency&amp;gt;</div><div class="line">&amp;lt;/dependencies&amp;gt;&lt;/code&gt;&lt;/p&gt;</div><div class="line">&lt;h3&gt;3.编写一个主程序：启动Springboot应用&lt;/h3&gt;</div><div class="line">&lt;p&gt;</div></pre></td></tr></table></figure>
+
+@SpringBootApplication
+public class HelloWorldMainApplication {</p>
+<pre><code>public static void main(String[] args) {
+
+    //spring应用程序启动起来
+    SpringApplication.run(HelloWorldMainApplication.class,args);
+
+}
+</code></pre>
+
+<p>}
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;h3&gt;4.编写相关的controller，service&lt;/h3&gt;</div><div class="line">&lt;p&gt;</div></pre></td></tr></table></figure>
+
+@Controller
+public class HelloController {</p>
+<pre><code>@ResponseBody
+@RequestMapping(&quot;/hello&quot;)
+public String hello(){
+    return &quot;helloworld&quot;;
+}
+</code></pre>
+
+<p>}
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;h3&gt;5.运行主程序测试&lt;/h3&gt;</div><div class="line">&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/o5wuRcG.png&quot; /&gt;&lt;/p&gt;</div><div class="line">&lt;h3&gt;6.简化配置&lt;/h3&gt;</div><div class="line">&lt;p&gt;```&lt;/p&gt;</div><div class="line">&lt;!-- 这个插件，可以将应用打包成一个可执行的jar包--&gt;</div><div class="line">&lt;pre&gt;&lt;code&gt;&amp;lt;build&amp;gt;</div><div class="line">    &amp;lt;plugins&amp;gt;</div><div class="line">        &amp;lt;plugin&amp;gt;</div><div class="line">            &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;</div><div class="line">            &amp;lt;artifactId&amp;gt;spring-boot-maven-plugin&amp;lt;/artifactId&amp;gt;</div><div class="line">        &amp;lt;/plugin&amp;gt;</div><div class="line">    &amp;lt;/plugins&amp;gt;</div><div class="line">&amp;lt;/build&amp;gt;</div><div class="line">&lt;/code&gt;&lt;/pre&gt;</div><div class="line"></div><div class="line">&lt;p&gt;</div></pre></td></tr></table></figure>
+
+将这个应用打包成jar包，使用spring -jar命令来执行</p>
+<h3>5.HelloWorld探究</h3>
+<h4>1.POM文件</h4>
+<p>1.父项目
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">parent&amp;gt;</div><div class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;1.5.9.RELEASE&lt;/version&gt;</div><div class="line">    &lt;/parent&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;它的父项目是</div><div class="line">	&lt;parent&gt;</div><div class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">		&lt;artifactId&gt;spring-boot-dependencies&lt;/artifactId&gt;</div><div class="line">		&lt;version&gt;1.5.9.RELEASE&lt;/version&gt;</div><div class="line">		&lt;relativePath&gt;../../spring-boot-dependencies&lt;/relativePath&gt;</div><div class="line">	&lt;/parent&gt;</div><div class="line">它是真正管理Spring Boot应用里的所有依赖版本</div></pre></td></tr></table></figure>
+
+SpringBoot的版本仲裁中心
+以后我们导入依赖默认是不需要写版本（没有在dependencies里面管理的依赖自然需要声明版本号）</p>
+<p>2.导入的依赖
+<code>&lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+        &lt;/dependency&gt;</code></p>
+<p>spring-boot-starter:spring-boot场景启动器,帮我们导入了web模块正常运行所依赖的组件</p>
+<p>Spring boot将所有的功能场景都抽取出来，做成一个个starter启动器，只需要在项目里引入这个starter相关场景，所有的依赖都会导入进来，要用什么功能就导哪个场景</p>
+<h4>2.主程序类，主入口类</h4>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">@SpringBootApplication</div><div class="line">public class HelloWorldMainApplication &#123;&lt;/p&gt;</div><div class="line">&lt;pre&gt;&lt;code&gt;public static void main(String[] args) &#123;</div><div class="line"></div><div class="line">    //spring应用程序启动起来</div><div class="line">    SpringApplication.run(HelloWorldMainApplication.class,args);</div><div class="line"></div><div class="line">&#125;</div><div class="line">&lt;/code&gt;&lt;/pre&gt;</div><div class="line"></div><div class="line">&lt;p&gt;&#125;</div><div class="line">&lt;code&gt;@SpringBootApplication: Spring Boot 应用标注在某个类上说明这个类是Springboot的主配置类</div><div class="line">springboot就应该运行这个类的main方法来启动springboot应用&lt;/code&gt;</div><div class="line">@Target(&#123;ElementType.TYPE&#125;)</div><div class="line">@Retention(RetentionPolicy.RUNTIME)</div><div class="line">@Documented</div><div class="line">@Inherited</div><div class="line">@SpringBootConfiguration</div><div class="line">@EnableAutoConfiguration</div><div class="line">@ComponentScan(</div><div class="line">    excludeFilters = &#123;@Filter(</div><div class="line">    type = FilterType.CUSTOM,</div><div class="line">    classes = &#123;TypeExcludeFilter.class&#125;</div><div class="line">), @Filter(</div><div class="line">    type = FilterType.CUSTOM,</div><div class="line">    classes = &#123;AutoConfigurationExcludeFilter.class&#125;</div><div class="line">)&#125;</div><div class="line">)</div><div class="line">public @interface SpringBootApplication &#123;</div></pre></td></tr></table></figure>
+
+@<strong><em>SpringBootConfiguration</em></strong>: Springboot配置类
+   标注在某个类上，表示这个一个springboot的配置类
+   @<strong><em>Configuration</em></strong>：配置类上来标注这个注解</p>
+<p>配置类---配置文件：配置类也是容器的一个组件@Component</p>
+<p>@<strong><em>EnableAutoConfiguration</em></strong>：开启自动配置功能
+   以前我们需要配置的东西，springboot帮我们自动配置，@EnableAutoConfiguration告诉我们springboot开启自动配置功能，这样自动配置才能生效
+<code>@AutoConfigurationPackage
+@Import({EnableAutoConfigurationImportSelector.class})
+public @interface EnableAutoConfiguration {</code>
+@<strong><em>AutoConfigurationPackage<strong><em>：自动配置包
+   @Import({Registrar.class})
+   spring的底层注解@import，给容器倒入一个组件，导入的组件由AutoConfigurationPackage.Registrar.class
+将主配置类（@</em></strong>SpringBootConfiguration</em></strong>标注的类）的所在包及其下面所有子包里面的所有组件都扫描到Spring容器里
+@Import({EnableAutoConfigurationImportSelector.class})
+给容器中导入组件
+EnableAutoConfigurationImportSelector：导入哪些组件选择器
+将所有需要导入的组件以全类名的方式返回，这些组件就会被添加到容器中
+会给容器中导入非常多的自动配置类(xxAutoConfiguration),就是给容器导入这个场景所需要的组件，并配置好这些组件
+<img src="https://i.imgur.com/SpKPWkA.png" alt="自动配置类">
+有了自动配置类，免去了我们手动编写配置注入功能等工作
+SpringFactoriesLoader.loadFactoryNames(EnableAutoConfiguration.class,classLoader);
+SpringBoot在启动的时候从类路径下的META-INF/spring.factories获取EnableAutoConfiguration指定的值，将这些值作为自动配置类导入到容器中，自动配置就生效，帮我们进行自动配置工作，以前须要我们自己进行配置的东西，自动配置类都帮我们配置好了
+<img src="https://i.imgur.com/7nVkMZC.png">
+J2EE的整体整合解决方案和自动配置都在F:\maven\apache-maven-3.5.2-bin\repo\org\springframework\boot\spring-boot-autoconfigure\1.5.9.RELEASE\spring-boot-autoconfigure-1.5.9.RELEASE.jar!\org\springframework\boot\autoconfigure
+<img src="https://i.imgur.com/xWXQhai.png"></p>
+<h3>6.使用Spring Initializer 快速创建Springboot项目</h3>
+<p>IDE都支持使用Spring的项目创建向导快速创建一个Spring Boot项目
+选择我们需要的模板，向导会联网创建Springboot项目
+默认生成的Springboot项目
+- 主程序已经生成好了，我们只需要我们编写自己的逻辑
+- resources 文件夹中目录结构
+  1.static：保存所有的静态资源：js,css,images
+  2.templates:保存所有的模板页面，（springboot默认jar包使用嵌入式的Tomcat，默认不支持jsp页面），可以使用模板引擎(freemaker,thymeleaf)
+   3.application.properties:springboot应用的配置文件，可以修改一些默认配置</p>
+<h1>配置文件</h1>
+<h2>1、配置文件</h2>
+<p>SpringBoot使用一个全局的配置文件，配置文件名是固定的；</p>
+<p>•application.properties</p>
+<p>•application.yml</p>
+<p>配置文件的作用：修改SpringBoot自动配置的默认值；SpringBoot在底层都给我们自动配置好；</p>
+<p>YAML（YAML Ain't Markup Language）</p>
+<p>​	YAML  A Markup Language：是一个标记语言</p>
+<p>​	YAML   isn't Markup Language：不是一个标记语言；</p>
+<p>标记语言：</p>
+<p>​	以前的配置文件；大多都使用的是  <strong>xxxx.xml</strong>文件；</p>
+<p>​	YAML：<strong>以数据为中心</strong>，比json、xml等更适合做配置文件；</p>
+<p>​	YAML：配置例子</p>
+<p><code>yaml
+server:
+  port: 8081</code></p>
+<p>​	XML：</p>
+<p><code>xml
+&lt;server&gt;
+	&lt;port&gt;8081&lt;/port&gt;
+&lt;/server&gt;</code></p>
+<h2>2、YAML语法：</h2>
+<h3>1、基本语法</h3>
+<p>k:(空格)v：表示一对键值对（空格必须有）；</p>
+<p>以<strong>空格</strong>的缩进来控制层级关系；只要是左对齐的一列数据，都是同一个层级的</p>
+<p><code>yaml
+server:
+    port: 8081
+    path: /hello</code></p>
+<p>属性和值也是大小写敏感；</p>
+<h3>2、值的写法</h3>
+<h4>字面量：普通的值（数字，字符串，布尔）</h4>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div></pre></td><td class="code"><pre><div class="line">​	k: v：字面直接来写；&lt;/p&gt;</div><div class="line">&lt;p&gt;​		字符串默认不用加上单引号或者双引号；&lt;/p&gt;</div><div class="line">&lt;p&gt;​		&amp;quot;&amp;quot;：双引号；不会转义字符串里面的特殊字符；特殊字符会作为本身想表示的意思&lt;/p&gt;</div><div class="line">&lt;p&gt;​				name:   &amp;quot;zhangsan \n lisi&amp;quot;：输出；zhangsan 换行  lisi&lt;/p&gt;</div><div class="line">&lt;p&gt;​		&apos;&apos;：单引号；会转义特殊字符，特殊字符最终只是一个普通的字符串数据&lt;/p&gt;</div><div class="line">&lt;p&gt;​				name:   ‘zhangsan \n lisi’：输出；zhangsan \n  lisi&lt;/p&gt;</div><div class="line">&lt;p&gt;```&lt;/p&gt;</div><div class="line">&lt;h4&gt;对象、Map（属性和值）（键值对）：&lt;/h4&gt;</div><div class="line">&lt;p&gt;​	k: v：在下一行来写对象的属性和值的关系；注意缩进&lt;/p&gt;</div><div class="line">&lt;p&gt;​		对象还是k: v的方式&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;code&gt;yaml</div><div class="line">friends:</div><div class="line">		lastName: zhangsan</div><div class="line">		age: 20&lt;/code&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;行内写法：&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;code&gt;yaml</div><div class="line">friends: &#123;lastName: zhangsan,age: 18&#125;&lt;/code&gt;&lt;/p&gt;</div><div class="line">&lt;h4&gt;数组（List、Set）：&lt;/h4&gt;</div><div class="line">&lt;p&gt;用- 值表示数组中的一个元素&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;code&gt;yaml</div><div class="line">pets:</div><div class="line"> - cat</div><div class="line"> - dog</div><div class="line"> - pig&lt;/code&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;行内写法&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;code&gt;yaml</div><div class="line">pets: [cat,dog,pig]&lt;/code&gt;&lt;/p&gt;</div><div class="line">&lt;h2&gt;3、配置文件值注入&lt;/h2&gt;</div><div class="line">&lt;p&gt;配置文件&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;code&gt;yaml</div><div class="line">person:</div><div class="line">    lastName: hello</div><div class="line">    age: 18</div><div class="line">    boss: false</div><div class="line">    birth: 2017/12/12</div><div class="line">    maps: &#123;k1: v1,k2: 12&#125;</div><div class="line">    lists:</div><div class="line">      - lisi</div><div class="line">      - zhaoliu</div><div class="line">    dog:</div><div class="line">      name: 小狗</div><div class="line">      age: 12&lt;/code&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;javaBean：&lt;/p&gt;</div><div class="line">&lt;p&gt;```java</div><div class="line">/**</div><div class="line"> * 将配置文件中配置的每一个属性的值，映射到这个组件中</div><div class="line"> * @ConfigurationProperties：告诉SpringBoot将本类中的所有属性和配置文件中相关的配置进行绑定；</div><div class="line"> *      prefix = &amp;quot;person&amp;quot;：配置文件中哪个下面的所有属性进行一一映射</div><div class="line"> *</div><div class="line"> * 只有这个组件是容器中的组件，才能容器提供的@ConfigurationProperties功能；</div><div class="line"> *</div><div class="line"> */</div><div class="line">@Component</div><div class="line">@ConfigurationProperties(prefix = &amp;quot;person&amp;quot;)</div><div class="line">public class Person &#123;&lt;/p&gt;</div><div class="line">&lt;pre&gt;&lt;code&gt;private String lastName;</div><div class="line">private Integer age;</div><div class="line">private Boolean boss;</div><div class="line">private Date birth;</div><div class="line"></div><div class="line">private Map&amp;lt;String,Object&amp;gt; maps;</div><div class="line">private List&amp;lt;Object&amp;gt; lists;</div><div class="line">private Dog dog;</div><div class="line">&lt;/code&gt;&lt;/pre&gt;</div><div class="line"></div><div class="line">&lt;p&gt;```&lt;/p&gt;</div><div class="line">&lt;p&gt;我们可以导入配置文件处理器，以后编写配置就有提示了&lt;/p&gt;</div><div class="line">&lt;p&gt;```xml&lt;/p&gt;</div><div class="line">&lt;!--导入配置文件处理器，配置文件进行绑定就会有提示--&gt;</div><div class="line">&lt;pre&gt;&lt;code&gt;    &amp;lt;dependency&amp;gt;</div><div class="line">        &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;</div><div class="line">        &amp;lt;artifactId&amp;gt;spring-boot-configuration-processor&amp;lt;/artifactId&amp;gt;</div><div class="line">        &amp;lt;optional&amp;gt;true&amp;lt;/optional&amp;gt;</div><div class="line">    &amp;lt;/dependency&amp;gt;</div><div class="line">&lt;/code&gt;&lt;/pre&gt;</div><div class="line"></div><div class="line">&lt;p&gt;```&lt;/p&gt;</div><div class="line">&lt;h4&gt;1、properties配置文件在idea中默认utf-8可能会乱码&lt;/h4&gt;</div><div class="line">&lt;p&gt;更改配置文件编码方式&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/JK7oG8u.png&quot; alt=&quot;idea配置乱码&quot; /&gt;&lt;/p&gt;</div><div class="line">&lt;h4&gt;2、@Value获取值和@ConfigurationProperties获取值比较&lt;/h4&gt;</div><div class="line">&lt;p&gt;|            | @ConfigurationProperties | @Value |</div><div class="line">| ---------- | ------------------------ | ------ |</div><div class="line">| 功能         | 批量注入配置文件中的属性             | 一个个指定  |</div><div class="line">| 松散绑定（松散语法） | 支持                       | 不支持    |</div><div class="line">| SpEL       | 不支持                      | 支持     |</div><div class="line">| JSR303数据校验 | 支持                       | 不支持    |</div><div class="line">| 复杂类型封装     | 支持                       | 不支持    |&lt;/p&gt;</div><div class="line">&lt;p&gt;配置文件yml还是properties他们都能获取到值；&lt;/p&gt;</div><div class="line">&lt;p&gt;如果说，我们只是在某个业务逻辑中需要获取一下配置文件中的某项值，使用@Value；&lt;/p&gt;</div><div class="line">&lt;p&gt;如果说，我们专门编写了一个javaBean来和配置文件进行映射，我们就直接使用@ConfigurationProperties；&lt;/p&gt;</div><div class="line">&lt;h4&gt;3.配置文件注入数据校验值&lt;/h4&gt;</div><div class="line">&lt;p&gt;</div></pre></td></tr></table></figure>
+
+/*
+* j将配置文件中的每一个属性的值，映射到这个组件中
+*@ConfigurationProperties :告诉springboot将本类中的属性和配置文件中的对应属性进行绑定
+* prefix = &quot;person&quot; 配置属性中哪一个下面的所有属性进行一一映射
+* 只有这个组件是容器中的组件，才能有容器提供的@ConfigurationProperties功能
+ *  */
+@Component
+@ConfigurationProperties(prefix = &quot;person&quot;)
+@Validated
+public class Person {</p>
+<pre><code>/*
+* &lt;bean class=&quot;Person&quot;&gt;
+*     &lt;property name=&quot;lastName&quot; value=&quot;字面量/${key}从环境变量、配置文件中获取，#{SpEL}&quot;/&gt;
+*  &lt;bean&gt;
+*
+* */
+//@Email//last-name必须是一个邮箱格式
+</code></pre>
+
+<p>// @Value(&quot;${person.last-name}&quot;)
+    private String lastName;
+    //@Value(&quot;#{11*2}&quot;)
+    private Integer age;
+    //@Value(&quot;true&quot;)
+    private boolean boss;
+    private Date birth;
+    private Map&lt;String,Object&gt; maps;
+    private List<object> list;
+    private Dog dog;
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;h4&gt;4.@PropertySource&amp;amp;@ImportResource&lt;/h4&gt;</div><div class="line">&lt;p&gt;@PropertySource:加载指定的配置文件</div></pre></td></tr></table></figure>
+
+@PropertySource(value = {&quot;classpath:person.properties&quot;})
+@Component
+@ConfigurationProperties(prefix = &quot;person&quot;)
+//@Validated
+public class Person {</object></p>
+<pre><code>/*
+* &lt;bean class=&quot;Person&quot;&gt;
+*     &lt;property name=&quot;lastName&quot; value=&quot;字面量/${key}从环境变量、配置文件中获取，#{SpEL}&quot;/&gt;
+*  &lt;bean&gt;
+*
+* */
+//@Email//last-name必须是一个邮箱格式
+</code></pre>
+
+<p>// @Value(&quot;${person.last-name}&quot;)
+    private String lastName;
+    //@Value(&quot;#{11*2}&quot;)
+    private Integer age;
+    //@Value(&quot;true&quot;)
+    private boolean boss;
+    private Date birth;
+    private Map&lt;String,Object&gt; maps;
+    private List<object> list;
+    private Dog dog;</object></p>
+<pre><code>@Override
+public String toString() {
+    return &quot;Person{&quot; +
+            &quot;lastName='&quot; + lastName + '\'' +
+            &quot;, age=&quot; + age +
+            &quot;, boss=&quot; + boss +
+            &quot;, birth=&quot; + birth +
+            &quot;, maps=&quot; + maps +
+            &quot;, list=&quot; + list +
+            &quot;, dog=&quot; + dog +
+            '}';
+}
+</code></pre>
+
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;p&gt;@ImportResource:导入Spring的配置文件，让配置文件里面的内容生效</div><div class="line">Springboot里面并没有spring配置文件，我们自己编写的配置文件也不能自动识别</div><div class="line">想让Spring的配置文件生效，加载进来用@ImportResource标注在配置类上&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;code&gt;//导入spring的配置文件让其生效</div><div class="line">@ImportResource(locations=&amp;quot;classpath:beans.xml&amp;quot;)&lt;/code&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;编写spring配置文件,现在不推荐这方式，推荐使用全注解方式</div></pre></td></tr></table></figure>
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt; beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;</p>
+<pre><code>&lt;bean id=&quot;helloService&quot; class=&quot;io.springboot.service.HelloService&quot;&gt;&lt;/bean&gt;
+</code></pre>
+
+<p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Springboot推荐给容器添加组件的方式：推荐使用全注解的方式&lt;/p&gt;</div><div class="line">&lt;p&gt;1.配置类====spring配置文件&lt;/p&gt;</div><div class="line">&lt;p&gt;2.使用@Bean给容器添加组件</div></pre></td></tr></table></figure>
+
+/*
+* @Configuration:指明当前类是一个配置类，就是用来替代之前的spring配置文件
+*
+* 在配置文件中用<bean><bean>标签添加组件
+* */</bean></bean></p>
+<p>@Configuration
+public class MyAppConfig {</p>
+<pre><code>//将方法的返回值添加到容器中，容器中这个组件的默认id就是方法的名字
+@Bean
+public HelloService helloService02(){
+    System.out.println(&quot;配置类@Bean给容器中添加组件了&quot;);
+    return new HelloService();
+}
+</code></pre>
+
+<p>}
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">&lt;h4&gt;4.配置文件占位符&lt;/h4&gt;</div><div class="line">&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/Kl9NjEw.png&quot; /&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;1、随机数&lt;/p&gt;</div><div class="line">&lt;p&gt;```java</div><div class="line">$&#123;random.value&#125;、$&#123;random.int&#125;、$&#123;random.long&#125;</div><div class="line">$&#123;random.int(10)&#125;、$&#123;random.int[1024,65536]&#125;&lt;/p&gt;</div><div class="line">&lt;p&gt;```&lt;/p&gt;</div><div class="line">&lt;p&gt;2、占位符获取之前配置的值，如果没有可以是用:指定默认值&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;code&gt;properties</div><div class="line">person.last-name=张三$&#123;random.uuid&#125;</div><div class="line">person.age=$&#123;random.int&#125;</div><div class="line">person.birth=2017/12/15</div><div class="line">person.boss=false</div><div class="line">person.maps.k1=v1</div><div class="line">person.maps.k2=14</div><div class="line">person.lists=a,b,c</div><div class="line">person.dog.name=$&#123;person.hello:hello&#125;_dog</div><div class="line">person.dog.age=15&lt;/code&gt;&lt;/p&gt;</div><div class="line">&lt;h4&gt;5.Profile&lt;/h4&gt;</div><div class="line">&lt;p&gt;1.多Profile文件</div><div class="line">我们再主配置文件编写的时候，文件名可以使 application-(profile).properties/yml&lt;/p&gt;</div><div class="line">&lt;p&gt;可以配置多个application-(***).properties的文件，默认使用application.properties&lt;/p&gt;</div><div class="line">&lt;p&gt;2.yml支持多文档块方式&lt;/p&gt;</div><div class="line">&lt;p&gt;```yml&lt;/p&gt;</div><div class="line">&lt;p&gt;server:</div><div class="line">  port: 8081</div><div class="line">spring:</div><div class="line">  profiles:</div><div class="line">    active: prod&lt;/p&gt;</div><div class="line">&lt;hr /&gt;</div><div class="line">&lt;p&gt;server:</div><div class="line">  port: 8083</div><div class="line">spring:</div><div class="line">  profiles: dev&lt;/p&gt;</div><div class="line">&lt;hr /&gt;</div><div class="line">&lt;p&gt;server:</div><div class="line">  port: 8084</div><div class="line">spring:</div><div class="line">  profiles: prod  #指定属于哪个环境&lt;/p&gt;</div><div class="line">&lt;p&gt;</div></pre></td></tr></table></figure>
+
+3.激活指定profile
+- 在配置文件中指定spring.profiles.active=dev
+- 命令行：--spring.profiles.active=dev
+  java -jar spring-boot-02-config-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev；
+可以直接在测试的时候，配置传入命令行参数</p>
+<ul>
+<li>
+虚拟机参数：
+-Dspring.profiles.active=dev
+</li>
+</ul>
+<h4>6.配置文件的加载位置</h4>
+<p><img src="https://i.imgur.com/IvQRfgf.png"> 
+springboot 启动会扫描以下位置的application.properties或者application.yml文件作为Spring boot的默认配置文件</p>
+<p>–file:./config/</p>
+<p>–file:./</p>
+<p>–classpath:/config/</p>
+<p>–classpath:/
+优先级由高到低，高优先级的配置会覆盖低优先级的配置
+springboot会从这四个位置全部加载配置文件，会形成互补配置
+<strong>我们还可以通过spring.config.location来改变默认的配置文件位置，项目打包好以后，我们可以使用命令行参数的形式，启动项目的时候来指定配置文件的新路径，指定配置文件和这些默认的文件共同起作用形成互补配置</strong></p>
+<h4>7.外部配置的加载顺序</h4>
+<p><img src="https://i.imgur.com/qfEeU5F.png"></p>
+<p>springboot也可以从以下位置加载配置，优先级从高到低，高优先级的配置覆盖配置低优先级的配置，若有不同配置，会形成互补配置</p>
+<p><strong>1.命令行参数</strong></p>
+<p>所有的配置都可以在命令行上进行指定</p>
+<p>java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar --server.port=8087  --server.context-path=/abc</p>
+<p>多个配置用空格分开； --配置项=值</p>
+<p>2.来自java:comp/env的JNDI属性</p>
+<p>3.Java系统属性（System.getProperties()）</p>
+<p>4.操作系统环境变量</p>
+<p>5.RandomValuePropertySource配置的random.*属性值</p>
+<p>==<strong>由jar包外向jar包内进行寻找；</strong>==</p>
+<p>==<strong>优先加载带profile</strong>==</p>
+<p><strong>6.jar包外部的application-{profile}.properties或application.yml(带spring.profile)配置文件</strong></p>
+<p><strong>7.jar包内部的application-{profile}.properties或application.yml(带spring.profile)配置文件</strong></p>
+<p>==<strong>再来加载不带profile</strong>==</p>
+<p><strong>8.jar包外部的application.properties或application.yml(不带spring.profile)配置文件</strong></p>
+<p><strong>9.jar包内部的application.properties或application.yml(不带spring.profile)配置文件</strong></p>
+<p>10.@Configuration注解类上的@PropertySource</p>
+<p>11.通过SpringApplication.setDefaultProperties指定的默认属性</p>
+<p>所有支持的配置加载来源；</p>
+<p><a href="https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#boot-features-external-config" target="_blank" rel="external">参考官方文档</a></p>
+<h4>8.自动配置原理</h4>
+<p><img src="https://i.imgur.com/ZajWhqK.png"></p>
+<p>配置文件到底能写什么？怎么写？自动配置原理；</p>
+<p><a href="https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#common-application-properties" target="_blank" rel="external">配置文件能配置的属性参照</a></p>
+<h3>1、<strong>自动配置原理：</strong></h3>
+<p>1）、SpringBoot启动的时候加载主配置类，开启了自动配置功能 ==@EnableAutoConfiguration==</p>
+<p><strong>2）、@EnableAutoConfiguration 作用：</strong></p>
+<ul>
+<li>
+<p>利用EnableAutoConfigurationImportSelector给容器中导入一些组件？</p>
+</li>
+<li>
+<p>可以查看selectImports()方法的内容；</p>
+</li>
+<li>
+<p>List<string> configurations = getCandidateConfigurations(annotationMetadata,      attributes);获取候选的配置</string></p>
+<ul>
+<li><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div></pre></td><td class="code"><pre><div class="line">SpringFactoriesLoader.loadFactoryNames()</div><div class="line">扫描所有jar包类路径下  META-INF/spring.factories</div><div class="line">把扫描到的这些文件的内容包装成properties对象</div><div class="line">从properties中获取到EnableAutoConfiguration.class类（类名）对应的值，然后把他们添加在容器中&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line">&lt;p&gt;```&lt;/p&gt;</div><div class="line">&lt;p&gt;​&lt;/p&gt;</div><div class="line">&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line">&lt;p&gt;&lt;strong&gt;==将 类路径下  META-INF/spring.factories 里面配置的所有EnableAutoConfiguration的值加入到了容器中；==&lt;/strong&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;```properties&lt;/p&gt;</div><div class="line">&lt;h1&gt;Auto Configure&lt;/h1&gt;</div><div class="line">&lt;p&gt;org.springframework.boot.autoconfigure.EnableAutoConfiguration=\</div><div class="line">org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.aop.AopAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.batch.BatchAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.cloud.CloudAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.couchbase.CouchbaseAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.dao.PersistenceExceptionTranslationAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.data.cassandra.CassandraDataAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.data.cassandra.CassandraRepositoriesAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.data.couchbase.CouchbaseDataAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.data.couchbase.CouchbaseRepositoriesAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.data.ldap.LdapDataAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.data.ldap.LdapRepositoriesAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.data.neo4j.Neo4jDataAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.data.neo4j.Neo4jRepositoriesAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.data.solr.SolrRepositoriesAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.data.rest.RepositoryRestMvcAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.elasticsearch.jest.JestAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.hateoas.HypermediaAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.hazelcast.HazelcastAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.hazelcast.HazelcastJpaDependencyAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.jdbc.JndiDataSourceAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.jdbc.XADataSourceAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.jms.JmsAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.jms.JndiConnectionFactoryAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.jms.activemq.ActiveMQAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.jms.artemis.ArtemisAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.jersey.JerseyAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.jooq.JooqAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.ldap.embedded.EmbeddedLdapAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.ldap.LdapAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.mail.MailSenderAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.mail.MailSenderValidatorAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.mobile.DeviceResolverAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.mobile.DeviceDelegatingViewResolverAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.mobile.SitePreferenceAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.reactor.ReactorAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.security.SecurityFilterAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.security.FallbackWebSecurityAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.security.oauth2.OAuth2AutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.sendgrid.SendGridAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.session.SessionAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.social.SocialWebAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.social.FacebookAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.social.LinkedInAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.social.TwitterAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.solr.SolrAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.transaction.jta.JtaAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.web.HttpEncodingAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.web.HttpMessageConvertersAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.web.MultipartAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.web.ServerPropertiesAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.web.WebClientAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.websocket.WebSocketAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.websocket.WebSocketMessagingAutoConfiguration,\</div><div class="line">org.springframework.boot.autoconfigure.webservices.WebServicesAutoConfiguration</div><div class="line">```&lt;/p&gt;</div><div class="line">&lt;p&gt;每一个这样的  xxxAutoConfiguration类都是容器中的一个组件，都加入到容器中；用他们来做自动配置；&lt;/p&gt;</div><div class="line">&lt;p&gt;3）、每一个自动配置类进行自动配置功能；&lt;/p&gt;</div><div class="line">&lt;p&gt;4）、以&lt;strong&gt;HttpEncodingAutoConfiguration（Http编码自动配置）&lt;/strong&gt;为例解释自动配置原理；&lt;/p&gt;</div><div class="line">&lt;p&gt;```java</div><div class="line">@Configuration   //表示这是一个配置类，以前编写的配置文件一样，也可以给容器中添加组件</div><div class="line">@EnableConfigurationProperties(HttpEncodingProperties.class)  //启动指定类的ConfigurationProperties功能；将配置文件中对应的值和HttpEncodingProperties绑定起来；并把HttpEncodingProperties加入到ioc容器中&lt;/p&gt;</div><div class="line">&lt;p&gt;@ConditionalOnWebApplication //Spring底层@Conditional注解（Spring注解版），根据不同的条件，如果满足指定的条件，整个配置类里面的配置就会生效；    判断当前应用是否是web应用，如果是，当前配置类生效&lt;/p&gt;</div><div class="line">&lt;p&gt;@ConditionalOnClass(CharacterEncodingFilter.class)  //判断当前项目有没有这个类CharacterEncodingFilter；SpringMVC中进行乱码解决的过滤器；&lt;/p&gt;</div><div class="line">&lt;p&gt;@ConditionalOnProperty(prefix = &amp;quot;spring.http.encoding&amp;quot;, value = &amp;quot;enabled&amp;quot;, matchIfMissing = true)  //判断配置文件中是否存在某个配置  spring.http.encoding.enabled；如果不存在，判断也是成立的</div><div class="line">//即使我们配置文件中不配置pring.http.encoding.enabled=true，也是默认生效的；</div><div class="line">public class HttpEncodingAutoConfiguration &#123;&lt;/p&gt;</div><div class="line">&lt;pre&gt;&lt;code&gt;//他已经和SpringBoot的配置文件映射了</div><div class="line">private final HttpEncodingProperties properties;</div><div class="line">&lt;/code&gt;&lt;/pre&gt;</div><div class="line"></div><div class="line">&lt;p&gt;//只有一个有参构造器的情况下，参数的值就会从容器中拿</div><div class="line">  	public HttpEncodingAutoConfiguration(HttpEncodingProperties properties) &#123;</div><div class="line">		this.properties = properties;</div><div class="line">	&#125;&lt;/p&gt;</div><div class="line">&lt;pre&gt;&lt;code&gt;@Bean   //给容器中添加一个组件，这个组件的某些值需要从properties中获取</div><div class="line">@ConditionalOnMissingBean(CharacterEncodingFilter.class) //判断容器没有这个组件？</div><div class="line">public CharacterEncodingFilter characterEncodingFilter() &#123;</div><div class="line">    CharacterEncodingFilter filter = new OrderedCharacterEncodingFilter();</div><div class="line">    filter.setEncoding(this.properties.getCharset().name());</div><div class="line">    filter.setForceRequestEncoding(this.properties.shouldForce(Type.REQUEST));</div><div class="line">    filter.setForceResponseEncoding(this.properties.shouldForce(Type.RESPONSE));</div><div class="line">    return filter;</div><div class="line">&#125;</div><div class="line">&lt;/code&gt;&lt;/pre&gt;</div><div class="line"></div><div class="line">&lt;p&gt;```&lt;/p&gt;</div><div class="line">&lt;p&gt;根据当前不同的条件判断，决定这个配置类是否生效？&lt;/p&gt;</div><div class="line">&lt;p&gt;一但这个配置类生效；这个配置类就会给容器中添加各种组件；这些组件的属性是从对应的properties类中获取的，这些类里面的每一个属性又是和配置文件绑定的；&lt;/p&gt;</div><div class="line">&lt;p&gt;5）、所有在配置文件中能配置的属性都是在xxxxProperties类中封装者‘；配置文件能配置什么就可以参照某个功能对应的这个属性类&lt;/p&gt;</div><div class="line">&lt;p&gt;```java</div><div class="line">@ConfigurationProperties(prefix = &amp;quot;spring.http.encoding&amp;quot;)  //从配置文件中获取指定的值和bean的属性进行绑定</div><div class="line">public class HttpEncodingProperties &#123;&lt;/p&gt;</div><div class="line">&lt;p&gt;public static final Charset DEFAULT_CHARSET = Charset.forName(&amp;quot;UTF-8&amp;quot;);</div><div class="line">```&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;strong&gt;精髓：&lt;/strong&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;​	&lt;strong&gt;1）、SpringBoot启动会加载大量的自动配置类&lt;/strong&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;​	&lt;strong&gt;2）、我们看我们需要的功能有没有SpringBoot默认写好的自动配置类；&lt;/strong&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;​	&lt;strong&gt;3）、我们再来看这个自动配置类中到底配置了哪些组件；（只要我们要用的组件有，我们就不需要再来配置了）&lt;/strong&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;​	&lt;strong&gt;4）、给容器中自动配置类添加组件的时候，会从properties类中获取某些属性。我们就可以在配置文件中指定这些属性的值；&lt;/strong&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;xxxxAutoConfigurartion：自动配置类；&lt;/p&gt;</div><div class="line">&lt;p&gt;给容器中添加组件&lt;/p&gt;</div><div class="line">&lt;p&gt;xxxxProperties:封装配置文件中相关属性；&lt;/p&gt;</div><div class="line">&lt;h3&gt;2、细节&lt;/h3&gt;</div><div class="line">&lt;h4&gt;1、@Conditional派生注解（Spring注解版原生的@Conditional作用）&lt;/h4&gt;</div><div class="line">&lt;p&gt;作用：必须是@Conditional指定的条件成立，才给容器中添加组件，配置配里面的所有内容才生效；&lt;/p&gt;</div><div class="line">&lt;p&gt;| @Conditional扩展注解                | 作用（判断是否满足当前指定条件）               |</div><div class="line">| ------------------------------- | ------------------------------ |</div><div class="line">| @ConditionalOnJava              | 系统的java版本是否符合要求                |</div><div class="line">| @ConditionalOnBean              | 容器中存在指定Bean；                   |</div><div class="line">| @ConditionalOnMissingBean       | 容器中不存在指定Bean；                  |</div><div class="line">| @ConditionalOnExpression        | 满足SpEL表达式指定                    |</div><div class="line">| @ConditionalOnClass             | 系统中有指定的类                       |</div><div class="line">| @ConditionalOnMissingClass      | 系统中没有指定的类                      |</div><div class="line">| @ConditionalOnSingleCandidate   | 容器中只有一个指定的Bean，或者这个Bean是首选Bean |</div><div class="line">| @ConditionalOnProperty          | 系统中指定的属性是否有指定的值                |</div><div class="line">| @ConditionalOnResource          | 类路径下是否存在指定资源文件                 |</div><div class="line">| @ConditionalOnWebApplication    | 当前是web环境                       |</div><div class="line">| @ConditionalOnNotWebApplication | 当前不是web环境                      |</div><div class="line">| @ConditionalOnJndi              | JNDI存在指定项                      |&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;strong&gt;自动配置类必须在一定的条件下才能生效；&lt;/strong&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;我们怎么知道哪些自动配置类生效；&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;strong&gt;==我们可以通过启用  debug=true属性；来让控制台打印自动配置报告==&lt;/strong&gt;，这样我们就可以很方便的知道哪些自动配置类生效；&lt;/p&gt;</div><div class="line">&lt;h1&gt;```java&lt;/h1&gt;</div><div class="line">&lt;h1&gt;AUTO-CONFIGURATION REPORT&lt;/h1&gt;</div><div class="line">&lt;h2&gt;Positive matches:（自动配置类启用的）&lt;/h2&gt;</div><div class="line">&lt;p&gt;DispatcherServletAutoConfiguration matched:</div><div class="line">      - @ConditionalOnClass found required class 'org.springframework.web.servlet.DispatcherServlet'; @ConditionalOnMissingClass did not find unwanted class (OnClassCondition)</div><div class="line">      - @ConditionalOnWebApplication (required) found StandardServletEnvironment (OnWebApplicationCondition)&lt;/p&gt;</div><div class="line">&lt;h2&gt;Negative matches:（没有启动，没有匹配成功的自动配置类）&lt;/h2&gt;</div><div class="line">&lt;p&gt;ActiveMQAutoConfiguration:</div><div class="line">      Did not match:</div><div class="line">         - @ConditionalOnClass did not find required classes 'javax.jms.ConnectionFactory', 'org.apache.activemq.ActiveMQConnectionFactory' (OnClassCondition)&lt;/p&gt;</div><div class="line">&lt;p&gt;AopAutoConfiguration:</div><div class="line">      Did not match:</div><div class="line">         - @ConditionalOnClass did not find required classes 'org.aspectj.lang.annotation.Aspect', 'org.aspectj.lang.reflect.Advice' (OnClassCondition)&lt;/p&gt;</div><div class="line">&lt;p&gt;```&lt;/p&gt;</div><div class="line">&lt;h1&gt;三、日志&lt;/h1&gt;</div><div class="line">&lt;h2&gt;1、日志框架&lt;/h2&gt;</div><div class="line">&lt;p&gt;小张；开发一个大型系统；&lt;/p&gt;</div><div class="line">&lt;p&gt;​		1、System.out.println(&amp;quot;&amp;quot;)；将关键数据打印在控制台；去掉？写在一个文件？&lt;/p&gt;</div><div class="line">&lt;p&gt;​		2、框架来记录系统的一些运行时信息；日志框架 ；  zhanglogging.jar；&lt;/p&gt;</div><div class="line">&lt;p&gt;​		3、高大上的几个功能？异步模式？自动归档？xxxx？  zhanglogging-good.jar？&lt;/p&gt;</div><div class="line">&lt;p&gt;​		4、将以前框架卸下来？换上新的框架，重新修改之前相关的API；zhanglogging-prefect.jar；&lt;/p&gt;</div><div class="line">&lt;p&gt;​		5、JDBC---数据库驱动；&lt;/p&gt;</div><div class="line">&lt;p&gt;​			写了一个统一的接口层；日志门面（日志的一个抽象层）；logging-abstract.jar；&lt;/p&gt;</div><div class="line">&lt;p&gt;​			给项目中导入具体的日志实现就行了；我们之前的日志框架都是实现的抽象层；&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;strong&gt;市面上的日志框架；&lt;/strong&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;JUL、JCL、Jboss-logging、logback、log4j、log4j2、slf4j....&lt;/p&gt;</div><div class="line">&lt;p&gt;| 日志门面  （日志的抽象层）                           | 日志实现                                     |</div><div class="line">| ---------------------------------------- | ---------------------------------------- |</div><div class="line">| ~~JCL（Jakarta  Commons Logging）~~    SLF4j（Simple  Logging Facade for Java）    &lt;strong&gt;~~jboss-logging~~&lt;/strong&gt; | Log4j  JUL（java.util.logging）  Log4j2  &lt;strong&gt;Logback&lt;/strong&gt; |&lt;/p&gt;</div><div class="line">&lt;p&gt;左边选一个门面（抽象层）、右边来选一个实现；&lt;/p&gt;</div><div class="line">&lt;p&gt;日志门面：  SLF4J；&lt;/p&gt;</div><div class="line">&lt;p&gt;日志实现：Logback；&lt;/p&gt;</div><div class="line">&lt;p&gt;SpringBoot：底层是Spring框架，Spring框架默认是用JCL；‘&lt;/p&gt;</div><div class="line">&lt;p&gt;​	&lt;strong&gt;==SpringBoot选用 SLF4j和logback；==&lt;/strong&gt;&lt;/p&gt;</div><div class="line">&lt;h2&gt;2、SLF4j使用&lt;/h2&gt;</div><div class="line">&lt;h3&gt;1、如何在系统中使用SLF4j   https://www.slf4j.org&lt;/h3&gt;</div><div class="line">&lt;p&gt;以后开发的时候，日志记录方法的调用，不应该来直接调用日志的实现类，而是调用日志抽象层里面的方法</div><div class="line">给系统里面导入slf4j的jar和logback的实现jar</div><div class="line">```java</div><div class="line">import org.slf4j.Logger;</div><div class="line">import org.slf4j.LoggerFactory;&lt;/p&gt;</div><div class="line">&lt;p&gt;public class HelloWorld &#123;</div><div class="line">  public static void main(String[] args) &#123;</div><div class="line">    Logger logger = LoggerFactory.getLogger(HelloWorld.class);</div><div class="line">    logger.info(&amp;quot;Hello World&amp;quot;);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">```&lt;/p&gt;</div><div class="line">&lt;p&gt;图示：&lt;img src="https://i.imgur.com/wzanHz3.png" /&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;每一个日志的实现框架都有自己的配置文件，使用slf4j以后，&lt;strong&gt;配置文件还是做成日志实现框架自己本身的配置文件&lt;/strong&gt;&lt;/p&gt;</div><div class="line">&lt;h3&gt;2.遗留问题&lt;/h3&gt;</div><div class="line">&lt;p&gt;a(slf4j+logback),Spring(commons-logging),hibernate(jboss-logging),myBatis(xxx)</div><div class="line">统一日志记录，即使是别的框架和我一起统一使用slf4j进行输出？</div><div class="line">&lt;img src="https://i.imgur.com/gdkQM8w.png" /&gt;	</div><div class="line">&lt;strong&gt;如何让系统中所有的日志都统一到slf4j&lt;/strong&gt;</div><div class="line">1.将系统中其他日志框架先排除出去</div><div class="line">2.用中间包来替换原有的日志框架</div><div class="line">3.我们导入slf4j其他的实现&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;strong&gt;3.springboot日志关系&lt;/strong&gt;</div><div class="line">&lt;code&gt;xml</div><div class="line">		&amp;lt;dependency&amp;gt;</div><div class="line">			&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;</div><div class="line">			&amp;lt;artifactId&amp;gt;spring-boot-starter&amp;lt;/artifactId&amp;gt;</div><div class="line">		&amp;lt;/dependency&amp;gt;&lt;/code&gt;</div><div class="line">SpringBoot使用它来做日志功能</div><div class="line">&lt;code&gt;xml</div><div class="line">	&amp;lt;dependency&amp;gt;</div><div class="line">			&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;</div><div class="line">			&amp;lt;artifactId&amp;gt;spring-boot-starter-logging&amp;lt;/artifactId&amp;gt;</div><div class="line">		&amp;lt;/dependency&amp;gt;&lt;/code&gt;</div><div class="line">底层依赖关系</div><div class="line">&lt;img src="https://i.imgur.com/Y2l7KGL.png" /&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;总结：</div><div class="line">   1.springboot底层也是使用slf4j+logback的方式进行日志记录</div><div class="line">   2.springboot也把其他的日志都替换成了slf4j</div><div class="line">   3.中间替换包，偷梁换柱</div><div class="line">```java</div><div class="line">@SuppressWarnings(&amp;quot;rawtypes&amp;quot;)</div><div class="line">public abstract class LogFactory &#123;&lt;/p&gt;</div><div class="line">&lt;pre&gt;&lt;code&gt;static String UNSUPPORTED_OPERATION_IN_JCL_OVER_SLF4J = &amp;quot;http://www.slf4j.org/codes.html#unsupported_operation_in_jcl_over_slf4j&amp;quot;;</div><div class="line"></div><div class="line">static LogFactory logFactory = new SLF4JLogFactory();</div><div class="line">&lt;/code&gt;&lt;/pre&gt;</div><div class="line"></div><div class="line">&lt;p&gt;</div></pre></td></tr></table></figure>
+
+<img src="https://i.imgur.com/mjiYZ1Y.png"><p></p>
+<p>4.如果我们要引入其他的框架，一定要把这个框架的默认依赖日志移除掉
+spring框架用的是commons-logging
+<code>xml
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+			&lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+			&lt;exclusions&gt;
+				&lt;exclusion&gt;
+					&lt;groupId&gt;commons-logging&lt;/groupId&gt;
+					&lt;artifactId&gt;commons-logging&lt;/artifactId&gt;
+				&lt;/exclusion&gt;
+			&lt;/exclusions&gt;
+		&lt;/dependency&gt;</code>
+<strong>SpringBoot能自动适配所有日志，而且底层使用slf4j+logback的方式记录日志，引入其他框架的时候，只需要把这个框架依赖的日志框架排除</strong></p>
+<h2>4.日志使用</h2>
+<h3>1.默认配置</h3>
+<p>springboot默认帮我们配置好了日志
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">//记录器</div><div class="line">		Logger logger=LoggerFactory.getLogger(getClass());</div><div class="line">	@Test</div><div class="line">	public void contextLoads() &#123;&lt;/p&gt;</div><div class="line">&lt;pre&gt;&lt;code&gt;    //日志级别，由低到高 trace&amp;lt;debug&amp;lt;info&amp;lt;warn&amp;lt;error</div><div class="line">    //可以调整输出日志的级别，日志就只会在这个级别及以后的高级别生效</div><div class="line">    logger.trace(&amp;quot;这是trace日志信息....&amp;quot;);</div><div class="line">    logger.debug(&amp;quot;这是debug信息.....&amp;quot;);</div><div class="line">    //springboot默认给我们提示info级别,没有指定级别的就使用springboot默认级别，root级别</div><div class="line">    logger.info(&amp;quot;这是info信息...&amp;quot;);</div><div class="line">    logger.warn(&amp;quot;这是warn信息/...&amp;quot;);</div><div class="line">    logger.error(&amp;quot;这是error信息....&amp;quot;);</div><div class="line">&#125;</div><div class="line">&lt;/code&gt;&lt;/pre&gt;</div><div class="line"></div><div class="line">&lt;p&gt;&lt;code&gt;&lt;/code&gt;</div><div class="line">        日志输出格式：</div><div class="line">    		%d表示日期时间，</div><div class="line">    		%thread表示线程名，</div><div class="line">    		%-5level：级别从左显示5个字符宽度</div><div class="line">    		%logger&#123;50&#125; 表示logger名字最长50个字符，否则按照句点分割。 </div><div class="line">    		%msg：日志消息，</div><div class="line">    		%n是换行符</div><div class="line">        --&amp;gt;</div><div class="line">        %d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; [%thread] %-5level %logger&#123;50&#125; - %msg%n</div></pre></td></tr></table></figure>
+
+<strong>SpringBoot修改日志的默认配置</strong></p>
+<p>```properties
+logging.level.com.atguigu=trace</p>
+<h1>logging.path=</h1>
+<h1>不指定路径在当前项目下生成springboot.log日志</h1>
+<h1>可以指定完整的路径；</h1>
+<h1>logging.file=G:/springboot.log</h1>
+<h1>在当前磁盘的根路径下创建spring文件夹和里面的log文件夹；使用 spring.log 作为默认文件</h1>
+<p>logging.path=/spring/log</p>
+<h1>在控制台输出的日志的格式</h1>
+<p>logging.pattern.console=%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n</p>
+<h1>指定文件中日志输出的格式</h1>
+<p>logging.pattern.file=%d{yyyy-MM-dd} === [%thread] === %-5level === %logger{50} ==== %msg%n
+```</p>
+<p>| logging.file | logging.path | Example  | Description             |
+| ------------ | ------------ | -------- | ----------------------- |
+| (none)       | (none)       |          | 只在控制台输出                 |
+| 指定文件名        | (none)       | my.log   | 输出日志到my.log文件           |
+| (none)       | 指定目录         | /var/log | 输出到指定目录的 spring.log 文件中 |</p>
+
+</li></ul></li></ul></body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
+
+        </div>
+        <div class="post-reply">
+            
+            
+        </div>
+    </div>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © Codegitz 2018
+        <br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/search_core.js"></script>
+<script src="/js/script.js"></script>
+
+</body>
+</html>

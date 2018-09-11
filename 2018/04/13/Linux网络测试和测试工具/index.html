@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="full-height">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>Linux网络测试和测试工具 | Codegitz&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Linux网络测试和测试工具123456ifconfignslookupping//跟踪路由traceroutenetstat -r ##系统启动引导器和单用户模式 grub 守护进程运行在后台，直接开机启动，类似于Windows中的服务  系统守护进程 网络守护进程  1ps -ef 查看守护进程优先级123456789101112131415161718[root@iZwz95jk243fc">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux网络测试和测试工具">
+<meta property="og:url" content="http://yoursite.com/2018/04/13/Linux网络测试和测试工具/index.html">
+<meta property="og:site_name" content="Codegitz&#39;s Blog">
+<meta property="og:description" content="Linux网络测试和测试工具123456ifconfignslookupping//跟踪路由traceroutenetstat -r ##系统启动引导器和单用户模式 grub 守护进程运行在后台，直接开机启动，类似于Windows中的服务  系统守护进程 网络守护进程  1ps -ef 查看守护进程优先级123456789101112131415161718[root@iZwz95jk243fc">
+<meta property="og:image" content="https://i.imgur.com/ZI1QNZ1.png">
+<meta property="og:image" content="https://i.imgur.com/ch8mqZa.png">
+<meta property="og:image" content="https://i.imgur.com/qFYMS1n.png">
+<meta property="og:image" content="https://i.imgur.com/MyaBuKy.png">
+<meta property="og:updated_time" content="2018-05-17T14:07:02.478Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux网络测试和测试工具">
+<meta name="twitter:description" content="Linux网络测试和测试工具123456ifconfignslookupping//跟踪路由traceroutenetstat -r ##系统启动引导器和单用户模式 grub 守护进程运行在后台，直接开机启动，类似于Windows中的服务  系统守护进程 网络守护进程  1ps -ef 查看守护进程优先级123456789101112131415161718[root@iZwz95jk243fc">
+<meta name="twitter:image" content="https://i.imgur.com/ZI1QNZ1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/codegitz/TestCapacity/7acf45f27b3185ef97e94f69889d4c0253b12723/a5ea21%5B1%5D.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/layout.css">
+  
+
+</head>
+
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Codegitz</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item" href="/about">
+                About
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item flex-1" href="/about">
+                About
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>Linux网络测试和测试工具</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Img8049893_f.jpg">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Codegitz</span>
+                <span class="post-date sub-title">at: 2018-04-13</span>
+            </div>
+            
+                <div>
+                    
+                         <a class="tag is-post-tag" href="/tags/Linux/">Linux</a>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <script src="/assets/js/APlayer.min.js"> </script><h2 id="Linux网络测试和测试工具"><a href="#Linux网络测试和测试工具" class="headerlink" title="Linux网络测试和测试工具"></a>Linux网络测试和测试工具</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ifconfig</div><div class="line">nslookup</div><div class="line">ping</div><div class="line">//跟踪路由</div><div class="line">traceroute</div><div class="line">netstat -r</div></pre></td></tr></table></figure>
+<p>##系统启动引导器和单用户模式</p>
+<p><code>grub</code></p>
+<h2 id="守护进程"><a href="#守护进程" class="headerlink" title="守护进程"></a>守护进程</h2><p>运行在后台，直接开机启动，类似于Windows中的服务</p>
+<ul>
+<li>系统守护进程</li>
+<li>网络守护进程</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -ef</div></pre></td></tr></table></figure>
+<h3 id="查看守护进程优先级"><a href="#查看守护进程优先级" class="headerlink" title="查看守护进程优先级"></a>查看守护进程优先级</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">[root@iZwz95jk243fcqv90p12gpZ etc]# pstree</div><div class="line">systemd─┬─AliYunDun───15*[&#123;AliYunDun&#125;]</div><div class="line">        ├─AliYunDunUpdate───3*[&#123;AliYunDunUpdate&#125;]</div><div class="line">        ├─2*[agetty]</div><div class="line">        ├─aliyun-service───6*[&#123;aliyun-service&#125;]</div><div class="line">        ├─atd</div><div class="line">        ├─auditd───&#123;auditd&#125;</div><div class="line">        ├─crond</div><div class="line">        ├─dbus-daemon</div><div class="line">        ├─dhclient</div><div class="line">        ├─ntpd</div><div class="line">        ├─polkitd───5*[&#123;polkitd&#125;]</div><div class="line">        ├─rsyslogd───2*[&#123;rsyslogd&#125;]</div><div class="line">        ├─sshd───sshd───bash───pstree</div><div class="line">        ├─systemd-journal</div><div class="line">        ├─systemd-logind</div><div class="line">        ├─systemd-udevd</div><div class="line">        └─tuned───4*[&#123;tuned&#125;]</div></pre></td></tr></table></figure>
+<h3 id="守护进程的操作"><a href="#守护进程的操作" class="headerlink" title="守护进程的操作"></a>守护进程的操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">service ** stop</div><div class="line">service ** start</div><div class="line">service ** restart</div><div class="line">service ** reload  //重新读取配置，不会重启</div></pre></td></tr></table></figure>
+<h3 id="设置守护进程"><a href="#设置守护进程" class="headerlink" title="设置守护进程"></a>设置守护进程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ntsysv</div></pre></td></tr></table></figure>
+<p>Centos6<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chkconfig</div><div class="line">chkconfig --list</div></pre></td></tr></table></figure></p>
+<p>Centos7<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">systemctl </div><div class="line">systemctl list-unit-files</div></pre></td></tr></table></figure></p>
+<h2 id="系统时间同步"><a href="#系统时间同步" class="headerlink" title="系统时间同步"></a>系统时间同步</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">date </div><div class="line">hwclock</div><div class="line">ntpd</div></pre></td></tr></table></figure>
+<h2 id="crond"><a href="#crond" class="headerlink" title="crond"></a>crond</h2><p><img src="https://i.imgur.com/ZI1QNZ1.png" alt=""></p>
+<p><img src="https://i.imgur.com/ch8mqZa.png" alt=""></p>
+<p><img src="https://i.imgur.com/qFYMS1n.png" alt=""></p>
+<p><img src="https://i.imgur.com/MyaBuKy.png" alt=""></p>
+
+        </div>
+        <div class="post-reply">
+            
+            
+        </div>
+    </div>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © Codegitz 2018
+        <br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/search_core.js"></script>
+<script src="/js/script.js"></script>
+
+</body>
+</html>

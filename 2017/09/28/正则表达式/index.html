@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html class="full-height">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>正则表达式 | Codegitz&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="正则表达式的基本语法 字符   字符 意义     . 任意英文字母   \ 反斜杠, 单独的反斜杠做为转义字符,与其他特殊字符一起使用。如果想匹配反斜杠本身,需要转义。两个反斜杠实际匹配一个反斜杠n字符的8进制表示.n 在0至7之间取值   nn 字符的8进制表示.n 在0至7之间取值   mnn 字符的8进制表示. m 在0至3之间取值, n 在0至7之间取值   \xhh 字符的16进制表">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式">
+<meta property="og:url" content="http://yoursite.com/2017/09/28/正则表达式/index.html">
+<meta property="og:site_name" content="Codegitz&#39;s Blog">
+<meta property="og:description" content="正则表达式的基本语法 字符   字符 意义     . 任意英文字母   \ 反斜杠, 单独的反斜杠做为转义字符,与其他特殊字符一起使用。如果想匹配反斜杠本身,需要转义。两个反斜杠实际匹配一个反斜杠n字符的8进制表示.n 在0至7之间取值   nn 字符的8进制表示.n 在0至7之间取值   mnn 字符的8进制表示. m 在0至3之间取值, n 在0至7之间取值   \xhh 字符的16进制表">
+<meta property="og:updated_time" content="2017-10-02T04:26:07.374Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正则表达式">
+<meta name="twitter:description" content="正则表达式的基本语法 字符   字符 意义     . 任意英文字母   \ 反斜杠, 单独的反斜杠做为转义字符,与其他特殊字符一起使用。如果想匹配反斜杠本身,需要转义。两个反斜杠实际匹配一个反斜杠n字符的8进制表示.n 在0至7之间取值   nn 字符的8进制表示.n 在0至7之间取值   mnn 字符的8进制表示. m 在0至3之间取值, n 在0至7之间取值   \xhh 字符的16进制表">
+  
+    <link rel="alternate" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/codegitz/TestCapacity/7acf45f27b3185ef97e94f69889d4c0253b12723/a5ea21%5B1%5D.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/layout.css">
+  
+
+</head>
+
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Codegitz</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item" href="/about">
+                About
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item flex-1" href="/about">
+                About
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>正则表达式</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Img8049893_f.jpg">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Codegitz</span>
+                <span class="post-date sub-title">at: 2017-09-28</span>
+            </div>
+            
+                <div>
+                    
+                         <a class="tag is-post-tag" href="/tags/java/">java</a>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <script src="/assets/js/APlayer.min.js"> </script><p>正则表达式的基本语法</p>
+<h1 id="字符"><a href="#字符" class="headerlink" title="字符"></a>字符</h1><table>
+<thead>
+<tr>
+<th>字符</th>
+<th style="text-align:left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.</td>
+<td style="text-align:left">任意英文字母</td>
+</tr>
+<tr>
+<td>\</td>
+<td style="text-align:left">反斜杠, 单独的反斜杠做为转义字符,与其他特殊字符一起使用。如果想匹配反斜杠本身,需要转义。两个反斜杠实际匹配一个反斜杠n字符的8进制表示.n 在0至7之间取值</td>
+</tr>
+<tr>
+<td>nn</td>
+<td style="text-align:left">字符的8进制表示.n 在0至7之间取值</td>
+</tr>
+<tr>
+<td>mnn</td>
+<td style="text-align:left">字符的8进制表示. m 在0至3之间取值, n 在0至7之间取值</td>
+</tr>
+<tr>
+<td>\xhh</td>
+<td style="text-align:left">字符的16进制表示.</td>
+</tr>
+<tr>
+<td>\uhh hh</td>
+<td style="text-align:left">字符的16进制表示 0xhhhh. 对应unicode 编码字符</td>
+</tr>
+<tr>
+<td>\t</td>
+<td style="text-align:left">缩进符.</td>
+</tr>
+<tr>
+<td>\n</td>
+<td style="text-align:left">换行符 (unicode: ‘\u000A’)</td>
+</tr>
+<tr>
+<td>\r</td>
+<td style="text-align:left">回车符 (unicode: ‘\u000D’)</td>
+</tr>
+<tr>
+<td>\f</td>
+<td style="text-align:left">制表符 (unicode: ‘\u000C’)</td>
+</tr>
+<tr>
+<td>\a</td>
+<td style="text-align:left">警报（铃声）字符 (unicode: ‘\u0007′)</td>
+</tr>
+<tr>
+<td>\e</td>
+<td style="text-align:left">转义符 (unicode: ‘\u001B’)</td>
+</tr>
+<tr>
+<td>\cx</td>
+<td style="text-align:left">控制符 x</td>
+</tr>
+</tbody>
+</table>
+<h1 id="字符分类"><a href="#字符分类" class="headerlink" title="字符分类"></a>字符分类</h1><table>
+<thead>
+<tr>
+<th>表达式</th>
+<th style="text-align:left">意义   </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[abc]</td>
+<td style="text-align:left">匹配 a, 或 b 或 c</td>
+</tr>
+<tr>
+<td>[^abc]</td>
+<td style="text-align:left">匹配不是a,b,c 的字符，是否定匹配</td>
+</tr>
+<tr>
+<td>[a-zA-Z]</td>
+<td style="text-align:left">匹配a 到 z ，A到Z 直接的字符，是范围匹配</td>
+</tr>
+<tr>
+<td>[a-d[m-p]]</td>
+<td style="text-align:left">匹配a到d之间字符或 m到p之间字符，是并集匹配</td>
+</tr>
+<tr>
+<td>[a-z&amp;&amp;[def]]</td>
+<td style="text-align:left">匹配 d, e, 或 f. 是交集匹配 (这里是在范围 a-z和字符def之间取交集).</td>
+</tr>
+<tr>
+<td>[a-z&amp;&amp;[^bc]]</td>
+<td style="text-align:left">匹配a-z 之间所有字符，排除bc的字符。是减法匹配</td>
+</tr>
+<tr>
+<td>[a-z&amp;&amp;[^m-p]]</td>
+<td style="text-align:left">匹配a-z 之间所有字符,排除m-p之间的字符是减法匹配</td>
+</tr>
+</tbody>
+</table>
+<h1 id="内置字符分类"><a href="#内置字符分类" class="headerlink" title="内置字符分类"></a>内置字符分类</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">字符</th>
+<th style="text-align:left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">.</td>
+<td style="text-align:left">匹配任意一个字符,根据创建Pattern是传入的标志,可能匹配行结尾符</td>
+</tr>
+<tr>
+<td style="text-align:center">\d</td>
+<td style="text-align:left">匹配任意数字 [0-9]</td>
+</tr>
+<tr>
+<td style="text-align:center">\D</td>
+<td style="text-align:left">匹配任意非数字 [^0-9]</td>
+</tr>
+<tr>
+<td style="text-align:center">\s</td>
+<td style="text-align:left">匹配任意空白符 (空格, 缩进, 换行,回车)</td>
+</tr>
+<tr>
+<td style="text-align:center">\S</td>
+<td style="text-align:left">匹配任意非空白符</td>
+</tr>
+<tr>
+<td style="text-align:center">\w</td>
+<td style="text-align:left">匹配任意单词</td>
+</tr>
+<tr>
+<td style="text-align:center">\W</td>
+<td style="text-align:left">匹配任意非单词</td>
+</tr>
+</tbody>
+</table>
+<h1 id="边界匹配"><a href="#边界匹配" class="headerlink" title="边界匹配"></a>边界匹配</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">符号</th>
+<th style="text-align:left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">^</td>
+<td style="text-align:left">匹配行首</td>
+</tr>
+<tr>
+<td style="text-align:center">$</td>
+<td style="text-align:left">匹配行尾</td>
+</tr>
+<tr>
+<td style="text-align:center">\b</td>
+<td style="text-align:left">匹配单词边界</td>
+</tr>
+<tr>
+<td style="text-align:center">\B</td>
+<td style="text-align:left">匹配非单词边界</td>
+</tr>
+<tr>
+<td style="text-align:center">\A</td>
+<td style="text-align:left">匹配文本开头</td>
+</tr>
+<tr>
+<td style="text-align:center">\G</td>
+<td style="text-align:left">匹配前一匹配项结尾</td>
+</tr>
+<tr>
+<td style="text-align:center">\Z</td>
+<td style="text-align:left">Matches the end of the input text except the final terminator if any</td>
+</tr>
+<tr>
+<td style="text-align:center">\z</td>
+<td style="text-align:left">匹配文本结尾</td>
+</tr>
+</tbody>
+</table>
+<h1 id="量词"><a href="#量词" class="headerlink" title="量词"></a>量词</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">贪婪模式</th>
+<th style="text-align:center">饥饿模式</th>
+<th style="text-align:center">独占模式</th>
+<th>意义     </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">X?</td>
+<td style="text-align:center">X??</td>
+<td style="text-align:center">X?+</td>
+<td>匹配0或1次</td>
+</tr>
+<tr>
+<td style="text-align:center">X*</td>
+<td style="text-align:center">X*?</td>
+<td style="text-align:center">X*+</td>
+<td>匹配0或多次</td>
+</tr>
+<tr>
+<td style="text-align:center">X+</td>
+<td style="text-align:center">X+?</td>
+<td style="text-align:center">X++</td>
+<td>匹配1或多次</td>
+</tr>
+<tr>
+<td style="text-align:center">X{n}</td>
+<td style="text-align:center">X{n}?</td>
+<td style="text-align:center">X{n}+</td>
+<td>匹配n次</td>
+</tr>
+<tr>
+<td style="text-align:center">X{n,}</td>
+<td style="text-align:center">X{n,}?</td>
+<td style="text-align:center">X{n,}+</td>
+<td>匹配最少n次</td>
+</tr>
+<tr>
+<td style="text-align:center">X{n, m}</td>
+<td style="text-align:center">X{n, m}?</td>
+<td style="text-align:center">X{n, m}+</td>
+<td>匹配最少n次，最多m次</td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+        <div class="post-reply">
+            
+            
+        </div>
+    </div>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © Codegitz 2018
+        <br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/search_core.js"></script>
+<script src="/js/script.js"></script>
+
+</body>
+</html>

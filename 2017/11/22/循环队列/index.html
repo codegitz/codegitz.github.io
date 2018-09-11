@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="full-height">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>循环队列 | Codegitz&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今晚做的一道题，出队有点奇怪/**【题目】假设以带头结点的循环链表表示队列，并且只设一个指针指向队尾元素结点(注意不设头指针)，试编写相应的队列初始化、入队列和出队列的算法。带头结点循环链队列CLQueue的类型定义为：typedef struct LQNode {  ElemType data;  struct LQNode next;} LQNode, CLQueue;**/ Status">
+<meta name="keywords" content="数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="循环队列">
+<meta property="og:url" content="http://yoursite.com/2017/11/22/循环队列/index.html">
+<meta property="og:site_name" content="Codegitz&#39;s Blog">
+<meta property="og:description" content="今晚做的一道题，出队有点奇怪/**【题目】假设以带头结点的循环链表表示队列，并且只设一个指针指向队尾元素结点(注意不设头指针)，试编写相应的队列初始化、入队列和出队列的算法。带头结点循环链队列CLQueue的类型定义为：typedef struct LQNode {  ElemType data;  struct LQNode next;} LQNode, CLQueue;**/ Status">
+<meta property="og:image" content="https://i.imgur.com/FLtQKV5.png">
+<meta property="og:image" content="https://i.imgur.com/cLXT31d.png">
+<meta property="og:image" content="https://i.imgur.com/2S8Egnc.png">
+<meta property="og:image" content="https://i.imgur.com/hbnarVI.png">
+<meta property="og:updated_time" content="2017-11-22T15:38:51.749Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="循环队列">
+<meta name="twitter:description" content="今晚做的一道题，出队有点奇怪/**【题目】假设以带头结点的循环链表表示队列，并且只设一个指针指向队尾元素结点(注意不设头指针)，试编写相应的队列初始化、入队列和出队列的算法。带头结点循环链队列CLQueue的类型定义为：typedef struct LQNode {  ElemType data;  struct LQNode next;} LQNode, CLQueue;**/ Status">
+<meta name="twitter:image" content="https://i.imgur.com/FLtQKV5.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/codegitz/TestCapacity/7acf45f27b3185ef97e94f69889d4c0253b12723/a5ea21%5B1%5D.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/layout.css">
+  
+
+</head>
+
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Codegitz</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item" href="/about">
+                About
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item flex-1" href="/about">
+                About
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>循环队列</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Img8049893_f.jpg">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Codegitz</span>
+                <span class="post-date sub-title">at: 2017-11-22</span>
+            </div>
+            
+                <div>
+                    
+                         <a class="tag is-post-tag" href="/tags/数据结构/">数据结构</a>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <script src="/assets/js/APlayer.min.js"> </script><p>今晚做的一道题，出队有点奇怪<br>/<strong><strong>**</strong></strong><br>【题目】假设以带头结点的循环链表表示队列，并且<br>只设一个指针指向队尾元素结点(注意不设头指针)，<br>试编写相应的队列初始化、入队列和出队列的算法。<br>带头结点循环链队列CLQueue的类型定义为：<br>typedef struct LQNode {<br>  ElemType data;<br>  struct LQNode <em>next;<br>} LQNode, </em>CLQueue;<br><strong><strong>**</strong></strong>/</p>
+<pre><code>Status InitCLQueue(CLQueue &amp;rear) // 初始化空队列
+ { 
+LQNode *p;
+p=(LQNode*)malloc(sizeof(LQNode));
+if(p==null)return ERROR;
+p-&gt;next=p;
+rear=p;
+return OK;
+}
+
+Status EnCLQueue(CLQueue &amp;rear, ElemType x) // 入队
+{ 
+LQNode *p;
+p=(LQNode*)malloc(sizeof(LQNode));
+if(p==null)return ERROR;
+p-&gt;data=x;
+p-&gt;next=rear-&gt;next;
+rear-&gt;next=p;
+rear=p;
+return OK;
+}
+
+Status DeCLQueue(CLQueue &amp;rear, ElemType &amp;x) // 出队
+ { 
+if(rear==rear-&gt;next)return ERROR;
+x=rear-&gt;next-&gt;next-&gt;data;
+rear-&gt;next-&gt;next=rear-&gt;next-&gt;next-&gt;next;
+return OK;
+  }
+</code></pre><p><img src="https://i.imgur.com/FLtQKV5.png" alt=""><br><img src="https://i.imgur.com/cLXT31d.png" alt=""><br><img src="https://i.imgur.com/2S8Egnc.png" alt=""><br><img src="https://i.imgur.com/hbnarVI.png" alt=""></p>
+
+        </div>
+        <div class="post-reply">
+            
+            
+        </div>
+    </div>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © Codegitz 2018
+        <br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/search_core.js"></script>
+<script src="/js/script.js"></script>
+
+</body>
+</html>

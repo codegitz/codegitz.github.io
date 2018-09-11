@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html class="full-height">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>ajax(asynchronous javascript and xml) | Codegitz&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ajax(asynchronous javascript and xml)1.ajax是什么ajax是一种用来改善用户体验的技术，其本质是利用浏览器提供的一个特殊的对象（XMLHttpRequest,也可称之为ajax对象）向服务器发送异步请求。服务器返回部分数据（通常不需要返回完整页面），浏览器利用这些数据对当前页面做部分更新。整个过程，页面无刷新，不打断用户的操作。注：异步请求：发送请求的同">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ajax(asynchronous javascript and xml)">
+<meta property="og:url" content="http://yoursite.com/2018/04/13/ajax/index.html">
+<meta property="og:site_name" content="Codegitz&#39;s Blog">
+<meta property="og:description" content="ajax(asynchronous javascript and xml)1.ajax是什么ajax是一种用来改善用户体验的技术，其本质是利用浏览器提供的一个特殊的对象（XMLHttpRequest,也可称之为ajax对象）向服务器发送异步请求。服务器返回部分数据（通常不需要返回完整页面），浏览器利用这些数据对当前页面做部分更新。整个过程，页面无刷新，不打断用户的操作。注：异步请求：发送请求的同">
+<meta property="og:image" content="https://i.imgur.com/1K90kh4.png">
+<meta property="og:image" content="https://i.imgur.com/iWOnkph.png">
+<meta property="og:image" content="https://i.imgur.com/XMpHS9P.png">
+<meta property="og:updated_time" content="2018-04-13T03:22:41.633Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ajax(asynchronous javascript and xml)">
+<meta name="twitter:description" content="ajax(asynchronous javascript and xml)1.ajax是什么ajax是一种用来改善用户体验的技术，其本质是利用浏览器提供的一个特殊的对象（XMLHttpRequest,也可称之为ajax对象）向服务器发送异步请求。服务器返回部分数据（通常不需要返回完整页面），浏览器利用这些数据对当前页面做部分更新。整个过程，页面无刷新，不打断用户的操作。注：异步请求：发送请求的同">
+<meta name="twitter:image" content="https://i.imgur.com/1K90kh4.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/codegitz/TestCapacity/7acf45f27b3185ef97e94f69889d4c0253b12723/a5ea21%5B1%5D.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/layout.css">
+  
+
+</head>
+
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Codegitz</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item" href="/about">
+                About
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item flex-1" href="/about">
+                About
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>ajax(asynchronous javascript and xml)</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Img8049893_f.jpg">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Codegitz</span>
+                <span class="post-date sub-title">at: 2018-04-13</span>
+            </div>
+            
+                <div>
+                    
+                         <a class="tag is-post-tag" href="/tags/java/">java</a>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <script src="/assets/js/APlayer.min.js"> </script><h1 id="ajax-asynchronous-javascript-and-xml"><a href="#ajax-asynchronous-javascript-and-xml" class="headerlink" title="ajax(asynchronous javascript and xml)"></a>ajax(asynchronous javascript and xml)</h1><h2 id="1-ajax是什么"><a href="#1-ajax是什么" class="headerlink" title="1.ajax是什么"></a>1.ajax是什么</h2><p>ajax是一种用来改善用户体验的技术，其本质是利用浏览器提供的一个特殊的对象（XMLHttpRequest,也可称之为ajax对象）向服务器发送异步请求。服务器返回部分数据（通常不需要返回完整页面），浏览器利用这些数据对当前页面做部分更新。整个过程，页面无刷新，不打断用户的操作。<br>注：<br>异步请求：发送请求的同时，浏览器不会销毁当前页面，用户仍然可以对当前页面做其他操作。<br>使用ajax请求的过程：<br><img src="https://i.imgur.com/1K90kh4.png" alt=""><br>不使用ajax的请求过程：<br><img src="https://i.imgur.com/iWOnkph.png" alt=""></p>
+<h2 id="2-如何获得ajax对象"><a href="#2-如何获得ajax对象" class="headerlink" title="2.如何获得ajax对象"></a>2.如何获得ajax对象</h2><p>要区分浏览器：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function getXhr()&#123;</div><div class="line">    var xhr=null;</div><div class="line">    if(window.XMLHttpRequest)&#123;</div><div class="line">         //非IE</div><div class="line">       xhr= new XMLHttpRequest();</div><div class="line">    &#125;else&#123;</div><div class="line">        x hr=new ActiveXObject(&quot;Microsoft.XMLHttp&quot;);</div><div class="line">    &#125;</div><div class="line">    return xhr;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/XMpHS9P.png" alt=""></p>
+<h2 id="3-ajax对象的几个重要的属性"><a href="#3-ajax对象的几个重要的属性" class="headerlink" title="3.ajax对象的几个重要的属性"></a>3.ajax对象的几个重要的属性</h2><p>a.onreadystatechange:用来绑定一个事件处理函数，用来处理readystatechange时间。<br>注意：当ajax对象的readystate属性值返生了任何改变，比如从0变成了1，就会产生readystatechange事件。<br>b.readyState：有五个值（0,1,2,3,4）,表示ajax对象与服务器通信的状态。其中，当值为4的时候，表示ajax对象已经获得了服务器返回的所有数据。<br>c.responseText：获得服务器返回的文本数据。<br>d.responseXML：获得服务器返回的xml数据。<br>e.status ：获得状态码。</p>
+<h2 id="4-编程步骤"><a href="#4-编程步骤" class="headerlink" title="4.编程步骤"></a>4.编程步骤</h2><p>step1.获得ajax对象<br>比如：var xhr=getXhr();<br>step2.发送请求。<br><strong>发送get请求</strong>：<br>a.xhr.open(‘get’,’check_uname.do?uname=tom&amp;age=22’,true);<br>b.xhr.onreadystatechange=f1;<br>c.xhr.send(null);<br>注：<br>true：异步<br>false：同步，发送请求时，浏览器会锁定当前页面，用户不能够对当前页面做其他操作。<br><strong>发送post请求</strong><br>a.xhr.open(‘post’,’check_uname.do’,true);<br>b.xhr.setRequestHeader(‘content-type’,’application/x-www-form-urlencoded’);<br>c.xhr.onreadystatechange=f1;<br>xhr.send(‘name=tom’);<br>注：按照HTTP协议规范，如果发送的是post请求，在请求的数据包里面，应该有content-type消息头。默认情况下，ajax对象不带该消息头，所以需要调用setRequestHeader方法来设置这个消息头。<br>step3 .编写服务器端的程序，<br>注：通常不需要返回完整的页面，只需要返回部分数据。<br>step4.编写事件处理函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function fi()&#123;</div><div class="line">     //先获得服务器返回的数据</div><div class="line">     if(xhr.readyState==4 &amp;&amp; xhr.status==200)&#123;</div><div class="line">     var txt=xhr.resppnseText;</div><div class="line">     //利用这些数据（txt）更新页面</div><div class="line">     ....</div><div class="line"> &#125; </div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="5-缓存问题"><a href="#5-缓存问题" class="headerlink" title="5.缓存问题"></a>5.缓存问题</h2><h3 id="什么事缓存问题"><a href="#什么事缓存问题" class="headerlink" title="什么事缓存问题"></a>什么事缓存问题</h3><p>当使用IE浏览器发送get请求时，浏览器会查看请求地址是否访问过，如果访问过，则不再发送新的请求，而是显示第一次访问的结果（也就是说，会将第一次的请求结果缓存下来）</p>
+<h3 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h3><p>在请求地址后添加一个随机数。<br>    xhr.open(‘get’,’getLucky.do?’+Math.random(),true);</p>
+
+        </div>
+        <div class="post-reply">
+            
+            
+        </div>
+    </div>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © Codegitz 2018
+        <br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/search_core.js"></script>
+<script src="/js/script.js"></script>
+
+</body>
+</html>

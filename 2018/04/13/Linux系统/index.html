@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html class="full-height">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>Linux入门 | Codegitz&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="linux系统入门命令                    Linux命令操作技巧    12345678[root@localhost /]# cat test1this is a test file[root@localhost /]# cat test2cat: test2: No such file or directory[root@localhost /]# cat &amp;lt;tes">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux入门">
+<meta property="og:url" content="http://yoursite.com/2018/04/13/Linux系统/index.html">
+<meta property="og:site_name" content="Codegitz&#39;s Blog">
+<meta property="og:description" content="linux系统入门命令                    Linux命令操作技巧    12345678[root@localhost /]# cat test1this is a test file[root@localhost /]# cat test2cat: test2: No such file or directory[root@localhost /]# cat &amp;lt;tes">
+<meta property="og:image" content="https://i.imgur.com/7eh6TGc.png">
+<meta property="og:image" content="https://i.imgur.com/Ejlq4bE.png">
+<meta property="og:image" content="https://i.imgur.com/LKa1LxD.png">
+<meta property="og:image" content="https://i.imgur.com/ybKZ0AB.png">
+<meta property="og:image" content="https://i.imgur.com/qEhoB5P.png">
+<meta property="og:image" content="https://i.imgur.com/dCMXbUi.png">
+<meta property="og:image" content="https://i.imgur.com/F1vxE36.png">
+<meta property="og:image" content="https://i.imgur.com/V4P7utD.png">
+<meta property="og:image" content="https://i.imgur.com/zon6eSu.png">
+<meta property="og:image" content="https://i.imgur.com/aAvT3D6.png">
+<meta property="og:image" content="https://i.imgur.com/ZlXKCAz.png">
+<meta property="og:image" content="https://i.imgur.com/dKCa5oK.png">
+<meta property="og:image" content="https://i.imgur.com/W90zIPA.png">
+<meta property="og:image" content="https://i.imgur.com/EiR8wab.png">
+<meta property="og:image" content="https://i.imgur.com/TcySP4V.png">
+<meta property="og:image" content="https://i.imgur.com/XC9GLWo.png">
+<meta property="og:image" content="https://i.imgur.com/bWwQPhX.png">
+<meta property="og:image" content="https://i.imgur.com/xIbYOth.png">
+<meta property="og:image" content="https://i.imgur.com/OxYVNcZ.png">
+<meta property="og:image" content="https://i.imgur.com/yFlF45B.png">
+<meta property="og:image" content="https://i.imgur.com/xVjIft3.png">
+<meta property="og:image" content="https://i.imgur.com/Rq1RG5p.png">
+<meta property="og:image" content="https://i.imgur.com/P6uTIbb.png">
+<meta property="og:image" content="https://i.imgur.com/teJEjNL.png">
+<meta property="og:image" content="https://i.imgur.com/kVIDC9u.png">
+<meta property="og:image" content="https://i.imgur.com/2hK8u4M.png">
+<meta property="og:image" content="https://i.imgur.com/w5aEPci.png">
+<meta property="og:image" content="https://i.imgur.com/4WlXn3u.png">
+<meta property="og:image" content="https://i.imgur.com/ejyw9Cc.png">
+<meta property="og:image" content="https://i.imgur.com/PqqPSVL.png">
+<meta property="og:image" content="https://i.imgur.com/hDbkP48.png">
+<meta property="og:image" content="https://i.imgur.com/YBwaNr9.png">
+<meta property="og:image" content="https://i.imgur.com/EC0qKNH.png">
+<meta property="og:image" content="https://i.imgur.com/aNxsocU.png">
+<meta property="og:image" content="https://i.imgur.com/UCC8FYM.png">
+<meta property="og:image" content="https://i.imgur.com/FaoTGDA.png">
+<meta property="og:image" content="https://i.imgur.com/9xO4Sfo.png">
+<meta property="og:image" content="https://i.imgur.com/lN2zz5W.png">
+<meta property="og:image" content="https://i.imgur.com/5edVuiD.png">
+<meta property="og:image" content="https://i.imgur.com/RMBADOb.png">
+<meta property="og:image" content="https://i.imgur.com/kbDcmqc.png">
+<meta property="og:image" content="https://i.imgur.com/wP0uN0u.png">
+<meta property="og:image" content="https://i.imgur.com/TbOBT2X.png">
+<meta property="og:image" content="https://i.imgur.com/3WYH460.png">
+<meta property="og:image" content="https://i.imgur.com/isNRh81.png">
+<meta property="og:image" content="https://i.imgur.com/qnrP6uT.png">
+<meta property="og:image" content="https://i.imgur.com/Fid9CiY.png">
+<meta property="og:image" content="https://i.imgur.com/XSCkMTo.png">
+<meta property="og:image" content="https://i.imgur.com/x3t8HMZ.png">
+<meta property="og:image" content="https://i.imgur.com/k9OCQvY.png">
+<meta property="og:image" content="https://i.imgur.com/7yhiANw.png">
+<meta property="og:image" content="https://i.imgur.com/aNqw31v.png">
+<meta property="og:image" content="https://i.imgur.com/9oJFdOl.png">
+<meta property="og:image" content="https://i.imgur.com/APzRkKh.png">
+<meta property="og:image" content="https://i.imgur.com/ZU9AYbk.png">
+<meta property="og:image" content="https://i.imgur.com/kRHitAl.png">
+<meta property="og:image" content="https://i.imgur.com/wFwYM2X.png">
+<meta property="og:image" content="https://i.imgur.com/mVvy0c5.png">
+<meta property="og:image" content="https://i.imgur.com/c1kQkjT.png">
+<meta property="og:image" content="https://i.imgur.com/v17XzC4.png">
+<meta property="og:image" content="https://i.imgur.com/HecJ5Ap.png">
+<meta property="og:image" content="https://i.imgur.com/aT7HiPM.png">
+<meta property="og:image" content="https://i.imgur.com/xwLuI55.png">
+<meta property="og:image" content="https://i.imgur.com/OUurS4y.png">
+<meta property="og:image" content="https://i.imgur.com/z1KgT58.png">
+<meta property="og:image" content="https://i.imgur.com/6No07Gi.png">
+<meta property="og:updated_time" content="2018-05-17T14:03:52.409Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux入门">
+<meta name="twitter:description" content="linux系统入门命令                    Linux命令操作技巧    12345678[root@localhost /]# cat test1this is a test file[root@localhost /]# cat test2cat: test2: No such file or directory[root@localhost /]# cat &amp;lt;tes">
+<meta name="twitter:image" content="https://i.imgur.com/7eh6TGc.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/codegitz/TestCapacity/7acf45f27b3185ef97e94f69889d4c0253b12723/a5ea21%5B1%5D.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/layout.css">
+  
+
+</head>
+
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Codegitz</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item" href="/about">
+                About
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item flex-1" href="/about">
+                About
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>Linux入门</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Img8049893_f.jpg">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Codegitz</span>
+                <span class="post-date sub-title">at: 2018-04-13</span>
+            </div>
+            
+                <div>
+                    
+                         <a class="tag is-post-tag" href="/tags/Linux/">Linux</a>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <script src="/assets/js/APlayer.min.js"> </script><h2 id="linux系统入门命令"><a href="#linux系统入门命令" class="headerlink" title="linux系统入门命令"></a>linux系统入门命令</h2><p><img src="https://i.imgur.com/7eh6TGc.png" alt=""></p>
+<p><img src="https://i.imgur.com/Ejlq4bE.png" alt=""></p>
+<p><img src="https://i.imgur.com/LKa1LxD.png" alt=""></p>
+<p><img src="https://i.imgur.com/ybKZ0AB.png" alt=""></p>
+<p><img src="https://i.imgur.com/qEhoB5P.png" alt=""></p>
+<p><img src="https://i.imgur.com/dCMXbUi.png" alt=""></p>
+<p><img src="https://i.imgur.com/F1vxE36.png" alt=""></p>
+<p><img src="https://i.imgur.com/V4P7utD.png" alt=""></p>
+<p><img src="https://i.imgur.com/zon6eSu.png" alt=""></p>
+<p><img src="https://i.imgur.com/aAvT3D6.png" alt=""></p>
+<p><img src="https://i.imgur.com/ZlXKCAz.png" alt=""></p>
+<p><img src="https://i.imgur.com/dKCa5oK.png" alt=""></p>
+<p><img src="https://i.imgur.com/W90zIPA.png" alt=""></p>
+<p><img src="https://i.imgur.com/EiR8wab.png" alt=""></p>
+<p><img src="https://i.imgur.com/TcySP4V.png" alt=""></p>
+<p><img src="https://i.imgur.com/XC9GLWo.png" alt=""></p>
+<p><img src="https://i.imgur.com/bWwQPhX.png" alt=""></p>
+<p><img src="https://i.imgur.com/xIbYOth.png" alt=""></p>
+<p><img src="https://i.imgur.com/OxYVNcZ.png" alt=""></p>
+<p><img src="https://i.imgur.com/yFlF45B.png" alt=""></p>
+<h2 id="Linux命令操作技巧"><a href="#Linux命令操作技巧" class="headerlink" title="Linux命令操作技巧"></a>Linux命令操作技巧</h2><p><img src="https://i.imgur.com/xVjIft3.png" alt=""></p>
+<p><img src="https://i.imgur.com/Rq1RG5p.png" alt=""></p>
+<p><img src="https://i.imgur.com/P6uTIbb.png" alt=""></p>
+<p><img src="https://i.imgur.com/teJEjNL.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@localhost /]# cat test1</div><div class="line">this is a test file</div><div class="line">[root@localhost /]# cat test2</div><div class="line">cat: test2: No such file or directory</div><div class="line">[root@localhost /]# cat &lt;test1&gt;test2</div><div class="line">[root@localhost /]# cat test2</div><div class="line">this is a test file</div><div class="line">[root@localhost /]#</div></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/kVIDC9u.png" alt=""></p>
+<p><img src="https://i.imgur.com/2hK8u4M.png" alt=""></p>
+<p>查看网卡<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@localhost /]# dmesg | grep eth0</div><div class="line">[    1.551363] e1000 0000:00:03.0 eth0: (PCI:33MHz:32-bit) 08:00:27:80:9c:a0</div><div class="line">[    1.551368] e1000 0000:00:03.0 eth0: Intel(R) PRO/1000 Network Connection</div></pre></td></tr></table></figure></p>
+<h2 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h2><p><img src="https://i.imgur.com/w5aEPci.png" alt=""></p>
+<p><img src="https://i.imgur.com/4WlXn3u.png" alt=""></p>
+<p><img src="https://i.imgur.com/ejyw9Cc.png" alt=""></p>
+<p><img src="https://i.imgur.com/PqqPSVL.png" alt=""></p>
+<h2 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h2><p><img src="https://i.imgur.com/hDbkP48.png" alt=""></p>
+<p>which：查找某些可执行程序<br>whereis:查找可执行程序，相关配置文件，帮助信息<br>locate：模糊搜索，列出相应的文件<br>find:<br><img src="https://i.imgur.com/YBwaNr9.png" alt=""></p>
+<h2 id="文本编辑器"><a href="#文本编辑器" class="headerlink" title="文本编辑器"></a>文本编辑器</h2><p><img src="https://i.imgur.com/EC0qKNH.png" alt=""></p>
+<p><img src="https://i.imgur.com/aNxsocU.png" alt=""></p>
+<p><img src="https://i.imgur.com/UCC8FYM.png" alt=""></p>
+<p><img src="https://i.imgur.com/FaoTGDA.png" alt=""></p>
+<p><img src="https://i.imgur.com/9xO4Sfo.png" alt=""></p>
+<p><img src="https://i.imgur.com/lN2zz5W.png" alt=""></p>
+<p><img src="https://i.imgur.com/5edVuiD.png" alt=""></p>
+<p><img src="https://i.imgur.com/RMBADOb.png" alt=""></p>
+<p><img src="https://i.imgur.com/kbDcmqc.png" alt=""></p>
+<p><img src="https://i.imgur.com/wP0uN0u.png" alt=""></p>
+<p><img src="https://i.imgur.com/TbOBT2X.png" alt=""></p>
+<p><img src="https://i.imgur.com/3WYH460.png" alt=""></p>
+<p><img src="https://i.imgur.com/isNRh81.png" alt=""></p>
+<p><img src="https://i.imgur.com/qnrP6uT.png" alt=""></p>
+<p><img src="https://i.imgur.com/Fid9CiY.png" alt=""></p>
+<p><img src="https://i.imgur.com/XSCkMTo.png" alt=""></p>
+<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>##shell</p>
+<h3 id="shell简介"><a href="#shell简介" class="headerlink" title="shell简介"></a>shell简介</h3><p><img src="https://i.imgur.com/x3t8HMZ.png" alt=""></p>
+<p><img src="https://i.imgur.com/k9OCQvY.png" alt=""></p>
+<p><img src="https://i.imgur.com/7yhiANw.png" alt=""></p>
+<p><img src="https://i.imgur.com/aNqw31v.png" alt=""></p>
+<p><img src="https://i.imgur.com/9oJFdOl.png" alt=""></p>
+<p><img src="https://i.imgur.com/APzRkKh.png" alt=""></p>
+<p><img src="https://i.imgur.com/ZU9AYbk.png" alt=""></p>
+<p><img src="https://i.imgur.com/kRHitAl.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[root@localhost /]# vi shelltest</div><div class="line">[root@localhost /]# cat shelltest</div><div class="line"> #!/bin/bash</div><div class="line"> # program</div><div class="line"> # This program shows &quot;Helloworld!&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">echo -e &quot;Hello world.\n&quot;</div><div class="line">exit 0</div><div class="line">[root@localhost /]#</div><div class="line"></div><div class="line">[root@localhost /]# sh shelltest</div><div class="line">Hello world.</div><div class="line"></div><div class="line">[root@localhost /]# ./shelltest</div><div class="line">-bash: ./shelltest: Permission denied</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@localhost /]# chmod 744 shelltest </div><div class="line">[root@localhost /]# ./shelltest</div><div class="line">Hello world.</div></pre></td></tr></table></figure>
+<h3 id="shell变量"><a href="#shell变量" class="headerlink" title="shell变量"></a>shell变量</h3><p><img src="https://i.imgur.com/wFwYM2X.png" alt=""></p>
+<p><img src="https://i.imgur.com/mVvy0c5.png" alt=""></p>
+<p><img src="https://i.imgur.com/c1kQkjT.png" alt=""></p>
+<p><img src="https://i.imgur.com/v17XzC4.png" alt=""></p>
+<p><img src="https://i.imgur.com/HecJ5Ap.png" alt=""></p>
+<p>shell脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"> #!/bin/bash</div><div class="line"> # program</div><div class="line"> # This program shows &quot;Helloworld!&quot;</div><div class="line"></div><div class="line"> #echo -e &quot;Hello world.\n&quot;</div><div class="line"> #exit 0</div><div class="line">v1=centos</div><div class="line">v2=&quot;this is a test filed&quot;</div><div class="line">a=10</div><div class="line">b=20</div><div class="line">echo $a</div><div class="line">echo $b</div><div class="line">echo $v2</div><div class="line"> # mathmatical</div><div class="line">echo $(($a+$b))</div><div class="line">echo $(($a*$b))</div><div class="line"> # String length</div><div class="line">echo $&#123;#v2&#125;</div><div class="line">echo $v2</div><div class="line">echo $&#123;v2:5&#125;</div><div class="line">echo $&#123;v2:5:5&#125;</div><div class="line">echo $&#123;v2#this is&#125;</div></pre></td></tr></table></figure></p>
+<p>运行结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[root@localhost /]# ./shelltest</div><div class="line">10</div><div class="line">20</div><div class="line">this is a test filed</div><div class="line">30</div><div class="line">200</div><div class="line">20</div><div class="line">this is a test filed</div><div class="line">is a test filed</div><div class="line">is a</div><div class="line">a test filed</div></pre></td></tr></table></figure></p>
+<h3 id="shell中的判断"><a href="#shell中的判断" class="headerlink" title="shell中的判断"></a>shell中的判断</h3><p><img src="https://i.imgur.com/aT7HiPM.png" alt=""></p>
+<p><img src="https://i.imgur.com/xwLuI55.png" alt=""></p>
+<p><img src="https://i.imgur.com/OUurS4y.png" alt=""></p>
+<p><strong>分支结束，关键字反写</strong><br><img src="https://i.imgur.com/z1KgT58.png" alt=""></p>
+<p><img src="https://i.imgur.com/6No07Gi.png" alt=""></p>
+<p>for循环<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> #! /bin/bash</div><div class="line">for((i=1;i&lt;=10;i++));do</div><div class="line">echo $i;</div><div class="line">done;</div><div class="line">~</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[root@localhost /]# vi for</div><div class="line">[root@localhost /]# sh for</div><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td></tr></table></figure>
+
+        </div>
+        <div class="post-reply">
+            
+            
+        </div>
+    </div>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © Codegitz 2018
+        <br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/search_core.js"></script>
+<script src="/js/script.js"></script>
+
+</body>
+</html>

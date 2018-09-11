@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="full-height">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>广义表 | Codegitz&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="广义表的定义广义表(Lists，又称列表)是一种非线性的数据结构，是线性表的一种推广。即广义表中放松对表元素的原子限制，容许它们具有其自身结构，每一个元素也可以是一个表，得到一个表中有表的结构，这就是广义表。广义表（Generalized List）一般记作           L=（a1,a2….,an）其中，ai可以是不可再分的元素，也可以是广义表，分别称为广义表L的原子和子表。ADT Gl">
+<meta name="keywords" content="数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="广义表">
+<meta property="og:url" content="http://yoursite.com/2017/11/28/广义表/index.html">
+<meta property="og:site_name" content="Codegitz&#39;s Blog">
+<meta property="og:description" content="广义表的定义广义表(Lists，又称列表)是一种非线性的数据结构，是线性表的一种推广。即广义表中放松对表元素的原子限制，容许它们具有其自身结构，每一个元素也可以是一个表，得到一个表中有表的结构，这就是广义表。广义表（Generalized List）一般记作           L=（a1,a2….,an）其中，ai可以是不可再分的元素，也可以是广义表，分别称为广义表L的原子和子表。ADT Gl">
+<meta property="og:image" content="https://i.imgur.com/WF1GSh0.png">
+<meta property="og:image" content="https://i.imgur.com/xQg2I5x.jpg">
+<meta property="og:image" content="https://i.imgur.com/oOxaL3n.jpg">
+<meta property="og:updated_time" content="2017-11-28T15:35:05.895Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="广义表">
+<meta name="twitter:description" content="广义表的定义广义表(Lists，又称列表)是一种非线性的数据结构，是线性表的一种推广。即广义表中放松对表元素的原子限制，容许它们具有其自身结构，每一个元素也可以是一个表，得到一个表中有表的结构，这就是广义表。广义表（Generalized List）一般记作           L=（a1,a2….,an）其中，ai可以是不可再分的元素，也可以是广义表，分别称为广义表L的原子和子表。ADT Gl">
+<meta name="twitter:image" content="https://i.imgur.com/WF1GSh0.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/codegitz/TestCapacity/7acf45f27b3185ef97e94f69889d4c0253b12723/a5ea21%5B1%5D.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/layout.css">
+  
+
+</head>
+
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Codegitz</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item" href="/about">
+                About
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item flex-1" href="/about">
+                About
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>广义表</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Img8049893_f.jpg">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Codegitz</span>
+                <span class="post-date sub-title">at: 2017-11-28</span>
+            </div>
+            
+                <div>
+                    
+                         <a class="tag is-post-tag" href="/tags/数据结构/">数据结构</a>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <script src="/assets/js/APlayer.min.js"> </script><h1 id="广义表的定义"><a href="#广义表的定义" class="headerlink" title="广义表的定义"></a>广义表的定义</h1><p>广义表(Lists，又称列表)是一种非线性的数据结构，是线性表的一种推广。即广义表中放松对表元素的原子限制，容许它们具有其自身结构，每一个元素也可以是一个表，得到一个表中有表的结构，这就是广义表。<br>广义表（Generalized List）一般记作<br>           L=（a1,a2….,an）<br>其中，ai可以是不可再分的元素，也可以是广义表，分别称为广义表L的原子和子表。<br>ADT Glist<br>{<br>   数据对象： D={ei | i=1,2,..,n;n&gt;=0 ;  eiÎAtomSet 或ei ÎGlist,<br>                                     AtomSet为某个数据对象}<br>   数据关系：R1={&lt; ei-1, ei &gt; | ei-1 , ei ÎD,2&lt;=i&lt;=n}<br>   基本操作：<br>       InitGList( &amp;L);<br>             操作结果：创建空的广义表L。<br>       CreateGList(&amp;L,S);<br>             初始条件：S是广义表的书写形式串。<br>             操作结果：由S创建广义表L。<br>       DestroyGList(&amp;L);<br>            初始条件：广义表L存在。<br>            操作结果：销毁广义表L。<br>CopyGList( &amp;T,L);<br>            初始条件：广义表L存在。<br>            操作结果：由广义表L复制得到广义表T。<br>       GListLength(L);<br>            初始条件：广义表L存在。<br>            操作结果：求广义表L的长度，即元素个数。<br>       GListDepth(L);<br>            初始条件：广义表L存在。<br>            操作结果：求广义表L的深度。<br>       GListEmpty (L);<br>            初始条件：广义表L存在。<br>            操作结果：判定广义表L是否为空。<br>       GetHead(L);<br>            初始条件：广义表L存在。<br>            操作结果：取广义表L的头。<br>GetTail( &amp;T,L);<br>            初始条件：广义表L存在。<br>            操作结果：取广义表L的尾。<br>       InsertFirst_GL(&amp;L,e);<br>            初始条件：广义表L存在。<br>            操作结果：插入元素e作为广义表L的第一元素。<br>       DeleteFirst_GL(&amp;L,&amp;e);<br>            初始条件：广义表L存在。<br>            操作结果：删除广义表L的第一元素，并用e返回其值。<br>       Traverse_GL (L,visit());<br>            初始条件：广义表L存在。<br>            操作结果：遍历广义表L，用函数visit处理每个元素。<br>｝</p>
+<h1 id="广义表的存储结构"><a href="#广义表的存储结构" class="headerlink" title="广义表的存储结构"></a>广义表的存储结构</h1><p>由于广义表(a1,a2,a3,…an)中的数据元素可以具有不同的结构，（或是原子，或是广义表），因此，难以用顺序存储结构表示，通常采用链式存储结构，每个数据元素可用一个结点表示。<br>    由于广义表中有两种数据元素，原子或广义表，因此，需要两种结构的结点：一种是表结点，用以表示列表；一种是原子结点，用以表示原子。  </p>
+<p>　　若列表不空，则可分解成表头和表尾；反之，一对确定的表头和表尾可唯一确定列表。由此，一个表结点可由三个域组成：标志域、指示表头的指针域和指示表尾的指针域；而原子结点只需两个域：标志域和值域。<br><img src="https://i.imgur.com/WF1GSh0.png" alt=""><br>例如<br><img src="https://i.imgur.com/xQg2I5x.jpg" alt=""><br><img src="https://i.imgur.com/oOxaL3n.jpg" alt=""></p>
+
+        </div>
+        <div class="post-reply">
+            
+            
+        </div>
+    </div>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © Codegitz 2018
+        <br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/search_core.js"></script>
+<script src="/js/script.js"></script>
+
+</body>
+</html>

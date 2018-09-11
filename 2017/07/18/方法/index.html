@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html class="full-height">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>Java方法 | Codegitz&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="方法总结： 方法的作用1.方法实现封装特定的逻辑功能，方法之间互相独立，一个方法一般只完成一件独立的事，遵循单一职责原则。2.方法可以多次调用，避免大量代码重复，有利于复用，维护，团队协作开发。 方法的类型1.方法分为有参数和无参数，有返回值和无返回值两种无参数的方法参数列表为空无返回值的方法定义时的方法类型为void 方法的定义方法的定义的一般形式为：   修饰词  返回类型 方法名（参数列表">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java方法">
+<meta property="og:url" content="http://yoursite.com/2017/07/18/方法/index.html">
+<meta property="og:site_name" content="Codegitz&#39;s Blog">
+<meta property="og:description" content="方法总结： 方法的作用1.方法实现封装特定的逻辑功能，方法之间互相独立，一个方法一般只完成一件独立的事，遵循单一职责原则。2.方法可以多次调用，避免大量代码重复，有利于复用，维护，团队协作开发。 方法的类型1.方法分为有参数和无参数，有返回值和无返回值两种无参数的方法参数列表为空无返回值的方法定义时的方法类型为void 方法的定义方法的定义的一般形式为：   修饰词  返回类型 方法名（参数列表">
+<meta property="og:updated_time" content="2017-07-20T12:12:47.880Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java方法">
+<meta name="twitter:description" content="方法总结： 方法的作用1.方法实现封装特定的逻辑功能，方法之间互相独立，一个方法一般只完成一件独立的事，遵循单一职责原则。2.方法可以多次调用，避免大量代码重复，有利于复用，维护，团队协作开发。 方法的类型1.方法分为有参数和无参数，有返回值和无返回值两种无参数的方法参数列表为空无返回值的方法定义时的方法类型为void 方法的定义方法的定义的一般形式为：   修饰词  返回类型 方法名（参数列表">
+  
+    <link rel="alternate" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/codegitz/TestCapacity/7acf45f27b3185ef97e94f69889d4c0253b12723/a5ea21%5B1%5D.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/layout.css">
+  
+
+</head>
+
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Codegitz</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item" href="/about">
+                About
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item flex-1" href="/about">
+                About
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>Java方法</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Img8049893_f.jpg">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Codegitz</span>
+                <span class="post-date sub-title">at: 2017-07-18</span>
+            </div>
+            
+                <div>
+                    
+                         <a class="tag is-post-tag" href="/tags/java/">java</a>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <script src="/assets/js/APlayer.min.js"> </script><p>方法总结：</p>
+<h1 id="方法的作用"><a href="#方法的作用" class="headerlink" title="方法的作用"></a>方法的作用</h1><p>1.方法实现封装特定的逻辑功能，方法之间互相独立，一个方法一般只完成一件独立的事，遵循单一职责原则。<br>2.方法可以多次调用，避免大量代码重复，有利于复用，维护，团队协作开发。</p>
+<h1 id="方法的类型"><a href="#方法的类型" class="headerlink" title="方法的类型"></a>方法的类型</h1><p>1.方法分为有参数和无参数，有返回值和无返回值两种<br>无参数的方法参数列表为空<br>无返回值的方法定义时的方法类型为void</p>
+<h1 id="方法的定义"><a href="#方法的定义" class="headerlink" title="方法的定义"></a>方法的定义</h1><p>方法的定义的一般形式为：<br>   修饰词  返回类型 方法名（参数列表）{<br>        //方法体<br>     }<br>  例如：<br>    public static void eat() {<br>    //方法体<br>    }<br>    public static char[] generate(int level){<br>    //方法体<br>    }<br>public static 为修饰词，void和char[]分别表示没有返回值和返回一个char[]型的变量，（）圆括号里面的为参数，花括号里面为方法执行的方法体。</p>
+<h1 id="方法的调用"><a href="#方法的调用" class="headerlink" title="方法的调用"></a>方法的调用</h1><p>无返回值的：方法名（有参传参）；<br>有返回值的：数据类型 变量名=方法名（有参传参）；<br>如：<br>    <code>eat（）；</code><br>    <code>char[] b=generate(4);</code></p>
+<h1 id="return关键字"><a href="#return关键字" class="headerlink" title="return关键字"></a>return关键字</h1><p>1.return 值；//结束方法，返回结果给调用方法<br>2.return；结束方法</p>
+<h1 id="猜字符小游戏"><a href="#猜字符小游戏" class="headerlink" title="猜字符小游戏"></a>猜字符小游戏</h1><p>这个小游戏定义了一个随机生成字符串的方法generate（）和判断字符对错的check（）方法</p>
+<pre><code>package day06;
+import java.util.*;
+public class Guessing {
+ /*猜字符小游戏
+  * 系统随机生成数个字母，生成字母个数由玩家选择
+  * 玩家随意输入几个字母
+ * 系统判断正确的个数，并统计数据，计算得分
+  * 猜字过程输入exit则退出游戏
+ * 
+ * */
+
+public static void main(String[] args) {
+     Scanner scan=new Scanner(System.in);
+     int level;
+     do{
+       System.out.println(&quot;请选择等级5、7、9：&quot;);
+       level=scan.nextInt();             
+     }while(level!=5&amp;&amp;level!=7&amp;&amp;level!=9);
+     char[] gen=generate(level);
+     int sroce;
+     int count=0;
+     for(int i=0;i&lt;gen.length;i++){
+         System.out.print(gen[i]);
+     }
+     System.out.println();
+     while(true){
+     System.out.println(&quot;猜吧！&quot;);
+     String str=scan.next().toUpperCase();
+     if(str.equals(&quot;EXIT&quot;)){
+         System.out.println(&quot;下次再来吧！&quot;);
+         break;
+             }
+     char[] imput=str.toCharArray();
+     int[] result=check(gen,imput);
+     if(result[1]==gen.length){
+         sroce=gen.length*100-count*10;
+         System.out.println(&quot;恭喜你，猜对了！得分为&quot;+sroce);
+         break;          
+     }else{
+         count++;
+     System.out.println(&quot;字符对了&quot;+result[0]+&quot;个，位置对了&quot;+result[1]+&quot;次&quot;);
+       }
+     }
+
+     scan.close();
+}
+public static char[] generate(int level){
+    char[] chs=new char[level];
+    char[] letters=new char[]{&apos;A&apos;,&apos;B&apos;,&apos;C&apos;,&apos;D&apos;,&apos;E&apos;,&apos;F&apos;,&apos;G&apos;,&apos;H&apos;,&apos;I&apos;,&apos;J&apos;,&apos;K&apos;,&apos;L&apos;,&apos;M&apos;,&apos;N&apos;,&apos;O&apos;,&apos;P&apos;,&apos;Q&apos;,&apos;R&apos;,&apos;S&apos;,&apos;T&apos;,&apos;U&apos;,&apos;V&apos;,&apos;W&apos;,&apos;X&apos;,&apos;Y&apos;,&apos;Z&apos;};
+
+    boolean[] flags=new boolean[letters.length];
+    for(int i=0;i&lt;chs.length;i++){
+        int index;
+        do{
+        index=(int)(Math.random()*26);
+
+        }while(flags[index]);
+        chs[i]=letters[index];
+        flags[index]=true;
+    }
+
+    return chs;
+}
+public static int[] check(char[] chs,char[] imput){
+    int[] result=new int[2];
+
+    for(int i=0;i&lt;chs.length;i++){
+        for(int j=0;j&lt;imput.length;j++){
+            if(chs[i]==imput[j]){
+                result[0]++;
+                if(i==j){
+              result[1]++;
+              break;
+                }
+            }
+        }
+    }
+    return result;
+}
+
+}
+</code></pre>
+        </div>
+        <div class="post-reply">
+            
+            
+        </div>
+    </div>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © Codegitz 2018
+        <br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/search_core.js"></script>
+<script src="/js/script.js"></script>
+
+</body>
+</html>

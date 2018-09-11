@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="full-height">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>Dplayer的使用 | Codegitz&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="安装12npm install dplayer --savenpm install hexo-tag-dplayer 简单的安装完成之后在文章中就可以正常使用了，关于标签的使用，可以到插件作者主页使用文档去查看如果提示缺少文件什么的，请参照这篇文章进行添加:参考 使用插入代码1&amp;#123;% dplayer &amp;quot;url=http://p0e6ktyto.bkt.clouddn.com/M">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dplayer的使用">
+<meta property="og:url" content="http://yoursite.com/2017/12/07/Dplayer的使用/index.html">
+<meta property="og:site_name" content="Codegitz&#39;s Blog">
+<meta property="og:description" content="安装12npm install dplayer --savenpm install hexo-tag-dplayer 简单的安装完成之后在文章中就可以正常使用了，关于标签的使用，可以到插件作者主页使用文档去查看如果提示缺少文件什么的，请参照这篇文章进行添加:参考 使用插入代码1&amp;#123;% dplayer &amp;quot;url=http://p0e6ktyto.bkt.clouddn.com/M">
+<meta property="og:image" content="https://i.imgur.com/n3YAGhq.jpg">
+<meta property="og:updated_time" content="2017-12-06T17:11:41.282Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dplayer的使用">
+<meta name="twitter:description" content="安装12npm install dplayer --savenpm install hexo-tag-dplayer 简单的安装完成之后在文章中就可以正常使用了，关于标签的使用，可以到插件作者主页使用文档去查看如果提示缺少文件什么的，请参照这篇文章进行添加:参考 使用插入代码1&amp;#123;% dplayer &amp;quot;url=http://p0e6ktyto.bkt.clouddn.com/M">
+<meta name="twitter:image" content="https://i.imgur.com/n3YAGhq.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/codegitz/TestCapacity/7acf45f27b3185ef97e94f69889d4c0253b12723/a5ea21%5B1%5D.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/layout.css">
+  
+
+<link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"></script></head>
+
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Codegitz</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item" href="/about">
+                About
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item flex-1" href="/about">
+                About
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>Dplayer的使用</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Img8049893_f.jpg">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Codegitz</span>
+                <span class="post-date sub-title">at: 2017-12-07</span>
+            </div>
+            
+                <div>
+                    
+                         <a class="tag is-post-tag" href="/tags/hexo/">hexo</a>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <script src="/assets/js/APlayer.min.js"> </script><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install dplayer --save</div><div class="line">npm install hexo-tag-dplayer</div></pre></td></tr></table></figure>
+<p>简单的安装完成之后在文章中就可以正常使用了，关于标签的使用，可以到插件作者主页<a href="https://github.com/MoePlayer/DPlayer" target="_blank" rel="external">使用文档</a>去查看<br>如果提示缺少文件什么的，请参照这篇文章进行添加:<a href="http://www.jianshu.com/p/53e0d2a617da" target="_blank" rel="external">参考</a></p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>插入代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% dplayer &quot;url=http://p0e6ktyto.bkt.clouddn.com/MSN%20%E6%9C%80%E5%90%8E%E7%9A%84%E4%B8%89%E9%87%8D%E5%A5%8F_%20%E7%BB%9D%E5%94%B12017_%E9%AB%98%E6%B8%85.mp4&quot;  &quot;pic=https://i.imgur.com/n3YAGhq.jpg&quot; &quot;loop=yes&quot; &quot;theme=#FADFA3&quot; &quot;autoplay=false&quot; &quot;token=tokendemo&quot; %&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">插入视频代码内容大致如下</div><div class="line">&#123;% dplayer &quot;视频链接&quot;  &quot;封面图片链接&quot; &quot;循环播放loop=yes&quot; &quot;theme=#FADFA3&quot; &quot;自动播放autoplay=false&quot; &quot;token=tokendemo&quot; %&#125;</div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><center>MSN 最后的三重奏_ 绝唱2017</center><br><div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","loop":true,"video":{"url":"http://p0e6ktyto.bkt.clouddn.com/MSN%20%E6%9C%80%E5%90%8E%E7%9A%84%E4%B8%89%E9%87%8D%E5%A5%8F_%20%E7%BB%9D%E5%94%B12017_%E9%AB%98%E6%B8%85.mp4","pic":"https://i.imgur.com/n3YAGhq.jpg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script><br><img src="https://i.imgur.com/n3YAGhq.jpg" alt=""></p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>以上就是关于Dplayer的简单使用，详细配置见作者<a href="http://dplayer.js.org/docs/" target="_blank" rel="external">Doc</a></p>
+
+        </div>
+        <div class="post-reply">
+            
+            
+        </div>
+    </div>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © Codegitz 2018
+        <br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/search_core.js"></script>
+<script src="/js/script.js"></script>
+
+</body>
+</html>

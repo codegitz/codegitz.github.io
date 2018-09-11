@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="full-height">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>spring AOP | Codegitz&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="spring AOPAOP概念aspect oriented programming面向切面编程是什么？将共同业务处理从传统业务处理中抽离出来，单独封装，然后以配置的形式进行关联为什么？可以在不修改原有的逻辑代码的情况下，给系统追加功能 AOP 追加事务控制 异常日志记录  案例：  要求：在每个Controller方法执行前输出打桩信息 封装一个组件 通过配置将封装的组件追击到Controll">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring AOP">
+<meta property="og:url" content="http://yoursite.com/2018/04/13/springAOP/index.html">
+<meta property="og:site_name" content="Codegitz&#39;s Blog">
+<meta property="og:description" content="spring AOPAOP概念aspect oriented programming面向切面编程是什么？将共同业务处理从传统业务处理中抽离出来，单独封装，然后以配置的形式进行关联为什么？可以在不修改原有的逻辑代码的情况下，给系统追加功能 AOP 追加事务控制 异常日志记录  案例：  要求：在每个Controller方法执行前输出打桩信息 封装一个组件 通过配置将封装的组件追击到Controll">
+<meta property="og:image" content="https://i.imgur.com/QZyOfVf.png">
+<meta property="og:image" content="https://i.imgur.com/mpEiu1h.png">
+<meta property="og:image" content="https://i.imgur.com/vmxMLpi.png">
+<meta property="og:updated_time" content="2018-04-13T03:14:22.220Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="spring AOP">
+<meta name="twitter:description" content="spring AOPAOP概念aspect oriented programming面向切面编程是什么？将共同业务处理从传统业务处理中抽离出来，单独封装，然后以配置的形式进行关联为什么？可以在不修改原有的逻辑代码的情况下，给系统追加功能 AOP 追加事务控制 异常日志记录  案例：  要求：在每个Controller方法执行前输出打桩信息 封装一个组件 通过配置将封装的组件追击到Controll">
+<meta name="twitter:image" content="https://i.imgur.com/QZyOfVf.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/codegitz/TestCapacity/7acf45f27b3185ef97e94f69889d4c0253b12723/a5ea21%5B1%5D.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/layout.css">
+  
+
+</head>
+
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Codegitz</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item" href="/about">
+                About
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item flex-1" href="/about">
+                About
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>spring AOP</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Img8049893_f.jpg">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Codegitz</span>
+                <span class="post-date sub-title">at: 2018-04-13</span>
+            </div>
+            
+                <div>
+                    
+                         <a class="tag is-post-tag" href="/tags/java/">java</a>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <script src="/assets/js/APlayer.min.js"> </script><h1 id="spring-AOP"><a href="#spring-AOP" class="headerlink" title="spring AOP"></a>spring AOP</h1><h2 id="AOP概念"><a href="#AOP概念" class="headerlink" title="AOP概念"></a>AOP概念</h2><p>aspect oriented programming<br>面向切面编程<br>是什么？<br>将共同业务处理从传统业务处理中抽离出来，单独封装，然后以配置的形式进行关联<br>为什么？<br>可以在不修改原有的逻辑代码的情况下，给系统追加功能</p>
+<h2 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h2><ul>
+<li>追加事务控制</li>
+<li>异常日志记录</li>
+</ul>
+<p>案例：</p>
+<ul>
+<li>要求：在每个Controller方法执行前输出打桩信息</li>
+<li>封装一个组件</li>
+<li>通过配置将封装的组件追击到Controller方法里</li>
+</ul>
+<h1 id="AOP相关概念"><a href="#AOP相关概念" class="headerlink" title="AOP相关概念"></a>AOP相关概念</h1><ul>
+<li>oop：类，对象，封装，继承，多态</li>
+<li>AOP：切面，切入点，通知，动态代理</li>
+</ul>
+<h2 id="切面（aspect）"><a href="#切面（aspect）" class="headerlink" title="切面（aspect）"></a>切面（aspect）</h2><p>指的是封装了共同处理的组件，并且能够切入到其他的组件的方法上</p>
+<h2 id="切入点（pointcut）"><a href="#切入点（pointcut）" class="headerlink" title="切入点（pointcut）"></a>切入点（pointcut）</h2><p>用于指定目标组件的方法</p>
+<ul>
+<li>方法限定表达式<br>可以给某个组件中的部分方法追加共同功能<br>execution（修饰符？返回类型 方法名（参数） 异常抛出？）<br>//匹配到add开头的所有方法<br>execution(<em> add</em>(..))<br>//匹配UserService包下的所有方法<br>execution(<em> io.codegitz.UserService.</em>(…))<br>//匹配到service包下及其子包下的所有方法<br>execution(<em> io.codegitz.service..</em>(..))<br>//匹配到service包下所有类的方法<br>execution(<em> io.codegitz.service.</em>.*(..))</li>
+<li><p>类型限定表达式<br>可以给某个组件的所有方法追加功能<br>within（类型）<br>//匹配UserService组件下的所有方法<br>within(io.codegitz.service.UserService)<br>//匹配service包下的所有类的所有方法<br>within(io.codegitz.service.<em>)<br>//匹配service包及其子包下的所有方法<br>within(io.codegitz.service..</em>)</p>
+</li>
+<li><p>bean名称限定表达式<br>可以给某个组件中国的所有的方法追加功能<br>bean（id名）<br>//匹配id=userService的组件的所有方法<br>bean(userService)<br>//匹配以Service结尾的所有组件的所有方法<br>bean(*Service)</p>
+</li>
+</ul>
+<p>AOP配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</div><div class="line">	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:beans=&quot;http://www.springframework.org/schema/beans&quot;</div><div class="line">	xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</div><div class="line">	xmlns:jdbc=&quot;http://www.springframework.org/schema/jdbc&quot; xmlns:jee=&quot;http://www.springframework.org/schema/jee&quot;</div><div class="line">	xmlns:jms=&quot;http://www.springframework.org/schema/jms&quot; xmlns:lang=&quot;http://www.springframework.org/schema/lang&quot;</div><div class="line">	xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;</div><div class="line">	xmlns:util=&quot;http://www.springframework.org/schema/util&quot; xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;</div><div class="line">	xsi:schemaLocation=&quot;</div><div class="line">		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd&quot;&gt;</div><div class="line"></div><div class="line">	&lt;bean id=&quot;loggerBean&quot; class=&quot;io.codegitz.cloud_note.aspect.LoggerBean&quot;&gt;</div><div class="line">	&lt;/bean&gt;</div><div class="line">	&lt;aop:config&gt;</div><div class="line">		&lt;!-- 通过REF关联组件类 --&gt;</div><div class="line">		&lt;aop:aspect ref=&quot;loggerBean&quot;&gt;</div><div class="line">			&lt;aop:before method=&quot;logController&quot; pointcut=&quot;within(io.codegitz.cloud_note.controller..*)&quot; /&gt;</div><div class="line">		&lt;/aop:aspect&gt;</div><div class="line">	&lt;/aop:config&gt;</div><div class="line"></div><div class="line">&lt;/beans&gt;</div></pre></td></tr></table></figure></p>
+<p>遇到错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element &apos;aop:config&apos;.</div></pre></td></tr></table></figure></p>
+<p>有点狗的是引用和xsd文件都有了，后来把后面的版本号去掉了，然后就暂时不报错了，过了一会再次报错，然后把版本号又加了回去，然后就行了….</p>
+<h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><p>用于指定切入的时机<br>spring提供了五种通知类型<br>try{<br>   使用前置通知<aop:before><br>   //执行的目标方法<br>   后置通知<aop:after-returning><br>}catch{<br>   异常通知<aop:after-throwing><br>}finally{<br>   最终通知：<aop:after><br>}<br>@around=前置+后置通知</aop:after></aop:after-throwing></aop:after-returning></aop:before></p>
+<p>切面：追加啥功能？单独封装的代码<br>切入点：切谁？所有Controller<br>通知：啥时候切？前置，后置，环绕</p>
+<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>AOP原理：使用动态代理技术<br>可以创建一个新的类型，重写目标接口或目标类的方法<br>在重写方法中，追加了要切入的功能代码和方法代码<br><img src="https://i.imgur.com/QZyOfVf.png" alt=""></p>
+<h3 id="AOP的配置使用形式"><a href="#AOP的配置使用形式" class="headerlink" title="AOP的配置使用形式"></a>AOP的配置使用形式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</div><div class="line">	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:beans=&quot;http://www.springframework.org/schema/beans&quot;</div><div class="line">	xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</div><div class="line">	xmlns:jdbc=&quot;http://www.springframework.org/schema/jdbc&quot; xmlns:jee=&quot;http://www.springframework.org/schema/jee&quot;</div><div class="line">	xmlns:jms=&quot;http://www.springframework.org/schema/jms&quot; xmlns:lang=&quot;http://www.springframework.org/schema/lang&quot;</div><div class="line">	xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;</div><div class="line">	xmlns:util=&quot;http://www.springframework.org/schema/util&quot;</div><div class="line">	xsi:schemaLocation=&quot;</div><div class="line">		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd&quot;&gt;</div><div class="line">      &lt;!-- Spring事务管理 --&gt;</div><div class="line">       &lt;!-- 定义事务管理bean --&gt;</div><div class="line">       &lt;bean id=&quot;txManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;</div><div class="line">       &lt;property name=&quot;dataSource&quot; ref=&quot;dbcp&quot;&gt;&lt;/property&gt;</div><div class="line">       &lt;/bean&gt;</div><div class="line">       &lt;!-- 开启transaction注解扫描，将标记作用在具体的方法上 --&gt;</div><div class="line">       &lt;tx:annotation-driven transaction-manager=&quot;txManager&quot;/&gt;</div><div class="line">&lt;/beans&gt;</div></pre></td></tr></table></figure>
+<p>然后在实现类前面加一个@Transactional注解<br>执行此测试方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@Test</div><div class="line">	public void testUserService1()&#123;</div><div class="line">		System.out.println(service.getClass().getName());</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<p>未使用动态代理则会输出原来的类名：io.codegitz.cloud_note.service.UserServiceImpl<br>使用动态代理输出动态代理名：com.sun.proxy.$Proxy22</p>
+<p>spring有两种动态技术</p>
+<ul>
+<li>基于目标接口的</li>
+<li>基于目标类的</li>
+</ul>
+<p>public class $Proxy22 implements UserService{<br>     public void checkLogin(){<br>        //追加事务处理<br>        //重写了UserServiceImpl.checkLogin<br>}  </p>
+<p>}</p>
+<p>public class $Proxy22 extends 目标类{</p>
+<p>}</p>
+<h1 id="AOP注解配置"><a href="#AOP注解配置" class="headerlink" title="AOP注解配置"></a>AOP注解配置</h1><h2 id="注解标记"><a href="#注解标记" class="headerlink" title="注解标记"></a>注解标记</h2><p>@Component 起到应以<bean>的作用<br>@Aspect <aop:aspect ref="loggerBean"><br>@Before <aop:before pointcut="within()"></aop:before></aop:aspect></bean></p>
+<p>案例：</p>
+<ul>
+<li>要求：当系统发生service异常，将异常信息写入到日志文件</li>
+<li>切面：将异常写入文件</li>
+<li>切入点：after-throwing(“within(service..*    )”)</li>
+</ul>
+<p>记录异常类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">package io.codegitz.cloud_note.aspect;</div><div class="line"></div><div class="line">import java.io.FileWriter;</div><div class="line">import java.io.PrintWriter;</div><div class="line">import java.text.SimpleDateFormat;</div><div class="line">import java.util.Date;</div><div class="line"></div><div class="line">import org.aspectj.lang.annotation.AfterThrowing;</div><div class="line">import org.aspectj.lang.annotation.Aspect;</div><div class="line">import org.springframework.stereotype.Component;</div><div class="line"></div><div class="line">@Component  //扫描spring容器</div><div class="line">@Aspect     //将该类作为切面组件</div><div class="line">public class ExceptionBean &#123;</div><div class="line">	</div><div class="line">    //e是目标组件抛出的异常对象</div><div class="line">	@AfterThrowing(throwing=&quot;e&quot;,pointcut=&quot;within(io.codegitz.cloud_note.service..*)&quot;)</div><div class="line">	public void execute(Exception e)&#123;</div><div class="line">		//将异常信息输入文件</div><div class="line">		try &#123;</div><div class="line">			FileWriter fw=new FileWriter(&quot;F:\\note_error\\record.log&quot;,true);</div><div class="line">			PrintWriter pw=new PrintWriter(fw);</div><div class="line">			//利用pw对象写入异常信息</div><div class="line">			Date time=new Date();</div><div class="line">			SimpleDateFormat sdf=new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);</div><div class="line">			String strTime=sdf.format(time);</div><div class="line">			pw.println(&quot;************************&quot;);</div><div class="line">			pw.println(&quot;异常类型：&quot;+e);</div><div class="line">			pw.println(&quot;异常事件：&quot;+strTime);</div><div class="line">			pw.println(&quot;*****异常的详细信息******&quot;);</div><div class="line">			e.printStackTrace(pw);</div><div class="line">			pw.close();</div><div class="line">			fw.close();</div><div class="line">		&#125; catch (Exception ex) &#123;</div><div class="line">			System.out.println(&quot;记录异常失败&quot;);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>模拟异常：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String str=null;</div><div class="line">str.length();</div></pre></td></tr></table></figure></p>
+<p>后台报错：<br><img src="https://i.imgur.com/mpEiu1h.png" alt=""></p>
+<p>日志文件记录：<br><img src="https://i.imgur.com/vmxMLpi.png" alt=""></p>
+<p>记录异常成功。</p>
+
+        </div>
+        <div class="post-reply">
+            
+            
+        </div>
+    </div>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © Codegitz 2018
+        <br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/search_core.js"></script>
+<script src="/js/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html class="full-height">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>Codegitz&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="VENI VIDI VICI">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Codegitz&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/page/7/index.html">
+<meta property="og:site_name" content="Codegitz&#39;s Blog">
+<meta property="og:description" content="VENI VIDI VICI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Codegitz&#39;s Blog">
+<meta name="twitter:description" content="VENI VIDI VICI">
+  
+    <link rel="alternate" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/codegitz/TestCapacity/7acf45f27b3185ef97e94f69889d4c0253b12723/a5ea21%5B1%5D.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/layout.css">
+  
+
+</head>
+
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Codegitz</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item" href="/about">
+                About
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item flex-1" href="/about">
+                About
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <style>
+    .post-hover:hover {
+        box-shadow: inset 0 0 100px #000;
+        transition: box-shadow .2s;
+    }
+
+    .sub-post-container .post-hover:hover h3 {
+        text-decoration: underline gray;
+    }
+
+
+    .primary-item-main {
+        height: 330px;
+        background-size: cover;
+    }
+
+    .primary-container .title,
+    .primary-container .sub-title,
+    .primary-container .post-content-text,
+    .primary-container .date {
+        color: #fff;
+    }
+
+    .post-content-text {
+        color: #f1f1f1!important;
+    }
+
+    .primary-container .post-hover {
+        background: black;
+    }
+
+    .content-bg-mask {
+        background: rgba(0,0,0,.4);
+    }
+
+</style>
+
+<div style="background: #f5f8f9;">
+    <div id="main-container" class="container" style="padding-top: 20px;">
+        <div class="is-flex main-content justify-center">
+            <section class="column is-9">
+                
+<div class="primary-container content-box is-flex-desktop clear-padding bottom-line" style="margin-bottom: 25px;">
+    <div class="column  is-7-desktop">
+        <a href="/2018/01/25/java反射/">
+            <div class="full-height post-hover"
+                 style="
+                         background-image: url('https://i.imgur.com/aDntwhe.png');
+                         height: 350px;
+                         background-size: cover;
+                         background-repeat: no-repeat;
+                         ">
+                    <div class=" is-flex flex-column center content has-text-centered full-height has-padding content-bg-mask">
+                        <h1 class="title text-shadow" style="margin-bottom: 15px;">
+                            java反射
+                        </h1>
+                        <div>
+                        
+                            `
+                                <span class="tag is-post-tag">java</span>
+                            
+                        
+                        </div>
+                        <p class="post-content-text is-marginless has-padding text-shadow">
+                             反射是什么 1.反射是Java API，是Java提供的现成的类，是Java提供的功能. 2.反射是Java提供的动态执行机制，动态加载类，动态创建对象，动态访问属性，动态调用方法。
+动态与静态静态：事先约定的规则，执行期间按照固定的..
+                        </p>
+                        <p class="date text-shadow">2018-01-25</p>
+                        <button class="button is-info is-small">Read More</button>
+                    </div>
+            </div>
+        </a>
+    </div>
+    <div class="column is-5 is-hidden-touch" style="padding-left: 0;">
+        <div class="full-height is-flex flex-column justify-space-between" style="min-height: 350px;">
+            
+                
+<a class="post-hover" href="/2018/01/24/spring配置文件找不到标签错误/" style="height: 48.5%">
+    <div class="content is-hidden-touch full-height overflow-hidden" style="background-image: url('')">
+        <div class="content-bg-mask full-width full-height has-padding">
+            <h3 class="title is-marginless text-shadow">
+                spring配置文件找不到标签错误
+            </h3>
+            
+            
+            <span class="tag is-post-tag">java</span>
+            
+            
+            <p class="sub-title text-shadow"></p>
+            <p class="is-marginless text-shadow post-content-text">
+                 
+spring配置文件出错：cvc-complex-type.2.4.c: The match..
+            </p>
+            <p class="date text-shadow is-marginless">2018-01-24</p>
+        </div>
+    </div>
+</a>
+            
+            
+                
+<a class="post-hover" href="/2018/01/13/tomcat启动报错/" style="height: 48.5%">
+    <div class="content is-hidden-touch full-height overflow-hidden" style="background-image: url('https://i.imgur.com/w9avEGT.png')">
+        <div class="content-bg-mask full-width full-height has-padding">
+            <h3 class="title is-marginless text-shadow">
+                tomcat启动报错
+            </h3>
+            
+            
+            <span class="tag is-post-tag">java</span>
+            
+            
+            <p class="sub-title text-shadow"></p>
+            <p class="is-marginless text-shadow post-content-text">
+                 启动错误tomcat启动报错：Failed to start component [Stand..
+            </p>
+            <p class="date text-shadow is-marginless">2018-01-13</p>
+        </div>
+    </div>
+</a>
+            
+        </div>
+    </div>
+    <div class="column is-12 is-hidden-desktop">
+        
+        
+<a class="post-hover" href="/2018/01/24/spring配置文件找不到标签错误/" style="height: 48.5%">
+    <div class="content is-hidden-touch full-height overflow-hidden" style="background-image: url('')">
+        <div class="content-bg-mask full-width full-height has-padding">
+            <h3 class="title is-marginless text-shadow">
+                spring配置文件找不到标签错误
+            </h3>
+            
+            
+            <span class="tag is-post-tag">java</span>
+            
+            
+            <p class="sub-title text-shadow"></p>
+            <p class="is-marginless text-shadow post-content-text">
+                 
+spring配置文件出错：cvc-complex-type.2.4.c: The match..
+            </p>
+            <p class="date text-shadow is-marginless">2018-01-24</p>
+        </div>
+    </div>
+</a>
+        
+        
+        
+<a class="post-hover" href="/2018/01/13/tomcat启动报错/" style="height: 48.5%">
+    <div class="content is-hidden-touch full-height overflow-hidden" style="background-image: url('https://i.imgur.com/w9avEGT.png')">
+        <div class="content-bg-mask full-width full-height has-padding">
+            <h3 class="title is-marginless text-shadow">
+                tomcat启动报错
+            </h3>
+            
+            
+            <span class="tag is-post-tag">java</span>
+            
+            
+            <p class="sub-title text-shadow"></p>
+            <p class="is-marginless text-shadow post-content-text">
+                 启动错误tomcat启动报错：Failed to start component [Stand..
+            </p>
+            <p class="date text-shadow is-marginless">2018-01-13</p>
+        </div>
+    </div>
+</a>
+        
+    </div>
+</div>
+
+                    
+                    
+                
+                    
+                        <div class="content-box  is-hidden-desktop" style="margin-bottom: 27px;">
+                            <a class="post-hover" href="/2018/01/24/spring配置文件找不到标签错误/">
+                            <div class="columns" style="min-height: 230px;">
+                                
+                                <div class="column is-8-desktop post-content is-flex align-center">
+                                    <div class="content">
+                                        <h3>spring配置文件找不到标签错误</h3>
+                                        
+                                        <p>
+                                            
+                                                <span class="tag is-post-tag">java</span>
+                                            
+                                        </p>
+                                        <p>
+                                             
+spring配置文件出错：cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element   ‘mvc:annotation-driven’.123456Multiple annotations found at ..
+                                        </p>
+                                        <p>2018-01-24</p>
+                                        <button class="button is-small">Read More</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        </div>
+                    
+                
+                    
+                        <div class="content-box  is-hidden-desktop" style="margin-bottom: 27px;">
+                            <a class="post-hover" href="/2018/01/13/tomcat启动报错/">
+                            <div class="columns" style="min-height: 230px;">
+                                
+                                    <div class="column is-4-desktop is-5-tablet post-avatar is-hidden-mobile"
+                                         style="margin: 10px; background-size: cover;background-image: url('https://i.imgur.com/w9avEGT.png')">
+                                    </div>
+                                
+                                <div class="column is-8-desktop post-content is-flex align-center">
+                                    <div class="content">
+                                        <h3>tomcat启动报错</h3>
+                                        
+                                        <p>
+                                            
+                                                <span class="tag is-post-tag">java</span>
+                                            
+                                        </p>
+                                        <p>
+                                             启动错误tomcat启动报错：Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/tab]]Tomcat日志如下：12345678910111213141516171819202122232425262728293031..
+                                        </p>
+                                        <p>2018-01-13</p>
+                                        <button class="button is-small">Read More</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        </div>
+                    
+                
+                    
+                        <div class="content-box  " style="margin-bottom: 27px;">
+                            <a class="post-hover" href="/2018/01/01/致过去的2017/">
+                            <div class="columns" style="min-height: 230px;">
+                                
+                                <div class="column is-8-desktop post-content is-flex align-center">
+                                    <div class="content">
+                                        <h3>致过去的2017</h3>
+                                        
+                                        <p>
+                                            
+                                        </p>
+                                        <p>
+                                             时间就这样不紧不慢地走着，眨眼间，就从17走到了18，自己也应该成熟了，应该有自己的目标了，过去的2017，发生了很多，感情上的，生活上的烦恼，遇到的各种的事情，有快乐也有忧伤，希望在到了的2018，能够不忘初心，珍惜眼前人，踏踏实实的走下去，不埋怨，不气馁，希望能在2018的开头，实现自己的目标
+
+                                        </p>
+                                        <p>2018-01-01</p>
+                                        <button class="button is-small">Read More</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        </div>
+                    
+                
+                    
+                        <div class="content-box  " style="margin-bottom: 27px;">
+                            <a class="post-hover" href="/2017/12/15/平衡二叉树/">
+                            <div class="columns" style="min-height: 230px;">
+                                
+                                <div class="column is-8-desktop post-content is-flex align-center">
+                                    <div class="content">
+                                        <h3>平衡二叉树</h3>
+                                        
+                                        <p>
+                                            
+                                                <span class="tag is-post-tag">数据结构</span>
+                                            
+                                        </p>
+                                        <p>
+                                             123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293..
+                                        </p>
+                                        <p>2017-12-15</p>
+                                        <button class="button is-small">Read More</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        </div>
+                    
+                
+                <!--翻頁-->
+                <nav class="pagination is-flex" style="justify-content: flex-end">
+                    
+                        
+                            <a class="pagination-previous" href="/page/6/">Previous</a>
+                        
+                        
+                            <a class="pagination-next" href="/page/8/">Next page</a>
+                        
+                    
+                </nav>
+            </section>
+            
+                <style>
+    /*user info start*/
+    .user-info {
+        padding: 15px 0 0;
+    }
+
+    .user-info .avatar {
+        width: 155px;
+        height: 155px;
+        border-radius: 50%;
+    }
+
+    .sns-container {
+        flex-wrap: wrap;
+    }
+
+    .sns-container a{
+        color: black;
+    }
+    /*user info end*/
+
+    /*Tag start*/
+    #tag_cloud .tags-item{
+        display: inline-block;
+        color: #000;
+        border: 1px solid gray;
+
+        margin: 4px 2px;
+        padding: 0 4px;
+        border-radius: 6px;
+    }
+    /*Tag end*/
+
+    /*Site box start*/
+    .site-box {
+        height: 60px;
+    }
+    /*Site box end*/
+
+    .category-list-item,
+    .archive-list-item {
+        display: flex;
+        margin-bottom: 4px;
+        justify-content: space-between;
+    }
+    .category-list-link,
+    .archive-list-link {
+        color: black;
+    }
+
+    .category-list-count,
+    .archive-list-count {
+        width: 32px;
+        text-align: center;
+        border-radius: 4px;
+        color: #fff;
+        background-color: gray;
+    }
+</style>
+<aside class="column is-hidden-touch is-3" style="max-width: 280px; min-width: 230px">
+    <div class="content-box user-info">
+        <div class="has-padding">
+            <header class="has-text-centered">
+                <img class="avatar" src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Img8049893_f.jpg">
+            </header>
+            <section class="has-text-centered">
+                <h3><strong>Codegitz</strong></h3>
+                <p class="sub-title">Life is now</p>
+                
+                <p class="is-flex center" style=" color: gray">
+                    <i class="fa fa-map-marker" style="padding: 5px"></i>
+                    Earth
+                </p>
+                
+            </section>
+        </div>
+        <div class="top-line">
+            <ul class="sns-container justify-center is-flex has-padding">
+                
+
+                
+                <li>
+                    <a target="_blank" href="https://twitter.com/Codegitz">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                        </span>
+                    </a>
+                </li>
+                
+
+                
+                <li>
+                    <a target="_blank" href="https://www.zhihu.com/people/Codegitz">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
+                                        </span>
+                    </a>
+                </li>
+                
+
+                
+                <li>
+                    <a target="_blank" href="http://weibo.com/Codegitz">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                                        </span>
+                    </a>
+                </li>
+                
+
+                
+
+                
+                <li>
+                    <a target="_blank" href="https://github.com/Codegitz">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                        </span>
+                    </a>
+                </li>
+                
+
+                
+            </ul>
+        </div>
+    </div>
+    <div class="content-box">
+        <!--post数量和tag category 数量-->
+        <div class="site-box is-flex">
+            <div class="flex-1 is-flex flex-column center full-height right-line">
+                <strong>73</strong>
+                <p>Posts</p>
+            </div>
+            <div class="flex-1 is-flex flex-column center full-height">
+                <strong>16</strong>
+                <p>Tags</p>
+            </div>
+        </div>
+    </div>
+    <div id='tag_cloud' class="content-inner content-box">
+        <div class="has-text-centered">
+            <strong>Tags</strong>
+        </div>
+        <div class="content-inner is-flex flex-wrap justify-space-between">
+            
+                <a class="tags-item" href="tags/Java-docker/" title="Java,docker" rel="1">
+                    Java,docker
+                </a>
+            
+                <a class="tags-item" href="tags/Linux/" title="Linux" rel="7">
+                    Linux
+                </a>
+            
+                <a class="tags-item" href="tags/hexo/" title="hexo" rel="4">
+                    hexo
+                </a>
+            
+                <a class="tags-item" href="tags/Hibernate/" title="Hibernate" rel="5">
+                    Hibernate
+                </a>
+            
+                <a class="tags-item" href="tags/java/" title="java" rel="17">
+                    java
+                </a>
+            
+                <a class="tags-item" href="tags/powerdesigner/" title="powerdesigner" rel="1">
+                    powerdesigner
+                </a>
+            
+                <a class="tags-item" href="tags/Java-Springboot/" title="Java,Springboot" rel="4">
+                    Java,Springboot
+                </a>
+            
+                <a class="tags-item" href="tags/markdown/" title="markdown" rel="1">
+                    markdown
+                </a>
+            
+                <a class="tags-item" href="tags/Mysql/" title="Mysql" rel="2">
+                    Mysql
+                </a>
+            
+                <a class="tags-item" href="tags/Java/" title="Java" rel="5">
+                    Java
+                </a>
+            
+                <a class="tags-item" href="tags/poisionous-soul/" title="poisionous soul" rel="3">
+                    poisionous soul
+                </a>
+            
+                <a class="tags-item" href="tags/数据结构/" title="数据结构" rel="6">
+                    数据结构
+                </a>
+            
+                <a class="tags-item" href="tags/git/" title="git" rel="2">
+                    git
+                </a>
+            
+                <a class="tags-item" href="tags/Git/" title="Git" rel="1">
+                    Git
+                </a>
+            
+                <a class="tags-item" href="tags/随笔/" title="随笔" rel="1">
+                    随笔
+                </a>
+            
+                <a class="tags-item" href="tags/hello-world/" title="hello world" rel="1">
+                    hello world
+                </a>
+            
+        </div>
+    </div>
+    <div class="content-inner content-box">
+        <div class="has-text-centered">
+            <strong>Categories</strong>
+        </div>
+        <div class="content-inner">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Poisionous-soul/">Poisionous soul</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+    <div class="content-inner content-box">
+        <div class="has-text-centered">
+            <strong>Archives</strong>
+        </div>
+        <div class="content-inner">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">8</span></li></ul>
+        </div>
+    </div>
+</aside>
+            
+        </div>
+    </div>
+</div>
+
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © Codegitz 2018
+        <br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/search_core.js"></script>
+<script src="/js/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="full-height">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>hexo进阶配置 | Codegitz&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="new APlayer({ 				element: document.getElementById(&quot;aplayer0&quot;), 				narrow: false, 				autoplay: true, 				showlrc: 0, 				music: { 					title: &quot;River Flows In You&quot;, 					author: &quot;Capox&quot;,">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo进阶配置">
+<meta property="og:url" content="http://yoursite.com/2017/12/04/hexo进阶配置/index.html">
+<meta property="og:site_name" content="Codegitz&#39;s Blog">
+<meta property="og:description" content="new APlayer({ 				element: document.getElementById(&quot;aplayer0&quot;), 				narrow: false, 				autoplay: true, 				showlrc: 0, 				music: { 					title: &quot;River Flows In You&quot;, 					author: &quot;Capox&quot;,">
+<meta property="og:image" content="https://i.imgur.com/nFgIGJp.jpg">
+<meta property="og:image" content="https://i.imgur.com/ZtP9zRK.jpg">
+<meta property="og:image" content="https://i.imgur.com/pZpmywI.png">
+<meta property="og:image" content="https://i.imgur.com/rrT0M8H.png">
+<meta property="og:image" content="https://i.imgur.com/23s54yC.png">
+<meta property="og:image" content="https://i.imgur.com/bON8Gko.png">
+<meta property="og:image" content="https://i.imgur.com/ViGzICK.png">
+<meta property="og:image" content="https://i.imgur.com/ahoE6Z4.png">
+<meta property="og:image" content="https://i.imgur.com/KshifcY.png">
+<meta property="og:image" content="https://i.imgur.com/XOrXX77.png">
+<meta property="og:image" content="https://i.imgur.com/jRploZR.png">
+<meta property="og:image" content="https://i.imgur.com/8jJDMKb.png">
+<meta property="og:updated_time" content="2017-12-06T15:59:53.106Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo进阶配置">
+<meta name="twitter:description" content="new APlayer({ 				element: document.getElementById(&quot;aplayer0&quot;), 				narrow: false, 				autoplay: true, 				showlrc: 0, 				music: { 					title: &quot;River Flows In You&quot;, 					author: &quot;Capox&quot;,">
+<meta name="twitter:image" content="https://i.imgur.com/nFgIGJp.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/codegitz/TestCapacity/7acf45f27b3185ef97e94f69889d4c0253b12723/a5ea21%5B1%5D.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/layout.css">
+  
+
+</head>
+
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Codegitz</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item" href="/about">
+                About
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item flex-1" href="/about">
+                About
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>hexo进阶配置</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Img8049893_f.jpg">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Codegitz</span>
+                <span class="post-date sub-title">at: 2017-12-04</span>
+            </div>
+            
+                <div>
+                    
+                         <a class="tag is-post-tag" href="/tags/hexo/">hexo</a>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <script src="/assets/js/APlayer.min.js"> </script><div id="aplayer0" class="aplayer" style="margin-bottom: 20px;"></div>
+		<script>
+			new APlayer({
+				element: document.getElementById("aplayer0"),
+				narrow: false,
+				autoplay: true,
+				showlrc: 0,
+				music: {
+					title: "River Flows In You",
+					author: "Capox",
+					url: "http://p0e6ktyto.bkt.clouddn.com/Capox.mp3",
+					pic: "https://i.imgur.com/jbfIiGM.jpg",
+				}
+			});
+		</script>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><a id="more"></a>
+<p><center><br>这周末偶然提起hexo的一些主题配置，以及一些更加进阶一点的功能，比如环境友好的评论设置，拉高博客逼格的添加音乐等等，所以就开始了折腾之路。<br><img src="https://i.imgur.com/nFgIGJp.jpg" alt=""></center></p>
+<h1 id="hexo主题"><a href="#hexo主题" class="headerlink" title="hexo主题"></a>hexo主题</h1><h2 id="寻找一个简单实用的主题"><a href="#寻找一个简单实用的主题" class="headerlink" title="寻找一个简单实用的主题"></a>寻找一个简单实用的主题</h2><p>首先来说说hexo的主题，hexo的主题非常多，但是很多都是大同小异，next是hexo一个比较流行的主题，主题风格极简，主题空间留下大量的空白，适合程序猿的简洁。一开始我也是用next，但是时间久了就觉得有些许单调，所以就开始寻找一个好看又实用的主题。后来我看到了<a href="https://github.com/Haojen/hexo-theme-Claudia" target="_blank" rel="external">Claudia</a>,第一眼看着感觉比较喜欢它的布局，以及图片的渲染样式，所以就先用着试试看，主题文章布局样式还是比较好看的。<br><img src="https://i.imgur.com/ZtP9zRK.jpg" alt=""><br>但是后来就慢慢发现这个主题的功能并不是很完整，并不是十分实用，这个主题可以配置的东西偏少点。然后又接着寻找梦里的伊人，<a href="https://github.com/viosey/hexo-theme-material" target="_blank" rel="external">material</a>出现了，看了这个主题的样式和使用文档之后，感觉似乎挺不错的，于是准备用material，但是在我的博客上各种方法尝试了多遍却部署不上这个主题，无奈只能放弃。后来就找到了<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">yilia</a>，比较喜欢这个主题的风格，在看了这么多的主题之后还有眼前一亮的感觉，并且看了文档后觉得功能也比较多，于是就决定使用yilia。<br>关于yilia主题：<br>1.崇尚简约<br>2.追求移动端体验<br>3.希望把加载速度做到极致<br>4.让大家把注意力放到内容上<br>5.主题不支持IE6，7，8。以后也不会</p>
+<h2 id="主题的使用配置"><a href="#主题的使用配置" class="headerlink" title="主题的使用配置"></a>主题的使用配置</h2><p>安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia</div></pre></td></tr></table></figure></p>
+<p>配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">修改hexo根目录下的 _config.yml ： theme: yilia</div></pre></td></tr></table></figure></p>
+<p>更新<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd themes/yilia</div><div class="line">git pull</div></pre></td></tr></table></figure></p>
+<p>主题详细配置可以看主题目录里面的_config.yml，可以参看<a href="https://github.com/litten/BlogBackup/blob/master/_config.yml" target="_blank" rel="external">作者Litten的配置</a>,使用者可以根据自己的喜好来配置。</p>
+<h1 id="添加gitment评论功能"><a href="#添加gitment评论功能" class="headerlink" title="添加gitment评论功能"></a>添加gitment评论功能</h1><p>评论系统很多，多说是比较流行的，然而多说倒闭了，网易云跟帖也倒闭了，综合各个评论系统，发现了gitment，完美代替多说。这是<a href="https://imsun.net/posts/gitment-introduction/#more" target="_blank" rel="external">原作者的博客</a>，大牛一枚。</p>
+<h2 id="1-注册OAuth-Application"><a href="#1-注册OAuth-Application" class="headerlink" title="1.注册OAuth Application"></a>1.注册OAuth Application</h2><p>注册一个新的 <a href="https://github.com/settings/applications/new" target="_blank" rel="external">OAuth Application</a>。其他内容可以随意填写，但要确保填入正确的 callback URL（一般是评论页面对应的域名，如 <a href="https://codegitz.github.io/）。" target="_blank" rel="external">https://codegitz.github.io/）。</a><br><img src="https://i.imgur.com/pZpmywI.png" alt=""><br>你会得到一个属于你的 client ID 和一个 client secret</p>
+<h2 id="2-引入gitment"><a href="#2-引入gitment" class="headerlink" title="2.引入gitment"></a>2.引入gitment</h2><p>稳定版本，如果想开发版的，可以参考原作者博客。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save gitment</div></pre></td></tr></table></figure></p>
+<p>配置主题_config.yml文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Gitment</div><div class="line">on: true  # 启用gitment评论系统</div><div class="line">gitment_owner: codegitz      #你的 GitHub ID</div><div class="line">gitment_repo: codegitz.github.io          #存储评论的 repo</div><div class="line">gitment_oauth:</div><div class="line">  client_id: &apos;3111abe777f17a978418&apos;        #client ID</div><div class="line">  client_secret: &apos;a793e7d23aa376586e7493cf997ae4b7f3cf5cd7&apos;  #client secret</div></pre></td></tr></table></figure></p>
+<p>然后部署到GitHub上，再打开文章末尾会看到这个，初始化评论<br><img src="https://i.imgur.com/rrT0M8H.png" alt=""><br>点击完成初始化，然后就可以开始评论了，评论要先登录GitHub<br><img src="https://i.imgur.com/23s54yC.png" alt=""><br><img src="https://i.imgur.com/bON8Gko.png" alt=""><br><img src="https://i.imgur.com/ViGzICK.png" alt=""><br>评论必须要初始化。</p>
+<h1 id="添加音乐播放"><a href="#添加音乐播放" class="headerlink" title="添加音乐播放"></a>添加音乐播放</h1><p>添加音乐一般可以添加其他网站的外链，一般用的是<code>&lt;iframe&gt;</code>,但是这个会显示对应的音乐网站名字。<br>我们用一款HTML5的音乐播放器：Aplayer,使用Aplayer需要使用插件。<br>命令行安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-tag-aplayer@2.0.1</div></pre></td></tr></table></figure></p>
+<p>安装完成后，在需要添加音乐播放的地方加上,就会出现音乐播放器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% aplayer &quot;Beautiful In White&quot; &quot;Shane Filan&quot; &quot;http://p0e6ktyto.bkt.clouddn.com/Shane%20Filan%20-%20Beautiful%20In%20White%20%28Demo%29.mp3&quot; &quot;https://i.imgur.com/sRZqFvh.jpg&quot; &quot;autoplay&quot; %&#125;</div></pre></td></tr></table></figure></p>
+ <div id="aplayer1" class="aplayer" style="margin-bottom: 20px;"></div>
+		<script>
+			new APlayer({
+				element: document.getElementById("aplayer1"),
+				narrow: false,
+				autoplay: true,
+				showlrc: 0,
+				music: {
+					title: "Beautiful In White",
+					author: "Shane Filan",
+					url: "http://p0e6ktyto.bkt.clouddn.com/Shane%20Filan%20-%20Beautiful%20In%20White%20%28Demo%29.mp3",
+					pic: "https://i.imgur.com/sRZqFvh.jpg",
+				}
+			});
+		</script>
+<p>对应的位置分别是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% aplayer &quot;歌曲名称&quot; &quot;歌手&quot; &quot;歌曲URL&quot; &quot;封面图片URL&quot; &quot;autoplay&quot; %&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/ahoE6Z4.png" alt=""><br>Aplayer的作者还有一款html5的视频播放器，叫<a href="https://github.com/MoePlayer/DPlayer" target="_blank" rel="external">Dplayer</a>，对应有一款hexo的插件，叫<a href="https://github.com/MoePlayer/hexo-tag-dplayer" target="_blank" rel="external">hexo-tag-dplayer</a>,这里还没有用到，以后再看看。<br>歌曲的地址可以存放的七牛云上，加载速度嗖嗖嗖的。<br>注册七牛云的流程我就不说了，可以看<a href="http://heykin.xyz/2017/11/06/Spring1/" target="_blank" rel="external">注册使用</a><br>七牛云的使用还有为博客<a href="http://heykin.xyz/2017/11/06/Spring1/" target="_blank" rel="external">添加高清大图</a>，十分方便。<br>注册之后可以使用存放歌曲，视频等文件，使用方法如下<br><img src="https://i.imgur.com/KshifcY.png" alt=""><br><img src="https://i.imgur.com/XOrXX77.png" alt=""><br><img src="https://i.imgur.com/jRploZR.png" alt=""><br>上传成功后就可以获得文件外链<br><img src="https://i.imgur.com/8jJDMKb.png" alt=""><br>复制这个外链放到需要使用的地方，例如歌曲URL那里</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>这两天花了不少时间在这个上面，不能使用material主题实在是有点遗憾，不过yilia也十分好看实用，弥补了一下遗憾。关于视频播放器Dplayer的使用，下次再来踩踩。</p>
+
+        </div>
+        <div class="post-reply">
+            
+            
+        </div>
+    </div>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © Codegitz 2018
+        <br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/search_core.js"></script>
+<script src="/js/script.js"></script>
+
+</body>
+</html>

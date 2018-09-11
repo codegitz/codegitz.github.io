@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="full-height">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>利用GitHub在Markdown中插入图片 | Codegitz&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="none">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用GitHub在Markdown中插入图片">
+<meta property="og:url" content="http://yoursite.com/2017/07/10/利用GitHub在Markdown中插入图片/index.html">
+<meta property="og:site_name" content="Codegitz&#39;s Blog">
+<meta property="og:description" content="none">
+<meta property="og:image" content="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Inked%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170710161230_LI.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162541.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162608.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162719.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162316.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162400.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710165719.png">
+<meta property="og:updated_time" content="2017-07-11T06:38:40.070Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用GitHub在Markdown中插入图片">
+<meta name="twitter:description" content="none">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Inked%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170710161230_LI.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/codegitz/TestCapacity/7acf45f27b3185ef97e94f69889d4c0253b12723/a5ea21%5B1%5D.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/layout.css">
+  
+
+</head>
+
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Codegitz</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item" href="/about">
+                About
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item flex-1" href="/about">
+                About
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>利用GitHub在Markdown中插入图片</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Img8049893_f.jpg">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Codegitz</span>
+                <span class="post-date sub-title">at: 2017-07-10</span>
+            </div>
+            
+                <div>
+                    
+                         <a class="tag is-post-tag" href="/tags/git/">git</a>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <script src="/assets/js/APlayer.min.js"> </script><h1 id="1-新建一个git仓库"><a href="#1-新建一个git仓库" class="headerlink" title="1.新建一个git仓库"></a>1.新建一个git仓库</h1><p>在github中新建一个repo，不要勾选Initalize this repository with a README选项，如建立一个MarkdownPhotos的仓库<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Inked%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170710161230_LI.jpg" alt=""></p>
+<h1 id="2-新建本地储存图片的文件夹"><a href="#2-新建本地储存图片的文件夹" class="headerlink" title="2.新建本地储存图片的文件夹"></a>2.新建本地储存图片的文件夹</h1><p>在本地电脑新建文件夹将图片放入文件夹中，如新建ImageGithubToMarkdown文件夹 </p>
+<h1 id="3-在对应文件夹建立本地仓库"><a href="#3-在对应文件夹建立本地仓库" class="headerlink" title="3.在对应文件夹建立本地仓库"></a>3.在对应文件夹建立本地仓库</h1><p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162541.png" alt=""></p>
+<h1 id="4-Push到github保存"><a href="#4-Push到github保存" class="headerlink" title="4.Push到github保存"></a>4.Push到github保存</h1><p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162608.png" alt=""><br>完成后的图片为<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162719.png" alt=""></p>
+<h1 id="5-复制图片地址"><a href="#5-复制图片地址" class="headerlink" title="5.复制图片地址"></a>5.复制图片地址</h1><p>在Google浏览器打开GitHub<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162316.png" alt=""><br>右键点击图片，选择在“新标签页中打开图片”<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162400.png" alt=""><br>复制地址栏图片地址<br>或者直接右击图片，“复制图片地址”，两种操作得到的图片地址均可</p>
+<p>两个地址，指向同一个图片</p>
+<h1 id="6-在markdown中引用需要的图片地址"><a href="#6-在markdown中引用需要的图片地址" class="headerlink" title="6.在markdown中引用需要的图片地址"></a>6.在markdown中引用需要的图片地址</h1><p>按照markdown语法格式引用图片地址即可显示图片</p>
+<p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710165719.png" alt=""><br><a href="http://blog.csdn.net/monkey_lzl/article/details/60870891" target="_blank" rel="external">更多</a></p>
+
+        </div>
+        <div class="post-reply">
+            
+            
+        </div>
+    </div>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © Codegitz 2018
+        <br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/search_core.js"></script>
+<script src="/js/script.js"></script>
+
+</body>
+</html>
