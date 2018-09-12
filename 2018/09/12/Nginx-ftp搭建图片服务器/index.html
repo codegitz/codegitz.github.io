@@ -8,17 +8,17 @@
   
   <title>Nginx+ftp搭建图片服务器 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安装Nginx这里就不说了 安装vsftp这里也不说了 主要是Nginx代理路径的配置和图片上传的根目录，一定要设置对应的读写权限，不然在上传文件是会报错： ftp&amp;gt; put E:\1491756492.jpg 200 PORT command successful. Consider using PASV. 553 Could not create file. 更改路径更改路径需要更改v">
+  <meta name="description" content="安装Nginx这里就不说了 安装vsftp这里也不说了 主要是Nginx代理路径的配置和图片上传的根目录，一定要设置对应的读写权限，不然在上传文件是会报错： 500 OOPS: cannot change directory:/var/www/images 500 OOPS: priv_sock_get_cmd //Windows 命令行报错  ftp&amp;gt; put E:\1491756492">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nginx+ftp搭建图片服务器">
 <meta property="og:url" content="http://yoursite.com/2018/09/12/Nginx-ftp搭建图片服务器/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="安装Nginx这里就不说了 安装vsftp这里也不说了 主要是Nginx代理路径的配置和图片上传的根目录，一定要设置对应的读写权限，不然在上传文件是会报错： ftp&amp;gt; put E:\1491756492.jpg 200 PORT command successful. Consider using PASV. 553 Could not create file. 更改路径更改路径需要更改v">
-<meta property="og:updated_time" content="2018-09-12T14:54:07.165Z">
+<meta property="og:description" content="安装Nginx这里就不说了 安装vsftp这里也不说了 主要是Nginx代理路径的配置和图片上传的根目录，一定要设置对应的读写权限，不然在上传文件是会报错： 500 OOPS: cannot change directory:/var/www/images 500 OOPS: priv_sock_get_cmd //Windows 命令行报错  ftp&amp;gt; put E:\1491756492">
+<meta property="og:updated_time" content="2018-09-12T15:30:25.059Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nginx+ftp搭建图片服务器">
-<meta name="twitter:description" content="安装Nginx这里就不说了 安装vsftp这里也不说了 主要是Nginx代理路径的配置和图片上传的根目录，一定要设置对应的读写权限，不然在上传文件是会报错： ftp&amp;gt; put E:\1491756492.jpg 200 PORT command successful. Consider using PASV. 553 Could not create file. 更改路径更改路径需要更改v">
+<meta name="twitter:description" content="安装Nginx这里就不说了 安装vsftp这里也不说了 主要是Nginx代理路径的配置和图片上传的根目录，一定要设置对应的读写权限，不然在上传文件是会报错： 500 OOPS: cannot change directory:/var/www/images 500 OOPS: priv_sock_get_cmd //Windows 命令行报错  ftp&amp;gt; put E:\1491756492">
   
     <link rel="alternate" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
   
@@ -156,7 +156,10 @@
             <script src="/assets/js/APlayer.min.js"> </script><h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx<br></h2><p>这里就不说了<br></p>
 <h2 id="安装vsftp"><a href="#安装vsftp" class="headerlink" title="安装vsftp"></a>安装vsftp</h2><p>这里也不说了<br></p>
 <p>主要是Nginx代理路径的配置和图片上传的根目录，一定要设置对应的读写权限，不然在上传文件是会报错：<br></p>
-<pre><code>ftp&gt; put E:\1491756492.jpg
+<pre><code>500 OOPS: cannot change directory:/var/www/images
+500 OOPS: priv_sock_get_cmd
+//Windows 命令行报错 
+ftp&gt; put E:\1491756492.jpg
 200 PORT command successful. Consider using PASV.
 553 Could not create file.
 </code></pre><h2 id="更改路径"><a href="#更改路径" class="headerlink" title="更改路径"></a>更改路径<br></h2><p>更改路径需要更改vsftp的vsftpd.conf文件<br><br>文件默认在/etc/vsftpd目录下</p>
