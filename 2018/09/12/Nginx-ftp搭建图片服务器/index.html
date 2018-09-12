@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html class="full-height">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>Nginx+ftp搭建图片服务器 | Codegitz&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="安装Nginx这里就不说了 安装vsftp这里也不说了 主要是Nginx代理路径的配置和图片上传的根目录，一定要设置对应的读写权限，不然在上传文件是会报错： ftp&amp;gt; put E:\1491756492.jpg 200 PORT command successful. Consider using PASV. 553 Could not create file. 更改路径更改路径需要更改v">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx+ftp搭建图片服务器">
+<meta property="og:url" content="http://yoursite.com/2018/09/12/Nginx-ftp搭建图片服务器/index.html">
+<meta property="og:site_name" content="Codegitz&#39;s Blog">
+<meta property="og:description" content="安装Nginx这里就不说了 安装vsftp这里也不说了 主要是Nginx代理路径的配置和图片上传的根目录，一定要设置对应的读写权限，不然在上传文件是会报错： ftp&amp;gt; put E:\1491756492.jpg 200 PORT command successful. Consider using PASV. 553 Could not create file. 更改路径更改路径需要更改v">
+<meta property="og:updated_time" content="2018-09-12T14:54:07.165Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nginx+ftp搭建图片服务器">
+<meta name="twitter:description" content="安装Nginx这里就不说了 安装vsftp这里也不说了 主要是Nginx代理路径的配置和图片上传的根目录，一定要设置对应的读写权限，不然在上传文件是会报错： ftp&amp;gt; put E:\1491756492.jpg 200 PORT command successful. Consider using PASV. 553 Could not create file. 更改路径更改路径需要更改v">
+  
+    <link rel="alternate" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://raw.githubusercontent.com/codegitz/TestCapacity/7acf45f27b3185ef97e94f69889d4c0253b12723/a5ea21%5B1%5D.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/layout.css">
+  
+
+</head>
+
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Codegitz</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item" href="/about">
+                About
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="/home">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item flex-1" href="/about">
+                About
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>Nginx+ftp搭建图片服务器</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Img8049893_f.jpg">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Codegitz</span>
+                <span class="post-date sub-title">at: 2018-09-12</span>
+            </div>
+            
+                <div>
+                    
+                         <a class="tag is-post-tag" href="/tags/Linux/">Linux</a>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <script src="/assets/js/APlayer.min.js"> </script><h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx<br></h2><p>这里就不说了<br></p>
+<h2 id="安装vsftp"><a href="#安装vsftp" class="headerlink" title="安装vsftp"></a>安装vsftp</h2><p>这里也不说了<br></p>
+<p>主要是Nginx代理路径的配置和图片上传的根目录，一定要设置对应的读写权限，不然在上传文件是会报错：<br></p>
+<pre><code>ftp&gt; put E:\1491756492.jpg
+200 PORT command successful. Consider using PASV.
+553 Could not create file.
+</code></pre><h2 id="更改路径"><a href="#更改路径" class="headerlink" title="更改路径"></a>更改路径<br></h2><p>更改路径需要更改vsftp的vsftpd.conf文件<br><br>文件默认在/etc/vsftpd目录下</p>
+<pre><code># new defaut root create by Quan 2018/9/12
+local_root=/var/www/images  //针对系统用户
+chroot_local_user=NO     //是不是锁定在当前目录
+anon_root=/var/www/images  //针对匿名用户
+</code></pre><p>配置Nginx的nginx.conf配置文件<br><br>文件默认在 /usr/local/nginx/conf/目录下<br></p>
+<pre><code>    server {
+        listen       80;
+        server_name  localhost;
+
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+
+        location / {
+#  default root
+#  root   /home/ftpuser;
+#  new root
+             root   /var/www/images;
+            index  index.html index.htm;
+        }
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里新建的路径www/images一定要设置读写权限，否则会出现<code>553 Could not create file.</code>错误<br><br><strong>关于配置：</strong>这里面的配置还有很多，这里只是列举了一两个，下面附上完整配置<a href="https://blog.csdn.net/jianhong1990/article/details/52001785" target="_blank" rel="external">vsftp链接</a>、<a href="https://blog.csdn.net/chenweijiSun/article/details/70823482" target="_blank" rel="external">nginx.conf链接</a></p>
+
+        </div>
+        <div class="post-reply">
+            
+            
+        </div>
+    </div>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © Codegitz 2018
+        <br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/search_core.js"></script>
+<script src="/js/script.js"></script>
+
+</body>
+</html>
