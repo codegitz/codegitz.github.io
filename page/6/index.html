@@ -34,6 +34,8 @@
 
   
 
+<!--prettify������������css����-->
+<link href="/plugins/prettify/prettify.css" rel="stylesheet">
 <!-- ����gitment��css��js�ļ� -->
 <link rel="stylesheet" href="/gitment.css"> 
 <script src="/gitment.js"></script> 
@@ -169,619 +171,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-mysql报错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/mysql报错/">Mysql报错</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/mysql报错/" class="archive-article-date">
-  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Mysql报错：Unable-to-connect-to-remote-host-Catalog-download-has-failed"><a href="#Mysql报错：Unable-to-connect-to-remote-host-Catalog-download-has-failed" class="headerlink" title="Mysql报错：Unable to connect to remote host. Catalog download has failed."></a>Mysql报错：Unable to connect to remote host. Catalog download has failed.</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">=================== Start Initialization ===================</div><div class="line">MySQL Installer is running in Community mode</div><div class="line"></div><div class="line">Initializing product requirements</div><div class="line">Loading product catalog</div><div class="line">Checking for product catalog snippets</div><div class="line">Checking for product packages in the bundle</div><div class="line">Categorizing product catalog</div><div class="line">Finding all installed packages.</div><div class="line">Your product catalog was last updated at 4/9/2018 9:54:11 PM</div><div class="line">=================== End Initialization ===================</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">Unable to connect to remote host.  Catalog download has failed.</div></pre></td></tr></table></figure>
-<p>问题分析<br>该问题是由于新版本的 Mysql 在安装的时候会自动在 Windows 的“任务计划程序”中安装一个定时任务，任务的触发时间为每天上午十点。</p>
-<p>解决方式<br>找到相应的定时任务，并禁用该任务。 </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/mysql报错/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-json" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/json/">Json</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/json/" class="archive-article-date">
-  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="编码问题"><a href="#编码问题" class="headerlink" title="编码问题"></a>编码问题</h1><h2 id="1-发送get请求"><a href="#1-发送get请求" class="headerlink" title="1.发送get请求"></a>1.发送get请求</h2><p>IE浏览器会使用gbk进行编码，而其他浏览器会使用utf-8来编码，服务器端默认使用iso-8859-1来解码，所以会产生乱码。<br>解决方法：<br>step1.服务器端统一使用utf-8来解码。<br>    URIEncoding=utf-8<br>step2.浏览器端使用encodeURI函数来编码。<br>注：encodeURI是JavaScript内置的函数。</p>
-<h2 id="2-发送post"><a href="#2-发送post" class="headerlink" title="2.发送post"></a>2.发送post</h2><p>浏览器会使用utf-8来编码。服务器端默认使用ISO-8859-1来解码，所以会产生乱码<br>解决方法：<br>request.setCharacterEncoding(“utf-8”);</p>
-<h1 id="JSON-javascript-object-notation"><a href="#JSON-javascript-object-notation" class="headerlink" title="JSON(javascript object notation)"></a>JSON(javascript object notation)</h1><h2 id="1-JSON是什么"><a href="#1-JSON是什么" class="headerlink" title="1.JSON是什么"></a>1.JSON是什么</h2><p>是一种轻量级的数据交换格式<br>注：<br>数据交换：将要转换的数据先转换为一种与平台无关的数据格式，然后交给接收方来处理。<br><br>轻量级：相对于xml，JSON文档更小，解析速度更快。</p>
-<h2 id="2-语法"><a href="#2-语法" class="headerlink" title="2.语法"></a>2.语法</h2><h3 id="表示一个对象"><a href="#表示一个对象" class="headerlink" title="表示一个对象"></a>表示一个对象</h3><p>{属性名：属性值，属性名：属性值….}<br>注意：<br>a.属性名必须使用双引号括起来。<br>b.属性值的类型可以使string,number,true/false,null,object<br>c.属性值如果是string，必须使用双括号括起来。    </p>
-<h3 id="表示一个由对象组成的数组"><a href="#表示一个由对象组成的数组" class="headerlink" title="表示一个由对象组成的数组"></a>表示一个由对象组成的数组</h3><p>[{},{},{}….]</p>
-<h2 id="3-使用json"><a href="#3-使用json" class="headerlink" title="3.使用json"></a>3.使用json</h2><h3 id="将java对象转变为json字符串"><a href="#将java对象转变为json字符串" class="headerlink" title="将java对象转变为json字符串"></a>将java对象转变为json字符串</h3><p>可以使用json官方的工具(json-lib).<br>JSONObject，JSONArray<br><img src="https://i.imgur.com/hFQgwNu.png" alt=""><br>ex：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">package json;</div><div class="line"></div><div class="line">import java.util.ArrayList;</div><div class="line">import java.util.List;</div><div class="line"></div><div class="line">import bean.stock;</div><div class="line">import net.sf.json.JSONArray;</div><div class="line">import net.sf.json.JSONObject;</div><div class="line"></div><div class="line">public class jsonTest &#123;</div><div class="line">     /*</div><div class="line">      * 将java对象转换为json字符串</div><div class="line">      */</div><div class="line">	public static void test1()&#123;</div><div class="line">		stock s=new stock();</div><div class="line">		s.setCode(&quot;345435&quot;);</div><div class="line">		s.setName(&quot;中国嘉陵&quot;);</div><div class="line">		s.setPrice(10);</div><div class="line">		//使用json-lib提供的工具来转换</div><div class="line">		JSONObject jsonobj=JSONObject.fromObject(s);</div><div class="line">		String jsonstr=jsonobj.toString();</div><div class="line">		System.out.println(jsonstr);</div><div class="line">	&#125;</div><div class="line">	/*</div><div class="line">	 * 多个对象组成的数组或者是集合转换成json字符串</div><div class="line">	 */</div><div class="line">	public static void test2()&#123;</div><div class="line">		List&lt;stock&gt; stocks=new ArrayList&lt;stock&gt;();</div><div class="line">		  for(int i=0;i&lt;3;i++)&#123;</div><div class="line">			  stock s=new stock();</div><div class="line">			  s.setCode(&quot;345435&quot;+i);</div><div class="line">			  s.setName(&quot;中国嘉陵&quot;+i);</div><div class="line">			  s.setPrice(10+i);</div><div class="line">			  stocks.add(s);</div><div class="line">		  &#125;</div><div class="line">		  //fromObject方法的参数可以使数组或者集合</div><div class="line">		  JSONArray jsonArr=JSONArray.fromObject(stocks);</div><div class="line">		  String jsonStr=jsonArr.toString();</div><div class="line">		  System.out.println(jsonStr);</div><div class="line">	&#125;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		test2();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="将JSON字符串转换成JavaScript对象"><a href="#将JSON字符串转换成JavaScript对象" class="headerlink" title="将JSON字符串转换成JavaScript对象"></a>将JSON字符串转换成JavaScript对象</h3><p>JavaScript内置对象JSON提供的parse()方法。</p>
-<h1 id="jQuery对ajax的支持"><a href="#jQuery对ajax的支持" class="headerlink" title="jQuery对ajax的支持"></a>jQuery对ajax的支持</h1><h2 id="1-ajax-方法"><a href="#1-ajax-方法" class="headerlink" title="1.$.ajax()方法"></a>1.$.ajax()方法</h2><p>用法：<br>$.ajax({});<br>说明：{}是一个用来描述请求选项参数的对象，常见的选项参数有如下几个：<br>url:请求地址<br>data:请求格式，有两种格式：<br>第一种格式：请求字符串，比如”adminCode=sally”<br>     第二组格式：对象，比如{“adminCode”:”sally”}<br>     type:请求类型(get/post)<br>dataType:服务器返回的数据类型：<br>       text：文本数据<br>       json：json字符串<br>       html:html文档<br>       xml:xml文档<br>       script:javascript脚本<br>success:事件处理函数（当服务器处理正常，用来处理服务器返回的数据）。<br>error：事件处理函数（当服务器处理异常，用来处理服务器返回的数据）。</p>
-<h2 id="2-load"><a href="#2-load" class="headerlink" title="2.load()"></a>2.load()</h2><p>作用：向服务器发送异步请求，然后将服务器返回的数据直接添加到符合要求的节点之上。<br>用法：<br>$obj.load(url,[data]);<br>注意：<br>url:请求地址。<br>data:请求参数，格式同上。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/json/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-note" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/note/">云笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/note/" class="archive-article-date">
-  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h2><ul>
-<li>用户模块：登录注册修改密码，退出</li>
-<li>笔记本模块:创建 删除 更新 查看</li>
-<li>笔记模块：创建 删除 更新 查看 转移</li>
-<li>分享、收藏模块：分享 收藏 查看 搜索</li>
-<li>回收模块：先看 彻底删除 恢复</li>
-<li>活动模块：查看活动 参加活动<h2 id="设计思想"><a href="#设计思想" class="headerlink" title="设计思想"></a>设计思想</h2>MVC设计思想<br>表现层：HTML+CSS+JQuery+ajax<br>控制层：springmvc<br>业务层：service组件<br>持久层：Dao组件<h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2>1.开发环境：WindowsXP+Tomcat+mysql<br>2.采用技术：java+jQuery+ajax+springmvc+IOC+AOP+mybatis<br>java:开发核心技术<br>jQuery：简化前端JavaScript（$对象和API）<br>ajax：局部处理页面，提升用户体验度<br>spring(IOC/AOP):管理相关组件<br>IOC：负责管理Controller/service/dao,维护他们之间的关系<br>AOP：面向切面编程，不改变原有的代码，给系统增加新的功能<br>mybatis：对数据库进行操作<h2 id="整体规范"><a href="#整体规范" class="headerlink" title="整体规范"></a>整体规范</h2></li>
-<li>所有的请求ajax方式访问</li>
-<li>前端页面采用HTML</li>
-<li>对所有的请求结果进行json响应{status: ,”msg”: ,”data”:}<h2 id="数据库构建"><a href="#数据库构建" class="headerlink" title="数据库构建"></a>数据库构建</h2>mysql<br>mysql -uroot -t //启动数据库命令行<br>show databases;//查看有哪些数据库<br>create database cloud_note; //创建数据库<br>drop database cloud_note; //删除数据库<br>use 数据库名; //连接数据库<br>show tables; //查看有哪些表<br>source /…/../**.sql//导入SQL文件</li>
-</ul>
-<h2 id="E-R-实体–关系模型图"><a href="#E-R-实体–关系模型图" class="headerlink" title="E-R 实体–关系模型图"></a>E-R 实体–关系模型图</h2><p>由业务分析产生，作为实体类和数据库设计的依据。<br><img src="https://i.imgur.com/XupPkl0.png" alt=""></p>
-<h3 id="关联关系"><a href="#关联关系" class="headerlink" title="关联关系"></a>关联关系</h3><p>一对多关系<br><img src="https://i.imgur.com/OCLROca.png" alt=""><br>多对多关系<br><img src="https://i.imgur.com/w9BVSob.png" alt=""></p>
-<h3 id="绘图工具"><a href="#绘图工具" class="headerlink" title="绘图工具"></a>绘图工具</h3><p>Microsoft Office vision<br>Mysql workbench</p>
-<h1 id="项目流程"><a href="#项目流程" class="headerlink" title="项目流程"></a>项目流程</h1><h2 id="cmmi"><a href="#cmmi" class="headerlink" title="cmmi"></a>cmmi</h2><ul>
-<li>前身是CMM，软件成熟度模型，认证</li>
-<li>过程域：指软件开发的某一方面</li>
-<li>分级：五个等级<br>初始级-可管理级-已定义级-量化管理及-优先管理级<br>QA–评审<h2 id="项目开发流程："><a href="#项目开发流程：" class="headerlink" title="项目开发流程："></a>项目开发流程：</h2><img src="https://i.imgur.com/f1JFOUT.png" alt=""><h3 id="项目模型："><a href="#项目模型：" class="headerlink" title="项目模型："></a>项目模型：</h3>  瀑布模型<br><img src="https://i.imgur.com/GZIZpuB.png" alt=""></li>
-</ul>
-<h3 id="阶段产品"><a href="#阶段产品" class="headerlink" title="阶段产品"></a>阶段产品</h3><p>项目总计划</p>
-<h4 id="需求阶段"><a href="#需求阶段" class="headerlink" title="需求阶段"></a>需求阶段</h4><p>需求规格说明书  用户需求</p>
-<h4 id="设计阶段"><a href="#设计阶段" class="headerlink" title="设计阶段"></a>设计阶段</h4><p>概要设计说明书<br>详细设计说明书</p>
-<h4 id="编码阶段"><a href="#编码阶段" class="headerlink" title="编码阶段"></a>编码阶段</h4><p>需求源码<br>单元测试文档</p>
-<h4 id="测试阶段"><a href="#测试阶段" class="headerlink" title="测试阶段"></a>测试阶段</h4><p>测试案例<br>测试报告</p>
-<h2 id="人员结构"><a href="#人员结构" class="headerlink" title="人员结构"></a>人员结构</h2><p>项目经理<br>QA CM dev test 测试经理</p>
-<p>SSM框架 springMVC+spring+Mybatis</p>
-<p>spring-mybatis</p>
-<h1 id="创建云笔记的环境"><a href="#创建云笔记的环境" class="headerlink" title="创建云笔记的环境"></a>创建云笔记的环境</h1><h2 id="导包"><a href="#导包" class="headerlink" title="导包"></a>导包</h2><h2 id="添加配置文件"><a href="#添加配置文件" class="headerlink" title="添加配置文件"></a>添加配置文件</h2><ul>
-<li>conf/spring-mvc.xml</li>
-<li>conf/spring-mybatis.xml</li>
-<li>mapper/SQL文件</li>
-<li>web.xml<h2 id="划分包结构"><a href="#划分包结构" class="headerlink" title="划分包结构"></a>划分包结构</h2></li>
-<li>io.codegit.cloud_note.dao</li>
-<li>io.codegit.cloud_note.service</li>
-<li>io.codegit.cloud_note.controller</li>
-<li>io.codegit.cloud_note.entity</li>
-<li>io.codegit.cloud_note.util <h2 id="将html目录下的内容拷贝到webApp下"><a href="#将html目录下的内容拷贝到webApp下" class="headerlink" title="将html目录下的内容拷贝到webApp下"></a>将html目录下的内容拷贝到webApp下</h2></li>
-</ul>
-<h1 id="登录功能"><a href="#登录功能" class="headerlink" title="登录功能"></a>登录功能</h1><h2 id="发送ajax请求"><a href="#发送ajax请求" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>事件绑定</li>
-<li>获取参数</li>
-<li>$.ajax发送请求<h2 id="服务器处理"><a href="#服务器处理" class="headerlink" title="服务器处理"></a>服务器处理</h2>请求–&gt;DispatcherServlet<br>–&gt;HandlerMapping<br>–&gt;Controller.execute()<br>–&gt;Service–&gt;Dao–&gt;cn_user<br>–&gt;返回数据</li>
-</ul>
-<h2 id="ajax回调处理"><a href="#ajax回调处理" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><ul>
-<li>成功：edit.html</li>
-<li>失败：提示信息，重新操作</li>
-</ul>
-<h1 id="注册功能"><a href="#注册功能" class="headerlink" title="注册功能"></a>注册功能</h1><h2 id="发送ajax请求-1"><a href="#发送ajax请求-1" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>发送事件：注册按钮的单击</li>
-<li>获取参数：用户名 昵称 密码</li>
-<li>请求地址：/user/add.do<h2 id="服务器处理-1"><a href="#服务器处理-1" class="headerlink" title="服务器处理"></a>服务器处理</h2>请求-&gt;DispatchServlet<br>–&gt;HandlerMapping<br>–&gt;Controller.execute</li>
-</ul>
-<p>–&gt;Service(addUser)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//检查用户</div><div class="line">findByName(name)</div><div class="line">user!=null</div><div class="line">result</div><div class="line">//添加用户</div><div class="line">createId()</div><div class="line">//处理password</div><div class="line">user.set()</div><div class="line">save(user)</div><div class="line">//设置result</div></pre></td></tr></table></figure></p>
-<p>–&gt;Dao–cn_user(insert)<br>1.UserDao(save(User))<br>2.UserMapper.xml(insert)<br>–&gt;json响应</p>
-<h2 id="ajax回调处理-1"><a href="#ajax回调处理-1" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><p>success：<br>注册成功<br>注册失败<br>error（异常）：<br>提示：注册失败</p>
-<ul>
-<li>成功：edit.html</li>
-<li>失败：提示信息，重新登录</li>
-</ul>
-<p>UUID<br>是一个生成字符串的算法<br>用于生成数据库的主键</p>
-<p>生成主键有两种方式：<br>在应用服务器端生成主键<br>在数据库端生成主键</p>
-<h2 id="MD5：摘要算法，加密处理"><a href="#MD5：摘要算法，加密处理" class="headerlink" title="MD5：摘要算法，加密处理"></a>MD5：摘要算法，加密处理</h2><ul>
-<li>最初用于文本比较</li>
-<li>将任意长度的字节处理成等长的结果</li>
-<li>不可逆</li>
-</ul>
-<h2 id="Base64"><a href="#Base64" class="headerlink" title="Base64"></a>Base64</h2><p>将自己转换成字符串输出<br>构成</p>
-<ul>
-<li>(a-z A-Z)</li>
-<li>(0-9)</li>
-<li>(+ =)<br>更新数据库密码：<br>update cn_user set cn_user_password=’4QrcOUm6Wau+VuBX8g+IPg==’</li>
-</ul>
-<h1 id="笔记本显示功能"><a href="#笔记本显示功能" class="headerlink" title="笔记本显示功能"></a>笔记本显示功能</h1><h2 id="发送ajax请求-2"><a href="#发送ajax请求-2" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>发送事件：进入到edit.html发送请求</li>
-<li>请求参数：userId</li>
-<li>请求地址：/book/loadBooks.do<h2 id="服务器处理-2"><a href="#服务器处理-2" class="headerlink" title="服务器处理"></a>服务器处理</h2>/book/loadBookds.do<br>–&gt;LoadBooksController.execute<br>测试：<br>http:localhost:8080/cloud_note/book/loadBooks.do?userId=ecd976d53a88484eaf911049241073ad<br>–&gt;BookService.LoadUserBooks<br>ecd976d53a88484eaf911049241073ad</li>
-<li>1.BookService接口loadUserBooks<pre><code>NoteResult&lt;List&lt;Book&gt;&gt; loadUserBooks
-(userId)
-</code></pre></li>
-<li>2.实现类中调用dao.findByUserId<pre><code>调用dao.findByUserId(userId)
-</code></pre></li>
-<li><p>3.实现类中构建Result结果</p>
-<pre><code>构建Result结果
-</code></pre><p>–&gt;BookDao.findByUserId</p>
-</li>
-<li><p>BookDao接口定义findByUserId</p>
-</li>
-<li>配置BookMapper.xml<br>–&gt;cn_userbook(查询)<br>–&gt;JSON响应<h2 id="ajax回调处理-2"><a href="#ajax回调处理-2" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2>success:<br>解析JSON数据，循环生成笔记本列表项<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">（li）</div><div class="line">&lt;ul&gt;</div><div class="line">&lt;li class=&quot;online&quot;&gt;</div><div class="line">&lt;a  class=&apos;checked&apos;&gt;</div><div class="line">&lt;i class=&quot;fa fa-book&quot; title=&quot;online&quot; rel=&quot;tooltip-bottom&quot;&gt;</div><div class="line">&lt;/i&gt; bookName&lt;/a&gt;&lt;/li&gt; </div><div class="line">error:</div><div class="line">alter(&quot;笔记本加载失败&quot;);</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="标记互斥"><a href="#标记互斥" class="headerlink" title="标记互斥"></a><script>标记互斥</h2><ul>
-<li>要么使用SRC属性引用外部js文件</li>
-<li>要么在标记内自己写JavaScript代码</li>
-</ul>
-<h1 id="笔记本列表显示"><a href="#笔记本列表显示" class="headerlink" title="笔记本列表显示"></a>笔记本列表显示</h1><h2 id="发送ajax请求-3"><a href="#发送ajax请求-3" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>发送事件：笔记本li的点击</li>
-<li>请求的参数：笔记本的id</li>
-<li>请求地址：/note/loadnotes.do<h2 id="服务器的处理"><a href="#服务器的处理" class="headerlink" title="服务器的处理"></a>服务器的处理</h2>/note/loadnotes.do<br>–&gt;loadNoteController.execute<br>–&gt;NoteService.loadBookNotes</li>
-</ul>
-<p>1.定义接口文件NoteService-loadBookNotes(bookId)<br>2.实现类中重写方法<br>noteDao.findByBookId()<br>构建Result–set方法<br>setData=List<Map></p>
-<p>–&gt;NoteDao.findByBookId(bookId)</p>
-<p>1 接口文件定义方法<br>2.配置mapper文件<br>3 TestNoteDao<br>–&gt;cn_note(select_bookId &amp;cn_note_status_id=’1’)</p>
-<h2 id="ajax回调处理-3"><a href="#ajax回调处理-3" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><p>success:<br>成功：解析json数据，生成笔记li,添加到笔记本列表中 </p>
-<p><li class="online"><br>                                        <a  class='checked'><br>                                            <i class="fa fa-file-text-o" title="online" rel="tooltip-bottom"></i> 使用Java操作符<button type="button" class="btn btn-default btn-xs btn_position btn_slide_down"><i class="fa fa-chevron-down"></i></button><br>                                        </a><br>                                        <div class="note_menu" tabindex='-1'><br>                                            <dl><br>                                                <dt><button type="button" class="btn btn-default btn-xs btn_move" title='移动至...'><i class="fa fa-random"></i></button></dt><br>                                                <dt><button type="button" class="btn btn-default btn-xs btn_share" title='分享'><i class="fa fa-sitemap"></i></button></dt><br>                                                <dt><button type="button" class="btn btn-default btn-xs btn_delete" title='删除'><i class="fa fa-times"></i></button></dt><br>                                            </dl><br>                                        </div><br>                                    </li><br>error：<br>提示alert(“笔记加载失败”);</p>
-<p> 事件绑定<br>静态绑定：元素.click(function(){})<br>动态绑定：<br>父元素.on(“click”,”li”,fn)<br>元素.click(); </p>
-<p>Dao接口的传值特点<br> public interface Dao{<br>        public void fn();<br>        public void fn(String str);<br>        public void fn(Map map);<br>        public void fn(User user);</p>
-<p>}<br>总结：mybatis中Dao方法要么没有参数，要么只有一个参数</p>
-<p>设置选中效果<br>    $(“#book_ul a”).removeClass(“checked”);<br>      $(this).find(“a”).addClass(“checked”);</p>
-<p>清空原列表<br>$(“#note_ul”).empty();</p>
-<p>UEdit<br>用js开发的开源组件</p>
-<p>为什么使用？<br>通过JS代码实现表单功能的增强</p>
-<p>如何用？<br>1.引用脚本<br>2.实例化<br>3.通过<script>指定位置<br>4.</p>
-<ul>
-<li>um.setContent(“str”);</li>
-<li>um.getContent(“str”);</li>
-</ul>
-<h1 id="显示笔记信息"><a href="#显示笔记信息" class="headerlink" title="显示笔记信息"></a>显示笔记信息</h1><h2 id="发送ajax请求-4"><a href="#发送ajax请求-4" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>发送事件：笔记列表li元素的单击事件（动态绑定）</li>
-<li>请求参数：笔记ID（noteId）</li>
-<li>请求地址：</li>
-</ul>
-<h2 id="服务器处理-3"><a href="#服务器处理-3" class="headerlink" title="服务器处理"></a>服务器处理</h2><ul>
-<li>Controller:</li>
-<li>LoadNoteController.execute(String noteId)</li>
-<li>Service</li>
-<li>NoteService.loadNote(String noteId)</li>
-<li>Dao</li>
-<li>NoteDao.findByNoteId(String noteId)</li>
-<li>cn_note(查询 )</li>
-<li>json响应<h2 id="ajax回调处理-4"><a href="#ajax回调处理-4" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2>success:<br>-设置笔记标题</li>
-<li>设计笔记内容（body）</li>
-<li>um.setContent(“str”);</li>
-<li>um.getContent(“str”);<br>error:<br>alert(“笔记信息加载失败”);</li>
-</ul>
-<h1 id="更新笔记信息"><a href="#更新笔记信息" class="headerlink" title="更新笔记信息"></a>更新笔记信息</h1><p>##发送ajax请求</p>
-<ul>
-<li>发送事件：保存笔记 按钮单击事件（静态）</li>
-<li>请求参数：笔记ID（id） 标题（title）内容(body)</li>
-<li>请求地址： /note/update.do<br>##服务器处理</li>
-<li>UpdateNoteController(id,title,body)</li>
-<li>NoteService.updateNote(Note)</li>
-<li>NoteDao.updateNote(Note)</li>
-<li>cn_note(更新处理–最后修改时间)<br>##ajax回调处理<br>success：对被更新的笔记名称进行更新<br><li><a class="check"></a></li><br>var $li=$(“#note_ul a.checked”).parent();</li>
-</ul>
-<h1 id="使用alert"><a href="#使用alert" class="headerlink" title="使用alert"></a>使用alert</h1><h2 id="如何显示"><a href="#如何显示" class="headerlink" title="如何显示"></a>如何显示</h2><ul>
-<li>通过load，加载HTML</li>
-<li>通过show(),显示背景</li>
-<li></li>
-</ul>
-<h1 id="创建笔记本"><a href="#创建笔记本" class="headerlink" title="创建笔记本"></a>创建笔记本</h1><h2 id="发送ajax请求-5"><a href="#发送ajax请求-5" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>发送事件：对话框中的创建按钮的单击（动态）</li>
-<li>请求参数：笔记本名称、笔记本ID和用户id</li>
-<li>请求地址：/book/add.do<h2 id="服务器处理-4"><a href="#服务器处理-4" class="headerlink" title="服务器处理"></a>服务器处理</h2></li>
-<li>AddBookController.execute</li>
-<li>BookService.addBook(book)</li>
-<li>BookDao.save(book)</li>
-<li>cn_notebook(insert)</li>
-</ul>
-<p>insert 遇到的错误<br>原因是因为插入语句要遵循严格语法，所有的属性都必须有值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">org.springframework.dao.DataIntegrityViolationException: </div><div class="line">### Error updating database.  Cause: java.sql.SQLException: Field &apos;cn_notebook_id&apos; doesn&apos;t have a default value</div><div class="line">### The error may involve io.codegitz.cloud_note.dao.BookDao.save-Inline</div><div class="line">### The error occurred while setting parameters</div><div class="line">### SQL: insert into cn_notebook (cn_user_id,cn_notebook_name,cn_notebook_type_id,cn_notebook_desc,cn_notebook_createtime) values (?,?,?,?,?)</div><div class="line">### Cause: java.sql.SQLException: Field &apos;cn_notebook_id&apos; doesn&apos;t have a default value</div><div class="line">; SQL []; Field &apos;cn_notebook_id&apos; doesn&apos;t have a default value; nested exception is java.sql.SQLException: Field &apos;cn_notebook_id&apos; doesn&apos;t have a default value</div><div class="line">	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:249)</div><div class="line">	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:72)</div><div class="line">	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:74)</div><div class="line">	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:399)</div><div class="line">	at com.sun.proxy.$Proxy11.insert(Unknown Source)</div><div class="line">	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:253)</div><div class="line">	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:52)</div><div class="line">	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:53)</div><div class="line">	at com.sun.proxy.$Proxy12.save(Unknown Source)</div><div class="line">	at test.dao.TestBookDao.testAddBook(TestBookDao.java:49)</div><div class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</div><div class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)</div><div class="line">	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)</div><div class="line">	at java.lang.reflect.Method.invoke(Method.java:606)</div><div class="line">	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)</div><div class="line">	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)</div><div class="line">	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)</div><div class="line">	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)</div><div class="line">	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)</div><div class="line">	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)</div><div class="line">	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)</div><div class="line">	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)</div><div class="line">	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)</div><div class="line">	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)</div><div class="line">	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)</div><div class="line">	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)</div><div class="line">	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)</div><div class="line">	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)</div><div class="line">	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)</div><div class="line">	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)</div><div class="line">	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)</div><div class="line">	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)</div><div class="line">	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)</div><div class="line">Caused by: java.sql.SQLException: Field &apos;cn_notebook_id&apos; doesn&apos;t have a default value</div><div class="line">	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:959)</div><div class="line">	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3870)</div><div class="line">	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3806)</div><div class="line">	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2470)</div><div class="line">	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2617)</div><div class="line">	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2550)</div><div class="line">	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)</div><div class="line">	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:1192)</div><div class="line">	at org.apache.commons.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)</div><div class="line">	at org.apache.commons.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)</div><div class="line">	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:45)</div><div class="line">	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:73)</div><div class="line">	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:49)</div><div class="line">	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:115)</div><div class="line">	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:75)</div><div class="line">	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:170)</div><div class="line">	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:157)</div><div class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</div><div class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)</div><div class="line">	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)</div><div class="line">	at java.lang.reflect.Method.invoke(Method.java:606)</div><div class="line">	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:386)</div><div class="line">	... 29 more</div></pre></td></tr></table></figure>
-<ul>
-<li>json响应<h2 id="ajax回调处理-5"><a href="#ajax回调处理-5" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2>success:</li>
-<li>关闭对话框</li>
-<li>添加笔记本li</li>
-<li>提示创建笔记本成功、失败</li>
-</ul>
-<p>error:<br>提示创建失败</p>
-<h1 id="创建笔记功能"><a href="#创建笔记功能" class="headerlink" title="创建笔记功能"></a>创建笔记功能</h1><h2 id="发送请求"><a href="#发送请求" class="headerlink" title="发送请求"></a>发送请求</h2><ul>
-<li>发送事件：对话框中 创建 按钮的单击</li>
-<li>请求参数：笔记名称 笔记本ID 用户ID</li>
-<li>请求地址：/note/add.do<h2 id="服务器处理-5"><a href="#服务器处理-5" class="headerlink" title="服务器处理"></a>服务器处理</h2></li>
-<li>Controller.execute</li>
-<li>NoteService.addNote</li>
-<li>NoteDao.save</li>
-<li>cn_note(insert)<h2 id="ajax回调处理-6"><a href="#ajax回调处理-6" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2></li>
-<li>关闭对话框</li>
-<li>解析json数据，生成一个li元素添加到笔记本列表</li>
-<li>1 获取noteTitle</li>
-<li>2.获取noteId</li>
-<li>提示创建笔记成功</li>
-</ul>
-<p>error:提示创建失败</p>
-<h1 id="显示笔记下拉菜单"><a href="#显示笔记下拉菜单" class="headerlink" title="显示笔记下拉菜单"></a>显示笔记下拉菜单</h1><p>1.通过点击’箭头’按钮显示三个菜单项</p>
-<ul>
-<li>获取div对象 slideDown(1000);</li>
-</ul>
-<h1 id="笔记分享"><a href="#笔记分享" class="headerlink" title="笔记分享"></a>笔记分享</h1><h2 id="发送请求-1"><a href="#发送请求-1" class="headerlink" title="发送请求"></a>发送请求</h2><ul>
-<li>发送事件：点击分享按钮</li>
-<li>请求参数：noteId</li>
-<li>请求地址：/share/add.do<h2 id="服务器处理-6"><a href="#服务器处理-6" class="headerlink" title="服务器处理"></a>服务器处理</h2></li>
-<li>创建share类</li>
-<li>Controller</li>
-<li>Service</li>
-<li>Dao-insert</li>
-<li>cn_share<br>先在cn_note里面查找，然后再插入cn_share<br>##回调处理<br>success：</li>
-<li>提示分享成功</li>
-<li>增加图标处理<i class="fa fa-sitemap"></li>
-</ul>
-<h1 id="分享笔记搜索功能"><a href="#分享笔记搜索功能" class="headerlink" title="分享笔记搜索功能"></a>分享笔记搜索功能</h1><h2 id="功能描述：用户输入搜索关键词，然后回车，触发查询"><a href="#功能描述：用户输入搜索关键词，然后回车，触发查询" class="headerlink" title="功能描述：用户输入搜索关键词，然后回车，触发查询"></a>功能描述：用户输入搜索关键词，然后回车，触发查询</h2><h2 id="发送ajax请求-6"><a href="#发送ajax请求-6" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>发送请求：输入关键词后，点回车</li>
-<li>请求参数：输入的关键词</li>
-<li>请求地址：/share/search.do</li>
-</ul>
-<h2 id="服务器处理-7"><a href="#服务器处理-7" class="headerlink" title="服务器处理"></a>服务器处理</h2><ul>
-<li>Controller</li>
-<li>Service</li>
-<li>Dao(select)</li>
-<li>cn_share</li>
-</ul>
-<p>select * from cn_share like %关键字%</p>
-<p>select <em> from cn_share limit m,n<br>select </em> from cn_share like #{title} limit #{begin},3<br>1    0<br>2    3<br>3    6<br>n    (n-1)*3<br>m:记录的位置<br>n:每页显示的最大记录数</p>
-<h2 id="ajax回调处理-7"><a href="#ajax回调处理-7" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><p>List<br>success:</p>
-<ul>
-<li>显示搜索笔记结果列表（pc_part_6）</li>
-<li>将解析后的搜索结果，添加到列表中</li>
-</ul>
-<p>error</p>
-<ul>
-<li>提示搜索失败</li>
-</ul>
-<p>$(“#id”).keydown(function(event){<br>      var code=event.keyCode;<br>      if(code==13){<br>         //发送ajax请求<br>}<br>})    </p>
-<pre><code>报错：
-Uncaught TypeError: Cannot read property &apos;cn_share_id&apos; of undefined
-原因是循环越界：
-var i = 0; i &lt;=shares.length; i++
-改为：
-var i = 0; i &lt;shares.length; i++
-</code></pre></script></h2>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/note/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-springAOP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/springAOP/">spring AOP</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/springAOP/" class="archive-article-date">
-  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="spring-AOP"><a href="#spring-AOP" class="headerlink" title="spring AOP"></a>spring AOP</h1><h2 id="AOP概念"><a href="#AOP概念" class="headerlink" title="AOP概念"></a>AOP概念</h2><p>aspect oriented programming<br>面向切面编程<br>是什么？<br>将共同业务处理从传统业务处理中抽离出来，单独封装，然后以配置的形式进行关联<br>为什么？<br>可以在不修改原有的逻辑代码的情况下，给系统追加功能</p>
-<h2 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h2><ul>
-<li>追加事务控制</li>
-<li>异常日志记录</li>
-</ul>
-<p>案例：</p>
-<ul>
-<li>要求：在每个Controller方法执行前输出打桩信息</li>
-<li>封装一个组件</li>
-<li>通过配置将封装的组件追击到Controller方法里</li>
-</ul>
-<h1 id="AOP相关概念"><a href="#AOP相关概念" class="headerlink" title="AOP相关概念"></a>AOP相关概念</h1><ul>
-<li>oop：类，对象，封装，继承，多态</li>
-<li>AOP：切面，切入点，通知，动态代理</li>
-</ul>
-<h2 id="切面（aspect）"><a href="#切面（aspect）" class="headerlink" title="切面（aspect）"></a>切面（aspect）</h2><p>指的是封装了共同处理的组件，并且能够切入到其他的组件的方法上</p>
-<h2 id="切入点（pointcut）"><a href="#切入点（pointcut）" class="headerlink" title="切入点（pointcut）"></a>切入点（pointcut）</h2><p>用于指定目标组件的方法</p>
-<ul>
-<li>方法限定表达式<br>可以给某个组件中的部分方法追加共同功能<br>execution（修饰符？返回类型 方法名（参数） 异常抛出？）<br>//匹配到add开头的所有方法<br>execution(<em> add</em>(..))<br>//匹配UserService包下的所有方法<br>execution(<em> io.codegitz.UserService.</em>(…))<br>//匹配到service包下及其子包下的所有方法<br>execution(<em> io.codegitz.service..</em>(..))<br>//匹配到service包下所有类的方法<br>execution(<em> io.codegitz.service.</em>.*(..))</li>
-<li><p>类型限定表达式<br>可以给某个组件的所有方法追加功能<br>within（类型）<br>//匹配UserService组件下的所有方法<br>within(io.codegitz.service.UserService)<br>//匹配service包下的所有类的所有方法<br>within(io.codegitz.service.<em>)<br>//匹配service包及其子包下的所有方法<br>within(io.codegitz.service..</em>)</p>
-</li>
-<li><p>bean名称限定表达式<br>可以给某个组件中国的所有的方法追加功能<br>bean（id名）<br>//匹配id=userService的组件的所有方法<br>bean(userService)<br>//匹配以Service结尾的所有组件的所有方法<br>bean(*Service)</p>
-</li>
-</ul>
-<p>AOP配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</div><div class="line">	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:beans=&quot;http://www.springframework.org/schema/beans&quot;</div><div class="line">	xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</div><div class="line">	xmlns:jdbc=&quot;http://www.springframework.org/schema/jdbc&quot; xmlns:jee=&quot;http://www.springframework.org/schema/jee&quot;</div><div class="line">	xmlns:jms=&quot;http://www.springframework.org/schema/jms&quot; xmlns:lang=&quot;http://www.springframework.org/schema/lang&quot;</div><div class="line">	xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;</div><div class="line">	xmlns:util=&quot;http://www.springframework.org/schema/util&quot; xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;</div><div class="line">	xsi:schemaLocation=&quot;</div><div class="line">		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd&quot;&gt;</div><div class="line"></div><div class="line">	&lt;bean id=&quot;loggerBean&quot; class=&quot;io.codegitz.cloud_note.aspect.LoggerBean&quot;&gt;</div><div class="line">	&lt;/bean&gt;</div><div class="line">	&lt;aop:config&gt;</div><div class="line">		&lt;!-- 通过REF关联组件类 --&gt;</div><div class="line">		&lt;aop:aspect ref=&quot;loggerBean&quot;&gt;</div><div class="line">			&lt;aop:before method=&quot;logController&quot; pointcut=&quot;within(io.codegitz.cloud_note.controller..*)&quot; /&gt;</div><div class="line">		&lt;/aop:aspect&gt;</div><div class="line">	&lt;/aop:config&gt;</div><div class="line"></div><div class="line">&lt;/beans&gt;</div></pre></td></tr></table></figure></p>
-<p>遇到错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element &apos;aop:config&apos;.</div></pre></td></tr></table></figure></p>
-<p>有点狗的是引用和xsd文件都有了，后来把后面的版本号去掉了，然后就暂时不报错了，过了一会再次报错，然后把版本号又加了回去，然后就行了….</p>
-<h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><p>用于指定切入的时机<br>spring提供了五种通知类型<br>try{<br>   使用前置通知<aop:before><br>   //执行的目标方法<br>   后置通知<aop:after-returning><br>}catch{<br>   异常通知<aop:after-throwing><br>}finally{<br>   最终通知：<aop:after><br>}<br>@around=前置+后置通知</aop:after></aop:after-throwing></aop:after-returning></aop:before></p>
-<p>切面：追加啥功能？单独封装的代码<br>切入点：切谁？所有Controller<br>通知：啥时候切？前置，后置，环绕</p>
-<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>AOP原理：使用动态代理技术<br>可以创建一个新的类型，重写目标接口或目标类的方法<br>在重写方法中，追加了要切入的功能代码和方法代码<br><img src="https://i.imgur.com/QZyOfVf.png" alt=""></p>
-<h3 id="AOP的配置使用形式"><a href="#AOP的配置使用形式" class="headerlink" title="AOP的配置使用形式"></a>AOP的配置使用形式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</div><div class="line">	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:beans=&quot;http://www.springframework.org/schema/beans&quot;</div><div class="line">	xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</div><div class="line">	xmlns:jdbc=&quot;http://www.springframework.org/schema/jdbc&quot; xmlns:jee=&quot;http://www.springframework.org/schema/jee&quot;</div><div class="line">	xmlns:jms=&quot;http://www.springframework.org/schema/jms&quot; xmlns:lang=&quot;http://www.springframework.org/schema/lang&quot;</div><div class="line">	xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;</div><div class="line">	xmlns:util=&quot;http://www.springframework.org/schema/util&quot;</div><div class="line">	xsi:schemaLocation=&quot;</div><div class="line">		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd</div><div class="line">		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd&quot;&gt;</div><div class="line">      &lt;!-- Spring事务管理 --&gt;</div><div class="line">       &lt;!-- 定义事务管理bean --&gt;</div><div class="line">       &lt;bean id=&quot;txManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;</div><div class="line">       &lt;property name=&quot;dataSource&quot; ref=&quot;dbcp&quot;&gt;&lt;/property&gt;</div><div class="line">       &lt;/bean&gt;</div><div class="line">       &lt;!-- 开启transaction注解扫描，将标记作用在具体的方法上 --&gt;</div><div class="line">       &lt;tx:annotation-driven transaction-manager=&quot;txManager&quot;/&gt;</div><div class="line">&lt;/beans&gt;</div></pre></td></tr></table></figure>
-<p>然后在实现类前面加一个@Transactional注解<br>执行此测试方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@Test</div><div class="line">	public void testUserService1()&#123;</div><div class="line">		System.out.println(service.getClass().getName());</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
-<p>未使用动态代理则会输出原来的类名：io.codegitz.cloud_note.service.UserServiceImpl<br>使用动态代理输出动态代理名：com.sun.proxy.$Proxy22</p>
-<p>spring有两种动态技术</p>
-<ul>
-<li>基于目标接口的</li>
-<li>基于目标类的</li>
-</ul>
-<p>public class $Proxy22 implements UserService{<br>     public void checkLogin(){<br>        //追加事务处理<br>        //重写了UserServiceImpl.checkLogin<br>}  </p>
-<p>}</p>
-<p>public class $Proxy22 extends 目标类{</p>
-<p>}</p>
-<h1 id="AOP注解配置"><a href="#AOP注解配置" class="headerlink" title="AOP注解配置"></a>AOP注解配置</h1><h2 id="注解标记"><a href="#注解标记" class="headerlink" title="注解标记"></a>注解标记</h2><p>@Component 起到应以<bean>的作用<br>@Aspect <aop:aspect ref="loggerBean"><br>@Before <aop:before pointcut="within()"></aop:before></aop:aspect></bean></p>
-<p>案例：</p>
-<ul>
-<li>要求：当系统发生service异常，将异常信息写入到日志文件</li>
-<li>切面：将异常写入文件</li>
-<li>切入点：after-throwing(“within(service..*    )”)</li>
-</ul>
-<p>记录异常类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">package io.codegitz.cloud_note.aspect;</div><div class="line"></div><div class="line">import java.io.FileWriter;</div><div class="line">import java.io.PrintWriter;</div><div class="line">import java.text.SimpleDateFormat;</div><div class="line">import java.util.Date;</div><div class="line"></div><div class="line">import org.aspectj.lang.annotation.AfterThrowing;</div><div class="line">import org.aspectj.lang.annotation.Aspect;</div><div class="line">import org.springframework.stereotype.Component;</div><div class="line"></div><div class="line">@Component  //扫描spring容器</div><div class="line">@Aspect     //将该类作为切面组件</div><div class="line">public class ExceptionBean &#123;</div><div class="line">	</div><div class="line">    //e是目标组件抛出的异常对象</div><div class="line">	@AfterThrowing(throwing=&quot;e&quot;,pointcut=&quot;within(io.codegitz.cloud_note.service..*)&quot;)</div><div class="line">	public void execute(Exception e)&#123;</div><div class="line">		//将异常信息输入文件</div><div class="line">		try &#123;</div><div class="line">			FileWriter fw=new FileWriter(&quot;F:\\note_error\\record.log&quot;,true);</div><div class="line">			PrintWriter pw=new PrintWriter(fw);</div><div class="line">			//利用pw对象写入异常信息</div><div class="line">			Date time=new Date();</div><div class="line">			SimpleDateFormat sdf=new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);</div><div class="line">			String strTime=sdf.format(time);</div><div class="line">			pw.println(&quot;************************&quot;);</div><div class="line">			pw.println(&quot;异常类型：&quot;+e);</div><div class="line">			pw.println(&quot;异常事件：&quot;+strTime);</div><div class="line">			pw.println(&quot;*****异常的详细信息******&quot;);</div><div class="line">			e.printStackTrace(pw);</div><div class="line">			pw.close();</div><div class="line">			fw.close();</div><div class="line">		&#125; catch (Exception ex) &#123;</div><div class="line">			System.out.println(&quot;记录异常失败&quot;);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>模拟异常：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String str=null;</div><div class="line">str.length();</div></pre></td></tr></table></figure></p>
-<p>后台报错：<br><img src="https://i.imgur.com/mpEiu1h.png" alt=""></p>
-<p>日志文件记录：<br><img src="https://i.imgur.com/vmxMLpi.png" alt=""></p>
-<p>记录异常成功。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/springAOP/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Mapper映射器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -868,6 +257,593 @@ var i = 0; i &lt;shares.length; i++
 
 
   
+    <article id="post-ajax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/ajax/">ajax(asynchronous javascript and xml)</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/ajax/" class="archive-article-date">
+  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="ajax-asynchronous-javascript-and-xml"><a href="#ajax-asynchronous-javascript-and-xml" class="headerlink" title="ajax(asynchronous javascript and xml)"></a>ajax(asynchronous javascript and xml)</h1><h2 id="1-ajax是什么"><a href="#1-ajax是什么" class="headerlink" title="1.ajax是什么"></a>1.ajax是什么</h2><p>ajax是一种用来改善用户体验的技术，其本质是利用浏览器提供的一个特殊的对象（XMLHttpRequest,也可称之为ajax对象）向服务器发送异步请求。服务器返回部分数据（通常不需要返回完整页面），浏览器利用这些数据对当前页面做部分更新。整个过程，页面无刷新，不打断用户的操作。<br>注：<br>异步请求：发送请求的同时，浏览器不会销毁当前页面，用户仍然可以对当前页面做其他操作。<br>使用ajax请求的过程：<br><img src="https://i.imgur.com/1K90kh4.png" alt=""><br>不使用ajax的请求过程：<br><img src="https://i.imgur.com/iWOnkph.png" alt=""></p>
+<h2 id="2-如何获得ajax对象"><a href="#2-如何获得ajax对象" class="headerlink" title="2.如何获得ajax对象"></a>2.如何获得ajax对象</h2><p>要区分浏览器：</p>
+<pre><code>function getXhr(){
+    var xhr=null;
+    if(window.XMLHttpRequest){
+         //非IE
+       xhr= new XMLHttpRequest();
+    }else{
+        x hr=new ActiveXObject(&quot;Microsoft.XMLHttp&quot;);
+    }
+    return xhr;
+}
+</code></pre><p><img src="https://i.imgur.com/XMpHS9P.png" alt=""></p>
+<h2 id="3-ajax对象的几个重要的属性"><a href="#3-ajax对象的几个重要的属性" class="headerlink" title="3.ajax对象的几个重要的属性"></a>3.ajax对象的几个重要的属性</h2><p>a.onreadystatechange:用来绑定一个事件处理函数，用来处理readystatechange时间。<br>注意：当ajax对象的readystate属性值返生了任何改变，比如从0变成了1，就会产生readystatechange事件。<br>b.readyState：有五个值（0,1,2,3,4）,表示ajax对象与服务器通信的状态。其中，当值为4的时候，表示ajax对象已经获得了服务器返回的所有数据。<br>c.responseText：获得服务器返回的文本数据。<br>d.responseXML：获得服务器返回的xml数据。<br>e.status ：获得状态码。</p>
+<h2 id="4-编程步骤"><a href="#4-编程步骤" class="headerlink" title="4.编程步骤"></a>4.编程步骤</h2><p>step1.获得ajax对象<br>比如：var xhr=getXhr();<br>step2.发送请求。<br><strong>发送get请求</strong>：<br>a.xhr.open(‘get’,’check_uname.do?uname=tom&amp;age=22’,true);<br>b.xhr.onreadystatechange=f1;<br>c.xhr.send(null);<br>注：<br>true：异步<br>false：同步，发送请求时，浏览器会锁定当前页面，用户不能够对当前页面做其他操作。<br><strong>发送post请求</strong><br>a.xhr.open(‘post’,’check_uname.do’,true);<br>b.xhr.setRequestHeader(‘content-type’,’application/x-www-form-urlencoded’);<br>c.xhr.onreadystatechange=f1;<br>xhr.send(‘name=tom’);<br>注：按照HTTP协议规范，如果发送的是post请求，在请求的数据包里面，应该有content-type消息头。默认情况下，ajax对象不带该消息头，所以需要调用setRequestHeader方法来设置这个消息头。<br>step3 .编写服务器端的程序，<br>注：通常不需要返回完整的页面，只需要返回部分数据。<br>step4.编写事件处理函数</p>
+<pre><code>function fi(){
+     //先获得服务器返回的数据
+     if(xhr.readyState==4 &amp;&amp; xhr.status==200){
+     var txt=xhr.resppnseText;
+     //利用这些数据（txt）更新页面
+     ....
+ } 
+
+}
+</code></pre><h2 id="5-缓存问题"><a href="#5-缓存问题" class="headerlink" title="5.缓存问题"></a>5.缓存问题</h2><h3 id="什么事缓存问题"><a href="#什么事缓存问题" class="headerlink" title="什么事缓存问题"></a>什么事缓存问题</h3><p>当使用IE浏览器发送get请求时，浏览器会查看请求地址是否访问过，如果访问过，则不再发送新的请求，而是显示第一次访问的结果（也就是说，会将第一次的请求结果缓存下来）</p>
+<h3 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h3><p>在请求地址后添加一个随机数。<br>    xhr.open(‘get’,’getLucky.do?’+Math.random(),true);</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/ajax/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mysql命令行创建新用户" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/mysql命令行创建新用户/">Mysql命令行添加新用户</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/mysql命令行创建新用户/" class="archive-article-date">
+  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Mysql命令行添加新用户"><a href="#Mysql命令行添加新用户" class="headerlink" title="Mysql命令行添加新用户"></a>Mysql命令行添加新用户</h1><p>创建用户root ，密码为123456，@%代表登录主机通配<br>     CREATE USER ‘root’@’%’ IDENTIFIED BY ‘123456’;<br>刷新<br>    flush privileges;<br>授权<br>    GRANT ALL ON cloud_note.* TO ‘root’@’%’;</p>
+<pre><code>mysql&gt; CREATE USER &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;123456&#39;;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; select host,user from mysql.user;
++-----------+-----------+
+| host      | user      |
++-----------+-----------+
+| %         | root      |
+| localhost | mysql.sys |
+| localhost | mysqlxsys |
+| localhost | root      |
++-----------+-----------+
+4 rows in set (0.00 sec)
+
+mysql&gt; GRANT ALL ON cloud_note.* TO &#39;root&#39;@&#39;%&#39;;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; select host,user from mysql.user;
++-----------+-----------+
+| host      | user      |
++-----------+-----------+
+| %         | root      |
+| localhost | mysql.sys |
+| localhost | mysqlxsys |
+| localhost | root      |
++-----------+-----------+
+4 rows in set (0.00 sec)
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/mysql命令行创建新用户/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-json" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/json/">Json</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/json/" class="archive-article-date">
+  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="编码问题"><a href="#编码问题" class="headerlink" title="编码问题"></a>编码问题</h1><h2 id="1-发送get请求"><a href="#1-发送get请求" class="headerlink" title="1.发送get请求"></a>1.发送get请求</h2><p>IE浏览器会使用gbk进行编码，而其他浏览器会使用utf-8来编码，服务器端默认使用iso-8859-1来解码，所以会产生乱码。<br>解决方法：<br>step1.服务器端统一使用utf-8来解码。<br>    URIEncoding=utf-8<br>step2.浏览器端使用encodeURI函数来编码。<br>注：encodeURI是JavaScript内置的函数。</p>
+<h2 id="2-发送post"><a href="#2-发送post" class="headerlink" title="2.发送post"></a>2.发送post</h2><p>浏览器会使用utf-8来编码。服务器端默认使用ISO-8859-1来解码，所以会产生乱码<br>解决方法：<br>request.setCharacterEncoding(“utf-8”);</p>
+<h1 id="JSON-javascript-object-notation"><a href="#JSON-javascript-object-notation" class="headerlink" title="JSON(javascript object notation)"></a>JSON(javascript object notation)</h1><h2 id="1-JSON是什么"><a href="#1-JSON是什么" class="headerlink" title="1.JSON是什么"></a>1.JSON是什么</h2><p>是一种轻量级的数据交换格式<br>注：<br>数据交换：将要转换的数据先转换为一种与平台无关的数据格式，然后交给接收方来处理。<br><br>轻量级：相对于xml，JSON文档更小，解析速度更快。</p>
+<h2 id="2-语法"><a href="#2-语法" class="headerlink" title="2.语法"></a>2.语法</h2><h3 id="表示一个对象"><a href="#表示一个对象" class="headerlink" title="表示一个对象"></a>表示一个对象</h3><p>{属性名：属性值，属性名：属性值….}<br>注意：<br>a.属性名必须使用双引号括起来。<br>b.属性值的类型可以使string,number,true/false,null,object<br>c.属性值如果是string，必须使用双括号括起来。    </p>
+<h3 id="表示一个由对象组成的数组"><a href="#表示一个由对象组成的数组" class="headerlink" title="表示一个由对象组成的数组"></a>表示一个由对象组成的数组</h3><p>[{},{},{}….]</p>
+<h2 id="3-使用json"><a href="#3-使用json" class="headerlink" title="3.使用json"></a>3.使用json</h2><h3 id="将java对象转变为json字符串"><a href="#将java对象转变为json字符串" class="headerlink" title="将java对象转变为json字符串"></a>将java对象转变为json字符串</h3><p>可以使用json官方的工具(json-lib).<br>JSONObject，JSONArray<br><img src="https://i.imgur.com/hFQgwNu.png" alt=""><br>ex：</p>
+<pre><code>package json;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import bean.stock;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+public class jsonTest {
+     /*
+      * 将java对象转换为json字符串
+      */
+    public static void test1(){
+        stock s=new stock();
+        s.setCode(&quot;345435&quot;);
+        s.setName(&quot;中国嘉陵&quot;);
+        s.setPrice(10);
+        //使用json-lib提供的工具来转换
+        JSONObject jsonobj=JSONObject.fromObject(s);
+        String jsonstr=jsonobj.toString();
+        System.out.println(jsonstr);
+    }
+    /*
+     * 多个对象组成的数组或者是集合转换成json字符串
+     */
+    public static void test2(){
+        List&lt;stock&gt; stocks=new ArrayList&lt;stock&gt;();
+          for(int i=0;i&lt;3;i++){
+              stock s=new stock();
+              s.setCode(&quot;345435&quot;+i);
+              s.setName(&quot;中国嘉陵&quot;+i);
+              s.setPrice(10+i);
+              stocks.add(s);
+          }
+          //fromObject方法的参数可以使数组或者集合
+          JSONArray jsonArr=JSONArray.fromObject(stocks);
+          String jsonStr=jsonArr.toString();
+          System.out.println(jsonStr);
+    }
+    public static void main(String[] args) {
+        test2();
+    }
+}
+</code></pre><h3 id="将JSON字符串转换成JavaScript对象"><a href="#将JSON字符串转换成JavaScript对象" class="headerlink" title="将JSON字符串转换成JavaScript对象"></a>将JSON字符串转换成JavaScript对象</h3><p>JavaScript内置对象JSON提供的parse()方法。</p>
+<h1 id="jQuery对ajax的支持"><a href="#jQuery对ajax的支持" class="headerlink" title="jQuery对ajax的支持"></a>jQuery对ajax的支持</h1><h2 id="1-ajax-方法"><a href="#1-ajax-方法" class="headerlink" title="1.$.ajax()方法"></a>1.$.ajax()方法</h2><p>用法：<br>$.ajax({});<br>说明：{}是一个用来描述请求选项参数的对象，常见的选项参数有如下几个：<br>url:请求地址<br>data:请求格式，有两种格式：<br>第一种格式：请求字符串，比如”adminCode=sally”<br>     第二组格式：对象，比如{“adminCode”:”sally”}<br>     type:请求类型(get/post)<br>dataType:服务器返回的数据类型：<br>       text：文本数据<br>       json：json字符串<br>       html:html文档<br>       xml:xml文档<br>       script:javascript脚本<br>success:事件处理函数（当服务器处理正常，用来处理服务器返回的数据）。<br>error：事件处理函数（当服务器处理异常，用来处理服务器返回的数据）。</p>
+<h2 id="2-load"><a href="#2-load" class="headerlink" title="2.load()"></a>2.load()</h2><p>作用：向服务器发送异步请求，然后将服务器返回的数据直接添加到符合要求的节点之上。<br>用法：<br>$obj.load(url,[data]);<br>注意：<br>url:请求地址。<br>data:请求参数，格式同上。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/json/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-springAOP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/springAOP/">spring AOP</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/springAOP/" class="archive-article-date">
+  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="spring-AOP"><a href="#spring-AOP" class="headerlink" title="spring AOP"></a>spring AOP</h1><h2 id="AOP概念"><a href="#AOP概念" class="headerlink" title="AOP概念"></a>AOP概念</h2><p>aspect oriented programming<br>面向切面编程<br>是什么？<br>将共同业务处理从传统业务处理中抽离出来，单独封装，然后以配置的形式进行关联<br>为什么？<br>可以在不修改原有的逻辑代码的情况下，给系统追加功能</p>
+<h2 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h2><ul>
+<li>追加事务控制</li>
+<li>异常日志记录</li>
+</ul>
+<p>案例：</p>
+<ul>
+<li>要求：在每个Controller方法执行前输出打桩信息</li>
+<li>封装一个组件</li>
+<li>通过配置将封装的组件追击到Controller方法里</li>
+</ul>
+<h1 id="AOP相关概念"><a href="#AOP相关概念" class="headerlink" title="AOP相关概念"></a>AOP相关概念</h1><ul>
+<li>oop：类，对象，封装，继承，多态</li>
+<li>AOP：切面，切入点，通知，动态代理</li>
+</ul>
+<h2 id="切面（aspect）"><a href="#切面（aspect）" class="headerlink" title="切面（aspect）"></a>切面（aspect）</h2><p>指的是封装了共同处理的组件，并且能够切入到其他的组件的方法上</p>
+<h2 id="切入点（pointcut）"><a href="#切入点（pointcut）" class="headerlink" title="切入点（pointcut）"></a>切入点（pointcut）</h2><p>用于指定目标组件的方法</p>
+<ul>
+<li>方法限定表达式<br>可以给某个组件中的部分方法追加共同功能<br>execution（修饰符？返回类型 方法名（参数） 异常抛出？）<br>//匹配到add开头的所有方法<br>execution(<em> add</em>(..))<br>//匹配UserService包下的所有方法<br>execution(<em> io.codegitz.UserService.</em>(…))<br>//匹配到service包下及其子包下的所有方法<br>execution(<em> io.codegitz.service..</em>(..))<br>//匹配到service包下所有类的方法<br>execution(<em> io.codegitz.service.</em>.*(..))</li>
+<li><p>类型限定表达式<br>可以给某个组件的所有方法追加功能<br>within（类型）<br>//匹配UserService组件下的所有方法<br>within(io.codegitz.service.UserService)<br>//匹配service包下的所有类的所有方法<br>within(io.codegitz.service.<em>)<br>//匹配service包及其子包下的所有方法<br>within(io.codegitz.service..</em>)</p>
+</li>
+<li><p>bean名称限定表达式<br>可以给某个组件中国的所有的方法追加功能<br>bean（id名）<br>//匹配id=userService的组件的所有方法<br>bean(userService)<br>//匹配以Service结尾的所有组件的所有方法<br>bean(*Service)</p>
+</li>
+</ul>
+<p>AOP配置文件</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:beans=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+    xmlns:jdbc=&quot;http://www.springframework.org/schema/jdbc&quot; xmlns:jee=&quot;http://www.springframework.org/schema/jee&quot;
+    xmlns:jms=&quot;http://www.springframework.org/schema/jms&quot; xmlns:lang=&quot;http://www.springframework.org/schema/lang&quot;
+    xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
+    xmlns:util=&quot;http://www.springframework.org/schema/util&quot; xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;
+    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+        http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd&quot;&gt;
+
+    &lt;bean id=&quot;loggerBean&quot; class=&quot;io.codegitz.cloud_note.aspect.LoggerBean&quot;&gt;
+    &lt;/bean&gt;
+    &lt;aop:config&gt;
+        &lt;!-- 通过REF关联组件类 --&gt;
+        &lt;aop:aspect ref=&quot;loggerBean&quot;&gt;
+            &lt;aop:before method=&quot;logController&quot; pointcut=&quot;within(io.codegitz.cloud_note.controller..*)&quot; /&gt;
+        &lt;/aop:aspect&gt;
+    &lt;/aop:config&gt;
+
+&lt;/beans&gt;
+</code></pre><p>遇到错误：</p>
+<pre><code>cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element &#39;aop:config&#39;.
+</code></pre><p>有点狗的是引用和xsd文件都有了，后来把后面的版本号去掉了，然后就暂时不报错了，过了一会再次报错，然后把版本号又加了回去，然后就行了….</p>
+<h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><p>用于指定切入的时机<br>spring提供了五种通知类型<br>try{<br>   使用前置通知<aop:before><br>   //执行的目标方法<br>   后置通知<aop:after-returning><br>}catch{<br>   异常通知<aop:after-throwing><br>}finally{<br>   最终通知：<aop:after><br>}<br>@around=前置+后置通知</aop:after></aop:after-throwing></aop:after-returning></aop:before></p>
+<p>切面：追加啥功能？单独封装的代码<br>切入点：切谁？所有Controller<br>通知：啥时候切？前置，后置，环绕</p>
+<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>AOP原理：使用动态代理技术<br>可以创建一个新的类型，重写目标接口或目标类的方法<br>在重写方法中，追加了要切入的功能代码和方法代码<br><img src="https://i.imgur.com/QZyOfVf.png" alt=""></p>
+<h3 id="AOP的配置使用形式"><a href="#AOP的配置使用形式" class="headerlink" title="AOP的配置使用形式"></a>AOP的配置使用形式</h3><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:beans=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+    xmlns:jdbc=&quot;http://www.springframework.org/schema/jdbc&quot; xmlns:jee=&quot;http://www.springframework.org/schema/jee&quot;
+    xmlns:jms=&quot;http://www.springframework.org/schema/jms&quot; xmlns:lang=&quot;http://www.springframework.org/schema/lang&quot;
+    xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
+    xmlns:util=&quot;http://www.springframework.org/schema/util&quot;
+    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+        http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd&quot;&gt;
+      &lt;!-- Spring事务管理 --&gt;
+       &lt;!-- 定义事务管理bean --&gt;
+       &lt;bean id=&quot;txManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;
+       &lt;property name=&quot;dataSource&quot; ref=&quot;dbcp&quot;&gt;&lt;/property&gt;
+       &lt;/bean&gt;
+       &lt;!-- 开启transaction注解扫描，将标记作用在具体的方法上 --&gt;
+       &lt;tx:annotation-driven transaction-manager=&quot;txManager&quot;/&gt;
+&lt;/beans&gt;
+</code></pre><p>然后在实现类前面加一个@Transactional注解<br>执行此测试方法：</p>
+<pre><code>@Test
+    public void testUserService1(){
+        System.out.println(service.getClass().getName());
+    }
+</code></pre><p>未使用动态代理则会输出原来的类名：io.codegitz.cloud_note.service.UserServiceImpl<br>使用动态代理输出动态代理名：com.sun.proxy.$Proxy22</p>
+<p>spring有两种动态技术</p>
+<ul>
+<li>基于目标接口的</li>
+<li>基于目标类的</li>
+</ul>
+<p>public class $Proxy22 implements UserService{<br>     public void checkLogin(){<br>        //追加事务处理<br>        //重写了UserServiceImpl.checkLogin<br>}  </p>
+<p>}</p>
+<p>public class $Proxy22 extends 目标类{</p>
+<p>}</p>
+<h1 id="AOP注解配置"><a href="#AOP注解配置" class="headerlink" title="AOP注解配置"></a>AOP注解配置</h1><h2 id="注解标记"><a href="#注解标记" class="headerlink" title="注解标记"></a>注解标记</h2><p>@Component 起到应以<bean>的作用<br>@Aspect <aop:aspect ref="loggerBean"><br>@Before <aop:before pointcut="within()"></aop:before></aop:aspect></bean></p>
+<p>案例：</p>
+<ul>
+<li>要求：当系统发生service异常，将异常信息写入到日志文件</li>
+<li>切面：将异常写入文件</li>
+<li>切入点：after-throwing(“within(service..*    )”)</li>
+</ul>
+<p>记录异常类：</p>
+<pre><code>package io.codegitz.cloud_note.aspect;
+
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
+
+@Component  //扫描spring容器
+@Aspect     //将该类作为切面组件
+public class ExceptionBean {
+
+    //e是目标组件抛出的异常对象
+    @AfterThrowing(throwing=&quot;e&quot;,pointcut=&quot;within(io.codegitz.cloud_note.service..*)&quot;)
+    public void execute(Exception e){
+        //将异常信息输入文件
+        try {
+            FileWriter fw=new FileWriter(&quot;F:\\note_error\\record.log&quot;,true);
+            PrintWriter pw=new PrintWriter(fw);
+            //利用pw对象写入异常信息
+            Date time=new Date();
+            SimpleDateFormat sdf=new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);
+            String strTime=sdf.format(time);
+            pw.println(&quot;************************&quot;);
+            pw.println(&quot;异常类型：&quot;+e);
+            pw.println(&quot;异常事件：&quot;+strTime);
+            pw.println(&quot;*****异常的详细信息******&quot;);
+            e.printStackTrace(pw);
+            pw.close();
+            fw.close();
+        } catch (Exception ex) {
+            System.out.println(&quot;记录异常失败&quot;);
+        }
+    }
+}
+</code></pre><p>模拟异常：</p>
+<pre><code>String str=null;
+str.length();
+</code></pre><p>后台报错：<br><img src="https://i.imgur.com/mpEiu1h.png" alt=""></p>
+<p>日志文件记录：<br><img src="https://i.imgur.com/vmxMLpi.png" alt=""></p>
+<p>记录异常成功。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/springAOP/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
@@ -918,6 +894,14 @@ var i = 0; i &lt;shares.length; i++
 		innerArchive: true,
 		showTags: true
 	}
+</script>
+<!--prettify���������ű�����-->
+<script src="/plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
 </script>
 
 <script>!function(t){function n(e){if(r[e])return r[e].exports;var i=r[e]={exports:{},id:e,loaded:!1};return t[e].call(i.exports,i,i.exports,n),i.loaded=!0,i.exports}var r={};n.m=t,n.c=r,n.p="./",n(0)}([function(t,n,r){r(195),t.exports=r(191)},function(t,n,r){var e=r(3),i=r(52),o=r(27),u=r(28),c=r(53),f="prototype",a=function(t,n,r){var s,l,h,v,p=t&a.F,d=t&a.G,y=t&a.S,g=t&a.P,b=t&a.B,m=d?e:y?e[n]||(e[n]={}):(e[n]||{})[f],x=d?i:i[n]||(i[n]={}),w=x[f]||(x[f]={});d&&(r=n);for(s in r)l=!p&&m&&void 0!==m[s],h=(l?m:r)[s],v=b&&l?c(h,e):g&&"function"==typeof h?c(Function.call,h):h,m&&u(m,s,h,t&a.U),x[s]!=h&&o(x,s,v),g&&w[s]!=h&&(w[s]=h)};e.core=i,a.F=1,a.G=2,a.S=4,a.P=8,a.B=16,a.W=32,a.U=64,a.R=128,t.exports=a},function(t,n,r){var e=r(6);t.exports=function(t){if(!e(t))throw TypeError(t+" is not an object!");return t}},function(t,n){var r=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=r)},function(t,n){t.exports=function(t){try{return!!t()}catch(t){return!0}}},function(t,n){var r=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=r)},function(t,n){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,n,r){var e=r(126)("wks"),i=r(76),o=r(3).Symbol,u="function"==typeof o;(t.exports=function(t){return e[t]||(e[t]=u&&o[t]||(u?o:i)("Symbol."+t))}).store=e},function(t,n){var r={}.hasOwnProperty;t.exports=function(t,n){return r.call(t,n)}},function(t,n,r){var e=r(94),i=r(33);t.exports=function(t){return e(i(t))}},function(t,n,r){t.exports=!r(4)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,n,r){var e=r(2),i=r(167),o=r(50),u=Object.defineProperty;n.f=r(10)?Object.defineProperty:function(t,n,r){if(e(t),n=o(n,!0),e(r),i)try{return u(t,n,r)}catch(t){}if("get"in r||"set"in r)throw TypeError("Accessors not supported!");return"value"in r&&(t[n]=r.value),t}},function(t,n,r){t.exports=!r(18)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,n,r){var e=r(14),i=r(22);t.exports=r(12)?function(t,n,r){return e.f(t,n,i(1,r))}:function(t,n,r){return t[n]=r,t}},function(t,n,r){var e=r(20),i=r(58),o=r(42),u=Object.defineProperty;n.f=r(12)?Object.defineProperty:function(t,n,r){if(e(t),n=o(n,!0),e(r),i)try{return u(t,n,r)}catch(t){}if("get"in r||"set"in r)throw TypeError("Accessors not supported!");return"value"in r&&(t[n]=r.value),t}},function(t,n,r){var e=r(40)("wks"),i=r(23),o=r(5).Symbol,u="function"==typeof o;(t.exports=function(t){return e[t]||(e[t]=u&&o[t]||(u?o:i)("Symbol."+t))}).store=e},function(t,n,r){var e=r(67),i=Math.min;t.exports=function(t){return t>0?i(e(t),9007199254740991):0}},function(t,n,r){var e=r(46);t.exports=function(t){return Object(e(t))}},function(t,n){t.exports=function(t){try{return!!t()}catch(t){return!0}}},function(t,n,r){var e=r(63),i=r(34);t.exports=Object.keys||function(t){return e(t,i)}},function(t,n,r){var e=r(21);t.exports=function(t){if(!e(t))throw TypeError(t+" is not an object!");return t}},function(t,n){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,n){t.exports=function(t,n){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:n}}},function(t,n){var r=0,e=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++r+e).toString(36))}},function(t,n){var r={}.hasOwnProperty;t.exports=function(t,n){return r.call(t,n)}},function(t,n){var r=t.exports={version:"2.4.0"};"number"==typeof __e&&(__e=r)},function(t,n){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,n,r){var e=r(11),i=r(66);t.exports=r(10)?function(t,n,r){return e.f(t,n,i(1,r))}:function(t,n,r){return t[n]=r,t}},function(t,n,r){var e=r(3),i=r(27),o=r(24),u=r(76)("src"),c="toString",f=Function[c],a=(""+f).split(c);r(52).inspectSource=function(t){return f.call(t)},(t.exports=function(t,n,r,c){var f="function"==typeof r;f&&(o(r,"name")||i(r,"name",n)),t[n]!==r&&(f&&(o(r,u)||i(r,u,t[n]?""+t[n]:a.join(String(n)))),t===e?t[n]=r:c?t[n]?t[n]=r:i(t,n,r):(delete t[n],i(t,n,r)))})(Function.prototype,c,function(){return"function"==typeof this&&this[u]||f.call(this)})},function(t,n,r){var e=r(1),i=r(4),o=r(46),u=function(t,n,r,e){var i=String(o(t)),u="<"+n;return""!==r&&(u+=" "+r+'="'+String(e).replace(/"/g,"&quot;")+'"'),u+">"+i+"</"+n+">"};t.exports=function(t,n){var r={};r[t]=n(u),e(e.P+e.F*i(function(){var n=""[t]('"');return n!==n.toLowerCase()||n.split('"').length>3}),"String",r)}},function(t,n,r){var e=r(115),i=r(46);t.exports=function(t){return e(i(t))}},function(t,n,r){var e=r(116),i=r(66),o=r(30),u=r(50),c=r(24),f=r(167),a=Object.getOwnPropertyDescriptor;n.f=r(10)?a:function(t,n){if(t=o(t),n=u(n,!0),f)try{return a(t,n)}catch(t){}if(c(t,n))return i(!e.f.call(t,n),t[n])}},function(t,n,r){var e=r(24),i=r(17),o=r(145)("IE_PROTO"),u=Object.prototype;t.exports=Object.getPrototypeOf||function(t){return t=i(t),e(t,o)?t[o]:"function"==typeof t.constructor&&t instanceof t.constructor?t.constructor.prototype:t instanceof Object?u:null}},function(t,n){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,n){t.exports="constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")},function(t,n){t.exports={}},function(t,n){t.exports=!0},function(t,n){n.f={}.propertyIsEnumerable},function(t,n,r){var e=r(14).f,i=r(8),o=r(15)("toStringTag");t.exports=function(t,n,r){t&&!i(t=r?t:t.prototype,o)&&e(t,o,{configurable:!0,value:n})}},function(t,n,r){var e=r(40)("keys"),i=r(23);t.exports=function(t){return e[t]||(e[t]=i(t))}},function(t,n,r){var e=r(5),i="__core-js_shared__",o=e[i]||(e[i]={});t.exports=function(t){return o[t]||(o[t]={})}},function(t,n){var r=Math.ceil,e=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?e:r)(t)}},function(t,n,r){var e=r(21);t.exports=function(t,n){if(!e(t))return t;var r,i;if(n&&"function"==typeof(r=t.toString)&&!e(i=r.call(t)))return i;if("function"==typeof(r=t.valueOf)&&!e(i=r.call(t)))return i;if(!n&&"function"==typeof(r=t.toString)&&!e(i=r.call(t)))return i;throw TypeError("Can't convert object to primitive value")}},function(t,n,r){var e=r(5),i=r(25),o=r(36),u=r(44),c=r(14).f;t.exports=function(t){var n=i.Symbol||(i.Symbol=o?{}:e.Symbol||{});"_"==t.charAt(0)||t in n||c(n,t,{value:u.f(t)})}},function(t,n,r){n.f=r(15)},function(t,n){var r={}.toString;t.exports=function(t){return r.call(t).slice(8,-1)}},function(t,n){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,n,r){var e=r(4);t.exports=function(t,n){return!!t&&e(function(){n?t.call(null,function(){},1):t.call(null)})}},function(t,n,r){var e=r(53),i=r(115),o=r(17),u=r(16),c=r(203);t.exports=function(t,n){var r=1==t,f=2==t,a=3==t,s=4==t,l=6==t,h=5==t||l,v=n||c;return function(n,c,p){for(var d,y,g=o(n),b=i(g),m=e(c,p,3),x=u(b.length),w=0,S=r?v(n,x):f?v(n,0):void 0;x>w;w++)if((h||w in b)&&(d=b[w],y=m(d,w,g),t))if(r)S[w]=y;else if(y)switch(t){case 3:return!0;case 5:return d;case 6:return w;case 2:S.push(d)}else if(s)return!1;return l?-1:a||s?s:S}}},function(t,n,r){var e=r(1),i=r(52),o=r(4);t.exports=function(t,n){var r=(i.Object||{})[t]||Object[t],u={};u[t]=n(r),e(e.S+e.F*o(function(){r(1)}),"Object",u)}},function(t,n,r){var e=r(6);t.exports=function(t,n){if(!e(t))return t;var r,i;if(n&&"function"==typeof(r=t.toString)&&!e(i=r.call(t)))return i;if("function"==typeof(r=t.valueOf)&&!e(i=r.call(t)))return i;if(!n&&"function"==typeof(r=t.toString)&&!e(i=r.call(t)))return i;throw TypeError("Can't convert object to primitive value")}},function(t,n,r){var e=r(5),i=r(25),o=r(91),u=r(13),c="prototype",f=function(t,n,r){var a,s,l,h=t&f.F,v=t&f.G,p=t&f.S,d=t&f.P,y=t&f.B,g=t&f.W,b=v?i:i[n]||(i[n]={}),m=b[c],x=v?e:p?e[n]:(e[n]||{})[c];v&&(r=n);for(a in r)(s=!h&&x&&void 0!==x[a])&&a in b||(l=s?x[a]:r[a],b[a]=v&&"function"!=typeof x[a]?r[a]:y&&s?o(l,e):g&&x[a]==l?function(t){var n=function(n,r,e){if(this instanceof t){switch(arguments.length){case 0:return new t;case 1:return new t(n);case 2:return new t(n,r)}return new t(n,r,e)}return t.apply(this,arguments)};return n[c]=t[c],n}(l):d&&"function"==typeof l?o(Function.call,l):l,d&&((b.virtual||(b.virtual={}))[a]=l,t&f.R&&m&&!m[a]&&u(m,a,l)))};f.F=1,f.G=2,f.S=4,f.P=8,f.B=16,f.W=32,f.U=64,f.R=128,t.exports=f},function(t,n){var r=t.exports={version:"2.4.0"};"number"==typeof __e&&(__e=r)},function(t,n,r){var e=r(26);t.exports=function(t,n,r){if(e(t),void 0===n)return t;switch(r){case 1:return function(r){return t.call(n,r)};case 2:return function(r,e){return t.call(n,r,e)};case 3:return function(r,e,i){return t.call(n,r,e,i)}}return function(){return t.apply(n,arguments)}}},function(t,n,r){var e=r(183),i=r(1),o=r(126)("metadata"),u=o.store||(o.store=new(r(186))),c=function(t,n,r){var i=u.get(t);if(!i){if(!r)return;u.set(t,i=new e)}var o=i.get(n);if(!o){if(!r)return;i.set(n,o=new e)}return o},f=function(t,n,r){var e=c(n,r,!1);return void 0!==e&&e.has(t)},a=function(t,n,r){var e=c(n,r,!1);return void 0===e?void 0:e.get(t)},s=function(t,n,r,e){c(r,e,!0).set(t,n)},l=function(t,n){var r=c(t,n,!1),e=[];return r&&r.forEach(function(t,n){e.push(n)}),e},h=function(t){return void 0===t||"symbol"==typeof t?t:String(t)},v=function(t){i(i.S,"Reflect",t)};t.exports={store:u,map:c,has:f,get:a,set:s,keys:l,key:h,exp:v}},function(t,n,r){"use strict";if(r(10)){var e=r(69),i=r(3),o=r(4),u=r(1),c=r(127),f=r(152),a=r(53),s=r(68),l=r(66),h=r(27),v=r(73),p=r(67),d=r(16),y=r(75),g=r(50),b=r(24),m=r(180),x=r(114),w=r(6),S=r(17),_=r(137),O=r(70),E=r(32),P=r(71).f,j=r(154),F=r(76),M=r(7),A=r(48),N=r(117),T=r(146),I=r(155),k=r(80),L=r(123),R=r(74),C=r(130),D=r(160),U=r(11),W=r(31),G=U.f,B=W.f,V=i.RangeError,z=i.TypeError,q=i.Uint8Array,K="ArrayBuffer",J="Shared"+K,Y="BYTES_PER_ELEMENT",H="prototype",$=Array[H],X=f.ArrayBuffer,Q=f.DataView,Z=A(0),tt=A(2),nt=A(3),rt=A(4),et=A(5),it=A(6),ot=N(!0),ut=N(!1),ct=I.values,ft=I.keys,at=I.entries,st=$.lastIndexOf,lt=$.reduce,ht=$.reduceRight,vt=$.join,pt=$.sort,dt=$.slice,yt=$.toString,gt=$.toLocaleString,bt=M("iterator"),mt=M("toStringTag"),xt=F("typed_constructor"),wt=F("def_constructor"),St=c.CONSTR,_t=c.TYPED,Ot=c.VIEW,Et="Wrong length!",Pt=A(1,function(t,n){return Tt(T(t,t[wt]),n)}),jt=o(function(){return 1===new q(new Uint16Array([1]).buffer)[0]}),Ft=!!q&&!!q[H].set&&o(function(){new q(1).set({})}),Mt=function(t,n){if(void 0===t)throw z(Et);var r=+t,e=d(t);if(n&&!m(r,e))throw V(Et);return e},At=function(t,n){var r=p(t);if(r<0||r%n)throw V("Wrong offset!");return r},Nt=function(t){if(w(t)&&_t in t)return t;throw z(t+" is not a typed array!")},Tt=function(t,n){if(!(w(t)&&xt in t))throw z("It is not a typed array constructor!");return new t(n)},It=function(t,n){return kt(T(t,t[wt]),n)},kt=function(t,n){for(var r=0,e=n.length,i=Tt(t,e);e>r;)i[r]=n[r++];return i},Lt=function(t,n,r){G(t,n,{get:function(){return this._d[r]}})},Rt=function(t){var n,r,e,i,o,u,c=S(t),f=arguments.length,s=f>1?arguments[1]:void 0,l=void 0!==s,h=j(c);if(void 0!=h&&!_(h)){for(u=h.call(c),e=[],n=0;!(o=u.next()).done;n++)e.push(o.value);c=e}for(l&&f>2&&(s=a(s,arguments[2],2)),n=0,r=d(c.length),i=Tt(this,r);r>n;n++)i[n]=l?s(c[n],n):c[n];return i},Ct=function(){for(var t=0,n=arguments.length,r=Tt(this,n);n>t;)r[t]=arguments[t++];return r},Dt=!!q&&o(function(){gt.call(new q(1))}),Ut=function(){return gt.apply(Dt?dt.call(Nt(this)):Nt(this),arguments)},Wt={copyWithin:function(t,n){return D.call(Nt(this),t,n,arguments.length>2?arguments[2]:void 0)},every:function(t){return rt(Nt(this),t,arguments.length>1?arguments[1]:void 0)},fill:function(t){return C.apply(Nt(this),arguments)},filter:function(t){return It(this,tt(Nt(this),t,arguments.length>1?arguments[1]:void 0))},find:function(t){return et(Nt(this),t,arguments.length>1?arguments[1]:void 0)},findIndex:function(t){return it(Nt(this),t,arguments.length>1?arguments[1]:void 0)},forEach:function(t){Z(Nt(this),t,arguments.length>1?arguments[1]:void 0)},indexOf:function(t){return ut(Nt(this),t,arguments.length>1?arguments[1]:void 0)},includes:function(t){return ot(Nt(this),t,arguments.length>1?arguments[1]:void 0)},join:function(t){return vt.apply(Nt(this),arguments)},lastIndexOf:function(t){return st.apply(Nt(this),arguments)},map:function(t){return Pt(Nt(this),t,arguments.length>1?arguments[1]:void 0)},reduce:function(t){return lt.apply(Nt(this),arguments)},reduceRight:function(t){return ht.apply(Nt(this),arguments)},reverse:function(){for(var t,n=this,r=Nt(n).length,e=Math.floor(r/2),i=0;i<e;)t=n[i],n[i++]=n[--r],n[r]=t;return n},some:function(t){return nt(Nt(this),t,arguments.length>1?arguments[1]:void 0)},sort:function(t){return pt.call(Nt(this),t)},subarray:function(t,n){var r=Nt(this),e=r.length,i=y(t,e);return new(T(r,r[wt]))(r.buffer,r.byteOffset+i*r.BYTES_PER_ELEMENT,d((void 0===n?e:y(n,e))-i))}},Gt=function(t,n){return It(this,dt.call(Nt(this),t,n))},Bt=function(t){Nt(this);var n=At(arguments[1],1),r=this.length,e=S(t),i=d(e.length),o=0;if(i+n>r)throw V(Et);for(;o<i;)this[n+o]=e[o++]},Vt={entries:function(){return at.call(Nt(this))},keys:function(){return ft.call(Nt(this))},values:function(){return ct.call(Nt(this))}},zt=function(t,n){return w(t)&&t[_t]&&"symbol"!=typeof n&&n in t&&String(+n)==String(n)},qt=function(t,n){return zt(t,n=g(n,!0))?l(2,t[n]):B(t,n)},Kt=function(t,n,r){return!(zt(t,n=g(n,!0))&&w(r)&&b(r,"value"))||b(r,"get")||b(r,"set")||r.configurable||b(r,"writable")&&!r.writable||b(r,"enumerable")&&!r.enumerable?G(t,n,r):(t[n]=r.value,t)};St||(W.f=qt,U.f=Kt),u(u.S+u.F*!St,"Object",{getOwnPropertyDescriptor:qt,defineProperty:Kt}),o(function(){yt.call({})})&&(yt=gt=function(){return vt.call(this)});var Jt=v({},Wt);v(Jt,Vt),h(Jt,bt,Vt.values),v(Jt,{slice:Gt,set:Bt,constructor:function(){},toString:yt,toLocaleString:Ut}),Lt(Jt,"buffer","b"),Lt(Jt,"byteOffset","o"),Lt(Jt,"byteLength","l"),Lt(Jt,"length","e"),G(Jt,mt,{get:function(){return this[_t]}}),t.exports=function(t,n,r,f){f=!!f;var a=t+(f?"Clamped":"")+"Array",l="Uint8Array"!=a,v="get"+t,p="set"+t,y=i[a],g=y||{},b=y&&E(y),m=!y||!c.ABV,S={},_=y&&y[H],j=function(t,r){var e=t._d;return e.v[v](r*n+e.o,jt)},F=function(t,r,e){var i=t._d;f&&(e=(e=Math.round(e))<0?0:e>255?255:255&e),i.v[p](r*n+i.o,e,jt)},M=function(t,n){G(t,n,{get:function(){return j(this,n)},set:function(t){return F(this,n,t)},enumerable:!0})};m?(y=r(function(t,r,e,i){s(t,y,a,"_d");var o,u,c,f,l=0,v=0;if(w(r)){if(!(r instanceof X||(f=x(r))==K||f==J))return _t in r?kt(y,r):Rt.call(y,r);o=r,v=At(e,n);var p=r.byteLength;if(void 0===i){if(p%n)throw V(Et);if((u=p-v)<0)throw V(Et)}else if((u=d(i)*n)+v>p)throw V(Et);c=u/n}else c=Mt(r,!0),u=c*n,o=new X(u);for(h(t,"_d",{b:o,o:v,l:u,e:c,v:new Q(o)});l<c;)M(t,l++)}),_=y[H]=O(Jt),h(_,"constructor",y)):L(function(t){new y(null),new y(t)},!0)||(y=r(function(t,r,e,i){s(t,y,a);var o;return w(r)?r instanceof X||(o=x(r))==K||o==J?void 0!==i?new g(r,At(e,n),i):void 0!==e?new g(r,At(e,n)):new g(r):_t in r?kt(y,r):Rt.call(y,r):new g(Mt(r,l))}),Z(b!==Function.prototype?P(g).concat(P(b)):P(g),function(t){t in y||h(y,t,g[t])}),y[H]=_,e||(_.constructor=y));var A=_[bt],N=!!A&&("values"==A.name||void 0==A.name),T=Vt.values;h(y,xt,!0),h(_,_t,a),h(_,Ot,!0),h(_,wt,y),(f?new y(1)[mt]==a:mt in _)||G(_,mt,{get:function(){return a}}),S[a]=y,u(u.G+u.W+u.F*(y!=g),S),u(u.S,a,{BYTES_PER_ELEMENT:n,from:Rt,of:Ct}),Y in _||h(_,Y,n),u(u.P,a,Wt),R(a),u(u.P+u.F*Ft,a,{set:Bt}),u(u.P+u.F*!N,a,Vt),u(u.P+u.F*(_.toString!=yt),a,{toString:yt}),u(u.P+u.F*o(function(){new y(1).slice()}),a,{slice:Gt}),u(u.P+u.F*(o(function(){return[1,2].toLocaleString()!=new y([1,2]).toLocaleString()})||!o(function(){_.toLocaleString.call([1,2])})),a,{toLocaleString:Ut}),k[a]=N?A:T,e||N||h(_,bt,T)}}else t.exports=function(){}},function(t,n){var r={}.toString;t.exports=function(t){return r.call(t).slice(8,-1)}},function(t,n,r){var e=r(21),i=r(5).document,o=e(i)&&e(i.createElement);t.exports=function(t){return o?i.createElement(t):{}}},function(t,n,r){t.exports=!r(12)&&!r(18)(function(){return 7!=Object.defineProperty(r(57)("div"),"a",{get:function(){return 7}}).a})},function(t,n,r){"use strict";var e=r(36),i=r(51),o=r(64),u=r(13),c=r(8),f=r(35),a=r(96),s=r(38),l=r(103),h=r(15)("iterator"),v=!([].keys&&"next"in[].keys()),p="keys",d="values",y=function(){return this};t.exports=function(t,n,r,g,b,m,x){a(r,n,g);var w,S,_,O=function(t){if(!v&&t in F)return F[t];switch(t){case p:case d:return function(){return new r(this,t)}}return function(){return new r(this,t)}},E=n+" Iterator",P=b==d,j=!1,F=t.prototype,M=F[h]||F["@@iterator"]||b&&F[b],A=M||O(b),N=b?P?O("entries"):A:void 0,T="Array"==n?F.entries||M:M;if(T&&(_=l(T.call(new t)))!==Object.prototype&&(s(_,E,!0),e||c(_,h)||u(_,h,y)),P&&M&&M.name!==d&&(j=!0,A=function(){return M.call(this)}),e&&!x||!v&&!j&&F[h]||u(F,h,A),f[n]=A,f[E]=y,b)if(w={values:P?A:O(d),keys:m?A:O(p),entries:N},x)for(S in w)S in F||o(F,S,w[S]);else i(i.P+i.F*(v||j),n,w);return w}},function(t,n,r){var e=r(20),i=r(100),o=r(34),u=r(39)("IE_PROTO"),c=function(){},f="prototype",a=function(){var t,n=r(57)("iframe"),e=o.length;for(n.style.display="none",r(93).appendChild(n),n.src="javascript:",t=n.contentWindow.document,t.open(),t.write("<script>document.F=Object<\/script>"),t.close(),a=t.F;e--;)delete a[f][o[e]];return a()};t.exports=Object.create||function(t,n){var r;return null!==t?(c[f]=e(t),r=new c,c[f]=null,r[u]=t):r=a(),void 0===n?r:i(r,n)}},function(t,n,r){var e=r(63),i=r(34).concat("length","prototype");n.f=Object.getOwnPropertyNames||function(t){return e(t,i)}},function(t,n){n.f=Object.getOwnPropertySymbols},function(t,n,r){var e=r(8),i=r(9),o=r(90)(!1),u=r(39)("IE_PROTO");t.exports=function(t,n){var r,c=i(t),f=0,a=[];for(r in c)r!=u&&e(c,r)&&a.push(r);for(;n.length>f;)e(c,r=n[f++])&&(~o(a,r)||a.push(r));return a}},function(t,n,r){t.exports=r(13)},function(t,n,r){var e=r(76)("meta"),i=r(6),o=r(24),u=r(11).f,c=0,f=Object.isExtensible||function(){return!0},a=!r(4)(function(){return f(Object.preventExtensions({}))}),s=function(t){u(t,e,{value:{i:"O"+ ++c,w:{}}})},l=function(t,n){if(!i(t))return"symbol"==typeof t?t:("string"==typeof t?"S":"P")+t;if(!o(t,e)){if(!f(t))return"F";if(!n)return"E";s(t)}return t[e].i},h=function(t,n){if(!o(t,e)){if(!f(t))return!0;if(!n)return!1;s(t)}return t[e].w},v=function(t){return a&&p.NEED&&f(t)&&!o(t,e)&&s(t),t},p=t.exports={KEY:e,NEED:!1,fastKey:l,getWeak:h,onFreeze:v}},function(t,n){t.exports=function(t,n){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:n}}},function(t,n){var r=Math.ceil,e=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?e:r)(t)}},function(t,n){t.exports=function(t,n,r,e){if(!(t instanceof n)||void 0!==e&&e in t)throw TypeError(r+": incorrect invocation!");return t}},function(t,n){t.exports=!1},function(t,n,r){var e=r(2),i=r(173),o=r(133),u=r(145)("IE_PROTO"),c=function(){},f="prototype",a=function(){var t,n=r(132)("iframe"),e=o.length;for(n.style.display="none",r(135).appendChild(n),n.src="javascript:",t=n.contentWindow.document,t.open(),t.write("<script>document.F=Object<\/script>"),t.close(),a=t.F;e--;)delete a[f][o[e]];return a()};t.exports=Object.create||function(t,n){var r;return null!==t?(c[f]=e(t),r=new c,c[f]=null,r[u]=t):r=a(),void 0===n?r:i(r,n)}},function(t,n,r){var e=r(175),i=r(133).concat("length","prototype");n.f=Object.getOwnPropertyNames||function(t){return e(t,i)}},function(t,n,r){var e=r(175),i=r(133);t.exports=Object.keys||function(t){return e(t,i)}},function(t,n,r){var e=r(28);t.exports=function(t,n,r){for(var i in n)e(t,i,n[i],r);return t}},function(t,n,r){"use strict";var e=r(3),i=r(11),o=r(10),u=r(7)("species");t.exports=function(t){var n=e[t];o&&n&&!n[u]&&i.f(n,u,{configurable:!0,get:function(){return this}})}},function(t,n,r){var e=r(67),i=Math.max,o=Math.min;t.exports=function(t,n){return t=e(t),t<0?i(t+n,0):o(t,n)}},function(t,n){var r=0,e=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++r+e).toString(36))}},function(t,n,r){var e=r(33);t.exports=function(t){return Object(e(t))}},function(t,n,r){var e=r(7)("unscopables"),i=Array.prototype;void 0==i[e]&&r(27)(i,e,{}),t.exports=function(t){i[e][t]=!0}},function(t,n,r){var e=r(53),i=r(169),o=r(137),u=r(2),c=r(16),f=r(154),a={},s={},n=t.exports=function(t,n,r,l,h){var v,p,d,y,g=h?function(){return t}:f(t),b=e(r,l,n?2:1),m=0;if("function"!=typeof g)throw TypeError(t+" is not iterable!");if(o(g)){for(v=c(t.length);v>m;m++)if((y=n?b(u(p=t[m])[0],p[1]):b(t[m]))===a||y===s)return y}else for(d=g.call(t);!(p=d.next()).done;)if((y=i(d,b,p.value,n))===a||y===s)return y};n.BREAK=a,n.RETURN=s},function(t,n){t.exports={}},function(t,n,r){var e=r(11).f,i=r(24),o=r(7)("toStringTag");t.exports=function(t,n,r){t&&!i(t=r?t:t.prototype,o)&&e(t,o,{configurable:!0,value:n})}},function(t,n,r){var e=r(1),i=r(46),o=r(4),u=r(150),c="["+u+"]",f="​",a=RegExp("^"+c+c+"*"),s=RegExp(c+c+"*$"),l=function(t,n,r){var i={},c=o(function(){return!!u[t]()||f[t]()!=f}),a=i[t]=c?n(h):u[t];r&&(i[r]=a),e(e.P+e.F*c,"String",i)},h=l.trim=function(t,n){return t=String(i(t)),1&n&&(t=t.replace(a,"")),2&n&&(t=t.replace(s,"")),t};t.exports=l},function(t,n,r){t.exports={default:r(86),__esModule:!0}},function(t,n,r){t.exports={default:r(87),__esModule:!0}},function(t,n,r){"use strict";function e(t){return t&&t.__esModule?t:{default:t}}n.__esModule=!0;var i=r(84),o=e(i),u=r(83),c=e(u),f="function"==typeof c.default&&"symbol"==typeof o.default?function(t){return typeof t}:function(t){return t&&"function"==typeof c.default&&t.constructor===c.default&&t!==c.default.prototype?"symbol":typeof t};n.default="function"==typeof c.default&&"symbol"===f(o.default)?function(t){return void 0===t?"undefined":f(t)}:function(t){return t&&"function"==typeof c.default&&t.constructor===c.default&&t!==c.default.prototype?"symbol":void 0===t?"undefined":f(t)}},function(t,n,r){r(110),r(108),r(111),r(112),t.exports=r(25).Symbol},function(t,n,r){r(109),r(113),t.exports=r(44).f("iterator")},function(t,n){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,n){t.exports=function(){}},function(t,n,r){var e=r(9),i=r(106),o=r(105);t.exports=function(t){return function(n,r,u){var c,f=e(n),a=i(f.length),s=o(u,a);if(t&&r!=r){for(;a>s;)if((c=f[s++])!=c)return!0}else for(;a>s;s++)if((t||s in f)&&f[s]===r)return t||s||0;return!t&&-1}}},function(t,n,r){var e=r(88);t.exports=function(t,n,r){if(e(t),void 0===n)return t;switch(r){case 1:return function(r){return t.call(n,r)};case 2:return function(r,e){return t.call(n,r,e)};case 3:return function(r,e,i){return t.call(n,r,e,i)}}return function(){return t.apply(n,arguments)}}},function(t,n,r){var e=r(19),i=r(62),o=r(37);t.exports=function(t){var n=e(t),r=i.f;if(r)for(var u,c=r(t),f=o.f,a=0;c.length>a;)f.call(t,u=c[a++])&&n.push(u);return n}},function(t,n,r){t.exports=r(5).document&&document.documentElement},function(t,n,r){var e=r(56);t.exports=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==e(t)?t.split(""):Object(t)}},function(t,n,r){var e=r(56);t.exports=Array.isArray||function(t){return"Array"==e(t)}},function(t,n,r){"use strict";var e=r(60),i=r(22),o=r(38),u={};r(13)(u,r(15)("iterator"),function(){return this}),t.exports=function(t,n,r){t.prototype=e(u,{next:i(1,r)}),o(t,n+" Iterator")}},function(t,n){t.exports=function(t,n){return{value:n,done:!!t}}},function(t,n,r){var e=r(19),i=r(9);t.exports=function(t,n){for(var r,o=i(t),u=e(o),c=u.length,f=0;c>f;)if(o[r=u[f++]]===n)return r}},function(t,n,r){var e=r(23)("meta"),i=r(21),o=r(8),u=r(14).f,c=0,f=Object.isExtensible||function(){return!0},a=!r(18)(function(){return f(Object.preventExtensions({}))}),s=function(t){u(t,e,{value:{i:"O"+ ++c,w:{}}})},l=function(t,n){if(!i(t))return"symbol"==typeof t?t:("string"==typeof t?"S":"P")+t;if(!o(t,e)){if(!f(t))return"F";if(!n)return"E";s(t)}return t[e].i},h=function(t,n){if(!o(t,e)){if(!f(t))return!0;if(!n)return!1;s(t)}return t[e].w},v=function(t){return a&&p.NEED&&f(t)&&!o(t,e)&&s(t),t},p=t.exports={KEY:e,NEED:!1,fastKey:l,getWeak:h,onFreeze:v}},function(t,n,r){var e=r(14),i=r(20),o=r(19);t.exports=r(12)?Object.defineProperties:function(t,n){i(t);for(var r,u=o(n),c=u.length,f=0;c>f;)e.f(t,r=u[f++],n[r]);return t}},function(t,n,r){var e=r(37),i=r(22),o=r(9),u=r(42),c=r(8),f=r(58),a=Object.getOwnPropertyDescriptor;n.f=r(12)?a:function(t,n){if(t=o(t),n=u(n,!0),f)try{return a(t,n)}catch(t){}if(c(t,n))return i(!e.f.call(t,n),t[n])}},function(t,n,r){var e=r(9),i=r(61).f,o={}.toString,u="object"==typeof window&&window&&Object.getOwnPropertyNames?Object.getOwnPropertyNames(window):[],c=function(t){try{return i(t)}catch(t){return u.slice()}};t.exports.f=function(t){return u&&"[object Window]"==o.call(t)?c(t):i(e(t))}},function(t,n,r){var e=r(8),i=r(77),o=r(39)("IE_PROTO"),u=Object.prototype;t.exports=Object.getPrototypeOf||function(t){return t=i(t),e(t,o)?t[o]:"function"==typeof t.constructor&&t instanceof t.constructor?t.constructor.prototype:t instanceof Object?u:null}},function(t,n,r){var e=r(41),i=r(33);t.exports=function(t){return function(n,r){var o,u,c=String(i(n)),f=e(r),a=c.length;return f<0||f>=a?t?"":void 0:(o=c.charCodeAt(f),o<55296||o>56319||f+1===a||(u=c.charCodeAt(f+1))<56320||u>57343?t?c.charAt(f):o:t?c.slice(f,f+2):u-56320+(o-55296<<10)+65536)}}},function(t,n,r){var e=r(41),i=Math.max,o=Math.min;t.exports=function(t,n){return t=e(t),t<0?i(t+n,0):o(t,n)}},function(t,n,r){var e=r(41),i=Math.min;t.exports=function(t){return t>0?i(e(t),9007199254740991):0}},function(t,n,r){"use strict";var e=r(89),i=r(97),o=r(35),u=r(9);t.exports=r(59)(Array,"Array",function(t,n){this._t=u(t),this._i=0,this._k=n},function(){var t=this._t,n=this._k,r=this._i++;return!t||r>=t.length?(this._t=void 0,i(1)):"keys"==n?i(0,r):"values"==n?i(0,t[r]):i(0,[r,t[r]])},"values"),o.Arguments=o.Array,e("keys"),e("values"),e("entries")},function(t,n){},function(t,n,r){"use strict";var e=r(104)(!0);r(59)(String,"String",function(t){this._t=String(t),this._i=0},function(){var t,n=this._t,r=this._i;return r>=n.length?{value:void 0,done:!0}:(t=e(n,r),this._i+=t.length,{value:t,done:!1})})},function(t,n,r){"use strict";var e=r(5),i=r(8),o=r(12),u=r(51),c=r(64),f=r(99).KEY,a=r(18),s=r(40),l=r(38),h=r(23),v=r(15),p=r(44),d=r(43),y=r(98),g=r(92),b=r(95),m=r(20),x=r(9),w=r(42),S=r(22),_=r(60),O=r(102),E=r(101),P=r(14),j=r(19),F=E.f,M=P.f,A=O.f,N=e.Symbol,T=e.JSON,I=T&&T.stringify,k="prototype",L=v("_hidden"),R=v("toPrimitive"),C={}.propertyIsEnumerable,D=s("symbol-registry"),U=s("symbols"),W=s("op-symbols"),G=Object[k],B="function"==typeof N,V=e.QObject,z=!V||!V[k]||!V[k].findChild,q=o&&a(function(){return 7!=_(M({},"a",{get:function(){return M(this,"a",{value:7}).a}})).a})?function(t,n,r){var e=F(G,n);e&&delete G[n],M(t,n,r),e&&t!==G&&M(G,n,e)}:M,K=function(t){var n=U[t]=_(N[k]);return n._k=t,n},J=B&&"symbol"==typeof N.iterator?function(t){return"symbol"==typeof t}:function(t){return t instanceof N},Y=function(t,n,r){return t===G&&Y(W,n,r),m(t),n=w(n,!0),m(r),i(U,n)?(r.enumerable?(i(t,L)&&t[L][n]&&(t[L][n]=!1),r=_(r,{enumerable:S(0,!1)})):(i(t,L)||M(t,L,S(1,{})),t[L][n]=!0),q(t,n,r)):M(t,n,r)},H=function(t,n){m(t);for(var r,e=g(n=x(n)),i=0,o=e.length;o>i;)Y(t,r=e[i++],n[r]);return t},$=function(t,n){return void 0===n?_(t):H(_(t),n)},X=function(t){var n=C.call(this,t=w(t,!0));return!(this===G&&i(U,t)&&!i(W,t))&&(!(n||!i(this,t)||!i(U,t)||i(this,L)&&this[L][t])||n)},Q=function(t,n){if(t=x(t),n=w(n,!0),t!==G||!i(U,n)||i(W,n)){var r=F(t,n);return!r||!i(U,n)||i(t,L)&&t[L][n]||(r.enumerable=!0),r}},Z=function(t){for(var n,r=A(x(t)),e=[],o=0;r.length>o;)i(U,n=r[o++])||n==L||n==f||e.push(n);return e},tt=function(t){for(var n,r=t===G,e=A(r?W:x(t)),o=[],u=0;e.length>u;)!i(U,n=e[u++])||r&&!i(G,n)||o.push(U[n]);return o};B||(N=function(){if(this instanceof N)throw TypeError("Symbol is not a constructor!");var t=h(arguments.length>0?arguments[0]:void 0),n=function(r){this===G&&n.call(W,r),i(this,L)&&i(this[L],t)&&(this[L][t]=!1),q(this,t,S(1,r))};return o&&z&&q(G,t,{configurable:!0,set:n}),K(t)},c(N[k],"toString",function(){return this._k}),E.f=Q,P.f=Y,r(61).f=O.f=Z,r(37).f=X,r(62).f=tt,o&&!r(36)&&c(G,"propertyIsEnumerable",X,!0),p.f=function(t){return K(v(t))}),u(u.G+u.W+u.F*!B,{Symbol:N});for(var nt="hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","),rt=0;nt.length>rt;)v(nt[rt++]);for(var nt=j(v.store),rt=0;nt.length>rt;)d(nt[rt++]);u(u.S+u.F*!B,"Symbol",{for:function(t){return i(D,t+="")?D[t]:D[t]=N(t)},keyFor:function(t){if(J(t))return y(D,t);throw TypeError(t+" is not a symbol!")},useSetter:function(){z=!0},useSimple:function(){z=!1}}),u(u.S+u.F*!B,"Object",{create:$,defineProperty:Y,defineProperties:H,getOwnPropertyDescriptor:Q,getOwnPropertyNames:Z,getOwnPropertySymbols:tt}),T&&u(u.S+u.F*(!B||a(function(){var t=N();return"[null]"!=I([t])||"{}"!=I({a:t})||"{}"!=I(Object(t))})),"JSON",{stringify:function(t){if(void 0!==t&&!J(t)){for(var n,r,e=[t],i=1;arguments.length>i;)e.push(arguments[i++]);return n=e[1],"function"==typeof n&&(r=n),!r&&b(n)||(n=function(t,n){if(r&&(n=r.call(this,t,n)),!J(n))return n}),e[1]=n,I.apply(T,e)}}}),N[k][R]||r(13)(N[k],R,N[k].valueOf),l(N,"Symbol"),l(Math,"Math",!0),l(e.JSON,"JSON",!0)},function(t,n,r){r(43)("asyncIterator")},function(t,n,r){r(43)("observable")},function(t,n,r){r(107);for(var e=r(5),i=r(13),o=r(35),u=r(15)("toStringTag"),c=["NodeList","DOMTokenList","MediaList","StyleSheetList","CSSRuleList"],f=0;f<5;f++){var a=c[f],s=e[a],l=s&&s.prototype;l&&!l[u]&&i(l,u,a),o[a]=o.Array}},function(t,n,r){var e=r(45),i=r(7)("toStringTag"),o="Arguments"==e(function(){return arguments}()),u=function(t,n){try{return t[n]}catch(t){}};t.exports=function(t){var n,r,c;return void 0===t?"Undefined":null===t?"Null":"string"==typeof(r=u(n=Object(t),i))?r:o?e(n):"Object"==(c=e(n))&&"function"==typeof n.callee?"Arguments":c}},function(t,n,r){var e=r(45);t.exports=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==e(t)?t.split(""):Object(t)}},function(t,n){n.f={}.propertyIsEnumerable},function(t,n,r){var e=r(30),i=r(16),o=r(75);t.exports=function(t){return function(n,r,u){var c,f=e(n),a=i(f.length),s=o(u,a);if(t&&r!=r){for(;a>s;)if((c=f[s++])!=c)return!0}else for(;a>s;s++)if((t||s in f)&&f[s]===r)return t||s||0;return!t&&-1}}},function(t,n,r){"use strict";var e=r(3),i=r(1),o=r(28),u=r(73),c=r(65),f=r(79),a=r(68),s=r(6),l=r(4),h=r(123),v=r(81),p=r(136);t.exports=function(t,n,r,d,y,g){var b=e[t],m=b,x=y?"set":"add",w=m&&m.prototype,S={},_=function(t){var n=w[t];o(w,t,"delete"==t?function(t){return!(g&&!s(t))&&n.call(this,0===t?0:t)}:"has"==t?function(t){return!(g&&!s(t))&&n.call(this,0===t?0:t)}:"get"==t?function(t){return g&&!s(t)?void 0:n.call(this,0===t?0:t)}:"add"==t?function(t){return n.call(this,0===t?0:t),this}:function(t,r){return n.call(this,0===t?0:t,r),this})};if("function"==typeof m&&(g||w.forEach&&!l(function(){(new m).entries().next()}))){var O=new m,E=O[x](g?{}:-0,1)!=O,P=l(function(){O.has(1)}),j=h(function(t){new m(t)}),F=!g&&l(function(){for(var t=new m,n=5;n--;)t[x](n,n);return!t.has(-0)});j||(m=n(function(n,r){a(n,m,t);var e=p(new b,n,m);return void 0!=r&&f(r,y,e[x],e),e}),m.prototype=w,w.constructor=m),(P||F)&&(_("delete"),_("has"),y&&_("get")),(F||E)&&_(x),g&&w.clear&&delete w.clear}else m=d.getConstructor(n,t,y,x),u(m.prototype,r),c.NEED=!0;return v(m,t),S[t]=m,i(i.G+i.W+i.F*(m!=b),S),g||d.setStrong(m,t,y),m}},function(t,n,r){"use strict";var e=r(27),i=r(28),o=r(4),u=r(46),c=r(7);t.exports=function(t,n,r){var f=c(t),a=r(u,f,""[t]),s=a[0],l=a[1];o(function(){var n={};return n[f]=function(){return 7},7!=""[t](n)})&&(i(String.prototype,t,s),e(RegExp.prototype,f,2==n?function(t,n){return l.call(t,this,n)}:function(t){return l.call(t,this)}))}
@@ -982,15 +966,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1002,15 +978,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1022,7 +1002,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1030,7 +1014,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
