@@ -171,19 +171,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-springAOP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-ajax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/springAOP/">spring AOP</a>
+      <a class="article-title" href="/2018/04/13/ajax/">ajax(asynchronous javascript and xml)</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/springAOP/" class="archive-article-date">
+        <a href="/2018/04/13/ajax/" class="archive-article-date">
   	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
@@ -195,60 +195,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="spring-AOP"><a href="#spring-AOP" class="headerlink" title="spring AOP"></a>spring AOP</h1><h2 id="AOP概念"><a href="#AOP概念" class="headerlink" title="AOP概念"></a>AOP概念</h2><p>aspect oriented programming<br>面向切面编程<br>是什么？<br>将共同业务处理从传统业务处理中抽离出来，单独封装，然后以配置的形式进行关联<br>为什么？<br>可以在不修改原有的逻辑代码的情况下，给系统追加功能</p>
-<h2 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h2><ul>
-<li>追加事务控制</li>
-<li>异常日志记录</li>
-</ul>
-<p>案例：</p>
-<ul>
-<li>要求：在每个Controller方法执行前输出打桩信息</li>
-<li>封装一个组件</li>
-<li>通过配置将封装的组件追击到Controller方法里</li>
-</ul>
-<h1 id="AOP相关概念"><a href="#AOP相关概念" class="headerlink" title="AOP相关概念"></a>AOP相关概念</h1><ul>
-<li>oop：类，对象，封装，继承，多态</li>
-<li>AOP：切面，切入点，通知，动态代理</li>
-</ul>
-<h2 id="切面（aspect）"><a href="#切面（aspect）" class="headerlink" title="切面（aspect）"></a>切面（aspect）</h2><p>指的是封装了共同处理的组件，并且能够切入到其他的组件的方法上</p>
-<h2 id="切入点（pointcut）"><a href="#切入点（pointcut）" class="headerlink" title="切入点（pointcut）"></a>切入点（pointcut）</h2><p>用于指定目标组件的方法</p>
-<ul>
-<li>方法限定表达式<br>可以给某个组件中的部分方法追加共同功能<br>execution（修饰符？返回类型 方法名（参数） 异常抛出？）<br>//匹配到add开头的所有方法<br>execution(<em> add</em>(..))<br>//匹配UserService包下的所有方法<br>execution(<em> io.codegitz.UserService.</em>(…))<br>//匹配到service包下及其子包下的所有方法<br>execution(<em> io.codegitz.service..</em>(..))<br>//匹配到service包下所有类的方法<br>execution(<em> io.codegitz.service.</em>.*(..))</li>
-<li><p>类型限定表达式<br>可以给某个组件的所有方法追加功能<br>within（类型）<br>//匹配UserService组件下的所有方法<br>within(io.codegitz.service.UserService)<br>//匹配service包下的所有类的所有方法<br>within(io.codegitz.service.<em>)<br>//匹配service包及其子包下的所有方法<br>within(io.codegitz.service..</em>)</p>
-</li>
-<li><p>bean名称限定表达式<br>可以给某个组件中国的所有的方法追加功能<br>bean（id名）<br>//匹配id=userService的组件的所有方法<br>bean(userService)<br>//匹配以Service结尾的所有组件的所有方法<br>bean(*Service)</p>
-</li>
-</ul>
-<p>AOP配置文件<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></div><div class="line"> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="attr">xmlns:beans</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></div><div class="line"> <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></div><div class="line"> <span class="attr">xmlns:jdbc</span>=<span class="string">"http://www.springframework.org/schema/jdbc"</span> <span class="attr">xmlns:jee</span>=<span class="string">"http://www.springframework.org/schema/jee"</span></div><div class="line"> <span class="attr">xmlns:jms</span>=<span class="string">"http://www.springframework.org/schema/jms"</span> <span class="attr">xmlns:lang</span>=<span class="string">"http://www.springframework.org/schema/lang"</span></div><div class="line"> <span class="attr">xmlns:mvc</span>=<span class="string">"http://www.springframework.org/schema/mvc"</span> <span class="attr">xmlns:tx</span>=<span class="string">"http://www.springframework.org/schema/tx"</span></div><div class="line"> <span class="attr">xmlns:util</span>=<span class="string">"http://www.springframework.org/schema/util"</span> <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></div><div class="line"> <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span></div><div class="line">  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd</div><div class="line">  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd</div><div class="line">  http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd</div><div class="line">  http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd</div><div class="line">  http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd</div><div class="line">  http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd</div><div class="line">  http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd</div><div class="line">  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd</div><div class="line">  http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd</div><div class="line">  http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd"&gt;</div><div class="line"></div><div class="line"> <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"loggerBean"</span> <span class="attr">class</span>=<span class="string">"io.codegitz.cloud_note.aspect.LoggerBean"</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- 通过REF关联组件类 --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"loggerBean"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"logController"</span> <span class="attr">pointcut</span>=<span class="string">"within(io.codegitz.cloud_note.controller..*)"</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>遇到错误：<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cvc-complex-<span class="keyword">type</span>.<span class="number">2.4</span>.c: The <span class="keyword">matching</span> wildcard <span class="keyword">is</span> <span class="keyword">strict</span>, but no declaration can be found <span class="keyword">for</span> element <span class="string">'aop:config'</span>.</div></pre></td></tr></table></figure></p>
-<p>有点狗的是引用和xsd文件都有了，后来把后面的版本号去掉了，然后就暂时不报错了，过了一会再次报错，然后把版本号又加了回去，然后就行了….</p>
-<h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><p>用于指定切入的时机<br>spring提供了五种通知类型<br>try{<br>   使用前置通知<aop:before><br>   //执行的目标方法<br>   后置通知<aop:after-returning><br>}catch{<br>   异常通知<aop:after-throwing><br>}finally{<br>   最终通知：<aop:after><br>}<br>@around=前置+后置通知</aop:after></aop:after-throwing></aop:after-returning></aop:before></p>
-<p>切面：追加啥功能？单独封装的代码<br>切入点：切谁？所有Controller<br>通知：啥时候切？前置，后置，环绕</p>
-<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>AOP原理：使用动态代理技术<br>可以创建一个新的类型，重写目标接口或目标类的方法<br>在重写方法中，追加了要切入的功能代码和方法代码<br><img src="https://i.imgur.com/QZyOfVf.png" alt=""></p>
-<h3 id="AOP的配置使用形式"><a href="#AOP的配置使用形式" class="headerlink" title="AOP的配置使用形式"></a>AOP的配置使用形式</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></div><div class="line"> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="attr">xmlns:beans</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></div><div class="line"> <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></div><div class="line"> <span class="attr">xmlns:jdbc</span>=<span class="string">"http://www.springframework.org/schema/jdbc"</span> <span class="attr">xmlns:jee</span>=<span class="string">"http://www.springframework.org/schema/jee"</span></div><div class="line"> <span class="attr">xmlns:jms</span>=<span class="string">"http://www.springframework.org/schema/jms"</span> <span class="attr">xmlns:lang</span>=<span class="string">"http://www.springframework.org/schema/lang"</span></div><div class="line"> <span class="attr">xmlns:mvc</span>=<span class="string">"http://www.springframework.org/schema/mvc"</span> <span class="attr">xmlns:tx</span>=<span class="string">"http://www.springframework.org/schema/tx"</span></div><div class="line"> <span class="attr">xmlns:util</span>=<span class="string">"http://www.springframework.org/schema/util"</span></div><div class="line"> <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span></div><div class="line">  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd</div><div class="line">  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd</div><div class="line">  http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd</div><div class="line">  http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd</div><div class="line">  http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd</div><div class="line">  http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd</div><div class="line">  http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd</div><div class="line">  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd</div><div class="line">  http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd"&gt;</div><div class="line">      <span class="comment">&lt;!-- Spring事务管理 --&gt;</span></div><div class="line">       <span class="comment">&lt;!-- 定义事务管理bean --&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"txManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dbcp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">       <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line">       <span class="comment">&lt;!-- 开启transaction注解扫描，将标记作用在具体的方法上 --&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">tx:annotation-driven</span> <span class="attr">transaction-manager</span>=<span class="string">"txManager"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>然后在实现类前面加一个@Transactional注解<br>执行此测试方法：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">Test</span></div><div class="line"> public void testUserService1()&#123;</div><div class="line">  <span class="selector-tag">System</span><span class="selector-class">.out</span><span class="selector-class">.println</span>(<span class="selector-tag">service</span><span class="selector-class">.getClass</span>()<span class="selector-class">.getName</span>());</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
-<p>未使用动态代理则会输出原来的类名：io.codegitz.cloud_note.service.UserServiceImpl<br>使用动态代理输出动态代理名：com.sun.proxy.$Proxy22</p>
-<p>spring有两种动态技术</p>
-<ul>
-<li>基于目标接口的</li>
-<li>基于目标类的</li>
-</ul>
-<p>public class $Proxy22 implements UserService{<br>     public void checkLogin(){<br>        //追加事务处理<br>        //重写了UserServiceImpl.checkLogin<br>}  </p>
-<p>}</p>
-<p>public class $Proxy22 extends 目标类{</p>
-<p>}</p>
-<h1 id="AOP注解配置"><a href="#AOP注解配置" class="headerlink" title="AOP注解配置"></a>AOP注解配置</h1><h2 id="注解标记"><a href="#注解标记" class="headerlink" title="注解标记"></a>注解标记</h2><p>@Component 起到应以<bean>的作用<br>@Aspect <aop:aspect ref="loggerBean"><br>@Before <aop:before pointcut="within()"></aop:before></aop:aspect></bean></p>
-<p>案例：</p>
-<ul>
-<li>要求：当系统发生service异常，将异常信息写入到日志文件</li>
-<li>切面：将异常写入文件</li>
-<li>切入点：after-throwing(“within(service..*    )”)</li>
-</ul>
-<p>记录异常类：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">package io.codegitz.cloud_note.aspect;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.FileWriter;</div><div class="line"><span class="keyword">import</span> java.io.PrintWriter;</div><div class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</div><div class="line"><span class="keyword">import</span> java.util.Date;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.AfterThrowing;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</div><div class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</div><div class="line"></div><div class="line">@<span class="type">Component</span>  <span class="comment">//扫描spring容器</span></div><div class="line">@<span class="type">Aspect</span>     <span class="comment">//将该类作为切面组件</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionBean</span> </span>&#123;</div><div class="line"> </div><div class="line">    <span class="comment">//e是目标组件抛出的异常对象</span></div><div class="line"> @<span class="type">AfterThrowing</span>(throwing=<span class="string">"e"</span>,pointcut=<span class="string">"within(io.codegitz.cloud_note.service..*)"</span>)</div><div class="line"> <span class="keyword">public</span> void execute(<span class="type">Exception</span> e)&#123;</div><div class="line">  <span class="comment">//将异常信息输入文件</span></div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">   <span class="type">FileWriter</span> fw=new <span class="type">FileWriter</span>(<span class="string">"F:\\note_error\\record.log"</span>,<span class="literal">true</span>);</div><div class="line">   <span class="type">PrintWriter</span> pw=new <span class="type">PrintWriter</span>(fw);</div><div class="line">   <span class="comment">//利用pw对象写入异常信息</span></div><div class="line">   <span class="type">Date</span> time=new <span class="type">Date</span>();</div><div class="line">   <span class="type">SimpleDateFormat</span> sdf=new <span class="type">SimpleDateFormat</span>(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</div><div class="line">   <span class="type">String</span> strTime=sdf.format(time);</div><div class="line">   pw.<span class="built_in">println</span>(<span class="string">"************************"</span>);</div><div class="line">   pw.<span class="built_in">println</span>(<span class="string">"异常类型："</span>+e);</div><div class="line">   pw.<span class="built_in">println</span>(<span class="string">"异常事件："</span>+strTime);</div><div class="line">   pw.<span class="built_in">println</span>(<span class="string">"*****异常的详细信息******"</span>);</div><div class="line">   e.printStackTrace(pw);</div><div class="line">   pw.close();</div><div class="line">   fw.close();</div><div class="line">  &#125; <span class="keyword">catch</span> (<span class="type">Exception</span> ex) &#123;</div><div class="line">   <span class="type">System</span>.out.<span class="built_in">println</span>(<span class="string">"记录异常失败"</span>);</div><div class="line">  &#125;</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>模拟异常：<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">String</span> <span class="built_in">str</span>=<span class="keyword">null</span>;</div><div class="line"><span class="built_in">str</span>.length();</div></pre></td></tr></table></figure></p>
-<p>后台报错：<br><img src="https://i.imgur.com/mpEiu1h.png" alt=""></p>
-<p>日志文件记录：<br><img src="https://i.imgur.com/vmxMLpi.png" alt=""></p>
-<p>记录异常成功。</p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="ajax-asynchronous-javascript-and-xml"><a href="#ajax-asynchronous-javascript-and-xml" class="headerlink" title="ajax(asynchronous javascript and xml)"></a>ajax(asynchronous javascript and xml)</h1><h2 id="1-ajax是什么"><a href="#1-ajax是什么" class="headerlink" title="1.ajax是什么"></a>1.ajax是什么</h2><p>ajax是一种用来改善用户体验的技术，其本质是利用浏览器提供的一个特殊的对象（XMLHttpRequest,也可称之为ajax对象）向服务器发送异步请求。服务器返回部分数据（通常不需要返回完整页面），浏览器利用这些数据对当前页面做部分更新。整个过程，页面无刷新，不打断用户的操作。<br>注：<br>异步请求：发送请求的同时，浏览器不会销毁当前页面，用户仍然可以对当前页面做其他操作。<br>使用ajax请求的过程：<br><img src="https://i.imgur.com/1K90kh4.png" alt=""><br>不使用ajax的请求过程：<br><img src="https://i.imgur.com/iWOnkph.png" alt=""></p>
+<h2 id="2-如何获得ajax对象"><a href="#2-如何获得ajax对象" class="headerlink" title="2.如何获得ajax对象"></a>2.如何获得ajax对象</h2><p>要区分浏览器：</p>
+<pre><code>function getXhr(){
+    var xhr=null;
+    if(window.XMLHttpRequest){
+         //非IE
+       xhr= new XMLHttpRequest();
+    }else{
+        x hr=new ActiveXObject(&quot;Microsoft.XMLHttp&quot;);
+    }
+    return xhr;
+}
+</code></pre><p><img src="https://i.imgur.com/XMpHS9P.png" alt=""></p>
+<h2 id="3-ajax对象的几个重要的属性"><a href="#3-ajax对象的几个重要的属性" class="headerlink" title="3.ajax对象的几个重要的属性"></a>3.ajax对象的几个重要的属性</h2><p>a.onreadystatechange:用来绑定一个事件处理函数，用来处理readystatechange时间。<br>注意：当ajax对象的readystate属性值返生了任何改变，比如从0变成了1，就会产生readystatechange事件。<br>b.readyState：有五个值（0,1,2,3,4）,表示ajax对象与服务器通信的状态。其中，当值为4的时候，表示ajax对象已经获得了服务器返回的所有数据。<br>c.responseText：获得服务器返回的文本数据。<br>d.responseXML：获得服务器返回的xml数据。<br>e.status ：获得状态码。</p>
+<h2 id="4-编程步骤"><a href="#4-编程步骤" class="headerlink" title="4.编程步骤"></a>4.编程步骤</h2><p>step1.获得ajax对象<br>比如：var xhr=getXhr();<br>step2.发送请求。<br><strong>发送get请求</strong>：<br>a.xhr.open(‘get’,’check_uname.do?uname=tom&amp;age=22’,true);<br>b.xhr.onreadystatechange=f1;<br>c.xhr.send(null);<br>注：<br>true：异步<br>false：同步，发送请求时，浏览器会锁定当前页面，用户不能够对当前页面做其他操作。<br><strong>发送post请求</strong><br>a.xhr.open(‘post’,’check_uname.do’,true);<br>b.xhr.setRequestHeader(‘content-type’,’application/x-www-form-urlencoded’);<br>c.xhr.onreadystatechange=f1;<br>xhr.send(‘name=tom’);<br>注：按照HTTP协议规范，如果发送的是post请求，在请求的数据包里面，应该有content-type消息头。默认情况下，ajax对象不带该消息头，所以需要调用setRequestHeader方法来设置这个消息头。<br>step3 .编写服务器端的程序，<br>注：通常不需要返回完整的页面，只需要返回部分数据。<br>step4.编写事件处理函数</p>
+<pre><code>function fi(){
+     //先获得服务器返回的数据
+     if(xhr.readyState==4 &amp;&amp; xhr.status==200){
+     var txt=xhr.resppnseText;
+     //利用这些数据（txt）更新页面
+     ....
+ } 
+
+}
+</code></pre><h2 id="5-缓存问题"><a href="#5-缓存问题" class="headerlink" title="5.缓存问题"></a>5.缓存问题</h2><h3 id="什么事缓存问题"><a href="#什么事缓存问题" class="headerlink" title="什么事缓存问题"></a>什么事缓存问题</h3><p>当使用IE浏览器发送get请求时，浏览器会查看请求地址是否访问过，如果访问过，则不再发送新的请求，而是显示第一次访问的结果（也就是说，会将第一次的请求结果缓存下来）</p>
+<h3 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h3><p>在请求地址后添加一个随机数。<br>    xhr.open(‘get’,’getLucky.do?’+Math.random(),true);</p>
 
       
 
@@ -275,7 +247,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/springAOP/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/ajax/">展开全文 >></a>
         </p>
       
 
@@ -305,19 +277,19 @@
 
 
   
-    <article id="post-json" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mybatis关联映射" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/json/">Json</a>
+      <a class="article-title" href="/2018/04/13/mybatis关联映射/">Mybatis关联映射</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/json/" class="archive-article-date">
+        <a href="/2018/04/13/mybatis关联映射/" class="archive-article-date">
   	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
@@ -329,16 +301,111 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="编码问题"><a href="#编码问题" class="headerlink" title="编码问题"></a>编码问题</h1><h2 id="1-发送get请求"><a href="#1-发送get请求" class="headerlink" title="1.发送get请求"></a>1.发送get请求</h2><p>IE浏览器会使用gbk进行编码，而其他浏览器会使用utf-8来编码，服务器端默认使用iso-8859-1来解码，所以会产生乱码。<br>解决方法：<br>step1.服务器端统一使用utf-8来解码。<br>    URIEncoding=utf-8<br>step2.浏览器端使用encodeURI函数来编码。<br>注：encodeURI是JavaScript内置的函数。</p>
-<h2 id="2-发送post"><a href="#2-发送post" class="headerlink" title="2.发送post"></a>2.发送post</h2><p>浏览器会使用utf-8来编码。服务器端默认使用ISO-8859-1来解码，所以会产生乱码<br>解决方法：<br>request.setCharacterEncoding(“utf-8”);</p>
-<h1 id="JSON-javascript-object-notation"><a href="#JSON-javascript-object-notation" class="headerlink" title="JSON(javascript object notation)"></a>JSON(javascript object notation)</h1><h2 id="1-JSON是什么"><a href="#1-JSON是什么" class="headerlink" title="1.JSON是什么"></a>1.JSON是什么</h2><p>是一种轻量级的数据交换格式<br>注：<br>数据交换：将要转换的数据先转换为一种与平台无关的数据格式，然后交给接收方来处理。<br><br>轻量级：相对于xml，JSON文档更小，解析速度更快。</p>
-<h2 id="2-语法"><a href="#2-语法" class="headerlink" title="2.语法"></a>2.语法</h2><h3 id="表示一个对象"><a href="#表示一个对象" class="headerlink" title="表示一个对象"></a>表示一个对象</h3><p>{属性名：属性值，属性名：属性值….}<br>注意：<br>a.属性名必须使用双引号括起来。<br>b.属性值的类型可以使string,number,true/false,null,object<br>c.属性值如果是string，必须使用双括号括起来。    </p>
-<h3 id="表示一个由对象组成的数组"><a href="#表示一个由对象组成的数组" class="headerlink" title="表示一个由对象组成的数组"></a>表示一个由对象组成的数组</h3><p>[{},{},{}….]</p>
-<h2 id="3-使用json"><a href="#3-使用json" class="headerlink" title="3.使用json"></a>3.使用json</h2><h3 id="将java对象转变为json字符串"><a href="#将java对象转变为json字符串" class="headerlink" title="将java对象转变为json字符串"></a>将java对象转变为json字符串</h3><p>可以使用json官方的工具(json-lib).<br>JSONObject，JSONArray<br><img src="https://i.imgur.com/hFQgwNu.png" alt=""><br>ex：<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> json;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"></div><div class="line"><span class="keyword">import</span> bean.stock;</div><div class="line"><span class="keyword">import</span> net.sf.json.<span class="keyword">JSONArray</span>;</div><div class="line"><span class="keyword">import</span> net.sf.json.<span class="keyword">JSONObject</span>;</div><div class="line"></div><div class="line"><span class="keyword">public</span> class jsonTest &#123;</div><div class="line">     <span class="comment">/*</span></div><div class="line">      * 将java对象转换为json字符串</div><div class="line">      */</div><div class="line"> <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> test1()&#123;</div><div class="line">  stock s=<span class="keyword">new</span> stock();</div><div class="line">  s.setCode(<span class="string">"345435"</span>);</div><div class="line">  s.setName(<span class="string">"中国嘉陵"</span>);</div><div class="line">  s.setPrice(<span class="number">10</span>);</div><div class="line">  <span class="comment">//使用json-lib提供的工具来转换</span></div><div class="line">  <span class="keyword">JSONObject</span> jsonobj=<span class="keyword">JSONObject</span>.fromObject(s);</div><div class="line">  <span class="keyword">String</span> jsonstr=jsonobj.toString();</div><div class="line">  System.out.<span class="built_in">println</span>(jsonstr);</div><div class="line"> &#125;</div><div class="line"> <span class="comment">/*</span></div><div class="line">  * 多个对象组成的数组或者是集合转换成json字符串</div><div class="line">  */</div><div class="line"> <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> test2()&#123;</div><div class="line">  List&lt;stock&gt; stocks=<span class="keyword">new</span> ArrayList&lt;stock&gt;();</div><div class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</div><div class="line">     stock s=<span class="keyword">new</span> stock();</div><div class="line">     s.setCode(<span class="string">"345435"</span>+i);</div><div class="line">     s.setName(<span class="string">"中国嘉陵"</span>+i);</div><div class="line">     s.setPrice(<span class="number">10</span>+i);</div><div class="line">     stocks.<span class="built_in">add</span>(s);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//fromObject方法的参数可以使数组或者集合</span></div><div class="line">    <span class="keyword">JSONArray</span> jsonArr=<span class="keyword">JSONArray</span>.fromObject(stocks);</div><div class="line">    <span class="keyword">String</span> jsonStr=jsonArr.toString();</div><div class="line">    System.out.<span class="built_in">println</span>(jsonStr);</div><div class="line"> &#125;</div><div class="line"> <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</div><div class="line">  test2();</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="将JSON字符串转换成JavaScript对象"><a href="#将JSON字符串转换成JavaScript对象" class="headerlink" title="将JSON字符串转换成JavaScript对象"></a>将JSON字符串转换成JavaScript对象</h3><p>JavaScript内置对象JSON提供的parse()方法。</p>
-<h1 id="jQuery对ajax的支持"><a href="#jQuery对ajax的支持" class="headerlink" title="jQuery对ajax的支持"></a>jQuery对ajax的支持</h1><h2 id="1-ajax-方法"><a href="#1-ajax-方法" class="headerlink" title="1.$.ajax()方法"></a>1.$.ajax()方法</h2><p>用法：<br>$.ajax({});<br>说明：{}是一个用来描述请求选项参数的对象，常见的选项参数有如下几个：<br>url:请求地址<br>data:请求格式，有两种格式：<br>第一种格式：请求字符串，比如”adminCode=sally”<br>     第二组格式：对象，比如{“adminCode”:”sally”}<br>     type:请求类型(get/post)<br>dataType:服务器返回的数据类型：<br>       text：文本数据<br>       json：json字符串<br>       html:html文档<br>       xml:xml文档<br>       script:javascript脚本<br>success:事件处理函数（当服务器处理正常，用来处理服务器返回的数据）。<br>error：事件处理函数（当服务器处理异常，用来处理服务器返回的数据）。</p>
-<h2 id="2-load"><a href="#2-load" class="headerlink" title="2.load()"></a>2.load()</h2><p>作用：向服务器发送异步请求，然后将服务器返回的数据直接添加到符合要求的节点之上。<br>用法：<br>$obj.load(url,[data]);<br>注意：<br>url:请求地址。<br>data:请求参数，格式同上。</p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Mybatis关联映射"><a href="#Mybatis关联映射" class="headerlink" title="Mybatis关联映射"></a>Mybatis关联映射</h1><p>将数据库中有关联关系的表，以实体对象引用的方式体现出来</p>
+<p>关联方式：</p>
+<ul>
+<li>关联单个对象</li>
+<li>关联多个对象</li>
+</ul>
+<p>class User{</p>
+<p> private List<book> books;<br>}</book></p>
+<p>class Book{<br>  private User user;<br>}</p>
+<p>什么时候用<br>业务需要对数据库进行关联查询的时候</p>
+<p>可以通过一条SQL语句完成关联查询。也可以通过两条SQL语句进行关联查询</p>
+<h2 id="案例：通过userId查询用户信息和关联的笔记本信息"><a href="#案例：通过userId查询用户信息和关联的笔记本信息" class="headerlink" title="案例：通过userId查询用户信息和关联的笔记本信息"></a>案例：通过userId查询用户信息和关联的笔记本信息</h2><p>1.User 实体类<br>2.定义Dao接口，配置Mapper文件<br>3.定义测试类验证查询结果</p>
+<p>2个SQL语句：语句简单，但是配置繁琐，与DB两次交互</p>
+<pre><code>&lt;!-- 使用两条SQL语句加载数据 --&gt;
+    &lt;select id=&quot;findUserAndBook&quot; parameterType=&quot;String&quot; resultMap=&quot;userMap1&quot;&gt;
+        select * from cn_user where cn_user_id=#{id}
+    &lt;/select&gt;
 
+    &lt;resultMap type=&quot;io.codegitz.cloud_note.entity.User&quot; id=&quot;userMap1&quot;&gt;
+        &lt;id property=&quot;cn_user_id&quot; column=&quot;cn_user_id&quot; /&gt;
+        &lt;result property=&quot;cn_user_name&quot; column=&quot;cn_user_name&quot; /&gt;
+        &lt;!-- 指定books属性是List集合，泛型为Book --&gt;
+        &lt;!-- javaType是返回类型 --&gt;
+        &lt;collection property=&quot;books&quot; javaType=&quot;java.util.List&quot;
+            ofType=&quot;io.codegitz.cloud_note.entity.Book&quot; select=&quot;findBooks&quot;
+            column=&quot;cn_user_id&quot;&gt;
+        &lt;/collection&gt;
+    &lt;/resultMap&gt;
+    &lt;select id=&quot;findBooks&quot; parameterType=&quot;String&quot;
+        resultType=&quot;io.codegitz.cloud_note.entity.Book&quot;&gt;
+        select * from cn_user where cn_user_id=#{userId}
+    &lt;/select&gt;
+</code></pre><p>1个SQL语句：语句复杂，配置较简单，与DB交互一次</p>
+<pre><code>&lt;!-- 一条SQL加载user --&gt;
+    &lt;select id=&quot;findUserAndBook1&quot; parameterType=&quot;String&quot; resultMap=&quot;userMap2&quot;&gt;
+        select * from cn_user u join cn_notebook b
+        on(u.cn_user_id=b.cn_user_id) where u.cn_user_id=#{userId}
+    &lt;/select&gt;
+    &lt;resultMap type=&quot;io.codegitz.cloud_note.entity.User&quot; id=&quot;userMap2&quot;&gt;
+        &lt;!-- 定义cn_user 字段装载，不能忽略 --&gt;
+        &lt;id property=&quot;cn_user_id&quot; column=&quot;cn_user_id&quot; /&gt;
+        &lt;result property=&quot;cn_user_name&quot; column=&quot;cn_user_name&quot; /&gt;
+        &lt;result property=&quot;cn_user_nick&quot; column=&quot;cn_user_nick&quot; /&gt;
+        &lt;result property=&quot;cn_user_password&quot; column=&quot;cn_user_password&quot; /&gt;
+        &lt;result property=&quot;cn_user_token&quot; column=&quot;cn_user_token&quot; /&gt;
+      &lt;collection property=&quot;books&quot; 
+      javaType=&quot;java.util.List&quot;
+      ofType=&quot;io.codegitz.cloud_note.entity.Book&quot;&gt;
+          &lt;id property=&quot;cn_notebook_id&quot; column=&quot;cn_notebook_id&quot;/&gt;
+          &lt;result property=&quot;cn_user_id&quot; column=&quot;cn_user_id&quot;/&gt;
+          &lt;result property=&quot;cn_notebook_type_id&quot; column=&quot;cn_notebook_type_id&quot;/&gt;
+          &lt;result property=&quot;cn_notebook_name&quot; column=&quot;cn_notebook_name&quot;/&gt;
+          &lt;result property=&quot;cn_notebook_desc&quot; column=&quot;cn_notebook_desc&quot;/&gt;
+          &lt;result property=&quot;cn_notebook_createtime&quot; column=&quot;cn_notebook_createtime&quot;/&gt;
+      &lt;/collection&gt;
+    &lt;/resultMap&gt;
+</code></pre><h2 id="案例：通过查询笔记信息，关联用户信息"><a href="#案例：通过查询笔记信息，关联用户信息" class="headerlink" title="案例：通过查询笔记信息，关联用户信息"></a>案例：通过查询笔记信息，关联用户信息</h2><p>用一条查询语句实现</p>
+<h1 id="主键的字段处理"><a href="#主键的字段处理" class="headerlink" title="主键的字段处理"></a>主键的字段处理</h1><p>在数据库使用自增列或序列作为主键值时，如何在insert执行后、立刻获取id值<br>属性增加<br>    useGeneratedKeys=”true” keyProperty=”id”<br>-Mysql<br>    create table t_emp(id int primary key auto_increment,name varchar(20),age int)</p>
+<pre><code>&lt;mapper namespace=&quot;io.codegitz.cloud_note.dao.EmpDao&quot;&gt;
+  &lt;!-- mysql:数据库自动生成主键值，获取主键值放入对象的id属性中 --&gt;
+       &lt;insert id=&quot;save&quot; parameterType=&quot;io.codegitz.cloud_note.entity.Emp&quot;
+        useGeneratedKeys=&quot;true&quot; keyProperty=&quot;id&quot;&gt;
+           insert into t_emp (name,age) values (#{name},#{age})
+       &lt;/insert&gt;
+&lt;/mapper&gt;
+</code></pre><h1 id="spring事务管理"><a href="#spring事务管理" class="headerlink" title="spring事务管理"></a>spring事务管理</h1><p>什么是事务？程序为了保证业务处理的完整性，执行一个或多个SQL语句<br>管理：对事务中的Sql语句进行提交或回滚，叫做事务管理<br>什么时候用？作用于Service的方法上</p>
+<p>事务回顾：<br>转账：A账户转1000到B账户<br><img src="https://i.imgur.com/GKrc1NA.png" alt=""><br>通过spring进行事务管理<br>步骤：<br>1.配置Spring-transaction.xml</p>
+<ol>
+<li>使用@Transactional标记</li>
+</ol>
+<h2 id="可读可写"><a href="#可读可写" class="headerlink" title="可读可写"></a>可读可写</h2><p>   select操作时，可采用只读事务<br>@Transaction(readOnly=true)</p>
+<h2 id="回滚特性"><a href="#回滚特性" class="headerlink" title="回滚特性"></a>回滚特性</h2><p>  默认RuntimeException回滚，其他异常不回滚<br>  @Transaction(rollbackFor=IOException.class)<br>  public void f1(){<br>      //db操作(insert)<br>      //IOException<br>  }<br>public void deleteNote(String… ids) {</p>
+<pre><code>//String... 就是String[] 数组
+</code></pre><p>}</p>
+<h2 id="传播特性"><a href="#传播特性" class="headerlink" title="传播特性"></a>传播特性</h2><p> 默认类型：REQUIRED</p>
+<p>传播行为 描述<br>PROPAGATION_REQUIRED    如果没有，就开启一个事务；如果有，就加入当前事务（方法B看到自己已经运行在 方法A的事务内部，就不再起新的事务，直接加入方法A）</p>
+<p>RROPAGATION_REQUIRES_NEW    如果没有，就开启一个事务；如果有，就将当前事务挂起。（方法A所在的事务就会挂起，方法B会起一个新的事务，等待方法B的事务完成以后，方法A才继续执行）</p>
+<p>PROPAGATION_NESTED    如果没有，就开启一个事务；如果有，就在当前事务中嵌套其他事务</p>
+<p>PROPAGATION_SUPPORTS    如果没有，就以非事务方式执行；如果有，就加入当前事务（方法B看到自己已经运行在 方法A的事务内部，就不再起新的事务，直接加入方法A）</p>
+<p>PROPAGATION_NOT_SUPPORTED    如果没有，就以非事务方式执行；如果有，就将当前事务挂起，（方法A所在的事务就会挂起，而方法B以非事务的状态运行完，再继续方法A的事务）</p>
+<p>PROPAGATION_NEVER    如果没有，就以非事务方式执行；如果有，就抛出异常。</p>
+<p>PROPAGATION_MANDATORY    如果没有，就抛出异常；如果有，就使用当前事务</p>
+<h2 id="隔离特性"><a href="#隔离特性" class="headerlink" title="隔离特性"></a>隔离特性</h2><p>默认属性：READ_COMMITED<br>针对事务并发进行处理<br>脏读/幻读</p>
+<h1 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h1><p>使用<if> <choose>等标签<br><img src="https://i.imgur.com/KmB7Rwo.png" alt=""></choose></if></p>
+<pre><code> public int updateNoteByMap(Map&lt;String,Object&gt; map);
+</code></pre><pre><code>&lt;update id=&quot;updateNoteByMap&quot; parameterType=&quot;Map&quot;&gt;
+       update cn_note set 
+       &lt;trim suffixOverrides=&quot;,&quot;&gt;
+       &lt;if test=&quot;title!=null&quot;&gt; cn_note_title=#{title},&lt;/if&gt;
+       &lt;if test=&quot;body!=null&quot;&gt;cn_note_body=#{body},&lt;/if&gt;
+       &lt;choose&gt;
+              &lt;when test=&quot;time!=null&quot;&gt;
+                 cn_note_last_modify_time=#{time}
+              &lt;/when&gt;
+
+              &lt;otherwise&gt;
+              cn_note_last_modify_time=unix_timestamp()
+              &lt;/otherwise&gt;
+       &lt;/choose&gt;
+       &lt;!-- &lt;if test=&quot;time!=null&quot;&gt;cn_note_last_modify_time=#{time}&lt;/if&gt; --&gt;
+       &lt;/trim&gt;
+       where cn_note_id=#{noteId}
+
+    &lt;/update&gt;
+</code></pre>
       
 
       
@@ -364,7 +431,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/json/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/mybatis关联映射/">展开全文 >></a>
         </p>
       
 
@@ -394,19 +461,19 @@
 
 
   
-    <article id="post-note" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql报错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/note/">云笔记</a>
+      <a class="article-title" href="/2018/04/13/mysql报错/">Mysql报错</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/note/" class="archive-article-date">
+        <a href="/2018/04/13/mysql报错/" class="archive-article-date">
   	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
@@ -418,234 +485,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h2><ul>
-<li>用户模块：登录注册修改密码，退出</li>
-<li>笔记本模块:创建 删除 更新 查看</li>
-<li>笔记模块：创建 删除 更新 查看 转移</li>
-<li>分享、收藏模块：分享 收藏 查看 搜索</li>
-<li>回收模块：先看 彻底删除 恢复</li>
-<li>活动模块：查看活动 参加活动<h2 id="设计思想"><a href="#设计思想" class="headerlink" title="设计思想"></a>设计思想</h2>MVC设计思想<br>表现层：HTML+CSS+JQuery+ajax<br>控制层：springmvc<br>业务层：service组件<br>持久层：Dao组件<h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2>1.开发环境：WindowsXP+Tomcat+mysql<br>2.采用技术：java+jQuery+ajax+springmvc+IOC+AOP+mybatis<br>java:开发核心技术<br>jQuery：简化前端JavaScript（$对象和API）<br>ajax：局部处理页面，提升用户体验度<br>spring(IOC/AOP):管理相关组件<br>IOC：负责管理Controller/service/dao,维护他们之间的关系<br>AOP：面向切面编程，不改变原有的代码，给系统增加新的功能<br>mybatis：对数据库进行操作<h2 id="整体规范"><a href="#整体规范" class="headerlink" title="整体规范"></a>整体规范</h2></li>
-<li>所有的请求ajax方式访问</li>
-<li>前端页面采用HTML</li>
-<li>对所有的请求结果进行json响应{status: ,”msg”: ,”data”:}<h2 id="数据库构建"><a href="#数据库构建" class="headerlink" title="数据库构建"></a>数据库构建</h2>mysql<br>mysql -uroot -t //启动数据库命令行<br>show databases;//查看有哪些数据库<br>create database cloud_note; //创建数据库<br>drop database cloud_note; //删除数据库<br>use 数据库名; //连接数据库<br>show tables; //查看有哪些表<br>source /…/../**.sql//导入SQL文件</li>
-</ul>
-<h2 id="E-R-实体–关系模型图"><a href="#E-R-实体–关系模型图" class="headerlink" title="E-R 实体–关系模型图"></a>E-R 实体–关系模型图</h2><p>由业务分析产生，作为实体类和数据库设计的依据。<br><img src="https://i.imgur.com/XupPkl0.png" alt=""></p>
-<h3 id="关联关系"><a href="#关联关系" class="headerlink" title="关联关系"></a>关联关系</h3><p>一对多关系<br><img src="https://i.imgur.com/OCLROca.png" alt=""><br>多对多关系<br><img src="https://i.imgur.com/w9BVSob.png" alt=""></p>
-<h3 id="绘图工具"><a href="#绘图工具" class="headerlink" title="绘图工具"></a>绘图工具</h3><p>Microsoft Office vision<br>Mysql workbench</p>
-<h1 id="项目流程"><a href="#项目流程" class="headerlink" title="项目流程"></a>项目流程</h1><h2 id="cmmi"><a href="#cmmi" class="headerlink" title="cmmi"></a>cmmi</h2><ul>
-<li>前身是CMM，软件成熟度模型，认证</li>
-<li>过程域：指软件开发的某一方面</li>
-<li>分级：五个等级<br>初始级-可管理级-已定义级-量化管理及-优先管理级<br>QA–评审<h2 id="项目开发流程："><a href="#项目开发流程：" class="headerlink" title="项目开发流程："></a>项目开发流程：</h2><img src="https://i.imgur.com/f1JFOUT.png" alt=""><h3 id="项目模型："><a href="#项目模型：" class="headerlink" title="项目模型："></a>项目模型：</h3>  瀑布模型<br><img src="https://i.imgur.com/GZIZpuB.png" alt=""></li>
-</ul>
-<h3 id="阶段产品"><a href="#阶段产品" class="headerlink" title="阶段产品"></a>阶段产品</h3><p>项目总计划</p>
-<h4 id="需求阶段"><a href="#需求阶段" class="headerlink" title="需求阶段"></a>需求阶段</h4><p>需求规格说明书  用户需求</p>
-<h4 id="设计阶段"><a href="#设计阶段" class="headerlink" title="设计阶段"></a>设计阶段</h4><p>概要设计说明书<br>详细设计说明书</p>
-<h4 id="编码阶段"><a href="#编码阶段" class="headerlink" title="编码阶段"></a>编码阶段</h4><p>需求源码<br>单元测试文档</p>
-<h4 id="测试阶段"><a href="#测试阶段" class="headerlink" title="测试阶段"></a>测试阶段</h4><p>测试案例<br>测试报告</p>
-<h2 id="人员结构"><a href="#人员结构" class="headerlink" title="人员结构"></a>人员结构</h2><p>项目经理<br>QA CM dev test 测试经理</p>
-<p>SSM框架 springMVC+spring+Mybatis</p>
-<p>spring-mybatis</p>
-<h1 id="创建云笔记的环境"><a href="#创建云笔记的环境" class="headerlink" title="创建云笔记的环境"></a>创建云笔记的环境</h1><h2 id="导包"><a href="#导包" class="headerlink" title="导包"></a>导包</h2><h2 id="添加配置文件"><a href="#添加配置文件" class="headerlink" title="添加配置文件"></a>添加配置文件</h2><ul>
-<li>conf/spring-mvc.xml</li>
-<li>conf/spring-mybatis.xml</li>
-<li>mapper/SQL文件</li>
-<li>web.xml<h2 id="划分包结构"><a href="#划分包结构" class="headerlink" title="划分包结构"></a>划分包结构</h2></li>
-<li>io.codegit.cloud_note.dao</li>
-<li>io.codegit.cloud_note.service</li>
-<li>io.codegit.cloud_note.controller</li>
-<li>io.codegit.cloud_note.entity</li>
-<li>io.codegit.cloud_note.util <h2 id="将html目录下的内容拷贝到webApp下"><a href="#将html目录下的内容拷贝到webApp下" class="headerlink" title="将html目录下的内容拷贝到webApp下"></a>将html目录下的内容拷贝到webApp下</h2></li>
-</ul>
-<h1 id="登录功能"><a href="#登录功能" class="headerlink" title="登录功能"></a>登录功能</h1><h2 id="发送ajax请求"><a href="#发送ajax请求" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>事件绑定</li>
-<li>获取参数</li>
-<li>$.ajax发送请求<h2 id="服务器处理"><a href="#服务器处理" class="headerlink" title="服务器处理"></a>服务器处理</h2>请求–&gt;DispatcherServlet<br>–&gt;HandlerMapping<br>–&gt;Controller.execute()<br>–&gt;Service–&gt;Dao–&gt;cn_user<br>–&gt;返回数据</li>
-</ul>
-<h2 id="ajax回调处理"><a href="#ajax回调处理" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><ul>
-<li>成功：edit.html</li>
-<li>失败：提示信息，重新操作</li>
-</ul>
-<h1 id="注册功能"><a href="#注册功能" class="headerlink" title="注册功能"></a>注册功能</h1><h2 id="发送ajax请求-1"><a href="#发送ajax请求-1" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>发送事件：注册按钮的单击</li>
-<li>获取参数：用户名 昵称 密码</li>
-<li>请求地址：/user/add.do<h2 id="服务器处理-1"><a href="#服务器处理-1" class="headerlink" title="服务器处理"></a>服务器处理</h2>请求-&gt;DispatchServlet<br>–&gt;HandlerMapping<br>–&gt;Controller.execute</li>
-</ul>
-<p>–&gt;Service(addUser)<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//检查用户</span></div><div class="line"><span class="function"><span class="title">findByName</span><span class="params">(name)</span></span></div><div class="line">user!=null</div><div class="line">result</div><div class="line"><span class="comment">//添加用户</span></div><div class="line"><span class="function"><span class="title">createId</span><span class="params">()</span></span></div><div class="line"><span class="comment">//处理password</span></div><div class="line">user.set()</div><div class="line"><span class="function"><span class="title">save</span><span class="params">(user)</span></span></div><div class="line"><span class="comment">//设置result</span></div></pre></td></tr></table></figure></p>
-<p>–&gt;Dao–cn_user(insert)<br>1.UserDao(save(User))<br>2.UserMapper.xml(insert)<br>–&gt;json响应</p>
-<h2 id="ajax回调处理-1"><a href="#ajax回调处理-1" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><p>success：<br>注册成功<br>注册失败<br>error（异常）：<br>提示：注册失败</p>
-<ul>
-<li>成功：edit.html</li>
-<li>失败：提示信息，重新登录</li>
-</ul>
-<p>UUID<br>是一个生成字符串的算法<br>用于生成数据库的主键</p>
-<p>生成主键有两种方式：<br>在应用服务器端生成主键<br>在数据库端生成主键</p>
-<h2 id="MD5：摘要算法，加密处理"><a href="#MD5：摘要算法，加密处理" class="headerlink" title="MD5：摘要算法，加密处理"></a>MD5：摘要算法，加密处理</h2><ul>
-<li>最初用于文本比较</li>
-<li>将任意长度的字节处理成等长的结果</li>
-<li>不可逆</li>
-</ul>
-<h2 id="Base64"><a href="#Base64" class="headerlink" title="Base64"></a>Base64</h2><p>将自己转换成字符串输出<br>构成</p>
-<ul>
-<li>(a-z A-Z)</li>
-<li>(0-9)</li>
-<li>(+ =)<br>更新数据库密码：<br>update cn_user set cn_user_password=’4QrcOUm6Wau+VuBX8g+IPg==’</li>
-</ul>
-<h1 id="笔记本显示功能"><a href="#笔记本显示功能" class="headerlink" title="笔记本显示功能"></a>笔记本显示功能</h1><h2 id="发送ajax请求-2"><a href="#发送ajax请求-2" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>发送事件：进入到edit.html发送请求</li>
-<li>请求参数：userId</li>
-<li>请求地址：/book/loadBooks.do<h2 id="服务器处理-2"><a href="#服务器处理-2" class="headerlink" title="服务器处理"></a>服务器处理</h2>/book/loadBookds.do<br>–&gt;LoadBooksController.execute<br>测试：<br>http:localhost:8080/cloud_note/book/loadBooks.do?userId=ecd976d53a88484eaf911049241073ad<br>–&gt;BookService.LoadUserBooks<br>ecd976d53a88484eaf911049241073ad</li>
-<li>1.BookService接口loadUserBooks<pre><code>NoteResult&lt;List&lt;Book&gt;&gt; loadUserBooks
-(userId)
-</code></pre></li>
-<li>2.实现类中调用dao.findByUserId<pre><code>调用dao.findByUserId(userId)
-</code></pre></li>
-<li><p>3.实现类中构建Result结果</p>
-<pre><code>构建Result结果
-</code></pre><p>–&gt;BookDao.findByUserId</p>
-</li>
-<li><p>BookDao接口定义findByUserId</p>
-</li>
-<li>配置BookMapper.xml<br>–&gt;cn_userbook(查询)<br>–&gt;JSON响应<h2 id="ajax回调处理-2"><a href="#ajax回调处理-2" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2>success:<br>解析JSON数据，循环生成笔记本列表项<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">（li）</div><div class="line">&lt;ul&gt;</div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"online"</span>&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">a</span>  <span class="attr">class</span>=<span class="string">'checked'</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-book"</span> <span class="attr">title</span>=<span class="string">"online"</span> <span class="attr">rel</span>=<span class="string">"tooltip-bottom"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">i</span>&gt;</span> bookName<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span> </div><div class="line">error:</div><div class="line">alter(<span class="string">"笔记本加载失败"</span>);</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="标记互斥"><a href="#标记互斥" class="headerlink" title="标记互斥"></a><script>标记互斥</h2><ul>
-<li>要么使用SRC属性引用外部js文件</li>
-<li>要么在标记内自己写JavaScript代码</li>
-</ul>
-<h1 id="笔记本列表显示"><a href="#笔记本列表显示" class="headerlink" title="笔记本列表显示"></a>笔记本列表显示</h1><h2 id="发送ajax请求-3"><a href="#发送ajax请求-3" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>发送事件：笔记本li的点击</li>
-<li>请求的参数：笔记本的id</li>
-<li>请求地址：/note/loadnotes.do<h2 id="服务器的处理"><a href="#服务器的处理" class="headerlink" title="服务器的处理"></a>服务器的处理</h2>/note/loadnotes.do<br>–&gt;loadNoteController.execute<br>–&gt;NoteService.loadBookNotes</li>
-</ul>
-<p>1.定义接口文件NoteService-loadBookNotes(bookId)<br>2.实现类中重写方法<br>noteDao.findByBookId()<br>构建Result–set方法<br>setData=List<Map></p>
-<p>–&gt;NoteDao.findByBookId(bookId)</p>
-<p>1 接口文件定义方法<br>2.配置mapper文件<br>3 TestNoteDao<br>–&gt;cn_note(select_bookId &amp;cn_note_status_id=’1’)</p>
-<h2 id="ajax回调处理-3"><a href="#ajax回调处理-3" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><p>success:<br>成功：解析json数据，生成笔记li,添加到笔记本列表中 </p>
-<p><li class="online"><br>                                        <a  class='checked'><br>                                            <i class="fa fa-file-text-o" title="online" rel="tooltip-bottom"></i> 使用Java操作符<button type="button" class="btn btn-default btn-xs btn_position btn_slide_down"><i class="fa fa-chevron-down"></i></button><br>                                        </a><br>                                        <div class="note_menu" tabindex='-1'><br>                                            <dl><br>                                                <dt><button type="button" class="btn btn-default btn-xs btn_move" title='移动至...'><i class="fa fa-random"></i></button></dt><br>                                                <dt><button type="button" class="btn btn-default btn-xs btn_share" title='分享'><i class="fa fa-sitemap"></i></button></dt><br>                                                <dt><button type="button" class="btn btn-default btn-xs btn_delete" title='删除'><i class="fa fa-times"></i></button></dt><br>                                            </dl><br>                                        </div><br>                                    </li><br>error：<br>提示alert(“笔记加载失败”);</p>
-<p> 事件绑定<br>静态绑定：元素.click(function(){})<br>动态绑定：<br>父元素.on(“click”,”li”,fn)<br>元素.click(); </p>
-<p>Dao接口的传值特点<br> public interface Dao{<br>        public void fn();<br>        public void fn(String str);<br>        public void fn(Map map);<br>        public void fn(User user);</p>
-<p>}<br>总结：mybatis中Dao方法要么没有参数，要么只有一个参数</p>
-<p>设置选中效果<br>    $(“#book_ul a”).removeClass(“checked”);<br>      $(this).find(“a”).addClass(“checked”);</p>
-<p>清空原列表<br>$(“#note_ul”).empty();</p>
-<p>UEdit<br>用js开发的开源组件</p>
-<p>为什么使用？<br>通过JS代码实现表单功能的增强</p>
-<p>如何用？<br>1.引用脚本<br>2.实例化<br>3.通过<script>指定位置<br>4.</p>
-<ul>
-<li>um.setContent(“str”);</li>
-<li>um.getContent(“str”);</li>
-</ul>
-<h1 id="显示笔记信息"><a href="#显示笔记信息" class="headerlink" title="显示笔记信息"></a>显示笔记信息</h1><h2 id="发送ajax请求-4"><a href="#发送ajax请求-4" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>发送事件：笔记列表li元素的单击事件（动态绑定）</li>
-<li>请求参数：笔记ID（noteId）</li>
-<li>请求地址：</li>
-</ul>
-<h2 id="服务器处理-3"><a href="#服务器处理-3" class="headerlink" title="服务器处理"></a>服务器处理</h2><ul>
-<li>Controller:</li>
-<li>LoadNoteController.execute(String noteId)</li>
-<li>Service</li>
-<li>NoteService.loadNote(String noteId)</li>
-<li>Dao</li>
-<li>NoteDao.findByNoteId(String noteId)</li>
-<li>cn_note(查询 )</li>
-<li>json响应<h2 id="ajax回调处理-4"><a href="#ajax回调处理-4" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2>success:<br>-设置笔记标题</li>
-<li>设计笔记内容（body）</li>
-<li>um.setContent(“str”);</li>
-<li>um.getContent(“str”);<br>error:<br>alert(“笔记信息加载失败”);</li>
-</ul>
-<h1 id="更新笔记信息"><a href="#更新笔记信息" class="headerlink" title="更新笔记信息"></a>更新笔记信息</h1><p>##发送ajax请求</p>
-<ul>
-<li>发送事件：保存笔记 按钮单击事件（静态）</li>
-<li>请求参数：笔记ID（id） 标题（title）内容(body)</li>
-<li>请求地址： /note/update.do<br>##服务器处理</li>
-<li>UpdateNoteController(id,title,body)</li>
-<li>NoteService.updateNote(Note)</li>
-<li>NoteDao.updateNote(Note)</li>
-<li>cn_note(更新处理–最后修改时间)<br>##ajax回调处理<br>success：对被更新的笔记名称进行更新<br><li><a class="check"></a></li><br>var $li=$(“#note_ul a.checked”).parent();</li>
-</ul>
-<h1 id="使用alert"><a href="#使用alert" class="headerlink" title="使用alert"></a>使用alert</h1><h2 id="如何显示"><a href="#如何显示" class="headerlink" title="如何显示"></a>如何显示</h2><ul>
-<li>通过load，加载HTML</li>
-<li>通过show(),显示背景</li>
-<li></li>
-</ul>
-<h1 id="创建笔记本"><a href="#创建笔记本" class="headerlink" title="创建笔记本"></a>创建笔记本</h1><h2 id="发送ajax请求-5"><a href="#发送ajax请求-5" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>发送事件：对话框中的创建按钮的单击（动态）</li>
-<li>请求参数：笔记本名称、笔记本ID和用户id</li>
-<li>请求地址：/book/add.do<h2 id="服务器处理-4"><a href="#服务器处理-4" class="headerlink" title="服务器处理"></a>服务器处理</h2></li>
-<li>AddBookController.execute</li>
-<li>BookService.addBook(book)</li>
-<li>BookDao.save(book)</li>
-<li>cn_notebook(insert)</li>
-</ul>
-<p>insert 遇到的错误<br>原因是因为插入语句要遵循严格语法，所有的属性都必须有值</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">org.springframework.dao.DataIntegrityViolationException: </span></div><div class="line"><span class="comment">### Error updating database.  Cause: java.sql.SQLException: Field 'cn_notebook_id' doesn't have a default value</span></div><div class="line"><span class="comment">### The error may involve io.codegitz.cloud_note.dao.BookDao.save-Inline</span></div><div class="line"><span class="comment">### The error occurred while setting parameters</span></div><div class="line"><span class="comment">### SQL: insert into cn_notebook (cn_user_id,cn_notebook_name,cn_notebook_type_id,cn_notebook_desc,cn_notebook_createtime) values (?,?,?,?,?)</span></div><div class="line"><span class="comment">### Cause: java.sql.SQLException: Field 'cn_notebook_id' doesn't have a default value</span></div><div class="line"><span class="comment">; SQL []; Field 'cn_notebook_id' doesn't have a default value; nested exception is java.sql.SQLException: Field 'cn_notebook_id' doesn't have a default value</span></div><div class="line"> <span class="built_in">at</span> <span class="keyword">org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:249)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:72)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:74)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:399)</div><div class="line"></span>	<span class="built_in">at</span> com.sun.proxy.$Proxy11.<span class="keyword">insert(Unknown </span>Source)</div><div class="line"> <span class="built_in">at</span> <span class="keyword">org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:253)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:52)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:53)</div><div class="line"></span>	<span class="built_in">at</span> com.sun.proxy.$Proxy12.save(Unknown Source)</div><div class="line"> <span class="built_in">at</span> test.dao.TestBookDao.testAddBook(TestBookDao.<span class="keyword">java:49)</div><div class="line"></span>	<span class="built_in">at</span> sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</div><div class="line"> <span class="built_in">at</span> sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.<span class="keyword">java:57)</div><div class="line"></span>	<span class="built_in">at</span> sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.<span class="keyword">java:43)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">java.lang.reflect.Method.invoke(Method.java:606)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.ParentRunner.run(ParentRunner.java:363)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)</div><div class="line"></span>Caused <span class="keyword">by: </span><span class="keyword">java.sql.SQLException: </span>Field <span class="string">'cn_notebook_id'</span> doesn<span class="string">'t have a default value</div><div class="line"> at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:959)</div><div class="line"> at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3870)</div><div class="line"> at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3806)</div><div class="line"> at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2470)</div><div class="line"> at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2617)</div><div class="line"> at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2550)</div><div class="line"> at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)</div><div class="line"> at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:1192)</div><div class="line"> at org.apache.commons.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)</div><div class="line"> at org.apache.commons.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)</div><div class="line"> at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:45)</div><div class="line"> at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:73)</div><div class="line"> at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:49)</div><div class="line"> at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:115)</div><div class="line"> at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:75)</div><div class="line"> at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:170)</div><div class="line"> at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:157)</div><div class="line"> at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</div><div class="line"> at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)</div><div class="line"> at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)</div><div class="line"> at java.lang.reflect.Method.invoke(Method.java:606)</div><div class="line"> at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:386)</div><div class="line"> ... 29 more</span></div></pre></td></tr></table></figure>
-<ul>
-<li>json响应<h2 id="ajax回调处理-5"><a href="#ajax回调处理-5" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2>success:</li>
-<li>关闭对话框</li>
-<li>添加笔记本li</li>
-<li>提示创建笔记本成功、失败</li>
-</ul>
-<p>error:<br>提示创建失败</p>
-<h1 id="创建笔记功能"><a href="#创建笔记功能" class="headerlink" title="创建笔记功能"></a>创建笔记功能</h1><h2 id="发送请求"><a href="#发送请求" class="headerlink" title="发送请求"></a>发送请求</h2><ul>
-<li>发送事件：对话框中 创建 按钮的单击</li>
-<li>请求参数：笔记名称 笔记本ID 用户ID</li>
-<li>请求地址：/note/add.do<h2 id="服务器处理-5"><a href="#服务器处理-5" class="headerlink" title="服务器处理"></a>服务器处理</h2></li>
-<li>Controller.execute</li>
-<li>NoteService.addNote</li>
-<li>NoteDao.save</li>
-<li>cn_note(insert)<h2 id="ajax回调处理-6"><a href="#ajax回调处理-6" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2></li>
-<li>关闭对话框</li>
-<li>解析json数据，生成一个li元素添加到笔记本列表</li>
-<li>1 获取noteTitle</li>
-<li>2.获取noteId</li>
-<li>提示创建笔记成功</li>
-</ul>
-<p>error:提示创建失败</p>
-<h1 id="显示笔记下拉菜单"><a href="#显示笔记下拉菜单" class="headerlink" title="显示笔记下拉菜单"></a>显示笔记下拉菜单</h1><p>1.通过点击’箭头’按钮显示三个菜单项</p>
-<ul>
-<li>获取div对象 slideDown(1000);</li>
-</ul>
-<h1 id="笔记分享"><a href="#笔记分享" class="headerlink" title="笔记分享"></a>笔记分享</h1><h2 id="发送请求-1"><a href="#发送请求-1" class="headerlink" title="发送请求"></a>发送请求</h2><ul>
-<li>发送事件：点击分享按钮</li>
-<li>请求参数：noteId</li>
-<li>请求地址：/share/add.do<h2 id="服务器处理-6"><a href="#服务器处理-6" class="headerlink" title="服务器处理"></a>服务器处理</h2></li>
-<li>创建share类</li>
-<li>Controller</li>
-<li>Service</li>
-<li>Dao-insert</li>
-<li>cn_share<br>先在cn_note里面查找，然后再插入cn_share<br>##回调处理<br>success：</li>
-<li>提示分享成功</li>
-<li>增加图标处理<i class="fa fa-sitemap"></li>
-</ul>
-<h1 id="分享笔记搜索功能"><a href="#分享笔记搜索功能" class="headerlink" title="分享笔记搜索功能"></a>分享笔记搜索功能</h1><h2 id="功能描述：用户输入搜索关键词，然后回车，触发查询"><a href="#功能描述：用户输入搜索关键词，然后回车，触发查询" class="headerlink" title="功能描述：用户输入搜索关键词，然后回车，触发查询"></a>功能描述：用户输入搜索关键词，然后回车，触发查询</h2><h2 id="发送ajax请求-6"><a href="#发送ajax请求-6" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>发送请求：输入关键词后，点回车</li>
-<li>请求参数：输入的关键词</li>
-<li>请求地址：/share/search.do</li>
-</ul>
-<h2 id="服务器处理-7"><a href="#服务器处理-7" class="headerlink" title="服务器处理"></a>服务器处理</h2><ul>
-<li>Controller</li>
-<li>Service</li>
-<li>Dao(select)</li>
-<li>cn_share</li>
-</ul>
-<p>select * from cn_share like %关键字%</p>
-<p>select <em> from cn_share limit m,n<br>select </em> from cn_share like #{title} limit #{begin},3<br>1    0<br>2    3<br>3    6<br>n    (n-1)*3<br>m:记录的位置<br>n:每页显示的最大记录数</p>
-<h2 id="ajax回调处理-7"><a href="#ajax回调处理-7" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><p>List<br>success:</p>
-<ul>
-<li>显示搜索笔记结果列表（pc_part_6）</li>
-<li>将解析后的搜索结果，添加到列表中</li>
-</ul>
-<p>error</p>
-<ul>
-<li>提示搜索失败</li>
-</ul>
-<p>$(“#id”).keydown(function(event){<br>      var code=event.keyCode;<br>      if(code==13){<br>         //发送ajax请求<br>}<br>})    </p>
-<pre><code>报错：
-Uncaught TypeError: Cannot read property &apos;cn_share_id&apos; of undefined
-原因是循环越界：
-var i = 0; i &lt;=shares.length; i++
-改为：
-var i = 0; i &lt;shares.length; i++
-</code></pre></script></h2>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Mysql报错：Unable-to-connect-to-remote-host-Catalog-download-has-failed"><a href="#Mysql报错：Unable-to-connect-to-remote-host-Catalog-download-has-failed" class="headerlink" title="Mysql报错：Unable to connect to remote host. Catalog download has failed."></a>Mysql报错：Unable to connect to remote host. Catalog download has failed.</h1><pre><code>=================== Start Initialization ===================
+MySQL Installer is running in Community mode
+
+Initializing product requirements
+Loading product catalog
+Checking for product catalog snippets
+Checking for product packages in the bundle
+Categorizing product catalog
+Finding all installed packages.
+Your product catalog was last updated at 4/9/2018 9:54:11 PM
+=================== End Initialization ===================
+
+
+
+Unable to connect to remote host.  Catalog download has failed.
+</code></pre><p>问题分析<br>该问题是由于新版本的 Mysql 在安装的时候会自动在 Windows 的“任务计划程序”中安装一个定时任务，任务的触发时间为每天上午十点。</p>
+<p>解决方式<br>找到相应的定时任务，并禁用该任务。 </p>
+
       
 
       
@@ -658,7 +515,7 @@ var i = 0; i &lt;shares.length; i++
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Mysql</a>
         		</li>
       		
 		</ul>
@@ -671,7 +528,7 @@ var i = 0; i &lt;shares.length; i++
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/note/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/mysql报错/">展开全文 >></a>
         </p>
       
 
@@ -726,22 +583,118 @@ var i = 0; i &lt;shares.length; i++
     <div class="article-entry" itemprop="articleBody">
       
         <script src="/assets/js/APlayer.min.js"> </script><h1 id="反射是什么"><a href="#反射是什么" class="headerlink" title="反射是什么"></a>反射是什么</h1><p> 1.反射是Java API，是Java提供的现成的类，是Java提供的功能.<br> 2.反射是Java提供的动态执行机制，动态加载类，动态创建对象，动态访问属性，动态调用方法。</p>
-<h3 id="动态与静态"><a href="#动态与静态" class="headerlink" title="动态与静态"></a>动态与静态</h3><p>静态：事先约定的规则，执行期间按照固定的规则执行<br>动态：事先没有约定，在执行期间动态确定执行规则<br>Java中的静态执行：编译就已经确定执行规则（执行次序），在运行期间按照结果顺序执行，如：<br><figure class="highlight pony"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="type">Foo</span> foo=<span class="function"><span class="keyword">new</span> <span class="title">Foo</span>();</span></div><div class="line"><span class="title">foo</span>.<span class="title">hello</span>();</div></pre></td></tr></table></figure></p>
-<p>Java中的动态执行：运行期间才能确定加载哪些类，创建哪些对象，执行哪些方法</p>
+<h3 id="动态与静态"><a href="#动态与静态" class="headerlink" title="动态与静态"></a>动态与静态</h3><p>静态：事先约定的规则，执行期间按照固定的规则执行<br>动态：事先没有约定，在执行期间动态确定执行规则<br>Java中的静态执行：编译就已经确定执行规则（执行次序），在运行期间按照结果顺序执行，如：</p>
+<pre><code>Foo foo=new Foo();
+foo.hello();
+</code></pre><p>Java中的动态执行：运行期间才能确定加载哪些类，创建哪些对象，执行哪些方法</p>
 <h3 id="动态加载类"><a href="#动态加载类" class="headerlink" title="动态加载类"></a>动态加载类</h3><p>Java提供了动态加载类的API<br>    Class cls=Class.forName(类名);</p>
 <h3 id="动态创建对象"><a href="#动态创建对象" class="headerlink" title="动态创建对象"></a>动态创建对象</h3><pre><code>cls.newInstance();
 </code></pre><p>执行cls应用的类的信息中的无参构造器，动态创建实例，如果没有无参构造器，则抛异常。</p>
 <blockquote>
 <p>反射可以调用有参构造器（复杂）</p>
 <h3 id="动态获取类的方法信息和动态执行方法"><a href="#动态获取类的方法信息和动态执行方法" class="headerlink" title="动态获取类的方法信息和动态执行方法"></a>动态获取类的方法信息和动态执行方法</h3><pre><code>method.invoke(执行方法的对象，传递的参数)
-</code></pre><p>必须在一个对象上执行一个非静态方法，调用方法时必须有对象<br>在invoke方法执行时，必须传递包含当前方法的对象<br>    Object obj=method.invoke(对象，参数1，参数2，….);<br>invoke方法有返回值，返回被调用方法执行的结果，对象后面的参数是执行方法时候传递的参数<br>invoke可以调用私有方法，打破了封装<br>例子：<br>辅助方法类<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//辅助方法类</span></div><div class="line">package demo;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Foo</span> &#123;</div><div class="line">     </div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  System.<span class="keyword">out</span>.println(<span class="string">"test1()"</span>);</div><div class="line"> &#125;</div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  System.<span class="keyword">out</span>.println(<span class="string">"test2()"</span>);</div><div class="line"> &#125;</div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  System.<span class="keyword">out</span>.println(<span class="string">"test3()"</span>);</div><div class="line"> &#125;</div><div class="line"> <span class="function"><span class="keyword">private</span> String <span class="title">demo</span>(<span class="params">String name,<span class="keyword">int</span> age</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> name+age;</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</code></pre><p>必须在一个对象上执行一个非静态方法，调用方法时必须有对象<br>在invoke方法执行时，必须传递包含当前方法的对象<br>    Object obj=method.invoke(对象，参数1，参数2，….);<br>invoke方法有返回值，返回被调用方法执行的结果，对象后面的参数是执行方法时候传递的参数<br>invoke可以调用私有方法，打破了封装<br>例子：<br>辅助方法类<br>```<br>//辅助方法类<br>package demo;</p>
 </blockquote>
-<p>测试类<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//测试类</span></div><div class="line">package demo;</div><div class="line"></div><div class="line">import java.lang.reflect.InvocationTargetException;</div><div class="line">import java.lang.reflect.Method;</div><div class="line">import java.util.Scanner;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> demo3 <span class="comment">&#123;</span></div><div class="line">      public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException &#123;</div><div class="line">      Scanner scan=new Scanner(System.in);</div><div class="line">      System.out.println("请输入类名");</div><div class="line">      String name=scan.nextLine();</div><div class="line">      Class cls=Class.forName(name);</div><div class="line">      //找到demo方法</div><div class="line">      //Class提供了根据方法的标签名找到方法的API</div><div class="line">      String methodName="demo";//方法名</div><div class="line">      //类型列表Class[]</div><div class="line">      //String.class表示字符串类型，int.class表示整型 ，任何.class表示任何类型</div><div class="line">      Class[] types=&#123;String.class,int.class&#125;;</div><div class="line">      <span class="comment">//根据方法签名查找方法</span></div><div class="line">      <span class="function"><span class="keyword">Method</span> <span class="title">method</span>=<span class="title">cls</span>.<span class="title">getDeclaredMethod</span><span class="params">(methodName, types)</span>;</span></div><div class="line">      <span class="comment">//找到了私有方法</span></div><div class="line">      System.out.println(<span class="function"><span class="keyword">method</span>);</span></div><div class="line">      <span class="comment">//执行私有方法</span></div><div class="line">      <span class="comment">//打开方法的执行权限！违反封装！</span></div><div class="line">      <span class="function"><span class="keyword">method</span>.<span class="title">setAccessible</span><span class="params">(<span class="keyword">true</span>)</span>;</span></div><div class="line">      Object obj=cls.newInstance();</div><div class="line">      Object value=<span class="function"><span class="keyword">method</span>.<span class="title">invoke</span><span class="params">(obj, "tom",12)</span>;</span></div><div class="line">      System.out.println(value);</div><div class="line">      </div><div class="line"> &#125;</div><div class="line">      </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h1 id="反射用途"><a href="#反射用途" class="headerlink" title="反射用途"></a>反射用途</h1><p>1.eclipse中解析类的结构使用了反射<br>2.JUnit识别被测试的方法使用了反射<br>  2.1JUnit利用反射查找@Test开头的方法<br>  2.2JUnit利用反射解析@Test标注的测试方法<br>3.spring管理bean对象，注入bean属性使用了反射<br>  3.1利用反射创建bean实例<br>  3.2利用发射注入bean属性<br>4.注解的解析使用了反射，利用反射API支持注解<br>5.强行执行私有方法，访问私有属性</p>
-<h1 id="JUnit原型"><a href="#JUnit原型" class="headerlink" title="JUnit原型"></a>JUnit原型</h1><p>原理：<br><img src="https://i.imgur.com/aDntwhe.png" alt=""><br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//自己定义一个注解</span></div><div class="line"><span class="keyword">package</span> demo;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.lang.<span class="keyword">annotation</span>.Retention;</div><div class="line"><span class="keyword">import</span> java.lang.<span class="keyword">annotation</span>.RetentionPolicy;</div><div class="line"></div><div class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Demo &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>测试方法<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//测试方法</span></div><div class="line">package demo;</div><div class="line"><span class="comment">/*</span></div><div class="line"> * 执行一个类中全部以@Demo标注的方法</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TestCase</span> &#123; </div><div class="line"> @<span class="function">Demo</span></div><div class="line"> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Hello</span>(<span class="params"></span>)&#123;</div><div class="line">  System.<span class="keyword">out</span>.println(<span class="string">"hello()"</span>);</div><div class="line"> &#125;</div><div class="line"> @<span class="function">Demo</span></div><div class="line"> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hi</span>(<span class="params"></span>)&#123;</div><div class="line">  System.<span class="keyword">out</span>.println(<span class="string">"hi()"</span>);</div><div class="line"> &#125;</div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  System.<span class="keyword">out</span>.println(<span class="string">"test()"</span>);</div><div class="line"> &#125;</div><div class="line"> </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h1 id="spring原型"><a href="#spring原型" class="headerlink" title="spring原型"></a>spring原型</h1><p>原理：<br><img src="https://i.imgur.com/7HjCYae.png" alt=""><br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">package demo;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"><span class="keyword">import</span> java.io.InputStream;</div><div class="line"><span class="keyword">import</span> java.util.HashMap;</div><div class="line"><span class="keyword">import</span> java.util.<span class="built_in">List</span>;</div><div class="line"><span class="keyword">import</span> java.util.<span class="built_in">Map</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.dom4j.Document;</div><div class="line"><span class="keyword">import</span> org.dom4j.DocumentException;</div><div class="line"><span class="keyword">import</span> org.dom4j.<span class="built_in">Element</span>;</div><div class="line"><span class="keyword">import</span> org.dom4j.io.SAXReader;</div><div class="line"></div><div class="line">public <span class="class"><span class="keyword">class</span> <span class="title">ApplicationContext</span> </span>&#123;</div><div class="line"> <span class="comment">//缓存spring容器中的bean对象</span></div><div class="line"> private <span class="built_in">Map</span>&lt;<span class="built_in">String</span>,<span class="built_in">Object</span>&gt; beans=<span class="keyword">new</span> HashMap&lt;<span class="built_in">String</span>,<span class="built_in">Object</span>&gt;();</div><div class="line"> </div><div class="line">    <span class="comment">/*</span></div><div class="line">     * 利用配置文件初始化当前容器</div><div class="line">     * 利用XML，初始化全部bean对象</div><div class="line">     */</div><div class="line"> public ApplicationContext(<span class="built_in">String</span> xml) throws DocumentException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException &#123;</div><div class="line">  <span class="comment">//利用dom4j,读取想XML文件</span></div><div class="line">  <span class="comment">//解析文件内容，得到bean id和bean类名</span></div><div class="line">  <span class="comment">//根据类名动态加载列并创建对象，将对象和对应的id传到map中</span></div><div class="line">         <span class="comment">//从Resource（classpath）中读取流</span></div><div class="line">  InputStream <span class="keyword">in</span>=getClass().getClassLoader().getResourceAsStream(xml);</div><div class="line">  SAXReader reader=<span class="keyword">new</span> SAXReader();</div><div class="line">  Document doc=reader.read(<span class="keyword">in</span>);</div><div class="line">  <span class="keyword">in</span>.close();</div><div class="line">  <span class="comment">//解析XML&lt;beans&gt;&lt;bean&gt;&lt;bean&gt;&lt;bean&gt;...</span></div><div class="line">  <span class="built_in">Element</span> root=doc.getRootElement();</div><div class="line">  <span class="comment">//读取根元素中全部bean子元素</span></div><div class="line">        <span class="built_in">List</span>&lt;<span class="built_in">Element</span>&gt; list=root.elements(<span class="string">"bean"</span>);</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">Element</span> e : list) &#123;</div><div class="line">   <span class="comment">//e 就是bean元素id属性和class属性</span></div><div class="line">        	<span class="built_in">String</span> id=e.attributeValue(<span class="string">"id"</span>);</div><div class="line">        	<span class="built_in">String</span> className=e.attributeValue(<span class="string">"class"</span>);</div><div class="line">        	<span class="comment">//动态加载类，动态创建对象</span></div><div class="line">        	Class cls=Class.forName(className);</div><div class="line">            <span class="built_in">Object</span> bean=	cls.newInstance();</div><div class="line">            beans.put(id, bean);</div><div class="line">            </div><div class="line">  &#125;</div><div class="line">  </div><div class="line"> &#125;</div><div class="line"> </div><div class="line"> </div><div class="line"> public <span class="built_in">Object</span> getBean(<span class="built_in">String</span> id)&#123;</div><div class="line">  <span class="comment">//根据id在map中查找对象，并返回对象</span></div><div class="line">  </div><div class="line">  <span class="keyword">return</span> beans.<span class="keyword">get</span>(id);</div><div class="line"> &#125;</div><div class="line"> <span class="comment">//泛型方法，优点：可以减少一次类型转换</span></div><div class="line"> public&lt;T&gt; T getBean(<span class="built_in">String</span> id,Class&lt;T&gt; cls)&#123;</div><div class="line">  <span class="keyword">return</span> (T)beans.<span class="keyword">get</span>(id);</div><div class="line"> &#125;</div><div class="line">      </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>一个测试的XML配置文件<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">beans</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"foo"</span> <span class="attr">class</span>=<span class="string">"demo.Foo"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"date"</span> <span class="attr">class</span>=<span class="string">"java.util.Date"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"TestCase"</span> <span class="attr">class</span>=<span class="string">"demo.TestCase"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>public class Foo {</p>
+<pre><code>public void test1(){
+    System.out.println(&quot;test1()&quot;);
+}
+public void test2(){
+    System.out.println(&quot;test2()&quot;);
+}
+public void test3(){
+    System.out.println(&quot;test3()&quot;);
+}
+private String demo(String name,int age){
+    return name+age;
+}
+</code></pre><p>}</p>
+<pre><code>测试类
+</code></pre><p>//测试类<br>package demo;</p>
+<p>import java.lang.reflect.InvocationTargetException;<br>import java.lang.reflect.Method;<br>import java.util.Scanner;</p>
+<p>public class demo3 {<br>      public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {<br>            Scanner scan=new Scanner(System.in);<br>            System.out.println(“请输入类名”);<br>            String name=scan.nextLine();<br>            Class cls=Class.forName(name);<br>            //找到demo方法<br>            //Class提供了根据方法的标签名找到方法的API<br>            String methodName=”demo”;//方法名<br>            //类型列表Class[]<br>            //String.class表示字符串类型，int.class表示整型 ，任何.class表示任何类型<br>            Class[] types={String.class,int.class};<br>            //根据方法签名查找方法<br>            Method method=cls.getDeclaredMethod(methodName, types);<br>            //找到了私有方法<br>            System.out.println(method);<br>            //执行私有方法<br>            //打开方法的执行权限！违反封装！<br>            method.setAccessible(true);<br>            Object obj=cls.newInstance();<br>            Object value=method.invoke(obj, “tom”,12);<br>            System.out.println(value);</p>
+<pre><code>}
+</code></pre><p>}</p>
+<pre><code># 反射用途
+1.eclipse中解析类的结构使用了反射
+2.JUnit识别被测试的方法使用了反射
+  2.1JUnit利用反射查找@Test开头的方法
+  2.2JUnit利用反射解析@Test标注的测试方法
+3.spring管理bean对象，注入bean属性使用了反射
+  3.1利用反射创建bean实例
+  3.2利用发射注入bean属性
+4.注解的解析使用了反射，利用反射API支持注解
+5.强行执行私有方法，访问私有属性
+# JUnit原型
+原理：
+![](https://i.imgur.com/aDntwhe.png)
+</code></pre><p>//自己定义一个注解<br>package demo;</p>
+<p>import java.lang.annotation.Retention;<br>import java.lang.annotation.RetentionPolicy;</p>
+<p>@Retention(RetentionPolicy.RUNTIME)<br>public @interface Demo {</p>
+<p>}</p>
+<pre><code>测试方法
+</code></pre><p>//测试方法<br>package demo;<br>/*</p>
+<ul>
+<li>执行一个类中全部以@Demo标注的方法<br>*/<br>public class TestCase {<br> @Demo<br> public void Hello(){<pre><code> System.out.println(&quot;hello()&quot;);
+</code></pre> }<br> @Demo<br> public void hi(){<pre><code> System.out.println(&quot;hi()&quot;);
+</code></pre> }<br> public void test(){<pre><code> System.out.println(&quot;test()&quot;);
+</code></pre> }</li>
+</ul>
+<p>}</p>
+<pre><code># spring原型
+原理：
+![](https://i.imgur.com/7HjCYae.png)
+</code></pre><p>package demo;</p>
+<p>import java.io.IOException;<br>import java.io.InputStream;<br>import java.util.HashMap;<br>import java.util.List;<br>import java.util.Map;</p>
+<p>import org.dom4j.Document;<br>import org.dom4j.DocumentException;<br>import org.dom4j.Element;<br>import org.dom4j.io.SAXReader;</p>
+<p>public class ApplicationContext {<br>    //缓存spring容器中的bean对象<br>    private Map<string,object> beans=new HashMap<string,object>();</string,object></string,object></p>
+<pre><code>/*
+ * 利用配置文件初始化当前容器
+ * 利用XML，初始化全部bean对象
+ */
+public ApplicationContext(String xml) throws DocumentException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+    //利用dom4j,读取想XML文件
+    //解析文件内容，得到bean id和bean类名
+    //根据类名动态加载列并创建对象，将对象和对应的id传到map中
+     //从Resource（classpath）中读取流
+    InputStream in=getClass().getClassLoader().getResourceAsStream(xml);
+    SAXReader reader=new SAXReader();
+    Document doc=reader.read(in);
+    in.close();
+    //解析XML&lt;beans&gt;&lt;bean&gt;&lt;bean&gt;&lt;bean&gt;...
+    Element root=doc.getRootElement();
+    //读取根元素中全部bean子元素
+    List&lt;Element&gt; list=root.elements(&quot;bean&quot;);
+    for (Element e : list) {
+        //e 就是bean元素id属性和class属性
+        String id=e.attributeValue(&quot;id&quot;);
+        String className=e.attributeValue(&quot;class&quot;);
+        //动态加载类，动态创建对象
+        Class cls=Class.forName(className);
+        Object bean=    cls.newInstance();
+        beans.put(id, bean);
+
+    }
+
+}
+
+
+public Object getBean(String id){
+    //根据id在map中查找对象，并返回对象
+
+    return beans.get(id);
+}
+//泛型方法，优点：可以减少一次类型转换
+public&lt;T&gt; T getBean(String id,Class&lt;T&gt; cls){
+    return (T)beans.get(id);
+}
+</code></pre><p>}</p>
+<pre><code>一个测试的XML配置文件
+</code></pre><p>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</p>
+<beans><br>     <bean id="foo" class="demo.Foo"></bean><br>     <bean id="date" class="java.util.Date"></bean><br>     <bean id="TestCase" class="demo.TestCase"></bean><br></beans>
+
+
+<p>```</p>
 
       
 
@@ -823,10 +776,35 @@ var i = 0; i &lt;shares.length; i++
     <div class="article-entry" itemprop="articleBody">
       
         <script src="/assets/js/APlayer.min.js"> </script><a id="more"></a>
-<h3 id="spring配置文件出错：cvc-complex-type-2-4-c-The-matching-wildcard-is-strict-but-no-declaration-can-be-found-for-element-‘mvc-annotation-driven’"><a href="#spring配置文件出错：cvc-complex-type-2-4-c-The-matching-wildcard-is-strict-but-no-declaration-can-be-found-for-element-‘mvc-annotation-driven’" class="headerlink" title="spring配置文件出错：cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element   ‘mvc:annotation-driven’."></a>spring配置文件出错：cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element   ‘mvc:annotation-driven’.</h3><figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Multiple annotations found at <span class="keyword">this</span> line:</div><div class="line"> - schema_reference.<span class="number">4</span>: Failed <span class="keyword">to</span> read schema <span class="built_in">document</span> <span class="string">'http://www.springframework.org/schema/m/</span></div><div class="line">  spring-mvc-3.2.xsd', because <span class="number">1</span>) could <span class="keyword">not</span> find the <span class="built_in">document</span>; <span class="number">2</span>) the <span class="built_in">document</span> could <span class="keyword">not</span> be read; <span class="number">3</span>) the root </div><div class="line">  element <span class="keyword">of</span> the <span class="built_in">document</span> <span class="keyword">is</span> <span class="keyword">not</span> &lt;xsd:schema&gt;.</div><div class="line"> - cvc-complex-type.<span class="number">2.4</span>.c: The matching wildcard <span class="keyword">is</span> strict, but <span class="literal">no</span> declaration can be found <span class="keyword">for</span> element </div><div class="line">  <span class="string">'mvc:annotation-driven'</span>.</div></pre></td></tr></table></figure>
-<p>出现这个错误万万没想到是复制过来的spring配置文件有问题，刚刚出现这个问题的时候，去网上搜解决办法，大多数都是说xsd文件与jar包版本不对，或者是网络问题导致无法访问xsd文件，但是折腾好久，确认jar包版本没毛病而且网络是通畅的，但是问题依然出现了，今晚偶然对比了每个标签的路径，发现了复制过来的配置文件很多路径都有/tx,就想会不会是这个小玩意在作祟，于是就改成了对应的标签名，结果就行了。<br>原来的配置文件<br><br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="attr">xsi:</span><span class="string">schemaLocation="</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/beans</span> <span class="attr">http://www.springframework.org/schema/beans/spring-beans-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/context</span> <span class="attr">http://www.springframework.org/schema/context/spring-context-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/jdbc</span> <span class="attr">http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/jee</span> <span class="attr">http://www.springframework.org/schema/jee/spring-jee-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/jms</span> <span class="attr">http://www.springframework.org/schema/tx/spring-jms-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/lang</span> <span class="attr">http://www.springframework.org/schema/tx/spring-lang-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/mvc</span> <span class="attr">http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/tx</span> <span class="attr">http://www.springframework.org/schema/tx/spring-tx-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/util</span> <span class="attr">http://www.springframework.org/schema/tx/spring-util-3.2.xsd"&gt;</span></div></pre></td></tr></table></figure></p>
-<p>修改后的配置文件<br><br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="attr">xsi:</span><span class="string">schemaLocation="</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/beans</span> <span class="attr">http://www.springframework.org/schema/beans/spring-beans-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/context</span> <span class="attr">http://www.springframework.org/schema/context/spring-context-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/jdbc</span> <span class="attr">http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/jee</span> <span class="attr">http://www.springframework.org/schema/jee/spring-jee-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/jms</span> <span class="attr">http://www.springframework.org/schema/jms/spring-jms-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/lang</span> <span class="attr">http://www.springframework.org/schema/lang/spring-lang-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/mvc</span> <span class="attr">http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/tx</span> <span class="attr">http://www.springframework.org/schema/tx/spring-tx-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/util</span> <span class="attr">http://www.springframework.org/schema/util/spring-util-3.2.xsd"&gt;</span></div></pre></td></tr></table></figure></p>
-<p>我也不清楚为什么中间会有几个夹杂着/tx,导致了出现了莫名其妙的错误，解决了心情很是舒畅<br></p>
+<h3 id="spring配置文件出错：cvc-complex-type-2-4-c-The-matching-wildcard-is-strict-but-no-declaration-can-be-found-for-element-‘mvc-annotation-driven’"><a href="#spring配置文件出错：cvc-complex-type-2-4-c-The-matching-wildcard-is-strict-but-no-declaration-can-be-found-for-element-‘mvc-annotation-driven’" class="headerlink" title="spring配置文件出错：cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element   ‘mvc:annotation-driven’."></a>spring配置文件出错：cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element   ‘mvc:annotation-driven’.</h3><pre><code>Multiple annotations found at this line:
+    - schema_reference.4: Failed to read schema document &#39;http://www.springframework.org/schema/m/
+     spring-mvc-3.2.xsd&#39;, because 1) could not find the document; 2) the document could not be read; 3) the root 
+     element of the document is not &lt;xsd:schema&gt;.
+    - cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element 
+     &#39;mvc:annotation-driven&#39;.
+</code></pre><p>出现这个错误万万没想到是复制过来的spring配置文件有问题，刚刚出现这个问题的时候，去网上搜解决办法，大多数都是说xsd文件与jar包版本不对，或者是网络问题导致无法访问xsd文件，但是折腾好久，确认jar包版本没毛病而且网络是通畅的，但是问题依然出现了，今晚偶然对比了每个标签的路径，发现了复制过来的配置文件很多路径都有/tx,就想会不会是这个小玩意在作祟，于是就改成了对应的标签名，结果就行了。<br>原来的配置文件<br></p>
+<pre><code>    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+        http://www.springframework.org/schema/jms http://www.springframework.org/schema/tx/spring-jms-3.2.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/tx/spring-lang-3.2.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/tx/spring-util-3.2.xsd&quot;&gt;
+</code></pre><p>修改后的配置文件<br></p>
+<pre><code>    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+        http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd&quot;&gt;
+</code></pre><p>我也不清楚为什么中间会有几个夹杂着/tx,导致了出现了莫名其妙的错误，解决了心情很是舒畅<br></p>
 
       
 
@@ -1009,15 +987,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1045,15 +1023,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">

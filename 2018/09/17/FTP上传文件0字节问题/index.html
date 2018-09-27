@@ -218,7 +218,7 @@ gitment.render('gitment')
  /**
  * A constant indicating the FTP session is expecting all transfers
  * to occur between the client (local) and server and that the server
- * should connect to the client&apos;s data port to initiate a data transfer.
+ * should connect to the client&#39;s data port to initiate a data transfer.
  * This is the default data connection mode when and FTPClient instance
  * is created.
  */
@@ -228,7 +228,7 @@ gitment.render('gitment')
  * A constant indicating the FTP session is expecting all transfers
  * to occur between the client (local) and server and that the server
  * is in passive mode, requiring the client to connect to the
- * server&apos;s data port to initiate a transfer.
+ * server&#39;s data port to initiate a transfer.
  */
 public static final int PASSIVE_LOCAL_DATA_CONNECTION_MODE = 2;
 
@@ -254,22 +254,22 @@ private void __initDefaults()
         __featuresMap = null;
     }
 </code></pre><p><strong>port模式，即主动模式：</strong><br></p>
-<pre><code> /**
- * Set the current data connection mode to
- * &lt;code&gt;ACTIVE_LOCAL_DATA_CONNECTION_MODE&lt;/code&gt;.  No communication
- * with the FTP server is conducted, but this causes all future data
- * transfers to require the FTP server to connect to the client&apos;s
- * data port.  Additionally, to accommodate differences between socket
- * implementations on different platforms, this method causes the
- * client to issue a PORT command before every data transfer.
- */
-public void enterLocalActiveMode()
-{
-    //主动，ACTIVE
-    __dataConnectionMode = ACTIVE_LOCAL_DATA_CONNECTION_MODE;
-    __passiveHost = null;
-    __passivePort = -1;
-}
+<pre><code>     /**
+     * Set the current data connection mode to
+     * &lt;code&gt;ACTIVE_LOCAL_DATA_CONNECTION_MODE&lt;/code&gt;.  No communication
+     * with the FTP server is conducted, but this causes all future data
+     * transfers to require the FTP server to connect to the client&#39;s
+     * data port.  Additionally, to accommodate differences between socket
+     * implementations on different platforms, this method causes the
+     * client to issue a PORT command before every data transfer.
+     */
+    public void enterLocalActiveMode()
+    {
+        //主动，ACTIVE
+        __dataConnectionMode = ACTIVE_LOCAL_DATA_CONNECTION_MODE;
+        __passiveHost = null;
+        __passivePort = -1;
+    }
 </code></pre><p><strong>pasv模式，即被动模式：</strong><br></p>
 <pre><code>/**
  * Set the current data connection mode to
@@ -771,15 +771,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -807,15 +807,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">

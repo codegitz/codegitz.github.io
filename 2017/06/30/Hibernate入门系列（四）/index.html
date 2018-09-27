@@ -256,26 +256,26 @@ gitment.render('gitment')
 <ul>
 <li>Hibernate 的内置集合类具有集合代理功能, 支持延迟检索策略<br></li>
 <li><p>事实上, Hibernate 的内置集合类封装了 JDK 中的集合类, 这使得 Hibernate 能够对缓存中的集合对象进行脏检查, 按照集合对象的状态来同步更新数据库。<br><br>在定义集合属性时, 通常把它初始化为集合实现类的一个实例. 这样可以提高程序的健壮性, 避免应用程序访问取值为 null 的集合的方法抛出 <strong>NullPointerException</strong><br></p>
-<pre><code>/*
- * 1.声明集合类型时需要使用接口类型，因为hibernate在获取集合类型时，返回的是
- * hibernate的内置集合类型，而不是JAVASE一个标准的集合实现
- * 2.需要对集合进行初始化，不会出现空指针异常的问题
- */
-private Set&lt;Order&gt; orders=new HashSet&lt;&gt;();
+<pre><code>      /*
+       * 1.声明集合类型时需要使用接口类型，因为hibernate在获取集合类型时，返回的是
+       * hibernate的内置集合类型，而不是JAVASE一个标准的集合实现
+       * 2.需要对集合进行初始化，不会出现空指针异常的问题
+       */
+      private Set&lt;Order&gt; orders=new HashSet&lt;&gt;();
 </code></pre></li>
 </ul>
 <p>Hibernate 使用 <set> 元素来映射 set 类型的属性<br><br>映射关系如下：</set></p>
-<pre><code>&lt;!-- 映射一对多的集合属性 --&gt;
-  &lt;!-- set：映射set类型的属性，table：set中的元素对应的记录放在哪个数据表中，该值需要和多对一的那个多的表的名字一致 --&gt;
-  &lt;!-- inverse：指定由哪一方来维护关联关系，通常设置为true，来指定由多的一方来维护关联关系 --&gt;
-  &lt;!-- cascade:设定级联操作,开发时不建议设定该属性，建议使用手工的方式来处理 --&gt;
-  &lt;!-- order-by:在查询时对集合中的元素进行排序，order-by中使用的是表的字段名，而非持久化类的属性名 --&gt;
-  &lt;set name=&quot;orders&quot; table=&quot;ORDERS&quot; inverse=&quot;true&quot; cascade=&quot;delete-orphan&quot; order-by=&quot;&quot;&gt;
-  &lt;!-- 执行对的表的外键列的名称 --&gt;
-      &lt;key column=&quot;CUSTOMER_ID&quot;&gt;&lt;/key&gt;
-      &lt;!-- 指定映射类型 --&gt;
-      &lt;one-to-many class=&quot;io.hibernate.entities.n21.both.Order&quot;/&gt;
-  &lt;/set&gt;
+<pre><code>  &lt;!-- 映射一对多的集合属性 --&gt;
+    &lt;!-- set：映射set类型的属性，table：set中的元素对应的记录放在哪个数据表中，该值需要和多对一的那个多的表的名字一致 --&gt;
+    &lt;!-- inverse：指定由哪一方来维护关联关系，通常设置为true，来指定由多的一方来维护关联关系 --&gt;
+    &lt;!-- cascade:设定级联操作,开发时不建议设定该属性，建议使用手工的方式来处理 --&gt;
+    &lt;!-- order-by:在查询时对集合中的元素进行排序，order-by中使用的是表的字段名，而非持久化类的属性名 --&gt;
+    &lt;set name=&quot;orders&quot; table=&quot;ORDERS&quot; inverse=&quot;true&quot; cascade=&quot;delete-orphan&quot; order-by=&quot;&quot;&gt;
+    &lt;!-- 执行对的表的外键列的名称 --&gt;
+        &lt;key column=&quot;CUSTOMER_ID&quot;&gt;&lt;/key&gt;
+        &lt;!-- 指定映射类型 --&gt;
+        &lt;one-to-many class=&quot;io.hibernate.entities.n21.both.Order&quot;/&gt;
+    &lt;/set&gt;
 </code></pre><p><strong>各节点的含义：</strong></p>
 <p><set> 元素来映射持久化类的 set 类型的属性<br><br>name: 设定待映射的持久化类的属性的<br></set></p>
 <p><key> 元素设定与所关联的持久化类对应的表的外键<br><br>column: 指定关联表的外键名<br></key></p>
@@ -298,12 +298,12 @@ private Set&lt;Order&gt; orders=new HashSet&lt;&gt;();
 <pre><code>&lt;!-- 使用many-to-one方式来映射1-1关联关系 --&gt;
          &lt;many-to-one name=&quot;mgr&quot; class=&quot;io.hibernate.entities.Manager&quot; column=&quot;MGR_ID&quot; unique=&quot;true&quot;&gt;&lt;/many-to-one&gt;
 </code></pre><p>另一端需要使用one-to-one元素，该元素使用 property-ref 属性指定使用被关联实体主键以外的字段作为关联字段</p>
-<pre><code>&lt;!--  映射1—1关联关系，在对应数据表中已经有外键了，当前持久化类使用one-to-one进行映射--&gt;
-       &lt;!-- 
-            没有外键的一端需要使用one-to-one元素，该元素使用 property-ref 属性指定使用被关联实体主键以外的字段作为关联字段
-       --&gt;
-       &lt;one-to-one name=&quot;dept&quot; class=&quot;io.hibernate.entities.Department&quot;
-        property-ref=&quot;mgr&quot;&gt;&lt;/one-to-one&gt;
+<pre><code> &lt;!--  映射1—1关联关系，在对应数据表中已经有外键了，当前持久化类使用one-to-one进行映射--&gt;
+        &lt;!-- 
+             没有外键的一端需要使用one-to-one元素，该元素使用 property-ref 属性指定使用被关联实体主键以外的字段作为关联字段
+        --&gt;
+        &lt;one-to-one name=&quot;dept&quot; class=&quot;io.hibernate.entities.Department&quot;
+         property-ref=&quot;mgr&quot;&gt;&lt;/one-to-one&gt;
 </code></pre><p>不使用 property-ref 属性的 sql</p>
 <pre><code>Hibernate: 
             select
@@ -376,38 +376,38 @@ private Set&lt;Order&gt; orders=new HashSet&lt;&gt;();
         &lt;/subclass&gt;
     &lt;/class&gt;
 </code></pre><h4 id="采用-joined-subclass-元素的继承映射"><a href="#采用-joined-subclass-元素的继承映射" class="headerlink" title="采用 joined-subclass 元素的继承映射"></a>采用 joined-subclass 元素的继承映射</h4><p>采用 joined-subclass 元素的继承映射可以实现每个子类一张表<br><br>采用这种映射策略时，父类实例保存在父类表中，子类实例由父类表和子类表共同存储。因为子类实例也是一个特殊的父类实例，因此必然也包含了父类实例的属性。于是将子类和父类共有的属性保存在父类表中，子类增加的属性，则保存在子类表中。<br><br>在这种映射策略下，无须使用鉴别者列，但需要为每个子类使用 key 元素映射共有主键。<br><br>子类增加的属性可以添加非空约束。因为子类的属性和父类的属性没有保存在同一个表中<br><br><img src="https://i.imgur.com/pE38vZK.png" alt=""></p>
-<pre><code>&lt;class name=&quot;io.hibernate.entities.joined.subclass.Person&quot; table=&quot;PERSONS&quot;&gt;
-       &lt;id name=&quot;id&quot; type=&quot;java.lang.Integer&quot;&gt;
-           &lt;column name=&quot;ID&quot; /&gt;
-           &lt;generator class=&quot;native&quot; /&gt;
-       &lt;/id&gt;
-       &lt;property name=&quot;name&quot; type=&quot;java.lang.String&quot;&gt;
-           &lt;column name=&quot;NAME&quot; /&gt;
-       &lt;/property&gt;
-       &lt;property name=&quot;age&quot; type=&quot;int&quot;&gt;
-           &lt;column name=&quot;AGE&quot; /&gt;
-       &lt;/property&gt;
-       &lt;joined-subclass name=&quot;io.hibernate.entities.joined.subclass.Student&quot; table=&quot;STUDENTS&quot;&gt;
-             &lt;key column=&quot;STUDENT_id&quot;&gt;&lt;/key&gt;
-             &lt;property name=&quot;school&quot; type=&quot;string&quot; column=&quot;SCHOOL&quot;&gt;&lt;/property&gt;
-       &lt;/joined-subclass&gt;
-   &lt;/class&gt;
+<pre><code> &lt;class name=&quot;io.hibernate.entities.joined.subclass.Person&quot; table=&quot;PERSONS&quot;&gt;
+        &lt;id name=&quot;id&quot; type=&quot;java.lang.Integer&quot;&gt;
+            &lt;column name=&quot;ID&quot; /&gt;
+            &lt;generator class=&quot;native&quot; /&gt;
+        &lt;/id&gt;
+        &lt;property name=&quot;name&quot; type=&quot;java.lang.String&quot;&gt;
+            &lt;column name=&quot;NAME&quot; /&gt;
+        &lt;/property&gt;
+        &lt;property name=&quot;age&quot; type=&quot;int&quot;&gt;
+            &lt;column name=&quot;AGE&quot; /&gt;
+        &lt;/property&gt;
+        &lt;joined-subclass name=&quot;io.hibernate.entities.joined.subclass.Student&quot; table=&quot;STUDENTS&quot;&gt;
+              &lt;key column=&quot;STUDENT_id&quot;&gt;&lt;/key&gt;
+              &lt;property name=&quot;school&quot; type=&quot;string&quot; column=&quot;SCHOOL&quot;&gt;&lt;/property&gt;
+        &lt;/joined-subclass&gt;
+    &lt;/class&gt;
 </code></pre><h4 id="采用-union-subclass-元素的继承映射"><a href="#采用-union-subclass-元素的继承映射" class="headerlink" title="采用 union-subclass 元素的继承映射"></a>采用 union-subclass 元素的继承映射</h4><p><img src="https://i.imgur.com/SRnzqGX.png" alt=""></p>
-<pre><code>&lt;class name=&quot;io.hibernate.entities.joined.subclass.Person&quot; table=&quot;PERSONS&quot;&gt;
-           &lt;id name=&quot;id&quot; type=&quot;java.lang.Integer&quot;&gt;
-               &lt;column name=&quot;ID&quot; /&gt;
-               &lt;generator class=&quot;increment&quot; /&gt;
-           &lt;/id&gt;
-           &lt;property name=&quot;name&quot; type=&quot;java.lang.String&quot;&gt;
-               &lt;column name=&quot;NAME&quot; /&gt;
-           &lt;/property&gt;
-           &lt;property name=&quot;age&quot; type=&quot;int&quot;&gt;
-               &lt;column name=&quot;AGE&quot; /&gt;
-           &lt;/property&gt;
-           &lt;union-subclass name=&quot;io.hibernate.entities.joined.subclass.Student&quot; table=&quot;STUDENTS&quot;&gt;
-                 &lt;property name=&quot;school&quot;&gt;&lt;/property&gt;
-           &lt;/union-subclass&gt;
-       &lt;/class&gt;
+<pre><code> &lt;class name=&quot;io.hibernate.entities.joined.subclass.Person&quot; table=&quot;PERSONS&quot;&gt;
+            &lt;id name=&quot;id&quot; type=&quot;java.lang.Integer&quot;&gt;
+                &lt;column name=&quot;ID&quot; /&gt;
+                &lt;generator class=&quot;increment&quot; /&gt;
+            &lt;/id&gt;
+            &lt;property name=&quot;name&quot; type=&quot;java.lang.String&quot;&gt;
+                &lt;column name=&quot;NAME&quot; /&gt;
+            &lt;/property&gt;
+            &lt;property name=&quot;age&quot; type=&quot;int&quot;&gt;
+                &lt;column name=&quot;AGE&quot; /&gt;
+            &lt;/property&gt;
+            &lt;union-subclass name=&quot;io.hibernate.entities.joined.subclass.Student&quot; table=&quot;STUDENTS&quot;&gt;
+                  &lt;property name=&quot;school&quot;&gt;&lt;/property&gt;
+            &lt;/union-subclass&gt;
+        &lt;/class&gt;
 </code></pre><h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><p><img src="https://i.imgur.com/0LRRBLu.png" alt=""></p>
 <p><img src="https://i.imgur.com/bxRPyAf.png" alt=""></p>
 
@@ -532,8 +532,8 @@ private Set&lt;Order&gt; orders=new HashSet&lt;&gt;();
     </a>
   
   
-    <a href="/2017/06/22/我的第一篇博客/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">我的第一篇博客</div>
+    <a href="/2017/06/30/Hibernate入门系列（五）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hibernate入门系列（五）</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -720,15 +720,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -756,15 +756,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">

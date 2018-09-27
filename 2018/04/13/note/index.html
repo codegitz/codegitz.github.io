@@ -267,8 +267,18 @@ gitment.render('gitment')
 <li>获取参数：用户名 昵称 密码</li>
 <li>请求地址：/user/add.do<h2 id="服务器处理-1"><a href="#服务器处理-1" class="headerlink" title="服务器处理"></a>服务器处理</h2>请求-&gt;DispatchServlet<br>–&gt;HandlerMapping<br>–&gt;Controller.execute</li>
 </ul>
-<p>–&gt;Service(addUser)<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//检查用户</span></div><div class="line"><span class="function"><span class="title">findByName</span><span class="params">(name)</span></span></div><div class="line">user!=null</div><div class="line">result</div><div class="line"><span class="comment">//添加用户</span></div><div class="line"><span class="function"><span class="title">createId</span><span class="params">()</span></span></div><div class="line"><span class="comment">//处理password</span></div><div class="line">user.set()</div><div class="line"><span class="function"><span class="title">save</span><span class="params">(user)</span></span></div><div class="line"><span class="comment">//设置result</span></div></pre></td></tr></table></figure></p>
-<p>–&gt;Dao–cn_user(insert)<br>1.UserDao(save(User))<br>2.UserMapper.xml(insert)<br>–&gt;json响应</p>
+<p>–&gt;Service(addUser)</p>
+<pre><code>//检查用户
+findByName(name)
+user!=null
+result
+//添加用户
+createId()
+//处理password
+user.set()
+save(user)
+//设置result
+</code></pre><p>–&gt;Dao–cn_user(insert)<br>1.UserDao(save(User))<br>2.UserMapper.xml(insert)<br>–&gt;json响应</p>
 <h2 id="ajax回调处理-1"><a href="#ajax回调处理-1" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><p>success：<br>注册成功<br>注册失败<br>error（异常）：<br>提示：注册失败</p>
 <ul>
 <li>成功：edit.html</li>
@@ -291,21 +301,26 @@ gitment.render('gitment')
 <li>发送事件：进入到edit.html发送请求</li>
 <li>请求参数：userId</li>
 <li>请求地址：/book/loadBooks.do<h2 id="服务器处理-2"><a href="#服务器处理-2" class="headerlink" title="服务器处理"></a>服务器处理</h2>/book/loadBookds.do<br>–&gt;LoadBooksController.execute<br>测试：<br>http:localhost:8080/cloud_note/book/loadBooks.do?userId=ecd976d53a88484eaf911049241073ad<br>–&gt;BookService.LoadUserBooks<br>ecd976d53a88484eaf911049241073ad</li>
-<li>1.BookService接口loadUserBooks<pre><code>NoteResult&lt;List&lt;Book&gt;&gt; loadUserBooks
-(userId)
+<li>1.BookService接口loadUserBooks<pre><code>  NoteResult&lt;List&lt;Book&gt;&gt; loadUserBooks
+  (userId)
 </code></pre></li>
-<li>2.实现类中调用dao.findByUserId<pre><code>调用dao.findByUserId(userId)
+<li>2.实现类中调用dao.findByUserId<pre><code>  调用dao.findByUserId(userId)
 </code></pre></li>
 <li><p>3.实现类中构建Result结果</p>
-<pre><code>构建Result结果
+<pre><code>  构建Result结果
 </code></pre><p>–&gt;BookDao.findByUserId</p>
 </li>
 <li><p>BookDao接口定义findByUserId</p>
 </li>
-<li>配置BookMapper.xml<br>–&gt;cn_userbook(查询)<br>–&gt;JSON响应<h2 id="ajax回调处理-2"><a href="#ajax回调处理-2" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2>success:<br>解析JSON数据，循环生成笔记本列表项<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">（li）</div><div class="line">&lt;ul&gt;</div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"online"</span>&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">a</span>  <span class="attr">class</span>=<span class="string">'checked'</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-book"</span> <span class="attr">title</span>=<span class="string">"online"</span> <span class="attr">rel</span>=<span class="string">"tooltip-bottom"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">i</span>&gt;</span> bookName<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span> </div><div class="line">error:</div><div class="line">alter(<span class="string">"笔记本加载失败"</span>);</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="标记互斥"><a href="#标记互斥" class="headerlink" title="标记互斥"></a><script>标记互斥</h2><ul>
+<li>配置BookMapper.xml<br>–&gt;cn_userbook(查询)<br>–&gt;JSON响应<h2 id="ajax回调处理-2"><a href="#ajax回调处理-2" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2>success:<br>解析JSON数据，循环生成笔记本列表项<pre><code>（li）
+&lt;ul&gt;
+&lt;li class=&quot;online&quot;&gt;
+&lt;a  class=&#39;checked&#39;&gt;
+&lt;i class=&quot;fa fa-book&quot; title=&quot;online&quot; rel=&quot;tooltip-bottom&quot;&gt;
+&lt;/i&gt; bookName&lt;/a&gt;&lt;/li&gt; 
+error:
+alter(&quot;笔记本加载失败&quot;);
+</code></pre><h2 id="标记互斥"><a href="#标记互斥" class="headerlink" title="标记互斥"></a><script>标记互斥</h2></li>
 <li>要么使用SRC属性引用外部js文件</li>
 <li>要么在标记内自己写JavaScript代码</li>
 </ul>
@@ -374,8 +389,71 @@ gitment.render('gitment')
 <li>cn_notebook(insert)</li>
 </ul>
 <p>insert 遇到的错误<br>原因是因为插入语句要遵循严格语法，所有的属性都必须有值</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">org.springframework.dao.DataIntegrityViolationException: </span></div><div class="line"><span class="comment">### Error updating database.  Cause: java.sql.SQLException: Field 'cn_notebook_id' doesn't have a default value</span></div><div class="line"><span class="comment">### The error may involve io.codegitz.cloud_note.dao.BookDao.save-Inline</span></div><div class="line"><span class="comment">### The error occurred while setting parameters</span></div><div class="line"><span class="comment">### SQL: insert into cn_notebook (cn_user_id,cn_notebook_name,cn_notebook_type_id,cn_notebook_desc,cn_notebook_createtime) values (?,?,?,?,?)</span></div><div class="line"><span class="comment">### Cause: java.sql.SQLException: Field 'cn_notebook_id' doesn't have a default value</span></div><div class="line"><span class="comment">; SQL []; Field 'cn_notebook_id' doesn't have a default value; nested exception is java.sql.SQLException: Field 'cn_notebook_id' doesn't have a default value</span></div><div class="line"> <span class="built_in">at</span> <span class="keyword">org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:249)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:72)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:74)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:399)</div><div class="line"></span>	<span class="built_in">at</span> com.sun.proxy.$Proxy11.<span class="keyword">insert(Unknown </span>Source)</div><div class="line"> <span class="built_in">at</span> <span class="keyword">org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:253)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:52)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:53)</div><div class="line"></span>	<span class="built_in">at</span> com.sun.proxy.$Proxy12.save(Unknown Source)</div><div class="line"> <span class="built_in">at</span> test.dao.TestBookDao.testAddBook(TestBookDao.<span class="keyword">java:49)</div><div class="line"></span>	<span class="built_in">at</span> sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</div><div class="line"> <span class="built_in">at</span> sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.<span class="keyword">java:57)</div><div class="line"></span>	<span class="built_in">at</span> sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.<span class="keyword">java:43)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">java.lang.reflect.Method.invoke(Method.java:606)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.junit.runners.ParentRunner.run(ParentRunner.java:363)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)</div><div class="line"></span>	<span class="built_in">at</span> <span class="keyword">org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)</div><div class="line"></span>Caused <span class="keyword">by: </span><span class="keyword">java.sql.SQLException: </span>Field <span class="string">'cn_notebook_id'</span> doesn<span class="string">'t have a default value</div><div class="line"> at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:959)</div><div class="line"> at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3870)</div><div class="line"> at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3806)</div><div class="line"> at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2470)</div><div class="line"> at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2617)</div><div class="line"> at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2550)</div><div class="line"> at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)</div><div class="line"> at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:1192)</div><div class="line"> at org.apache.commons.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)</div><div class="line"> at org.apache.commons.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)</div><div class="line"> at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:45)</div><div class="line"> at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:73)</div><div class="line"> at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:49)</div><div class="line"> at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:115)</div><div class="line"> at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:75)</div><div class="line"> at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:170)</div><div class="line"> at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:157)</div><div class="line"> at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</div><div class="line"> at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)</div><div class="line"> at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)</div><div class="line"> at java.lang.reflect.Method.invoke(Method.java:606)</div><div class="line"> at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:386)</div><div class="line"> ... 29 more</span></div></pre></td></tr></table></figure>
-<ul>
+<pre><code>org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLException: Field &#39;cn_notebook_id&#39; doesn&#39;t have a default value
+### The error may involve io.codegitz.cloud_note.dao.BookDao.save-Inline
+### The error occurred while setting parameters
+### SQL: insert into cn_notebook (cn_user_id,cn_notebook_name,cn_notebook_type_id,cn_notebook_desc,cn_notebook_createtime) values (?,?,?,?,?)
+### Cause: java.sql.SQLException: Field &#39;cn_notebook_id&#39; doesn&#39;t have a default value
+; SQL []; Field &#39;cn_notebook_id&#39; doesn&#39;t have a default value; nested exception is java.sql.SQLException: Field &#39;cn_notebook_id&#39; doesn&#39;t have a default value
+    at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:249)
+    at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:72)
+    at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:74)
+    at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:399)
+    at com.sun.proxy.$Proxy11.insert(Unknown Source)
+    at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:253)
+    at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:52)
+    at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:53)
+    at com.sun.proxy.$Proxy12.save(Unknown Source)
+    at test.dao.TestBookDao.testAddBook(TestBookDao.java:49)
+    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:606)
+    at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+    at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+    at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+    at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+    at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+    at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+    at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+    at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+    at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+    at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+    at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+    at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+    at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+    at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+    at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+    at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+    at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+    at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+    at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+Caused by: java.sql.SQLException: Field &#39;cn_notebook_id&#39; doesn&#39;t have a default value
+    at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:959)
+    at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3870)
+    at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3806)
+    at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2470)
+    at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2617)
+    at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2550)
+    at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+    at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:1192)
+    at org.apache.commons.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+    at org.apache.commons.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+    at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:45)
+    at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:73)
+    at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:49)
+    at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:115)
+    at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:75)
+    at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:170)
+    at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:157)
+    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:606)
+    at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:386)
+    ... 29 more
+</code></pre><ul>
 <li>json响应<h2 id="ajax回调处理-5"><a href="#ajax回调处理-5" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2>success:</li>
 <li>关闭对话框</li>
 <li>添加笔记本li</li>
@@ -437,12 +515,12 @@ gitment.render('gitment')
 </ul>
 <p>$(“#id”).keydown(function(event){<br>      var code=event.keyCode;<br>      if(code==13){<br>         //发送ajax请求<br>}<br>})    </p>
 <pre><code>报错：
-Uncaught TypeError: Cannot read property &apos;cn_share_id&apos; of undefined
+Uncaught TypeError: Cannot read property &#39;cn_share_id&#39; of undefined
 原因是循环越界：
 var i = 0; i &lt;=shares.length; i++
 改为：
 var i = 0; i &lt;shares.length; i++
-</code></pre></script></h2>
+</code></pre></script></h2></li></ul>
       
 
       
@@ -554,18 +632,18 @@ var i = 0; i &lt;shares.length; i++
   
 <nav id="article-nav">
   
-    <a href="/2018/04/13/json/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/13/springAOP/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Json
+          spring AOP
         
       </div>
     </a>
   
   
-    <a href="/2018/01/25/java反射/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">java反射</div>
+    <a href="/2018/04/13/mysql命令行创建新用户/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mysql命令行添加新用户</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -752,15 +830,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -788,15 +866,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">

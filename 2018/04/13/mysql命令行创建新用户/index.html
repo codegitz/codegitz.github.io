@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Mysql命令行添加新用户 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Mysql命令行添加新用户创建用户root ，密码为123456，@%代表登录主机通配     CREATE USER ‘root’@’%’ IDENTIFIED BY ‘123456’;刷新    flush privileges;授权    GRANT ALL ON cloud_note.* TO ‘root’@’%’;123456789101112131415161718192021222">
+  <meta name="description" content="Mysql命令行添加新用户创建用户root ，密码为123456，@%代表登录主机通配     CREATE USER ‘root’@’%’ IDENTIFIED BY ‘123456’;刷新    flush privileges;授权    GRANT ALL ON cloud_note.* TO ‘root’@’%’; mysql&amp;gt; CREATE USER &amp;#39;root&amp;#39">
 <meta name="keywords" content="Mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql命令行添加新用户">
 <meta property="og:url" content="http://yoursite.com/2018/04/13/mysql命令行创建新用户/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="Mysql命令行添加新用户创建用户root ，密码为123456，@%代表登录主机通配     CREATE USER ‘root’@’%’ IDENTIFIED BY ‘123456’;刷新    flush privileges;授权    GRANT ALL ON cloud_note.* TO ‘root’@’%’;123456789101112131415161718192021222">
+<meta property="og:description" content="Mysql命令行添加新用户创建用户root ，密码为123456，@%代表登录主机通配     CREATE USER ‘root’@’%’ IDENTIFIED BY ‘123456’;刷新    flush privileges;授权    GRANT ALL ON cloud_note.* TO ‘root’@’%’; mysql&amp;gt; CREATE USER &amp;#39;root&amp;#39">
 <meta property="og:updated_time" content="2018-04-13T03:28:01.780Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql命令行添加新用户">
-<meta name="twitter:description" content="Mysql命令行添加新用户创建用户root ，密码为123456，@%代表登录主机通配     CREATE USER ‘root’@’%’ IDENTIFIED BY ‘123456’;刷新    flush privileges;授权    GRANT ALL ON cloud_note.* TO ‘root’@’%’;123456789101112131415161718192021222">
+<meta name="twitter:description" content="Mysql命令行添加新用户创建用户root ，密码为123456，@%代表登录主机通配     CREATE USER ‘root’@’%’ IDENTIFIED BY ‘123456’;刷新    flush privileges;授权    GRANT ALL ON cloud_note.* TO ‘root’@’%’; mysql&amp;gt; CREATE USER &amp;#39;root&amp;#39">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
   
@@ -209,8 +209,41 @@ gitment.render('gitment')
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Mysql命令行添加新用户"><a href="#Mysql命令行添加新用户" class="headerlink" title="Mysql命令行添加新用户"></a>Mysql命令行添加新用户</h1><p>创建用户root ，密码为123456，@%代表登录主机通配<br>     CREATE USER ‘root’@’%’ IDENTIFIED BY ‘123456’;<br>刷新<br>    flush privileges;<br>授权<br>    GRANT ALL ON cloud_note.* TO ‘root’@’%’;<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">mysql&gt; CREATE USER <span class="emphasis">'root'</span>@<span class="emphasis">'%'</span> IDENTIFIED BY <span class="emphasis">'123456'</span>;</div><div class="line">Query OK, 0 rows affected (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; flush privileges;</div><div class="line">Query OK, 0 rows affected (0.00 sec)</div><div class="line"></div><div class="line"><span class="section">mysql&gt; select host,user from mysql.user;</span></div><div class="line">+-----------+-----------+</div><div class="line"><span class="section">| host      | user      |</span></div><div class="line">+-----------+-----------+</div><div class="line">| %         | root      |</div><div class="line">| localhost | mysql.sys |</div><div class="line">| localhost | mysqlxsys |</div><div class="line"><span class="section">| localhost | root      |</span></div><div class="line">+-----------+-----------+</div><div class="line">4 rows in set (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; GRANT ALL ON cloud<span class="emphasis">_note.* TO 'root'@'%';</span></div><div class="line">Query OK, 0 rows affected (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; flush privileges;</div><div class="line">Query OK, 0 rows affected (0.00 sec)</div><div class="line"></div><div class="line"><span class="section">mysql&gt; select host,user from mysql.user;</span></div><div class="line">+-----------+-----------+</div><div class="line"><span class="section">| host      | user      |</span></div><div class="line">+-----------+-----------+</div><div class="line">| %         | root      |</div><div class="line">| localhost | mysql.sys |</div><div class="line">| localhost | mysqlxsys |</div><div class="line"><span class="section">| localhost | root      |</span></div><div class="line">+-----------+-----------+</div><div class="line">4 rows in set (0.00 sec)</div></pre></td></tr></table></figure></p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Mysql命令行添加新用户"><a href="#Mysql命令行添加新用户" class="headerlink" title="Mysql命令行添加新用户"></a>Mysql命令行添加新用户</h1><p>创建用户root ，密码为123456，@%代表登录主机通配<br>     CREATE USER ‘root’@’%’ IDENTIFIED BY ‘123456’;<br>刷新<br>    flush privileges;<br>授权<br>    GRANT ALL ON cloud_note.* TO ‘root’@’%’;</p>
+<pre><code>mysql&gt; CREATE USER &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;123456&#39;;
+Query OK, 0 rows affected (0.00 sec)
 
+mysql&gt; flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; select host,user from mysql.user;
++-----------+-----------+
+| host      | user      |
++-----------+-----------+
+| %         | root      |
+| localhost | mysql.sys |
+| localhost | mysqlxsys |
+| localhost | root      |
++-----------+-----------+
+4 rows in set (0.00 sec)
+
+mysql&gt; GRANT ALL ON cloud_note.* TO &#39;root&#39;@&#39;%&#39;;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; select host,user from mysql.user;
++-----------+-----------+
+| host      | user      |
++-----------+-----------+
+| %         | root      |
+| localhost | mysql.sys |
+| localhost | mysqlxsys |
+| localhost | root      |
++-----------+-----------+
+4 rows in set (0.00 sec)
+</code></pre>
       
 
       
@@ -322,18 +355,18 @@ gitment.render('gitment')
   
 <nav id="article-nav">
   
-    <a href="/2018/04/13/mysql报错/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/13/note/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Mysql报错
+          云笔记
         
       </div>
     </a>
   
   
-    <a href="/2018/04/13/ajax/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">ajax(asynchronous javascript and xml)</div>
+    <a href="/2018/04/13/json/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Json</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -520,15 +553,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,15 +589,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">

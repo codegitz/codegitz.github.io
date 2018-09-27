@@ -201,7 +201,7 @@
  /**
  * A constant indicating the FTP session is expecting all transfers
  * to occur between the client (local) and server and that the server
- * should connect to the client&apos;s data port to initiate a data transfer.
+ * should connect to the client&#39;s data port to initiate a data transfer.
  * This is the default data connection mode when and FTPClient instance
  * is created.
  */
@@ -211,7 +211,7 @@
  * A constant indicating the FTP session is expecting all transfers
  * to occur between the client (local) and server and that the server
  * is in passive mode, requiring the client to connect to the
- * server&apos;s data port to initiate a transfer.
+ * server&#39;s data port to initiate a transfer.
  */
 public static final int PASSIVE_LOCAL_DATA_CONNECTION_MODE = 2;
 
@@ -237,22 +237,22 @@ private void __initDefaults()
         __featuresMap = null;
     }
 </code></pre><p><strong>port模式，即主动模式：</strong><br></p>
-<pre><code> /**
- * Set the current data connection mode to
- * &lt;code&gt;ACTIVE_LOCAL_DATA_CONNECTION_MODE&lt;/code&gt;.  No communication
- * with the FTP server is conducted, but this causes all future data
- * transfers to require the FTP server to connect to the client&apos;s
- * data port.  Additionally, to accommodate differences between socket
- * implementations on different platforms, this method causes the
- * client to issue a PORT command before every data transfer.
- */
-public void enterLocalActiveMode()
-{
-    //主动，ACTIVE
-    __dataConnectionMode = ACTIVE_LOCAL_DATA_CONNECTION_MODE;
-    __passiveHost = null;
-    __passivePort = -1;
-}
+<pre><code>     /**
+     * Set the current data connection mode to
+     * &lt;code&gt;ACTIVE_LOCAL_DATA_CONNECTION_MODE&lt;/code&gt;.  No communication
+     * with the FTP server is conducted, but this causes all future data
+     * transfers to require the FTP server to connect to the client&#39;s
+     * data port.  Additionally, to accommodate differences between socket
+     * implementations on different platforms, this method causes the
+     * client to issue a PORT command before every data transfer.
+     */
+    public void enterLocalActiveMode()
+    {
+        //主动，ACTIVE
+        __dataConnectionMode = ACTIVE_LOCAL_DATA_CONNECTION_MODE;
+        __passiveHost = null;
+        __passivePort = -1;
+    }
 </code></pre><p><strong>pasv模式，即被动模式：</strong><br></p>
 <pre><code>/**
  * Set the current data connection mode to
@@ -730,11 +730,25 @@ drwxr-xr-x 8 1001 1001   4096 Apr 21  2015 nginx-1.8.0
 -rw-r--r-- 1 root root 832104 Sep  9 11:52   nginx-1.8.0.tar.gz
 </code></pre><p>进入解压目录：<br><br>    cd nginx-1.8.0</p>
 <p>1、    configure<br><br>./configure –help查询详细参数<br></p>
-<p>参数设置如下：<br><br><figure class="highlight haml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">./configure \</div><div class="line">-<span class="ruby">-prefix=<span class="regexp">/usr/local</span><span class="regexp">/nginx \</span></span></div><div class="line">-<span class="ruby"><span class="regexp">-pid-path=/var</span><span class="regexp">/run/nginx</span><span class="regexp">/nginx.pid \</span></span></div><div class="line">-<span class="ruby"><span class="regexp">-lock-path=/var</span><span class="regexp">/lock/nginx</span>.lock \</span></div><div class="line">-<span class="ruby">-error-log-path=<span class="regexp">/var/log</span><span class="regexp">/nginx/error</span>.log \</span></div><div class="line">-<span class="ruby">-http-log-path=<span class="regexp">/var/log</span><span class="regexp">/nginx/access</span>.log \</span></div><div class="line">-<span class="ruby">-with-http_gzip_static_module \</span></div><div class="line">-<span class="ruby">-http-client-body-temp-path=<span class="regexp">/var/temp</span><span class="regexp">/nginx/client</span> \</span></div><div class="line">-<span class="ruby">-http-proxy-temp-path=<span class="regexp">/var/temp</span><span class="regexp">/nginx/proxy</span> \</span></div><div class="line">-<span class="ruby">-http-fastcgi-temp-path=<span class="regexp">/var/temp</span><span class="regexp">/nginx/fastcgi</span> \</span></div><div class="line">-<span class="ruby">-http-uwsgi-temp-path=<span class="regexp">/var/temp</span><span class="regexp">/nginx/uwsgi</span> \</span></div><div class="line">-<span class="ruby">-http-scgi-temp-path=<span class="regexp">/var/temp</span><span class="regexp">/nginx/scgi</span></span></div></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/6imQ4kI.png" alt=""><br>执行完之后会生成Makefile文件<br><img src="https://i.imgur.com/ysJKB8Y.png" alt=""><br><br><br>注意：上边将临时文件目录指定为/var/temp/nginx，需要在/var下创建temp及nginx目录</p>
+<p>参数设置如下：<br></p>
+<pre><code>./configure \
+--prefix=/usr/local/nginx \
+--pid-path=/var/run/nginx/nginx.pid \
+--lock-path=/var/lock/nginx.lock \
+--error-log-path=/var/log/nginx/error.log \
+--http-log-path=/var/log/nginx/access.log \
+--with-http_gzip_static_module \
+--http-client-body-temp-path=/var/temp/nginx/client \
+--http-proxy-temp-path=/var/temp/nginx/proxy \
+--http-fastcgi-temp-path=/var/temp/nginx/fastcgi \
+--http-uwsgi-temp-path=/var/temp/nginx/uwsgi \
+--http-scgi-temp-path=/var/temp/nginx/scgi
+</code></pre><p><img src="https://i.imgur.com/6imQ4kI.png" alt=""><br>执行完之后会生成Makefile文件<br><img src="https://i.imgur.com/ysJKB8Y.png" alt=""><br><br><br>注意：上边将临时文件目录指定为/var/temp/nginx，需要在/var下创建temp及nginx目录</p>
 <p>2、    编译安装<br><br>    make<br><br>    make  install<br><br>安装成功，查看Nginx<br><br><img src="https://i.imgur.com/7gWlD3g.png" alt="">    </p>
-<h2 id="3-启动nginx"><a href="#3-启动nginx" class="headerlink" title="3 启动nginx"></a>3 启动nginx</h2><p>默认安装路径为/usr/local/nginx<br><br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span> <span class="string">/usr/local/nginx/sbin/</span></div><div class="line"><span class="string">./nginx</span></div></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/sJBnCg9.png" alt=""></p>
+<h2 id="3-启动nginx"><a href="#3-启动nginx" class="headerlink" title="3 启动nginx"></a>3 启动nginx</h2><p>默认安装路径为/usr/local/nginx<br></p>
+<pre><code>cd /usr/local/nginx/sbin/
+./nginx
+</code></pre><p><img src="https://i.imgur.com/sJBnCg9.png" alt=""></p>
 <p>我这里启动遇到了问题，因为上边将临时文件目录指定为/var/temp/nginx,需要新建路径/var/temp/nginx<br><br><img src="https://i.imgur.com/ZG3mweD.png" alt=""><br><strong>注意：执行./nginx启动nginx，这里可以-c指定加载的nginx配置文件，如下：<br>./nginx -c /usr/local/nginx/conf/nginx.conf<br>如果不指定-c，nginx在启动时默认加载conf/nginx.conf文件，此文件的地址也可以在编译安装nginx时指定./configure的参数（–conf-path= 指向配置文件（nginx.conf））</strong></p>
 <p>成功启动，但是在浏览器无法访问，阿里的服务器，安全组跑不了干系，主要有两个问题<br></p>
 <ol>
@@ -999,15 +1013,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1035,15 +1049,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">

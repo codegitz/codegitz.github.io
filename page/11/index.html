@@ -458,14 +458,14 @@ String[] file = { &quot;WeddingDress.au&quot;, &quot;(violin).au&quot;, &quot;Ca
      */
     URL url = getClass().getResource(&quot;Cn.au&quot;);//初始化一个地址
     audio = Applet.newAudioClip(url);
-</code></pre><h2 id="2-创建下拉框，把音乐名放进去"><a href="#2-创建下拉框，把音乐名放进去" class="headerlink" title="2.    创建下拉框，把音乐名放进去"></a>2.    创建下拉框，把音乐名放进去</h2><pre><code>Choice c =new Choice(); 
- String[] description = { &quot;WeddingDress.au&quot;, &quot;(violin).au&quot;,    &quot;Capox.au&quot;, &quot;Jasper.au&quot;, &quot;Cn.au&quot; };
- int count = 0;
- for (int i = 0; i &lt; 5; i++) {//将音乐名加入下拉框中
-     c.addItem(description[count++]);
- }
- c.addItemListener(this);
- this.add(c); 
+</code></pre><h2 id="2-创建下拉框，把音乐名放进去"><a href="#2-创建下拉框，把音乐名放进去" class="headerlink" title="2.    创建下拉框，把音乐名放进去"></a>2.    创建下拉框，把音乐名放进去</h2><pre><code>   Choice c =new Choice(); 
+    String[] description = { &quot;WeddingDress.au&quot;, &quot;(violin).au&quot;,    &quot;Capox.au&quot;, &quot;Jasper.au&quot;, &quot;Cn.au&quot; };
+    int count = 0;
+    for (int i = 0; i &lt; 5; i++) {//将音乐名加入下拉框中
+        c.addItem(description[count++]);
+    }
+    c.addItemListener(this);
+    this.add(c); 
 </code></pre><h2 id="3-获取下拉框里面的内容，并且切换播放选中的音乐"><a href="#3-获取下拉框里面的内容，并且切换播放选中的音乐" class="headerlink" title="3.    获取下拉框里面的内容，并且切换播放选中的音乐"></a>3.    获取下拉框里面的内容，并且切换播放选中的音乐</h2><pre><code> public void itemStateChanged(ItemEvent ie) {//获取下拉框的选中内容
     if (ie.getSource() == c) {
         Choice temp = (Choice) ie.getSource();
@@ -997,15 +997,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1033,15 +1033,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">

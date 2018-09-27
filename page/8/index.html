@@ -195,8 +195,100 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="启动错误"><a href="#启动错误" class="headerlink" title="启动错误"></a>启动错误</h1><p>tomcat启动报错：Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/tab]]<br>Tomcat日志如下：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div></pre></td><td class="code"><pre><div class="line">严重: ContainerBase<span class="selector-class">.addChild</span>: start: </div><div class="line">org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.LifecycleException</span>: Failed to start component [StandardEngine[Catalina]<span class="selector-class">.StandardHost</span>[localhost]<span class="selector-class">.StandardContext</span>[/tab]]</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.util</span><span class="selector-class">.LifecycleBase</span><span class="selector-class">.start</span>(LifecycleBase<span class="selector-class">.java</span>:<span class="number">154</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.core</span><span class="selector-class">.ContainerBase</span><span class="selector-class">.addChildInternal</span>(ContainerBase<span class="selector-class">.java</span>:<span class="number">866</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.core</span><span class="selector-class">.ContainerBase</span><span class="selector-class">.addChild</span>(ContainerBase<span class="selector-class">.java</span>:<span class="number">842</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.core</span><span class="selector-class">.StandardHost</span><span class="selector-class">.addChild</span>(StandardHost<span class="selector-class">.java</span>:<span class="number">615</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.HostConfig</span><span class="selector-class">.deployDirectory</span>(HostConfig<span class="selector-class">.java</span>:<span class="number">1095</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.HostConfig</span><span class="variable">$DeployDirectory</span>.run(HostConfig<span class="selector-class">.java</span>:<span class="number">1617</span>)</div><div class="line"> at java<span class="selector-class">.util</span><span class="selector-class">.concurrent</span><span class="selector-class">.Executors</span><span class="variable">$RunnableAdapter</span>.call(Executors<span class="selector-class">.java</span>:<span class="number">511</span>)</div><div class="line"> at java<span class="selector-class">.util</span><span class="selector-class">.concurrent</span><span class="selector-class">.FutureTask</span><span class="selector-class">.run</span>(FutureTask<span class="selector-class">.java</span>:<span class="number">266</span>)</div><div class="line"> at java<span class="selector-class">.util</span><span class="selector-class">.concurrent</span><span class="selector-class">.ThreadPoolExecutor</span><span class="selector-class">.runWorker</span>(ThreadPoolExecutor<span class="selector-class">.java</span>:<span class="number">1142</span>)</div><div class="line"> at java<span class="selector-class">.util</span><span class="selector-class">.concurrent</span><span class="selector-class">.ThreadPoolExecutor</span><span class="variable">$Worker</span>.run(ThreadPoolExecutor<span class="selector-class">.java</span>:<span class="number">617</span>)</div><div class="line"> at java<span class="selector-class">.lang</span><span class="selector-class">.Thread</span><span class="selector-class">.run</span>(Thread<span class="selector-class">.java</span>:<span class="number">748</span>)</div><div class="line">Caused by: org<span class="selector-class">.apache</span><span class="selector-class">.tomcat</span><span class="selector-class">.util</span><span class="selector-class">.bcel</span><span class="selector-class">.classfile</span><span class="selector-class">.ClassFormatException</span>: Invalid byte tag <span class="keyword">in</span> constant pool: <span class="number">15</span></div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.tomcat</span><span class="selector-class">.util</span><span class="selector-class">.bcel</span><span class="selector-class">.classfile</span><span class="selector-class">.Constant</span><span class="selector-class">.readConstant</span>(Constant<span class="selector-class">.java</span>:<span class="number">131</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.tomcat</span><span class="selector-class">.util</span><span class="selector-class">.bcel</span><span class="selector-class">.classfile</span><span class="selector-class">.ConstantPool</span>.&lt;init&gt;(ConstantPool<span class="selector-class">.java</span>:<span class="number">60</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.tomcat</span><span class="selector-class">.util</span><span class="selector-class">.bcel</span><span class="selector-class">.classfile</span><span class="selector-class">.ClassParser</span><span class="selector-class">.readConstantPool</span>(ClassParser<span class="selector-class">.java</span>:<span class="number">209</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.tomcat</span><span class="selector-class">.util</span><span class="selector-class">.bcel</span><span class="selector-class">.classfile</span><span class="selector-class">.ClassParser</span><span class="selector-class">.parse</span>(ClassParser<span class="selector-class">.java</span>:<span class="number">119</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.ContextConfig</span><span class="selector-class">.processAnnotationsStream</span>(ContextConfig<span class="selector-class">.java</span>:<span class="number">1949</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.ContextConfig</span><span class="selector-class">.processAnnotationsJar</span>(ContextConfig<span class="selector-class">.java</span>:<span class="number">1840</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.ContextConfig</span><span class="selector-class">.processAnnotationsUrl</span>(ContextConfig<span class="selector-class">.java</span>:<span class="number">1808</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.ContextConfig</span><span class="selector-class">.processAnnotations</span>(ContextConfig<span class="selector-class">.java</span>:<span class="number">1794</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.ContextConfig</span><span class="selector-class">.webConfig</span>(ContextConfig<span class="selector-class">.java</span>:<span class="number">1214</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.ContextConfig</span><span class="selector-class">.configureStart</span>(ContextConfig<span class="selector-class">.java</span>:<span class="number">828</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.ContextConfig</span><span class="selector-class">.lifecycleEvent</span>(ContextConfig<span class="selector-class">.java</span>:<span class="number">302</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.util</span><span class="selector-class">.LifecycleSupport</span><span class="selector-class">.fireLifecycleEvent</span>(LifecycleSupport<span class="selector-class">.java</span>:<span class="number">119</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.util</span><span class="selector-class">.LifecycleBase</span><span class="selector-class">.fireLifecycleEvent</span>(LifecycleBase<span class="selector-class">.java</span>:<span class="number">90</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.core</span><span class="selector-class">.StandardContext</span><span class="selector-class">.startInternal</span>(StandardContext<span class="selector-class">.java</span>:<span class="number">5148</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.util</span><span class="selector-class">.LifecycleBase</span><span class="selector-class">.start</span>(LifecycleBase<span class="selector-class">.java</span>:<span class="number">150</span>)</div><div class="line"> ... <span class="number">10</span> more</div><div class="line"></div><div class="line">一月 <span class="number">13</span>, <span class="number">2018</span> <span class="number">2</span>:<span class="number">57</span>:<span class="number">45</span> 下午 org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.HostConfig</span> deployDirectory</div><div class="line">严重: Error deploying web application directory E:\devtool\tomcat-<span class="number">7.0</span>.<span class="number">23</span>\webapps\tab</div><div class="line">java<span class="selector-class">.lang</span><span class="selector-class">.IllegalStateException</span>: ContainerBase<span class="selector-class">.addChild</span>: start: org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.LifecycleException</span>: Failed to start component [StandardEngine[Catalina]<span class="selector-class">.StandardHost</span>[localhost]<span class="selector-class">.StandardContext</span>[/tab]]</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.core</span><span class="selector-class">.ContainerBase</span><span class="selector-class">.addChildInternal</span>(ContainerBase<span class="selector-class">.java</span>:<span class="number">869</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.core</span><span class="selector-class">.ContainerBase</span><span class="selector-class">.addChild</span>(ContainerBase<span class="selector-class">.java</span>:<span class="number">842</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.core</span><span class="selector-class">.StandardHost</span><span class="selector-class">.addChild</span>(StandardHost<span class="selector-class">.java</span>:<span class="number">615</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.HostConfig</span><span class="selector-class">.deployDirectory</span>(HostConfig<span class="selector-class">.java</span>:<span class="number">1095</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.HostConfig</span><span class="variable">$DeployDirectory</span>.run(HostConfig<span class="selector-class">.java</span>:<span class="number">1617</span>)</div><div class="line"> at java<span class="selector-class">.util</span><span class="selector-class">.concurrent</span><span class="selector-class">.Executors</span><span class="variable">$RunnableAdapter</span>.call(Executors<span class="selector-class">.java</span>:<span class="number">511</span>)</div><div class="line"> at java<span class="selector-class">.util</span><span class="selector-class">.concurrent</span><span class="selector-class">.FutureTask</span><span class="selector-class">.run</span>(FutureTask<span class="selector-class">.java</span>:<span class="number">266</span>)</div><div class="line"> at java<span class="selector-class">.util</span><span class="selector-class">.concurrent</span><span class="selector-class">.ThreadPoolExecutor</span><span class="selector-class">.runWorker</span>(ThreadPoolExecutor<span class="selector-class">.java</span>:<span class="number">1142</span>)</div><div class="line"> at java<span class="selector-class">.util</span><span class="selector-class">.concurrent</span><span class="selector-class">.ThreadPoolExecutor</span><span class="variable">$Worker</span>.run(ThreadPoolExecutor<span class="selector-class">.java</span>:<span class="number">617</span>)</div><div class="line"> at java<span class="selector-class">.lang</span><span class="selector-class">.Thread</span><span class="selector-class">.run</span>(Thread<span class="selector-class">.java</span>:<span class="number">748</span>)</div><div class="line"></div><div class="line">一月 <span class="number">13</span>, <span class="number">2018</span> <span class="number">2</span>:<span class="number">57</span>:<span class="number">45</span> 下午 org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.HostConfig</span> deployDirectory</div><div class="line">信息: Deploying web application directory E:\devtool\tomcat-<span class="number">7.0</span>.<span class="number">23</span>\webapps\theme</div><div class="line">一月 <span class="number">13</span>, <span class="number">2018</span> <span class="number">2</span>:<span class="number">57</span>:<span class="number">46</span> 下午 org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.core</span><span class="selector-class">.ContainerBase</span> addChildInternal</div><div class="line">严重: ContainerBase<span class="selector-class">.addChild</span>: start: </div><div class="line">org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.LifecycleException</span>: Failed to start component [StandardEngine[Catalina]<span class="selector-class">.StandardHost</span>[localhost]<span class="selector-class">.StandardContext</span>[/theme]]</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.util</span><span class="selector-class">.LifecycleBase</span><span class="selector-class">.start</span>(LifecycleBase<span class="selector-class">.java</span>:<span class="number">154</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.core</span><span class="selector-class">.ContainerBase</span><span class="selector-class">.addChildInternal</span>(ContainerBase<span class="selector-class">.java</span>:<span class="number">866</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.core</span><span class="selector-class">.ContainerBase</span><span class="selector-class">.addChild</span>(ContainerBase<span class="selector-class">.java</span>:<span class="number">842</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.core</span><span class="selector-class">.StandardHost</span><span class="selector-class">.addChild</span>(StandardHost<span class="selector-class">.java</span>:<span class="number">615</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.HostConfig</span><span class="selector-class">.deployDirectory</span>(HostConfig<span class="selector-class">.java</span>:<span class="number">1095</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.HostConfig</span><span class="variable">$DeployDirectory</span>.run(HostConfig<span class="selector-class">.java</span>:<span class="number">1617</span>)</div><div class="line"> at java<span class="selector-class">.util</span><span class="selector-class">.concurrent</span><span class="selector-class">.Executors</span><span class="variable">$RunnableAdapter</span>.call(Executors<span class="selector-class">.java</span>:<span class="number">511</span>)</div><div class="line"> at java<span class="selector-class">.util</span><span class="selector-class">.concurrent</span><span class="selector-class">.FutureTask</span><span class="selector-class">.run</span>(FutureTask<span class="selector-class">.java</span>:<span class="number">266</span>)</div><div class="line"> at java<span class="selector-class">.util</span><span class="selector-class">.concurrent</span><span class="selector-class">.ThreadPoolExecutor</span><span class="selector-class">.runWorker</span>(ThreadPoolExecutor<span class="selector-class">.java</span>:<span class="number">1142</span>)</div><div class="line"> at java<span class="selector-class">.util</span><span class="selector-class">.concurrent</span><span class="selector-class">.ThreadPoolExecutor</span><span class="variable">$Worker</span>.run(ThreadPoolExecutor<span class="selector-class">.java</span>:<span class="number">617</span>)</div><div class="line"> at java<span class="selector-class">.lang</span><span class="selector-class">.Thread</span><span class="selector-class">.run</span>(Thread<span class="selector-class">.java</span>:<span class="number">748</span>)</div><div class="line">Caused by: org<span class="selector-class">.apache</span><span class="selector-class">.tomcat</span><span class="selector-class">.util</span><span class="selector-class">.bcel</span><span class="selector-class">.classfile</span><span class="selector-class">.ClassFormatException</span>: Invalid byte tag <span class="keyword">in</span> constant pool: <span class="number">15</span></div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.tomcat</span><span class="selector-class">.util</span><span class="selector-class">.bcel</span><span class="selector-class">.classfile</span><span class="selector-class">.Constant</span><span class="selector-class">.readConstant</span>(Constant<span class="selector-class">.java</span>:<span class="number">131</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.tomcat</span><span class="selector-class">.util</span><span class="selector-class">.bcel</span><span class="selector-class">.classfile</span><span class="selector-class">.ConstantPool</span>.&lt;init&gt;(ConstantPool<span class="selector-class">.java</span>:<span class="number">60</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.tomcat</span><span class="selector-class">.util</span><span class="selector-class">.bcel</span><span class="selector-class">.classfile</span><span class="selector-class">.ClassParser</span><span class="selector-class">.readConstantPool</span>(ClassParser<span class="selector-class">.java</span>:<span class="number">209</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.tomcat</span><span class="selector-class">.util</span><span class="selector-class">.bcel</span><span class="selector-class">.classfile</span><span class="selector-class">.ClassParser</span><span class="selector-class">.parse</span>(ClassParser<span class="selector-class">.java</span>:<span class="number">119</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.ContextConfig</span><span class="selector-class">.processAnnotationsStream</span>(ContextConfig<span class="selector-class">.java</span>:<span class="number">1949</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.ContextConfig</span><span class="selector-class">.processAnnotationsJar</span>(ContextConfig<span class="selector-class">.java</span>:<span class="number">1840</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.ContextConfig</span><span class="selector-class">.processAnnotationsUrl</span>(ContextConfig<span class="selector-class">.java</span>:<span class="number">1808</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.ContextConfig</span><span class="selector-class">.processAnnotations</span>(ContextConfig<span class="selector-class">.java</span>:<span class="number">1794</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.ContextConfig</span><span class="selector-class">.webConfig</span>(ContextConfig<span class="selector-class">.java</span>:<span class="number">1214</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.ContextConfig</span><span class="selector-class">.configureStart</span>(ContextConfig<span class="selector-class">.java</span>:<span class="number">828</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.ContextConfig</span><span class="selector-class">.lifecycleEvent</span>(ContextConfig<span class="selector-class">.java</span>:<span class="number">302</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.util</span><span class="selector-class">.LifecycleSupport</span><span class="selector-class">.fireLifecycleEvent</span>(LifecycleSupport<span class="selector-class">.java</span>:<span class="number">119</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.util</span><span class="selector-class">.LifecycleBase</span><span class="selector-class">.fireLifecycleEvent</span>(LifecycleBase<span class="selector-class">.java</span>:<span class="number">90</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.core</span><span class="selector-class">.StandardContext</span><span class="selector-class">.startInternal</span>(StandardContext<span class="selector-class">.java</span>:<span class="number">5148</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.util</span><span class="selector-class">.LifecycleBase</span><span class="selector-class">.start</span>(LifecycleBase<span class="selector-class">.java</span>:<span class="number">150</span>)</div><div class="line"> ... <span class="number">10</span> more</div><div class="line"></div><div class="line">一月 <span class="number">13</span>, <span class="number">2018</span> <span class="number">2</span>:<span class="number">57</span>:<span class="number">46</span> 下午 org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.HostConfig</span> deployDirectory</div><div class="line">严重: Error deploying web application directory E:\devtool\tomcat-<span class="number">7.0</span>.<span class="number">23</span>\webapps\theme</div><div class="line">java<span class="selector-class">.lang</span><span class="selector-class">.IllegalStateException</span>: ContainerBase<span class="selector-class">.addChild</span>: start: org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.LifecycleException</span>: Failed to start component [StandardEngine[Catalina]<span class="selector-class">.StandardHost</span>[localhost]<span class="selector-class">.StandardContext</span>[/theme]]</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.core</span><span class="selector-class">.ContainerBase</span><span class="selector-class">.addChildInternal</span>(ContainerBase<span class="selector-class">.java</span>:<span class="number">869</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.core</span><span class="selector-class">.ContainerBase</span><span class="selector-class">.addChild</span>(ContainerBase<span class="selector-class">.java</span>:<span class="number">842</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.core</span><span class="selector-class">.StandardHost</span><span class="selector-class">.addChild</span>(StandardHost<span class="selector-class">.java</span>:<span class="number">615</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.HostConfig</span><span class="selector-class">.deployDirectory</span>(HostConfig<span class="selector-class">.java</span>:<span class="number">1095</span>)</div><div class="line"> at org<span class="selector-class">.apache</span><span class="selector-class">.catalina</span><span class="selector-class">.startup</span><span class="selector-class">.HostConfig</span><span class="variable">$DeployDirectory</span>.run(HostConfig<span class="selector-class">.java</span>:<span class="number">1617</span>)</div><div class="line"> at java<span class="selector-class">.util</span><span class="selector-class">.concurrent</span><span class="selector-class">.Executors</span><span class="variable">$RunnableAdapter</span>.call(Executors<span class="selector-class">.java</span>:<span class="number">511</span>)</div><div class="line"> at java<span class="selector-class">.util</span><span class="selector-class">.concurrent</span><span class="selector-class">.FutureTask</span><span class="selector-class">.run</span>(FutureTask<span class="selector-class">.java</span>:<span class="number">266</span>)</div><div class="line"> at java<span class="selector-class">.util</span><span class="selector-class">.concurrent</span><span class="selector-class">.ThreadPoolExecutor</span><span class="selector-class">.runWorker</span>(ThreadPoolExecutor<span class="selector-class">.java</span>:<span class="number">1142</span>)</div><div class="line"> at java<span class="selector-class">.util</span><span class="selector-class">.concurrent</span><span class="selector-class">.ThreadPoolExecutor</span><span class="variable">$Worker</span>.run(ThreadPoolExecutor<span class="selector-class">.java</span>:<span class="number">617</span>)</div><div class="line"> at java<span class="selector-class">.lang</span><span class="selector-class">.Thread</span><span class="selector-class">.run</span>(Thread<span class="selector-class">.java</span>:<span class="number">748</span>)</div></pre></td></tr></table></figure></p>
-<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>修改catalina.properties配置文件<br>在tomcat.util.scan.DefaultJarScanner.jarsToSkip=\ 值后面加”*”<br><img src="https://i.imgur.com/w9avEGT.png" alt=""></p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="启动错误"><a href="#启动错误" class="headerlink" title="启动错误"></a>启动错误</h1><p>tomcat启动报错：Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/tab]]<br>Tomcat日志如下：</p>
+<pre><code>严重: ContainerBase.addChild: start: 
+org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/tab]]
+    at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:154)
+    at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:866)
+    at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:842)
+    at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:615)
+    at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1095)
+    at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1617)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.tomcat.util.bcel.classfile.ClassFormatException: Invalid byte tag in constant pool: 15
+    at org.apache.tomcat.util.bcel.classfile.Constant.readConstant(Constant.java:131)
+    at org.apache.tomcat.util.bcel.classfile.ConstantPool.&lt;init&gt;(ConstantPool.java:60)
+    at org.apache.tomcat.util.bcel.classfile.ClassParser.readConstantPool(ClassParser.java:209)
+    at org.apache.tomcat.util.bcel.classfile.ClassParser.parse(ClassParser.java:119)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsStream(ContextConfig.java:1949)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsJar(ContextConfig.java:1840)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsUrl(ContextConfig.java:1808)
+    at org.apache.catalina.startup.ContextConfig.processAnnotations(ContextConfig.java:1794)
+    at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1214)
+    at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:828)
+    at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:302)
+    at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+    at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+    at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5148)
+    at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+    ... 10 more
+
+一月 13, 2018 2:57:45 下午 org.apache.catalina.startup.HostConfig deployDirectory
+严重: Error deploying web application directory E:\devtool\tomcat-7.0.23\webapps\tab
+java.lang.IllegalStateException: ContainerBase.addChild: start: org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/tab]]
+    at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:869)
+    at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:842)
+    at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:615)
+    at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1095)
+    at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1617)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:748)
+
+一月 13, 2018 2:57:45 下午 org.apache.catalina.startup.HostConfig deployDirectory
+信息: Deploying web application directory E:\devtool\tomcat-7.0.23\webapps\theme
+一月 13, 2018 2:57:46 下午 org.apache.catalina.core.ContainerBase addChildInternal
+严重: ContainerBase.addChild: start: 
+org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/theme]]
+    at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:154)
+    at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:866)
+    at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:842)
+    at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:615)
+    at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1095)
+    at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1617)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.tomcat.util.bcel.classfile.ClassFormatException: Invalid byte tag in constant pool: 15
+    at org.apache.tomcat.util.bcel.classfile.Constant.readConstant(Constant.java:131)
+    at org.apache.tomcat.util.bcel.classfile.ConstantPool.&lt;init&gt;(ConstantPool.java:60)
+    at org.apache.tomcat.util.bcel.classfile.ClassParser.readConstantPool(ClassParser.java:209)
+    at org.apache.tomcat.util.bcel.classfile.ClassParser.parse(ClassParser.java:119)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsStream(ContextConfig.java:1949)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsJar(ContextConfig.java:1840)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsUrl(ContextConfig.java:1808)
+    at org.apache.catalina.startup.ContextConfig.processAnnotations(ContextConfig.java:1794)
+    at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1214)
+    at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:828)
+    at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:302)
+    at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+    at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+    at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5148)
+    at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+    ... 10 more
+
+一月 13, 2018 2:57:46 下午 org.apache.catalina.startup.HostConfig deployDirectory
+严重: Error deploying web application directory E:\devtool\tomcat-7.0.23\webapps\theme
+java.lang.IllegalStateException: ContainerBase.addChild: start: org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/theme]]
+    at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:869)
+    at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:842)
+    at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:615)
+    at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1095)
+    at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1617)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:748)
+</code></pre><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>修改catalina.properties配置文件<br>在tomcat.util.scan.DefaultJarScanner.jarsToSkip=\ 值后面加”*”<br><img src="https://i.imgur.com/w9avEGT.png" alt=""></p>
 
       
 
@@ -347,7 +439,241 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><figure class="highlight zephir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;stdio.h&gt;</span></div><div class="line"><span class="comment">#include &lt;stdlib.h&gt;</span></div><div class="line"><span class="comment">#include &lt;time.h&gt;</span></div><div class="line"><span class="comment">#include &lt;iostream&gt;</span></div><div class="line">using <span class="keyword">namespace</span> <span class="title">std</span>;</div><div class="line">typedef <span class="keyword">int</span> RcdType;</div><div class="line">typedef <span class="keyword">int</span> Status;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#define OVERFLOW 0</span></div><div class="line"><span class="comment">#define OK 1</span></div><div class="line"><span class="comment">#define ERROR 0</span></div><div class="line"><span class="comment">#define TRUE 1</span></div><div class="line"><span class="comment">#define FALSE 0</span></div><div class="line"><span class="comment">#define LH +1</span></div><div class="line"><span class="comment">#define EH 0</span></div><div class="line"><span class="comment">#define RH -1</span></div><div class="line">typedef struct BBSTNode &#123;            <span class="comment">//平衡二叉树结构</span></div><div class="line"> RcdType data;</div><div class="line"> <span class="keyword">int</span> bf;                          <span class="comment">//节点平衡因子</span></div><div class="line"> struct BBSTNode *lchild, *rchild;</div><div class="line">&#125;*BBSTree;                           <span class="comment">//平衡二叉树 </span></div><div class="line">void R_Rotate(BBSTree &amp;p);        <span class="comment">//右旋</span></div><div class="line">void L_Rotate(BBSTree &amp;p);        <span class="comment">//左旋</span></div><div class="line">void LeftBalance(BBSTree &amp;T);</div><div class="line">void RightBalance(BBSTree &amp;T);</div><div class="line"><span class="keyword">bool</span> InsertAVL(BBSTree &amp;T,RcdType e,<span class="keyword">bool</span> &amp;taller);</div><div class="line">void InOrderTraverse(BBSTree T);</div><div class="line">BBSTree SearchBBST(BBSTree &amp;T,RcdType e);</div><div class="line">void DeleteNode(BBSTree &amp;p);</div><div class="line"><span class="keyword">int</span> main() &#123;</div><div class="line"> BBSTree T=<span class="keyword">NULL</span>;</div><div class="line"> <span class="keyword">bool</span> taller;</div><div class="line"> <span class="keyword">int</span> DeletePoint;</div><div class="line"> srand((unsigned)time(<span class="keyword">NULL</span>));</div><div class="line"> cout &lt;&lt; <span class="string">"生成一组随机数"</span> &lt;&lt; endl;</div><div class="line"> <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="number">10</span>; i++) &#123;</div><div class="line">  <span class="keyword">int</span> temp = rand()%<span class="number">100</span>;</div><div class="line">  InsertAVL(T, temp, taller);</div><div class="line">  printf(<span class="string">"%5d"</span>, temp);</div><div class="line"> &#125;</div><div class="line"> cout &lt;&lt; endl;</div><div class="line"> printf(<span class="string">"生成一颗平衡二叉树，遍历平衡二叉树\n"</span>);</div><div class="line"> InOrderTraverse(T);</div><div class="line"> printf(<span class="string">"\n"</span>);</div><div class="line"> printf(<span class="string">"请输入要删除的节点\n"</span>);</div><div class="line"> scanf_s(<span class="string">"%d"</span>,&amp;DeletePoint);</div><div class="line"> BBSTree BT=SearchBBST(T, DeletePoint);</div><div class="line"> DeleteNode(BT);</div><div class="line"> printf(<span class="string">"删除%d后遍历二叉树为\n"</span>,DeletePoint);</div><div class="line"> InOrderTraverse(T);</div><div class="line"> cout &lt;&lt; endl;</div><div class="line"> cout &lt;&lt; <span class="string">"请输入要插入的节点"</span> &lt;&lt; endl;</div><div class="line"> <span class="keyword">int</span> InsertPoint;</div><div class="line"> cin &gt;&gt; InsertPoint;</div><div class="line"> InsertAVL(T,InsertPoint,taller);</div><div class="line"> cout &lt;&lt; <span class="string">"添加节点"</span>&lt;&lt;InsertPoint&lt;&lt; <span class="string">"后遍历顺序为"</span>;</div><div class="line"> cout &lt;&lt; endl;</div><div class="line"> InOrderTraverse(T);</div><div class="line"> cout &lt;&lt; endl;</div><div class="line">&#125;</div><div class="line">void R_Rotate(BBSTree &amp;p) &#123;        <span class="comment">//对最小失衡树进行右旋调整</span></div><div class="line"> BBSTree lc = p-&gt;lchild;        <span class="comment">//lc指向p节点的的左孩子</span></div><div class="line"> p-&gt;lchild = lc-&gt;rchild;        <span class="comment">//lc节点的右子树作为p节点的左子树 </span></div><div class="line"> lc-&gt;rchild = p;                <span class="comment">//p节点（原来的根节点）作为lc节点的右孩子</span></div><div class="line"> p = lc;                        <span class="comment">//p指向新的根节点</span></div><div class="line">&#125;</div><div class="line">void L_Rotate(BBSTree &amp;p) &#123;        <span class="comment">//对最小失衡树进行左旋调整</span></div><div class="line"> 	BBSTree rc = p-&gt;rchild;        <span class="comment">//rc指向p节点的右孩子</span></div><div class="line"> p-&gt;rchild = rc-&gt;lchild;        <span class="comment">//rc节点的左子树作为p节点的右子树</span></div><div class="line"> rc-&gt;lchild = p;                <span class="comment">//p节点（原根节点）作为rc节点的左孩子</span></div><div class="line"> p = rc;                        <span class="comment">//p指向新的根节点	</span></div><div class="line">&#125;</div><div class="line">void LeftBalance(BBSTree &amp;T) &#123;     <span class="comment">//左平衡处理操作</span></div><div class="line"> BBSTree lc, rd;</div><div class="line"> lc = T-&gt;lchild;</div><div class="line"> <span class="keyword">switch</span> (lc-&gt;bf)</div><div class="line"> &#123;</div><div class="line"> <span class="keyword">case</span> LH:                      <span class="comment">//LL型</span></div><div class="line">  T-&gt;bf = lc-&gt;bf = EH;</div><div class="line">  R_Rotate(T);</div><div class="line">  <span class="keyword">break</span>;</div><div class="line"> <span class="keyword">case</span> RH:                      <span class="comment">//LR型</span></div><div class="line">  rd = lc-&gt;rchild;</div><div class="line">  <span class="keyword">switch</span> (rd-&gt;bf)           <span class="comment">//修改T及其左孩子的平衡因子</span></div><div class="line">  &#123;</div><div class="line">  <span class="keyword">case</span> LH:</div><div class="line">   T-&gt;bf = RH;</div><div class="line">   lc-&gt;bf = EH;</div><div class="line">   <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">case</span> EH:</div><div class="line">   T-&gt;bf = lc-&gt;bf = EH;</div><div class="line">   <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">case</span> RH:</div><div class="line">   T-&gt;bf = EH;</div><div class="line">   lc-&gt;bf = LH;</div><div class="line">   <span class="keyword">break</span>;</div><div class="line">  &#125;</div><div class="line">  rd-&gt;bf = EH;</div><div class="line">  L_Rotate(T-&gt;lchild);</div><div class="line">  R_Rotate(T);</div><div class="line">  <span class="keyword">break</span>;</div><div class="line"> &#125;</div><div class="line">&#125;</div><div class="line">void RightBalance(BBSTree &amp;T) &#123;      <span class="comment">//右平衡调整</span></div><div class="line"> BBSTree rc, ld;</div><div class="line"> rc = T-&gt;rchild;</div><div class="line"> <span class="keyword">switch</span> (rc-&gt;bf)</div><div class="line"> &#123;</div><div class="line"> <span class="keyword">case</span> RH:</div><div class="line">  T-&gt;bf = rc-&gt;bf = EH;</div><div class="line">  L_Rotate(T);</div><div class="line">  <span class="keyword">break</span>;</div><div class="line"> <span class="keyword">case</span> LH:</div><div class="line">  ld = rc-&gt;lchild;</div><div class="line">  <span class="keyword">switch</span> (ld-&gt;bf)</div><div class="line">  &#123;</div><div class="line">  <span class="keyword">case</span> LH:</div><div class="line">   T-&gt;bf = EH;</div><div class="line">   rc-&gt;bf = RH;</div><div class="line">   <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">case</span> EH:</div><div class="line">   T-&gt;bf = rc-&gt;bf = EH;</div><div class="line">   <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">case</span> RH:</div><div class="line">   T-&gt;bf = LH;</div><div class="line">   rc-&gt;bf = EH;</div><div class="line">   <span class="keyword">break</span>;</div><div class="line">  &#125;</div><div class="line">  ld-&gt;bf = EH;</div><div class="line">  R_Rotate(T-&gt;rchild);</div><div class="line">  L_Rotate(T);</div><div class="line">  <span class="keyword">break</span>;</div><div class="line"> &#125;</div><div class="line">&#125;</div><div class="line">void InOrderTraverse(BBSTree T) &#123; <span class="comment">//中序遍历</span></div><div class="line"> <span class="keyword">if</span> (T) &#123;</div><div class="line">  InOrderTraverse(T-&gt;lchild);</div><div class="line">  printf(<span class="string">"%5d"</span>,T-&gt;data);</div><div class="line">  InOrderTraverse(T-&gt;rchild);</div><div class="line"> &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">bool</span> InsertAVL(BBSTree &amp;T, RcdType e, <span class="keyword">bool</span> &amp;taller) &#123;   <span class="comment">//插入e到二叉树中</span></div><div class="line"> <span class="keyword">if</span> (T == <span class="keyword">NULL</span>) &#123;  <span class="comment">//T为空，树长高</span></div><div class="line">  T = (BBSTree)malloc(sizeof(BBSTNode));</div><div class="line">  T-&gt;data = e;</div><div class="line">  T-&gt;bf = EH;</div><div class="line">  T-&gt;lchild = <span class="keyword">NULL</span>;</div><div class="line">  T-&gt;rchild = <span class="keyword">NULL</span>;</div><div class="line">  taller = <span class="keyword">TRUE</span>;</div><div class="line"> &#125;</div><div class="line"> <span class="keyword">else</span> <span class="keyword">if</span> (e == T-&gt;data) &#123;           <span class="comment">//树中已经存在和e相同的节点</span></div><div class="line">  taller = <span class="keyword">FALSE</span>;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">FALSE</span>;      <span class="comment">//未插入</span></div><div class="line"></div><div class="line"> &#125;</div><div class="line"> <span class="keyword">else</span> <span class="keyword">if</span> (e&lt;T-&gt;data) &#123; <span class="comment">//插入到左子树</span></div><div class="line">  <span class="keyword">if</span> (<span class="keyword">FALSE</span> == InsertAVL(T-&gt;lchild, e, taller)) <span class="keyword">return</span> <span class="keyword">FALSE</span>;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">TRUE</span>==taller) &#123;</div><div class="line">   <span class="keyword">switch</span> (T-&gt;bf) <span class="comment">//检查T的平衡因子</span></div><div class="line">   &#123;</div><div class="line">   <span class="keyword">case</span> LH:</div><div class="line">    LeftBalance(T);<span class="comment">//原左高，左平衡处理</span></div><div class="line">    taller = <span class="keyword">FALSE</span>;</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">   <span class="keyword">case</span> EH:</div><div class="line">    T-&gt;bf = LH;</div><div class="line">    taller = <span class="keyword">TRUE</span>;</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">   <span class="keyword">case</span> RH:</div><div class="line">    T-&gt;bf = EH;</div><div class="line">    taller = <span class="keyword">FALSE</span>;</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">   &#125;</div><div class="line">  &#125;</div><div class="line"> </div><div class="line"> &#125;</div><div class="line"> <span class="keyword">else</span>&#123;  <span class="comment">//插入到右子树</span></div><div class="line">  <span class="keyword">if</span> (<span class="keyword">FALSE</span> == InsertAVL(T-&gt;rchild, e, taller)) <span class="keyword">return</span> <span class="keyword">FALSE</span>;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">TRUE</span>==taller) &#123;</div><div class="line">   <span class="keyword">switch</span> (T-&gt;bf)</div><div class="line">   &#123;</div><div class="line">   <span class="keyword">case</span> LH:</div><div class="line">    T-&gt;bf = EH;</div><div class="line">    taller = <span class="keyword">false</span>;</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">   <span class="keyword">case</span> EH:</div><div class="line">    T-&gt;bf=RH;</div><div class="line">    taller = <span class="keyword">FALSE</span>;</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">   <span class="keyword">case</span> RH:</div><div class="line">    RightBalance(T);</div><div class="line">    taller = <span class="keyword">FALSE</span>;</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">   &#125;</div><div class="line">  </div><div class="line">  &#125;</div><div class="line"> &#125;</div><div class="line"> <span class="keyword">return</span> <span class="keyword">TRUE</span>;</div><div class="line">&#125;</div><div class="line">void DeleteNode(BBSTree &amp;p) &#123;</div><div class="line"> </div><div class="line"> <span class="comment">//删除二叉树中的p节点，引用的形参p是实参要删除的p节点的双亲指向其的指针域</span></div><div class="line"> BBSTNode *q, *s;</div><div class="line"> q = p;</div><div class="line"> <span class="keyword">if</span> (p-&gt;rchild == <span class="keyword">NULL</span>) &#123;</div><div class="line">  p = p-&gt;lchild;</div><div class="line">  free(q);</div><div class="line"> &#125;</div><div class="line"> <span class="keyword">else</span> <span class="keyword">if</span> (p-&gt;lchild == <span class="keyword">NULL</span>) &#123;</div><div class="line">  p = p-&gt;rchild;</div><div class="line">  free(q);</div><div class="line"> &#125;</div><div class="line"> <span class="keyword">else</span> &#123;</div><div class="line">  s = p-&gt;lchild;</div><div class="line">  <span class="keyword">while</span> (s-&gt;rchild!=<span class="keyword">NULL</span>) <span class="comment">//寻找直接前驱</span></div><div class="line">  &#123;</div><div class="line">   q = s;</div><div class="line">   s = s-&gt;rchild;</div><div class="line">  &#125;</div><div class="line">  p-&gt;data = s-&gt;data;</div><div class="line">  <span class="keyword">if</span> (q == p)</div><div class="line">   q-&gt;lchild = s-&gt;lchild;</div><div class="line">  <span class="keyword">else</span> q-&gt;rchild = s-&gt;lchild;</div><div class="line">  free(s);</div><div class="line"> &#125;</div><div class="line">&#125;</div><div class="line">BBSTree SearchBBST(BBSTree &amp;T, RcdType e) &#123;    <span class="comment">//查找节点</span></div><div class="line"> <span class="keyword">if</span> (T == <span class="keyword">NULL</span>) <span class="keyword">return</span> <span class="keyword">NULL</span>;</div><div class="line"> <span class="keyword">if</span> (T-&gt;data == e) <span class="keyword">return</span> T;</div><div class="line"> <span class="keyword">if</span> (T-&gt;data &gt; e)</div><div class="line">  <span class="keyword">return</span> SearchBBST(T-&gt;lchild,e);</div><div class="line"> <span class="keyword">return</span> SearchBBST(T-&gt;rchild,e);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <script src="/assets/js/APlayer.min.js"> </script><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+#include &lt;iostream&gt;
+using namespace std;
+typedef int RcdType;
+typedef int Status;
+
+
+#define OVERFLOW 0
+#define OK 1
+#define ERROR 0
+#define TRUE 1
+#define FALSE 0
+#define LH +1
+#define EH 0
+#define RH -1
+typedef struct BBSTNode {            //平衡二叉树结构
+    RcdType data;
+    int bf;                          //节点平衡因子
+    struct BBSTNode *lchild, *rchild;
+}*BBSTree;                           //平衡二叉树 
+void R_Rotate(BBSTree &amp;p);        //右旋
+void L_Rotate(BBSTree &amp;p);        //左旋
+void LeftBalance(BBSTree &amp;T);
+void RightBalance(BBSTree &amp;T);
+bool InsertAVL(BBSTree &amp;T,RcdType e,bool &amp;taller);
+void InOrderTraverse(BBSTree T);
+BBSTree SearchBBST(BBSTree &amp;T,RcdType e);
+void DeleteNode(BBSTree &amp;p);
+int main() {
+    BBSTree T=NULL;
+    bool taller;
+    int DeletePoint;
+    srand((unsigned)time(NULL));
+    cout &lt;&lt; &quot;生成一组随机数&quot; &lt;&lt; endl;
+    for (int i = 0; i &lt;10; i++) {
+        int temp = rand()%100;
+        InsertAVL(T, temp, taller);
+        printf(&quot;%5d&quot;, temp);
+    }
+    cout &lt;&lt; endl;
+    printf(&quot;生成一颗平衡二叉树，遍历平衡二叉树\n&quot;);
+    InOrderTraverse(T);
+    printf(&quot;\n&quot;);
+    printf(&quot;请输入要删除的节点\n&quot;);
+    scanf_s(&quot;%d&quot;,&amp;DeletePoint);
+    BBSTree BT=SearchBBST(T, DeletePoint);
+    DeleteNode(BT);
+    printf(&quot;删除%d后遍历二叉树为\n&quot;,DeletePoint);
+    InOrderTraverse(T);
+    cout &lt;&lt; endl;
+    cout &lt;&lt; &quot;请输入要插入的节点&quot; &lt;&lt; endl;
+    int InsertPoint;
+    cin &gt;&gt; InsertPoint;
+    InsertAVL(T,InsertPoint,taller);
+    cout &lt;&lt; &quot;添加节点&quot;&lt;&lt;InsertPoint&lt;&lt; &quot;后遍历顺序为&quot;;
+    cout &lt;&lt; endl;
+    InOrderTraverse(T);
+    cout &lt;&lt; endl;
+}
+void R_Rotate(BBSTree &amp;p) {        //对最小失衡树进行右旋调整
+    BBSTree lc = p-&gt;lchild;        //lc指向p节点的的左孩子
+    p-&gt;lchild = lc-&gt;rchild;        //lc节点的右子树作为p节点的左子树 
+    lc-&gt;rchild = p;                //p节点（原来的根节点）作为lc节点的右孩子
+    p = lc;                        //p指向新的根节点
+}
+void L_Rotate(BBSTree &amp;p) {        //对最小失衡树进行左旋调整
+     BBSTree rc = p-&gt;rchild;        //rc指向p节点的右孩子
+    p-&gt;rchild = rc-&gt;lchild;        //rc节点的左子树作为p节点的右子树
+    rc-&gt;lchild = p;                //p节点（原根节点）作为rc节点的左孩子
+    p = rc;                        //p指向新的根节点    
+}
+void LeftBalance(BBSTree &amp;T) {     //左平衡处理操作
+    BBSTree lc, rd;
+    lc = T-&gt;lchild;
+    switch (lc-&gt;bf)
+    {
+    case LH:                      //LL型
+        T-&gt;bf = lc-&gt;bf = EH;
+        R_Rotate(T);
+        break;
+    case RH:                      //LR型
+        rd = lc-&gt;rchild;
+        switch (rd-&gt;bf)           //修改T及其左孩子的平衡因子
+        {
+        case LH:
+            T-&gt;bf = RH;
+            lc-&gt;bf = EH;
+            break;
+        case EH:
+            T-&gt;bf = lc-&gt;bf = EH;
+            break;
+        case RH:
+            T-&gt;bf = EH;
+            lc-&gt;bf = LH;
+            break;
+        }
+        rd-&gt;bf = EH;
+        L_Rotate(T-&gt;lchild);
+        R_Rotate(T);
+        break;
+    }
+}
+void RightBalance(BBSTree &amp;T) {      //右平衡调整
+    BBSTree rc, ld;
+    rc = T-&gt;rchild;
+    switch (rc-&gt;bf)
+    {
+    case RH:
+        T-&gt;bf = rc-&gt;bf = EH;
+        L_Rotate(T);
+        break;
+    case LH:
+        ld = rc-&gt;lchild;
+        switch (ld-&gt;bf)
+        {
+        case LH:
+            T-&gt;bf = EH;
+            rc-&gt;bf = RH;
+            break;
+        case EH:
+            T-&gt;bf = rc-&gt;bf = EH;
+            break;
+        case RH:
+            T-&gt;bf = LH;
+            rc-&gt;bf = EH;
+            break;
+        }
+        ld-&gt;bf = EH;
+        R_Rotate(T-&gt;rchild);
+        L_Rotate(T);
+        break;
+    }
+}
+void InOrderTraverse(BBSTree T) { //中序遍历
+    if (T) {
+        InOrderTraverse(T-&gt;lchild);
+        printf(&quot;%5d&quot;,T-&gt;data);
+        InOrderTraverse(T-&gt;rchild);
+    }
+}
+bool InsertAVL(BBSTree &amp;T, RcdType e, bool &amp;taller) {   //插入e到二叉树中
+    if (T == NULL) {  //T为空，树长高
+        T = (BBSTree)malloc(sizeof(BBSTNode));
+        T-&gt;data = e;
+        T-&gt;bf = EH;
+        T-&gt;lchild = NULL;
+        T-&gt;rchild = NULL;
+        taller = TRUE;
+    }
+    else if (e == T-&gt;data) {           //树中已经存在和e相同的节点
+        taller = FALSE;
+        return FALSE;      //未插入
+
+    }
+    else if (e&lt;T-&gt;data) { //插入到左子树
+        if (FALSE == InsertAVL(T-&gt;lchild, e, taller)) return FALSE;
+        if (TRUE==taller) {
+            switch (T-&gt;bf) //检查T的平衡因子
+            {
+            case LH:
+                LeftBalance(T);//原左高，左平衡处理
+                taller = FALSE;
+                break;
+            case EH:
+                T-&gt;bf = LH;
+                taller = TRUE;
+                break;
+            case RH:
+                T-&gt;bf = EH;
+                taller = FALSE;
+                break;
+            }
+        }
+
+    }
+    else{  //插入到右子树
+        if (FALSE == InsertAVL(T-&gt;rchild, e, taller)) return FALSE;
+        if (TRUE==taller) {
+            switch (T-&gt;bf)
+            {
+            case LH:
+                T-&gt;bf = EH;
+                taller = false;
+                break;
+            case EH:
+                T-&gt;bf=RH;
+                taller = FALSE;
+                break;
+            case RH:
+                RightBalance(T);
+                taller = FALSE;
+                break;
+            }
+
+        }
+    }
+    return TRUE;
+}
+void DeleteNode(BBSTree &amp;p) {
+
+    //删除二叉树中的p节点，引用的形参p是实参要删除的p节点的双亲指向其的指针域
+    BBSTNode *q, *s;
+    q = p;
+    if (p-&gt;rchild == NULL) {
+        p = p-&gt;lchild;
+        free(q);
+    }
+    else if (p-&gt;lchild == NULL) {
+        p = p-&gt;rchild;
+        free(q);
+    }
+    else {
+        s = p-&gt;lchild;
+        while (s-&gt;rchild!=NULL) //寻找直接前驱
+        {
+            q = s;
+            s = s-&gt;rchild;
+        }
+        p-&gt;data = s-&gt;data;
+        if (q == p)
+            q-&gt;lchild = s-&gt;lchild;
+        else q-&gt;rchild = s-&gt;lchild;
+        free(s);
+    }
+}
+BBSTree SearchBBST(BBSTree &amp;T, RcdType e) {    //查找节点
+    if (T == NULL) return NULL;
+    if (T-&gt;data == e) return T;
+    if (T-&gt;data &gt; e)
+        return SearchBBST(T-&gt;lchild,e);
+    return SearchBBST(T-&gt;rchild,e);
+}
+</code></pre>
       
 
       
@@ -427,11 +753,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">install</span> dplayer <span class="comment">--save</span></div><div class="line">npm <span class="keyword">install</span> hexo-tag-dplayer</div></pre></td></tr></table></figure>
-<p>简单的安装完成之后在文章中就可以正常使用了，关于标签的使用，可以到插件作者主页<a href="https://github.com/MoePlayer/DPlayer" target="_blank" rel="external">使用文档</a>去查看<br>如果提示缺少文件什么的，请参照这篇文章进行添加:<a href="http://www.jianshu.com/p/53e0d2a617da" target="_blank" rel="external">参考</a></p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>插入代码<br><figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% dplayer <span class="string">"url=http://p0e6ktyto.bkt.clouddn.com/MSN%20%E6%9C%80%E5%90%8E%E7%9A%84%E4%B8%89%E9%87%8D%E5%A5%8F_%20%E7%BB%9D%E5%94%B12017_%E9%AB%98%E6%B8%85.mp4"</span>  <span class="string">"pic=https://i.imgur.com/n3YAGhq.jpg"</span> <span class="string">"loop=yes"</span> <span class="string">"theme=#FADFA3"</span> <span class="string">"autoplay=false"</span> <span class="string">"token=tokendemo"</span> %&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">插入视频代码内容大致如下</div><div class="line">&#123;<span class="meta">%</span> dplayer <span class="string">"视频链接"</span>  <span class="string">"封面图片链接"</span> <span class="string">"循环播放loop=yes"</span> <span class="string">"theme=#FADFA3"</span> <span class="string">"自动播放autoplay=false"</span> <span class="string">"token=tokendemo"</span> <span class="meta">%</span>&#125;</div></pre></td></tr></table></figure>
-<p>效果如下：</p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><pre><code>npm install dplayer --save
+npm install hexo-tag-dplayer
+</code></pre><p>简单的安装完成之后在文章中就可以正常使用了，关于标签的使用，可以到插件作者主页<a href="https://github.com/MoePlayer/DPlayer" target="_blank" rel="external">使用文档</a>去查看<br>如果提示缺少文件什么的，请参照这篇文章进行添加:<a href="http://www.jianshu.com/p/53e0d2a617da" target="_blank" rel="external">参考</a></p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>插入代码</p>
+<pre><code>{% dplayer "url=http://p0e6ktyto.bkt.clouddn.com/MSN%20%E6%9C%80%E5%90%8E%E7%9A%84%E4%B8%89%E9%87%8D%E5%A5%8F_%20%E7%BB%9D%E5%94%B12017_%E9%AB%98%E6%B8%85.mp4"  "pic=https://i.imgur.com/n3YAGhq.jpg" "loop=yes" "theme=#FADFA3" "autoplay=false" "token=tokendemo" %}
+</code></pre><pre><code>插入视频代码内容大致如下
+{% dplayer "视频链接"  "封面图片链接" "循环播放loop=yes" "theme=#FADFA3" "自动播放autoplay=false" "token=tokendemo" %}
+</code></pre><p>效果如下：</p>
 <p><center>MSN 最后的三重奏_ 绝唱2017</center><br><div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","loop":true,"video":{"url":"http://p0e6ktyto.bkt.clouddn.com/MSN%20%E6%9C%80%E5%90%8E%E7%9A%84%E4%B8%89%E9%87%8D%E5%A5%8F_%20%E7%BB%9D%E5%94%B12017_%E9%AB%98%E6%B8%85.mp4","pic":"https://i.imgur.com/n3YAGhq.jpg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script><br><img src="https://i.imgur.com/n3YAGhq.jpg" alt=""></p>
 <h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>以上就是关于Dplayer的简单使用，详细配置见作者<a href="http://dplayer.js.org/docs/" target="_blank" rel="external">Doc</a></p>
 
@@ -697,15 +1026,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -733,15 +1062,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">

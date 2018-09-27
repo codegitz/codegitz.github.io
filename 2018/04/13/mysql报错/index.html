@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Mysql报错 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Mysql报错：Unable to connect to remote host. Catalog download has failed.123456789101112131415=================== Start Initialization ===================MySQL Installer is running in Community modeInit">
+  <meta name="description" content="Mysql报错：Unable to connect to remote host. Catalog download has failed.=================== Start Initialization =================== MySQL Installer is running in Community mode  Initializing product r">
 <meta name="keywords" content="Mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql报错">
 <meta property="og:url" content="http://yoursite.com/2018/04/13/mysql报错/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="Mysql报错：Unable to connect to remote host. Catalog download has failed.123456789101112131415=================== Start Initialization ===================MySQL Installer is running in Community modeInit">
+<meta property="og:description" content="Mysql报错：Unable to connect to remote host. Catalog download has failed.=================== Start Initialization =================== MySQL Installer is running in Community mode  Initializing product r">
 <meta property="og:updated_time" content="2018-04-13T03:16:12.411Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql报错">
-<meta name="twitter:description" content="Mysql报错：Unable to connect to remote host. Catalog download has failed.123456789101112131415=================== Start Initialization ===================MySQL Installer is running in Community modeInit">
+<meta name="twitter:description" content="Mysql报错：Unable to connect to remote host. Catalog download has failed.=================== Start Initialization =================== MySQL Installer is running in Community mode  Initializing product r">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
   
@@ -209,8 +209,22 @@ gitment.render('gitment')
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Mysql报错：Unable-to-connect-to-remote-host-Catalog-download-has-failed"><a href="#Mysql报错：Unable-to-connect-to-remote-host-Catalog-download-has-failed" class="headerlink" title="Mysql报错：Unable to connect to remote host. Catalog download has failed."></a>Mysql报错：Unable to connect to remote host. Catalog download has failed.</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">=================== <span class="keyword">Start</span> Initialization ===================</div><div class="line">MySQL Installer <span class="keyword">is</span> running <span class="keyword">in</span> Community <span class="keyword">mode</span></div><div class="line"></div><div class="line">Initializing product requirements</div><div class="line">Loading product <span class="keyword">catalog</span></div><div class="line">Checking <span class="keyword">for</span> product <span class="keyword">catalog</span> snippets</div><div class="line">Checking <span class="keyword">for</span> product packages <span class="keyword">in</span> the bundle</div><div class="line">Categorizing product <span class="keyword">catalog</span></div><div class="line">Finding all installed packages.</div><div class="line">Your product <span class="keyword">catalog</span> was <span class="keyword">last</span> <span class="keyword">updated</span> <span class="keyword">at</span> <span class="number">4</span>/<span class="number">9</span>/<span class="number">2018</span> <span class="number">9</span>:<span class="number">54</span>:<span class="number">11</span> PM</div><div class="line">=================== <span class="keyword">End</span> Initialization ===================</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">Unable <span class="keyword">to</span> <span class="keyword">connect</span> <span class="keyword">to</span> remote host.  <span class="keyword">Catalog</span> download has failed.</div></pre></td></tr></table></figure>
-<p>问题分析<br>该问题是由于新版本的 Mysql 在安装的时候会自动在 Windows 的“任务计划程序”中安装一个定时任务，任务的触发时间为每天上午十点。</p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Mysql报错：Unable-to-connect-to-remote-host-Catalog-download-has-failed"><a href="#Mysql报错：Unable-to-connect-to-remote-host-Catalog-download-has-failed" class="headerlink" title="Mysql报错：Unable to connect to remote host. Catalog download has failed."></a>Mysql报错：Unable to connect to remote host. Catalog download has failed.</h1><pre><code>=================== Start Initialization ===================
+MySQL Installer is running in Community mode
+
+Initializing product requirements
+Loading product catalog
+Checking for product catalog snippets
+Checking for product packages in the bundle
+Categorizing product catalog
+Finding all installed packages.
+Your product catalog was last updated at 4/9/2018 9:54:11 PM
+=================== End Initialization ===================
+
+
+
+Unable to connect to remote host.  Catalog download has failed.
+</code></pre><p>问题分析<br>该问题是由于新版本的 Mysql 在安装的时候会自动在 Windows 的“任务计划程序”中安装一个定时任务，任务的触发时间为每天上午十点。</p>
 <p>解决方式<br>找到相应的定时任务，并禁用该任务。 </p>
 
       
@@ -324,18 +338,18 @@ gitment.render('gitment')
   
 <nav id="article-nav">
   
-    <a href="/2018/04/13/Mapper映射器/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/13/mybatis关联映射/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Mapper映射器
+          Mybatis关联映射
         
       </div>
     </a>
   
   
-    <a href="/2018/04/13/mysql命令行创建新用户/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Mysql命令行添加新用户</div>
+    <a href="/2018/01/25/java反射/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java反射</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -522,15 +536,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,15 +572,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">

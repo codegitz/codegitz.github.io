@@ -171,19 +171,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-CentOS7执行yum命令出错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-hexo-yilia-文章浏览量统计" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/CentOS7执行yum命令出错/">CentOS7执行yum命令出错</a>
+      <a class="article-title" href="/2018/04/13/hexo-yilia-文章浏览量统计/">hexo yilia 文章浏览量统计</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/CentOS7执行yum命令出错/" class="archive-article-date">
+        <a href="/2018/04/13/hexo-yilia-文章浏览量统计/" class="archive-article-date">
   	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
@@ -195,9 +195,58 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="CentOS7执行yum命令出错"><a href="#CentOS7执行yum命令出错" class="headerlink" title="CentOS7执行yum命令出错"></a>CentOS7执行yum命令出错</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]<span class="comment"># yum install docker</span></div><div class="line">Loaded plugins: fastestmirror</div><div class="line"></div><div class="line"></div><div class="line"> One <span class="keyword">of</span> <span class="keyword">the</span> configured repositories failed (Unknown),</div><div class="line"> <span class="keyword">and</span> yum doesn't have enough cached data <span class="keyword">to</span> <span class="keyword">continue</span>. At this point <span class="keyword">the</span> only</div><div class="line"> safe thing yum can do <span class="keyword">is</span> fail. There are a few ways <span class="keyword">to</span> work <span class="string">"fix"</span> this:</div><div class="line"></div><div class="line"><span class="number">1.</span> Contact <span class="keyword">the</span> upstream <span class="keyword">for</span> <span class="keyword">the</span> repository <span class="keyword">and</span> <span class="keyword">get</span> them <span class="keyword">to</span> fix <span class="keyword">the</span> problem.</div><div class="line"></div><div class="line"> <span class="number">2.</span> Reconfigure <span class="keyword">the</span> baseurl/etc. <span class="keyword">for</span> <span class="keyword">the</span> repository, <span class="keyword">to</span> point <span class="keyword">to</span> a working</div><div class="line">        upstream. This <span class="keyword">is</span> most often useful <span class="keyword">if</span> you are using a newer</div><div class="line">        distribution release than <span class="keyword">is</span> supported <span class="keyword">by</span> <span class="keyword">the</span> repository (<span class="keyword">and</span> <span class="keyword">the</span></div><div class="line">        packages <span class="keyword">for</span> <span class="keyword">the</span> previous distribution release still work).</div><div class="line"></div><div class="line"><span class="number">3.</span> Disable <span class="keyword">the</span> repository, so yum won't use <span class="keyword">it</span> <span class="keyword">by</span> default. Yum will <span class="keyword">then</span>   just ignore <span class="keyword">the</span> repository <span class="keyword">until</span> you permanently enable <span class="keyword">it</span> again <span class="keyword">or</span> use</div><div class="line">        <span class="comment">--enablerepo for temporary usage:</span></div><div class="line">  yum-config-manager <span class="comment">--disable &lt;repoid&gt;</span></div><div class="line"></div><div class="line">     <span class="number">4.</span> Configure <span class="keyword">the</span> failing repository <span class="keyword">to</span> be skipped, <span class="keyword">if</span> <span class="keyword">it</span> <span class="keyword">is</span> unavailable.</div><div class="line">        Note <span class="keyword">that</span> yum will <span class="keyword">try</span> <span class="keyword">to</span> contact <span class="keyword">the</span> repo. when <span class="keyword">it</span> runs most commands,</div><div class="line">        so will have <span class="keyword">to</span> <span class="keyword">try</span> <span class="keyword">and</span> fail each <span class="built_in">time</span> (<span class="keyword">and</span> thus. yum will be be much</div><div class="line">        slower). If <span class="keyword">it</span> <span class="keyword">is</span> a very temporary problem though, this <span class="keyword">is</span> often a nice</div><div class="line">        compromise:</div><div class="line"></div><div class="line">        yum-config-manager <span class="comment">--save --setopt=&lt;repoid&gt;.skip_if_unavailable=true</span></div><div class="line"></div><div class="line">Cannot find a valid baseurl <span class="keyword">for</span> repo: base/<span class="number">7</span>/x86_64</div></pre></td></tr></table></figure>
-<p>原因是本本虚拟机无法上网，配置再多也没用</p>
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="不蒜子"><a href="#不蒜子" class="headerlink" title="不蒜子"></a>不蒜子</h2><p>不蒜子的配置很简单,先去不蒜子<a href="http://busuanzi.ibruce.info/" target="_blank" rel="external">官网</a>获取代码,修改hexo\themes\yilia\layout_partial\footer.ejs，在后,添加如下代码：</p>
+<pre><code>&lt;script async src=&quot;//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>然后，根据个人爱好选择下列代码:<br>网站的总的访问量</p>
+<pre><code>&lt;span id=&quot;busuanzi_container_site_pv&quot;&gt;
+    总访问量: &lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;
+&lt;/span&gt;
+网站总的访问人数:
+</code></pre><pre><code>&lt;span id=&quot;busuanzi_container_site_uv&quot;&gt;
+    总访客: &lt;span id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt;
+&lt;/span&gt;
+</code></pre><p>单页访问量:</p>
+<pre><code>&lt;span id=&quot;busuanzi_container_page_pv&quot;&gt;
+  本文总阅读量&lt;span id=&quot;busuanzi_value_page_pv&quot;&gt;&lt;/span&gt;次
+&lt;/span&gt;
+</code></pre><p>添加单页访问量,修改hexo\themes\yilia\layout_partial\article.ejs,在&lt;%- partial(‘post/tag’) %&gt; 后添加如下代码:</p>
+<pre><code>&lt;span id=&quot;busuanzi_container_page_pv&quot;&gt;
+  |阅读量(&lt;span id=&quot;busuanzi_value_page_pv&quot;&gt;&lt;/span&gt;)
+&lt;/span&gt;
+</code></pre><p>添加总的访问量跟总的访问人数,修改hexo\themes\yilia\layout_partial\footer.ejs:</p>
+<pre><code>&lt;div calss=&quot;count-span&quot;&gt;
+    &lt;span id=&quot;busuanzi_container_site_pv&quot;&gt;
+        总访问量: &lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;|
+    &lt;/span&gt;
+    &lt;span id=&quot;busuanzi_container_site_uv&quot;&gt;
+        总访客: &lt;span id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt;
+    &lt;/span&gt;
+&lt;/div&gt;
+</code></pre><p>我的footer.ejs配置</p>
+<pre><code>&lt;footer id=&quot;footer&quot;&gt;
+  &lt;div class=&quot;outer&quot;&gt;
+    &lt;div id=&quot;footer-info&quot;&gt;
+        &lt;div class=&quot;footer-left&quot;&gt;
+            &amp;copy; &lt;%= date(new Date(), &#39;YYYY&#39;) %&gt; &lt;%= config.author || config.title %&gt;
+        &lt;/div&gt;
+          &lt;div class=&quot;footer-right&quot;&gt;
+              &lt;a href=&quot;http://hexo.io/&quot; target=&quot;_blank&quot;&gt;Hexo&lt;/a&gt;  Theme &lt;a href=&quot;https://github.com/litten/hexo-theme-yilia&quot; target=&quot;_blank&quot;&gt;Yilia&lt;/a&gt; by Litten
+          &lt;/div&gt;
+    &lt;/div&gt;
 
+      &lt;div calss=&quot;count-span&quot;&gt;
+    &lt;span id=&quot;busuanzi_container_site_pv&quot;&gt;
+        总访问量: &lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;|
+    &lt;/span&gt;
+
+    &lt;span id=&quot;busuanzi_container_site_uv&quot;&gt;
+        总访客: &lt;span id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt;
+    &lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+&lt;script async src=&quot;//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;
+</code></pre>
       
 
       
@@ -210,7 +259,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
         		</li>
       		
 		</ul>
@@ -223,7 +272,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/CentOS7执行yum命令出错/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/hexo-yilia-文章浏览量统计/">展开全文 >></a>
         </p>
       
 
@@ -253,19 +302,19 @@
 
 
   
-    <article id="post-hexo-yilia-文章浏览量统计" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-CentOS7执行yum命令出错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/hexo-yilia-文章浏览量统计/">hexo yilia 文章浏览量统计</a>
+      <a class="article-title" href="/2018/04/13/CentOS7执行yum命令出错/">CentOS7执行yum命令出错</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/hexo-yilia-文章浏览量统计/" class="archive-article-date">
+        <a href="/2018/04/13/CentOS7执行yum命令出错/" class="archive-article-date">
   	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
@@ -277,14 +326,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="不蒜子"><a href="#不蒜子" class="headerlink" title="不蒜子"></a>不蒜子</h2><p>不蒜子的配置很简单,先去不蒜子<a href="http://busuanzi.ibruce.info/" target="_blank" rel="external">官网</a>获取代码,修改hexo\themes\yilia\layout_partial\footer.ejs，在后,添加如下代码：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">"//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>然后，根据个人爱好选择下列代码:<br>网站的总的访问量<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_site_pv"</span>&gt;</span></div><div class="line"> 总访问量: <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_site_pv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">网站总的访问人数:</div></pre></td></tr></table></figure></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_site_uv"</span>&gt;</span></div><div class="line"> 总访客: <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_site_uv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>单页访问量:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_page_pv"</span>&gt;</span></div><div class="line">  本文总阅读量<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_page_pv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>次</div><div class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>添加单页访问量,修改hexo\themes\yilia\layout_partial\article.ejs,在&lt;%- partial(‘post/tag’) %&gt; 后添加如下代码:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_page_pv"</span>&gt;</span></div><div class="line">  |阅读量(<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_page_pv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>)</div><div class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>添加总的访问量跟总的访问人数,修改hexo\themes\yilia\layout_partial\footer.ejs:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">calss</span>=<span class="string">"count-span"</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_site_pv"</span>&gt;</span></div><div class="line">  总访问量: <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_site_pv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>|</div><div class="line"> <span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_site_uv"</span>&gt;</span></div><div class="line">  总访客: <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_site_uv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>我的footer.ejs配置<br><figure class="highlight erb"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">id</span>=<span class="string">"footer"</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"outer"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"footer-info"</span>&gt;</span></div><div class="line">    	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"footer-left"</span>&gt;</span></div><div class="line">    		&amp;copy; <span class="tag">&lt;<span class="name">%=</span></span><span class="ruby"> date(new Date(), <span class="string">'YYYY'</span>) </span><span class="xml"><span class="tag">%&gt;</span> <span class="tag">&lt;<span class="name">%=</span></span></span><span class="ruby"> config.author <span class="params">||</span> config.title </span><span class="xml"><span class="tag">%&gt;</span></span></div><div class="line">    	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"footer-right"</span>&gt;</span></div><div class="line">      		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://hexo.io/"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>Hexo<span class="tag">&lt;/<span class="name">a</span>&gt;</span>  Theme <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://github.com/litten/hexo-theme-yilia"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>Yilia<span class="tag">&lt;/<span class="name">a</span>&gt;</span> by Litten</div><div class="line">      	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">calss</span>=<span class="string">"count-span"</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_site_pv"</span>&gt;</span></div><div class="line">  总访问量: <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_site_pv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>|</div><div class="line"> <span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"></div><div class="line"> <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_site_uv"</span>&gt;</span></div><div class="line">  总访客: <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_site_uv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">"//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="CentOS7执行yum命令出错"><a href="#CentOS7执行yum命令出错" class="headerlink" title="CentOS7执行yum命令出错"></a>CentOS7执行yum命令出错</h2><pre><code>[root@localhost ~]# yum install docker
+Loaded plugins: fastestmirror
+
+
+ One of the configured repositories failed (Unknown),
+ and yum doesn&#39;t have enough cached data to continue. At this point the only
+ safe thing yum can do is fail. There are a few ways to work &quot;fix&quot; this:
+
+1. Contact the upstream for the repository and get them to fix the problem.
+
+ 2. Reconfigure the baseurl/etc. for the repository, to point to a working
+        upstream. This is most often useful if you are using a newer
+        distribution release than is supported by the repository (and the
+        packages for the previous distribution release still work).
+
+3. Disable the repository, so yum won&#39;t use it by default. Yum will then   just ignore the repository until you permanently enable it again or use
+        --enablerepo for temporary usage:
+  yum-config-manager --disable &lt;repoid&gt;
+
+     4. Configure the failing repository to be skipped, if it is unavailable.
+        Note that yum will try to contact the repo. when it runs most commands,
+        so will have to try and fail each time (and thus. yum will be be much
+        slower). If it is a very temporary problem though, this is often a nice
+        compromise:
+
+        yum-config-manager --save --setopt=&lt;repoid&gt;.skip_if_unavailable=true
+
+Cannot find a valid baseurl for repo: base/7/x86_64
+</code></pre><p>原因是本本虚拟机无法上网，配置再多也没用</p>
 
       
 
@@ -298,7 +368,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -311,7 +381,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/hexo-yilia-文章浏览量统计/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/CentOS7执行yum命令出错/">展开全文 >></a>
         </p>
       
 
@@ -429,19 +499,19 @@
 
 
   
-    <article id="post-Linux系统" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-PowerDesigner中DBMS设置的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/Linux系统/">Linux入门</a>
+      <a class="article-title" href="/2018/04/13/PowerDesigner中DBMS设置的问题/">PowerDesigner中DBMS设置的问题</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/Linux系统/" class="archive-article-date">
+        <a href="/2018/04/13/PowerDesigner中DBMS设置的问题/" class="archive-article-date">
   	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
@@ -453,82 +523,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="linux系统入门命令"><a href="#linux系统入门命令" class="headerlink" title="linux系统入门命令"></a>linux系统入门命令</h2><p><img src="https://i.imgur.com/7eh6TGc.png" alt=""></p>
-<p><img src="https://i.imgur.com/Ejlq4bE.png" alt=""></p>
-<p><img src="https://i.imgur.com/LKa1LxD.png" alt=""></p>
-<p><img src="https://i.imgur.com/ybKZ0AB.png" alt=""></p>
-<p><img src="https://i.imgur.com/qEhoB5P.png" alt=""></p>
-<p><img src="https://i.imgur.com/dCMXbUi.png" alt=""></p>
-<p><img src="https://i.imgur.com/F1vxE36.png" alt=""></p>
-<p><img src="https://i.imgur.com/V4P7utD.png" alt=""></p>
-<p><img src="https://i.imgur.com/zon6eSu.png" alt=""></p>
-<p><img src="https://i.imgur.com/aAvT3D6.png" alt=""></p>
-<p><img src="https://i.imgur.com/ZlXKCAz.png" alt=""></p>
-<p><img src="https://i.imgur.com/dKCa5oK.png" alt=""></p>
-<p><img src="https://i.imgur.com/W90zIPA.png" alt=""></p>
-<p><img src="https://i.imgur.com/EiR8wab.png" alt=""></p>
-<p><img src="https://i.imgur.com/TcySP4V.png" alt=""></p>
-<p><img src="https://i.imgur.com/XC9GLWo.png" alt=""></p>
-<p><img src="https://i.imgur.com/bWwQPhX.png" alt=""></p>
-<p><img src="https://i.imgur.com/xIbYOth.png" alt=""></p>
-<p><img src="https://i.imgur.com/OxYVNcZ.png" alt=""></p>
-<p><img src="https://i.imgur.com/yFlF45B.png" alt=""></p>
-<h2 id="Linux命令操作技巧"><a href="#Linux命令操作技巧" class="headerlink" title="Linux命令操作技巧"></a>Linux命令操作技巧</h2><p><img src="https://i.imgur.com/xVjIft3.png" alt=""></p>
-<p><img src="https://i.imgur.com/Rq1RG5p.png" alt=""></p>
-<p><img src="https://i.imgur.com/P6uTIbb.png" alt=""></p>
-<p><img src="https://i.imgur.com/teJEjNL.png" alt=""></p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@localhost /]<span class="comment"># cat test1</span></div><div class="line"><span class="keyword">this</span> <span class="keyword">is</span> a test file</div><div class="line">[root@localhost /]<span class="comment"># cat test2</span></div><div class="line">cat: test2: No such file <span class="keyword">or</span> directory</div><div class="line">[root@localhost /]<span class="comment"># cat &lt;test1&gt;test2</span></div><div class="line">[root@localhost /]<span class="comment"># cat test2</span></div><div class="line"><span class="keyword">this</span> <span class="keyword">is</span> a test file</div><div class="line">[root@localhost /]<span class="comment">#</span></div></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/kVIDC9u.png" alt=""></p>
-<p><img src="https://i.imgur.com/2hK8u4M.png" alt=""></p>
-<p>查看网卡<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-attr">[root@localhost /]</span># <span class="selector-tag">dmesg</span> | <span class="selector-tag">grep</span> <span class="selector-tag">eth0</span></div><div class="line"><span class="selector-attr">[    1.551363]</span> <span class="selector-tag">e1000</span> <span class="selector-tag">0000</span><span class="selector-pseudo">:00</span><span class="selector-pseudo">:03.0</span> <span class="selector-tag">eth0</span>: (<span class="attribute">PCI</span>:<span class="number">33</span><span class="attribute">MHz</span>:<span class="number">32</span>-bit) <span class="selector-tag">08</span><span class="selector-pseudo">:00</span><span class="selector-pseudo">:27</span><span class="selector-pseudo">:80</span><span class="selector-pseudo">:9c</span><span class="selector-pseudo">:a0</span></div><div class="line"><span class="selector-attr">[    1.551368]</span> <span class="selector-tag">e1000</span> <span class="selector-tag">0000</span><span class="selector-pseudo">:00</span><span class="selector-pseudo">:03.0</span> <span class="selector-tag">eth0</span>: <span class="selector-tag">Intel</span>(R) <span class="selector-tag">PRO</span>/<span class="selector-tag">1000</span> <span class="selector-tag">Network</span> <span class="selector-tag">Connection</span></div></pre></td></tr></table></figure></p>
-<h2 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h2><p><img src="https://i.imgur.com/w5aEPci.png" alt=""></p>
-<p><img src="https://i.imgur.com/4WlXn3u.png" alt=""></p>
-<p><img src="https://i.imgur.com/ejyw9Cc.png" alt=""></p>
-<p><img src="https://i.imgur.com/PqqPSVL.png" alt=""></p>
-<h2 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h2><p><img src="https://i.imgur.com/hDbkP48.png" alt=""></p>
-<p>which：查找某些可执行程序<br>whereis:查找可执行程序，相关配置文件，帮助信息<br>locate：模糊搜索，列出相应的文件<br>find:<br><img src="https://i.imgur.com/YBwaNr9.png" alt=""></p>
-<h2 id="文本编辑器"><a href="#文本编辑器" class="headerlink" title="文本编辑器"></a>文本编辑器</h2><p><img src="https://i.imgur.com/EC0qKNH.png" alt=""></p>
-<p><img src="https://i.imgur.com/aNxsocU.png" alt=""></p>
-<p><img src="https://i.imgur.com/UCC8FYM.png" alt=""></p>
-<p><img src="https://i.imgur.com/FaoTGDA.png" alt=""></p>
-<p><img src="https://i.imgur.com/9xO4Sfo.png" alt=""></p>
-<p><img src="https://i.imgur.com/lN2zz5W.png" alt=""></p>
-<p><img src="https://i.imgur.com/5edVuiD.png" alt=""></p>
-<p><img src="https://i.imgur.com/RMBADOb.png" alt=""></p>
-<p><img src="https://i.imgur.com/kbDcmqc.png" alt=""></p>
-<p><img src="https://i.imgur.com/wP0uN0u.png" alt=""></p>
-<p><img src="https://i.imgur.com/TbOBT2X.png" alt=""></p>
-<p><img src="https://i.imgur.com/3WYH460.png" alt=""></p>
-<p><img src="https://i.imgur.com/isNRh81.png" alt=""></p>
-<p><img src="https://i.imgur.com/qnrP6uT.png" alt=""></p>
-<p><img src="https://i.imgur.com/Fid9CiY.png" alt=""></p>
-<p><img src="https://i.imgur.com/XSCkMTo.png" alt=""></p>
-<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>##shell</p>
-<h3 id="shell简介"><a href="#shell简介" class="headerlink" title="shell简介"></a>shell简介</h3><p><img src="https://i.imgur.com/x3t8HMZ.png" alt=""></p>
-<p><img src="https://i.imgur.com/k9OCQvY.png" alt=""></p>
-<p><img src="https://i.imgur.com/7yhiANw.png" alt=""></p>
-<p><img src="https://i.imgur.com/aNqw31v.png" alt=""></p>
-<p><img src="https://i.imgur.com/9oJFdOl.png" alt=""></p>
-<p><img src="https://i.imgur.com/APzRkKh.png" alt=""></p>
-<p><img src="https://i.imgur.com/ZU9AYbk.png" alt=""></p>
-<p><img src="https://i.imgur.com/kRHitAl.png" alt=""></p>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[root<span class="symbol">@localhost</span> /]<span class="meta"># vi shelltest</span></div><div class="line">[root<span class="symbol">@localhost</span> /]<span class="meta"># cat shelltest</span></div><div class="line"> <span class="meta">#!/bin/bash</span></div><div class="line"> <span class="meta"># program</span></div><div class="line"> <span class="meta"># This program shows <span class="string">"Helloworld!"</span></span></div></pre></td></tr></table></figure>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">echo -e <span class="string">"Hello world.\n"</span></div><div class="line"><span class="keyword">exit</span> <span class="number">0</span></div><div class="line">[root<span class="symbol">@localhost</span> /]<span class="meta">#</span></div><div class="line"></div><div class="line">[root<span class="symbol">@localhost</span> /]<span class="meta"># sh shelltest</span></div><div class="line">Hello world.</div><div class="line"></div><div class="line">[root<span class="symbol">@localhost</span> /]<span class="meta"># ./shelltest</span></div><div class="line">-bash: ./shelltest: Permission denied</div></pre></td></tr></table></figure>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root<span class="symbol">@localhost</span> /]<span class="meta"># chmod 744 shelltest </span></div><div class="line">[root<span class="symbol">@localhost</span> /]<span class="meta"># ./shelltest</span></div><div class="line">Hello world.</div></pre></td></tr></table></figure>
-<h3 id="shell变量"><a href="#shell变量" class="headerlink" title="shell变量"></a>shell变量</h3><p><img src="https://i.imgur.com/wFwYM2X.png" alt=""></p>
-<p><img src="https://i.imgur.com/mVvy0c5.png" alt=""></p>
-<p><img src="https://i.imgur.com/c1kQkjT.png" alt=""></p>
-<p><img src="https://i.imgur.com/v17XzC4.png" alt=""></p>
-<p><img src="https://i.imgur.com/HecJ5Ap.png" alt=""></p>
-<p>shell脚本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#!/bin/bash</span></div><div class="line"> <span class="comment"># program</span></div><div class="line"> <span class="comment"># This program shows "Helloworld!"</span></div><div class="line"></div><div class="line"> <span class="comment">#echo -e "Hello world.\n"</span></div><div class="line"> <span class="comment">#exit 0</span></div><div class="line">v1=centos</div><div class="line">v2=<span class="string">"this is a test filed"</span></div><div class="line">a=10</div><div class="line">b=20</div><div class="line"><span class="built_in">echo</span> <span class="variable">$a</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$b</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$v2</span></div><div class="line"> <span class="comment"># mathmatical</span></div><div class="line"><span class="built_in">echo</span> $((<span class="variable">$a</span>+<span class="variable">$b</span>))</div><div class="line"><span class="built_in">echo</span> $((<span class="variable">$a</span>*<span class="variable">$b</span>))</div><div class="line"> <span class="comment"># String length</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#v2&#125;</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$v2</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;v2:5&#125;</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;v2:5:5&#125;</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;v2#this is&#125;</span></div></pre></td></tr></table></figure></p>
-<p>运行结果<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[<span class="symbol">root@</span>localhost /]# ./shelltest</div><div class="line"><span class="number">10</span></div><div class="line"><span class="number">20</span></div><div class="line"><span class="keyword">this</span> <span class="keyword">is</span> a test filed</div><div class="line"><span class="number">30</span></div><div class="line"><span class="number">200</span></div><div class="line"><span class="number">20</span></div><div class="line"><span class="keyword">this</span> <span class="keyword">is</span> a test filed</div><div class="line"><span class="keyword">is</span> a test filed</div><div class="line"><span class="keyword">is</span> a</div><div class="line">a test filed</div></pre></td></tr></table></figure></p>
-<h3 id="shell中的判断"><a href="#shell中的判断" class="headerlink" title="shell中的判断"></a>shell中的判断</h3><p><img src="https://i.imgur.com/aT7HiPM.png" alt=""></p>
-<p><img src="https://i.imgur.com/xwLuI55.png" alt=""></p>
-<p><img src="https://i.imgur.com/OUurS4y.png" alt=""></p>
-<p><strong>分支结束，关键字反写</strong><br><img src="https://i.imgur.com/z1KgT58.png" alt=""></p>
-<p><img src="https://i.imgur.com/6No07Gi.png" alt=""></p>
-<p>for循环<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#! /bin/bash</span></div><div class="line"><span class="keyword">for</span>((i=1;i&lt;=10;i++));<span class="keyword">do</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$i</span>;</div><div class="line"><span class="keyword">done</span>;</div><div class="line">~</div></pre></td></tr></table></figure></p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[root@localhost /]# vi for</div><div class="line">[root@localhost /]# sh for</div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">4</span></div><div class="line"><span class="number">5</span></div><div class="line"><span class="number">6</span></div><div class="line"><span class="number">7</span></div><div class="line"><span class="number">8</span></div><div class="line"><span class="number">9</span></div><div class="line"><span class="number">10</span></div></pre></td></tr></table></figure>
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="解决PowerDesigner中DBMS设置的问题"><a href="#解决PowerDesigner中DBMS设置的问题" class="headerlink" title="解决PowerDesigner中DBMS设置的问题"></a>解决PowerDesigner中DBMS设置的问题</h2><p>在Generate Physical Data Model 的时候出现DBMS选择框全为空的情况，而且上面的菜单栏没有database这个选项<br><img src="https://i.imgur.com/oBXAV3q.png" alt=""></p>
+<p>一开始以为是软件装错了，以为是下了什么盗版软件，后来才发现是DBMS的路径有问题<br><img src="https://i.imgur.com/8wbGyAN.png" alt=""><br>直接浏览到powderdesigner的安装路径下的\Resource Files\DBMS，软件自己配的路径有点诡异，并不是正确的，点击确定之后即可<br><img src="https://i.imgur.com/uQdlj4X.png" alt=""><br>出现了所有的DBMS，上面一行菜单栏也出现了database这个选项<br><img src="https://i.imgur.com/BHeWP5B.png" alt=""></p>
 
       
 
@@ -542,7 +538,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">powerdesigner</a>
         		</li>
       		
 		</ul>
@@ -555,7 +551,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/Linux系统/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/PowerDesigner中DBMS设置的问题/">展开全文 >></a>
         </p>
       
 
@@ -620,17 +616,172 @@
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。</p>
 <p>整个CORS通信过程，都是浏览器自动完成，不需要用户参与。对于开发者来说，CORS通信与同源的AJAX通信没有差别，代码完全一样。浏览器一旦发现AJAX请求跨源，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，但用户不会有感觉。</p>
 <p>因此，实现CORS通信的关键是服务器。只要服务器实现了CORS接口，就可以跨源通信。</p>
-<h3 id="两种请求方式"><a href="#两种请求方式" class="headerlink" title="两种请求方式"></a>两种请求方式</h3><p>浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request），浏览器对于两种请求的处理方式不一样。<br>满足以下两大条件就是简单请求<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">(1) 请求方法是以下三种方法之一：</div><div class="line">HEAD</div><div class="line"><span class="built_in">GET</span></div><div class="line"><span class="keyword">POST</span></div><div class="line">2）HTTP的头信息不超出以下几种字段：</div><div class="line">Accept</div><div class="line">Accept-Language</div><div class="line">Content-Language</div><div class="line">Last-Event-ID</div><div class="line">Content-<span class="keyword">Type</span>：只限于三个值application/x-www-<span class="keyword">form</span>-urlencoded、multipart/<span class="keyword">form</span>-data、text/plain</div></pre></td></tr></table></figure></p>
-<p>java后台解决方法有两个：</p>
-<h4 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h4><p>1.自己建一个corsfilter类<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">package io.codegitz.cloud_note.<span class="built_in">filter</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.servlet.Filter;</div><div class="line"><span class="keyword">import</span> javax.servlet.FilterChain;</div><div class="line"><span class="keyword">import</span> javax.servlet.FilterConfig;</div><div class="line"><span class="keyword">import</span> javax.servlet.ServletException;</div><div class="line"><span class="keyword">import</span> javax.servlet.ServletRequest;</div><div class="line"><span class="keyword">import</span> javax.servlet.ServletResponse;</div><div class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</div><div class="line"></div><div class="line">@<span class="type">Component</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CorsFilter</span> <span class="title">implements</span> <span class="title">Filter</span></span>&#123;</div><div class="line"></div><div class="line"> <span class="comment">//@Override</span></div><div class="line"> <span class="keyword">public</span> void <span class="keyword">init</span>(<span class="type">FilterConfig</span> filterConfig) <span class="keyword">throws</span> <span class="type">ServletException</span> &#123;</div><div class="line">  </div><div class="line"> &#125;</div><div class="line"></div><div class="line"> <span class="comment">//@Override</span></div><div class="line"> <span class="keyword">public</span> void doFilter(<span class="type">ServletRequest</span> servletRequest, <span class="type">ServletResponse</span> servletResponse, <span class="type">FilterChain</span> filterChain)</div><div class="line">   <span class="keyword">throws</span> <span class="type">IOException</span>, <span class="type">ServletException</span> &#123;</div><div class="line">  <span class="type">HttpServletResponse</span> response = (<span class="type">HttpServletResponse</span>)servletResponse;  </div><div class="line">        response.setHeader(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"*"</span>);  </div><div class="line">        response.setHeader(<span class="string">"Access-Control-Allow-Methods"</span>, <span class="string">"POST, GET, OPTIONS, DELETE"</span>);  </div><div class="line">        response.setHeader(<span class="string">"Access-Control-Max-Age"</span>, <span class="string">"3600"</span>);  </div><div class="line">        response.setHeader(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"x-requested-with,Authorization"</span>);  </div><div class="line">        response.setHeader(<span class="string">"Access-Control-Allow-Credentials"</span>, <span class="string">"true"</span>);  </div><div class="line">        filterChain.doFilter(servletRequest, servletResponse); </div><div class="line">  </div><div class="line"> &#125;</div><div class="line"></div><div class="line"> <span class="comment">//@Override</span></div><div class="line"> <span class="keyword">public</span> void destroy() &#123;</div><div class="line">  </div><div class="line"> &#125;</div><div class="line"> </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>预检请求会附带一些关于接下来的请求的信息给服务器，主要有以下几种：</p>
+<h3 id="两种请求方式"><a href="#两种请求方式" class="headerlink" title="两种请求方式"></a>两种请求方式</h3><p>浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request），浏览器对于两种请求的处理方式不一样。<br>满足以下两大条件就是简单请求</p>
+<pre><code>(1) 请求方法是以下三种方法之一：
+HEAD
+GET
+POST
+2）HTTP的头信息不超出以下几种字段：
+Accept
+Accept-Language
+Content-Language
+Last-Event-ID
+Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain
+</code></pre><p>java后台解决方法有两个：</p>
+<h4 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h4><p>1.自己建一个corsfilter类</p>
+<pre><code>package io.codegitz.cloud_note.filter;
+
+import java.io.IOException;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class CorsFilter implements Filter{
+
+    //@Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+
+    }
+
+    //@Override
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
+            throws IOException, ServletException {
+        HttpServletResponse response = (HttpServletResponse)servletResponse;  
+        response.setHeader(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);  
+        response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;POST, GET, OPTIONS, DELETE&quot;);  
+        response.setHeader(&quot;Access-Control-Max-Age&quot;, &quot;3600&quot;);  
+        response.setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;x-requested-with,Authorization&quot;);  
+        response.setHeader(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;);  
+        filterChain.doFilter(servletRequest, servletResponse); 
+
+    }
+
+    //@Override
+    public void destroy() {
+
+    }
+
+}
+</code></pre><p>预检请求会附带一些关于接下来的请求的信息给服务器，主要有以下几种：</p>
 <p>Origin：请求的源域信息<br>Access-Control-Request-Method：接下来的请求类型，如POST、GET等<br>Access-Control-Request-Headers：接下来的请求中包含的用户显式设置的Header列表<br>服务器端收到请求之后，会根据附带的信息来判断是否允许该跨域请求，信息返回同样是通过Header完成的：</p>
 <p>Access-Control-Allow-Origin：允许跨域的Origin列表<br>Access-Control-Allow-Methods：允许跨域的方法列表<br>Access-Control-Allow-Headers：允许跨域的Header列表<br>Access-Control-Expose-Headers：允许暴露给JavaScript代码的Header列表<br>Access-Control-Max-Age：最大的浏览器缓存时间，单位s<br>以上行为都是浏览器自动完成的，用户无需关注这些细节。如果服务器配置正确，那么和正常非跨域请求是一样的。</p>
-<p>2.在web.xml文件中配置<br><figure class="highlight vbscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="built_in">filter</span>&gt;  </div><div class="line">    &lt;<span class="built_in">filter</span>-name&gt;cors&lt;/<span class="built_in">filter</span>-name&gt;  </div><div class="line">    &lt;<span class="built_in">filter</span>-<span class="keyword">class</span>&gt;io.codegitz.cloud_note.<span class="built_in">filter</span>.CorsFilter&lt;/<span class="built_in">filter</span>-<span class="keyword">class</span>&gt;  </div><div class="line">&lt;/<span class="built_in">filter</span>&gt;  </div><div class="line">&lt;<span class="built_in">filter</span>-mapping&gt;  </div><div class="line">    &lt;<span class="built_in">filter</span>-name&gt;cors&lt;/<span class="built_in">filter</span>-name&gt;  </div><div class="line">    &lt;url-pattern&gt;*.<span class="keyword">do</span>&lt;/url-pattern&gt;  </div><div class="line">&lt;/<span class="built_in">filter</span>-mapping&gt;</div></pre></td></tr></table></figure></p>
-<h4 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h4><p>这种方式似乎要spring4.2以上才支持，利用提供的jar包，下载 cors-filter-1.7.jar, java-property-utils-1.9.jar 这两个库文件放到lib目录下。(放到对应项目的webcontent/WEB-INF/lib/下)，如果是maven项目，可以简单添加如下依赖到pom.xml中即可<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.thetransactioncompany<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>cors-filter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>[ version ]<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>接着添加CORS配置到web.xml文件中<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 跨域配置，此filter应该放在所有filter之前--&gt;</span>    </div><div class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!-- The CORS filter with parameters --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CORS<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>com.thetransactioncompany.cors.CORSFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="comment">&lt;!-- <span class="doctag">Note:</span> All parameters are options, if omitted the CORS </span></div><div class="line">             Filter will fall back to the respective default values.</div><div class="line">          --&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>cors.allowGenericHttpRequests<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>cors.allowOrigin<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>*<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>cors.allowSubdomains<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>cors.supportedMethods<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>GET, HEAD, POST, OPTIONS<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>cors.supportedHeaders<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>Accept, Origin, X-Requested-With, Content-Type, Last-Modified<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>cors.exposedHeaders<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!--这里可以添加一些自己的暴露Headers   --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>X-Test-1, X-Test-2<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>cors.supportsCredentials<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>cors.maxAge<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>3600<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!-- CORS Filter mapping --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CORS<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>配置完成之后可以发送另起一个项目或者页面来测试配置是否成功<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE HTML&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"scripts/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"scripts/basevalue.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript">  </span></div><div class="line">    $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">        <span class="comment">//按钮单击时执行  </span></div><div class="line">        $(<span class="string">"#testAjax"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">              <span class="comment">//取Ajax返回结果  </span></div><div class="line">              $.ajax(&#123;</div><div class="line">            	  <span class="attr">url</span>:path+<span class="string">"/test/ajax.do"</span>,</div><div class="line">            	  <span class="attr">data</span>:&#123;&#125;,</div><div class="line">            	  <span class="attr">dataType</span>:<span class="string">"json"</span>,</div><div class="line">            	  <span class="attr">type</span>:<span class="string">"post"</span>,</div><div class="line">            	  <span class="attr">success</span>:<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123; </div><div class="line">            		  $(<span class="string">"#myDiv"</span>).empty; </div><div class="line">            	 $(<span class="string">"#myDiv"</span>).html(result.msg);</div><div class="line">                  <span class="comment">//显示Ajax返回结果  </span></div><div class="line">            	  alert(result.msg);</div><div class="line">            	  &#125;,</div><div class="line">            	  <span class="attr">error</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            		  alert(<span class="string">"错误"</span>);</div><div class="line">            	  &#125;&#125;);  </div><div class="line">         &#125;);  </div><div class="line">    &#125;);  </div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span>      </div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"myDiv"</span>&gt;</span><span class="tag">&lt;<span class="name">h2</span>&gt;</span>返回跨域的文本<span class="tag">&lt;/<span class="name">h2</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"testAjax"</span> <span class="attr">type</span>=<span class="string">"button"</span>&gt;</span>点击获取Ajax跨域返回内容<span class="tag">&lt;/<span class="name">button</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>浏览器输入<a href="http://47.106.120.224/cloud_note/Filter.html" target="_blank" rel="external">http://47.106.120.224/cloud_note/Filter.html</a><br>成功返回文本跨域请求成功<br><img src="https://i.imgur.com/fhWTkym.png" alt=""></p>
+<p>2.在web.xml文件中配置</p>
+<pre><code>&lt;filter&gt;  
+    &lt;filter-name&gt;cors&lt;/filter-name&gt;  
+    &lt;filter-class&gt;io.codegitz.cloud_note.filter.CorsFilter&lt;/filter-class&gt;  
+&lt;/filter&gt;  
+&lt;filter-mapping&gt;  
+    &lt;filter-name&gt;cors&lt;/filter-name&gt;  
+    &lt;url-pattern&gt;*.do&lt;/url-pattern&gt;  
+&lt;/filter-mapping&gt;
+</code></pre><h4 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h4><p>这种方式似乎要spring4.2以上才支持，利用提供的jar包，下载 cors-filter-1.7.jar, java-property-utils-1.9.jar 这两个库文件放到lib目录下。(放到对应项目的webcontent/WEB-INF/lib/下)，如果是maven项目，可以简单添加如下依赖到pom.xml中即可</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;com.thetransactioncompany&lt;/groupId&gt;
+    &lt;artifactId&gt;cors-filter&lt;/artifactId&gt;
+    &lt;version&gt;[ version ]&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><p>接着添加CORS配置到web.xml文件中</p>
+<pre><code>&lt;!-- 跨域配置，此filter应该放在所有filter之前--&gt;    
+&lt;filter&gt;
+        &lt;!-- The CORS filter with parameters --&gt;
+        &lt;filter-name&gt;CORS&lt;/filter-name&gt;
+        &lt;filter-class&gt;com.thetransactioncompany.cors.CORSFilter&lt;/filter-class&gt;
+
+        &lt;!-- Note: All parameters are options, if omitted the CORS 
+             Filter will fall back to the respective default values.
+          --&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;cors.allowGenericHttpRequests&lt;/param-name&gt;
+            &lt;param-value&gt;true&lt;/param-value&gt;
+        &lt;/init-param&gt;
+
+        &lt;init-param&gt;
+            &lt;param-name&gt;cors.allowOrigin&lt;/param-name&gt;
+            &lt;param-value&gt;*&lt;/param-value&gt;
+        &lt;/init-param&gt;
+
+        &lt;init-param&gt;
+            &lt;param-name&gt;cors.allowSubdomains&lt;/param-name&gt;
+            &lt;param-value&gt;false&lt;/param-value&gt;
+        &lt;/init-param&gt;
+
+        &lt;init-param&gt;
+            &lt;param-name&gt;cors.supportedMethods&lt;/param-name&gt;
+            &lt;param-value&gt;GET, HEAD, POST, OPTIONS&lt;/param-value&gt;
+        &lt;/init-param&gt;
+
+        &lt;init-param&gt;
+            &lt;param-name&gt;cors.supportedHeaders&lt;/param-name&gt;
+            &lt;param-value&gt;Accept, Origin, X-Requested-With, Content-Type, Last-Modified&lt;/param-value&gt;
+        &lt;/init-param&gt;
+
+        &lt;init-param&gt;
+            &lt;param-name&gt;cors.exposedHeaders&lt;/param-name&gt;
+            &lt;!--这里可以添加一些自己的暴露Headers   --&gt;
+            &lt;param-value&gt;X-Test-1, X-Test-2&lt;/param-value&gt;
+        &lt;/init-param&gt;
+
+        &lt;init-param&gt;
+            &lt;param-name&gt;cors.supportsCredentials&lt;/param-name&gt;
+            &lt;param-value&gt;true&lt;/param-value&gt;
+        &lt;/init-param&gt;
+
+        &lt;init-param&gt;
+            &lt;param-name&gt;cors.maxAge&lt;/param-name&gt;
+            &lt;param-value&gt;3600&lt;/param-value&gt;
+        &lt;/init-param&gt;
+
+    &lt;/filter&gt;
+
+    &lt;filter-mapping&gt;
+        &lt;!-- CORS Filter mapping --&gt;
+        &lt;filter-name&gt;CORS&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;
+</code></pre><p>配置完成之后可以发送另起一个项目或者页面来测试配置是否成功</p>
+<pre><code>&lt;!DOCTYPE HTML&gt;  
+&lt;html&gt;  
+&lt;head&gt;  
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;scripts/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;scripts/basevalue.js&quot;&gt;&lt;/script&gt;  
+&lt;script type=&quot;text/javascript&quot;&gt;  
+    $(function(){  
+        //按钮单击时执行  
+        $(&quot;#testAjax&quot;).click(function(){  
+              //取Ajax返回结果  
+              $.ajax({
+                  url:path+&quot;/test/ajax.do&quot;,
+                  data:{},
+                  dataType:&quot;json&quot;,
+                  type:&quot;post&quot;,
+                  success:function(result){ 
+                      $(&quot;#myDiv&quot;).empty; 
+                 $(&quot;#myDiv&quot;).html(result.msg);
+                  //显示Ajax返回结果  
+                  alert(result.msg);
+                  },
+                  error:function(){
+                      alert(&quot;错误&quot;);
+                  }});  
+         });  
+    });  
+&lt;/script&gt;      
+&lt;/head&gt;  
+    &lt;body&gt;  
+        &lt;div id=&quot;myDiv&quot;&gt;&lt;h2&gt;返回跨域的文本&lt;/h2&gt;&lt;/div&gt;  
+        &lt;button id=&quot;testAjax&quot; type=&quot;button&quot;&gt;点击获取Ajax跨域返回内容&lt;/button&gt;  
+    &lt;/body&gt;  
+&lt;/html&gt;
+</code></pre><p>浏览器输入<a href="http://47.106.120.224/cloud_note/Filter.html" target="_blank" rel="external">http://47.106.120.224/cloud_note/Filter.html</a><br>成功返回文本跨域请求成功<br><img src="https://i.imgur.com/fhWTkym.png" alt=""></p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>本次遇到的问题不大，都是没留意的小问题，倒是项目本身还有许多不完整的地方，bug多多，有时间再修改，源码稍后传到GitHub上，欢迎<a href="https://github.com/codegitz/cloud_note" target="_blank" rel="external">star</a>。</p>
 
       
@@ -814,15 +965,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -850,15 +1001,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
