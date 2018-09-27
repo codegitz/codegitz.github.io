@@ -6,26 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hibernate入门系列（二） | Codegitz&#39;s Blog</title>
+  <title>springboot Web开发 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Hibernate入门系列（二）SessionSession 概述 Session 接口是 Hibernate 向应用程序提供的操纵数据库的最主要的接口, 它提供了基本的保存, 更新, 删除和加载 Java 对象的方法. Session 具有一个缓存, 位于缓存中的对象称为持久化对象, 它和数据库中的相关记录对应. Session 能够在某些时间点, 按照缓存中对象的变化来执行相关的 SQL 语">
-<meta name="keywords" content="Hibernate">
+  <meta name="description" content="1.Web开发使用springboot1.创建springboot应用，选中我们需要的模块2.springboot已经默认将这些场景配置好了，只需要在配置文件中指定少量配置就可以运行起来3.自己编写业务代码 需要熟悉了解自动配置原理：这个场景springboot帮我们配置了什么，能不呢修改，能修改哪些配置，能不能扩展 xxxxAutoConfiguration:帮我们给容器中自动配置组件 xxx">
+<meta name="keywords" content="Java,Springboot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hibernate入门系列（二）">
-<meta property="og:url" content="http://yoursite.com/2017/06/30/Hibernate入门系列（二）/index.html">
+<meta property="og:title" content="springboot Web开发">
+<meta property="og:url" content="http://yoursite.com/2018/04/20/Springboot Web开发/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="Hibernate入门系列（二）SessionSession 概述 Session 接口是 Hibernate 向应用程序提供的操纵数据库的最主要的接口, 它提供了基本的保存, 更新, 删除和加载 Java 对象的方法. Session 具有一个缓存, 位于缓存中的对象称为持久化对象, 它和数据库中的相关记录对应. Session 能够在某些时间点, 按照缓存中对象的变化来执行相关的 SQL 语">
-<meta property="og:image" content="https://i.imgur.com/ImtQv3c.png">
-<meta property="og:image" content="https://i.imgur.com/lNSw9XC.png">
-<meta property="og:image" content="https://i.imgur.com/iA4KR6U.png">
-<meta property="og:image" content="https://i.imgur.com/6kpGR9e.png">
-<meta property="og:image" content="https://i.imgur.com/A6E9FUJ.png">
-<meta property="og:image" content="https://i.imgur.com/G3xJbG1.png">
-<meta property="og:updated_time" content="2018-09-11T16:04:49.361Z">
+<meta property="og:description" content="1.Web开发使用springboot1.创建springboot应用，选中我们需要的模块2.springboot已经默认将这些场景配置好了，只需要在配置文件中指定少量配置就可以运行起来3.自己编写业务代码 需要熟悉了解自动配置原理：这个场景springboot帮我们配置了什么，能不呢修改，能修改哪些配置，能不能扩展 xxxxAutoConfiguration:帮我们给容器中自动配置组件 xxx">
+<meta property="og:image" content="https://i.imgur.com/vwNb3S2.png">
+<meta property="og:image" content="https://i.imgur.com/SGHeNen.png">
+<meta property="og:image" content="https://i.imgur.com/qdKbvJb.png">
+<meta property="og:image" content="https://i.imgur.com/dTKdl9A.png">
+<meta property="og:image" content="https://i.imgur.com/xeiTidp.png">
+<meta property="og:updated_time" content="2018-09-27T14:45:28.525Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hibernate入门系列（二）">
-<meta name="twitter:description" content="Hibernate入门系列（二）SessionSession 概述 Session 接口是 Hibernate 向应用程序提供的操纵数据库的最主要的接口, 它提供了基本的保存, 更新, 删除和加载 Java 对象的方法. Session 具有一个缓存, 位于缓存中的对象称为持久化对象, 它和数据库中的相关记录对应. Session 能够在某些时间点, 按照缓存中对象的变化来执行相关的 SQL 语">
-<meta name="twitter:image" content="https://i.imgur.com/ImtQv3c.png">
+<meta name="twitter:title" content="springboot Web开发">
+<meta name="twitter:description" content="1.Web开发使用springboot1.创建springboot应用，选中我们需要的模块2.springboot已经默认将这些场景配置好了，只需要在配置文件中指定少量配置就可以运行起来3.自己编写业务代码 需要熟悉了解自动配置原理：这个场景springboot帮我们配置了什么，能不呢修改，能修改哪些配置，能不能扩展 xxxxAutoConfiguration:帮我们给容器中自动配置组件 xxx">
+<meta name="twitter:image" content="https://i.imgur.com/vwNb3S2.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
   
@@ -178,20 +177,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Hibernate入门系列（二）" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Springboot Web开发" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hibernate入门系列（二）
+      springboot Web开发
     </h1>
   
 
         
-        <a href="/2017/06/30/Hibernate入门系列（二）/" class="archive-article-date">
-  	<time datetime="2017-06-29T16:48:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-30</time>
+        <a href="/2018/04/20/Springboot Web开发/" class="archive-article-date">
+  	<time datetime="2018-04-20T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-20</time>
 </a>
         
       </header>
@@ -216,124 +215,801 @@ gitment.render('gitment')
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Hibernate入门系列（二）"><a href="#Hibernate入门系列（二）" class="headerlink" title="Hibernate入门系列（二）"></a>Hibernate入门系列（二）</h1><h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><h3 id="Session-概述"><a href="#Session-概述" class="headerlink" title="Session 概述"></a>Session 概述</h3><ul>
-<li>Session 接口是 Hibernate 向应用程序提供的操纵数据库的最主要的接口, 它提供了基本的保存, 更新, 删除和加载 Java 对象的方法.</li>
-<li>Session 具有一个缓存, 位于缓存中的对象称为持久化对象, 它和数据库中的相关记录对应. Session 能够在某些时间点, 按照缓存中对象的变化来执行相关的 SQL 语句, 来同步更新数据库, 这一过程被称为刷新缓存(flush)</li>
-<li>站在持久化的角度, Hibernate 把对象分为 4 种状态: 持久化状态, 临时状态, 游离状态, 删除状态. Session 的特定方法能使对象从一个状态转换到另一个状态. <h3 id="Session-缓存"><a href="#Session-缓存" class="headerlink" title="Session 缓存"></a>Session 缓存</h3></li>
-<li>在 Session 接口的实现中包含一系列的 Java 集合, 这些 Java 集合构成了 Session 缓存. 只要 Session 实例没有结束生命周期, 且没有清理缓存，则存放在它缓存中的对象也不会结束生命周期</li>
-<li><p>Session 缓存可减少 Hibernate 应用程序访问数据库的频率。<br><img src="https://i.imgur.com/ImtQv3c.png" alt=""></p>
-<pre><code>  News news1=(News) session.get(News.class, 2);
-  News news2=(News) session.get(News.class, 2);
-</code></pre><p>例如执行上面这两行代码，hibernate只会向数据库发送一次SQL语句。<br><br>操作session缓存模型<br><img src="https://i.imgur.com/lNSw9XC.png" alt=""></p>
-<h4 id="flush-缓存"><a href="#flush-缓存" class="headerlink" title="flush 缓存"></a>flush 缓存</h4><p>flush：Session 按照缓存中对象的属性变化来同步更新数据库<br>默认情况下 Session 在以下时间点刷新缓存：</p>
-</li>
-<li><p>显式调用 Session 的 flush() 方法</p>
-</li>
-<li>当应用程序调用 Transaction 的 commit（）方法的时, 该方法先 flush ，然后在向数据库提交事务</li>
-<li>当应用程序执行一些查询(HQL, Criteria)操作时，如果缓存中持久化对象的属性已经发生了变化，会先 flush 缓存，以保证查询结果能够反映持久化对象的最新状态<br>注：若希望改变 flush 的默认时间点, 可以通过 Session 的 setFlushMode() 方法显式设定 flush 的时间点</li>
-</ul>
-<p><strong>flush 缓存的例外情况: 如果对象使用 native 生成器生成 OID, 那么当调用 Session 的 save() 方法保存对象时, 会立即执行向数据库插入该实体的 insert 语句.</strong><br><br>commit() 和 flush() 方法的区别：flush 执行一系列 sql 语句，但不提交事务；commit 方法先调用flush() 方法，然后提交事务. 意味着提交事务意味着对数据库操作永久保存下来。<br><br><strong>Hibernate 主键生成策略:</strong></p>
-<p>increment：代理主键，适合于所有数据库，由hibernate维护主键自增，和底层数据库无关，但是不适合于2个或以上hibernate进程。(少用)</p>
-<p>identity：代理主键，适合于Mysql或ms sql server等支持自增的dbms，主键值不由hibernate维护。</p>
-<p>sequence：代理主键，适合于oracle等支持序列的dbms，主键值不由hibernate维护，由序列产生。</p>
-<p>native：代理主键，根据底层数据库的具体特性选择适合的主键生成策略，如果是mysql或sqlserver，选择identity，如果是oracle，选择sequence。</p>
-<p>hilo：代理主键，hibernate把特定表的字段作为hign值，生成主键值</p>
-<p>uuid.hex：代理主键，hibernate采用uuid 128位算法生成基于字符串的主键值</p>
-<p>assign：适合于应用程序维护的自然主键。</p>
-<p>注：代理主键是指与业务无关且能唯一标识数据库中记录,一般是数据库自动生成的,比如mysql可以使用auto_increment,Sql2000可以使用identity生成方式,oracle可以使用sequence生成方式 自然主键指业务相关,由用户指定,且能唯一标识数据库中的任意一条记录<br><br><strong>数据库的隔离级别</strong><br><br>数据库事务的隔离级别有4个，由低到高依次为Read uncommitted、Read committed、Repeatable read、Serializable，这四个级别可以逐个解决脏读、不可重复读、幻读这几类问题。<br>对于同时运行的多个事务, 当这些事务访问数据库中相同的数据时, 如果没有采取必要的隔离机制, 就会导致各种并发问题:<br><br><strong>脏读</strong>: 对于两个事物 T1, T2, T1 读取了已经被 T2 更新但还没有被提交的字段. 之后, 若 T2 回滚, T1读取的内容就是临时且无效的.<br></p>
-<p><strong>不可重复读</strong>: 对于两个事物 T1, T2, T1 读取了一个字段, 然后 T2 更新了该字段. 之后, T1再次读取同一个字段, 值就不同了.<br></p>
-<p><strong>幻读</strong>: 对于两个事物 T1, T2, T1 从一个表中读取了一个字段, 然后 T2 在该表中插入了一些新的行. 之后, 如果 T1 再次读取同一个表, 就会多出几行.<br></p>
-<p>数据库事务的隔离性: 数据库系统必须具有隔离并发运行各个事务的能力, 使它们不会相互影响, 避免各种并发问题. <br><br>一个事务与其他事务隔离的程度称为隔离级别. 数据库规定了多种事务隔离级别, 不同隔离级别对应不同的干扰程度, 隔离级别越高, 数据一致性就越好, 但并发性越弱<br></p>
-<p><span style="background-color:inherit;font-size:16px;">√: 可能出现    ×: 不会出现</span></p><p></p>
-<table border="1" cellpadding="2" cellspacing="0" style="border-collapse:collapse;color:rgb(51,51,51);"><tbody style="background-color:inherit;"><tr style="background-color:inherit;"><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><div style="min-width:2px;background-color:inherit;"><br style="background-color:inherit;"></div><br></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">脏读</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">不可重复读</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">幻读</span></td><br></tr><tr style="background-color:inherit;"><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">Read uncommitted</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">√</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">√</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">√</span></td><br></tr><tr style="background-color:inherit;"><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">Read committed–<span style="background-color:rgb();">Sql Server , Oracle</span></span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;****min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">×</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">√</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">√</span></td><br></tr><tr style="background-color:inherit;"><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">Repeatable read–<a rel="nofollow" style="color;font-weight:bold;">MySQL</a></span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">×</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">×</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">√</span></td><br></tr><tr style="background-color:inherit;"><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">Serializable</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">×</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">×</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">×</span></td><br></tr></tbody></table>
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="1-Web开发"><a href="#1-Web开发" class="headerlink" title="1.Web开发"></a>1.Web开发</h2><p>使用springboot<br>1.创建springboot应用，选中我们需要的模块<br>2.springboot已经默认将这些场景配置好了，只需要在配置文件中指定少量配置就可以运行起来<br>3.自己编写业务代码</p>
+<p>需要熟悉了解自动配置原理：<br>这个场景springboot帮我们配置了什么，能不呢修改，能修改哪些配置，能不能扩展</p>
+<pre><code>xxxxAutoConfiguration:帮我们给容器中自动配置组件
+xxxxProperties:配置类来封装这些配置文件的内容
+</code></pre><h2 id="2-springboot对静态资源的映射规则"><a href="#2-springboot对静态资源的映射规则" class="headerlink" title="2.springboot对静态资源的映射规则"></a>2.springboot对静态资源的映射规则</h2><pre><code class="java">@ConfigurationProperties(prefix = &quot;spring.resources&quot;, ignoreUnknownFields = false)
+public class ResourceProperties implements ResourceLoaderAware {
+  //可以设置和静态资源有关的参数，缓存时间等
+</code></pre>
+<pre><code>    WebMvcAuotConfiguration：
+        @Override
+        public void addResourceHandlers(ResourceHandlerRegistry registry) {
+            if (!this.resourceProperties.isAddMappings()) {
+                logger.debug(&quot;Default resource handling disabled&quot;);
+                return;
+            }
+            Integer cachePeriod = this.resourceProperties.getCachePeriod();
+            if (!registry.hasMappingForPattern(&quot;/webjars/**&quot;)) {
+                customizeResourceHandlerRegistration(
+                        registry.addResourceHandler(&quot;/webjars/**&quot;)
+                                .addResourceLocations(
+                                        &quot;classpath:/META-INF/resources/webjars/&quot;)
+                        .setCachePeriod(cachePeriod));
+            }
+            String staticPathPattern = this.mvcProperties.getStaticPathPattern();
+              //静态资源文件夹映射
+            if (!registry.hasMappingForPattern(staticPathPattern)) {
+                customizeResourceHandlerRegistration(
+                        registry.addResourceHandler(staticPathPattern)
+                                .addResourceLocations(
+                                        this.resourceProperties.getStaticLocations())
+                        .setCachePeriod(cachePeriod));
+            }
+        }
 
-<p>Oracle 支持的 2 种事务隔离级别：READ COMMITED, SERIALIZABLE. Oracle 默认的事务隔离级别为: READ COMMITED <br><br>Mysql 支持 4 中事务隔离级别. Mysql 默认的事务隔离级别为: REPEATABLE READ、<br></p>
-<p><strong>在 MySql 中设置隔离级别</strong><br><br>每启动一个 mysql 程序, 就会获得一个单独的数据库连接. 每个数据库连接都有一个全局变量 @@tx_isolation, 表示当前的事务隔离级别. MySQL 默认的隔离级别为 Repeatable Read<br><br>查看当前的隔离级别: SELECT @@tx_isolation;<br><br>设置当前 mySQL 连接的隔离级别:  <br><br>set transaction isolation level read committed;<br><br>设置数据库系统的全局的隔离级别:<br><br> set global transaction isolation level read committed;<br><br><strong>在 Hibernate 中设置隔离级别</strong><br><br>JDBC 数据库连接使用数据库系统默认的隔离级别. 在 Hibernate 的配置文件中可以显式的设置隔离级别. 每一个隔离级别都对应一个整数:<br></p>
-<ol>
-<li>READ UNCOMMITED<br></li>
-<li>READ COMMITED<br></li>
-<li>REPEATABLE READ<br></li>
-<li>SERIALIZEABLE<br><br>Hibernate 通过为 Hibernate 映射文件指定 hibernate.connection.isolation 属性来设置事务的隔离级别<br><br>例如：<br><pre><code>&lt;property name=&quot;hibernate.connection.isolation&quot;&gt;2&lt;/property&gt;
-</code></pre><h3 id="持久化对象的状态"><a href="#持久化对象的状态" class="headerlink" title="持久化对象的状态"></a>持久化对象的状态</h3>站在持久化的角度, Hibernate 把对象分为 4 种状态: 持久化状态, 临时状态, 游离状态, 删除状态. Session 的特定方法能使对象从一个状态转换到另一个状态. <br></li>
-</ol>
-<p><strong>临时对象（Transient）:</strong></p>
-<ul>
-<li>在使用代理主键的情况下, OID 通常为 null<br></li>
-<li>不处于 Session 的缓存中<br></li>
-<li>在数据库中没有对应的记录<br><br><strong>持久化对象(也叫”托管”)（Persist）：</strong><br></li>
-<li>OID 不为 null<br></li>
-<li>位于 Session 缓存中<br></li>
-<li>若在数据库中已经有和其对应的记录, 持久化对象和数据库中的相关记录对应<br></li>
-<li>Session 在 flush 缓存时, 会根据持久化对象的属性变化, 来同步更新数据库<br></li>
-<li>在同一个 Session 实例的缓存中, 数据库表中的每条记录只对应唯一的持久化对象<br><br><strong>删除对象(Removed)</strong><br></li>
-<li>在数据库中没有和其 OID 对应的记录<br></li>
-<li>不再处于 Session 缓存中<br></li>
-<li>一般情况下, 应用程序不该再使用被删除的对象<br><br><strong>游离对象(也叫”脱管”) （Detached）：</strong><br></li>
-<li>OID 不为 null</li>
-<li>不再处于 Session 缓存中<br></li>
-<li>一般情况需下, 游离对象是由持久化对象转变过来的, 因此在数据库中可能还存在与它对应的记录<br><br><img src="https://i.imgur.com/iA4KR6U.png" alt=""></li>
-</ul>
-<h3 id="session的核心方法"><a href="#session的核心方法" class="headerlink" title="session的核心方法"></a>session的核心方法</h3><h4 id="save-方法"><a href="#save-方法" class="headerlink" title="save() 方法"></a>save() 方法</h4><p><strong>1.</strong>Session 的 save() 方法使一个临时对象转变为持久化对象<br><br><strong>2.</strong>Session 的 save() 方法完成以下操作:<br></p>
-<ul>
-<li>把 News 对象加入到 Session 缓存中, 使它进入持久化状态<br></li>
-<li>选用映射文件指定的标识符生成器, 为持久化对象分配唯一的 OID. 在 使用代理主键的情况下, setId() 方法为 News 对象设置 OID 使无效的.<br></li>
-<li>计划执行一条 insert 语句：在 flush 缓存的时候<br></li>
-</ul>
-<p><strong>3.</strong>Hibernate 通过持久化对象的 OID 来维持它和数据库相关记录的对应关系. 当 News 对象处于持久化状态时, 不允许程序随意修改它的 ID<br><br><strong>4.</strong>persist() 和 save() 区别：<br><br>当对一个 OID 不为 Null 的对象执行 save() 方法时, 会把该对象以一个新的 oid 保存到数据库中;  但执行 persist() 方法时会抛出一个异常<br></p>
-<h4 id="get-和-load-方法"><a href="#get-和-load-方法" class="headerlink" title="get() 和 load() 方法"></a>get() 和 load() 方法</h4><p>都可以根据跟定的 OID 从数据库中加载一个持久化对象<br><br>区别:<br><br>当数据库中不存在与 OID 对应的记录时, load() 方法抛出 ObjectNotFoundException 异常, 而 get() 方法返回 null<br><br>两者采用不同的延迟检索策略：load 方法支持延迟加载策略。而 get 不支持。<br><br> 1.执行get方法会立即加载对象<br><br> 执行load方法，若不使用该对象，则不会立即进行查询操作，而是返回一个代理对象<br><br> <strong>get是立即检索，load是延时检索</strong><br><br> 2.load方法可能会抛出LazyInitializationException异常：在需要初始化代理对象之前就已经关闭了session<br></p>
-<p>3.若数据表中没有相应的记录,且session也没有被关闭，同时需要使用该对象时get返回null<br><br> load在使用对象时抛出异常，若不使用，没问题<br></p>
-<h4 id="update-方法"><a href="#update-方法" class="headerlink" title="update() 方法"></a>update() 方法</h4><ul>
-<li>Session 的 update() 方法使一个游离对象转变为持久化对象, 并且计划执行一条 update 语句.<br>若希望 Session 仅当修改了 News 对象的属性时, 才执行 update() 语句, 可以把映射文件中 <class> 元素的 select-before-update 设为 true. 该属性的默认值为 false</class></li>
-<li>当 update() 方法关联一个游离对象时, 如果在 Session 的缓存中已经存在相同 OID 的持久化对象, 会抛出异常</li>
-<li>当 update() 方法关联一个游离对象时, 如果在数据库中不存在相应的记录, 也会抛出异常. <h4 id="saveOrUpdate-方法"><a href="#saveOrUpdate-方法" class="headerlink" title="saveOrUpdate() 方法"></a>saveOrUpdate() 方法</h4>Session 的 saveOrUpdate() 方法同时包含了 save() 与 update() 方法的功能<br>判定对象为临时对象的标准<br><img src="https://i.imgur.com/6kpGR9e.png" alt=""></li>
-<li>Java 对象的 OID 为 null</li>
-<li><p>映射文件中为 <id> 设置了 unsaved-value  属性, 并且 Java 对象的 OID 取值与这个 unsaved-value 属性值匹配</id></p>
-<h4 id="merge-方法"><a href="#merge-方法" class="headerlink" title="merge() 方法"></a>merge() 方法</h4><p><img src="https://i.imgur.com/A6E9FUJ.png" alt=""></p>
-<h4 id="delete-方法"><a href="#delete-方法" class="headerlink" title="delete() 方法"></a>delete() 方法</h4><p><strong>1.</strong>Session 的 delete() 方法既可以删除一个游离对象, 也可以删除一个持久化对象<br><strong>2.</strong>Session 的 delete() 方法处理过程</p>
-</li>
-<li><p>计划执行一条 delete 语句</p>
-</li>
-<li>把对象从 Session 缓存中删除, 该对象进入删除状态.<br></li>
-</ul>
-<p><strong>3.</strong>Hibernate 的 cfg.xml 配置文件中有一个 hibernate.use_identifier_rollback 属性, 其默认值为 false, 若把它设为 true, 将改变 delete() 方法的运行行为: delete() 方法会把持久化对象或游离对象的 OID 设置为 null, 使它们变为临时对象</p>
-<h4 id="通过-Hibernate-调用存储过程"><a href="#通过-Hibernate-调用存储过程" class="headerlink" title="通过 Hibernate 调用存储过程"></a>通过 Hibernate 调用存储过程</h4><p>Work 接口: 直接通过 JDBC API 来访问数据库的操作<br></p>
-<pre><code>public interface Work {
-    /**
-     * Execute the discrete work encapsulated by this work instance using the supplied connection.
-     *
-     * @param connection The connection on which to perform the work.
-     * @throws SQLException Thrown during execution of the underlying JDBC interaction.
-     * @throws HibernateException Generally indicates a wrapped SQLException.
-     */
-    public void execute(Connection connection) throws SQLException;
-}
-</code></pre><p>Session 的 doWork(Work) 方法用于执行 Work 对象指定的操作, 即调用 Work 对象的 execute() 方法. Session 会把当前使用的数据库连接传递给 execute() 方法.</p>
-<pre><code>@Test
-    public void testdoWork(){
-        session.doWork(new Work(){
+        //配置欢迎页映射
+        @Bean
+        public WelcomePageHandlerMapping welcomePageHandlerMapping(
+                ResourceProperties resourceProperties) {
+            return new WelcomePageHandlerMapping(resourceProperties.getWelcomePage(),
+                    this.mvcProperties.getStaticPathPattern());
+        }
 
-            @Override
-            public void execute(Connection connection) throws SQLException {
-                System.out.println(connection);//调用存储过程
+       //配置喜欢的图标
+        @Configuration
+        @ConditionalOnProperty(value = &quot;spring.mvc.favicon.enabled&quot;, matchIfMissing = true)
+        public static class FaviconConfiguration {
+
+            private final ResourceProperties resourceProperties;
+
+            public FaviconConfiguration(ResourceProperties resourceProperties) {
+                this.resourceProperties = resourceProperties;
             }
 
-        });
-    }
-</code></pre><p>返回连接实例</p>
-<pre><code>七月 16, 2018 5:17:38 下午 org.hibernate.tool.hbm2ddl.SchemaUpdate execute
-INFO: HHH000232: Schema update complete
-com.mysql.jdbc.JDBC4Connection@6c130c45
-</code></pre><h4 id="Hibernate-与触发器协同工作"><a href="#Hibernate-与触发器协同工作" class="headerlink" title="Hibernate 与触发器协同工作"></a>Hibernate 与触发器协同工作</h4><p>1.Hibernate 与数据库中的触发器协同工作时, 会造成两类问题</p>
+            @Bean
+            public SimpleUrlHandlerMapping faviconHandlerMapping() {
+                SimpleUrlHandlerMapping mapping = new SimpleUrlHandlerMapping();
+                mapping.setOrder(Ordered.HIGHEST_PRECEDENCE + 1);
+                  //所有  **/favicon.ico 
+                mapping.setUrlMap(Collections.singletonMap(&quot;**/favicon.ico&quot;,
+                        faviconRequestHandler()));
+                return mapping;
+            }
+
+            @Bean
+            public ResourceHttpRequestHandler faviconRequestHandler() {
+                ResourceHttpRequestHandler requestHandler = new ResourceHttpRequestHandler();
+                requestHandler
+                        .setLocations(this.resourceProperties.getFaviconLocations());
+                return requestHandler;
+            }
+
+        }
+</code></pre><p>1.所有/webjars/**,都去classpath:/META-INF/resource/webjars/找资源<br>webjars:以jar包的方导入静态资源<br><a href="https://www.webjars.org/" target="_blank" rel="external">https://www.webjars.org/</a><br><img src="https://i.imgur.com/vwNb3S2.png" alt=""><br><a href="http://localhost:8080/webjars/jquery/3.3.1-1/jquery.js" target="_blank" rel="external">http://localhost:8080/webjars/jquery/3.3.1-1/jquery.js</a><br>在访问的时候只需要写webjars下面的资源名称即可 </p>
+<pre><code>!-- 引入jQuery--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.webjars&lt;/groupId&gt;
+            &lt;artifactId&gt;jquery&lt;/artifactId&gt;
+            &lt;version&gt;3.3.1-1&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre><p>2.”/**”访问当前项目的任何资源，（静态资源的文件夹）</p>
+<pre><code>&quot;classpath:/META-INF/resources/&quot;, 
+&quot;classpath:/resources/&quot;,
+&quot;classpath:/static/&quot;, 
+&quot;classpath:/public/&quot; 
+&quot;/&quot;：当前项目的根路径
+</code></pre><p>localhost:8080/abc ===  去静态资源文件夹里面找abc</p>
+<p>3.欢迎页； 静态资源文件夹下的所有index.html页面；被”/**”映射；==</p>
+<p>​    localhost:8080/   找index页面</p>
+<p>4.所有的 **/favicon.ico  都是在静态资源文件下找；==</p>
+<h2 id="3-引入模板引擎"><a href="#3-引入模板引擎" class="headerlink" title="3.引入模板引擎"></a>3.引入模板引擎</h2><p>JSP,Velocity,Freemarker,Thymeleaf<br><img src="https://i.imgur.com/SGHeNen.png" alt=""><br>SpringBoot推荐使用Thymeleaf<br>语法简单，功能强大</p>
+<h3 id="1-引入thymeleaf"><a href="#1-引入thymeleaf" class="headerlink" title="1.引入thymeleaf"></a>1.引入thymeleaf</h3><pre><code>&lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+切换thymeleaf版本
+&lt;properties&gt;
+        &lt;thymeleaf.version&gt;3.0.9.RELEASE&lt;/thymeleaf.version&gt;
+        &lt;!-- 布局功能的支持程序  thymeleaf3主程序  layout2以上版本 --&gt;
+        &lt;!-- thymeleaf2   layout1--&gt;
+        &lt;thymeleaf-layout-dialect.version&gt;2.2.2&lt;/thymeleaf-layout-dialect.version&gt;
+  &lt;/properties&gt;
+</code></pre><h3 id="2-thymeleaf的使用和语法"><a href="#2-thymeleaf的使用和语法" class="headerlink" title="2.thymeleaf的使用和语法"></a>2.thymeleaf的使用和语法</h3><pre><code>
+@ConfigurationProperties(
+    prefix = &quot;spring.thymeleaf&quot;
+)
+public class ThymeleafProperties {
+    private static final Charset DEFAULT_ENCODING;
+    public static final String DEFAULT_PREFIX = &quot;classpath:/templates/&quot;;
+    public static final String DEFAULT_SUFFIX = &quot;.html&quot;;
+    private boolean checkTemplate = true;
+    private boolean checkTemplateLocation = true;
+    private String prefix = &quot;classpath:/templates/&quot;;
+    private String suffix = &quot;.html&quot;;
+    private String mode = &quot;HTML&quot;;
+</code></pre><p><strong>只要我们把HTML页面放在classpath:/tempaltes/,thymeleaf就能自动渲染</strong><br>使用：<br>  1.导入thymeleaf的名称空间</p>
+<pre><code>&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;
+</code></pre><p>  2.使用thymeleaf语法</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;  xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+        &lt;h1&gt;成功！&lt;/h1&gt;
+        &lt;div th:text=&quot;${hello}&quot;&gt;
+           这是显示欢迎信息
+        &lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>   3.语法规则<br>a.th:text 改变当前元素里面的文本内容<br>   th:任意html属性，替换原生属性的值<br><img src="https://i.imgur.com/qdKbvJb.png" alt=""><br>b.表达式</p>
+<pre><code class="properties">Simple expressions:（表达式语法）
+    Variable Expressions: ${...}：获取变量值；OGNL；
+            1）、获取对象的属性、调用方法
+            2）、使用内置的基本对象：
+                #ctx : the context object.
+                #vars: the context variables.
+                #locale : the context locale.
+                #request : (only in Web Contexts) the HttpServletRequest object.
+                #response : (only in Web Contexts) the HttpServletResponse object.
+                #session : (only in Web Contexts) the HttpSession object.
+                #servletContext : (only in Web Contexts) the ServletContext object.
+
+                ${session.foo}
+            3）、内置的一些工具对象：
+#execInfo : information about the template being processed.
+#messages : methods for obtaining externalized messages inside variables expressions, in the same way as they would be obtained using #{…} syntax.
+#uris : methods for escaping parts of URLs/URIs
+#conversions : methods for executing the configured conversion service (if any).
+#dates : methods for java.util.Date objects: formatting, component extraction, etc.
+#calendars : analogous to #dates , but for java.util.Calendar objects.
+#numbers : methods for formatting numeric objects.
+#strings : methods for String objects: contains, startsWith, prepending/appending, etc.
+#objects : methods for objects in general.
+#bools : methods for boolean evaluation.
+#arrays : methods for arrays.
+#lists : methods for lists.
+#sets : methods for sets.
+#maps : methods for maps.
+#aggregates : methods for creating aggregates on arrays or collections.
+#ids : methods for dealing with id attributes that might be repeated (for example, as a result of an iteration).
+
+    Selection Variable Expressions: *{...}：选择表达式：和${}在功能上是一样；
+        补充：配合 th:object=&quot;${session.user}：
+   &lt;div th:object=&quot;${session.user}&quot;&gt;
+    &lt;p&gt;Name: &lt;span th:text=&quot;*{firstName}&quot;&gt;Sebastian&lt;/span&gt;.&lt;/p&gt;
+    &lt;p&gt;Surname: &lt;span th:text=&quot;*{lastName}&quot;&gt;Pepper&lt;/span&gt;.&lt;/p&gt;
+    &lt;p&gt;Nationality: &lt;span th:text=&quot;*{nationality}&quot;&gt;Saturn&lt;/span&gt;.&lt;/p&gt;
+    &lt;/div&gt;
+
+    Message Expressions: #{...}：获取国际化内容
+    Link URL Expressions: @{...}：定义URL；
+            @{/order/process(execId=${execId},execType=&#39;FAST&#39;)}
+    Fragment Expressions: ~{...}：片段引用表达式
+            &lt;div th:insert=&quot;~{commons :: main}&quot;&gt;...&lt;/div&gt;
+
+Literals（字面量）
+      Text literals: &#39;one text&#39; , &#39;Another one!&#39; ,…
+      Number literals: 0 , 34 , 3.0 , 12.3 ,…
+      Boolean literals: true , false
+      Null literal: null
+      Literal tokens: one , sometext , main ,…
+Text operations:（文本操作）
+    String concatenation: +
+    Literal substitutions: |The name is ${name}|
+Arithmetic operations:（数学运算）
+    Binary operators: + , - , * , / , %
+    Minus sign (unary operator): -
+Boolean operations:（布尔运算）
+    Binary operators: and , or
+    Boolean negation (unary operator): ! , not
+Comparisons and equality:（比较运算）
+    Comparators: &gt; , &lt; , &gt;= , &lt;= ( gt , lt , ge , le )
+    Equality operators: == , != ( eq , ne )
+Conditional operators:条件运算（三元运算符）
+    If-then: (if) ? (then)
+    If-then-else: (if) ? (then) : (else)
+    Default: (value) ?: (defaultvalue)
+Special tokens:
+    No-Operation: _
+</code></pre>
+<h2 id="4、SpringMVC自动配置"><a href="#4、SpringMVC自动配置" class="headerlink" title="4、SpringMVC自动配置"></a>4、SpringMVC自动配置</h2><p><a href="https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/htmlsingle/#boot-features-developing-web-applications" target="_blank" rel="external">https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/htmlsingle/#boot-features-developing-web-applications</a></p>
+<h3 id="1-Spring-MVC-auto-configuration"><a href="#1-Spring-MVC-auto-configuration" class="headerlink" title="1. Spring MVC auto-configuration"></a>1. Spring MVC auto-configuration</h3><p>Spring Boot 自动配置好了SpringMVC</p>
+<p>以下是SpringBoot对SpringMVC的默认配置:<strong>==（WebMvcAutoConfiguration）==</strong></p>
 <ul>
-<li>触发器使 Session 的缓存中的持久化对象与数据库中对应的数据不一致:触发器运行在数据库中, 它执行的操作对 Session 是透明的</li>
-<li><p>Session 的 update() 方法盲目地激发触发器: 无论游离对象的属性是否发生变化, 都会执行 update 语句, 而 update 语句会激发数据库中相应的触发器<br>2.解决方案: </p>
+<li><p>Inclusion of <code>ContentNegotiatingViewResolver</code> and <code>BeanNameViewResolver</code> beans.</p>
+<ul>
+<li>自动配置了ViewResolver（视图解析器：根据方法的返回值得到视图对象（View），视图对象决定如何渲染（转发？重定向？））</li>
+<li>ContentNegotiatingViewResolver：组合所有的视图解析器的；</li>
+<li>==如何定制：我们可以自己给容器中添加一个视图解析器；自动的将其组合进来；==</li>
+</ul>
 </li>
-<li><p>在执行完 Session 的相关操作后, 立即调用 Session 的 flush() 和 refresh() 方法, 迫使 Session 的缓存与数据库同步(refresh() 方法重新从数据库中加载对象)<br><img src="https://i.imgur.com/G3xJbG1.png" alt=""></p>
+<li><p>Support for serving static resources, including support for WebJars (see below).静态资源文件夹路径,webjars</p>
 </li>
-<li><p>在映射文件的的 <class> 元素中设置 select-before-update 属性: 当 Session 的 update 或 saveOrUpdate() 方法更新一个游离对象时, 会先执行 Select 语句, 获得当前游离对象在数据库中的最新数据, 只有在不一致的情况下才会执行 update 语句</class></p>
+<li><p>Static <code>index.html</code> support. 静态首页访问</p>
+</li>
+<li><p>Custom <code>Favicon</code> support (see below).  favicon.ico</p>
+<p>​</p>
+</li>
+<li><p>自动注册了 of <code>Converter</code>, <code>GenericConverter</code>, <code>Formatter</code> beans.</p>
+<ul>
+<li>Converter：转换器；  public String hello(User user)：类型转换使用Converter</li>
+<li><code>Formatter</code>  格式化器；  2017.12.17===Date；</li>
+</ul>
 </li>
 </ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>session的方法调用都是现成的方法，不用自己写SQL语句，相对于mybatis，开发速度快了不少，并且API简单明了，方便使用。</p>
+<pre><code class="java">        @Bean
+        @ConditionalOnProperty(prefix = &quot;spring.mvc&quot;, name = &quot;date-format&quot;)//在文件中配置日期格式化的规则
+        public Formatter&lt;Date&gt; dateFormatter() {
+            return new DateFormatter(this.mvcProperties.getDateFormat());//日期格式化组件
+        }
+</code></pre>
+<p>​    ==自己添加的格式化器转换器，我们只需要放在容器中即可==</p>
+<ul>
+<li><p>Support for <code>HttpMessageConverters</code> (see below).</p>
+<ul>
+<li><p>HttpMessageConverter：SpringMVC用来转换Http请求和响应的；User—Json；</p>
+</li>
+<li><p><code>HttpMessageConverters</code> 是从容器中确定；获取所有的HttpMessageConverter；</p>
+<p>==自己给容器中添加HttpMessageConverter，只需要将自己的组件注册容器中（@Bean,@Component）==</p>
+<p>​</p>
+</li>
+</ul>
+</li>
+<li><p>Automatic registration of <code>MessageCodesResolver</code> (see below).定义错误代码生成规则</p>
+</li>
+<li><p>Automatic use of a <code>ConfigurableWebBindingInitializer</code> bean (see below).</p>
+<p>==我们可以配置一个ConfigurableWebBindingInitializer来替换默认的；（添加到容器）==</p>
+<pre><code>初始化WebDataBinder；
+请求数据=====JavaBean；
+</code></pre></li>
+</ul>
+<p><strong>org.springframework.boot.autoconfigure.web：web的所有自动场景；</strong></p>
+<p>If you want to keep Spring Boot MVC features, and you just want to add additional <a href="https://docs.spring.io/spring/docs/4.3.14.RELEASE/spring-framework-reference/htmlsingle#mvc" target="_blank" rel="external">MVC configuration</a> (interceptors, formatters, view controllers etc.) you can add your own <code>@Configuration</code> class of type <code>WebMvcConfigurerAdapter</code>, but <strong>without</strong> <code>@EnableWebMvc</code>. If you wish to provide custom instances of <code>RequestMappingHandlerMapping</code>, <code>RequestMappingHandlerAdapter</code> or <code>ExceptionHandlerExceptionResolver</code> you can declare a <code>WebMvcRegistrationsAdapter</code> instance providing such components.</p>
+<p>If you want to take complete control of Spring MVC, you can add your own <code>@Configuration</code> annotated with <code>@EnableWebMvc</code>.</p>
+<h3 id="2、扩展SpringMVC"><a href="#2、扩展SpringMVC" class="headerlink" title="2、扩展SpringMVC"></a>2、扩展SpringMVC</h3><pre><code class="xml">    &lt;mvc:view-controller path=&quot;/hello&quot; view-name=&quot;success&quot;/&gt;
+    &lt;mvc:interceptors&gt;
+        &lt;mvc:interceptor&gt;
+            &lt;mvc:mapping path=&quot;/hello&quot;/&gt;
+            &lt;bean&gt;&lt;/bean&gt;
+        &lt;/mvc:interceptor&gt;
+    &lt;/mvc:interceptors&gt;
+</code></pre>
+<p><strong>==编写一个配置类（@Configuration），是WebMvcConfigurerAdapter类型；不能标注@EnableWebMvc==</strong>;</p>
+<p>既保留了所有的自动配置，也能用我们扩展的配置；</p>
+<pre><code class="java">//使用WebMvcConfigurerAdapter可以来扩展SpringMVC的功能
+@Configuration
+public class MyMvcConfig extends WebMvcConfigurerAdapter {
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+       // super.addViewControllers(registry);
+        //浏览器发送 /atguigu 请求来到 success
+        registry.addViewController(&quot;/atguigu&quot;).setViewName(&quot;success&quot;);
+    }
+}
+</code></pre>
+<p>原理：</p>
+<p>​    1）、WebMvcAutoConfiguration是SpringMVC的自动配置类</p>
+<p>​    2）、在做其他自动配置时会导入；@Import(<strong>EnableWebMvcConfiguration</strong>.class)</p>
+<pre><code class="java">    @Configuration
+    public static class EnableWebMvcConfiguration extends DelegatingWebMvcConfiguration {
+      private final WebMvcConfigurerComposite configurers = new WebMvcConfigurerComposite();
+
+     //从容器中获取所有的WebMvcConfigurer
+      @Autowired(required = false)
+      public void setConfigurers(List&lt;WebMvcConfigurer&gt; configurers) {
+          if (!CollectionUtils.isEmpty(configurers)) {
+              this.configurers.addWebMvcConfigurers(configurers);
+                //一个参考实现；将所有的WebMvcConfigurer相关配置都来一起调用；  
+                @Override
+             // public void addViewControllers(ViewControllerRegistry registry) {
+              //    for (WebMvcConfigurer delegate : this.delegates) {
+               //       delegate.addViewControllers(registry);
+               //   }
+              }
+          }
+    }
+</code></pre>
+<p>​    3）、容器中所有的WebMvcConfigurer都会一起起作用；</p>
+<p>​    4）、我们的配置类也会被调用；</p>
+<p>​    效果：SpringMVC的自动配置和我们的扩展配置都会起作用；</p>
+<h3 id="3、全面接管SpringMVC；"><a href="#3、全面接管SpringMVC；" class="headerlink" title="3、全面接管SpringMVC；"></a>3、全面接管SpringMVC；</h3><p>SpringBoot对SpringMVC的自动配置不需要了，所有都是我们自己配置；所有的SpringMVC的自动配置都失效了</p>
+<p><strong>我们需要在配置类中添加@EnableWebMvc即可；</strong></p>
+<pre><code class="java">//使用WebMvcConfigurerAdapter可以来扩展SpringMVC的功能
+@EnableWebMvc
+@Configuration
+public class MyMvcConfig extends WebMvcConfigurerAdapter {
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+       // super.addViewControllers(registry);
+        //浏览器发送 /atguigu 请求来到 success
+        registry.addViewController(&quot;/atguigu&quot;).setViewName(&quot;success&quot;);
+    }
+}
+</code></pre>
+<p>原理：</p>
+<p>为什么@EnableWebMvc自动配置就失效了；</p>
+<p>1）@EnableWebMvc的核心</p>
+<pre><code class="java">@Import(DelegatingWebMvcConfiguration.class)
+public @interface EnableWebMvc {
+</code></pre>
+<p>2）、</p>
+<pre><code class="java">@Configuration
+public class DelegatingWebMvcConfiguration extends WebMvcConfigurationSupport {
+</code></pre>
+<p>3）、</p>
+<pre><code class="java">@Configuration
+@ConditionalOnWebApplication
+@ConditionalOnClass({ Servlet.class, DispatcherServlet.class,
+        WebMvcConfigurerAdapter.class })
+//容器中没有这个组件的时候，这个自动配置类才生效
+@ConditionalOnMissingBean(WebMvcConfigurationSupport.class)
+@AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE + 10)
+@AutoConfigureAfter({ DispatcherServletAutoConfiguration.class,
+        ValidationAutoConfiguration.class })
+public class WebMvcAutoConfiguration {
+</code></pre>
+<p>4）、@EnableWebMvc将WebMvcConfigurationSupport组件导入进来；</p>
+<p>5）、导入的WebMvcConfigurationSupport只是SpringMVC最基本的功能；</p>
+<h2 id="5-如何修改springboot默认配置"><a href="#5-如何修改springboot默认配置" class="headerlink" title="5.如何修改springboot默认配置"></a>5.如何修改springboot默认配置</h2><p>模式：<br>  1.springboot在自动配置很多组件的时候，先看容器中有没有用户自己配置的（@Bean @Component）如果有就用用户配置的，如果没有，才自动配置，如果有一些组件可以有多个（ViewResolve），将用户配置的和默认配置的组合起来<br>  2.springboot中会有非常多的xxConfigurer文件帮我我们进行扩展配置</p>
+<h2 id="6-RestfulCRUD"><a href="#6-RestfulCRUD" class="headerlink" title="6.RestfulCRUD"></a>6.RestfulCRUD</h2><h3 id="1-默认访问首页"><a href="#1-默认访问首页" class="headerlink" title="1.默认访问首页"></a>1.默认访问首页</h3><pre><code class="java">
+//使用WebMvcConfigurerAdapter可以来扩展SpringMVC的功能
+//@EnableWebMvc   不要接管SpringMVC
+@Configuration
+public class MyMvcConfig extends WebMvcConfigurerAdapter {
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+       // super.addViewControllers(registry);
+        //浏览器发送 /atguigu 请求来到 success
+        registry.addViewController(&quot;/atguigu&quot;).setViewName(&quot;success&quot;);
+    }
+
+    //所有的WebMvcConfigurerAdapter组件都会一起起作用
+    @Bean //将组件注册在容器
+    public WebMvcConfigurerAdapter webMvcConfigurerAdapter(){
+        WebMvcConfigurerAdapter adapter = new WebMvcConfigurerAdapter() {
+            @Override
+            public void addViewControllers(ViewControllerRegistry registry) {
+                registry.addViewController(&quot;/&quot;).setViewName(&quot;login&quot;);
+                registry.addViewController(&quot;/index.html&quot;).setViewName(&quot;login&quot;);
+            }
+        };
+        return adapter;
+    }
+}
+</code></pre>
+<h3 id="2-国际化"><a href="#2-国际化" class="headerlink" title="2.国际化"></a>2.国际化</h3><p><strong>1.编写国际化配置文件</strong><br>2.使用ResourceBundleMessageSource管理国际化资源文件<br>3.在页面使用fmt:message取出国际化内容</p>
+<p>步骤：<br>1.编写国际化配置文件，抽取页面需要显示的国际化消息<br><img src="https://i.imgur.com/dTKdl9A.png" alt=""><br>2.springboot自动配置好了管理国际化资源文件的组件</p>
+<pre><code class="java">@ConfigurationProperties(prefix = &quot;spring.messages&quot;)
+public class MessageSourceAutoConfiguration {
+
+    /**
+     * Comma-separated list of basenames (essentially a fully-qualified classpath
+     * location), each following the ResourceBundle convention with relaxed support for
+     * slash based locations. If it doesn&#39;t contain a package qualifier (such as
+     * &quot;org.mypackage&quot;), it will be resolved from the classpath root.
+     */
+    private String basename = &quot;messages&quot;;  
+    //我们的配置文件可以直接放在类路径下叫messages.properties；
+
+    @Bean
+    public MessageSource messageSource() {
+        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+        if (StringUtils.hasText(this.basename)) {
+            //设置国际化资源文件的基础名（去掉语言国家代码的）
+            messageSource.setBasenames(StringUtils.commaDelimitedListToStringArray(
+                    StringUtils.trimAllWhitespace(this.basename)));
+        }
+        if (this.encoding != null) {
+            messageSource.setDefaultEncoding(this.encoding.name());
+        }
+        messageSource.setFallbackToSystemLocale(this.fallbackToSystemLocale);
+        messageSource.setCacheSeconds(this.cacheSeconds);
+        messageSource.setAlwaysUseMessageFormat(this.alwaysUseMessageFormat);
+        return messageSource;
+    }
+</code></pre>
+<p>3.去页面获取国际化的值</p>
+<p><img src="https://i.imgur.com/xeiTidp.png" alt=""></p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;  xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;
+    &lt;head&gt;
+        &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;&gt;
+        &lt;meta name=&quot;description&quot; content=&quot;&quot;&gt;
+        &lt;meta name=&quot;author&quot; content=&quot;&quot;&gt;
+        &lt;title&gt;Signin Template for Bootstrap&lt;/title&gt;
+        &lt;!-- Bootstrap core CSS --&gt;
+        &lt;link href=&quot;asserts/css/bootstrap.min.css&quot; th:href=&quot;@{/webjars/bootstrap/4.1.0/css/bootstrap.css}&quot; rel=&quot;stylesheet&quot;&gt;
+        &lt;!-- Custom styles for this template --&gt;
+        &lt;link href=&quot;asserts/css/signin.css&quot; th:href=&quot;@{/asserts/css/signin.css}&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;/head&gt;
+
+    &lt;body class=&quot;text-center&quot;&gt;
+        &lt;form class=&quot;form-signin&quot; action=&quot;dashboard.html&quot;&gt;
+            &lt;img class=&quot;mb-4&quot; th:src=&quot;@{/asserts/img/bootstrap-solid.svg}&quot; src=&quot;asserts/img/bootstrap-solid.svg&quot; alt=&quot;&quot; width=&quot;72&quot; height=&quot;72&quot;&gt;
+            &lt;h1 class=&quot;h3 mb-3 font-weight-normal&quot; th:text=&quot;#{login.tip}&quot;&gt;Please sign in&lt;/h1&gt;
+            &lt;label class=&quot;sr-only&quot; th:text=&quot;#{login.username}&quot;&gt;Username&lt;/label&gt;
+            &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Username&quot; th:placeholder=&quot;#{login.username}&quot; required=&quot;&quot; autofocus=&quot;&quot;&gt;
+            &lt;label class=&quot;sr-only&quot; th:text=&quot;#{login.password}&quot;&gt;Password&lt;/label&gt;
+            &lt;input type=&quot;password&quot; class=&quot;form-control&quot; placeholder=&quot;Password&quot; th:placeholder=&quot;#{login.password}&quot; required=&quot;&quot;&gt;
+            &lt;div class=&quot;checkbox mb-3&quot;&gt;
+                &lt;label&gt;
+                  &lt;input type=&quot;checkbox&quot; value=&quot;remember-me&quot;/&gt; [[#{login.remember}]]
+        &lt;/label&gt;
+            &lt;/div&gt;
+            &lt;button class=&quot;btn btn-lg btn-primary btn-block&quot; type=&quot;submit&quot; th:text=&quot;#{login.btn}&quot;&gt;Sign in&lt;/button&gt;
+            &lt;p class=&quot;mt-5 mb-3 text-muted&quot;&gt;© 2017-2018&lt;/p&gt;
+            &lt;a class=&quot;btn btn-sm&quot;&gt;中文&lt;/a&gt;
+            &lt;a class=&quot;btn btn-sm&quot;&gt;English&lt;/a&gt;
+        &lt;/form&gt;
+
+    &lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre><p>效果：根据浏览器语言设置的信息切换了国际化</p>
+<p>原理：<br>   国际化Locale(区域信息对象)，LocaleResolver（获取区域信息对象）</p>
+<pre><code class="java">        @Bean
+        @ConditionalOnMissingBean
+        @ConditionalOnProperty(prefix = &quot;spring.mvc&quot;, name = &quot;locale&quot;)
+        public LocaleResolver localeResolver() {
+            if (this.mvcProperties
+                    .getLocaleResolver() == WebMvcProperties.LocaleResolver.FIXED) {
+                return new FixedLocaleResolver(this.mvcProperties.getLocale());
+            }
+            AcceptHeaderLocaleResolver localeResolver = new AcceptHeaderLocaleResolver();
+            localeResolver.setDefaultLocale(this.mvcProperties.getLocale());
+            return localeResolver;
+        }
+默认的就是根据请求头带来的区域信息获取Locale进行国际化
+</code></pre>
+<p>4.点击链接切换国际化</p>
+<pre><code>/*
+* 可以在链接上携带请求信息
+* */
+public class MyLocaleResolver implements LocaleResolver {
+    @Override
+    public Locale resolveLocale(HttpServletRequest httpServletRequest) {
+        String l =httpServletRequest.getParameter(&quot;l&quot;);
+        System.out.println(l);
+        Locale locale=Locale.getDefault();
+        if(!StringUtils.isEmpty(l)){
+            String[] split=l.split(&quot;_&quot;);
+            locale=new Locale(split[0],split[1]);
+        }
+        return locale;
+    }
+
+    @Override
+    public void setLocale(HttpServletRequest httpServletRequest, @Nullable HttpServletResponse httpServletResponse, @Nullable Locale locale) {
+
+    }
+}
+</code></pre><p>配置LocaleResolver</p>
+<pre><code>    @Bean
+    public LocaleResolver localeResolver(){
+        return new MyLocaleResolver();
+    }
+</code></pre><h3 id="3-登录"><a href="#3-登录" class="headerlink" title="3.登录"></a>3.登录</h3><p>开发期间模板引擎页面修改以后，要实时生效<br> 1.禁用模板引擎缓存</p>
+<pre><code># 禁用缓存
+spring.thymeleaf.cache=false
+</code></pre><p> 2.页面修改完成后ctrl+f9，重新编译</p>
+<p>登录错误消息提示</p>
+<pre><code>&lt;!-- 判断--&gt;
+    &lt;p style=&quot;color: red&quot; th:text=&quot;${msg}&quot; th:if=&quot;${#strings.isEmpty(msg)}&quot;&gt;&lt;/p&gt;
+</code></pre><h3 id="4-拦截器进行登陆检查"><a href="#4-拦截器进行登陆检查" class="headerlink" title="4.拦截器进行登陆检查"></a>4.拦截器进行登陆检查</h3><p>拦截器</p>
+<pre><code>/**
+ * 登陆检查，
+ */
+public class LoginHandlerInterceptor implements HandlerInterceptor {
+    //目标方法执行之前
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        Object user = request.getSession().getAttribute(&quot;loginUser&quot;);
+        if(user == null){
+            //未登陆，返回登陆页面
+            request.setAttribute(&quot;msg&quot;,&quot;没有权限请先登陆&quot;);
+            request.getRequestDispatcher(&quot;/index.html&quot;).forward(request,response);
+            return false;
+        }else{
+            //已登陆，放行请求
+            return true;
+        }
+
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+
+    }
+}
+</code></pre><p>注册拦截器</p>
+<pre><code>//所有的WebMvcConfigurerAdapter组件都会一起起作用
+   @Bean //将组件注册在容器
+    public WebMvcConfigurerAdapter webMvcConfigurerAdapter(){
+        WebMvcConfigurerAdapter adapter = new WebMvcConfigurerAdapter() {
+            @Override
+            public void addViewControllers(ViewControllerRegistry registry) {
+                registry.addViewController(&quot;/&quot;).setViewName(&quot;login&quot;);
+                registry.addViewController(&quot;/index.html&quot;).setViewName(&quot;login&quot;);
+                registry.addViewController(&quot;/main.html&quot;).setViewName(&quot;dashboard&quot;);
+            }
+
+            //注册拦截器
+            @Override
+            public void addInterceptors(InterceptorRegistry registry) {
+                //super.addInterceptors(registry);
+                //静态资源；  *.css , *.js
+                //SpringBoot已经做好了静态资源映射
+                registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns(&quot;/**&quot;)
+                        .excludePathPatterns(&quot;/index.html&quot;,&quot;/&quot;,&quot;/user/login&quot;);
+            }
+        };
+        return adapter;
+    }
+</code></pre><h3 id="5-curd-员工列表"><a href="#5-curd-员工列表" class="headerlink" title="5.curd_员工列表"></a>5.curd_员工列表</h3><p>实验要求：<br> 1、RestfulCRUD：CRUD满足Rest风格；</p>
+<p>URI：  /资源名称/资源标识       HTTP请求方式区分对资源CRUD操作</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>普通CRUD（uri来区分操作）</th>
+<th>RestfulCRUD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查询</td>
+<td>getEmp</td>
+<td>emp—GET</td>
+</tr>
+<tr>
+<td>添加</td>
+<td>addEmp?xxx</td>
+<td>emp—POST</td>
+</tr>
+<tr>
+<td>修改</td>
+<td>updateEmp?id=xxx&amp;xxx=xx</td>
+<td>emp/{id}—PUT</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>deleteEmp?id=1</td>
+<td>emp/{id}—DELETE</td>
+</tr>
+</tbody>
+</table>
+<p>2）、实验的请求架构;</p>
+<table>
+<thead>
+<tr>
+<th>实验功能</th>
+<th>请求URI</th>
+<th>请求方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查询所有员工</td>
+<td>emps</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>查询某个员工(来到修改页面)</td>
+<td>emp/1</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>来到添加页面</td>
+<td>emp</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>添加员工</td>
+<td>emp</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>来到修改页面（查出员工进行信息回显）</td>
+<td>emp/1</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>修改员工</td>
+<td>emp</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>删除员工</td>
+<td>emp/1</td>
+<td>DELETE</td>
+</tr>
+</tbody>
+</table>
+<h4 id="thymeleaf公共页面元素抽取"><a href="#thymeleaf公共页面元素抽取" class="headerlink" title="thymeleaf公共页面元素抽取"></a>thymeleaf公共页面元素抽取</h4><pre><code class="html">1、抽取公共片段
+&lt;div th:fragment=&quot;copy&quot;&gt;
+&amp;copy; 2011 The Good Thymes Virtual Grocery
+&lt;/div&gt;
+
+2、引入公共片段
+&lt;div th:insert=&quot;~{footer :: copy}&quot;&gt;&lt;/div&gt;
+~{templatename::selector}：模板名::选择器
+~{templatename::fragmentname}:模板名::片段名
+
+3、默认效果：
+insert的公共片段在div标签中
+如果使用th:insert等属性进行引入，可以不用写~{}：
+行内写法可以加上：[[~{}]];[(~{})]；
+</code></pre>
+<p>三种引入公共片段的th属性：</p>
+<p><strong>th:insert</strong>：将公共片段整个插入到声明引入的元素中</p>
+<p><strong>th:replace</strong>：将声明引入的元素替换为公共片段</p>
+<p><strong>th:include</strong>：将被引入的片段的内容包含进这个标签中</p>
+<pre><code class="html">&lt;footer th:fragment=&quot;copy&quot;&gt;
+&amp;copy; 2011 The Good Thymes Virtual Grocery
+&lt;/footer&gt;
+
+引入方式
+&lt;div th:insert=&quot;footer :: copy&quot;&gt;&lt;/div&gt;
+&lt;div th:replace=&quot;footer :: copy&quot;&gt;&lt;/div&gt;
+&lt;div th:include=&quot;footer :: copy&quot;&gt;&lt;/div&gt;
+
+效果
+&lt;div&gt;
+    &lt;footer&gt;
+    &amp; copy; 2011 The Good Thymes Virtual Grocery
+    &lt;/footer&gt;
+&lt;/div&gt;
+
+&lt;footer&gt;
+&amp; copy; 2011 The Good Thymes Virtual Grocery
+&lt;/footer&gt;
+
+&lt;div&gt;
+&amp; copy; 2011 The Good Thymes Virtual Grocery
+&lt;/div&gt;
+</code></pre>
+<p>引入片段的时候传入参数： </p>
+<pre><code>
+&lt;nav class=&quot;col-md-2 d-none d-md-block bg-light sidebar&quot; id=&quot;sidebar&quot;&gt;
+    &lt;div class=&quot;sidebar-sticky&quot;&gt;
+        &lt;ul class=&quot;nav flex-column&quot;&gt;
+            &lt;li class=&quot;nav-item&quot;&gt;
+                &lt;a class=&quot;nav-link active&quot;
+                   th:class=&quot;${activeUri==&#39;main.html&#39;?&#39;nav-link active&#39;:&#39;nav-link&#39;}&quot;
+                   href=&quot;#&quot; th:href=&quot;@{/main.html}&quot;&gt;
+                    &lt; svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; class=&quot;feather feather-home&quot;&gt;
+                        &lt;path d=&quot;M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z&quot;&gt;&lt;/path&gt;
+                        &lt;polyline points=&quot;9 22 9 12 15 12 15 22&quot;&gt;&lt;/polyline&gt;
+                    &lt;/svg&gt;
+                    Dashboard &lt;span class=&quot;sr-only&quot;&gt;(current)&lt;/span&gt;
+                &lt;/a&gt;
+            &lt;/li&gt;
+
+&lt;!--引入侧边栏;传入参数--&gt;
+&lt;div th:replace=&quot;commons/bar::#sidebar(activeUri=&#39;emps&#39;)&quot;&gt;&lt;/div&gt;
+</code></pre><h3 id="6、CRUD-员工添加"><a href="#6、CRUD-员工添加" class="headerlink" title="6、CRUD-员工添加"></a>6、CRUD-员工添加</h3><p>添加页面</p>
+<pre><code class="html">&lt;form&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label&gt;LastName&lt;/label&gt;
+        &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;zhangsan&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label&gt;Email&lt;/label&gt;
+        &lt;input type=&quot;email&quot; class=&quot;form-control&quot; placeholder=&quot;zhangsan@atguigu.com&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label&gt;Gender&lt;/label&gt;&lt;br/&gt;
+        &lt;div class=&quot;form-check form-check-inline&quot;&gt;
+            &lt;input class=&quot;form-check-input&quot; type=&quot;radio&quot; name=&quot;gender&quot;  value=&quot;1&quot;&gt;
+            &lt;label class=&quot;form-check-label&quot;&gt;男&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;form-check form-check-inline&quot;&gt;
+            &lt;input class=&quot;form-check-input&quot; type=&quot;radio&quot; name=&quot;gender&quot;  value=&quot;0&quot;&gt;
+            &lt;label class=&quot;form-check-label&quot;&gt;女&lt;/label&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label&gt;department&lt;/label&gt;
+        &lt;select class=&quot;form-control&quot;&gt;
+            &lt;option&gt;1&lt;/option&gt;
+            &lt;option&gt;2&lt;/option&gt;
+            &lt;option&gt;3&lt;/option&gt;
+            &lt;option&gt;4&lt;/option&gt;
+            &lt;option&gt;5&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label&gt;Birth&lt;/label&gt;
+        &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;zhangsan&quot;&gt;
+    &lt;/div&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;添加&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<p>提交的数据格式不对：生日：日期；</p>
+<p>2017-12-12；2017/12/12；2017.12.12；</p>
+<p>日期的格式化；SpringMVC将页面提交的值需要转换为指定的类型;</p>
+<p>2017-12-12—Date； 类型转换，格式化;</p>
+<p>默认日期是按照/的方式；</p>
+<h3 id="7、CRUD-员工修改"><a href="#7、CRUD-员工修改" class="headerlink" title="7、CRUD-员工修改"></a>7、CRUD-员工修改</h3><p>修改添加二合一表单</p>
+<pre><code class="html">&lt;!--需要区分是员工修改还是添加；--&gt;
+&lt;form th:action=&quot;@{/emp}&quot; method=&quot;post&quot;&gt;
+    &lt;!--发送put请求修改员工数据--&gt;
+    &lt;!--
+1、SpringMVC中配置HiddenHttpMethodFilter;（SpringBoot自动配置好的）
+2、页面创建一个post表单
+3、创建一个input项，name=&quot;_method&quot;;值就是我们指定的请求方式
+--&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;_method&quot; value=&quot;put&quot; th:if=&quot;${emp!=null}&quot;/&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;id&quot; th:if=&quot;${emp!=null}&quot; th:value=&quot;${emp.id}&quot;&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label&gt;LastName&lt;/label&gt;
+        &lt;input name=&quot;lastName&quot; type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;zhangsan&quot; th:value=&quot;${emp!=null}?${emp.lastName}&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label&gt;Email&lt;/label&gt;
+        &lt;input name=&quot;email&quot; type=&quot;email&quot; class=&quot;form-control&quot; placeholder=&quot;zhangsan@atguigu.com&quot; th:value=&quot;${emp!=null}?${emp.email}&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label&gt;Gender&lt;/label&gt;&lt;br/&gt;
+        &lt;div class=&quot;form-check form-check-inline&quot;&gt;
+            &lt;input class=&quot;form-check-input&quot; type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;1&quot; th:checked=&quot;${emp!=null}?${emp.gender==1}&quot;&gt;
+            &lt;label class=&quot;form-check-label&quot;&gt;男&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;form-check form-check-inline&quot;&gt;
+            &lt;input class=&quot;form-check-input&quot; type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;0&quot; th:checked=&quot;${emp!=null}?${emp.gender==0}&quot;&gt;
+            &lt;label class=&quot;form-check-label&quot;&gt;女&lt;/label&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label&gt;department&lt;/label&gt;
+        &lt;!--提交的是部门的id--&gt;
+        &lt;select class=&quot;form-control&quot; name=&quot;department.id&quot;&gt;
+            &lt;option th:selected=&quot;${emp!=null}?${dept.id == emp.department.id}&quot; th:value=&quot;${dept.id}&quot; th:each=&quot;dept:${depts}&quot; th:text=&quot;${dept.departmentName}&quot;&gt;1&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label&gt;Birth&lt;/label&gt;
+        &lt;input name=&quot;birth&quot; type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;zhangsan&quot; th:value=&quot;${emp!=null}?${#dates.format(emp.birth, &#39;yyyy-MM-dd HH:mm&#39;)}&quot;&gt;
+    &lt;/div&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot; th:text=&quot;${emp!=null}?&#39;修改&#39;:&#39;添加&#39;&quot;&gt;添加&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<h3 id="8、CRUD-员工删除"><a href="#8、CRUD-员工删除" class="headerlink" title="8、CRUD-员工删除"></a>8、CRUD-员工删除</h3><pre><code class="html">&lt;tr th:each=&quot;emp:${emps}&quot;&gt;
+    &lt;td th:text=&quot;${emp.id}&quot;&gt;&lt;/td&gt;
+    &lt;td&gt;[[${emp.lastName}]]&lt;/td&gt;
+    &lt;td th:text=&quot;${emp.email}&quot;&gt;&lt;/td&gt;
+    &lt;td th:text=&quot;${emp.gender}==0?&#39;女&#39;:&#39;男&#39;&quot;&gt;&lt;/td&gt;
+    &lt;td th:text=&quot;${emp.department.departmentName}&quot;&gt;&lt;/td&gt;
+    &lt;td th:text=&quot;${#dates.format(emp.birth, &#39;yyyy-MM-dd HH:mm&#39;)}&quot;&gt;&lt;/td&gt;
+    &lt;td&gt;
+        &lt;a class=&quot;btn btn-sm btn-primary&quot; th:href=&quot;@{/emp/}+${emp.id}&quot;&gt;编辑&lt;/a&gt;
+        &lt;button th:attr=&quot;del_uri=@{/emp/}+${emp.id}&quot; class=&quot;btn btn-sm btn-danger deleteBtn&quot;&gt;删除&lt;/button&gt;
+    &lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt; script&gt;
+    $(&quot;.deleteBtn&quot;).click(function(){
+        //删除当前员工的
+        $(&quot;#deleteEmpForm&quot;).attr(&quot;action&quot;,$(this).attr(&quot;del_uri&quot;)).submit();
+        return false;
+    });
+&lt;/script&gt;
+</code></pre>
 
       
 
@@ -373,7 +1049,7 @@ com.mysql.jdbc.JDBC4Connection@6c130c45
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Java,Springboot</a>
         		</li>
       		
 		</ul>
@@ -432,7 +1108,7 @@ com.mysql.jdbc.JDBC4Connection@6c130c45
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/06/30/Hibernate入门系列（二）/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/20/Springboot Web开发/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -446,18 +1122,18 @@ com.mysql.jdbc.JDBC4Connection@6c130c45
   
 <nav id="article-nav">
   
-    <a href="/2017/06/30/我的标题/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/24/springboot处理错误机制/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          我的标题
+          springboot错误处理机制
         
       </div>
     </a>
   
   
-    <a href="/2017/06/22/我的第一篇博客/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">我的第一篇博客</div>
+    <a href="/2018/04/17/u_post/springboot入门/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -512,7 +1188,7 @@ com.mysql.jdbc.JDBC4Connection@6c130c45
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "http://yoursite.com/2017/06/30/Hibernate入门系列（二）/",
+  id: "http://yoursite.com/2018/04/20/Springboot Web开发/",
   owner: 'codegitz',
   repo: 'codegitz.github.io',
   oauth: {

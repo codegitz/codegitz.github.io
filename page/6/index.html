@@ -171,19 +171,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-ajax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-springAOP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/ajax/">ajax(asynchronous javascript and xml)</a>
+      <a class="article-title" href="/2018/04/13/springAOP/">spring AOP</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/ajax/" class="archive-article-date">
+        <a href="/2018/04/13/springAOP/" class="archive-article-date">
   	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
@@ -195,32 +195,160 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="ajax-asynchronous-javascript-and-xml"><a href="#ajax-asynchronous-javascript-and-xml" class="headerlink" title="ajax(asynchronous javascript and xml)"></a>ajax(asynchronous javascript and xml)</h1><h2 id="1-ajax是什么"><a href="#1-ajax是什么" class="headerlink" title="1.ajax是什么"></a>1.ajax是什么</h2><p>ajax是一种用来改善用户体验的技术，其本质是利用浏览器提供的一个特殊的对象（XMLHttpRequest,也可称之为ajax对象）向服务器发送异步请求。服务器返回部分数据（通常不需要返回完整页面），浏览器利用这些数据对当前页面做部分更新。整个过程，页面无刷新，不打断用户的操作。<br>注：<br>异步请求：发送请求的同时，浏览器不会销毁当前页面，用户仍然可以对当前页面做其他操作。<br>使用ajax请求的过程：<br><img src="https://i.imgur.com/1K90kh4.png" alt=""><br>不使用ajax的请求过程：<br><img src="https://i.imgur.com/iWOnkph.png" alt=""></p>
-<h2 id="2-如何获得ajax对象"><a href="#2-如何获得ajax对象" class="headerlink" title="2.如何获得ajax对象"></a>2.如何获得ajax对象</h2><p>要区分浏览器：</p>
-<pre><code>function getXhr(){
-    var xhr=null;
-    if(window.XMLHttpRequest){
-         //非IE
-       xhr= new XMLHttpRequest();
-    }else{
-        x hr=new ActiveXObject(&quot;Microsoft.XMLHttp&quot;);
-    }
-    return xhr;
-}
-</code></pre><p><img src="https://i.imgur.com/XMpHS9P.png" alt=""></p>
-<h2 id="3-ajax对象的几个重要的属性"><a href="#3-ajax对象的几个重要的属性" class="headerlink" title="3.ajax对象的几个重要的属性"></a>3.ajax对象的几个重要的属性</h2><p>a.onreadystatechange:用来绑定一个事件处理函数，用来处理readystatechange时间。<br>注意：当ajax对象的readystate属性值返生了任何改变，比如从0变成了1，就会产生readystatechange事件。<br>b.readyState：有五个值（0,1,2,3,4）,表示ajax对象与服务器通信的状态。其中，当值为4的时候，表示ajax对象已经获得了服务器返回的所有数据。<br>c.responseText：获得服务器返回的文本数据。<br>d.responseXML：获得服务器返回的xml数据。<br>e.status ：获得状态码。</p>
-<h2 id="4-编程步骤"><a href="#4-编程步骤" class="headerlink" title="4.编程步骤"></a>4.编程步骤</h2><p>step1.获得ajax对象<br>比如：var xhr=getXhr();<br>step2.发送请求。<br><strong>发送get请求</strong>：<br>a.xhr.open(‘get’,’check_uname.do?uname=tom&amp;age=22’,true);<br>b.xhr.onreadystatechange=f1;<br>c.xhr.send(null);<br>注：<br>true：异步<br>false：同步，发送请求时，浏览器会锁定当前页面，用户不能够对当前页面做其他操作。<br><strong>发送post请求</strong><br>a.xhr.open(‘post’,’check_uname.do’,true);<br>b.xhr.setRequestHeader(‘content-type’,’application/x-www-form-urlencoded’);<br>c.xhr.onreadystatechange=f1;<br>xhr.send(‘name=tom’);<br>注：按照HTTP协议规范，如果发送的是post请求，在请求的数据包里面，应该有content-type消息头。默认情况下，ajax对象不带该消息头，所以需要调用setRequestHeader方法来设置这个消息头。<br>step3 .编写服务器端的程序，<br>注：通常不需要返回完整的页面，只需要返回部分数据。<br>step4.编写事件处理函数</p>
-<pre><code>function fi(){
-     //先获得服务器返回的数据
-     if(xhr.readyState==4 &amp;&amp; xhr.status==200){
-     var txt=xhr.resppnseText;
-     //利用这些数据（txt）更新页面
-     ....
- } 
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="spring-AOP"><a href="#spring-AOP" class="headerlink" title="spring AOP"></a>spring AOP</h1><h2 id="AOP概念"><a href="#AOP概念" class="headerlink" title="AOP概念"></a>AOP概念</h2><p>aspect oriented programming<br>面向切面编程<br>是什么？<br>将共同业务处理从传统业务处理中抽离出来，单独封装，然后以配置的形式进行关联<br>为什么？<br>可以在不修改原有的逻辑代码的情况下，给系统追加功能</p>
+<h2 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h2><ul>
+<li>追加事务控制</li>
+<li>异常日志记录</li>
+</ul>
+<p>案例：</p>
+<ul>
+<li>要求：在每个Controller方法执行前输出打桩信息</li>
+<li>封装一个组件</li>
+<li>通过配置将封装的组件追击到Controller方法里</li>
+</ul>
+<h1 id="AOP相关概念"><a href="#AOP相关概念" class="headerlink" title="AOP相关概念"></a>AOP相关概念</h1><ul>
+<li>oop：类，对象，封装，继承，多态</li>
+<li>AOP：切面，切入点，通知，动态代理</li>
+</ul>
+<h2 id="切面（aspect）"><a href="#切面（aspect）" class="headerlink" title="切面（aspect）"></a>切面（aspect）</h2><p>指的是封装了共同处理的组件，并且能够切入到其他的组件的方法上</p>
+<h2 id="切入点（pointcut）"><a href="#切入点（pointcut）" class="headerlink" title="切入点（pointcut）"></a>切入点（pointcut）</h2><p>用于指定目标组件的方法</p>
+<ul>
+<li>方法限定表达式<br>可以给某个组件中的部分方法追加共同功能<br>execution（修饰符？返回类型 方法名（参数） 异常抛出？）<br>//匹配到add开头的所有方法<br>execution(<em> add</em>(..))<br>//匹配UserService包下的所有方法<br>execution(<em> io.codegitz.UserService.</em>(…))<br>//匹配到service包下及其子包下的所有方法<br>execution(<em> io.codegitz.service..</em>(..))<br>//匹配到service包下所有类的方法<br>execution(<em> io.codegitz.service.</em>.*(..))</li>
+<li><p>类型限定表达式<br>可以给某个组件的所有方法追加功能<br>within（类型）<br>//匹配UserService组件下的所有方法<br>within(io.codegitz.service.UserService)<br>//匹配service包下的所有类的所有方法<br>within(io.codegitz.service.<em>)<br>//匹配service包及其子包下的所有方法<br>within(io.codegitz.service..</em>)</p>
+</li>
+<li><p>bean名称限定表达式<br>可以给某个组件中国的所有的方法追加功能<br>bean（id名）<br>//匹配id=userService的组件的所有方法<br>bean(userService)<br>//匹配以Service结尾的所有组件的所有方法<br>bean(*Service)</p>
+</li>
+</ul>
+<p>AOP配置文件</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:beans=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+    xmlns:jdbc=&quot;http://www.springframework.org/schema/jdbc&quot; xmlns:jee=&quot;http://www.springframework.org/schema/jee&quot;
+    xmlns:jms=&quot;http://www.springframework.org/schema/jms&quot; xmlns:lang=&quot;http://www.springframework.org/schema/lang&quot;
+    xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
+    xmlns:util=&quot;http://www.springframework.org/schema/util&quot; xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;
+    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+        http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd&quot;&gt;
 
+    &lt;bean id=&quot;loggerBean&quot; class=&quot;io.codegitz.cloud_note.aspect.LoggerBean&quot;&gt;
+    &lt;/bean&gt;
+    &lt;aop:config&gt;
+        &lt;!-- 通过REF关联组件类 --&gt;
+        &lt;aop:aspect ref=&quot;loggerBean&quot;&gt;
+            &lt;aop:before method=&quot;logController&quot; pointcut=&quot;within(io.codegitz.cloud_note.controller..*)&quot; /&gt;
+        &lt;/aop:aspect&gt;
+    &lt;/aop:config&gt;
+
+&lt;/beans&gt;
+</code></pre><p>遇到错误：</p>
+<pre><code>cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element &#39;aop:config&#39;.
+</code></pre><p>有点狗的是引用和xsd文件都有了，后来把后面的版本号去掉了，然后就暂时不报错了，过了一会再次报错，然后把版本号又加了回去，然后就行了….</p>
+<h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><p>用于指定切入的时机<br>spring提供了五种通知类型<br>try{<br>   使用前置通知<aop:before><br>   //执行的目标方法<br>   后置通知<aop:after-returning><br>}catch{<br>   异常通知<aop:after-throwing><br>}finally{<br>   最终通知：<aop:after><br>}<br>@around=前置+后置通知</aop:after></aop:after-throwing></aop:after-returning></aop:before></p>
+<p>切面：追加啥功能？单独封装的代码<br>切入点：切谁？所有Controller<br>通知：啥时候切？前置，后置，环绕</p>
+<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>AOP原理：使用动态代理技术<br>可以创建一个新的类型，重写目标接口或目标类的方法<br>在重写方法中，追加了要切入的功能代码和方法代码<br><img src="https://i.imgur.com/QZyOfVf.png" alt=""></p>
+<h3 id="AOP的配置使用形式"><a href="#AOP的配置使用形式" class="headerlink" title="AOP的配置使用形式"></a>AOP的配置使用形式</h3><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:beans=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+    xmlns:jdbc=&quot;http://www.springframework.org/schema/jdbc&quot; xmlns:jee=&quot;http://www.springframework.org/schema/jee&quot;
+    xmlns:jms=&quot;http://www.springframework.org/schema/jms&quot; xmlns:lang=&quot;http://www.springframework.org/schema/lang&quot;
+    xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
+    xmlns:util=&quot;http://www.springframework.org/schema/util&quot;
+    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+        http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd&quot;&gt;
+      &lt;!-- Spring事务管理 --&gt;
+       &lt;!-- 定义事务管理bean --&gt;
+       &lt;bean id=&quot;txManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;
+       &lt;property name=&quot;dataSource&quot; ref=&quot;dbcp&quot;&gt;&lt;/property&gt;
+       &lt;/bean&gt;
+       &lt;!-- 开启transaction注解扫描，将标记作用在具体的方法上 --&gt;
+       &lt;tx:annotation-driven transaction-manager=&quot;txManager&quot;/&gt;
+&lt;/beans&gt;
+</code></pre><p>然后在实现类前面加一个@Transactional注解<br>执行此测试方法：</p>
+<pre><code>@Test
+    public void testUserService1(){
+        System.out.println(service.getClass().getName());
+    }
+</code></pre><p>未使用动态代理则会输出原来的类名：io.codegitz.cloud_note.service.UserServiceImpl<br>使用动态代理输出动态代理名：com.sun.proxy.$Proxy22</p>
+<p>spring有两种动态技术</p>
+<ul>
+<li>基于目标接口的</li>
+<li>基于目标类的</li>
+</ul>
+<p>public class $Proxy22 implements UserService{<br>     public void checkLogin(){<br>        //追加事务处理<br>        //重写了UserServiceImpl.checkLogin<br>}  </p>
+<p>}</p>
+<p>public class $Proxy22 extends 目标类{</p>
+<p>}</p>
+<h1 id="AOP注解配置"><a href="#AOP注解配置" class="headerlink" title="AOP注解配置"></a>AOP注解配置</h1><h2 id="注解标记"><a href="#注解标记" class="headerlink" title="注解标记"></a>注解标记</h2><p>@Component 起到应以<bean>的作用<br>@Aspect <aop:aspect ref="loggerBean"><br>@Before <aop:before pointcut="within()"></aop:before></aop:aspect></bean></p>
+<p>案例：</p>
+<ul>
+<li>要求：当系统发生service异常，将异常信息写入到日志文件</li>
+<li>切面：将异常写入文件</li>
+<li>切入点：after-throwing(“within(service..*    )”)</li>
+</ul>
+<p>记录异常类：</p>
+<pre><code>package io.codegitz.cloud_note.aspect;
+
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
+
+@Component  //扫描spring容器
+@Aspect     //将该类作为切面组件
+public class ExceptionBean {
+
+    //e是目标组件抛出的异常对象
+    @AfterThrowing(throwing=&quot;e&quot;,pointcut=&quot;within(io.codegitz.cloud_note.service..*)&quot;)
+    public void execute(Exception e){
+        //将异常信息输入文件
+        try {
+            FileWriter fw=new FileWriter(&quot;F:\\note_error\\record.log&quot;,true);
+            PrintWriter pw=new PrintWriter(fw);
+            //利用pw对象写入异常信息
+            Date time=new Date();
+            SimpleDateFormat sdf=new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);
+            String strTime=sdf.format(time);
+            pw.println(&quot;************************&quot;);
+            pw.println(&quot;异常类型：&quot;+e);
+            pw.println(&quot;异常事件：&quot;+strTime);
+            pw.println(&quot;*****异常的详细信息******&quot;);
+            e.printStackTrace(pw);
+            pw.close();
+            fw.close();
+        } catch (Exception ex) {
+            System.out.println(&quot;记录异常失败&quot;);
+        }
+    }
 }
-</code></pre><h2 id="5-缓存问题"><a href="#5-缓存问题" class="headerlink" title="5.缓存问题"></a>5.缓存问题</h2><h3 id="什么事缓存问题"><a href="#什么事缓存问题" class="headerlink" title="什么事缓存问题"></a>什么事缓存问题</h3><p>当使用IE浏览器发送get请求时，浏览器会查看请求地址是否访问过，如果访问过，则不再发送新的请求，而是显示第一次访问的结果（也就是说，会将第一次的请求结果缓存下来）</p>
-<h3 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h3><p>在请求地址后添加一个随机数。<br>    xhr.open(‘get’,’getLucky.do?’+Math.random(),true);</p>
+</code></pre><p>模拟异常：</p>
+<pre><code>String str=null;
+str.length();
+</code></pre><p>后台报错：<br><img src="https://i.imgur.com/mpEiu1h.png" alt=""></p>
+<p>日志文件记录：<br><img src="https://i.imgur.com/vmxMLpi.png" alt=""></p>
+<p>记录异常成功。</p>
 
       
 
@@ -247,7 +375,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/ajax/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/springAOP/">展开全文 >></a>
         </p>
       
 
