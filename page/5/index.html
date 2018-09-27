@@ -171,19 +171,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-CentOS7执行yum命令出错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-springboot处理错误机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/CentOS7执行yum命令出错/">CentOS7执行yum命令出错</a>
+      <a class="article-title" href="/2018/04/13/springboot处理错误机制/">springboot错误处理机制</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/CentOS7执行yum命令出错/" class="archive-article-date">
+        <a href="/2018/04/13/springboot处理错误机制/" class="archive-article-date">
   	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
@@ -195,35 +195,163 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="CentOS7执行yum命令出错"><a href="#CentOS7执行yum命令出错" class="headerlink" title="CentOS7执行yum命令出错"></a>CentOS7执行yum命令出错</h2><pre><code>[root@localhost ~]# yum install docker
-Loaded plugins: fastestmirror
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="错误处理机制"><a href="#错误处理机制" class="headerlink" title="错误处理机制"></a>错误处理机制</h2><h3 id="1-SpringBoot默认的错误处理机制"><a href="#1-SpringBoot默认的错误处理机制" class="headerlink" title="1.SpringBoot默认的错误处理机制"></a>1.SpringBoot默认的错误处理机制</h3><p>默认效果：</p>
+<p>​        1.浏览器，返回一个默认的错误页面</p>
+<p><img src="https://i.imgur.com/f0vuIsE.png" alt=""></p>
+<p>  浏览器发送请求的请求头：</p>
+<p><img src="https://i.imgur.com/LApvKKG.png" alt=""></p>
+<p>​        2.如果是其他客户端，默认响应一个json数据</p>
+<p><img src="https://i.imgur.com/ji2kpAJ.png" alt=""></p>
+<p><img src="https://i.imgur.com/gnvr1Uh.png" alt=""></p>
+<p>原理：</p>
+<p>​    可以参照ErrorMvcAutoConfiguration，错误处理的自动配置</p>
+<pre><code>  给容器中添加了以下组件
+</code></pre><p>​    1、DefaultErrorAttributes：</p>
+<pre><code class="java">帮我们在页面共享信息；
+@Override
+    public Map&lt;String, Object&gt; getErrorAttributes(RequestAttributes requestAttributes,
+            boolean includeStackTrace) {
+        Map&lt;String, Object&gt; errorAttributes = new LinkedHashMap&lt;String, Object&gt;();
+        errorAttributes.put(&quot;timestamp&quot;, new Date());
+        addStatus(errorAttributes, requestAttributes);
+        addErrorDetails(errorAttributes, requestAttributes, includeStackTrace);
+        addPath(errorAttributes, requestAttributes);
+        return errorAttributes;
+    }
+</code></pre>
+<p>​    2、BasicErrorController：处理默认/error请求</p>
+<pre><code class="java">@Controller
+@RequestMapping(&quot;${server.error.path:${error.path:/error}}&quot;)
+public class BasicErrorController extends AbstractErrorController {
 
+    @RequestMapping(produces = &quot;text/html&quot;)//产生html类型的数据；浏览器发送的请求来到这个方法处理
+    public ModelAndView errorHtml(HttpServletRequest request,
+            HttpServletResponse response) {
+        HttpStatus status = getStatus(request);
+        Map&lt;String, Object&gt; model = Collections.unmodifiableMap(getErrorAttributes(
+                request, isIncludeStackTrace(request, MediaType.TEXT_HTML)));
+        response.setStatus(status.value());
 
- One of the configured repositories failed (Unknown),
- and yum doesn&#39;t have enough cached data to continue. At this point the only
- safe thing yum can do is fail. There are a few ways to work &quot;fix&quot; this:
+        //去哪个页面作为错误页面；包含页面地址和页面内容
+        ModelAndView modelAndView = resolveErrorView(request, response, status, model);
+        return (modelAndView == null ? new ModelAndView(&quot;error&quot;, model) : modelAndView);
+    }
 
-1. Contact the upstream for the repository and get them to fix the problem.
+    @RequestMapping
+    @ResponseBody    //产生json数据，其他客户端来到这个方法处理；
+    public ResponseEntity&lt;Map&lt;String, Object&gt;&gt; error(HttpServletRequest request) {
+        Map&lt;String, Object&gt; body = getErrorAttributes(request,
+                isIncludeStackTrace(request, MediaType.ALL));
+        HttpStatus status = getStatus(request);
+        return new ResponseEntity&lt;Map&lt;String, Object&gt;&gt;(body, status);
+    }
+</code></pre>
+<p>​    3、ErrorPageCustomizer：</p>
+<pre><code class="java">    @Value(&quot;${error.path:/error}&quot;)
+    private String path = &quot;/error&quot;;  系统出现错误以后来到error请求进行处理；（web.xml注册的错误页面规则）
+</code></pre>
+<p>​    4、DefaultErrorViewResolver：</p>
+<pre><code class="java">@Override
+    public ModelAndView resolveErrorView(HttpServletRequest request, HttpStatus status,
+            Map&lt;String, Object&gt; model) {
+        ModelAndView modelAndView = resolve(String.valueOf(status), model);
+        if (modelAndView == null &amp;&amp; SERIES_VIEWS.containsKey(status.series())) {
+            modelAndView = resolve(SERIES_VIEWS.get(status.series()), model);
+        }
+        return modelAndView;
+    }
 
- 2. Reconfigure the baseurl/etc. for the repository, to point to a working
-        upstream. This is most often useful if you are using a newer
-        distribution release than is supported by the repository (and the
-        packages for the previous distribution release still work).
+    private ModelAndView resolve(String viewName, Map&lt;String, Object&gt; model) {
+        //默认SpringBoot可以去找到一个页面？  error/404
+        String errorViewName = &quot;error/&quot; + viewName;
 
-3. Disable the repository, so yum won&#39;t use it by default. Yum will then   just ignore the repository until you permanently enable it again or use
-        --enablerepo for temporary usage:
-  yum-config-manager --disable &lt;repoid&gt;
+        //模板引擎可以解析这个页面地址就用模板引擎解析
+        TemplateAvailabilityProvider provider = this.templateAvailabilityProviders
+                .getProvider(errorViewName, this.applicationContext);
+        if (provider != null) {
+            //模板引擎可用的情况下返回到errorViewName指定的视图地址
+            return new ModelAndView(errorViewName, model);
+        }
+        //模板引擎不可用，就在静态资源文件夹下找errorViewName对应的页面   error/404.html
+        return resolveResource(errorViewName, model);
+    }
+</code></pre>
+<p>​    步骤：</p>
+<p>​        一但系统出现4xx或者5xx之类的错误；ErrorPageCustomizer就会生效（定制错误的响应规则）；就会来到/error请求；就会被<strong>BasicErrorController</strong>处理；</p>
+<p>​        1）响应页面；去哪个页面是由<strong>DefaultErrorViewResolver</strong>解析得到的；</p>
+<pre><code class="java">protected ModelAndView resolveErrorView(HttpServletRequest request,
+      HttpServletResponse response, HttpStatus status, Map&lt;String, Object&gt; model) {
+    //所有的ErrorViewResolver得到ModelAndView
+   for (ErrorViewResolver resolver : this.errorViewResolvers) {
+      ModelAndView modelAndView = resolver.resolveErrorView(request, status, model);
+      if (modelAndView != null) {
+         return modelAndView;
+      }
+   }
+   return null;
+}
+</code></pre>
+<h3 id="2-如果定制错误响应"><a href="#2-如果定制错误响应" class="headerlink" title="2.如果定制错误响应"></a>2.如果定制错误响应</h3><h4 id="1-如何定制错误的页面；"><a href="#1-如何定制错误的页面；" class="headerlink" title="1.如何定制错误的页面；"></a><strong>1.如何定制错误的页面；</strong></h4><p>​            <strong>1.有模板引擎的情况下；error/状态码;</strong> 【将错误页面命名为  错误状态码.html 放在模板引擎文件夹里面的 error文件夹下】，发生此状态码的错误就会来到  对应的页面</p>
+<p>​            我们可以使用4xx和5xx作为错误页面的文件名来匹配这种类型的所有错误，精确优先（优先寻找精确的状态码.html）    </p>
+<p>​            页面能获取的信息；</p>
+<p>​                timestamp：时间戳</p>
+<p>​                status：状态码</p>
+<p>​                error：错误提示</p>
+<p>​                exception：异常对象</p>
+<p>​                message：异常消息</p>
+<p>​                errors：JSR303数据校验的错误都在这里</p>
+<p>​            2.没有模板引擎（模板引擎找不到这个错误页面），静态资源文件夹下找</p>
+<p>​            3.以上都没有错误页面，就是默认来到SpringBoot默认的错误提示页面</p>
+<h4 id="2-如何定制错误的json数据"><a href="#2-如何定制错误的json数据" class="headerlink" title="2.如何定制错误的json数据"></a>2.如何定制错误的json数据</h4><p>​        1.自定义异常处理&amp;返回定制json数据；</p>
+<pre><code class="java">@ControllerAdvice
+public class MyExceptionHandler {
 
-     4. Configure the failing repository to be skipped, if it is unavailable.
-        Note that yum will try to contact the repo. when it runs most commands,
-        so will have to try and fail each time (and thus. yum will be be much
-        slower). If it is a very temporary problem though, this is often a nice
-        compromise:
+    @ResponseBody
+    @ExceptionHandler(UserNotExistException.class)
+    public Map&lt;String,Object&gt; handleException(Exception e){
+        Map&lt;String,Object&gt; map = new HashMap&lt;&gt;();
+        map.put(&quot;code&quot;,&quot;user.notexist&quot;);
+        map.put(&quot;message&quot;,e.getMessage());
+        return map;
+    }
+}
+//没有自适应效果...
+</code></pre>
+<p>​        2.转发到/error进行自适应响应效果处理</p>
+<pre><code class="java"> @ExceptionHandler(UserNotExistException.class)
+    public String handleException(Exception e, HttpServletRequest request){
+        Map&lt;String,Object&gt; map = new HashMap&lt;&gt;();
+        //传入我们自己的错误状态码  4xx 5xx，否则就不会进入定制错误页面的解析流程
+        /**
+         * Integer statusCode = (Integer) request
+         .getAttribute(&quot;javax.servlet.error.status_code&quot;);
+         */
+        request.setAttribute(&quot;javax.servlet.error.status_code&quot;,500);
+        map.put(&quot;code&quot;,&quot;user.notexist&quot;);
+        map.put(&quot;message&quot;,e.getMessage());
+        //转发到/error
+        return &quot;forward:/error&quot;;
+    }
+</code></pre>
+<h4 id="3-将我们的定制数据携带出去"><a href="#3-将我们的定制数据携带出去" class="headerlink" title="3.将我们的定制数据携带出去"></a>3.将我们的定制数据携带出去</h4><p>出现错误以后，会来到/error请求，会被BasicErrorController处理，响应出去可以获取的数据是由getErrorAttributes得到的（是AbstractErrorController（ErrorController）规定的方法）</p>
+<p>​    1、完全来编写一个ErrorController的实现类【或者是编写AbstractErrorController的子类】，放在容器中</p>
+<p>​    2、页面上能用的数据，或者是json返回能用的数据都是通过errorAttributes.getErrorAttributes得到</p>
+<p>​            容器中DefaultErrorAttributes.getErrorAttributes()；默认进行数据处理的</p>
+<p>自定义ErrorAttributes</p>
+<pre><code class="java">//给容器中加入我们自己定义的ErrorAttributes
+@Component
+public class MyErrorAttributes extends DefaultErrorAttributes {
 
-        yum-config-manager --save --setopt=&lt;repoid&gt;.skip_if_unavailable=true
-
-Cannot find a valid baseurl for repo: base/7/x86_64
-</code></pre><p>原因是本本虚拟机无法上网，配置再多也没用</p>
+    @Override
+    public Map&lt;String, Object&gt; getErrorAttributes(RequestAttributes requestAttributes, boolean includeStackTrace) {
+        Map&lt;String, Object&gt; map = super.getErrorAttributes(requestAttributes, includeStackTrace);
+        map.put(&quot;company&quot;,&quot;atguigu&quot;);
+        return map;
+    }
+}
+</code></pre>
+<p>最终的效果：响应是自适应的，可以通过定制ErrorAttributes改变需要返回的内容，</p>
+<p><img src="https://i.imgur.com/hnWy78H.png" alt=""></p>
 
       
 
@@ -237,7 +365,7 @@ Cannot find a valid baseurl for repo: base/7/x86_64
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Java,Springboot</a>
         		</li>
       		
 		</ul>
@@ -250,7 +378,7 @@ Cannot find a valid baseurl for repo: base/7/x86_64
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/CentOS7执行yum命令出错/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/springboot处理错误机制/">展开全文 >></a>
         </p>
       
 
@@ -499,19 +627,19 @@ Cannot find a valid baseurl for repo: base/7/x86_64
 
 
   
-    <article id="post-Linux系统" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-markdown无法显示" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/Linux系统/">Linux入门</a>
+      <a class="article-title" href="/2018/04/13/markdown无法显示/">markdown注入错误</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/Linux系统/" class="archive-article-date">
+        <a href="/2018/04/13/markdown无法显示/" class="archive-article-date">
   	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
@@ -523,157 +651,16 @@ Cannot find a valid baseurl for repo: base/7/x86_64
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="linux系统入门命令"><a href="#linux系统入门命令" class="headerlink" title="linux系统入门命令"></a>linux系统入门命令</h2><p><img src="https://i.imgur.com/7eh6TGc.png" alt=""></p>
-<p><img src="https://i.imgur.com/Ejlq4bE.png" alt=""></p>
-<p><img src="https://i.imgur.com/LKa1LxD.png" alt=""></p>
-<p><img src="https://i.imgur.com/ybKZ0AB.png" alt=""></p>
-<p><img src="https://i.imgur.com/qEhoB5P.png" alt=""></p>
-<p><img src="https://i.imgur.com/dCMXbUi.png" alt=""></p>
-<p><img src="https://i.imgur.com/F1vxE36.png" alt=""></p>
-<p><img src="https://i.imgur.com/V4P7utD.png" alt=""></p>
-<p><img src="https://i.imgur.com/zon6eSu.png" alt=""></p>
-<p><img src="https://i.imgur.com/aAvT3D6.png" alt=""></p>
-<p><img src="https://i.imgur.com/ZlXKCAz.png" alt=""></p>
-<p><img src="https://i.imgur.com/dKCa5oK.png" alt=""></p>
-<p><img src="https://i.imgur.com/W90zIPA.png" alt=""></p>
-<p><img src="https://i.imgur.com/EiR8wab.png" alt=""></p>
-<p><img src="https://i.imgur.com/TcySP4V.png" alt=""></p>
-<p><img src="https://i.imgur.com/XC9GLWo.png" alt=""></p>
-<p><img src="https://i.imgur.com/bWwQPhX.png" alt=""></p>
-<p><img src="https://i.imgur.com/xIbYOth.png" alt=""></p>
-<p><img src="https://i.imgur.com/OxYVNcZ.png" alt=""></p>
-<p><img src="https://i.imgur.com/yFlF45B.png" alt=""></p>
-<h2 id="Linux命令操作技巧"><a href="#Linux命令操作技巧" class="headerlink" title="Linux命令操作技巧"></a>Linux命令操作技巧</h2><p><img src="https://i.imgur.com/xVjIft3.png" alt=""></p>
-<p><img src="https://i.imgur.com/Rq1RG5p.png" alt=""></p>
-<p><img src="https://i.imgur.com/P6uTIbb.png" alt=""></p>
-<p><img src="https://i.imgur.com/teJEjNL.png" alt=""></p>
-<pre><code>[root@localhost /]# cat test1
-this is a test file
-[root@localhost /]# cat test2
-cat: test2: No such file or directory
-[root@localhost /]# cat &lt;test1&gt;test2
-[root@localhost /]# cat test2
-this is a test file
-[root@localhost /]#
-</code></pre><p><img src="https://i.imgur.com/kVIDC9u.png" alt=""></p>
-<p><img src="https://i.imgur.com/2hK8u4M.png" alt=""></p>
-<p>查看网卡</p>
-<pre><code>[root@localhost /]# dmesg | grep eth0
-[    1.551363] e1000 0000:00:03.0 eth0: (PCI:33MHz:32-bit) 08:00:27:80:9c:a0
-[    1.551368] e1000 0000:00:03.0 eth0: Intel(R) PRO/1000 Network Connection
-</code></pre><h2 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h2><p><img src="https://i.imgur.com/w5aEPci.png" alt=""></p>
-<p><img src="https://i.imgur.com/4WlXn3u.png" alt=""></p>
-<p><img src="https://i.imgur.com/ejyw9Cc.png" alt=""></p>
-<p><img src="https://i.imgur.com/PqqPSVL.png" alt=""></p>
-<h2 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h2><p><img src="https://i.imgur.com/hDbkP48.png" alt=""></p>
-<p>which：查找某些可执行程序<br>whereis:查找可执行程序，相关配置文件，帮助信息<br>locate：模糊搜索，列出相应的文件<br>find:<br><img src="https://i.imgur.com/YBwaNr9.png" alt=""></p>
-<h2 id="文本编辑器"><a href="#文本编辑器" class="headerlink" title="文本编辑器"></a>文本编辑器</h2><p><img src="https://i.imgur.com/EC0qKNH.png" alt=""></p>
-<p><img src="https://i.imgur.com/aNxsocU.png" alt=""></p>
-<p><img src="https://i.imgur.com/UCC8FYM.png" alt=""></p>
-<p><img src="https://i.imgur.com/FaoTGDA.png" alt=""></p>
-<p><img src="https://i.imgur.com/9xO4Sfo.png" alt=""></p>
-<p><img src="https://i.imgur.com/lN2zz5W.png" alt=""></p>
-<p><img src="https://i.imgur.com/5edVuiD.png" alt=""></p>
-<p><img src="https://i.imgur.com/RMBADOb.png" alt=""></p>
-<p><img src="https://i.imgur.com/kbDcmqc.png" alt=""></p>
-<p><img src="https://i.imgur.com/wP0uN0u.png" alt=""></p>
-<p><img src="https://i.imgur.com/TbOBT2X.png" alt=""></p>
-<p><img src="https://i.imgur.com/3WYH460.png" alt=""></p>
-<p><img src="https://i.imgur.com/isNRh81.png" alt=""></p>
-<p><img src="https://i.imgur.com/qnrP6uT.png" alt=""></p>
-<p><img src="https://i.imgur.com/Fid9CiY.png" alt=""></p>
-<p><img src="https://i.imgur.com/XSCkMTo.png" alt=""></p>
-<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>##shell</p>
-<h3 id="shell简介"><a href="#shell简介" class="headerlink" title="shell简介"></a>shell简介</h3><p><img src="https://i.imgur.com/x3t8HMZ.png" alt=""></p>
-<p><img src="https://i.imgur.com/k9OCQvY.png" alt=""></p>
-<p><img src="https://i.imgur.com/7yhiANw.png" alt=""></p>
-<p><img src="https://i.imgur.com/aNqw31v.png" alt=""></p>
-<p><img src="https://i.imgur.com/9oJFdOl.png" alt=""></p>
-<p><img src="https://i.imgur.com/APzRkKh.png" alt=""></p>
-<p><img src="https://i.imgur.com/ZU9AYbk.png" alt=""></p>
-<p><img src="https://i.imgur.com/kRHitAl.png" alt=""></p>
-<pre><code>
-[root@localhost /]# vi shelltest
-[root@localhost /]# cat shelltest
- #!/bin/bash
- # program
- # This program shows &quot;Helloworld!&quot;
-</code></pre><pre><code>echo -e &quot;Hello world.\n&quot;
-exit 0
-[root@localhost /]#
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="神奇的markdown"><a href="#神奇的markdown" class="headerlink" title="神奇的markdown"></a>神奇的markdown</h2><pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+       &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot; &gt;
 
-[root@localhost /]# sh shelltest
-Hello world.
+    &lt;bean id=&quot;helloService&quot; class=&quot;io.springboot.service.HelloService&quot;&gt;&lt;/bean&gt;
 
-[root@localhost /]# ./shelltest
--bash: ./shelltest: Permission denied
-</code></pre><pre><code>[root@localhost /]# chmod 744 shelltest 
-[root@localhost /]# ./shelltest
-Hello world.
-</code></pre><h3 id="shell变量"><a href="#shell变量" class="headerlink" title="shell变量"></a>shell变量</h3><p><img src="https://i.imgur.com/wFwYM2X.png" alt=""></p>
-<p><img src="https://i.imgur.com/mVvy0c5.png" alt=""></p>
-<p><img src="https://i.imgur.com/c1kQkjT.png" alt=""></p>
-<p><img src="https://i.imgur.com/v17XzC4.png" alt=""></p>
-<p><img src="https://i.imgur.com/HecJ5Ap.png" alt=""></p>
-<p>shell脚本</p>
-<pre><code> #!/bin/bash
- # program
- # This program shows &quot;Helloworld!&quot;
-
- #echo -e &quot;Hello world.\n&quot;
- #exit 0
-v1=centos
-v2=&quot;this is a test filed&quot;
-a=10
-b=20
-echo $a
-echo $b
-echo $v2
- # mathmatical
-echo $(($a+$b))
-echo $(($a*$b))
- # String length
-echo ${#v2}
-echo $v2
-echo ${v2:5}
-echo ${v2:5:5}
-echo ${v2#this is}
-</code></pre><p>运行结果</p>
-<pre><code>[root@localhost /]# ./shelltest
-10
-20
-this is a test filed
-30
-200
-20
-this is a test filed
-is a test filed
-is a
-a test filed
-</code></pre><h3 id="shell中的判断"><a href="#shell中的判断" class="headerlink" title="shell中的判断"></a>shell中的判断</h3><p><img src="https://i.imgur.com/aT7HiPM.png" alt=""></p>
-<p><img src="https://i.imgur.com/xwLuI55.png" alt=""></p>
-<p><img src="https://i.imgur.com/OUurS4y.png" alt=""></p>
-<p><strong>分支结束，关键字反写</strong><br><img src="https://i.imgur.com/z1KgT58.png" alt=""></p>
-<p><img src="https://i.imgur.com/6No07Gi.png" alt=""></p>
-<p>for循环</p>
-<pre><code> #! /bin/bash
-for((i=1;i&lt;=10;i++));do
-echo $i;
-done;
-~
-</code></pre><pre><code>[root@localhost /]# vi for
-[root@localhost /]# sh for
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
+&lt;/beans&gt;
 </code></pre>
+
       
 
       
@@ -686,7 +673,7 @@ done;
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
         		</li>
       		
 		</ul>
@@ -699,7 +686,7 @@ done;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/Linux系统/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/markdown无法显示/">展开全文 >></a>
         </p>
       
 
@@ -1119,11 +1106,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">music</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">music</a>
               </li>
              
               <li class="article-tag-list-item">
