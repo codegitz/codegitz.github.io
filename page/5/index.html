@@ -171,6 +171,115 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-CentOS7执行yum命令出错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/CentOS7执行yum命令出错/">CentOS7执行yum命令出错</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/CentOS7执行yum命令出错/" class="archive-article-date">
+  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="CentOS7执行yum命令出错"><a href="#CentOS7执行yum命令出错" class="headerlink" title="CentOS7执行yum命令出错"></a>CentOS7执行yum命令出错</h2><pre><code>[root@localhost ~]# yum install docker
+Loaded plugins: fastestmirror
+
+
+ One of the configured repositories failed (Unknown),
+ and yum doesn&#39;t have enough cached data to continue. At this point the only
+ safe thing yum can do is fail. There are a few ways to work &quot;fix&quot; this:
+
+1. Contact the upstream for the repository and get them to fix the problem.
+
+ 2. Reconfigure the baseurl/etc. for the repository, to point to a working
+        upstream. This is most often useful if you are using a newer
+        distribution release than is supported by the repository (and the
+        packages for the previous distribution release still work).
+
+3. Disable the repository, so yum won&#39;t use it by default. Yum will then   just ignore the repository until you permanently enable it again or use
+        --enablerepo for temporary usage:
+  yum-config-manager --disable &lt;repoid&gt;
+
+     4. Configure the failing repository to be skipped, if it is unavailable.
+        Note that yum will try to contact the repo. when it runs most commands,
+        so will have to try and fail each time (and thus. yum will be be much
+        slower). If it is a very temporary problem though, this is often a nice
+        compromise:
+
+        yum-config-manager --save --setopt=&lt;repoid&gt;.skip_if_unavailable=true
+
+Cannot find a valid baseurl for repo: base/7/x86_64
+</code></pre><p>原因是本本虚拟机无法上网，配置再多也没用</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/CentOS7执行yum命令出错/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hexo-yilia-文章浏览量统计" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -302,115 +411,6 @@
 
 
   
-    <article id="post-CentOS7执行yum命令出错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/CentOS7执行yum命令出错/">CentOS7执行yum命令出错</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/CentOS7执行yum命令出错/" class="archive-article-date">
-  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="CentOS7执行yum命令出错"><a href="#CentOS7执行yum命令出错" class="headerlink" title="CentOS7执行yum命令出错"></a>CentOS7执行yum命令出错</h2><pre><code>[root@localhost ~]# yum install docker
-Loaded plugins: fastestmirror
-
-
- One of the configured repositories failed (Unknown),
- and yum doesn&#39;t have enough cached data to continue. At this point the only
- safe thing yum can do is fail. There are a few ways to work &quot;fix&quot; this:
-
-1. Contact the upstream for the repository and get them to fix the problem.
-
- 2. Reconfigure the baseurl/etc. for the repository, to point to a working
-        upstream. This is most often useful if you are using a newer
-        distribution release than is supported by the repository (and the
-        packages for the previous distribution release still work).
-
-3. Disable the repository, so yum won&#39;t use it by default. Yum will then   just ignore the repository until you permanently enable it again or use
-        --enablerepo for temporary usage:
-  yum-config-manager --disable &lt;repoid&gt;
-
-     4. Configure the failing repository to be skipped, if it is unavailable.
-        Note that yum will try to contact the repo. when it runs most commands,
-        so will have to try and fail each time (and thus. yum will be be much
-        slower). If it is a very temporary problem though, this is often a nice
-        compromise:
-
-        yum-config-manager --save --setopt=&lt;repoid&gt;.skip_if_unavailable=true
-
-Cannot find a valid baseurl for repo: base/7/x86_64
-</code></pre><p>原因是本本虚拟机无法上网，配置再多也没用</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/CentOS7执行yum命令出错/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-iptables" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -499,19 +499,19 @@ Cannot find a valid baseurl for repo: base/7/x86_64
 
 
   
-    <article id="post-PowerDesigner中DBMS设置的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Linux系统" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/PowerDesigner中DBMS设置的问题/">PowerDesigner中DBMS设置的问题</a>
+      <a class="article-title" href="/2018/04/13/Linux系统/">Linux入门</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/PowerDesigner中DBMS设置的问题/" class="archive-article-date">
+        <a href="/2018/04/13/Linux系统/" class="archive-article-date">
   	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
@@ -523,9 +523,157 @@ Cannot find a valid baseurl for repo: base/7/x86_64
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="解决PowerDesigner中DBMS设置的问题"><a href="#解决PowerDesigner中DBMS设置的问题" class="headerlink" title="解决PowerDesigner中DBMS设置的问题"></a>解决PowerDesigner中DBMS设置的问题</h2><p>在Generate Physical Data Model 的时候出现DBMS选择框全为空的情况，而且上面的菜单栏没有database这个选项<br><img src="https://i.imgur.com/oBXAV3q.png" alt=""></p>
-<p>一开始以为是软件装错了，以为是下了什么盗版软件，后来才发现是DBMS的路径有问题<br><img src="https://i.imgur.com/8wbGyAN.png" alt=""><br>直接浏览到powderdesigner的安装路径下的\Resource Files\DBMS，软件自己配的路径有点诡异，并不是正确的，点击确定之后即可<br><img src="https://i.imgur.com/uQdlj4X.png" alt=""><br>出现了所有的DBMS，上面一行菜单栏也出现了database这个选项<br><img src="https://i.imgur.com/BHeWP5B.png" alt=""></p>
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="linux系统入门命令"><a href="#linux系统入门命令" class="headerlink" title="linux系统入门命令"></a>linux系统入门命令</h2><p><img src="https://i.imgur.com/7eh6TGc.png" alt=""></p>
+<p><img src="https://i.imgur.com/Ejlq4bE.png" alt=""></p>
+<p><img src="https://i.imgur.com/LKa1LxD.png" alt=""></p>
+<p><img src="https://i.imgur.com/ybKZ0AB.png" alt=""></p>
+<p><img src="https://i.imgur.com/qEhoB5P.png" alt=""></p>
+<p><img src="https://i.imgur.com/dCMXbUi.png" alt=""></p>
+<p><img src="https://i.imgur.com/F1vxE36.png" alt=""></p>
+<p><img src="https://i.imgur.com/V4P7utD.png" alt=""></p>
+<p><img src="https://i.imgur.com/zon6eSu.png" alt=""></p>
+<p><img src="https://i.imgur.com/aAvT3D6.png" alt=""></p>
+<p><img src="https://i.imgur.com/ZlXKCAz.png" alt=""></p>
+<p><img src="https://i.imgur.com/dKCa5oK.png" alt=""></p>
+<p><img src="https://i.imgur.com/W90zIPA.png" alt=""></p>
+<p><img src="https://i.imgur.com/EiR8wab.png" alt=""></p>
+<p><img src="https://i.imgur.com/TcySP4V.png" alt=""></p>
+<p><img src="https://i.imgur.com/XC9GLWo.png" alt=""></p>
+<p><img src="https://i.imgur.com/bWwQPhX.png" alt=""></p>
+<p><img src="https://i.imgur.com/xIbYOth.png" alt=""></p>
+<p><img src="https://i.imgur.com/OxYVNcZ.png" alt=""></p>
+<p><img src="https://i.imgur.com/yFlF45B.png" alt=""></p>
+<h2 id="Linux命令操作技巧"><a href="#Linux命令操作技巧" class="headerlink" title="Linux命令操作技巧"></a>Linux命令操作技巧</h2><p><img src="https://i.imgur.com/xVjIft3.png" alt=""></p>
+<p><img src="https://i.imgur.com/Rq1RG5p.png" alt=""></p>
+<p><img src="https://i.imgur.com/P6uTIbb.png" alt=""></p>
+<p><img src="https://i.imgur.com/teJEjNL.png" alt=""></p>
+<pre><code>[root@localhost /]# cat test1
+this is a test file
+[root@localhost /]# cat test2
+cat: test2: No such file or directory
+[root@localhost /]# cat &lt;test1&gt;test2
+[root@localhost /]# cat test2
+this is a test file
+[root@localhost /]#
+</code></pre><p><img src="https://i.imgur.com/kVIDC9u.png" alt=""></p>
+<p><img src="https://i.imgur.com/2hK8u4M.png" alt=""></p>
+<p>查看网卡</p>
+<pre><code>[root@localhost /]# dmesg | grep eth0
+[    1.551363] e1000 0000:00:03.0 eth0: (PCI:33MHz:32-bit) 08:00:27:80:9c:a0
+[    1.551368] e1000 0000:00:03.0 eth0: Intel(R) PRO/1000 Network Connection
+</code></pre><h2 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h2><p><img src="https://i.imgur.com/w5aEPci.png" alt=""></p>
+<p><img src="https://i.imgur.com/4WlXn3u.png" alt=""></p>
+<p><img src="https://i.imgur.com/ejyw9Cc.png" alt=""></p>
+<p><img src="https://i.imgur.com/PqqPSVL.png" alt=""></p>
+<h2 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h2><p><img src="https://i.imgur.com/hDbkP48.png" alt=""></p>
+<p>which：查找某些可执行程序<br>whereis:查找可执行程序，相关配置文件，帮助信息<br>locate：模糊搜索，列出相应的文件<br>find:<br><img src="https://i.imgur.com/YBwaNr9.png" alt=""></p>
+<h2 id="文本编辑器"><a href="#文本编辑器" class="headerlink" title="文本编辑器"></a>文本编辑器</h2><p><img src="https://i.imgur.com/EC0qKNH.png" alt=""></p>
+<p><img src="https://i.imgur.com/aNxsocU.png" alt=""></p>
+<p><img src="https://i.imgur.com/UCC8FYM.png" alt=""></p>
+<p><img src="https://i.imgur.com/FaoTGDA.png" alt=""></p>
+<p><img src="https://i.imgur.com/9xO4Sfo.png" alt=""></p>
+<p><img src="https://i.imgur.com/lN2zz5W.png" alt=""></p>
+<p><img src="https://i.imgur.com/5edVuiD.png" alt=""></p>
+<p><img src="https://i.imgur.com/RMBADOb.png" alt=""></p>
+<p><img src="https://i.imgur.com/kbDcmqc.png" alt=""></p>
+<p><img src="https://i.imgur.com/wP0uN0u.png" alt=""></p>
+<p><img src="https://i.imgur.com/TbOBT2X.png" alt=""></p>
+<p><img src="https://i.imgur.com/3WYH460.png" alt=""></p>
+<p><img src="https://i.imgur.com/isNRh81.png" alt=""></p>
+<p><img src="https://i.imgur.com/qnrP6uT.png" alt=""></p>
+<p><img src="https://i.imgur.com/Fid9CiY.png" alt=""></p>
+<p><img src="https://i.imgur.com/XSCkMTo.png" alt=""></p>
+<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>##shell</p>
+<h3 id="shell简介"><a href="#shell简介" class="headerlink" title="shell简介"></a>shell简介</h3><p><img src="https://i.imgur.com/x3t8HMZ.png" alt=""></p>
+<p><img src="https://i.imgur.com/k9OCQvY.png" alt=""></p>
+<p><img src="https://i.imgur.com/7yhiANw.png" alt=""></p>
+<p><img src="https://i.imgur.com/aNqw31v.png" alt=""></p>
+<p><img src="https://i.imgur.com/9oJFdOl.png" alt=""></p>
+<p><img src="https://i.imgur.com/APzRkKh.png" alt=""></p>
+<p><img src="https://i.imgur.com/ZU9AYbk.png" alt=""></p>
+<p><img src="https://i.imgur.com/kRHitAl.png" alt=""></p>
+<pre><code>
+[root@localhost /]# vi shelltest
+[root@localhost /]# cat shelltest
+ #!/bin/bash
+ # program
+ # This program shows &quot;Helloworld!&quot;
+</code></pre><pre><code>echo -e &quot;Hello world.\n&quot;
+exit 0
+[root@localhost /]#
 
+[root@localhost /]# sh shelltest
+Hello world.
+
+[root@localhost /]# ./shelltest
+-bash: ./shelltest: Permission denied
+</code></pre><pre><code>[root@localhost /]# chmod 744 shelltest 
+[root@localhost /]# ./shelltest
+Hello world.
+</code></pre><h3 id="shell变量"><a href="#shell变量" class="headerlink" title="shell变量"></a>shell变量</h3><p><img src="https://i.imgur.com/wFwYM2X.png" alt=""></p>
+<p><img src="https://i.imgur.com/mVvy0c5.png" alt=""></p>
+<p><img src="https://i.imgur.com/c1kQkjT.png" alt=""></p>
+<p><img src="https://i.imgur.com/v17XzC4.png" alt=""></p>
+<p><img src="https://i.imgur.com/HecJ5Ap.png" alt=""></p>
+<p>shell脚本</p>
+<pre><code> #!/bin/bash
+ # program
+ # This program shows &quot;Helloworld!&quot;
+
+ #echo -e &quot;Hello world.\n&quot;
+ #exit 0
+v1=centos
+v2=&quot;this is a test filed&quot;
+a=10
+b=20
+echo $a
+echo $b
+echo $v2
+ # mathmatical
+echo $(($a+$b))
+echo $(($a*$b))
+ # String length
+echo ${#v2}
+echo $v2
+echo ${v2:5}
+echo ${v2:5:5}
+echo ${v2#this is}
+</code></pre><p>运行结果</p>
+<pre><code>[root@localhost /]# ./shelltest
+10
+20
+this is a test filed
+30
+200
+20
+this is a test filed
+is a test filed
+is a
+a test filed
+</code></pre><h3 id="shell中的判断"><a href="#shell中的判断" class="headerlink" title="shell中的判断"></a>shell中的判断</h3><p><img src="https://i.imgur.com/aT7HiPM.png" alt=""></p>
+<p><img src="https://i.imgur.com/xwLuI55.png" alt=""></p>
+<p><img src="https://i.imgur.com/OUurS4y.png" alt=""></p>
+<p><strong>分支结束，关键字反写</strong><br><img src="https://i.imgur.com/z1KgT58.png" alt=""></p>
+<p><img src="https://i.imgur.com/6No07Gi.png" alt=""></p>
+<p>for循环</p>
+<pre><code> #! /bin/bash
+for((i=1;i&lt;=10;i++));do
+echo $i;
+done;
+~
+</code></pre><pre><code>[root@localhost /]# vi for
+[root@localhost /]# sh for
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</code></pre>
       
 
       
@@ -538,7 +686,7 @@ Cannot find a valid baseurl for repo: base/7/x86_64
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">powerdesigner</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -551,7 +699,7 @@ Cannot find a valid baseurl for repo: base/7/x86_64
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/PowerDesigner中DBMS设置的问题/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/Linux系统/">展开全文 >></a>
         </p>
       
 
@@ -890,12 +1038,16 @@ public class CorsFilter implements Filter{
 		showTags: true
 	}
 </script>
-<!--prettify���������ű�����-->
+<!--prettify���������ű�����$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();-->
+
 <script src="/plugins/prettify/prettify.js"></script>
 <script type="text/javascript">
-$(window).load(function(){
-$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
- prettyPrint();
+$(document).ready(function(){
+ $('pre').addClass('prettyprint linenums');
+   prettyPrint();
+ })
 })
 </script>
 
@@ -965,15 +1117,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1001,15 +1153,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">

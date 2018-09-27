@@ -603,19 +603,19 @@ System.out.println(&quot;hello world&quot;);
 
 
   
-    <article id="post-Hibernate入门系列（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Hibernate入门系列（五）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/30/Hibernate入门系列（一）/">Hibernate入门系列（一）</a>
+      <a class="article-title" href="/2017/06/30/Hibernate入门系列（五）/">Hibernate入门系列（五）</a>
     </h1>
   
 
         
-        <a href="/2017/06/30/Hibernate入门系列（一）/" class="archive-article-date">
+        <a href="/2017/06/30/Hibernate入门系列（五）/" class="archive-article-date">
   	<time datetime="2017-06-29T16:48:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-30</time>
 </a>
         
@@ -627,403 +627,97 @@ System.out.println(&quot;hello world&quot;);
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Hibernate入门系列（一）"><a href="#Hibernate入门系列（一）" class="headerlink" title="Hibernate入门系列（一）"></a>Hibernate入门系列（一）</h1><h2 id="hibernate是什么"><a href="#hibernate是什么" class="headerlink" title="hibernate是什么"></a>hibernate是什么</h2><ul>
-<li>一个框架</li>
-<li>一个 Java 领域的持久化框架</li>
-<li>一个 ORM 框架</li>
-</ul>
-<h3 id="对象的持久化"><a href="#对象的持久化" class="headerlink" title="对象的持久化"></a>对象的持久化</h3><p>狭义的理解，“持久化”仅仅指把对象永久保存到数据库中<br>广义的理解，“持久化”包括和数据库相关的各种操作：</p>
-<ul>
-<li>保存：把对象永久保存到数据库中。</li>
-<li>更新：更新数据库中对象(记录)的状态。</li>
-<li>删除：从数据库中删除一个对象。</li>
-<li>查询：根据特定的查询条件，把符合查询条件的一个或多个对象从数据库加载到内存中。</li>
-<li><strong>加载</strong>：根据特定的<strong>OID</strong>，把一个对象从数据库加载到内存中。<br><strong>注:OID,为了在系统中能够找到所需对象，需要为每一个对象分配一个唯一的标识号。在关系数据库中称之为主键，而在对象术语中，则叫做对象标识(Object identifier-OID).</strong> </li>
-</ul>
-<h3 id="ORM"><a href="#ORM" class="headerlink" title="ORM"></a>ORM</h3><p><strong>ORM(Object/Relation Mapping): 对象/关系映射</strong></p>
-<ul>
-<li>ORM 主要解决对象-关系的映射<table><br><tbody><br><tr style="line-height:normal;"></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">面向对象的概念</tt></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">面向关系的概念</tt></td></tr><br><tr style="line-height:normal;"></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">类</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">表</tt></td></tr><br><tr style="line-height:normal;"></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">对象</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">表的行（记录）</tt></td></tr><br><tr style="line-height:normal;"></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">属性</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">表的列（字段）</tt></td></tr><br></tbody><br></table></li>
-<li>ORM的思想：将关系数据库中表中的记录映射成为对象，以对象的形式展现，程序员可以把对数据库的操作转化为对对象的操作。</li>
-<li>ORM 采用元数据来描述对象-关系映射细节, 元数据通常采用 XML 格式, 并且存放在专门的对象-关系映射文件中.<br><img src="https://i.imgur.com/qq9Ji03.png" alt=""></li>
-</ul>
-<h3 id="流行的ORM框架"><a href="#流行的ORM框架" class="headerlink" title="流行的ORM框架"></a>流行的ORM框架</h3><p>Hibernate:</p>
-<ul>
-<li>非常优秀、成熟的 ORM 框架。<br>完成对象的持久化操作</li>
-<li>Hibernate 允许开发者采用面向对象的方式来操作关系数据库。</li>
-<li>消除那些针对特定数据库厂商的 SQL 代码</li>
-</ul>
-<p>myBatis：</p>
-<ul>
-<li>相比 Hibernate 灵活高，运行速度快</li>
-<li>开发速度慢，不支持纯粹的面向对象操作，需熟悉sql语句，并且熟练使用sql语句优化功能 </li>
-</ul>
-<p>TopLink</p>
-<p>OJB</p>
-<h3 id="Hibernate-与-Jdbc-代码对比"><a href="#Hibernate-与-Jdbc-代码对比" class="headerlink" title="Hibernate 与 Jdbc 代码对比"></a>Hibernate 与 Jdbc 代码对比</h3><p><img src="https://i.imgur.com/TRA9dZh.png" alt=""></p>
-<h2 id="hibernate的helloworld"><a href="#hibernate的helloworld" class="headerlink" title="hibernate的helloworld"></a>hibernate的helloworld</h2><h3 id="准备环境，导入相应的jar包"><a href="#准备环境，导入相应的jar包" class="headerlink" title="准备环境，导入相应的jar包"></a>准备环境，导入相应的jar包</h3><p><img src="https://i.imgur.com/lKGl7HC.png" alt=""></p>
-<h3 id="创建hibernate基本配置文件"><a href="#创建hibernate基本配置文件" class="headerlink" title="创建hibernate基本配置文件"></a>创建hibernate基本配置文件</h3><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;!DOCTYPE hibernate-configuration PUBLIC
-        &quot;-//Hibernate/Hibernate Configuration DTD 3.0//EN&quot;
-        &quot;http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd&quot;&gt;
- &lt;hibernate-configuration&gt;
-    &lt;session-factory&gt;
-    &lt;!-- 配置连接数据库的基本信息 --&gt;
-    &lt;property name=&quot;hibernate.connection.username&quot;&gt;root&lt;/property&gt;
-    &lt;property name=&quot;hibernate.connection.password&quot;&gt;zhang1997&lt;/property&gt;
-    &lt;property name=&quot;hibernate.connection.driver_class&quot;&gt;com.mysql.jdbc.Driver&lt;/property&gt;
-    &lt;property name=&quot;hibernate.connection.url&quot;&gt;jdbc:mysql://localhost:3306/hibernate&lt;/property&gt;
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Hibernate入门系列（五）"><a href="#Hibernate入门系列（五）" class="headerlink" title="Hibernate入门系列（五）"></a>Hibernate入门系列（五）</h1><h2 id="Hibernate-检索策略"><a href="#Hibernate-检索策略" class="headerlink" title="Hibernate 检索策略"></a>Hibernate 检索策略</h2><p>检索数据时的 2 个问题：<br><br>不浪费内存：当 Hibernate 从数据库中加载 Customer 对象时, 如果同时加载所有关联的 Order 对象, 而程序实际上仅仅需要访问 Customer 对象, 那么这些关联的 Order 对象就白白浪费了许多内存.<br><br>更高的查询效率：发送尽可能少的 SQL 语句<br><img src="https://i.imgur.com/rcMQ103.png" alt=""></p>
+<h3 id="类级别的检索策略"><a href="#类级别的检索策略" class="headerlink" title="类级别的检索策略"></a>类级别的检索策略</h3><p>类级别可选的检索策略包括立即检索和延迟检索, 默认为延迟检索<br><br>立即检索: 立即加载检索方法指定的对象<br><br>延迟检索: 延迟加载检索方法指定的对象。在使用具体的属性时，再进行加载<br><br>类级别的检索策略可以通过 <class> 元素的 lazy 属性进行设置<br><br>如果程序加载一个对象的目的是为了访问它的属性, 可以采取立即检索.<br><br>如果程序加载一个持久化对象的目的是仅仅为了获得它的引用, 可以采用延迟检索。注意出现懒加载异常！<br><br>无论 <class> 元素的 lazy 属性是 true 还是 false, Session 的 get() 方法及 Query 的 list() 方法在类级别总是使用立即检索策略<br><br>若 <class> 元素的 lazy 属性为 true 或取默认值, Session 的 load() 方法不会执行查询数据表的 SELECT 语句, 仅返回代理类对象的实例, 该代理类实例有如下特征:<br><br>由 Hibernate 在运行时采用 CGLIB 工具动态生成<br><br>Hibernate 创建代理类实例时, 仅初始化其 OID 属性<br><br>在应用程序第一次访问代理类实例的非 OID 属性时, Hibernate 会初始化代理类实例<br></class></class></class></p>
+<h3 id="一对多和多对多的检索策略"><a href="#一对多和多对多的检索策略" class="headerlink" title="一对多和多对多的检索策略"></a>一对多和多对多的检索策略</h3><p>在映射文件中, 用 <set> 元素来配置一对多关联及多对多关联关系.<br> <set> 元素有 lazy 和 fetch 属性<br><br>lazy: 主要决定 orders 集合被初始化的时机. 即到底是在加载 <br>Customer 对象时就被初始化, 还是在程序访问 orders 集合时被初始化<br><br>fetch: 取值为 “select” 或 “subselect” 时, 决定初始化 orders 的查询语句的形式;  若取值为”join”, 则决定 orders 集合被初始化的时机<br><br>若把 fetch 设置为 “join”, lazy 属性将被忽略<br></set></set></p>
+<p><set> 元素的 batch-size 属性：用来为延迟检索策略或立即检索策略设定批量检索的数量. 批量检索能减少 SELECT 语句的数目, 提高延迟检索或立即检索的运行性能.<br><br><strong><set> 元素的 lazy 和 fetch 属性</set></strong><br></set></p>
+<p><img src="https://i.imgur.com/O98iEuD.png" alt=""></p>
+<p><strong><set> 元素的 batch-size 属性</set></strong></p>
+<p><set> 元素有一个 batch-size 属性, 用来为延迟检索策略或立即检索策略设定批量检索的数量. 批量检索能减少 SELECT 语句的数目, 提高延迟检索或立即检索的运行性能<br></set></p>
+<p><strong>延迟检索和增强延迟检索</strong><br><br>在延迟检索(lazy 属性值为 true) 集合属性时, Hibernate 在以下情况下初始化集合代理类实例 <br><br>应用程序第一次访问集合属性: iterator(), size(), isEmpty(), contains() 等方法<br><br>通过 Hibernate.initialize() 静态方法显式初始化<br><br>增强延迟检索(lazy 属性为 extra): 与 lazy=“true” 类似. 主要区别是增强延迟检索策略能进一步延迟 Customer 对象的 orders 集合代理实例的初始化时机：<br><br>当程序第一次访问 orders 属性的 iterator() 方法时, 会导致 orders 集合代理类实例的初始化<br><br>当程序第一次访问 order 属性的 size(), contains() 和 isEmpty() 方法时, Hibernate 不会初始化 orders 集合类的实例, 仅通过特定的 select 语句查询必要的信息, 不会检索所有的 Order 对象<br></p>
+<h3 id="多对一和一对一关联的检索策略"><a href="#多对一和一对一关联的检索策略" class="headerlink" title="多对一和一对一关联的检索策略"></a>多对一和一对一关联的检索策略</h3><p>在映射文件中, 用 <set> 元素来配置一对多关联及多对多关联关系. /br&gt;<set> 元素有 lazy 和 fetch 属性<br><br>lazy: 主要决定 orders 集合被初始化的时机. 即到底是在加载 Customer 对象时就被初始化, 还是在程序访问 orders 集合时被初始化<br><br>fetch: 取值为 “select” 或 “subselect” 时, 决定初始化 orders 的查询语句的形式;  若取值为”join”, 则决定 orders 集合被初始化的时机/br&gt;<br>若把 fetch 设置为 “join”, lazy 属性将被忽略<br><br><strong>用带子查询的 select 语句整批量初始化 orders 集合(fetch 属性为 “subselect”)</strong></set></set></p>
+<p><set> 元素的 fetch 属性: 取值为 “select” 或 “subselect” 时, 决定初始化 orders 的查询语句的形式;  若取值为”join”, 则决定 orders 集合被初始化的时机.默认值为 select <br><br>当 fetch 属性为 “subselect” 时<br><br>假定 Session 缓存中有 n 个 orders 集合代理类实例没有被初始化, Hibernate 能够通过带子查询的 select 语句, 来批量初始化 n 个 orders 集合代理类实例<br>batch-size 属性将被忽略<br><br>子查询中的 select 语句为查询 CUSTOMERS 表 OID 的 SELECT 语句<br><br><strong>迫切左外连接检索(fetch 属性值设为 “join”)</strong></set></p>
+<p><set> 元素的 fetch 属性: 取值为 “select” 或 “subselect” 时, 决定初始化 orders 的查询语句的形式;  若取值为”join”, 则决定 orders 集合被初始化的时机.默认值为 select <br><br>当 fetch 属性为 “join” 时:<br><br>检索 Customer 对象时, 会采用迫切左外连接(通过左外连接加载与检索指定的对象关联的对象)策略来检索所有关联的 Order 对象<br>lazy 属性将被忽略<br><br>Query 的list() 方法会忽略映射文件中配置的迫切左外连接检索策略, 而依旧采用延迟加载策略<br><br>和 <set> 一样, <many-to-one> 元素也有一个 lazy 属性和 fetch 属性.<br></many-to-one></set></set></p>
+<p><img src="https://i.imgur.com/cIGByXK.png" alt=""></p>
+<p>若 fetch 属性设为 join, 那么 lazy 属性被忽略<br><br>迫切左外连接检索策略的优点在于比立即检索策略使用的 SELECT 语句更少. <br><br>无代理延迟检索需要增强持久化类的字节码才能实现<br>Query 的 list 方法会忽略映射文件配置的迫切左外连接检索策略, 而采用延迟检索策略<br><br>如果在关联级别使用了延迟加载或立即加载检索策略, 可以设定批量检索的大小, 以帮助提高延迟检索或立即检索的运行性能. <br><br>Hibernate 允许在应用程序中覆盖映射文件中设定的检索策略<br></p>
+<h3 id="检索策略小结"><a href="#检索策略小结" class="headerlink" title="检索策略小结"></a>检索策略小结</h3><p>类级别和关联级别可选的检索策略及默认的检索策略<br></p>
+<p><img src="https://i.imgur.com/r32YY7j.png" alt=""></p>
+<p>3 种检索策略的运行机制<br></p>
+<p><img src="https://i.imgur.com/GjPwINY.png" alt=""></p>
+<p>映射文件中用于设定检索策略的几个属性<br></p>
+<p><img src="https://i.imgur.com/TwOhbnU.png" alt=""></p>
+<p>比较 Hibernate 的三种检索策略<br><br><img src="https://i.imgur.com/llBlsGE.png" alt=""></p>
+<h2 id="Hibernate-检索方式"><a href="#Hibernate-检索方式" class="headerlink" title="Hibernate 检索方式"></a>Hibernate 检索方式</h2><p>Hibernate 提供了以下几种检索对象的方式<br><br>导航对象图检索方式:  根据已经加载的对象导航到其他对象<br><br>OID 检索方式:  按照对象的 OID 来检索对象<br><br>HQL 检索方式: 使用面向对象的 HQL 查询语言<br><br>QBC 检索方式: 使用 QBC(Query By Criteria) API 来检索对象. 这种 API 封装了基于字符串形式的查询语句, 提供了更加面向对象的查询接口. <br><br>本地 SQL 检索方式: 使用本地数据库的 SQL 查询语句<br></p>
+<h3 id="HQL-检索方式"><a href="#HQL-检索方式" class="headerlink" title="HQL 检索方式"></a>HQL 检索方式</h3><p>HQL(Hibernate Query Language) 是面向对象的查询语言, 它和 SQL 查询语言有些相似. 在 Hibernate 提供的各种检索方式中, HQL 是使用最广的一种检索方式. <br>它有如下功能:<br><br>在查询语句中设定各种查询条件<br><br>支持投影查询, 即仅检索出对象的部分属性<br><br>支持分页查询<br><br>支持连接查询<br><br>支持分组查询, 允许使用 HAVING 和 GROUP BY 关键字<br><br>提供内置聚集函数, 如 sum(), min() 和 max()<br><br>支持子查询<br><br>支持动态绑定参数<br><br>能够调用 用户定义的 SQL 函数或标准的 SQL 函数<br><br>HQL 检索方式包括以下步骤:<br><br>通过 Session 的 createQuery() 方法创建一个 Query 对象, 它包括一个 HQL 查询语句. HQL 查询语句中可以包含命名参数<br><br>动态绑定参数<br><br>调用 Query 相关方法执行查询语句. <br><br>Qurey 接口支持方法链编程风格, 它的 setXxx() 方法返回自身实例, 而不是 void 类型<br><br>HQL vs SQL:<br><br>HQL 查询语句是面向对象的, Hibernate 负责解析 HQL 查询语句, 然后根据对象-关系映射文件中的映射信息, 把 HQL 查询语句翻译成相应的 SQL 语句. HQL 查询语句中的主体是域模型中的类及类的属性<br>SQL 查询语句是与关系数据库绑定在一起的. SQL 查询语句中的主体是数据库表及表的字段. <br><br>绑定参数:<br><br>Hibernate 的参数绑定机制依赖于 JDBC API 中的 PreparedStatement 的预定义 SQL 语句功能.<br><br>HQL 的参数绑定由两种形式:<br><br>按参数名字绑定: 在 HQL 查询语句中定义命名参数, 命名参数以 “:” 开头.<br><br>按参数位置绑定: 在 HQL 查询语句中用 “?” 来定义参数位置<br><br>相关方法:<br><br>setEntity(): 把参数与一个持久化类绑定<br><br>setParameter(): 绑定任意类型的参数. 该方法的第三个参数显式指定 Hibernate 映射类型<br><br>HQL 采用 ORDER BY 关键字对查询结果排序<br><br>分页查询:<br><br>setFirstResult(int firstResult): 设定从哪一个对象开始检索, 参数 firstResult 表示这个对象在查询结果中的索引位置, 索引位置的起始值为 0. 默认情况下, Query 从查询结果中的第一个对象开始检索<br><br>setMaxResults(int maxResults): 设定一次最多检索出的对象的数目. 在默认情况下, Query 和 Criteria 接口检索出查询结果中所有的对象<br><br>在映射文件中定义命名查询语句<br>Hibernate 允许在映射文件中定义字符串形式的查询语句. <br><br><code>&lt;query&gt;</code> 元素用于定义一个 HQL 查询语句, 它和 <code>&lt;class&gt;</code>元素并列. <br><br>在程序中通过 Session 的 getNamedQuery() 方法获取查询语句对应的 Query 对象. <br></p>
+<p><strong>投影查询</strong><br><br>投影查询: 查询结果仅包含实体的部分属性. 通过 SELECT 关键字实现.<br>Query 的 list() 方法返回的集合中包含的是数组类型的元素, 每个对象数组代表查询结果的一条记录<br><br>可以在持久化类中定义一个对象的构造器来包装投影查询返回的记录, 使程序代码能完全运用面向对象的语义来访问查询结果集. <br><br>可以通过 DISTINCT 关键字来保证查询结果不会返回重复元素<br><br><strong>报表查询</strong><br><br>报表查询用于对数据分组和统计, 与 SQL 一样, HQL 利用 GROUP BY 关键字对数据分组, 用 HAVING 关键字对分组数据设定约束条件.<br><br>在 HQL 查询语句中可以调用以下聚集函数<br><br>count()<br><br>min()<br><br>max()<br><br>sum()<br><br>avg()<br><br><strong>HQL (迫切)左外连接</strong><br><br>迫切左外连接:<br><br>LEFT JOIN FETCH 关键字表示迫切左外连接检索策略.<br><br>list() 方法返回的集合中存放实体对象的引用, 每个 Department 对象关联的 Employee  集合都被初始化, 存放所有关联的 Employee 的实体对象. <br><br>查询结果中可能会包含重复元素, 可以通过一个 HashSet 来过滤重复元素<br><br>左外连接:<br><br>LEFT JOIN 关键字表示左外连接查询. <br><br>list() 方法返回的集合中存放的是对象数组类型<br><br>根据配置文件来决定 Employee 集合的检索策略. <br><br>如果希望 list() 方法返回的集合中仅包含 Department 对象, 可以在HQL 查询语句中使用 SELECT 关键字<br><br><strong>HQL (迫切)内连接</strong><br><br>迫切内连接:<br><br>INNER JOIN FETCH 关键字表示迫切内连接, 也可以省略 INNER 关键字<br><br>list() 方法返回的集合中存放 Department 对象的引用, 每个 Department 对象的 Employee 集合都被初始化, 存放所有关联的 Employee 对象<br><br>内连接:<br><br>INNER JOIN 关键字表示内连接, 也可以省略 INNER 关键字<br><br>list() 方法的集合中存放的每个元素对应查询结果的一条记录, 每个元素都是对象数组类型<br><br>如果希望 list() 方法的返回的集合仅包含 Department  对象, 可以在 HQL 查询语句中使用 SELECT 关键字<br></p>
+<h3 id="关联级别运行时的检索策略"><a href="#关联级别运行时的检索策略" class="headerlink" title="关联级别运行时的检索策略"></a>关联级别运行时的检索策略</h3><p>如果在 HQL 中没有显式指定检索策略, 将使用映射文件配置的检索策略. <br><br>HQL 会忽略映射文件中设置的迫切左外连接检索策略, 如果希望 HQL 采用迫切左外连接策略, 就必须在 HQL 查询语句中显式的指定它<br><br>若在 HQL 代码中显式指定了检索策略, 就会覆盖映射文件中配置的检索策略<br></p>
+<h3 id="QBC-检索和本地-SQL-检索"><a href="#QBC-检索和本地-SQL-检索" class="headerlink" title="QBC 检索和本地 SQL 检索"></a>QBC 检索和本地 SQL 检索</h3><p>QBC 查询就是通过使用 Hibernate 提供的 Query By Criteria API 来查询对象，这种 API 封装了 SQL 语句的动态拼装，对查询提供了更加面向对象的功能接口<br><br>本地SQL查询来完善HQL不能涵盖所有的查询特性<br></p>
+<h2 id="Hibernate-二级缓存"><a href="#Hibernate-二级缓存" class="headerlink" title="Hibernate 二级缓存"></a>Hibernate 二级缓存</h2><p>缓存(Cache): 计算机领域非常通用的概念。它介于应用程序和永久性数据存储源(如硬盘上的文件或者数据库)之间，其作用是降低应用程序直接读写永久性数据存储源的频率，从而提高应用的运行性能。缓存中的数据是数据存储源中数据的拷贝。缓存的物理介质通常是内存<br><br>Hibernate中提供了两个级别的缓存<br><br>第一级别的缓存是 Session 级别的缓存，它是属于事务范围的缓存。这一级别的缓存由 hibernate 管理的<br><br>第二级别的缓存是SessionFactory 级别的缓存，它是属于进程范围的缓存<br><br><strong>使用 Hibernate 的二级缓存</strong><br>适合放入二级缓存中的数据:<br><br>很少被修改<br><br>不是很重要的数据, 允许出现偶尔的并发问题<br><br>不适合放入二级缓存中的数据:<br><br>经常被修改<br><br>财务数据, 绝对不允许出现并发问题<br>与其他应用程序共享的数据<br></p>
+<p><strong>Hibernate 二级缓存的架构</strong><br><img src="https://i.imgur.com/8QnBa4G.png" alt=""></p>
+<h4 id="SessionFactory-级别的缓存"><a href="#SessionFactory-级别的缓存" class="headerlink" title="SessionFactory 级别的缓存"></a>SessionFactory 级别的缓存</h4><p>SessionFactory 的缓存可以分为两类:<br><br>内置缓存: Hibernate 自带的, 不可卸载. 通常在 Hibernate 的初始化阶段, Hibernate 会把映射元数据和预定义的 SQL 语句放到 SessionFactory 的缓存中, 映射元数据是映射文件中数据（.hbm.xml 文件中的数据）的复制. 该内置缓存是只读的. <br><br>外置缓存(二级缓存): 一个可配置的缓存插件. 在默认情况下, SessionFactory 不会启用这个缓存插件. 外置缓存中的数据是数据库数据的复制, 外置缓存的物理介质可以是内存或硬盘<br></p>
+<h4 id="二级缓存的并发访问策略"><a href="#二级缓存的并发访问策略" class="headerlink" title="二级缓存的并发访问策略"></a>二级缓存的并发访问策略</h4><p>两个并发的事务同时访问持久层的缓存的相同数据时, 也有可能出现各类并发问题. <br><br>二级缓存可以设定以下 4 种类型的并发访问策略, 每一种访问策略对应一种事务隔离级别<br><br>非严格读写(Nonstrict-read-write): 不保证缓存与数据库中数据的一致性. 提供 Read Uncommited 事务隔离级别, 对于极少被修改, 而且允许脏读的数据, 可以采用这种策略<br><br>读写型(Read-write): 提供 Read Commited 数据隔离级别.对于经常读但是很少被修改的数据, 可以采用这种隔离类型, 因为它可以防止脏读<br><br>事务型(Transactional): 仅在受管理环境下适用. 它提供了 Repeatable Read 事务隔离级别. 对于经常读但是很少被修改的数据, 可以采用这种隔离类型, 因为它可以防止脏读和不可重复读<br><br>只读型(Read-Only):提供 Serializable 数据隔离级别, 对于从来不会被修改的数据, 可以采用这种访问策略<br></p>
+<h4 id="管理-Hibernate-的二级缓存"><a href="#管理-Hibernate-的二级缓存" class="headerlink" title="管理 Hibernate 的二级缓存"></a>管理 Hibernate 的二级缓存</h4><p>Hibernate 的二级缓存是进程或集群范围内的缓存<br><br>二级缓存是可配置的的插件, Hibernate 允许选用以下类型的缓存插件:<br><br>EHCache: 可作为进程范围内的缓存, 存放数据的物理介质可以使内存或硬盘, 对 Hibernate 的查询缓存提供了支持<br><br>OpenSymphony OSCache:可作为进程范围内的缓存, 存放数据的物理介质可以使内存或硬盘, 提供了丰富的缓存数据过期策略, 对 Hibernate 的查询缓存提供了支持<br><br>SwarmCache: 可作为集群范围内的缓存, 但不支持 Hibernate 的查询缓存<br><br>JBossCache:可作为集群范围内的缓存, 支持 Hibernate 的查询缓存<br><br>4 种缓存插件支持的并发访问策略(x 代表支持, 空白代表不支持)<br></p>
+<p><img src="https://i.imgur.com/YQ4crb1.png" alt=""></p>
+<h4 id="配置进程范围内的二级缓存"><a href="#配置进程范围内的二级缓存" class="headerlink" title="配置进程范围内的二级缓存"></a>配置进程范围内的二级缓存</h4><p>配置进程范围内的二级缓存的步骤: <br><br>选择合适的缓存插件: EHCache(jar 包和 配置文件), 并编译器配置文件<br><br>在 Hibernate 的配置文件中启用二级缓存并指定和 EHCache 对应的缓存适配器<br><br>选择需要使用二级缓存的持久化类, 设置它的二级缓存的并发访问策略<br></p>
+<p><class> 元素的 cache 子元素表明 Hibernate 会缓存对象的简单属性, 但不会缓存集合属性, 若希望缓存集合属性中的元素, 必须在 <code>&lt;set&gt;</code> 元素中加入 <code>&lt;cache&gt;</code> 子元素<br><br>在 hibernate 配置文件中通过 <code>&lt;class-cache/&gt;</code> 节点配置使用缓存<br></class></p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;net.sf.ehcache&lt;/groupId&gt;
+    &lt;artifactId&gt;ehcache-core&lt;/artifactId&gt;
+    &lt;version&gt;2.4.3&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+    &lt;artifactId&gt;hibernate-ehcache&lt;/artifactId&gt;
+    &lt;version&gt;4.2.4.Final&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><h4 id="ehcache-xml"><a href="#ehcache-xml" class="headerlink" title="ehcache.xml"></a>ehcache.xml</h4><p><diskstore>: 指定一个目录：当 EHCache 把数据写到硬盘上时, 将把数据写到这个目录下.<br></diskstore></p>
+<p><defaultcache>: 设置缓存的默认数据过期策略 <br></defaultcache></p>
+<p><cache> 设定具体的命名缓存的数据过期策略。每个命名缓存代表一个缓存区域<br><br>缓存区域(region)：一个具有名称的缓存块，可以给每一个缓存块设置不同的缓存策略。如果没有设置任何的缓存区域，则所有被缓存的对象，都将使用默认的缓存策略。即：<code>&lt;defaultCache.../&gt;</code><br>Hibernate在不同的缓存区域保存不同的类/集合。<br><br>对于类而言，区域的名称是类名。如:com.atguigu.domain.Customer<br><br>对于集合而言，区域的名称是类名加属性名。如com.atguigu.domain.Customer.orders<br><br>cache 元素的属性   <br><br>name:设置缓存的名字,它的取值为类的全限定名或类的集合的名字 <br><br>maxInMemory:设置基于内存的缓存中可存放的对象最大数目 <br><br>eternal:设置对象是否为永久的,true表示永不过期,此时将忽略timeToIdleSeconds 和 timeToLiveSeconds属性; 默认值是false <br><br>timeToIdleSeconds:设置对象空闲最长时间,以秒为单位, 超过这个时间,对象过期。当对象过期时,EHCache会把它从缓存中清除。如果此值为0,表示对象可以无限期地处于空闲状态。<br><br>timeToLiveSeconds:设置对象生存最长时间,超过这个时间,对象过期。如果此值为0,表示对象可以无限期地存在于缓存中. 该属性值必须大于或等于 timeToIdleSeconds 属性值 <br><br>overflowToDisk:设置基于内存的缓存中的对象数目达到上限后,是否把溢出的对象写到基于硬盘的缓存中 <br></cache></p>
+<pre><code>&lt;ehcache xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;../config/ehcache.xsd&quot;&gt;     
 
-    &lt;!-- 配置hibernate的基本信息 --&gt;
-    &lt;!--  hibernate所使用的数据库方言--&gt;
-    &lt;property name=&quot;dialect&quot;&gt;org.hibernate.dialect.MySQL5InnoDBDialect&lt;/property&gt;
+    &lt;diskStore path=&quot;java.io.tmpdir&quot;/&gt;     
 
-    &lt;!--  执行操作时是否在控制台打印SQL--&gt;
-    &lt;property name=&quot;show_sql&quot;&gt;true&lt;/property&gt;
-    &lt;!--  是否对SQL进行格式化--&gt;
-    &lt;property name=&quot;format_sql&quot;&gt;true&lt;/property&gt;
-    &lt;!--  指定自动生成数据表的策略--&gt;
-    &lt;property name=&quot;hbm2ddl.auto&quot;&gt;update&lt;/property&gt;
-    &lt;!--  指定关联的 .hbm.xml文件位置--&gt;
-    &lt;mapping resource=&quot;io/hibernate/helloworld/News.hbm.xml&quot;/&gt;
-    &lt;/session-factory&gt;
-    &lt;/hibernate-configuration&gt;
-</code></pre><p><strong>特别提醒：数据库方言org.hibernate.dialect.MySQLInnoDBDialect和org.hibernate.dialect.MySQLDialect 两个方言的区别，MySQLDialect是兼容性方言，MySQLInnoDBDialect支持事务的方言版。但是如果数据库版本是5.5以下，就可以直接用，如果是5.5版本及以上，需要改成MySQL5InnoDBDialect。</strong><br>我的开始就是因为使用了MySQLInnoDBDialect方言而导致一直报找不到表的错误。</p>
-<h3 id="创建一个实体类"><a href="#创建一个实体类" class="headerlink" title="创建一个实体类"></a>创建一个实体类</h3><pre><code>package io.hibernate.helloworld;
-
-import java.sql.Date;
-
-public class News {
-
-    private Integer Id;
-    private String title;
-    private String author;
-    private Date date;
-    public Integer getId() {
-        return Id;
-    }
-    public void setId(Integer id) {
-        Id = id;
-    }
-    public String getTitle() {
-        return title;
-    }
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    public String getAuthor() {
-        return author;
-    }
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-    public Date getDate() {
-        return date;
-    }
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public News(String title, String author, Date date) {
-        super();
-        this.title = title;
-        this.author = author;
-        this.date = date;
-    }
-
-    public News() {
-        //super();
-    }
-    @Override
-    public String toString() {
-        return &quot;News [Id=&quot; + Id + &quot;, title=&quot; + title + &quot;, author=&quot; + author + &quot;, date=&quot; + date + &quot;]&quot;;
-    }
-
-
-}
-</code></pre><h3 id="生成对应的对象关系映射-hbm-xml文件"><a href="#生成对应的对象关系映射-hbm-xml文件" class="headerlink" title="生成对应的对象关系映射.hbm.xml文件"></a>生成对应的对象关系映射.hbm.xml文件</h3><pre><code>&lt; ?xml version=&quot;1.0&quot;?&gt;
-&lt;!DOCTYPE hibernate-mapping PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;
-&quot;http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd&quot;&gt;
-&lt;!-- Generated 2018-7-13 21:10:20 by Hibernate Tools 3.5.0.Final --&gt;
-&lt;hibernate-mapping&gt;
-    &lt;class name=&quot;io.hibernate.helloworld.News&quot; table=&quot;NEWS&quot;&gt;
-        &lt;id name=&quot;Id&quot; type=&quot;java.lang.Integer&quot;&gt;
-            &lt;column name=&quot;ID&quot; /&gt;
-            &lt;!-- 指定主键的生成方式  native：使用数据库本地方式 --&gt;
-            &lt;generator class=&quot;native&quot; /&gt;
-        &lt;/id&gt;
-        &lt;property name=&quot;title&quot; type=&quot;java.lang.String&quot;&gt;
-            &lt;column name=&quot;TITLE&quot; /&gt;
-        &lt;/property&gt;
-        &lt;property name=&quot;author&quot; type=&quot;java.lang.String&quot;&gt;
-            &lt;column name=&quot;AUTHOR&quot; /&gt;
-        &lt;/property&gt;
-        &lt;property name=&quot;date&quot; type=&quot;java.sql.Date&quot;&gt;
-            &lt;column name=&quot;DATE&quot; /&gt;
-        &lt;/property&gt;
-    &lt;/class&gt;
-&lt;/hibernate-mapping&gt;
-</code></pre><h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><pre><code>    public class HibernateTest {
-
-        @Test
-        public void test(){
-
-    //        1.创建一个SessionFactory对象
-            SessionFactory sessionFactory=null;
-    //        1.1创建configuration对象：对应hibernate的基本配置信息和对象关系映射信息
-            Configuration configuration=new Configuration().configure();
-            //4.0以前这样创建
-    //        sessionFactory=configuration.buildSessionFactory();
-    //        1.2创建一个serviceRegistry对象 hibernate 4.x新添加的对象
-            //hibernate的任何配置和服务都需要在该对象中注册才能有效
-            ServiceRegistry serviceRegistry=
-                    new             ServiceRegistryBuilder    ().applySettings    (configuration.getProperties    ()).buildServiceRegistry();
-    //        1.3
-                    sessionFactory=configuration.buil    dSessionFactory(serviceRegistry);
-
-    //        2.创建一个Session对象 
-            Session session=sessionFactory.openSession();
-
-    //        3.开启事务
-            Transaction transaction=session.beginTransaction();
-
-    //        4.执行保存操作
-            News news=new News(&quot;Java&quot;,&quot;haha&quot;,new Date(new java.util.Date().getTime()));
-            session.save(news);
-    //        5.提交事务
-            transaction.commit();
-
-    //        6.关闭Session
-            session.close();
-
-    //        7.关闭SessionFactory对象
-            sessionFactory.close();
-        }
-    }
-</code></pre><h3 id="查看数据库出现了一个新表News，并且新插入了一条记录"><a href="#查看数据库出现了一个新表News，并且新插入了一条记录" class="headerlink" title="查看数据库出现了一个新表News，并且新插入了一条记录"></a>查看数据库出现了一个新表News，并且新插入了一条记录</h3><p>在进行测试前，数据库应存在名为hibernate的库</p>
-<pre><code>mysql&gt; use hibernate;
-Database changed
-
-mysql&gt; show tables;
-+---------------------+
-| Tables_in_hibernate |
-+---------------------+
-| news                |
-+---------------------+
-1 row in set (0.00 sec)
-
-mysql&gt; desc news;
-+--------+--------------+------+-----+---------+----------------+
-| Field  | Type         | Null | Key | Default | Extra          |
-+--------+--------------+------+-----+---------+----------------+
-| ID     | int(11)      | NO   | PRI | NULL    | auto_increment |
-| TITLE  | varchar(255) | YES  |     | NULL    |                |
-| AUTHOR | varchar(255) | YES  |     | NULL    |                |
-| DATE   | date         | YES  |     | NULL    |                |
-+--------+--------------+------+-----+---------+----------------+
-4 rows in set (0.00 sec)
-
-
-mysql&gt; select * from news;
-+----+-------+--------+------------+
-| ID | TITLE | AUTHOR | DATE       |
-+----+-------+--------+------------+
-|  1 | Java  | haha   | 2018-07-13 |
-+----+-------+--------+------------+
-1 row in set (0.00 sec)
-
-mysql&gt;
-</code></pre><h2 id="hibernate的helloworld配置简介"><a href="#hibernate的helloworld配置简介" class="headerlink" title="hibernate的helloworld配置简介"></a>hibernate的helloworld配置简介</h2><h3 id="hibernate环境的准备"><a href="#hibernate环境的准备" class="headerlink" title="hibernate环境的准备"></a>hibernate环境的准备</h3><p>导入 Hibernate 必须的 jar 包:</p>
-<pre><code>      &lt;dependency&gt;
-              &lt;groupId&gt;antlr&lt;/groupId&gt;
-              &lt;artifactId&gt;antlr&lt;/artifactId&gt;
-              &lt;version&gt;2.7.6&lt;/version&gt;
-      &lt;/dependency&gt;
-
-      &lt;dependency&gt;
-              &lt;groupId&gt;dom4j&lt;/groupId&gt;
-              &lt;artifactId&gt;dom4j&lt;/artifactId&gt;
-              &lt;version&gt;1.6.1&lt;/version&gt;
-      &lt;/dependency&gt;
-
-    &lt;!-- https://mvnrepository.com/artifact/org.hibernate.common/hibernate-commons-annotations --&gt;
-    &lt;dependency&gt;
-     &lt;groupId&gt;org.hibernate.common&lt;/groupId&gt;
-        &lt;artifactId&gt;hibernate-commons-annotations&lt;/artifactId&gt;
-        &lt;version&gt;4.0.2.Final&lt;/version&gt;
-    &lt;/dependency&gt;
-
-          &lt;dependency&gt;
-              &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
-              &lt;artifactId&gt;hibernate-core&lt;/artifactId&gt;
-              &lt;version&gt;4.2.4.Final&lt;/version&gt;
-          &lt;/dependency&gt;
-
-      &lt;dependency&gt;
-          &lt;groupId&gt;org.hibernate.javax.pers istence&lt;/groupId&gt;
-              &lt;artifactId&gt;hibernate-jpa-2.0-api&lt;/artifactId&gt;
-              &lt;version&gt;1.0.1.Final&lt;/version&gt;
-          &lt;/dependency&gt;
-
-      &lt;dependency&gt;
-              &lt;groupId&gt;javassist&lt;/groupId&gt;
-              &lt;artifactId&gt;javassist&lt;/artifactId&gt;
-              &lt;version&gt;3.11.0.GA&lt;/version&gt;
-      &lt;/dependency&gt;
-
-    &lt;!-- https://mvnrepository.com/artifact/org.jboss.logging/jboss-logging --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.jboss.logging&lt;/groupId&gt;
-        &lt;artifactId&gt;jboss-logging&lt;/artifactId&gt;
-        &lt;version&gt;3.1.0.GA&lt;/version&gt;
-    &lt;/dependency&gt;
-
-    &lt;!-- https://mvnrepository.com/artifact/org.jboss.spec.javax.transaction/jboss-transaction-api_1.1_spec --&gt;
-    &lt;dependency&gt;              &lt;groupId&gt;org.jboss.spec.javax.transaction&lt;/groupId&gt;
-        &lt;artifactId&gt;jboss-transaction-api_1.1_spec&lt;/artifactId&gt;
-        &lt;version&gt;1.0.1.Final&lt;/version&gt;
-    &lt;/dependency&gt;
-</code></pre><p>导入数据库驱动和Junit测试包：</p>
-<pre><code>    &lt;dependency&gt;
-          &lt;groupId&gt;mysql&lt;/groupId&gt;
-          &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
-          &lt;version&gt;5.1.37&lt;/version&gt;
-      &lt;/dependency&gt;
-      &lt;dependency&gt;
-          &lt;groupId&gt;junit&lt;/groupId&gt;
-          &lt;artifactId&gt;junit&lt;/artifactId&gt;
-          &lt;version&gt;4.12&lt;/version&gt;
-      &lt;/dependency&gt;
-</code></pre><h3 id="创建-Hibernate-配置文件"><a href="#创建-Hibernate-配置文件" class="headerlink" title="创建 Hibernate 配置文件"></a>创建 Hibernate 配置文件</h3><p>Hibernate 从其配置文件<strong>hibernate.cfg.xml</strong>中读取和数据库连接的有关信息, 这个文件应该位于应用的 classpath 下.</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;!DOCTYPE hibernate-configuration PUBLIC
-        &quot;-//Hibernate/Hibernate Configuration DTD 3.0//EN&quot;
-        &quot;http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd&quot;&gt;
-&lt;hibernate-configuration&gt;
-    &lt;session-factory&gt;
-    &lt;!-- 配置连接数据库的基本信息 --&gt;
-    &lt;property name=&quot;hibernate.connection.username&quot;&gt;root&lt;/property&gt;
-    &lt;property name=&quot;hibernate.connection.password&quot;&gt;zhang1997&lt;/property&gt;
-    &lt;property name=&quot;hibernate.connection.driver_class&quot;&gt;com.mysql.jdbc.Driver&lt;/property&gt;
-    &lt;property name=&quot;hibernate.connection.url&quot;&gt;jdbc:mysql://localhost:3306/hibernate&lt;/property&gt;
-
-    &lt;!-- 配置hibernate的基本信息 --&gt;
-    &lt;!--  hibernate所使用的数据库方言--&gt;
-    &lt;property name=&quot;dialect&quot;&gt;org.hibernate.dialect.MySQL5InnoDBDialect&lt;/property&gt;
-
-    &lt;!--  执行操作时是否在控制台打印SQL--&gt;
-    &lt;property name=&quot;show_sql&quot;&gt;true&lt;/property&gt;
-    &lt;!--  是否对SQL进行格式化--&gt;
-    &lt;property name=&quot;format_sql&quot;&gt;true&lt;/property&gt;
-    &lt;!--  指定自动生成数据表的策略--&gt;
-    &lt;property name=&quot;hbm2ddl.auto&quot;&gt;update&lt;/property&gt;
-    &lt;!--  指定关联的 .hbm.xml文件位置--&gt;
-    &lt;mapping resource=&quot;io/hibernate/helloworld/News.hbm.xml&quot;/&gt;
-    &lt;/session-factory&gt;
-&lt;/hibernate-configuration&gt;
-</code></pre><p>Hibernate 配置文件的两个配置项:<br><br><strong>hbm2ddl.auto</strong>：该属性可帮助程序员实现正向工程, 即由 java 代码生成数据库脚本, 进而生成具体的表结构。取值 create | update | create-drop | validate<br></p>
-<ul>
-<li>create : 会根据 .hbm.xml  文件来生成数据表, 但是每次运行都会删除上一次的表 ,重新生成表, 哪怕二次没有任何改变 <br></li>
-<li>create-drop : 会根据 .hbm.xml 文件生成表,但是SessionFactory一关闭, 表就自动删除<br> </li>
-<li>update : 最常用的属性值，也会根据 .hbm.xml 文件生成表, 但若 .hbm.xml  文件和数据库中对应的数据表的表结构不同, Hiberante  将更新数据表结构，但不会删除已有的行和列 <br></li>
-<li>validate : 会和数据库中的表进行比较, 若 .hbm.xml 文件中的列在数据表中不存在，则抛出异常<br></li>
-</ul>
-<p><strong>format_sql</strong>：是否将 SQL 转化为格式良好的 SQL . 取值 true | false<br></p>
-<h3 id="创建持久化-Java-类"><a href="#创建持久化-Java-类" class="headerlink" title="创建持久化 Java 类"></a>创建持久化 Java 类</h3><p>Hibernate 不要求持久化类继承任何父类或实现接口，这可以保证代码不被污染。这就是Hibernate被称为低侵入式设计的原因<br><strong>持久化类的几个要求：</strong></p>
-<ul>
-<li>提供一个无参的构造器:使Hibernate可以使用Constructor.newInstance() 来实例化持久化类</li>
-<li>提供一个标识属性(identifier property): 通常映射为数据库表的主键字段. 如果没有该属性，一些功能将不起作用，如：Session.saveOrUpdate()</li>
-<li>为类的持久化类字段声明访问方法(get/set): Hibernate对JavaBeans 风格的属性实行持久化。</li>
-<li>使用非 final 类: 在运行时生成代理是 Hibernate 的一个重要的功能. 如果持久化类没有实现任何接口, Hibnernate 使用 CGLIB - 生成代理. 如果使用的是 final 类, 则无法生成 CGLIB 代理.</li>
-<li>重写 eqauls 和 hashCode 方法: 如果需要把持久化类的实例放到 Set 中(当需要进行关联映射时), 则应该重写这两个方法</li>
-</ul>
-<h3 id="创建对象-关系映射文件"><a href="#创建对象-关系映射文件" class="headerlink" title="创建对象-关系映射文件"></a>创建对象-关系映射文件</h3><p>Hibernate 采用 XML 格式的文件来指定对象和关系数据之间的映射. 在运行时 Hibernate 将根据这个映射文件来生成各种 SQL 语句<br>映射文件的扩展名为 <strong>.hbm.xml</strong></p>
-<pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;!DOCTYPE hibernate-mapping PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;
-&quot;http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd&quot;&gt;
-&lt;!-- Generated 2018-7-13 21:10:20 by Hibernate Tools 3.5.0.Final --&gt;
-&lt;hibernate-mapping&gt;
-    &lt;class name=&quot;io.hibernate.helloworld.News&quot; table=&quot;NEWS&quot;&gt;
-        &lt;id name=&quot;Id&quot; type=&quot;java.lang.Integer&quot;&gt;
-            &lt;column name=&quot;ID&quot; /&gt;
-            &lt;!-- 指定主键的生成方式  native：使用数据库本地方式 --&gt;
-            &lt;generator class=&quot;native&quot; /&gt;
-        &lt;/id&gt;
-        &lt;property name=&quot;title&quot; type=&quot;java.lang.String&quot;&gt;
-            &lt;column name=&quot;TITLE&quot; /&gt;
-        &lt;/property&gt;
-        &lt;property name=&quot;author&quot; type=&quot;java.lang.String&quot;&gt;
-            &lt;column name=&quot;AUTHOR&quot; /&gt;
-        &lt;/property&gt;
-        &lt;property name=&quot;date&quot; type=&quot;java.sql.Date&quot;&gt;
-            &lt;column name=&quot;DATE&quot; /&gt;
-        &lt;/property&gt;
-    &lt;/class&gt;
-&lt;/hibernate-mapping&gt;
-</code></pre><h3 id="通过-Hibernate-API-编写访问数据库的代码"><a href="#通过-Hibernate-API-编写访问数据库的代码" class="headerlink" title="通过 Hibernate API 编写访问数据库的代码"></a>通过 Hibernate API 编写访问数据库的代码</h3><p>测试代码：</p>
-<pre><code>@Test
-        public void test(){
-            SessionFactory sessionFactory=null;
-            Configuration configuration=new Configuration().configure();
-            ServiceRegistry serviceRegistry=
-                    new             ServiceRegistryBuilder    ().applySettings    (configuration.getProperties    ()).buildServiceRegistry();
-                    sessionFactory=configuration.buil    dSessionFactory(serviceRegistry);
-            Session session=sessionFactory.openSession();
-            Transaction transaction=session.beginTransaction();
-            News news=new News(&quot;Java&quot;,&quot;haha&quot;,new Date(new java.util.Date().getTime()));
-            session.save(news);
-            transaction.commit();
-            session.close();
-            sessionFactory.close();
-        }
-</code></pre><p>下面讲解一下测试里面用到的类和接口：<br><br><strong>一、Configuration 类</strong><br><br>Configuration 类负责管理 Hibernate 的配置信息。<br><br>包括如下内容：<br></p>
-<ul>
-<li>Hibernate 运行的底层信息：数据库的URL、用户名、密码、JDBC驱动类，数据库Dialect,数据库连接池等（对应 hibernate.cfg.xml 文件）。<br></li>
-<li>持久化类与数据表的映射关系（*.hbm.xml 文件）<br></li>
-</ul>
-<p>创建 Configuration 的两种方式：<br></p>
-<p>1.属性文件（hibernate.properties）<br><br> Configuration cfg = new Configuration();<br><br><strong>2.Xml文件（hibernate.cfg.xml）(常用)</strong><br><br>Configuration cfg = new Configuration().configure();<br><br>3.Configuration 的 configure 方法还支持带参数的访问：<br><br>File file = new File(“simpleit.xml”);<br><br>Configuration cfg = new Configuration().configure(file);<br></p>
-<p><strong>二、SessionFactory 接口</strong></p>
-<ul>
-<li>针对单个数据库映射关系经过编译后的内存镜像，是线程安全的。 </li>
-<li>SessionFactory 对象一旦构造完毕，即被赋予特定的配置信息</li>
-<li>SessionFactory是生成Session的工厂</li>
-<li>构造 SessionFactory 很消耗资源，一般情况下一个应用中只初始化一个 SessionFactory 对象。</li>
-<li>Hibernate4 新增了一个 ServiceRegistry 接口，所有基于 Hibernate 的配置或者服务都必须统一向这个 ServiceRegistry  注册后才能生效</li>
-<li>Hibernate4 中创建 SessionFactory 的步骤<br>-<br>  Configuration configuration=new Configuration().configure();<br>  //        sessionFactory=configuration.buildSessionFactory();<br>  //        创建一个serviceRegistry对象 hibernate 4.x新添加的对象<pre><code>      //hibernate的任何配置和服务都需要在该对象中注册才能有效
-      ServiceRegistry serviceRegistry=
-              new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-      sessionFactory=configuration.buildSessionFactory(serviceRegistry);
-</code></pre></li>
-</ul>
-<p><strong>三、Session 接口</strong><br>Session 是应用程序与数据库之间交互操作的一个单线程对象，是 Hibernate 运作的中心，所有持久化对象必须在 session 的管理下才可以进行持久化操作。此对象的生命周期很短。Session 对象有一个一级缓存，显式执行 flush 之前，所有的持久层操作的数据都缓存在 session 对象处。相当于 JDBC 中的 Connection。<br><img src="https://i.imgur.com/58SJbmk.png" alt=""></p>
-<p><strong>持久化类与 Session 关联起来后就具有了持久化的能力</strong>。<br><br><strong>Session 类的方法：</strong></p>
-<ul>
-<li>取得持久化对象的方法： get() load()</li>
-<li>持久化对象都得保存，更新和删除：save(),update(),saveOrUpdate(),delete()</li>
-<li>开启事务: beginTransaction().</li>
-<li>管理 Session 的方法：isOpen(),flush(), clear(), evict(), close()等</li>
-</ul>
-<p><strong>四、Transaction(事务)</strong></p>
-<p>一次事务代表一次原子操作，它具有数据库事务的概念。所有持久层都应该在事务管理下进行，即使是只读操作。<br><br>   Transaction tx = session.beginTransaction();<br><br>常用方法:</p>
-<ul>
-<li>commit():提交相关联的session实例</li>
-<li>rollback():撤销事务操作</li>
-<li>wasCommitted():检查事务是否提交</li>
-</ul>
-<p><strong>注：使用 Hibernate 进行数据持久化操作，通常有如下步骤：</strong></p>
-<ul>
-<li>编写持久化类： POJO + 映射文件</li>
-<li>获取 Configuration 对象</li>
-<li>获取 SessionFactory 对象</li>
-<li>获取 Session，打开事务</li>
-<li>用面向对象的方式操作数据库</li>
-<li>关闭事务，关闭 Session</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>hibernate的helloworld很简单，很容易上手。以上就是hibernate的简单的操作和介绍，主要的问题可能会出在数据库方言和数据库的映射关系上。<br>附录：<br>方言大全</p>
-<div class="con editor-preview-side"><p>RDBMS 方言</p><table><tbody><tr style="line-height:normal;"><td><br></td><td><br></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">DB2</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.DB2Dialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">DB2 AS/400</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.DB2400Dialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">DB2 OS390</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.DB2390Dialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">PostgreSQL</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.PostgreSQLDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">MySQL</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.MySQLDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">MySQL with InnoDB</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.MySQLInnoDBDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">MySQL with MyISAM</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.MySQLMyISAMDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Oracle (any version)</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.OracleDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Oracle 9i/10g</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.Oracle9Dialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Sybase</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.SybaseDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Sybase Anywhere</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.SybaseAnywhereDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Microsoft SQL Server</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.SQLServerDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">SAP DB</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.SAPDBDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Informix</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.InformixDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">HypersonicSQL</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.HSQLDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Ingres</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.IngresDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Progress</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.ProgressDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Mckoi SQL</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.MckoiDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Interbase</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.InterbaseDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Pointbase</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.PointbaseDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">FrontBase</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.FrontbaseDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Firebird</span></td><td style="font-size:12px;line-height:normal;"><p><tt style="line-height:normal;">org.hibernate.dialect.FirebirdDialect</tt></p></td></tr></tbody></table><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;">Access数据库的方言包：<a href="http://www.hxtt.com/test/hibernate.zip" target="_blank" rel="external">http://www.hxtt.com/test/hibernate.zip</a><br>路径：com.hxtt.support.hibernate.HxttAccessDialect</p><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;">&nbsp;</p><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;"><span style="font-size:x-small;">例子：&nbsp;&nbsp;&nbsp;&nbsp;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.connection.username” value=”sa”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.connection.password” value=”sa”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.connection.url” value=”jdbc:sqlserver://localhost:1433;databaseName=test”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.connection.driver_class” value=”com.microsoft.sqlserver.jdbc.SQLServerDriver”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.cache.provider_class” value=”org.hibernate.cache.NoCacheProvider”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.dialect” value=”org.hibernate.dialect.SQLServerDialect”/&gt;</span></p><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;"><span style="font-size:x-small;color:rgb(255,0,0);line-height:normal;">&lt;property name=”hibernate.dialect” value=”org.hibernate.dialect.SQLServerDialect”/&gt;</span></p><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;"><span style="font-size:x-small;">如果是Toplink则添加：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;"><span style="font-size:x-small;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”toplink.jdbc.user” value=”sa”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”toplink.jdbc.password” value=”sa”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”toplink.jdbc.url” value=”jdbc:mysql://localhost:3306/test”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”toplink.jdbc.driver” value=”com.mysql.jdbc.Driver”/&gt;<br style="line-height:normal;"><span style="color:rgb(255,0,0);line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”toplink.plafrom.class.name” value=”oracle.toplink.essentials.platform.database.HSQLPlatform” /&gt;</span></span></p><p><br></p><p>方言转自:<a href="http://qsfwy.iteye.com/blog/471858" target="_blank">http://qsfwy.iteye.com/blog/471858</a>&nbsp;</p></div>
-
-
-
+    &lt;!--     
+    Mandatory Default Cache configuration. These settings will be applied to caches     
+    created programmtically using CacheManager.add(String cacheName)     
+    --&gt;     
+    &lt;!--     
+       name:缓存名称。     
+       maxElementsInMemory：缓存最大个数。     
+       eternal:对象是否永久有效，一但设置了，timeout将不起作用。     
+       timeToIdleSeconds：设置对象在失效前的允许闲置时间（单位：秒）。仅当eternal=false对象不是永久有效时使用，可选属性，默认值是0，也就是可闲置时间无穷大。     
+       timeToLiveSeconds：设置对象在失效前允许存活时间（单位：秒）。最大时间介于创建时间和失效时间之间。仅当eternal=false对象不是永久有效时使用，默认是0.，也就是对象存活时间无穷大。     
+       overflowToDisk：当内存中对象数量达到maxElementsInMemory时，Ehcache将会对象写到磁盘中。     
+       diskSpoolBufferSizeMB：这个参数设置DiskStore（磁盘缓存）的缓存区大小。默认是30MB。每个Cache都应该有自己的一个缓冲区。     
+       maxElementsOnDisk：硬盘最大缓存个数。     
+       diskPersistent：是否缓存虚拟机重启期数据 Whether the disk store persists between restarts of the Virtual Machine. The default value is false.     
+       diskExpiryThreadIntervalSeconds：磁盘失效线程运行时间间隔，默认是120秒。     
+       memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将会根据指定的策略去清理内存。默认策略是LRU（最近最少使用）。你可以设置为FIFO（先进先出）或是LFU（较少使用）。     
+       clearOnFlush：内存数量最大时是否清除。     
+    --&gt;     
+    &lt;defaultCache     
+            maxElementsInMemory=&quot;10000&quot;    
+            eternal=&quot;false&quot;    
+            timeToIdleSeconds=&quot;120&quot;    
+            timeToLiveSeconds=&quot;120&quot;    
+            overflowToDisk=&quot;true&quot;    
+            maxElementsOnDisk=&quot;10000000&quot;    
+            diskPersistent=&quot;false&quot;    
+            diskExpiryThreadIntervalSeconds=&quot;120&quot;    
+            memoryStoreEvictionPolicy=&quot;LRU&quot;    
+            /&gt;     
+&lt;/ehcache&gt;  
+</code></pre><h4 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h4><p>对于经常使用的查询语句, 如果启用了查询缓存, 当第一次执行查询语句时, Hibernate 会把查询结果存放在查询缓存中. 以后再次执行该查询语句时, 只需从缓存中获得查询结果, 从而提高查询性能<br><br>查询缓存使用于如下场合:<br><br>应用程序运行时经常使用查询语句<br><br>很少对与查询语句检索到的数据进行插入, 删除和更新操作<br><br>启用查询缓存的步骤<br><br>配置二级缓存, 因为查询缓存依赖于二级缓存<br><br>在 hibernate 配置文件中启用查询缓存<br><br>对于希望启用查询缓存的查询语句, 调用 Query 的 setCacheable() 方法<br></p>
+<h4 id="时间戳缓存区域"><a href="#时间戳缓存区域" class="headerlink" title="时间戳缓存区域"></a>时间戳缓存区域</h4><p>时间戳缓存区域存放了对于查询结果相关的表进行插入, 更新或删除操作的时间戳.  Hibernate 通过时间戳缓存区域来判断被缓存的查询结果是否过期, 其运行过程如下:<br><br>T1 时刻执行查询操作, 把查询结果存放在 QueryCache 区域, 记录该区域的时间戳为 T1<br><br>T2 时刻对查询结果相关的表进行更新操作, Hibernate 把 T2 时刻存放在 UpdateTimestampCache 区域.<br><br>T3 时刻执行查询结果前, 先比较 QueryCache 区域的时间戳和 UpdateTimestampCache 区域的时间戳, 若 T2 &gt;T1, 那么就丢弃原先存放在 QueryCache 区域的查询结果, 重新到数据库中查询数据, 再把结果存放到 QueryCache 区域; 若 T2 &lt; T1, 直接从 QueryCache 中获得查询结果<br></p>
+<h4 id="Query-接口的-iterate-方法"><a href="#Query-接口的-iterate-方法" class="headerlink" title="Query 接口的 iterate() 方法"></a>Query 接口的 iterate() 方法</h4><p>Query 接口的 iterator() 方法<br><br>同 list() 一样也能执行查询操作<br><br>list() 方法执行的 SQL 语句包含实体类对应的数据表的所有字段<br><br>Iterator() 方法执行的SQL 语句中仅包含实体类对应的数据表的 ID 字段<br><br>当遍历访问结果集时, 该方法先到 Session 缓存及二级缓存中查看是否存在特定 OID 的对象, 如果存在, 就直接返回该对象, 如果不存在该对象就通过相应的 SQL Select 语句到数据库中加载特定的实体对象<br><br>大多数情况下, 应考虑使用 list() 方法执行查询操作. iterator() 方法仅在满足以下条件的场合, 可以<strong>稍微</strong>提高查询性能:<br><br>要查询的数据表中包含大量字段<br><br>启用了二级缓存, 且二级缓存中可能已经包含了待查询的对象<br></p>
+<h4 id="管理-Session"><a href="#管理-Session" class="headerlink" title="管理 Session"></a>管理 Session</h4><p>Hibernate  自身提供了三种管理 Session 对象的方法<br><br>Session 对象的生命周期与本地线程绑定<br><br>Session 对象的生命周期与 JTA 事务绑定<br><br>Hibernate 委托程序管理 Session 对象的生命周期<br><br>在 Hibernate 的配置文件中, hibernate.current_session_context_class 属性用于指定 Session 管理方式, 可选值包括<br><br>thread: Session 对象的生命周期与本地线程绑定<br><br>jta*: Session 对象的生命周期与 JTA 事务绑定<br><br>managed: Hibernate 委托程序来管理 Session 对象的生命周期<br></p>
+<h4 id="Session-对象的生命周期与本地线程绑定"><a href="#Session-对象的生命周期与本地线程绑定" class="headerlink" title="Session 对象的生命周期与本地线程绑定"></a>Session 对象的生命周期与本地线程绑定</h4><p>如果把 Hibernate 配置文件的 hibernate.current_session_context_class 属性值设为 thread, Hibernate 就会按照与本地线程绑定的方式来管理 Session<br><br>Hibernate 按以下规则把 Session 与本地线程绑定<br><br>当一个线程(threadA)第一次调用 SessionFactory 对象的 getCurrentSession() 方法时, 该方法会创建一个新的 Session(sessionA) 对象, 把该对象与 threadA 绑定, 并将 sessionA 返回<br>当 threadA 再次调用 SessionFactory 对象的 getCurrentSession() 方法时, 该方法将返回 sessionA 对象<br><br>当 threadA 提交 sessionA 对象关联的事务时, Hibernate 会自动flush sessionA 对象的缓存, 然后提交事务, 关闭 sessionA 对象. 当 threadA 撤销 sessionA 对象关联的事务时, 也会自动关闭 sessionA 对象<br><br>若 threadA 再次调用 SessionFactory 对象的 getCurrentSession() 方法时, 该方法会又创建一个新的 Session(sessionB) 对象, 把该对象与 threadA 绑定, 并将 sessionB 返回 <br></p>
+<h4 id="批量处理数据"><a href="#批量处理数据" class="headerlink" title="批量处理数据"></a>批量处理数据</h4><p>批量处理数据是指在一个事务中处理大量数据.<br><br>在应用层进行批量操作, 主要有以下方式:<br><br>通过 Session <br><br>通过 HQL <br><br>通过 StatelessSession <br><br>通过 JDBC API<br></p>
+<p><strong>通过 Session 来进行批量操作</strong><br><br>Session 的 save() 及 update() 方法都会把处理的对象存放在自己的缓存中. 如果通过一个 Session 对象来处理大量持久化对象, 应该及时从缓存中清空已经处理完毕并且不会再访问的对象. 具体的做法是在处理完一个对象或小批量对象后, 立即调用 flush() 方法刷新缓存, 然后在调用 clear() 方法清空缓存<br><br>通过 Session 来进行处理操作会受到以下约束<br><br>需要在  Hibernate 配置文件中设置 JDBC 单次批量处理的数目, 应保证每次向数据库发送的批量的 SQL 语句数目与 batch_size 属性一致<br><br>若对象采用 “identity” 标识符生成器, 则 Hibernate 无法在 JDBC 层进行批量插入操作<br>进行批量操作时, 建议关闭 Hibernate 的二级缓存<br><br>批量插入数据:<br></p>
+<p><img src="https://i.imgur.com/3jutCzp.png" alt=""></p>
+<p>批量更新: 在进行批量更新时, 如果一下子把所有对象都加载到 Session 缓存, 然后再缓存中一一更新, 显然是不可取的<br><br>使用可滚动的结果集 org.hibernate.ScrollableResults, 该对象中实际上并不包含任何对象, 只包含用于在线定位记录的游标. 只有当程序遍历访问 ScrollableResults 对象的特定元素时, 它才会到数据库中加载相应的对象. <br><br>org.hibernate.ScrollableResults 对象由 Query 的 scroll 方法返回<br><br><strong>通过 HQL 来进行批量操作</strong><br><br>注意: HQL 只支持 INSERT INTO … SELECT 形式的插入语句, 但不支持 INSERT INTO … VALUES 形式的插入语句. 所以使用 HQL 不能进行批量插入操作. <br></p>
+<p><strong>通过StatelessSession来进行批量操作</strong><br>从形式上看，StatelessSession与session的用法类似。StatelessSession与session相比，有以下区别:<br><br>StatelessSession没有缓存，通过StatelessSession来加载、保存或更新后的对象处于游离状态。<br><br>StatelessSession不会与Hibernate的第二级缓存交互。<br><br>当调用StatelessSession的save()、update()或delete()方法时，这些方法会立即执行相应的SQL语句，而不会仅计划执行一条SQL语句<br><br>StatelessSession不会进行脏检查，因此修改了Customer对象属性后，还需要调用StatelessSession的update()方法来更新数据库中数据。<br><br>StatelessSession不会对关联的对象进行任何级联操作。<br><br>通过同一个StatelessSession对象两次加载OID为1的Customer对象，得到的两个对象内存地址不同。<br>StatelessSession所做的操作可以被Interceptor拦截器捕获到，但是会被Hibernate的事件处理系统忽略掉。<br></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>由于个人和时间原因，很多例子没有贴上来，时间有点赶，得睡觉了，导致这个文章看着很空洞，全是套话空话，有空会将例子补全，其实也可以去参考最新<a href="https://docs.jboss.org/hibernate/stable/orm/userguide/html_single/Hibernate_User_Guide.html" target="_blank" rel="external">官方文档</a>。</p>
 
       
 
@@ -1050,7 +744,7 @@ mysql&gt;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/30/Hibernate入门系列（一）/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/06/30/Hibernate入门系列（五）/">展开全文 >></a>
         </p>
       
 
@@ -1131,12 +825,16 @@ mysql&gt;
 		showTags: true
 	}
 </script>
-<!--prettify���������ű�����-->
+<!--prettify���������ű�����$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();-->
+
 <script src="/plugins/prettify/prettify.js"></script>
 <script type="text/javascript">
-$(window).load(function(){
-$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
- prettyPrint();
+$(document).ready(function(){
+ $('pre').addClass('prettyprint linenums');
+   prettyPrint();
+ })
 })
 </script>
 
@@ -1206,15 +904,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1242,15 +940,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
