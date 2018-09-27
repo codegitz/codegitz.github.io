@@ -226,172 +226,17 @@ gitment.render('gitment')
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。</p>
 <p>整个CORS通信过程，都是浏览器自动完成，不需要用户参与。对于开发者来说，CORS通信与同源的AJAX通信没有差别，代码完全一样。浏览器一旦发现AJAX请求跨源，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，但用户不会有感觉。</p>
 <p>因此，实现CORS通信的关键是服务器。只要服务器实现了CORS接口，就可以跨源通信。</p>
-<h3 id="两种请求方式"><a href="#两种请求方式" class="headerlink" title="两种请求方式"></a>两种请求方式</h3><p>浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request），浏览器对于两种请求的处理方式不一样。<br>满足以下两大条件就是简单请求</p>
-<pre><code>(1) 请求方法是以下三种方法之一：
-HEAD
-GET
-POST
-2）HTTP的头信息不超出以下几种字段：
-Accept
-Accept-Language
-Content-Language
-Last-Event-ID
-Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain
-</code></pre><p>java后台解决方法有两个：</p>
-<h4 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h4><p>1.自己建一个corsfilter类</p>
-<pre><code>package io.codegitz.cloud_note.filter;
-
-import java.io.IOException;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.stereotype.Component;
-
-@Component
-public class CorsFilter implements Filter{
-
-    //@Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
-    }
-
-    //@Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
-            throws IOException, ServletException {
-        HttpServletResponse response = (HttpServletResponse)servletResponse;  
-        response.setHeader(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);  
-        response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;POST, GET, OPTIONS, DELETE&quot;);  
-        response.setHeader(&quot;Access-Control-Max-Age&quot;, &quot;3600&quot;);  
-        response.setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;x-requested-with,Authorization&quot;);  
-        response.setHeader(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;);  
-        filterChain.doFilter(servletRequest, servletResponse); 
-
-    }
-
-    //@Override
-    public void destroy() {
-
-    }
-
-}
-</code></pre><p>预检请求会附带一些关于接下来的请求的信息给服务器，主要有以下几种：</p>
+<h3 id="两种请求方式"><a href="#两种请求方式" class="headerlink" title="两种请求方式"></a>两种请求方式</h3><p>浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request），浏览器对于两种请求的处理方式不一样。<br>满足以下两大条件就是简单请求<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">(1) 请求方法是以下三种方法之一：</div><div class="line">HEAD</div><div class="line"><span class="built_in">GET</span></div><div class="line"><span class="keyword">POST</span></div><div class="line">2）HTTP的头信息不超出以下几种字段：</div><div class="line">Accept</div><div class="line">Accept-Language</div><div class="line">Content-Language</div><div class="line">Last-Event-ID</div><div class="line">Content-<span class="keyword">Type</span>：只限于三个值application/x-www-<span class="keyword">form</span>-urlencoded、multipart/<span class="keyword">form</span>-data、text/plain</div></pre></td></tr></table></figure></p>
+<p>java后台解决方法有两个：</p>
+<h4 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h4><p>1.自己建一个corsfilter类<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">package io.codegitz.cloud_note.<span class="built_in">filter</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.servlet.Filter;</div><div class="line"><span class="keyword">import</span> javax.servlet.FilterChain;</div><div class="line"><span class="keyword">import</span> javax.servlet.FilterConfig;</div><div class="line"><span class="keyword">import</span> javax.servlet.ServletException;</div><div class="line"><span class="keyword">import</span> javax.servlet.ServletRequest;</div><div class="line"><span class="keyword">import</span> javax.servlet.ServletResponse;</div><div class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</div><div class="line"></div><div class="line">@<span class="type">Component</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CorsFilter</span> <span class="title">implements</span> <span class="title">Filter</span></span>&#123;</div><div class="line"></div><div class="line"> <span class="comment">//@Override</span></div><div class="line"> <span class="keyword">public</span> void <span class="keyword">init</span>(<span class="type">FilterConfig</span> filterConfig) <span class="keyword">throws</span> <span class="type">ServletException</span> &#123;</div><div class="line">  </div><div class="line"> &#125;</div><div class="line"></div><div class="line"> <span class="comment">//@Override</span></div><div class="line"> <span class="keyword">public</span> void doFilter(<span class="type">ServletRequest</span> servletRequest, <span class="type">ServletResponse</span> servletResponse, <span class="type">FilterChain</span> filterChain)</div><div class="line">   <span class="keyword">throws</span> <span class="type">IOException</span>, <span class="type">ServletException</span> &#123;</div><div class="line">  <span class="type">HttpServletResponse</span> response = (<span class="type">HttpServletResponse</span>)servletResponse;  </div><div class="line">        response.setHeader(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"*"</span>);  </div><div class="line">        response.setHeader(<span class="string">"Access-Control-Allow-Methods"</span>, <span class="string">"POST, GET, OPTIONS, DELETE"</span>);  </div><div class="line">        response.setHeader(<span class="string">"Access-Control-Max-Age"</span>, <span class="string">"3600"</span>);  </div><div class="line">        response.setHeader(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"x-requested-with,Authorization"</span>);  </div><div class="line">        response.setHeader(<span class="string">"Access-Control-Allow-Credentials"</span>, <span class="string">"true"</span>);  </div><div class="line">        filterChain.doFilter(servletRequest, servletResponse); </div><div class="line">  </div><div class="line"> &#125;</div><div class="line"></div><div class="line"> <span class="comment">//@Override</span></div><div class="line"> <span class="keyword">public</span> void destroy() &#123;</div><div class="line">  </div><div class="line"> &#125;</div><div class="line"> </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>预检请求会附带一些关于接下来的请求的信息给服务器，主要有以下几种：</p>
 <p>Origin：请求的源域信息<br>Access-Control-Request-Method：接下来的请求类型，如POST、GET等<br>Access-Control-Request-Headers：接下来的请求中包含的用户显式设置的Header列表<br>服务器端收到请求之后，会根据附带的信息来判断是否允许该跨域请求，信息返回同样是通过Header完成的：</p>
 <p>Access-Control-Allow-Origin：允许跨域的Origin列表<br>Access-Control-Allow-Methods：允许跨域的方法列表<br>Access-Control-Allow-Headers：允许跨域的Header列表<br>Access-Control-Expose-Headers：允许暴露给JavaScript代码的Header列表<br>Access-Control-Max-Age：最大的浏览器缓存时间，单位s<br>以上行为都是浏览器自动完成的，用户无需关注这些细节。如果服务器配置正确，那么和正常非跨域请求是一样的。</p>
-<p>2.在web.xml文件中配置</p>
-<pre><code>&lt;filter&gt;  
-    &lt;filter-name&gt;cors&lt;/filter-name&gt;  
-    &lt;filter-class&gt;io.codegitz.cloud_note.filter.CorsFilter&lt;/filter-class&gt;  
-&lt;/filter&gt;  
-&lt;filter-mapping&gt;  
-    &lt;filter-name&gt;cors&lt;/filter-name&gt;  
-    &lt;url-pattern&gt;*.do&lt;/url-pattern&gt;  
-&lt;/filter-mapping&gt;
-</code></pre><h4 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h4><p>这种方式似乎要spring4.2以上才支持，利用提供的jar包，下载 cors-filter-1.7.jar, java-property-utils-1.9.jar 这两个库文件放到lib目录下。(放到对应项目的webcontent/WEB-INF/lib/下)，如果是maven项目，可以简单添加如下依赖到pom.xml中即可</p>
-<pre><code>&lt;dependency&gt;
-    &lt;groupId&gt;com.thetransactioncompany&lt;/groupId&gt;
-    &lt;artifactId&gt;cors-filter&lt;/artifactId&gt;
-    &lt;version&gt;[ version ]&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre><p>接着添加CORS配置到web.xml文件中</p>
-<pre><code>&lt;!-- 跨域配置，此filter应该放在所有filter之前--&gt;    
-&lt;filter&gt;
-        &lt;!-- The CORS filter with parameters --&gt;
-        &lt;filter-name&gt;CORS&lt;/filter-name&gt;
-        &lt;filter-class&gt;com.thetransactioncompany.cors.CORSFilter&lt;/filter-class&gt;
-
-        &lt;!-- Note: All parameters are options, if omitted the CORS 
-             Filter will fall back to the respective default values.
-          --&gt;
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.allowGenericHttpRequests&lt;/param-name&gt;
-            &lt;param-value&gt;true&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.allowOrigin&lt;/param-name&gt;
-            &lt;param-value&gt;*&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.allowSubdomains&lt;/param-name&gt;
-            &lt;param-value&gt;false&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.supportedMethods&lt;/param-name&gt;
-            &lt;param-value&gt;GET, HEAD, POST, OPTIONS&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.supportedHeaders&lt;/param-name&gt;
-            &lt;param-value&gt;Accept, Origin, X-Requested-With, Content-Type, Last-Modified&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.exposedHeaders&lt;/param-name&gt;
-            &lt;!--这里可以添加一些自己的暴露Headers   --&gt;
-            &lt;param-value&gt;X-Test-1, X-Test-2&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.supportsCredentials&lt;/param-name&gt;
-            &lt;param-value&gt;true&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.maxAge&lt;/param-name&gt;
-            &lt;param-value&gt;3600&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-    &lt;/filter&gt;
-
-    &lt;filter-mapping&gt;
-        &lt;!-- CORS Filter mapping --&gt;
-        &lt;filter-name&gt;CORS&lt;/filter-name&gt;
-        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
-    &lt;/filter-mapping&gt;
-</code></pre><p>配置完成之后可以发送另起一个项目或者页面来测试配置是否成功</p>
-<pre><code>&lt;!DOCTYPE HTML&gt;  
-&lt;html&gt;  
-&lt;head&gt;  
-&lt;meta charset=&quot;utf-8&quot;&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;scripts/jquery.min.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;scripts/basevalue.js&quot;&gt;&lt;/script&gt;  
-&lt;script type=&quot;text/javascript&quot;&gt;  
-    $(function(){  
-        //按钮单击时执行  
-        $(&quot;#testAjax&quot;).click(function(){  
-              //取Ajax返回结果  
-              $.ajax({
-                  url:path+&quot;/test/ajax.do&quot;,
-                  data:{},
-                  dataType:&quot;json&quot;,
-                  type:&quot;post&quot;,
-                  success:function(result){ 
-                      $(&quot;#myDiv&quot;).empty; 
-                 $(&quot;#myDiv&quot;).html(result.msg);
-                  //显示Ajax返回结果  
-                  alert(result.msg);
-                  },
-                  error:function(){
-                      alert(&quot;错误&quot;);
-                  }});  
-         });  
-    });  
-&lt;/script&gt;      
-&lt;/head&gt;  
-    &lt;body&gt;  
-        &lt;div id=&quot;myDiv&quot;&gt;&lt;h2&gt;返回跨域的文本&lt;/h2&gt;&lt;/div&gt;  
-        &lt;button id=&quot;testAjax&quot; type=&quot;button&quot;&gt;点击获取Ajax跨域返回内容&lt;/button&gt;  
-    &lt;/body&gt;  
-&lt;/html&gt;
-</code></pre><p>浏览器输入<a href="http://47.106.120.224/cloud_note/Filter.html" target="_blank" rel="external">http://47.106.120.224/cloud_note/Filter.html</a><br>成功返回文本跨域请求成功<br><img src="https://i.imgur.com/fhWTkym.png" alt=""></p>
+<p>2.在web.xml文件中配置<br><figure class="highlight vbscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="built_in">filter</span>&gt;  </div><div class="line">    &lt;<span class="built_in">filter</span>-name&gt;cors&lt;/<span class="built_in">filter</span>-name&gt;  </div><div class="line">    &lt;<span class="built_in">filter</span>-<span class="keyword">class</span>&gt;io.codegitz.cloud_note.<span class="built_in">filter</span>.CorsFilter&lt;/<span class="built_in">filter</span>-<span class="keyword">class</span>&gt;  </div><div class="line">&lt;/<span class="built_in">filter</span>&gt;  </div><div class="line">&lt;<span class="built_in">filter</span>-mapping&gt;  </div><div class="line">    &lt;<span class="built_in">filter</span>-name&gt;cors&lt;/<span class="built_in">filter</span>-name&gt;  </div><div class="line">    &lt;url-pattern&gt;*.<span class="keyword">do</span>&lt;/url-pattern&gt;  </div><div class="line">&lt;/<span class="built_in">filter</span>-mapping&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h4><p>这种方式似乎要spring4.2以上才支持，利用提供的jar包，下载 cors-filter-1.7.jar, java-property-utils-1.9.jar 这两个库文件放到lib目录下。(放到对应项目的webcontent/WEB-INF/lib/下)，如果是maven项目，可以简单添加如下依赖到pom.xml中即可<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.thetransactioncompany<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>cors-filter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>[ version ]<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>接着添加CORS配置到web.xml文件中<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 跨域配置，此filter应该放在所有filter之前--&gt;</span>    </div><div class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!-- The CORS filter with parameters --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CORS<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>com.thetransactioncompany.cors.CORSFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="comment">&lt;!-- <span class="doctag">Note:</span> All parameters are options, if omitted the CORS </span></div><div class="line">             Filter will fall back to the respective default values.</div><div class="line">          --&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>cors.allowGenericHttpRequests<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>cors.allowOrigin<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>*<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>cors.allowSubdomains<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>cors.supportedMethods<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>GET, HEAD, POST, OPTIONS<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>cors.supportedHeaders<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>Accept, Origin, X-Requested-With, Content-Type, Last-Modified<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>cors.exposedHeaders<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!--这里可以添加一些自己的暴露Headers   --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>X-Test-1, X-Test-2<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>cors.supportsCredentials<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>cors.maxAge<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>3600<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!-- CORS Filter mapping --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CORS<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>配置完成之后可以发送另起一个项目或者页面来测试配置是否成功<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE HTML&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"scripts/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"scripts/basevalue.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript">  </span></div><div class="line">    $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">        <span class="comment">//按钮单击时执行  </span></div><div class="line">        $(<span class="string">"#testAjax"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">              <span class="comment">//取Ajax返回结果  </span></div><div class="line">              $.ajax(&#123;</div><div class="line">            	  <span class="attr">url</span>:path+<span class="string">"/test/ajax.do"</span>,</div><div class="line">            	  <span class="attr">data</span>:&#123;&#125;,</div><div class="line">            	  <span class="attr">dataType</span>:<span class="string">"json"</span>,</div><div class="line">            	  <span class="attr">type</span>:<span class="string">"post"</span>,</div><div class="line">            	  <span class="attr">success</span>:<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123; </div><div class="line">            		  $(<span class="string">"#myDiv"</span>).empty; </div><div class="line">            	 $(<span class="string">"#myDiv"</span>).html(result.msg);</div><div class="line">                  <span class="comment">//显示Ajax返回结果  </span></div><div class="line">            	  alert(result.msg);</div><div class="line">            	  &#125;,</div><div class="line">            	  <span class="attr">error</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            		  alert(<span class="string">"错误"</span>);</div><div class="line">            	  &#125;&#125;);  </div><div class="line">         &#125;);  </div><div class="line">    &#125;);  </div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span>      </div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"myDiv"</span>&gt;</span><span class="tag">&lt;<span class="name">h2</span>&gt;</span>返回跨域的文本<span class="tag">&lt;/<span class="name">h2</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"testAjax"</span> <span class="attr">type</span>=<span class="string">"button"</span>&gt;</span>点击获取Ajax跨域返回内容<span class="tag">&lt;/<span class="name">button</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>浏览器输入<a href="http://47.106.120.224/cloud_note/Filter.html" target="_blank" rel="external">http://47.106.120.224/cloud_note/Filter.html</a><br>成功返回文本跨域请求成功<br><img src="https://i.imgur.com/fhWTkym.png" alt=""></p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>本次遇到的问题不大，都是没留意的小问题，倒是项目本身还有许多不完整的地方，bug多多，有时间再修改，源码稍后传到GitHub上，欢迎<a href="https://github.com/codegitz/cloud_note" target="_blank" rel="external">star</a>。</p>
 
       
@@ -505,11 +350,11 @@ public class CorsFilter implements Filter{
   
 <nav id="article-nav">
   
-    <a href="/2018/04/13/升级Centos7/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/13/Linux系统/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          升级记录
+          Linux入门
         
       </div>
     </a>
@@ -703,7 +548,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -715,15 +560,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -735,19 +584,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">

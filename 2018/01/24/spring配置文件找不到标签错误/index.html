@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>spring配置文件找不到标签错误 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="spring配置文件出错：cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element   ‘mvc:annotation-driven’.Multiple annotations found at this line:     - schema_refe">
+  <meta name="description" content="spring配置文件出错：cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element   ‘mvc:annotation-driven’.123456Multiple annotations found at this line: - schema_re">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="spring配置文件找不到标签错误">
 <meta property="og:url" content="http://yoursite.com/2018/01/24/spring配置文件找不到标签错误/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="spring配置文件出错：cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element   ‘mvc:annotation-driven’.Multiple annotations found at this line:     - schema_refe">
+<meta property="og:description" content="spring配置文件出错：cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element   ‘mvc:annotation-driven’.123456Multiple annotations found at this line: - schema_re">
 <meta property="og:updated_time" content="2018-01-24T12:26:24.909Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spring配置文件找不到标签错误">
-<meta name="twitter:description" content="spring配置文件出错：cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element   ‘mvc:annotation-driven’.Multiple annotations found at this line:     - schema_refe">
+<meta name="twitter:description" content="spring配置文件出错：cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element   ‘mvc:annotation-driven’.123456Multiple annotations found at this line: - schema_re">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
   
@@ -210,35 +210,10 @@ gitment.render('gitment')
     <div class="article-entry" itemprop="articleBody">
       
         <script src="/assets/js/APlayer.min.js"> </script><a id="more"></a>
-<h3 id="spring配置文件出错：cvc-complex-type-2-4-c-The-matching-wildcard-is-strict-but-no-declaration-can-be-found-for-element-‘mvc-annotation-driven’"><a href="#spring配置文件出错：cvc-complex-type-2-4-c-The-matching-wildcard-is-strict-but-no-declaration-can-be-found-for-element-‘mvc-annotation-driven’" class="headerlink" title="spring配置文件出错：cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element   ‘mvc:annotation-driven’."></a>spring配置文件出错：cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element   ‘mvc:annotation-driven’.</h3><pre><code>Multiple annotations found at this line:
-    - schema_reference.4: Failed to read schema document &#39;http://www.springframework.org/schema/m/
-     spring-mvc-3.2.xsd&#39;, because 1) could not find the document; 2) the document could not be read; 3) the root 
-     element of the document is not &lt;xsd:schema&gt;.
-    - cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element 
-     &#39;mvc:annotation-driven&#39;.
-</code></pre><p>出现这个错误万万没想到是复制过来的spring配置文件有问题，刚刚出现这个问题的时候，去网上搜解决办法，大多数都是说xsd文件与jar包版本不对，或者是网络问题导致无法访问xsd文件，但是折腾好久，确认jar包版本没毛病而且网络是通畅的，但是问题依然出现了，今晚偶然对比了每个标签的路径，发现了复制过来的配置文件很多路径都有/tx,就想会不会是这个小玩意在作祟，于是就改成了对应的标签名，结果就行了。<br>原来的配置文件<br></p>
-<pre><code>    xsi:schemaLocation=&quot;
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
-        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
-        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
-        http://www.springframework.org/schema/jms http://www.springframework.org/schema/tx/spring-jms-3.2.xsd
-        http://www.springframework.org/schema/lang http://www.springframework.org/schema/tx/spring-lang-3.2.xsd
-        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
-        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
-        http://www.springframework.org/schema/util http://www.springframework.org/schema/tx/spring-util-3.2.xsd&quot;&gt;
-</code></pre><p>修改后的配置文件<br></p>
-<pre><code>    xsi:schemaLocation=&quot;
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
-        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
-        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
-        http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd
-        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd
-        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
-        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
-        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd&quot;&gt;
-</code></pre><p>我也不清楚为什么中间会有几个夹杂着/tx,导致了出现了莫名其妙的错误，解决了心情很是舒畅<br></p>
+<h3 id="spring配置文件出错：cvc-complex-type-2-4-c-The-matching-wildcard-is-strict-but-no-declaration-can-be-found-for-element-‘mvc-annotation-driven’"><a href="#spring配置文件出错：cvc-complex-type-2-4-c-The-matching-wildcard-is-strict-but-no-declaration-can-be-found-for-element-‘mvc-annotation-driven’" class="headerlink" title="spring配置文件出错：cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element   ‘mvc:annotation-driven’."></a>spring配置文件出错：cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element   ‘mvc:annotation-driven’.</h3><figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Multiple annotations found at <span class="keyword">this</span> line:</div><div class="line"> - schema_reference.<span class="number">4</span>: Failed <span class="keyword">to</span> read schema <span class="built_in">document</span> <span class="string">'http://www.springframework.org/schema/m/</span></div><div class="line">  spring-mvc-3.2.xsd', because <span class="number">1</span>) could <span class="keyword">not</span> find the <span class="built_in">document</span>; <span class="number">2</span>) the <span class="built_in">document</span> could <span class="keyword">not</span> be read; <span class="number">3</span>) the root </div><div class="line">  element <span class="keyword">of</span> the <span class="built_in">document</span> <span class="keyword">is</span> <span class="keyword">not</span> &lt;xsd:schema&gt;.</div><div class="line"> - cvc-complex-type.<span class="number">2.4</span>.c: The matching wildcard <span class="keyword">is</span> strict, but <span class="literal">no</span> declaration can be found <span class="keyword">for</span> element </div><div class="line">  <span class="string">'mvc:annotation-driven'</span>.</div></pre></td></tr></table></figure>
+<p>出现这个错误万万没想到是复制过来的spring配置文件有问题，刚刚出现这个问题的时候，去网上搜解决办法，大多数都是说xsd文件与jar包版本不对，或者是网络问题导致无法访问xsd文件，但是折腾好久，确认jar包版本没毛病而且网络是通畅的，但是问题依然出现了，今晚偶然对比了每个标签的路径，发现了复制过来的配置文件很多路径都有/tx,就想会不会是这个小玩意在作祟，于是就改成了对应的标签名，结果就行了。<br>原来的配置文件<br><br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="attr">xsi:</span><span class="string">schemaLocation="</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/beans</span> <span class="attr">http://www.springframework.org/schema/beans/spring-beans-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/context</span> <span class="attr">http://www.springframework.org/schema/context/spring-context-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/jdbc</span> <span class="attr">http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/jee</span> <span class="attr">http://www.springframework.org/schema/jee/spring-jee-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/jms</span> <span class="attr">http://www.springframework.org/schema/tx/spring-jms-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/lang</span> <span class="attr">http://www.springframework.org/schema/tx/spring-lang-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/mvc</span> <span class="attr">http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/tx</span> <span class="attr">http://www.springframework.org/schema/tx/spring-tx-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/util</span> <span class="attr">http://www.springframework.org/schema/tx/spring-util-3.2.xsd"&gt;</span></div></pre></td></tr></table></figure></p>
+<p>修改后的配置文件<br><br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="attr">xsi:</span><span class="string">schemaLocation="</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/beans</span> <span class="attr">http://www.springframework.org/schema/beans/spring-beans-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/context</span> <span class="attr">http://www.springframework.org/schema/context/spring-context-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/jdbc</span> <span class="attr">http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/jee</span> <span class="attr">http://www.springframework.org/schema/jee/spring-jee-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/jms</span> <span class="attr">http://www.springframework.org/schema/jms/spring-jms-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/lang</span> <span class="attr">http://www.springframework.org/schema/lang/spring-lang-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/mvc</span> <span class="attr">http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/tx</span> <span class="attr">http://www.springframework.org/schema/tx/spring-tx-3.2.xsd</span></div><div class="line"> <span class="attr">http://www.springframework.org/schema/util</span> <span class="attr">http://www.springframework.org/schema/util/spring-util-3.2.xsd"&gt;</span></div></pre></td></tr></table></figure></p>
+<p>我也不清楚为什么中间会有几个夹杂着/tx,导致了出现了莫名其妙的错误，解决了心情很是舒畅<br></p>
 
       
 
@@ -549,7 +524,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,15 +536,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,19 +560,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>CentOS7执行yum命令出错 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CentOS7执行yum命令出错[root@localhost ~]# yum install docker Loaded plugins: fastestmirror    One of the configured repositories failed (Unknown),  and yum doesn&amp;#39;t have enough cached data to continue.">
+  <meta name="description" content="CentOS7执行yum命令出错12345678910111213141516171819202122232425262728[root@localhost ~]# yum install dockerLoaded plugins: fastestmirror One of the configured repositories failed (Unknown), and yum doesn&apos;t">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS7执行yum命令出错">
 <meta property="og:url" content="http://yoursite.com/2018/04/13/CentOS7执行yum命令出错/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="CentOS7执行yum命令出错[root@localhost ~]# yum install docker Loaded plugins: fastestmirror    One of the configured repositories failed (Unknown),  and yum doesn&amp;#39;t have enough cached data to continue.">
+<meta property="og:description" content="CentOS7执行yum命令出错12345678910111213141516171819202122232425262728[root@localhost ~]# yum install dockerLoaded plugins: fastestmirror One of the configured repositories failed (Unknown), and yum doesn&apos;t">
 <meta property="og:updated_time" content="2018-05-17T14:03:00.287Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS7执行yum命令出错">
-<meta name="twitter:description" content="CentOS7执行yum命令出错[root@localhost ~]# yum install docker Loaded plugins: fastestmirror    One of the configured repositories failed (Unknown),  and yum doesn&amp;#39;t have enough cached data to continue.">
+<meta name="twitter:description" content="CentOS7执行yum命令出错12345678910111213141516171819202122232425262728[root@localhost ~]# yum install dockerLoaded plugins: fastestmirror One of the configured repositories failed (Unknown), and yum doesn&apos;t">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
   
@@ -209,35 +209,8 @@ gitment.render('gitment')
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="CentOS7执行yum命令出错"><a href="#CentOS7执行yum命令出错" class="headerlink" title="CentOS7执行yum命令出错"></a>CentOS7执行yum命令出错</h2><pre><code>[root@localhost ~]# yum install docker
-Loaded plugins: fastestmirror
-
-
- One of the configured repositories failed (Unknown),
- and yum doesn&#39;t have enough cached data to continue. At this point the only
- safe thing yum can do is fail. There are a few ways to work &quot;fix&quot; this:
-
-1. Contact the upstream for the repository and get them to fix the problem.
-
- 2. Reconfigure the baseurl/etc. for the repository, to point to a working
-        upstream. This is most often useful if you are using a newer
-        distribution release than is supported by the repository (and the
-        packages for the previous distribution release still work).
-
-3. Disable the repository, so yum won&#39;t use it by default. Yum will then   just ignore the repository until you permanently enable it again or use
-        --enablerepo for temporary usage:
-  yum-config-manager --disable &lt;repoid&gt;
-
-     4. Configure the failing repository to be skipped, if it is unavailable.
-        Note that yum will try to contact the repo. when it runs most commands,
-        so will have to try and fail each time (and thus. yum will be be much
-        slower). If it is a very temporary problem though, this is often a nice
-        compromise:
-
-        yum-config-manager --save --setopt=&lt;repoid&gt;.skip_if_unavailable=true
-
-Cannot find a valid baseurl for repo: base/7/x86_64
-</code></pre><p>原因是本本虚拟机无法上网，配置再多也没用</p>
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="CentOS7执行yum命令出错"><a href="#CentOS7执行yum命令出错" class="headerlink" title="CentOS7执行yum命令出错"></a>CentOS7执行yum命令出错</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]<span class="comment"># yum install docker</span></div><div class="line">Loaded plugins: fastestmirror</div><div class="line"></div><div class="line"></div><div class="line"> One <span class="keyword">of</span> <span class="keyword">the</span> configured repositories failed (Unknown),</div><div class="line"> <span class="keyword">and</span> yum doesn't have enough cached data <span class="keyword">to</span> <span class="keyword">continue</span>. At this point <span class="keyword">the</span> only</div><div class="line"> safe thing yum can do <span class="keyword">is</span> fail. There are a few ways <span class="keyword">to</span> work <span class="string">"fix"</span> this:</div><div class="line"></div><div class="line"><span class="number">1.</span> Contact <span class="keyword">the</span> upstream <span class="keyword">for</span> <span class="keyword">the</span> repository <span class="keyword">and</span> <span class="keyword">get</span> them <span class="keyword">to</span> fix <span class="keyword">the</span> problem.</div><div class="line"></div><div class="line"> <span class="number">2.</span> Reconfigure <span class="keyword">the</span> baseurl/etc. <span class="keyword">for</span> <span class="keyword">the</span> repository, <span class="keyword">to</span> point <span class="keyword">to</span> a working</div><div class="line">        upstream. This <span class="keyword">is</span> most often useful <span class="keyword">if</span> you are using a newer</div><div class="line">        distribution release than <span class="keyword">is</span> supported <span class="keyword">by</span> <span class="keyword">the</span> repository (<span class="keyword">and</span> <span class="keyword">the</span></div><div class="line">        packages <span class="keyword">for</span> <span class="keyword">the</span> previous distribution release still work).</div><div class="line"></div><div class="line"><span class="number">3.</span> Disable <span class="keyword">the</span> repository, so yum won't use <span class="keyword">it</span> <span class="keyword">by</span> default. Yum will <span class="keyword">then</span>   just ignore <span class="keyword">the</span> repository <span class="keyword">until</span> you permanently enable <span class="keyword">it</span> again <span class="keyword">or</span> use</div><div class="line">        <span class="comment">--enablerepo for temporary usage:</span></div><div class="line">  yum-config-manager <span class="comment">--disable &lt;repoid&gt;</span></div><div class="line"></div><div class="line">     <span class="number">4.</span> Configure <span class="keyword">the</span> failing repository <span class="keyword">to</span> be skipped, <span class="keyword">if</span> <span class="keyword">it</span> <span class="keyword">is</span> unavailable.</div><div class="line">        Note <span class="keyword">that</span> yum will <span class="keyword">try</span> <span class="keyword">to</span> contact <span class="keyword">the</span> repo. when <span class="keyword">it</span> runs most commands,</div><div class="line">        so will have <span class="keyword">to</span> <span class="keyword">try</span> <span class="keyword">and</span> fail each <span class="built_in">time</span> (<span class="keyword">and</span> thus. yum will be be much</div><div class="line">        slower). If <span class="keyword">it</span> <span class="keyword">is</span> a very temporary problem though, this <span class="keyword">is</span> often a nice</div><div class="line">        compromise:</div><div class="line"></div><div class="line">        yum-config-manager <span class="comment">--save --setopt=&lt;repoid&gt;.skip_if_unavailable=true</span></div><div class="line"></div><div class="line">Cannot find a valid baseurl <span class="keyword">for</span> repo: base/<span class="number">7</span>/x86_64</div></pre></td></tr></table></figure>
+<p>原因是本本虚拟机无法上网，配置再多也没用</p>
 
       
 
@@ -350,18 +323,18 @@ Cannot find a valid baseurl for repo: base/7/x86_64
   
 <nav id="article-nav">
   
-    <a href="/2018/04/13/配置嵌入式servlet容器/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/13/ssh/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          springboot配置容器
+          ssh依赖
         
       </div>
     </a>
   
   
-    <a href="/2018/04/13/Linux用户和组的管理/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">inux用户和组的管理</div>
+    <a href="/2018/04/13/hexo-yilia-文章浏览量统计/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">hexo yilia 文章浏览量统计</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -548,7 +521,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,15 +533,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -580,19 +557,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">

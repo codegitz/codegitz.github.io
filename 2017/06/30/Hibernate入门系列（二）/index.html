@@ -222,8 +222,8 @@ gitment.render('gitment')
 <li>站在持久化的角度, Hibernate 把对象分为 4 种状态: 持久化状态, 临时状态, 游离状态, 删除状态. Session 的特定方法能使对象从一个状态转换到另一个状态. <h3 id="Session-缓存"><a href="#Session-缓存" class="headerlink" title="Session 缓存"></a>Session 缓存</h3></li>
 <li>在 Session 接口的实现中包含一系列的 Java 集合, 这些 Java 集合构成了 Session 缓存. 只要 Session 实例没有结束生命周期, 且没有清理缓存，则存放在它缓存中的对象也不会结束生命周期</li>
 <li><p>Session 缓存可减少 Hibernate 应用程序访问数据库的频率。<br><img src="https://i.imgur.com/ImtQv3c.png" alt=""></p>
-<pre><code>  News news1=(News) session.get(News.class, 2);
-  News news2=(News) session.get(News.class, 2);
+<pre><code>News news1=(News) session.get(News.class, 2);
+News news2=(News) session.get(News.class, 2);
 </code></pre><p>例如执行上面这两行代码，hibernate只会向数据库发送一次SQL语句。<br><br>操作session缓存模型<br><img src="https://i.imgur.com/lNSw9XC.png" alt=""></p>
 <h4 id="flush-缓存"><a href="#flush-缓存" class="headerlink" title="flush 缓存"></a>flush 缓存</h4><p>flush：Session 按照缓存中对象的属性变化来同步更新数据库<br>默认情况下 Session 在以下时间点刷新缓存：</p>
 </li>
@@ -253,9 +253,10 @@ gitment.render('gitment')
 <li>READ UNCOMMITED<br></li>
 <li>READ COMMITED<br></li>
 <li>REPEATABLE READ<br></li>
-<li>SERIALIZEABLE<br><br>Hibernate 通过为 Hibernate 映射文件指定 hibernate.connection.isolation 属性来设置事务的隔离级别<br><br>例如：<br><pre><code>&lt;property name=&quot;hibernate.connection.isolation&quot;&gt;2&lt;/property&gt;
-</code></pre><h3 id="持久化对象的状态"><a href="#持久化对象的状态" class="headerlink" title="持久化对象的状态"></a>持久化对象的状态</h3>站在持久化的角度, Hibernate 把对象分为 4 种状态: 持久化状态, 临时状态, 游离状态, 删除状态. Session 的特定方法能使对象从一个状态转换到另一个状态. <br></li>
+<li>SERIALIZEABLE<br><br>Hibernate 通过为 Hibernate 映射文件指定 hibernate.connection.isolation 属性来设置事务的隔离级别<br><br>例如：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"hibernate.connection.isolation"</span>&gt;<span class="number">2</span>&lt;/<span class="keyword">property</span>&gt;</div></pre></td></tr></table></figure>
+</li>
 </ol>
+<h3 id="持久化对象的状态"><a href="#持久化对象的状态" class="headerlink" title="持久化对象的状态"></a>持久化对象的状态</h3><p>站在持久化的角度, Hibernate 把对象分为 4 种状态: 持久化状态, 临时状态, 游离状态, 删除状态. Session 的特定方法能使对象从一个状态转换到另一个状态. <br></p>
 <p><strong>临时对象（Transient）:</strong></p>
 <ul>
 <li>在使用代理主键的情况下, OID 通常为 null<br></li>
@@ -446,18 +447,18 @@ com.mysql.jdbc.JDBC4Connection@6c130c45
   
 <nav id="article-nav">
   
-    <a href="/2017/06/30/Hibernate入门系列（四）/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/06/30/Hibernate入门系列（一）/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Hibernate入门系列（四）
+          Hibernate入门系列（一）
         
       </div>
     </a>
   
   
-    <a href="/2017/06/22/我的第一篇博客/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">我的第一篇博客</div>
+    <a href="/2017/06/30/我的标题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">我的标题</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -644,7 +645,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -656,15 +657,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -676,19 +681,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">

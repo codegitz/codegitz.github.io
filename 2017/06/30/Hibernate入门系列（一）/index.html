@@ -349,43 +349,43 @@ public class News {
         &lt;/property&gt;
     &lt;/class&gt;
 &lt;/hibernate-mapping&gt;
-</code></pre><h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><pre><code>    public class HibernateTest {
+</code></pre><h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><pre><code>public class HibernateTest {
 
-        @Test
-        public void test(){
+    @Test
+    public void test(){
 
-    //        1.创建一个SessionFactory对象
-            SessionFactory sessionFactory=null;
-    //        1.1创建configuration对象：对应hibernate的基本配置信息和对象关系映射信息
-            Configuration configuration=new Configuration().configure();
-            //4.0以前这样创建
-    //        sessionFactory=configuration.buildSessionFactory();
-    //        1.2创建一个serviceRegistry对象 hibernate 4.x新添加的对象
-            //hibernate的任何配置和服务都需要在该对象中注册才能有效
-            ServiceRegistry serviceRegistry=
-                    new             ServiceRegistryBuilder    ().applySettings    (configuration.getProperties    ()).buildServiceRegistry();
-    //        1.3
-                    sessionFactory=configuration.buil    dSessionFactory(serviceRegistry);
+//        1.创建一个SessionFactory对象
+        SessionFactory sessionFactory=null;
+//        1.1创建configuration对象：对应hibernate的基本配置信息和对象关系映射信息
+        Configuration configuration=new Configuration().configure();
+        //4.0以前这样创建
+//        sessionFactory=configuration.buildSessionFactory();
+//        1.2创建一个serviceRegistry对象 hibernate 4.x新添加的对象
+        //hibernate的任何配置和服务都需要在该对象中注册才能有效
+        ServiceRegistry serviceRegistry=
+                new             ServiceRegistryBuilder    ().applySettings    (configuration.getProperties    ()).buildServiceRegistry();
+//        1.3
+                sessionFactory=configuration.buil    dSessionFactory(serviceRegistry);
 
-    //        2.创建一个Session对象 
-            Session session=sessionFactory.openSession();
+//        2.创建一个Session对象 
+        Session session=sessionFactory.openSession();
 
-    //        3.开启事务
-            Transaction transaction=session.beginTransaction();
+//        3.开启事务
+        Transaction transaction=session.beginTransaction();
 
-    //        4.执行保存操作
-            News news=new News(&quot;Java&quot;,&quot;haha&quot;,new Date(new java.util.Date().getTime()));
-            session.save(news);
-    //        5.提交事务
-            transaction.commit();
+//        4.执行保存操作
+        News news=new News(&quot;Java&quot;,&quot;haha&quot;,new Date(new java.util.Date().getTime()));
+        session.save(news);
+//        5.提交事务
+        transaction.commit();
 
-    //        6.关闭Session
-            session.close();
+//        6.关闭Session
+        session.close();
 
-    //        7.关闭SessionFactory对象
-            sessionFactory.close();
-        }
+//        7.关闭SessionFactory对象
+        sessionFactory.close();
     }
+}
 </code></pre><h3 id="查看数据库出现了一个新表News，并且新插入了一条记录"><a href="#查看数据库出现了一个新表News，并且新插入了一条记录" class="headerlink" title="查看数据库出现了一个新表News，并且新插入了一条记录"></a>查看数据库出现了一个新表News，并且新插入了一条记录</h3><p>在进行测试前，数据库应存在名为hibernate的库</p>
 <pre><code>mysql&gt; use hibernate;
 Database changed
@@ -420,66 +420,66 @@ mysql&gt; select * from news;
 
 mysql&gt;
 </code></pre><h2 id="hibernate的helloworld配置简介"><a href="#hibernate的helloworld配置简介" class="headerlink" title="hibernate的helloworld配置简介"></a>hibernate的helloworld配置简介</h2><h3 id="hibernate环境的准备"><a href="#hibernate环境的准备" class="headerlink" title="hibernate环境的准备"></a>hibernate环境的准备</h3><p>导入 Hibernate 必须的 jar 包:</p>
-<pre><code>      &lt;dependency&gt;
-              &lt;groupId&gt;antlr&lt;/groupId&gt;
-              &lt;artifactId&gt;antlr&lt;/artifactId&gt;
-              &lt;version&gt;2.7.6&lt;/version&gt;
-      &lt;/dependency&gt;
+<pre><code>  &lt;dependency&gt;
+          &lt;groupId&gt;antlr&lt;/groupId&gt;
+          &lt;artifactId&gt;antlr&lt;/artifactId&gt;
+          &lt;version&gt;2.7.6&lt;/version&gt;
+  &lt;/dependency&gt;
+
+  &lt;dependency&gt;
+          &lt;groupId&gt;dom4j&lt;/groupId&gt;
+          &lt;artifactId&gt;dom4j&lt;/artifactId&gt;
+          &lt;version&gt;1.6.1&lt;/version&gt;
+  &lt;/dependency&gt;
+
+&lt;!-- https://mvnrepository.com/artifact/org.hibernate.common/hibernate-commons-annotations --&gt;
+&lt;dependency&gt;
+ &lt;groupId&gt;org.hibernate.common&lt;/groupId&gt;
+    &lt;artifactId&gt;hibernate-commons-annotations&lt;/artifactId&gt;
+    &lt;version&gt;4.0.2.Final&lt;/version&gt;
+&lt;/dependency&gt;
 
       &lt;dependency&gt;
-              &lt;groupId&gt;dom4j&lt;/groupId&gt;
-              &lt;artifactId&gt;dom4j&lt;/artifactId&gt;
-              &lt;version&gt;1.6.1&lt;/version&gt;
+          &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+          &lt;artifactId&gt;hibernate-core&lt;/artifactId&gt;
+          &lt;version&gt;4.2.4.Final&lt;/version&gt;
       &lt;/dependency&gt;
 
-    &lt;!-- https://mvnrepository.com/artifact/org.hibernate.common/hibernate-commons-annotations --&gt;
-    &lt;dependency&gt;
-     &lt;groupId&gt;org.hibernate.common&lt;/groupId&gt;
-        &lt;artifactId&gt;hibernate-commons-annotations&lt;/artifactId&gt;
-        &lt;version&gt;4.0.2.Final&lt;/version&gt;
-    &lt;/dependency&gt;
-
-          &lt;dependency&gt;
-              &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
-              &lt;artifactId&gt;hibernate-core&lt;/artifactId&gt;
-              &lt;version&gt;4.2.4.Final&lt;/version&gt;
-          &lt;/dependency&gt;
-
-      &lt;dependency&gt;
-          &lt;groupId&gt;org.hibernate.javax.pers istence&lt;/groupId&gt;
-              &lt;artifactId&gt;hibernate-jpa-2.0-api&lt;/artifactId&gt;
-              &lt;version&gt;1.0.1.Final&lt;/version&gt;
-          &lt;/dependency&gt;
-
-      &lt;dependency&gt;
-              &lt;groupId&gt;javassist&lt;/groupId&gt;
-              &lt;artifactId&gt;javassist&lt;/artifactId&gt;
-              &lt;version&gt;3.11.0.GA&lt;/version&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.hibernate.javax.pers istence&lt;/groupId&gt;
+          &lt;artifactId&gt;hibernate-jpa-2.0-api&lt;/artifactId&gt;
+          &lt;version&gt;1.0.1.Final&lt;/version&gt;
       &lt;/dependency&gt;
 
-    &lt;!-- https://mvnrepository.com/artifact/org.jboss.logging/jboss-logging --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.jboss.logging&lt;/groupId&gt;
-        &lt;artifactId&gt;jboss-logging&lt;/artifactId&gt;
-        &lt;version&gt;3.1.0.GA&lt;/version&gt;
-    &lt;/dependency&gt;
+  &lt;dependency&gt;
+          &lt;groupId&gt;javassist&lt;/groupId&gt;
+          &lt;artifactId&gt;javassist&lt;/artifactId&gt;
+          &lt;version&gt;3.11.0.GA&lt;/version&gt;
+  &lt;/dependency&gt;
 
-    &lt;!-- https://mvnrepository.com/artifact/org.jboss.spec.javax.transaction/jboss-transaction-api_1.1_spec --&gt;
-    &lt;dependency&gt;              &lt;groupId&gt;org.jboss.spec.javax.transaction&lt;/groupId&gt;
-        &lt;artifactId&gt;jboss-transaction-api_1.1_spec&lt;/artifactId&gt;
-        &lt;version&gt;1.0.1.Final&lt;/version&gt;
-    &lt;/dependency&gt;
+&lt;!-- https://mvnrepository.com/artifact/org.jboss.logging/jboss-logging --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.jboss.logging&lt;/groupId&gt;
+    &lt;artifactId&gt;jboss-logging&lt;/artifactId&gt;
+    &lt;version&gt;3.1.0.GA&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;!-- https://mvnrepository.com/artifact/org.jboss.spec.javax.transaction/jboss-transaction-api_1.1_spec --&gt;
+&lt;dependency&gt;              &lt;groupId&gt;org.jboss.spec.javax.transaction&lt;/groupId&gt;
+    &lt;artifactId&gt;jboss-transaction-api_1.1_spec&lt;/artifactId&gt;
+    &lt;version&gt;1.0.1.Final&lt;/version&gt;
+&lt;/dependency&gt;
 </code></pre><p>导入数据库驱动和Junit测试包：</p>
-<pre><code>    &lt;dependency&gt;
-          &lt;groupId&gt;mysql&lt;/groupId&gt;
-          &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
-          &lt;version&gt;5.1.37&lt;/version&gt;
-      &lt;/dependency&gt;
-      &lt;dependency&gt;
-          &lt;groupId&gt;junit&lt;/groupId&gt;
-          &lt;artifactId&gt;junit&lt;/artifactId&gt;
-          &lt;version&gt;4.12&lt;/version&gt;
-      &lt;/dependency&gt;
+<pre><code>&lt;dependency&gt;
+      &lt;groupId&gt;mysql&lt;/groupId&gt;
+      &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+      &lt;version&gt;5.1.37&lt;/version&gt;
+  &lt;/dependency&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;junit&lt;/groupId&gt;
+      &lt;artifactId&gt;junit&lt;/artifactId&gt;
+      &lt;version&gt;4.12&lt;/version&gt;
+  &lt;/dependency&gt;
 </code></pre><h3 id="创建-Hibernate-配置文件"><a href="#创建-Hibernate-配置文件" class="headerlink" title="创建 Hibernate 配置文件"></a>创建 Hibernate 配置文件</h3><p>Hibernate 从其配置文件<strong>hibernate.cfg.xml</strong>中读取和数据库连接的有关信息, 这个文件应该位于应用的 classpath 下.</p>
 <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE hibernate-configuration PUBLIC
@@ -576,10 +576,10 @@ mysql&gt;
 <li>SessionFactory是生成Session的工厂</li>
 <li>构造 SessionFactory 很消耗资源，一般情况下一个应用中只初始化一个 SessionFactory 对象。</li>
 <li>Hibernate4 新增了一个 ServiceRegistry 接口，所有基于 Hibernate 的配置或者服务都必须统一向这个 ServiceRegistry  注册后才能生效</li>
-<li>Hibernate4 中创建 SessionFactory 的步骤<br>-<br>  Configuration configuration=new Configuration().configure();<br>  //        sessionFactory=configuration.buildSessionFactory();<br>  //        创建一个serviceRegistry对象 hibernate 4.x新添加的对象<pre><code>      //hibernate的任何配置和服务都需要在该对象中注册才能有效
-      ServiceRegistry serviceRegistry=
-              new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-      sessionFactory=configuration.buildSessionFactory(serviceRegistry);
+<li>Hibernate4 中创建 SessionFactory 的步骤<br>-<br>  Configuration configuration=new Configuration().configure();<br>  //        sessionFactory=configuration.buildSessionFactory();<br>  //        创建一个serviceRegistry对象 hibernate 4.x新添加的对象<pre><code>//hibernate的任何配置和服务都需要在该对象中注册才能有效
+ServiceRegistry serviceRegistry=
+        new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+sessionFactory=configuration.buildSessionFactory(serviceRegistry);
 </code></pre></li>
 </ul>
 <p><strong>三、Session 接口</strong><br>Session 是应用程序与数据库之间交互操作的一个单线程对象，是 Hibernate 运作的中心，所有持久化对象必须在 session 的管理下才可以进行持久化操作。此对象的生命周期很短。Session 对象有一个一级缓存，显式执行 flush 之前，所有的持久层操作的数据都缓存在 session 对象处。相当于 JDBC 中的 Connection。<br><img src="https://i.imgur.com/58SJbmk.png" alt=""></p>
@@ -723,18 +723,18 @@ mysql&gt;
   
 <nav id="article-nav">
   
-    <a href="/2017/06/30/我的标题/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/06/30/Hibernate入门系列（三）/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          我的标题
+          Hibernate入门系列（三）
         
       </div>
     </a>
   
   
-    <a href="/2017/06/30/Hibernate入门系列（四）/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hibernate入门系列（四）</div>
+    <a href="/2017/06/30/Hibernate入门系列（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hibernate入门系列（二）</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -921,7 +921,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -933,15 +933,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -953,19 +957,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">

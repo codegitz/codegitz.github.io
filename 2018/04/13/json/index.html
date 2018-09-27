@@ -216,52 +216,8 @@ gitment.render('gitment')
 <h1 id="JSON-javascript-object-notation"><a href="#JSON-javascript-object-notation" class="headerlink" title="JSON(javascript object notation)"></a>JSON(javascript object notation)</h1><h2 id="1-JSON是什么"><a href="#1-JSON是什么" class="headerlink" title="1.JSON是什么"></a>1.JSON是什么</h2><p>是一种轻量级的数据交换格式<br>注：<br>数据交换：将要转换的数据先转换为一种与平台无关的数据格式，然后交给接收方来处理。<br><br>轻量级：相对于xml，JSON文档更小，解析速度更快。</p>
 <h2 id="2-语法"><a href="#2-语法" class="headerlink" title="2.语法"></a>2.语法</h2><h3 id="表示一个对象"><a href="#表示一个对象" class="headerlink" title="表示一个对象"></a>表示一个对象</h3><p>{属性名：属性值，属性名：属性值….}<br>注意：<br>a.属性名必须使用双引号括起来。<br>b.属性值的类型可以使string,number,true/false,null,object<br>c.属性值如果是string，必须使用双括号括起来。    </p>
 <h3 id="表示一个由对象组成的数组"><a href="#表示一个由对象组成的数组" class="headerlink" title="表示一个由对象组成的数组"></a>表示一个由对象组成的数组</h3><p>[{},{},{}….]</p>
-<h2 id="3-使用json"><a href="#3-使用json" class="headerlink" title="3.使用json"></a>3.使用json</h2><h3 id="将java对象转变为json字符串"><a href="#将java对象转变为json字符串" class="headerlink" title="将java对象转变为json字符串"></a>将java对象转变为json字符串</h3><p>可以使用json官方的工具(json-lib).<br>JSONObject，JSONArray<br><img src="https://i.imgur.com/hFQgwNu.png" alt=""><br>ex：</p>
-<pre><code>package json;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import bean.stock;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
-public class jsonTest {
-     /*
-      * 将java对象转换为json字符串
-      */
-    public static void test1(){
-        stock s=new stock();
-        s.setCode(&quot;345435&quot;);
-        s.setName(&quot;中国嘉陵&quot;);
-        s.setPrice(10);
-        //使用json-lib提供的工具来转换
-        JSONObject jsonobj=JSONObject.fromObject(s);
-        String jsonstr=jsonobj.toString();
-        System.out.println(jsonstr);
-    }
-    /*
-     * 多个对象组成的数组或者是集合转换成json字符串
-     */
-    public static void test2(){
-        List&lt;stock&gt; stocks=new ArrayList&lt;stock&gt;();
-          for(int i=0;i&lt;3;i++){
-              stock s=new stock();
-              s.setCode(&quot;345435&quot;+i);
-              s.setName(&quot;中国嘉陵&quot;+i);
-              s.setPrice(10+i);
-              stocks.add(s);
-          }
-          //fromObject方法的参数可以使数组或者集合
-          JSONArray jsonArr=JSONArray.fromObject(stocks);
-          String jsonStr=jsonArr.toString();
-          System.out.println(jsonStr);
-    }
-    public static void main(String[] args) {
-        test2();
-    }
-}
-</code></pre><h3 id="将JSON字符串转换成JavaScript对象"><a href="#将JSON字符串转换成JavaScript对象" class="headerlink" title="将JSON字符串转换成JavaScript对象"></a>将JSON字符串转换成JavaScript对象</h3><p>JavaScript内置对象JSON提供的parse()方法。</p>
+<h2 id="3-使用json"><a href="#3-使用json" class="headerlink" title="3.使用json"></a>3.使用json</h2><h3 id="将java对象转变为json字符串"><a href="#将java对象转变为json字符串" class="headerlink" title="将java对象转变为json字符串"></a>将java对象转变为json字符串</h3><p>可以使用json官方的工具(json-lib).<br>JSONObject，JSONArray<br><img src="https://i.imgur.com/hFQgwNu.png" alt=""><br>ex：<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> json;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"></div><div class="line"><span class="keyword">import</span> bean.stock;</div><div class="line"><span class="keyword">import</span> net.sf.json.<span class="keyword">JSONArray</span>;</div><div class="line"><span class="keyword">import</span> net.sf.json.<span class="keyword">JSONObject</span>;</div><div class="line"></div><div class="line"><span class="keyword">public</span> class jsonTest &#123;</div><div class="line">     <span class="comment">/*</span></div><div class="line">      * 将java对象转换为json字符串</div><div class="line">      */</div><div class="line"> <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> test1()&#123;</div><div class="line">  stock s=<span class="keyword">new</span> stock();</div><div class="line">  s.setCode(<span class="string">"345435"</span>);</div><div class="line">  s.setName(<span class="string">"中国嘉陵"</span>);</div><div class="line">  s.setPrice(<span class="number">10</span>);</div><div class="line">  <span class="comment">//使用json-lib提供的工具来转换</span></div><div class="line">  <span class="keyword">JSONObject</span> jsonobj=<span class="keyword">JSONObject</span>.fromObject(s);</div><div class="line">  <span class="keyword">String</span> jsonstr=jsonobj.toString();</div><div class="line">  System.out.<span class="built_in">println</span>(jsonstr);</div><div class="line"> &#125;</div><div class="line"> <span class="comment">/*</span></div><div class="line">  * 多个对象组成的数组或者是集合转换成json字符串</div><div class="line">  */</div><div class="line"> <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> test2()&#123;</div><div class="line">  List&lt;stock&gt; stocks=<span class="keyword">new</span> ArrayList&lt;stock&gt;();</div><div class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</div><div class="line">     stock s=<span class="keyword">new</span> stock();</div><div class="line">     s.setCode(<span class="string">"345435"</span>+i);</div><div class="line">     s.setName(<span class="string">"中国嘉陵"</span>+i);</div><div class="line">     s.setPrice(<span class="number">10</span>+i);</div><div class="line">     stocks.<span class="built_in">add</span>(s);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//fromObject方法的参数可以使数组或者集合</span></div><div class="line">    <span class="keyword">JSONArray</span> jsonArr=<span class="keyword">JSONArray</span>.fromObject(stocks);</div><div class="line">    <span class="keyword">String</span> jsonStr=jsonArr.toString();</div><div class="line">    System.out.<span class="built_in">println</span>(jsonStr);</div><div class="line"> &#125;</div><div class="line"> <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</div><div class="line">  test2();</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="将JSON字符串转换成JavaScript对象"><a href="#将JSON字符串转换成JavaScript对象" class="headerlink" title="将JSON字符串转换成JavaScript对象"></a>将JSON字符串转换成JavaScript对象</h3><p>JavaScript内置对象JSON提供的parse()方法。</p>
 <h1 id="jQuery对ajax的支持"><a href="#jQuery对ajax的支持" class="headerlink" title="jQuery对ajax的支持"></a>jQuery对ajax的支持</h1><h2 id="1-ajax-方法"><a href="#1-ajax-方法" class="headerlink" title="1.$.ajax()方法"></a>1.$.ajax()方法</h2><p>用法：<br>$.ajax({});<br>说明：{}是一个用来描述请求选项参数的对象，常见的选项参数有如下几个：<br>url:请求地址<br>data:请求格式，有两种格式：<br>第一种格式：请求字符串，比如”adminCode=sally”<br>     第二组格式：对象，比如{“adminCode”:”sally”}<br>     type:请求类型(get/post)<br>dataType:服务器返回的数据类型：<br>       text：文本数据<br>       json：json字符串<br>       html:html文档<br>       xml:xml文档<br>       script:javascript脚本<br>success:事件处理函数（当服务器处理正常，用来处理服务器返回的数据）。<br>error：事件处理函数（当服务器处理异常，用来处理服务器返回的数据）。</p>
 <h2 id="2-load"><a href="#2-load" class="headerlink" title="2.load()"></a>2.load()</h2><p>作用：向服务器发送异步请求，然后将服务器返回的数据直接添加到符合要求的节点之上。<br>用法：<br>$obj.load(url,[data]);<br>注意：<br>url:请求地址。<br>data:请求参数，格式同上。</p>
 
@@ -376,18 +332,18 @@ public class jsonTest {
   
 <nav id="article-nav">
   
-    <a href="/2018/04/13/mysql命令行创建新用户/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/13/springAOP/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Mysql命令行添加新用户
+          spring AOP
         
       </div>
     </a>
   
   
-    <a href="/2018/04/13/springAOP/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">spring AOP</div>
+    <a href="/2018/04/13/note/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">云笔记</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -574,7 +530,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,15 +542,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -606,19 +566,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">

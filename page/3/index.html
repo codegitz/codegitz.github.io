@@ -171,19 +171,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Docker" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Linux安装软件的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/Docker/">docker容器</a>
+      <a class="article-title" href="/2018/04/13/Linux安装软件的方法/">Linux安装软件的方法</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/Docker/" class="archive-article-date">
+        <a href="/2018/04/13/Linux安装软件的方法/" class="archive-article-date">
   	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
@@ -195,1035 +195,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><h2 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h2><p><strong>Docker</strong>是一个开源的应用容器引擎；是一个轻量级容器技术；</p>
-<p>Docker支持将软件编译成一个镜像；然后在镜像中各种软件做好配置，将镜像发布出去，其他使用者可以直接使用这个镜像；</p>
-<p>运行中的这个镜像称为容器，容器启动是非常快速的。</p>
-<p><img src="https://i.imgur.com/oygdPLd.png" alt=""></p>
-<p><img src="https://i.imgur.com/zL3pV7i.png" alt=""></p>
-<h2 id="2、核心概念"><a href="#2、核心概念" class="headerlink" title="2、核心概念"></a>2、核心概念</h2><p>docker主机(Host)：安装了Docker程序的机器（Docker直接安装在操作系统之上）；</p>
-<p>docker客户端(Client)：连接docker主机进行操作；</p>
-<p>docker仓库(Registry)：用来保存各种打包好的软件镜像；</p>
-<p>docker镜像(Images)：软件打包好的镜像；放在docker仓库中；</p>
-<p>docker容器(Container)：镜像启动后的实例称为一个容器；容器是独立运行的一个或一组应用</p>
-<p><img src="https://i.imgur.com/IyR7TdU.png" alt=""></p>
-<p>使用Docker的步骤：</p>
-<p>1）、安装Docker</p>
-<p>2）、去Docker仓库找到这个软件对应的镜像；</p>
-<p>3）、使用Docker运行这个镜像，这个镜像就会生成一个Docker容器；</p>
-<p>4）、对容器的启动停止就是对软件的启动停止；</p>
-<h2 id="3、安装Docker"><a href="#3、安装Docker" class="headerlink" title="3、安装Docker"></a>3、安装Docker</h2><h4 id="1）、安装linux虚拟机"><a href="#1）、安装linux虚拟机" class="headerlink" title="1）、安装linux虚拟机"></a>1）、安装linux虚拟机</h4><p>​    1）、VMWare、VirtualBox（安装）；</p>
-<p>​    2）、导入虚拟机文件centos7-atguigu.ova；</p>
-<p>​    3）、双击启动linux虚拟机;使用  root/ 123456登陆</p>
-<p>​    4）、使用客户端连接linux服务器进行命令操作；</p>
-<p>​    5）、设置虚拟机网络；</p>
-<p>​        桥接网络===选好网卡====接入网线；</p>
-<p>​    6）、设置好网络以后使用命令重启虚拟机的网络</p>
-<p>   7）、查看linux的ip地址</p>
-<pre><code class="shell">ip addr
-</code></pre>
-<p>​    8）、使用客户端连接linux</p>
-<h4 id="2-在Linux虚拟机上安装docker"><a href="#2-在Linux虚拟机上安装docker" class="headerlink" title="2.在Linux虚拟机上安装docker"></a>2.在Linux虚拟机上安装docker</h4><p>步骤：</p>
-<pre><code>1.检查内核版本，必须是3.10及以上
-[root@iZwz95jk243fcqv90p12gpZ ~]# uname -r
-3.10.0-514.26.2.el7.x86_64
-2.安装docker
-yum install docker
-3.输入y确认
-Total download size: 28 M
-Is this ok [y/d/N]: y
-4.启动docker
-[root@iZwz95jk243fcqv90p12gpZ ~]# systemctl start docker 
-[root@iZwz95jk243fcqv90p12gpZ ~]# docker -v
-Docker version 1.13.1, build 774336d/1.13.1
-5.开机启动docker
-[root@iZwz95jk243fcqv90p12gpZ ~]# systemctl enable docker 
-Created symlink from /etc/systemd/system/multi-user.target.wants/docker.service to /usr/lib
-/systemd/system/docker.service.
-6.停止docker
-systemctl stop docker
-</code></pre><h2 id="4-docker常用命令和操作"><a href="#4-docker常用命令和操作" class="headerlink" title="4.docker常用命令和操作"></a>4.docker常用命令和操作</h2><h3 id="1-镜像操作"><a href="#1-镜像操作" class="headerlink" title="1.镜像操作"></a>1.镜像操作</h3><table>
-<thead>
-<tr>
-<th>操作</th>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>检索</td>
-<td>docker  search 关键字  eg：docker  search redis</td>
-<td>我们经常去docker  hub上检索镜像的详细信息，如镜像的TAG。</td>
-</tr>
-<tr>
-<td>拉取</td>
-<td>docker pull 镜像名:tag</td>
-<td>:tag是可选的，tag表示标签，多为软件的版本，默认是latest</td>
-</tr>
-<tr>
-<td>列表</td>
-<td>docker images</td>
-<td>查看所有本地镜像</td>
-</tr>
-<tr>
-<td>删除</td>
-<td>docker rmi image-id</td>
-<td>删除指定的本地镜像</td>
-</tr>
-</tbody>
-</table>
-<p><a href="https://hub.docker.com" target="_blank" rel="external">docker hub</a></p>
-<h3 id="2-容器操作"><a href="#2-容器操作" class="headerlink" title="2.容器操作"></a>2.容器操作</h3><p>软件镜像（QQ安装程序）—-运行镜像—-产生一个容器（正在运行的软件，运行的QQ）；</p>
-<p>步骤：</p>
-<pre><code class="shell">1、搜索镜像
-[root@localhost ~]# docker search tomcat
-2、拉取镜像
-[root@localhost ~]# docker pull tomcat
-3、根据镜像启动容器
-docker run --name mytomcat -d tomcat:latest
-4、docker ps  
-查看运行中的容器
-5、 停止运行中的容器
-docker stop  容器的id
-6、查看所有的容器
-docker ps -a
-7、启动容器
-docker start 容器id
-8、删除一个容器
- docker rm 容器id
-9、启动一个做了端口映射的tomcat
-[root@localhost ~]# docker run -d -p 8888:8080 tomcat
--d：后台运行
--p: 将主机的端口映射到容器的一个端口    主机端口:容器内部的端口
-
-10、为了演示简单关闭了linux的防火墙
-service firewalld status ；查看防火墙状态
-service firewalld stop：关闭防火墙
-11、查看容器的日志
-docker logs container-name/container-id
-
-更多命令参看
-https://docs.docker.com/engine/reference/commandline/docker/
-可以参考每一个镜像的文档
-</code></pre>
-<h3 id="3）、安装MySQL示例"><a href="#3）、安装MySQL示例" class="headerlink" title="3）、安装MySQL示例"></a>3）、安装MySQL示例</h3><pre><code class="shell">docker pull mysql
-</code></pre>
-<p>错误的启动</p>
-<pre><code class="shell">[root@localhost ~]# docker run --name mysql01 -d mysql
-42f09819908bb72dd99ae19e792e0a5d03c48638421fa64cce5f8ba0f40f5846
-
-mysql退出了
-[root@localhost ~]# docker ps -a
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                           PORTS               NAMES
-42f09819908b        mysql               &quot;docker-entrypoint.sh&quot;   34 seconds ago      Exited (1) 33 seconds ago                            mysql01
-538bde63e500        tomcat              &quot;catalina.sh run&quot;        About an hour ago   Exited (143) About an hour ago                       compassionate_
-goldstine
-c4f1ac60b3fc        tomcat              &quot;catalina.sh run&quot;        About an hour ago   Exited (143) About an hour ago                       lonely_fermi
-81ec743a5271        tomcat              &quot;catalina.sh run&quot;        About an hour ago   Exited (143) About an hour ago                       sick_ramanujan
-
-
-//错误日志
-[root@localhost ~]# docker logs 42f09819908b
-error: database is uninitialized and password option is not specified 
-  You need to specify one of MYSQL_ROOT_PASSWORD, MYSQL_ALLOW_EMPTY_PASSWORD and MYSQL_RANDOM_ROOT_PASSWORD；这个三个参数必须指定一个
-</code></pre>
-<p>正确的启动</p>
-<pre><code class="shell">[root@localhost ~]# docker run --name mysql01 -e MYSQL_ROOT_PASSWORD=123456 -d mysql
-b874c56bec49fb43024b3805ab51e9097da779f2f572c22c695305dedd684c5f
-[root@localhost ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
-b874c56bec49        mysql               &quot;docker-entrypoint.sh&quot;   4 seconds ago       Up 3 seconds        3306/tcp            mysql01
-</code></pre>
-<p>做了端口映射</p>
-<pre><code class="shell">[root@localhost ~]# docker run -p 3306:3306 --name mysql02 -e MYSQL_ROOT_PASSWORD=123456 -d mysql
-ad10e4bc5c6a0f61cbad43898de71d366117d120e39db651844c0e73863b9434
-[root@localhost ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
-ad10e4bc5c6a        mysql               &quot;docker-entrypoint.sh&quot;   4 seconds ago       Up 2 seconds        0.0.0.0:3306-&gt;3306/tcp   mysql02
-</code></pre>
-<p>几个其他的高级操作</p>
-<pre><code>docker run --name mysql03 -v /conf/mysql:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
-把主机的/conf/mysql文件夹挂载到 mysqldocker容器的/etc/mysql/conf.d文件夹里面
-改mysql的配置文件就只需要把mysql配置文件放在自定义的文件夹下（/conf/mysql）
-docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-指定mysql的一些配置参数
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Java,docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/Docker/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-springboot处理错误机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/springboot处理错误机制/">springboot错误处理机制</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/springboot处理错误机制/" class="archive-article-date">
-  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="错误处理机制"><a href="#错误处理机制" class="headerlink" title="错误处理机制"></a>错误处理机制</h2><h3 id="1-SpringBoot默认的错误处理机制"><a href="#1-SpringBoot默认的错误处理机制" class="headerlink" title="1.SpringBoot默认的错误处理机制"></a>1.SpringBoot默认的错误处理机制</h3><p>默认效果：</p>
-<p>​        1.浏览器，返回一个默认的错误页面</p>
-<p><img src="https://i.imgur.com/f0vuIsE.png" alt=""></p>
-<p>  浏览器发送请求的请求头：</p>
-<p><img src="https://i.imgur.com/LApvKKG.png" alt=""></p>
-<p>​        2.如果是其他客户端，默认响应一个json数据</p>
-<p><img src="https://i.imgur.com/ji2kpAJ.png" alt=""></p>
-<p><img src="https://i.imgur.com/gnvr1Uh.png" alt=""></p>
-<p>原理：</p>
-<p>​    可以参照ErrorMvcAutoConfiguration，错误处理的自动配置</p>
-<pre><code>  给容器中添加了以下组件
-</code></pre><p>​    1、DefaultErrorAttributes：</p>
-<pre><code class="java">帮我们在页面共享信息；
-@Override
-    public Map&lt;String, Object&gt; getErrorAttributes(RequestAttributes requestAttributes,
-            boolean includeStackTrace) {
-        Map&lt;String, Object&gt; errorAttributes = new LinkedHashMap&lt;String, Object&gt;();
-        errorAttributes.put(&quot;timestamp&quot;, new Date());
-        addStatus(errorAttributes, requestAttributes);
-        addErrorDetails(errorAttributes, requestAttributes, includeStackTrace);
-        addPath(errorAttributes, requestAttributes);
-        return errorAttributes;
-    }
-</code></pre>
-<p>​    2、BasicErrorController：处理默认/error请求</p>
-<pre><code class="java">@Controller
-@RequestMapping(&quot;${server.error.path:${error.path:/error}}&quot;)
-public class BasicErrorController extends AbstractErrorController {
-
-    @RequestMapping(produces = &quot;text/html&quot;)//产生html类型的数据；浏览器发送的请求来到这个方法处理
-    public ModelAndView errorHtml(HttpServletRequest request,
-            HttpServletResponse response) {
-        HttpStatus status = getStatus(request);
-        Map&lt;String, Object&gt; model = Collections.unmodifiableMap(getErrorAttributes(
-                request, isIncludeStackTrace(request, MediaType.TEXT_HTML)));
-        response.setStatus(status.value());
-
-        //去哪个页面作为错误页面；包含页面地址和页面内容
-        ModelAndView modelAndView = resolveErrorView(request, response, status, model);
-        return (modelAndView == null ? new ModelAndView(&quot;error&quot;, model) : modelAndView);
-    }
-
-    @RequestMapping
-    @ResponseBody    //产生json数据，其他客户端来到这个方法处理；
-    public ResponseEntity&lt;Map&lt;String, Object&gt;&gt; error(HttpServletRequest request) {
-        Map&lt;String, Object&gt; body = getErrorAttributes(request,
-                isIncludeStackTrace(request, MediaType.ALL));
-        HttpStatus status = getStatus(request);
-        return new ResponseEntity&lt;Map&lt;String, Object&gt;&gt;(body, status);
-    }
-</code></pre>
-<p>​    3、ErrorPageCustomizer：</p>
-<pre><code class="java">    @Value(&quot;${error.path:/error}&quot;)
-    private String path = &quot;/error&quot;;  系统出现错误以后来到error请求进行处理；（web.xml注册的错误页面规则）
-</code></pre>
-<p>​    4、DefaultErrorViewResolver：</p>
-<pre><code class="java">@Override
-    public ModelAndView resolveErrorView(HttpServletRequest request, HttpStatus status,
-            Map&lt;String, Object&gt; model) {
-        ModelAndView modelAndView = resolve(String.valueOf(status), model);
-        if (modelAndView == null &amp;&amp; SERIES_VIEWS.containsKey(status.series())) {
-            modelAndView = resolve(SERIES_VIEWS.get(status.series()), model);
-        }
-        return modelAndView;
-    }
-
-    private ModelAndView resolve(String viewName, Map&lt;String, Object&gt; model) {
-        //默认SpringBoot可以去找到一个页面？  error/404
-        String errorViewName = &quot;error/&quot; + viewName;
-
-        //模板引擎可以解析这个页面地址就用模板引擎解析
-        TemplateAvailabilityProvider provider = this.templateAvailabilityProviders
-                .getProvider(errorViewName, this.applicationContext);
-        if (provider != null) {
-            //模板引擎可用的情况下返回到errorViewName指定的视图地址
-            return new ModelAndView(errorViewName, model);
-        }
-        //模板引擎不可用，就在静态资源文件夹下找errorViewName对应的页面   error/404.html
-        return resolveResource(errorViewName, model);
-    }
-</code></pre>
-<p>​    步骤：</p>
-<p>​        一但系统出现4xx或者5xx之类的错误；ErrorPageCustomizer就会生效（定制错误的响应规则）；就会来到/error请求；就会被<strong>BasicErrorController</strong>处理；</p>
-<p>​        1）响应页面；去哪个页面是由<strong>DefaultErrorViewResolver</strong>解析得到的；</p>
-<pre><code class="java">protected ModelAndView resolveErrorView(HttpServletRequest request,
-      HttpServletResponse response, HttpStatus status, Map&lt;String, Object&gt; model) {
-    //所有的ErrorViewResolver得到ModelAndView
-   for (ErrorViewResolver resolver : this.errorViewResolvers) {
-      ModelAndView modelAndView = resolver.resolveErrorView(request, status, model);
-      if (modelAndView != null) {
-         return modelAndView;
-      }
-   }
-   return null;
-}
-</code></pre>
-<h3 id="2-如果定制错误响应"><a href="#2-如果定制错误响应" class="headerlink" title="2.如果定制错误响应"></a>2.如果定制错误响应</h3><h4 id="1-如何定制错误的页面；"><a href="#1-如何定制错误的页面；" class="headerlink" title="1.如何定制错误的页面；"></a><strong>1.如何定制错误的页面；</strong></h4><p>​            <strong>1.有模板引擎的情况下；error/状态码;</strong> 【将错误页面命名为  错误状态码.html 放在模板引擎文件夹里面的 error文件夹下】，发生此状态码的错误就会来到  对应的页面</p>
-<p>​            我们可以使用4xx和5xx作为错误页面的文件名来匹配这种类型的所有错误，精确优先（优先寻找精确的状态码.html）    </p>
-<p>​            页面能获取的信息；</p>
-<p>​                timestamp：时间戳</p>
-<p>​                status：状态码</p>
-<p>​                error：错误提示</p>
-<p>​                exception：异常对象</p>
-<p>​                message：异常消息</p>
-<p>​                errors：JSR303数据校验的错误都在这里</p>
-<p>​            2.没有模板引擎（模板引擎找不到这个错误页面），静态资源文件夹下找</p>
-<p>​            3.以上都没有错误页面，就是默认来到SpringBoot默认的错误提示页面</p>
-<h4 id="2-如何定制错误的json数据"><a href="#2-如何定制错误的json数据" class="headerlink" title="2.如何定制错误的json数据"></a>2.如何定制错误的json数据</h4><p>​        1.自定义异常处理&amp;返回定制json数据；</p>
-<pre><code class="java">@ControllerAdvice
-public class MyExceptionHandler {
-
-    @ResponseBody
-    @ExceptionHandler(UserNotExistException.class)
-    public Map&lt;String,Object&gt; handleException(Exception e){
-        Map&lt;String,Object&gt; map = new HashMap&lt;&gt;();
-        map.put(&quot;code&quot;,&quot;user.notexist&quot;);
-        map.put(&quot;message&quot;,e.getMessage());
-        return map;
-    }
-}
-//没有自适应效果...
-</code></pre>
-<p>​        2.转发到/error进行自适应响应效果处理</p>
-<pre><code class="java"> @ExceptionHandler(UserNotExistException.class)
-    public String handleException(Exception e, HttpServletRequest request){
-        Map&lt;String,Object&gt; map = new HashMap&lt;&gt;();
-        //传入我们自己的错误状态码  4xx 5xx，否则就不会进入定制错误页面的解析流程
-        /**
-         * Integer statusCode = (Integer) request
-         .getAttribute(&quot;javax.servlet.error.status_code&quot;);
-         */
-        request.setAttribute(&quot;javax.servlet.error.status_code&quot;,500);
-        map.put(&quot;code&quot;,&quot;user.notexist&quot;);
-        map.put(&quot;message&quot;,e.getMessage());
-        //转发到/error
-        return &quot;forward:/error&quot;;
-    }
-</code></pre>
-<h4 id="3-将我们的定制数据携带出去"><a href="#3-将我们的定制数据携带出去" class="headerlink" title="3.将我们的定制数据携带出去"></a>3.将我们的定制数据携带出去</h4><p>出现错误以后，会来到/error请求，会被BasicErrorController处理，响应出去可以获取的数据是由getErrorAttributes得到的（是AbstractErrorController（ErrorController）规定的方法）</p>
-<p>​    1、完全来编写一个ErrorController的实现类【或者是编写AbstractErrorController的子类】，放在容器中</p>
-<p>​    2、页面上能用的数据，或者是json返回能用的数据都是通过errorAttributes.getErrorAttributes得到</p>
-<p>​            容器中DefaultErrorAttributes.getErrorAttributes()；默认进行数据处理的</p>
-<p>自定义ErrorAttributes</p>
-<pre><code class="java">//给容器中加入我们自己定义的ErrorAttributes
-@Component
-public class MyErrorAttributes extends DefaultErrorAttributes {
-
-    @Override
-    public Map&lt;String, Object&gt; getErrorAttributes(RequestAttributes requestAttributes, boolean includeStackTrace) {
-        Map&lt;String, Object&gt; map = super.getErrorAttributes(requestAttributes, includeStackTrace);
-        map.put(&quot;company&quot;,&quot;atguigu&quot;);
-        return map;
-    }
-}
-</code></pre>
-<p>最终的效果：响应是自适应的，可以通过定制ErrorAttributes改变需要返回的内容，</p>
-<p><img src="https://i.imgur.com/hnWy78H.png" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Java,Springboot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/springboot处理错误机制/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-配置嵌入式servlet容器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/配置嵌入式servlet容器/">springboot配置容器</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/配置嵌入式servlet容器/" class="archive-article-date">
-  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="配置嵌入式Servlet容器"><a href="#配置嵌入式Servlet容器" class="headerlink" title="配置嵌入式Servlet容器"></a>配置嵌入式Servlet容器</h2><p>springboot默认的是使用嵌入式的servlet容器(tomcat)<br><img src="https://i.imgur.com/YAwUxxf.png" alt=""></p>
-<p>问题：<br>1.如何定制和修改Servlet容器的相关配置<br> a.修改和server有关的配置（ServerProperties）</p>
-<pre><code>server.port=8081
-server.context-path=/crud
-
-server.tomcat.uri-encodeing=UTF-8
-//通用的servlet容器设置
-server.xxx
-//Tomcat的设置
-server.tomcat.xxx
-</code></pre><p>  b.编写一个<strong>EmbeddedServletContainerCustomizer</strong>：嵌入式的Servlet容器的定制器；来修改Servlet容器的配置</p>
-<pre><code class="java">@Bean  //一定要将这个定制器加入到容器中
-public EmbeddedServletContainerCustomizer embeddedServletContainerCustomizer(){
-    return new EmbeddedServletContainerCustomizer() {
-
-        //定制嵌入式的Servlet容器相关的规则
-        @Override
-        public void customize(ConfigurableEmbeddedServletContainer container) {
-            container.setPort(8083);
-        }
-    };
-}
-</code></pre>
-<h3 id="2-注册Servlet三大组件【Servlet、Filter、Listener】"><a href="#2-注册Servlet三大组件【Servlet、Filter、Listener】" class="headerlink" title="2.注册Servlet三大组件【Servlet、Filter、Listener】"></a>2.注册Servlet三大组件【Servlet、Filter、Listener】</h3><p>由于SpringBoot默认是以jar包的方式启动嵌入式的Servlet容器来启动SpringBoot的web应用，没有web.xml文件。</p>
-<p>注册三大组件用以下方式</p>
-<p>ServletRegistrationBean</p>
-<pre><code class="java">//注册三大组件
-@Bean
-public ServletRegistrationBean myServlet(){
-    ServletRegistrationBean registrationBean = new ServletRegistrationBean(new MyServlet(),&quot;/myServlet&quot;);
-    return registrationBean;
-}
-</code></pre>
-<p>FilterRegistrationBean</p>
-<pre><code class="java">@Bean
-public FilterRegistrationBean myFilter(){
-    FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-    registrationBean.setFilter(new MyFilter());
-    registrationBean.setUrlPatterns(Arrays.asList(&quot;/hello&quot;,&quot;/myServlet&quot;));
-    return registrationBean;
-}
-</code></pre>
-<p>ServletListenerRegistrationBean</p>
-<pre><code class="java">@Bean
-public ServletListenerRegistrationBean myListener(){
-    ServletListenerRegistrationBean&lt;MyListener&gt; registrationBean = new ServletListenerRegistrationBean&lt;&gt;(new MyListener());
-    return registrationBean;
-}
-</code></pre>
-<p>SpringBoot帮我们自动SpringMVC的时候，自动的注册SpringMVC的前端控制器；DIspatcherServlet；</p>
-<p>DispatcherServletAutoConfiguration中：</p>
-<pre><code class="java">@Bean(name = DEFAULT_DISPATCHER_SERVLET_REGISTRATION_BEAN_NAME)
-@ConditionalOnBean(value = DispatcherServlet.class, name = DEFAULT_DISPATCHER_SERVLET_BEAN_NAME)
-public ServletRegistrationBean dispatcherServletRegistration(
-      DispatcherServlet dispatcherServlet) {
-   ServletRegistrationBean registration = new ServletRegistrationBean(
-         dispatcherServlet, this.serverProperties.getServletMapping());
-    //默认拦截： /  所有请求；包静态资源，但是不拦截jsp请求；   /*会拦截jsp
-    //可以通过server.servletPath来修改SpringMVC前端控制器默认拦截的请求路径
-
-   registration.setName(DEFAULT_DISPATCHER_SERVLET_BEAN_NAME);
-   registration.setLoadOnStartup(
-         this.webMvcProperties.getServlet().getLoadOnStartup());
-   if (this.multipartConfig != null) {
-      registration.setMultipartConfig(this.multipartConfig);
-   }
-   return registration;
-}
-</code></pre>
-<p>2.SpringBoot能不能支持其他的Servlet容器</p>
-<h3 id="替换为其他嵌入式Servlet容器【Servlet、Filter、Listener】"><a href="#替换为其他嵌入式Servlet容器【Servlet、Filter、Listener】" class="headerlink" title="替换为其他嵌入式Servlet容器【Servlet、Filter、Listener】"></a>替换为其他嵌入式Servlet容器【Servlet、Filter、Listener】</h3><p><img src="https://i.imgur.com/BBzmaYw.png" alt=""><br>默认支持Tomcat<br>Tomcat</p>
-<pre><code class="xml">&lt;dependency&gt;
-   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-   &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-   引入web模块默认就是使用嵌入式的Tomcat作为Servlet容器；
-&lt;/dependency&gt;
-</code></pre>
-<p>Jetty</p>
-<pre><code class="xml">&lt;!-- 引入web模块 --&gt;
-&lt;dependency&gt;
-   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-   &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-   &lt;exclusions&gt;
-      &lt;exclusion&gt;
-         &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
-         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;/exclusion&gt;
-   &lt;/exclusions&gt;
-&lt;/dependency&gt;
-
-&lt;!--引入其他的Servlet容器--&gt;
-&lt;dependency&gt;
-   &lt;artifactId&gt;spring-boot-starter-jetty&lt;/artifactId&gt;
-   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-&lt;/dependency&gt;
-</code></pre>
-<p>Undertow</p>
-<pre><code class="xml">&lt;!-- 引入web模块 --&gt;
-&lt;dependency&gt;
-   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-   &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-   &lt;exclusions&gt;
-      &lt;exclusion&gt;
-         &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
-         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;/exclusion&gt;
-   &lt;/exclusions&gt;
-&lt;/dependency&gt;
-
-&lt;!--引入其他的Servlet容器--&gt;
-&lt;dependency&gt;
-   &lt;artifactId&gt;spring-boot-starter-undertow&lt;/artifactId&gt;
-   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-&lt;/dependency&gt;
-</code></pre>
-<h3 id="嵌入式servlet容器自动配置原理"><a href="#嵌入式servlet容器自动配置原理" class="headerlink" title="嵌入式servlet容器自动配置原理"></a>嵌入式servlet容器自动配置原理</h3><p>EmbeddedServletContainerAutoConfiguration:嵌入式Servlet容器自动配置</p>
-<pre><code class="java">@AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
-@Configuration
-@ConditionalOnWebApplication
-@Import(BeanPostProcessorsRegistrar.class)
-//导入BeanPostProcessorsRegistrar：Spring注解版；给容器中导入一些组件
-//导入了EmbeddedServletContainerCustomizerBeanPostProcessor：
-//后置处理器：bean初始化前后（创建完对象，还没赋值赋值）执行初始化工作
-public class EmbeddedServletContainerAutoConfiguration {
-
-    @Configuration
-    @ConditionalOnClass({ Servlet.class, Tomcat.class })//判断当前是否引入了Tomcat依赖；
-    @ConditionalOnMissingBean(value = EmbeddedServletContainerFactory.class, search = SearchStrategy.CURRENT)//判断当前容器没有用户自己定义EmbeddedServletContainerFactory：嵌入式的Servlet容器工厂；作用：创建嵌入式的Servlet容器
-    public static class EmbeddedTomcat {
-
-        @Bean
-        public TomcatEmbeddedServletContainerFactory tomcatEmbeddedServletContainerFactory() {
-            return new TomcatEmbeddedServletContainerFactory();
-        }
-
-    }
-
-    /**
-     * Nested configuration if Jetty is being used.
-     */
-    @Configuration
-    @ConditionalOnClass({ Servlet.class, Server.class, Loader.class,
-            WebAppContext.class })
-    @ConditionalOnMissingBean(value = EmbeddedServletContainerFactory.class, search = SearchStrategy.CURRENT)
-    public static class EmbeddedJetty {
-
-        @Bean
-        public JettyEmbeddedServletContainerFactory jettyEmbeddedServletContainerFactory() {
-            return new JettyEmbeddedServletContainerFactory();
-        }
-
-    }
-
-    /**
-     * Nested configuration if Undertow is being used.
-     */
-    @Configuration
-    @ConditionalOnClass({ Servlet.class, Undertow.class, SslClientAuthMode.class })
-    @ConditionalOnMissingBean(value = EmbeddedServletContainerFactory.class, search = SearchStrategy.CURRENT)
-    public static class EmbeddedUndertow {
-
-        @Bean
-        public UndertowEmbeddedServletContainerFactory undertowEmbeddedServletContainerFactory() {
-            return new UndertowEmbeddedServletContainerFactory();
-        }
-
-    }
-</code></pre>
-<p>1）、EmbeddedServletContainerFactory（嵌入式Servlet容器工厂）</p>
-<pre><code class="java">public interface EmbeddedServletContainerFactory {
-
-   //获取嵌入式的Servlet容器
-   EmbeddedServletContainer getEmbeddedServletContainer(
-         ServletContextInitializer... initializers);
-
-}
-</code></pre>
-<p><img src="https://i.imgur.com/z2CWPLF.png" alt=""></p>
-<p>2）、EmbeddedServletContainer：（嵌入式的Servlet容器）</p>
-<p><img src="https://i.imgur.com/2hQXLFU.png" alt=""></p>
-<p>3）、以<strong>TomcatEmbeddedServletContainerFactory</strong>为例</p>
-<pre><code class="java">@Override
-public EmbeddedServletContainer getEmbeddedServletContainer(
-      ServletContextInitializer... initializers) {
-    //创建一个Tomcat
-   Tomcat tomcat = new Tomcat();
-
-    //配置Tomcat的基本环节
-   File baseDir = (this.baseDirectory != null ? this.baseDirectory
-         : createTempDir(&quot;tomcat&quot;));
-   tomcat.setBaseDir(baseDir.getAbsolutePath());
-   Connector connector = new Connector(this.protocol);
-   tomcat.getService().addConnector(connector);
-   customizeConnector(connector);
-   tomcat.setConnector(connector);
-   tomcat.getHost().setAutoDeploy(false);
-   configureEngine(tomcat.getEngine());
-   for (Connector additionalConnector : this.additionalTomcatConnectors) {
-      tomcat.getService().addConnector(additionalConnector);
-   }
-   prepareContext(tomcat.getHost(), initializers);
-
-    //将配置好的Tomcat传入进去，返回一个EmbeddedServletContainer；并且启动Tomcat服务器
-   return getTomcatEmbeddedServletContainer(tomcat);
-}
-</code></pre>
-<p>4）、我们对嵌入式容器的配置修改是怎么生效？</p>
-<pre><code>ServerProperties、EmbeddedServletContainerCustomizer
-</code></pre><p><strong>EmbeddedServletContainerCustomizer</strong>：定制器帮我们修改了Servlet容器的配置？</p>
-<p>怎么修改的原理？</p>
-<p>5）、容器中导入了<strong>EmbeddedServletContainerCustomizerBeanPostProcessor</strong></p>
-<pre><code class="java">//初始化之前
-@Override
-public Object postProcessBeforeInitialization(Object bean, String beanName)
-      throws BeansException {
-    //如果当前初始化的是一个ConfigurableEmbeddedServletContainer类型的组件
-   if (bean instanceof ConfigurableEmbeddedServletContainer) {
-       //
-      postProcessBeforeInitialization((ConfigurableEmbeddedServletContainer) bean);
-   }
-   return bean;
-}
-
-private void postProcessBeforeInitialization(
-            ConfigurableEmbeddedServletContainer bean) {
-    //获取所有的定制器，调用每一个定制器的customize方法来给Servlet容器进行属性赋值；
-    for (EmbeddedServletContainerCustomizer customizer : getCustomizers()) {
-        customizer.customize(bean);
-    }
-}
-
-private Collection&lt;EmbeddedServletContainerCustomizer&gt; getCustomizers() {
-    if (this.customizers == null) {
-        // Look up does not include the parent context
-        this.customizers = new ArrayList&lt;EmbeddedServletContainerCustomizer&gt;(
-            this.beanFactory
-            //从容器中获取所有这葛类型的组件：EmbeddedServletContainerCustomizer
-            //定制Servlet容器，给容器中可以添加一个EmbeddedServletContainerCustomizer类型的组件
-            .getBeansOfType(EmbeddedServletContainerCustomizer.class,
-                            false, false)
-            .values());
-        Collections.sort(this.customizers, AnnotationAwareOrderComparator.INSTANCE);
-        this.customizers = Collections.unmodifiableList(this.customizers);
-    }
-    return this.customizers;
-}
-
-ServerProperties也是定制器
-</code></pre>
-<p>步骤：</p>
-<p>1）、SpringBoot根据导入的依赖情况，给容器中添加相应的EmbeddedServletContainerFactory【TomcatEmbeddedServletContainerFactory】</p>
-<p>2）、容器中某个组件要创建对象就会惊动后置处理器；EmbeddedServletContainerCustomizerBeanPostProcessor；</p>
-<p>只要是嵌入式的Servlet容器工厂，后置处理器就工作；</p>
-<p>3）、后置处理器，从容器中获取所有的<strong>EmbeddedServletContainerCustomizer</strong>，调用定制器的定制方法</p>
-<p>###5）、嵌入式Servlet容器启动原理；</p>
-<p>什么时候创建嵌入式的Servlet容器工厂？什么时候获取嵌入式的Servlet容器并启动Tomcat；</p>
-<p>获取嵌入式的Servlet容器工厂：</p>
-<p>1）、SpringBoot应用启动运行run方法</p>
-<p>2）、refreshContext(context);SpringBoot刷新IOC容器【创建IOC容器对象，并初始化容器，创建容器中的每一个组件】；如果是web应用创建<strong>AnnotationConfigEmbeddedWebApplicationContext</strong>，否则：<strong>AnnotationConfigApplicationContext</strong></p>
-<p>3）、refresh(context);<strong>刷新刚才创建好的ioc容器；</strong></p>
-<pre><code class="java">public void refresh() throws BeansException, IllegalStateException {
-   synchronized (this.startupShutdownMonitor) {
-      // Prepare this context for refreshing.
-      prepareRefresh();
-
-      // Tell the subclass to refresh the internal bean factory.
-      ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
-
-      // Prepare the bean factory for use in this context.
-      prepareBeanFactory(beanFactory);
-
-      try {
-         // Allows post-processing of the bean factory in context subclasses.
-         postProcessBeanFactory(beanFactory);
-
-         // Invoke factory processors registered as beans in the context.
-         invokeBeanFactoryPostProcessors(beanFactory);
-
-         // Register bean processors that intercept bean creation.
-         registerBeanPostProcessors(beanFactory);
-
-         // Initialize message source for this context.
-         initMessageSource();
-
-         // Initialize event multicaster for this context.
-         initApplicationEventMulticaster();
-
-         // Initialize other special beans in specific context subclasses.
-         onRefresh();
-
-         // Check for listener beans and register them.
-         registerListeners();
-
-         // Instantiate all remaining (non-lazy-init) singletons.
-         finishBeanFactoryInitialization(beanFactory);
-
-         // Last step: publish corresponding event.
-         finishRefresh();
-      }
-
-      catch (BeansException ex) {
-         if (logger.isWarnEnabled()) {
-            logger.warn(&quot;Exception encountered during context initialization - &quot; +
-                  &quot;cancelling refresh attempt: &quot; + ex);
-         }
-
-         // Destroy already created singletons to avoid dangling resources.
-         destroyBeans();
-
-         // Reset &#39;active&#39; flag.
-         cancelRefresh(ex);
-
-         // Propagate exception to caller.
-         throw ex;
-      }
-
-      finally {
-         // Reset common introspection caches in Spring&#39;s core, since we
-         // might not ever need metadata for singleton beans anymore...
-         resetCommonCaches();
-      }
-   }
-}
-</code></pre>
-<p>4）、  onRefresh(); web的ioc容器重写了onRefresh方法</p>
-<p>5）、webioc容器会创建嵌入式的Servlet容器；<strong>createEmbeddedServletContainer</strong>();</p>
-<p><strong>6）、获取嵌入式的Servlet容器工厂：</strong></p>
-<p>EmbeddedServletContainerFactory containerFactory = getEmbeddedServletContainerFactory();</p>
-<p>​    从ioc容器中获取EmbeddedServletContainerFactory 组件；<strong>TomcatEmbeddedServletContainerFactory</strong>创建对象，后置处理器一看是这个对象，就获取所有的定制器来先定制Servlet容器的相关配置；</p>
-<p>7）、<strong>使用容器工厂获取嵌入式的Servlet容器</strong>：this.embeddedServletContainer = containerFactory      .getEmbeddedServletContainer(getSelfInitializer());</p>
-<p>8）、嵌入式的Servlet容器创建对象并启动Servlet容器；</p>
-<p><strong>先启动嵌入式的Servlet容器，再将ioc容器中剩下没有创建出的对象获取出来；</strong></p>
-<p><strong>==IOC容器启动创建嵌入式的Servlet容器==</strong></p>
-<h2 id="9、使用外置的Servlet容器"><a href="#9、使用外置的Servlet容器" class="headerlink" title="9、使用外置的Servlet容器"></a>9、使用外置的Servlet容器</h2><p>嵌入式Servlet容器：应用打成可执行的jar</p>
-<p>​        优点：简单、便携；</p>
-<p>​        缺点：默认不支持JSP、优化定制比较复杂（使用定制器【ServerProperties、自定义EmbeddedServletContainerCustomizer】，自己编写嵌入式Servlet容器的创建工厂【EmbeddedServletContainerFactory】）；</p>
-<p>外置的Servlet容器：外面安装Tomcat—应用war包的方式打包；</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1）、必须创建一个war项目；（利用idea创建好目录结构）</p>
-<p>2）、将嵌入式的Tomcat指定为provided；</p>
-<pre><code class="xml">&lt;dependency&gt;
-   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-   &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
-   &lt;scope&gt;provided&lt;/scope&gt;
-&lt;/dependency&gt;
-</code></pre>
-<p>3）、必须编写一个<strong>SpringBootServletInitializer</strong>的子类，并调用configure方法</p>
-<pre><code class="java">public class ServletInitializer extends SpringBootServletInitializer {
-
-   @Override
-   protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-       //传入SpringBoot应用的主程序
-      return application.sources(SpringBoot04WebJspApplication.class);
-   }
-
-}
-</code></pre>
-<p>4）、启动服务器就可以使用；</p>
-<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>jar包：执行SpringBoot主类的main方法，启动ioc容器，创建嵌入式的Servlet容器；</p>
-<p>war包：启动服务器，<strong>服务器启动SpringBoot应用</strong>【SpringBootServletInitializer】，启动ioc容器；</p>
-<p>servlet3.0（Spring注解版）：</p>
-<p>8.2.4 Shared libraries / runtimes pluggability：</p>
-<p>规则：</p>
-<p>​    1）、服务器启动（web应用启动）会创建当前web应用里面每一个jar包里面ServletContainerInitializer实例：</p>
-<p>​    2）、ServletContainerInitializer的实现放在jar包的META-INF/services文件夹下，有一个名为javax.servlet.ServletContainerInitializer的文件，内容就是ServletContainerInitializer的实现类的全类名</p>
-<p>​    3）、还可以使用@HandlesTypes，在应用启动的时候加载我们感兴趣的类；</p>
-<p>流程：</p>
-<p>1）、启动Tomcat</p>
-<p>2）、org\springframework\spring-web\4.3.14.RELEASE\spring-web-4.3.14.RELEASE.jar!\META-INF\services\javax.servlet.ServletContainerInitializer：</p>
-<p>Spring的web模块里面有这个文件：<strong>org.springframework.web.SpringServletContainerInitializer</strong></p>
-<p>3）、SpringServletContainerInitializer将@HandlesTypes(WebApplicationInitializer.class)标注的所有这个类型的类都传入到onStartup方法的Set<class<?>&gt;；为这些WebApplicationInitializer类型的类创建实例；</class<?></p>
-<p>4）、每一个WebApplicationInitializer都调用自己的onStartup；</p>
-<p><img src="https://i.imgur.com/rGk48MI.png" alt=""></p>
-<p>5）、相当于我们的SpringBootServletInitializer的类会被创建对象，并执行onStartup方法</p>
-<p>6）、SpringBootServletInitializer实例执行onStartup的时候会createRootApplicationContext；创建容器</p>
-<pre><code class="java">protected WebApplicationContext createRootApplicationContext(
-      ServletContext servletContext) {
-    //1、创建SpringApplicationBuilder
-   SpringApplicationBuilder builder = createSpringApplicationBuilder();
-   StandardServletEnvironment environment = new StandardServletEnvironment();
-   environment.initPropertySources(servletContext, null);
-   builder.environment(environment);
-   builder.main(getClass());
-   ApplicationContext parent = getExistingRootWebApplicationContext(servletContext);
-   if (parent != null) {
-      this.logger.info(&quot;Root context already created (using as parent).&quot;);
-      servletContext.setAttribute(
-            WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, null);
-      builder.initializers(new ParentContextApplicationContextInitializer(parent));
-   }
-   builder.initializers(
-         new ServletContextApplicationContextInitializer(servletContext));
-   builder.contextClass(AnnotationConfigEmbeddedWebApplicationContext.class);
-
-    //调用configure方法，子类重写了这个方法，将SpringBoot的主程序类传入了进来
-   builder = configure(builder);
-
-    //使用builder创建一个Spring应用
-   SpringApplication application = builder.build();
-   if (application.getSources().isEmpty() &amp;&amp; AnnotationUtils
-         .findAnnotation(getClass(), Configuration.class) != null) {
-      application.getSources().add(getClass());
-   }
-   Assert.state(!application.getSources().isEmpty(),
-         &quot;No SpringApplication sources have been defined. Either override the &quot;
-               + &quot;configure method or add an @Configuration annotation&quot;);
-   // Ensure error pages are registered
-   if (this.registerErrorPageFilter) {
-      application.getSources().add(ErrorPageFilterConfiguration.class);
-   }
-    //启动Spring应用
-   return run(application);
-}
-</code></pre>
-<p>7）、Spring的应用就启动并且创建IOC容器</p>
-<pre><code class="java">public ConfigurableApplicationContext run(String... args) {
-   StopWatch stopWatch = new StopWatch();
-   stopWatch.start();
-   ConfigurableApplicationContext context = null;
-   FailureAnalyzers analyzers = null;
-   configureHeadlessProperty();
-   SpringApplicationRunListeners listeners = getRunListeners(args);
-   listeners.starting();
-   try {
-      ApplicationArguments applicationArguments = new DefaultApplicationArguments(
-            args);
-      ConfigurableEnvironment environment = prepareEnvironment(listeners,
-            applicationArguments);
-      Banner printedBanner = printBanner(environment);
-      context = createApplicationContext();
-      analyzers = new FailureAnalyzers(context);
-      prepareContext(context, environment, listeners, applicationArguments,
-            printedBanner);
-
-       //刷新IOC容器
-      refreshContext(context);
-      afterRefresh(context, applicationArguments);
-      listeners.finished(context, null);
-      stopWatch.stop();
-      if (this.logStartupInfo) {
-         new StartupInfoLogger(this.mainApplicationClass)
-               .logStarted(getApplicationLog(), stopWatch);
-      }
-      return context;
-   }
-   catch (Throwable ex) {
-      handleRunFailure(context, listeners, analyzers, ex);
-      throw new IllegalStateException(ex);
-   }
-}
-</code></pre>
-<p><strong>==启动Servlet容器，再启动SpringBoot应用==</strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Java,Springboot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/配置嵌入式servlet容器/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-CentOS7执行yum命令出错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/CentOS7执行yum命令出错/">CentOS7执行yum命令出错</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/CentOS7执行yum命令出错/" class="archive-article-date">
-  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="CentOS7执行yum命令出错"><a href="#CentOS7执行yum命令出错" class="headerlink" title="CentOS7执行yum命令出错"></a>CentOS7执行yum命令出错</h2><pre><code>[root@localhost ~]# yum install docker
-Loaded plugins: fastestmirror
-
-
- One of the configured repositories failed (Unknown),
- and yum doesn&#39;t have enough cached data to continue. At this point the only
- safe thing yum can do is fail. There are a few ways to work &quot;fix&quot; this:
-
-1. Contact the upstream for the repository and get them to fix the problem.
-
- 2. Reconfigure the baseurl/etc. for the repository, to point to a working
-        upstream. This is most often useful if you are using a newer
-        distribution release than is supported by the repository (and the
-        packages for the previous distribution release still work).
-
-3. Disable the repository, so yum won&#39;t use it by default. Yum will then   just ignore the repository until you permanently enable it again or use
-        --enablerepo for temporary usage:
-  yum-config-manager --disable &lt;repoid&gt;
-
-     4. Configure the failing repository to be skipped, if it is unavailable.
-        Note that yum will try to contact the repo. when it runs most commands,
-        so will have to try and fail each time (and thus. yum will be be much
-        slower). If it is a very temporary problem though, this is often a nice
-        compromise:
-
-        yum-config-manager --save --setopt=&lt;repoid&gt;.skip_if_unavailable=true
-
-Cannot find a valid baseurl for repo: base/7/x86_64
-</code></pre><p>原因是本本虚拟机无法上网，配置再多也没用</p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Linux安装软件的方法"><a href="#Linux安装软件的方法" class="headerlink" title="Linux安装软件的方法"></a>Linux安装软件的方法</h1><p><img src="https://i.imgur.com/8DV5gsH.png" alt=""></p>
+<p><img src="https://i.imgur.com/C7z1GhS.png" alt=""></p>
+<p><img src="https://i.imgur.com/ncVAsrv.png" alt=""></p>
+<p><img src="https://i.imgur.com/fr23sYz.png" alt=""></p>
+<p><img src="https://i.imgur.com/WPtVM8s.png" alt=""></p>
+<h2 id="yum和rpm"><a href="#yum和rpm" class="headerlink" title="yum和rpm"></a>yum和rpm</h2><p><img src="https://i.imgur.com/GcdpYHw.png" alt=""></p>
+<p><img src="https://i.imgur.com/mWDkLrc.png" alt=""></p>
+<p><img src="https://i.imgur.com/aPSynvN.png" alt=""></p>
+<p><img src="https://i.imgur.com/TDwalAv.png" alt=""></p>
+<p><img src="https://i.imgur.com/nWFbPWy.png" alt=""></p>
+<p><img src="https://i.imgur.com/IUN2QCm.png" alt=""></p>
+<p><img src="https://i.imgur.com/demT7MD.png" alt=""></p>
+<p><img src="https://i.imgur.com/9aEa82D.png" alt=""></p>
+<p><img src="https://i.imgur.com/6qLjIZA.png" alt=""></p>
+<p><img src="https://i.imgur.com/AmxD94J.png" alt=""></p>
+<p><img src="https://i.imgur.com/q9GdPkp.png" alt=""></p>
+<p><img src="https://i.imgur.com/2ssOvIa.png" alt=""></p>
+<p><img src="https://i.imgur.com/tzyh99L.png" alt=""></p>
+<p><img src="https://i.imgur.com/SANreGG.png" alt=""></p>
+<p><img src="https://i.imgur.com/sowkWrO.png" alt=""></p>
+<p><img src="https://i.imgur.com/axIcN6I.png" alt=""></p>
+<p><img src="https://i.imgur.com/qBHzUzg.png" alt=""></p>
 
       
 
@@ -1250,7 +243,7 @@ Cannot find a valid baseurl for repo: base/7/x86_64
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/CentOS7执行yum命令出错/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/Linux安装软件的方法/">展开全文 >></a>
         </p>
       
 
@@ -1338,6 +331,335 @@ Cannot find a valid baseurl for repo: base/7/x86_64
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/13/Linux用户和组的管理/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Docker" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/Docker/">docker容器</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/Docker/" class="archive-article-date">
+  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><h2 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h2><p><strong>Docker</strong>是一个开源的应用容器引擎；是一个轻量级容器技术；</p>
+<p>Docker支持将软件编译成一个镜像；然后在镜像中各种软件做好配置，将镜像发布出去，其他使用者可以直接使用这个镜像；</p>
+<p>运行中的这个镜像称为容器，容器启动是非常快速的。</p>
+<p><img src="https://i.imgur.com/oygdPLd.png" alt=""></p>
+<p><img src="https://i.imgur.com/zL3pV7i.png" alt=""></p>
+<h2 id="2、核心概念"><a href="#2、核心概念" class="headerlink" title="2、核心概念"></a>2、核心概念</h2><p>docker主机(Host)：安装了Docker程序的机器（Docker直接安装在操作系统之上）；</p>
+<p>docker客户端(Client)：连接docker主机进行操作；</p>
+<p>docker仓库(Registry)：用来保存各种打包好的软件镜像；</p>
+<p>docker镜像(Images)：软件打包好的镜像；放在docker仓库中；</p>
+<p>docker容器(Container)：镜像启动后的实例称为一个容器；容器是独立运行的一个或一组应用</p>
+<p><img src="https://i.imgur.com/IyR7TdU.png" alt=""></p>
+<p>使用Docker的步骤：</p>
+<p>1）、安装Docker</p>
+<p>2）、去Docker仓库找到这个软件对应的镜像；</p>
+<p>3）、使用Docker运行这个镜像，这个镜像就会生成一个Docker容器；</p>
+<p>4）、对容器的启动停止就是对软件的启动停止；</p>
+<h2 id="3、安装Docker"><a href="#3、安装Docker" class="headerlink" title="3、安装Docker"></a>3、安装Docker</h2><h4 id="1）、安装linux虚拟机"><a href="#1）、安装linux虚拟机" class="headerlink" title="1）、安装linux虚拟机"></a>1）、安装linux虚拟机</h4><p>​    1）、VMWare、VirtualBox（安装）；</p>
+<p>​    2）、导入虚拟机文件centos7-atguigu.ova；</p>
+<p>​    3）、双击启动linux虚拟机;使用  root/ 123456登陆</p>
+<p>​    4）、使用客户端连接linux服务器进行命令操作；</p>
+<p>​    5）、设置虚拟机网络；</p>
+<p>​        桥接网络===选好网卡====接入网线；</p>
+<p>​    6）、设置好网络以后使用命令重启虚拟机的网络</p>
+<p>   7）、查看linux的ip地址</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ip addr</div></pre></td></tr></table></figure>
+<p>​    8）、使用客户端连接linux</p>
+<h4 id="2-在Linux虚拟机上安装docker"><a href="#2-在Linux虚拟机上安装docker" class="headerlink" title="2.在Linux虚拟机上安装docker"></a>2.在Linux虚拟机上安装docker</h4><p>步骤：<br><figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>.检查内核版本，必须是<span class="number">3.10</span>及以上</div><div class="line">[root@iZwz95jk243fcqv90p12gpZ ~]<span class="comment"># uname -r</span></div><div class="line"><span class="number">3.10</span>.<span class="number">0</span>-<span class="number">514.26</span>.<span class="number">2</span>.el7.x86_64</div><div class="line"><span class="number">2</span>.安装docker</div><div class="line">yum install docker</div><div class="line"><span class="number">3</span>.输入<span class="keyword">y</span>确认</div><div class="line">Total download size: <span class="number">28</span> M</div><div class="line">Is this ok [<span class="regexp">y/d/N]: y</span></div><div class="line">4.启动docker</div><div class="line">[root@iZwz95jk243fcqv90p12gpZ ~]# systemctl start docker </div><div class="line">[root@iZwz95jk243fcqv90p12gpZ ~]# docker -v</div><div class="line">Docker version 1.13.1, build 774336d/<span class="number">1.13</span>.<span class="number">1</span></div><div class="line"><span class="number">5</span>.开机启动docker</div><div class="line">[root@iZwz95jk243fcqv90p12gpZ ~]<span class="comment"># systemctl enable docker </span></div><div class="line">Created <span class="keyword">symlink</span> from /etc/systemd/<span class="keyword">system</span>/multi-user.target.wants/docker.service to /usr/lib</div><div class="line">/systemd/<span class="keyword">system</span>/docker.service.</div><div class="line"><span class="number">6</span>.停止docker</div><div class="line">systemctl stop docker</div></pre></td></tr></table></figure></p>
+<h2 id="4-docker常用命令和操作"><a href="#4-docker常用命令和操作" class="headerlink" title="4.docker常用命令和操作"></a>4.docker常用命令和操作</h2><h3 id="1-镜像操作"><a href="#1-镜像操作" class="headerlink" title="1.镜像操作"></a>1.镜像操作</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>检索</td>
+<td>docker  search 关键字  eg：docker  search redis</td>
+<td>我们经常去docker  hub上检索镜像的详细信息，如镜像的TAG。</td>
+</tr>
+<tr>
+<td>拉取</td>
+<td>docker pull 镜像名:tag</td>
+<td>:tag是可选的，tag表示标签，多为软件的版本，默认是latest</td>
+</tr>
+<tr>
+<td>列表</td>
+<td>docker images</td>
+<td>查看所有本地镜像</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>docker rmi image-id</td>
+<td>删除指定的本地镜像</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://hub.docker.com" target="_blank" rel="external">docker hub</a></p>
+<h3 id="2-容器操作"><a href="#2-容器操作" class="headerlink" title="2.容器操作"></a>2.容器操作</h3><p>软件镜像（QQ安装程序）—-运行镜像—-产生一个容器（正在运行的软件，运行的QQ）；</p>
+<p>步骤：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">1、搜索镜像</div><div class="line">[root@localhost ~]# docker search tomcat</div><div class="line">2、拉取镜像</div><div class="line">[root@localhost ~]# docker pull tomcat</div><div class="line">3、根据镜像启动容器</div><div class="line">docker run --name mytomcat -d tomcat:latest</div><div class="line">4、docker ps  </div><div class="line">查看运行中的容器</div><div class="line">5、 停止运行中的容器</div><div class="line">docker stop  容器的id</div><div class="line">6、查看所有的容器</div><div class="line">docker ps -a</div><div class="line">7、启动容器</div><div class="line">docker start 容器id</div><div class="line">8、删除一个容器</div><div class="line"> docker rm 容器id</div><div class="line">9、启动一个做了端口映射的tomcat</div><div class="line">[root@localhost ~]# docker run -d -p 8888:8080 tomcat</div><div class="line">-d：后台运行</div><div class="line">-p: 将主机的端口映射到容器的一个端口    主机端口:容器内部的端口</div><div class="line"></div><div class="line">10、为了演示简单关闭了linux的防火墙</div><div class="line">service firewalld status ；查看防火墙状态</div><div class="line">service firewalld stop：关闭防火墙</div><div class="line">11、查看容器的日志</div><div class="line">docker logs container-name/container-id</div><div class="line"></div><div class="line">更多命令参看</div><div class="line">https://docs.docker.com/engine/reference/commandline/docker/</div><div class="line">可以参考每一个镜像的文档</div></pre></td></tr></table></figure>
+<h3 id="3）、安装MySQL示例"><a href="#3）、安装MySQL示例" class="headerlink" title="3）、安装MySQL示例"></a>3）、安装MySQL示例</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull mysql</div></pre></td></tr></table></figure>
+<p>错误的启动</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]# docker run --name mysql01 -d mysql</div><div class="line">42f09819908bb72dd99ae19e792e0a5d03c48638421fa64cce5f8ba0f40f5846</div><div class="line"></div><div class="line">mysql退出了</div><div class="line">[root@localhost ~]# docker ps -a</div><div class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                           PORTS               NAMES</div><div class="line">42f09819908b        mysql               "docker-entrypoint.sh"   34 seconds ago      Exited (1) 33 seconds ago                            mysql01</div><div class="line">538bde63e500        tomcat              "catalina.sh run"        About an hour ago   Exited (143) About an hour ago                       compassionate_</div><div class="line">goldstine</div><div class="line">c4f1ac60b3fc        tomcat              "catalina.sh run"        About an hour ago   Exited (143) About an hour ago                       lonely_fermi</div><div class="line">81ec743a5271        tomcat              "catalina.sh run"        About an hour ago   Exited (143) About an hour ago                       sick_ramanujan</div><div class="line"></div><div class="line"></div><div class="line">//错误日志</div><div class="line">[root@localhost ~]# docker logs 42f09819908b</div><div class="line">error: database is uninitialized and password option is not specified </div><div class="line">  You need to specify one of MYSQL_ROOT_PASSWORD, MYSQL_ALLOW_EMPTY_PASSWORD and MYSQL_RANDOM_ROOT_PASSWORD；这个三个参数必须指定一个</div></pre></td></tr></table></figure>
+<p>正确的启动</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]# docker run --name mysql01 -e MYSQL_ROOT_PASSWORD=123456 -d mysql</div><div class="line">b874c56bec49fb43024b3805ab51e9097da779f2f572c22c695305dedd684c5f</div><div class="line">[root@localhost ~]# docker ps</div><div class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES</div><div class="line">b874c56bec49        mysql               "docker-entrypoint.sh"   4 seconds ago       Up 3 seconds        3306/tcp            mysql01</div></pre></td></tr></table></figure>
+<p>做了端口映射</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]# docker run -p 3306:3306 --name mysql02 -e MYSQL_ROOT_PASSWORD=123456 -d mysql</div><div class="line">ad10e4bc5c6a0f61cbad43898de71d366117d120e39db651844c0e73863b9434</div><div class="line">[root@localhost ~]# docker ps</div><div class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES</div><div class="line">ad10e4bc5c6a        mysql               "docker-entrypoint.sh"   4 seconds ago       Up 2 seconds        0.0.0.0:3306-&gt;3306/tcp   mysql02</div></pre></td></tr></table></figure>
+<p>几个其他的高级操作</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">docker <span class="builtin-name">run</span> --name mysql03 -v /conf/mysql:/etc/mysql/conf.d -e <span class="attribute">MYSQL_ROOT_PASSWORD</span>=my-secret-pw -d mysql:tag</div><div class="line">把主机的/conf/mysql文件夹挂载到 mysqldocker容器的/etc/mysql/conf.d文件夹里面</div><div class="line">改mysql的配置文件就只需要把mysql配置文件放在自定义的文件夹下（/conf/mysql）</div><div class="line">docker <span class="builtin-name">run</span> --name some-mysql -e <span class="attribute">MYSQL_ROOT_PASSWORD</span>=my-secret-pw -d mysql:tag <span class="attribute">--character-set-server</span>=utf8mb4 <span class="attribute">--collation-server</span>=utf8mb4_unicode_ci</div><div class="line">指定mysql的一些配置参数</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Java,docker</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/Docker/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Linux网络测试和测试工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/Linux网络测试和测试工具/">Linux网络测试和测试工具</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/Linux网络测试和测试工具/" class="archive-article-date">
+  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="Linux网络测试和测试工具"><a href="#Linux网络测试和测试工具" class="headerlink" title="Linux网络测试和测试工具"></a>Linux网络测试和测试工具</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ifconfig</div><div class="line">nslookup</div><div class="line">ping</div><div class="line"><span class="comment">//跟踪路由</span></div><div class="line">traceroute</div><div class="line">netstat -<span class="built_in">r</span></div></pre></td></tr></table></figure>
+<p>##系统启动引导器和单用户模式</p>
+<p><code>grub</code></p>
+<h2 id="守护进程"><a href="#守护进程" class="headerlink" title="守护进程"></a>守护进程</h2><p>运行在后台，直接开机启动，类似于Windows中的服务</p>
+<ul>
+<li>系统守护进程</li>
+<li>网络守护进程</li>
+</ul>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">ps -ef</span></div></pre></td></tr></table></figure>
+<h3 id="查看守护进程优先级"><a href="#查看守护进程优先级" class="headerlink" title="查看守护进程优先级"></a>查看守护进程优先级</h3><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="string">[root@iZwz95jk243fcqv90p12gpZ etc]</span># pstree</div><div class="line">systemd─┬─AliYunDun───<span class="number">15</span>*<span class="string">[&#123;AliYunDun&#125;]</span></div><div class="line">        ├─AliYunDunUpdate───<span class="number">3</span>*<span class="string">[&#123;AliYunDunUpdate&#125;]</span></div><div class="line">        ├─<span class="number">2</span>*<span class="string">[agetty]</span></div><div class="line">        ├─aliyun-service───<span class="number">6</span>*<span class="string">[&#123;aliyun-service&#125;]</span></div><div class="line">        ├─atd</div><div class="line">        ├─auditd───&#123;auditd&#125;</div><div class="line">        ├─crond</div><div class="line">        ├─dbus-daemon</div><div class="line">        ├─dhclient</div><div class="line">        ├─ntpd</div><div class="line">        ├─polkitd───<span class="number">5</span>*<span class="string">[&#123;polkitd&#125;]</span></div><div class="line">        ├─rsyslogd───<span class="number">2</span>*<span class="string">[&#123;rsyslogd&#125;]</span></div><div class="line">        ├─sshd───sshd───bash───pstree</div><div class="line">        ├─systemd-journal</div><div class="line">        ├─systemd-logind</div><div class="line">        ├─systemd-udevd</div><div class="line">        └─tuned───<span class="number">4</span>*<span class="string">[&#123;tuned&#125;]</span></div></pre></td></tr></table></figure>
+<h3 id="守护进程的操作"><a href="#守护进程的操作" class="headerlink" title="守护进程的操作"></a>守护进程的操作</h3><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">service ** <span class="built_in">stop</span></div><div class="line">service ** <span class="built_in">start</span></div><div class="line">service ** restart</div><div class="line">service ** reload <span class="comment"> //重新读取配置，不会重启</span></div></pre></td></tr></table></figure>
+<h3 id="设置守护进程"><a href="#设置守护进程" class="headerlink" title="设置守护进程"></a>设置守护进程</h3><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">ntsysv</span></div></pre></td></tr></table></figure>
+<p>Centos6<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chkconfig</div><div class="line">chkconfig <span class="comment">--list</span></div></pre></td></tr></table></figure></p>
+<p>Centos7<br><figure class="highlight ocaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">systemctl </div><div class="line">systemctl <span class="built_in">list</span>-<span class="built_in">unit</span>-files</div></pre></td></tr></table></figure></p>
+<h2 id="系统时间同步"><a href="#系统时间同步" class="headerlink" title="系统时间同步"></a>系统时间同步</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">date</span> </div><div class="line">hwclock</div><div class="line">ntpd</div></pre></td></tr></table></figure>
+<h2 id="crond"><a href="#crond" class="headerlink" title="crond"></a>crond</h2><p><img src="https://i.imgur.com/ZI1QNZ1.png" alt=""></p>
+<p><img src="https://i.imgur.com/ch8mqZa.png" alt=""></p>
+<p><img src="https://i.imgur.com/qFYMS1n.png" alt=""></p>
+<p><img src="https://i.imgur.com/MyaBuKy.png" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/Linux网络测试和测试工具/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-markdown无法显示" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/markdown无法显示/">markdown注入错误</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/markdown无法显示/" class="archive-article-date">
+  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="神奇的markdown"><a href="#神奇的markdown" class="headerlink" title="神奇的markdown"></a>神奇的markdown</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></div><div class="line">       <span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></div><div class="line">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span> &gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"helloService"</span> <span class="attr">class</span>=<span class="string">"io.springboot.service.HelloService"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/markdown无法显示/">展开全文 >></a>
         </p>
       
 
@@ -1493,7 +815,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1505,15 +827,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1525,19 +851,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">

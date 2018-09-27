@@ -214,30 +214,11 @@ gitment.render('gitment')
     <div class="article-entry" itemprop="articleBody">
       
         <script src="/assets/js/APlayer.min.js"> </script><h1 id="ajax-asynchronous-javascript-and-xml"><a href="#ajax-asynchronous-javascript-and-xml" class="headerlink" title="ajax(asynchronous javascript and xml)"></a>ajax(asynchronous javascript and xml)</h1><h2 id="1-ajax是什么"><a href="#1-ajax是什么" class="headerlink" title="1.ajax是什么"></a>1.ajax是什么</h2><p>ajax是一种用来改善用户体验的技术，其本质是利用浏览器提供的一个特殊的对象（XMLHttpRequest,也可称之为ajax对象）向服务器发送异步请求。服务器返回部分数据（通常不需要返回完整页面），浏览器利用这些数据对当前页面做部分更新。整个过程，页面无刷新，不打断用户的操作。<br>注：<br>异步请求：发送请求的同时，浏览器不会销毁当前页面，用户仍然可以对当前页面做其他操作。<br>使用ajax请求的过程：<br><img src="https://i.imgur.com/1K90kh4.png" alt=""><br>不使用ajax的请求过程：<br><img src="https://i.imgur.com/iWOnkph.png" alt=""></p>
-<h2 id="2-如何获得ajax对象"><a href="#2-如何获得ajax对象" class="headerlink" title="2.如何获得ajax对象"></a>2.如何获得ajax对象</h2><p>要区分浏览器：</p>
-<pre><code>function getXhr(){
-    var xhr=null;
-    if(window.XMLHttpRequest){
-         //非IE
-       xhr= new XMLHttpRequest();
-    }else{
-        x hr=new ActiveXObject(&quot;Microsoft.XMLHttp&quot;);
-    }
-    return xhr;
-}
-</code></pre><p><img src="https://i.imgur.com/XMpHS9P.png" alt=""></p>
+<h2 id="2-如何获得ajax对象"><a href="#2-如何获得ajax对象" class="headerlink" title="2.如何获得ajax对象"></a>2.如何获得ajax对象</h2><p>要区分浏览器：<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getXhr</span></span>()&#123;</div><div class="line">    <span class="keyword">var</span> xhr=<span class="literal">null</span>;</div><div class="line">    <span class="keyword">if</span>(window.XMLHttpRequest)&#123;</div><div class="line">         <span class="comment">//非IE</span></div><div class="line">       xhr= <span class="keyword">new</span> <span class="type">XMLHttpRequest</span>();</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        x hr=<span class="keyword">new</span> <span class="type">ActiveXObject</span>(<span class="string">"Microsoft.XMLHttp"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> xhr;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/XMpHS9P.png" alt=""></p>
 <h2 id="3-ajax对象的几个重要的属性"><a href="#3-ajax对象的几个重要的属性" class="headerlink" title="3.ajax对象的几个重要的属性"></a>3.ajax对象的几个重要的属性</h2><p>a.onreadystatechange:用来绑定一个事件处理函数，用来处理readystatechange时间。<br>注意：当ajax对象的readystate属性值返生了任何改变，比如从0变成了1，就会产生readystatechange事件。<br>b.readyState：有五个值（0,1,2,3,4）,表示ajax对象与服务器通信的状态。其中，当值为4的时候，表示ajax对象已经获得了服务器返回的所有数据。<br>c.responseText：获得服务器返回的文本数据。<br>d.responseXML：获得服务器返回的xml数据。<br>e.status ：获得状态码。</p>
-<h2 id="4-编程步骤"><a href="#4-编程步骤" class="headerlink" title="4.编程步骤"></a>4.编程步骤</h2><p>step1.获得ajax对象<br>比如：var xhr=getXhr();<br>step2.发送请求。<br><strong>发送get请求</strong>：<br>a.xhr.open(‘get’,’check_uname.do?uname=tom&amp;age=22’,true);<br>b.xhr.onreadystatechange=f1;<br>c.xhr.send(null);<br>注：<br>true：异步<br>false：同步，发送请求时，浏览器会锁定当前页面，用户不能够对当前页面做其他操作。<br><strong>发送post请求</strong><br>a.xhr.open(‘post’,’check_uname.do’,true);<br>b.xhr.setRequestHeader(‘content-type’,’application/x-www-form-urlencoded’);<br>c.xhr.onreadystatechange=f1;<br>xhr.send(‘name=tom’);<br>注：按照HTTP协议规范，如果发送的是post请求，在请求的数据包里面，应该有content-type消息头。默认情况下，ajax对象不带该消息头，所以需要调用setRequestHeader方法来设置这个消息头。<br>step3 .编写服务器端的程序，<br>注：通常不需要返回完整的页面，只需要返回部分数据。<br>step4.编写事件处理函数</p>
-<pre><code>function fi(){
-     //先获得服务器返回的数据
-     if(xhr.readyState==4 &amp;&amp; xhr.status==200){
-     var txt=xhr.resppnseText;
-     //利用这些数据（txt）更新页面
-     ....
- } 
-
-}
-</code></pre><h2 id="5-缓存问题"><a href="#5-缓存问题" class="headerlink" title="5.缓存问题"></a>5.缓存问题</h2><h3 id="什么事缓存问题"><a href="#什么事缓存问题" class="headerlink" title="什么事缓存问题"></a>什么事缓存问题</h3><p>当使用IE浏览器发送get请求时，浏览器会查看请求地址是否访问过，如果访问过，则不再发送新的请求，而是显示第一次访问的结果（也就是说，会将第一次的请求结果缓存下来）</p>
+<h2 id="4-编程步骤"><a href="#4-编程步骤" class="headerlink" title="4.编程步骤"></a>4.编程步骤</h2><p>step1.获得ajax对象<br>比如：var xhr=getXhr();<br>step2.发送请求。<br><strong>发送get请求</strong>：<br>a.xhr.open(‘get’,’check_uname.do?uname=tom&amp;age=22’,true);<br>b.xhr.onreadystatechange=f1;<br>c.xhr.send(null);<br>注：<br>true：异步<br>false：同步，发送请求时，浏览器会锁定当前页面，用户不能够对当前页面做其他操作。<br><strong>发送post请求</strong><br>a.xhr.open(‘post’,’check_uname.do’,true);<br>b.xhr.setRequestHeader(‘content-type’,’application/x-www-form-urlencoded’);<br>c.xhr.onreadystatechange=f1;<br>xhr.send(‘name=tom’);<br>注：按照HTTP协议规范，如果发送的是post请求，在请求的数据包里面，应该有content-type消息头。默认情况下，ajax对象不带该消息头，所以需要调用setRequestHeader方法来设置这个消息头。<br>step3 .编写服务器端的程序，<br>注：通常不需要返回完整的页面，只需要返回部分数据。<br>step4.编写事件处理函数<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fi</span><span class="params">()</span></span>&#123;</div><div class="line">     <span class="comment">//先获得服务器返回的数据</span></div><div class="line">     <span class="keyword">if</span>(xhr.readyState==<span class="number">4</span> &amp;&amp; xhr.status==<span class="number">200</span>)&#123;</div><div class="line">     <span class="keyword">var</span> txt=xhr.resppnseText;</div><div class="line">     <span class="comment">//利用这些数据（txt）更新页面</span></div><div class="line">     ....</div><div class="line"> &#125; </div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="5-缓存问题"><a href="#5-缓存问题" class="headerlink" title="5.缓存问题"></a>5.缓存问题</h2><h3 id="什么事缓存问题"><a href="#什么事缓存问题" class="headerlink" title="什么事缓存问题"></a>什么事缓存问题</h3><p>当使用IE浏览器发送get请求时，浏览器会查看请求地址是否访问过，如果访问过，则不再发送新的请求，而是显示第一次访问的结果（也就是说，会将第一次的请求结果缓存下来）</p>
 <h3 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h3><p>在请求地址后添加一个随机数。<br>    xhr.open(‘get’,’getLucky.do?’+Math.random(),true);</p>
 
       
@@ -351,18 +332,18 @@ gitment.render('gitment')
   
 <nav id="article-nav">
   
-    <a href="/2018/04/13/Mapper映射器/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/13/mysql命令行创建新用户/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Mapper映射器
+          Mysql命令行添加新用户
         
       </div>
     </a>
   
   
-    <a href="/2018/04/13/mysql命令行创建新用户/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Mysql命令行添加新用户</div>
+    <a href="/2018/04/13/mybatis关联映射/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mybatis关联映射</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -549,7 +530,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,15 +542,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,19 +566,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">

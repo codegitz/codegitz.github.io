@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Linux入门 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="linux系统入门命令                    Linux命令操作技巧    [root@localhost /]# cat test1 this is a test file [root@localhost /]# cat test2 cat: test2: No such file or directory [root@localhost /]# cat &amp;lt;test1&amp;g">
+  <meta name="description" content="linux系统入门命令                    Linux命令操作技巧    12345678[root@localhost /]# cat test1this is a test file[root@localhost /]# cat test2cat: test2: No such file or directory[root@localhost /]# cat &amp;lt;tes">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux入门">
 <meta property="og:url" content="http://yoursite.com/2018/04/13/Linux系统/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="linux系统入门命令                    Linux命令操作技巧    [root@localhost /]# cat test1 this is a test file [root@localhost /]# cat test2 cat: test2: No such file or directory [root@localhost /]# cat &amp;lt;test1&amp;g">
+<meta property="og:description" content="linux系统入门命令                    Linux命令操作技巧    12345678[root@localhost /]# cat test1this is a test file[root@localhost /]# cat test2cat: test2: No such file or directory[root@localhost /]# cat &amp;lt;tes">
 <meta property="og:image" content="https://i.imgur.com/7eh6TGc.png">
 <meta property="og:image" content="https://i.imgur.com/Ejlq4bE.png">
 <meta property="og:image" content="https://i.imgur.com/LKa1LxD.png">
@@ -84,7 +84,7 @@
 <meta property="og:updated_time" content="2018-05-17T14:03:52.409Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux入门">
-<meta name="twitter:description" content="linux系统入门命令                    Linux命令操作技巧    [root@localhost /]# cat test1 this is a test file [root@localhost /]# cat test2 cat: test2: No such file or directory [root@localhost /]# cat &amp;lt;test1&amp;g">
+<meta name="twitter:description" content="linux系统入门命令                    Linux命令操作技巧    12345678[root@localhost /]# cat test1this is a test file[root@localhost /]# cat test2cat: test2: No such file or directory[root@localhost /]# cat &amp;lt;tes">
 <meta name="twitter:image" content="https://i.imgur.com/7eh6TGc.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -300,21 +300,11 @@ gitment.render('gitment')
 <p><img src="https://i.imgur.com/Rq1RG5p.png" alt=""></p>
 <p><img src="https://i.imgur.com/P6uTIbb.png" alt=""></p>
 <p><img src="https://i.imgur.com/teJEjNL.png" alt=""></p>
-<pre><code>[root@localhost /]# cat test1
-this is a test file
-[root@localhost /]# cat test2
-cat: test2: No such file or directory
-[root@localhost /]# cat &lt;test1&gt;test2
-[root@localhost /]# cat test2
-this is a test file
-[root@localhost /]#
-</code></pre><p><img src="https://i.imgur.com/kVIDC9u.png" alt=""></p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@localhost /]<span class="comment"># cat test1</span></div><div class="line"><span class="keyword">this</span> <span class="keyword">is</span> a test file</div><div class="line">[root@localhost /]<span class="comment"># cat test2</span></div><div class="line">cat: test2: No such file <span class="keyword">or</span> directory</div><div class="line">[root@localhost /]<span class="comment"># cat &lt;test1&gt;test2</span></div><div class="line">[root@localhost /]<span class="comment"># cat test2</span></div><div class="line"><span class="keyword">this</span> <span class="keyword">is</span> a test file</div><div class="line">[root@localhost /]<span class="comment">#</span></div></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/kVIDC9u.png" alt=""></p>
 <p><img src="https://i.imgur.com/2hK8u4M.png" alt=""></p>
-<p>查看网卡</p>
-<pre><code>[root@localhost /]# dmesg | grep eth0
-[    1.551363] e1000 0000:00:03.0 eth0: (PCI:33MHz:32-bit) 08:00:27:80:9c:a0
-[    1.551368] e1000 0000:00:03.0 eth0: Intel(R) PRO/1000 Network Connection
-</code></pre><h2 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h2><p><img src="https://i.imgur.com/w5aEPci.png" alt=""></p>
+<p>查看网卡<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-attr">[root@localhost /]</span># <span class="selector-tag">dmesg</span> | <span class="selector-tag">grep</span> <span class="selector-tag">eth0</span></div><div class="line"><span class="selector-attr">[    1.551363]</span> <span class="selector-tag">e1000</span> <span class="selector-tag">0000</span><span class="selector-pseudo">:00</span><span class="selector-pseudo">:03.0</span> <span class="selector-tag">eth0</span>: (<span class="attribute">PCI</span>:<span class="number">33</span><span class="attribute">MHz</span>:<span class="number">32</span>-bit) <span class="selector-tag">08</span><span class="selector-pseudo">:00</span><span class="selector-pseudo">:27</span><span class="selector-pseudo">:80</span><span class="selector-pseudo">:9c</span><span class="selector-pseudo">:a0</span></div><div class="line"><span class="selector-attr">[    1.551368]</span> <span class="selector-tag">e1000</span> <span class="selector-tag">0000</span><span class="selector-pseudo">:00</span><span class="selector-pseudo">:03.0</span> <span class="selector-tag">eth0</span>: <span class="selector-tag">Intel</span>(R) <span class="selector-tag">PRO</span>/<span class="selector-tag">1000</span> <span class="selector-tag">Network</span> <span class="selector-tag">Connection</span></div></pre></td></tr></table></figure></p>
+<h2 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h2><p><img src="https://i.imgur.com/w5aEPci.png" alt=""></p>
 <p><img src="https://i.imgur.com/4WlXn3u.png" alt=""></p>
 <p><img src="https://i.imgur.com/ejyw9Cc.png" alt=""></p>
 <p><img src="https://i.imgur.com/PqqPSVL.png" alt=""></p>
@@ -345,88 +335,24 @@ this is a test file
 <p><img src="https://i.imgur.com/APzRkKh.png" alt=""></p>
 <p><img src="https://i.imgur.com/ZU9AYbk.png" alt=""></p>
 <p><img src="https://i.imgur.com/kRHitAl.png" alt=""></p>
-<pre><code>
-[root@localhost /]# vi shelltest
-[root@localhost /]# cat shelltest
- #!/bin/bash
- # program
- # This program shows &quot;Helloworld!&quot;
-</code></pre><pre><code>echo -e &quot;Hello world.\n&quot;
-exit 0
-[root@localhost /]#
-
-[root@localhost /]# sh shelltest
-Hello world.
-
-[root@localhost /]# ./shelltest
--bash: ./shelltest: Permission denied
-</code></pre><pre><code>[root@localhost /]# chmod 744 shelltest 
-[root@localhost /]# ./shelltest
-Hello world.
-</code></pre><h3 id="shell变量"><a href="#shell变量" class="headerlink" title="shell变量"></a>shell变量</h3><p><img src="https://i.imgur.com/wFwYM2X.png" alt=""></p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[root<span class="symbol">@localhost</span> /]<span class="meta"># vi shelltest</span></div><div class="line">[root<span class="symbol">@localhost</span> /]<span class="meta"># cat shelltest</span></div><div class="line"> <span class="meta">#!/bin/bash</span></div><div class="line"> <span class="meta"># program</span></div><div class="line"> <span class="meta"># This program shows <span class="string">"Helloworld!"</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">echo -e <span class="string">"Hello world.\n"</span></div><div class="line"><span class="keyword">exit</span> <span class="number">0</span></div><div class="line">[root<span class="symbol">@localhost</span> /]<span class="meta">#</span></div><div class="line"></div><div class="line">[root<span class="symbol">@localhost</span> /]<span class="meta"># sh shelltest</span></div><div class="line">Hello world.</div><div class="line"></div><div class="line">[root<span class="symbol">@localhost</span> /]<span class="meta"># ./shelltest</span></div><div class="line">-bash: ./shelltest: Permission denied</div></pre></td></tr></table></figure>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root<span class="symbol">@localhost</span> /]<span class="meta"># chmod 744 shelltest </span></div><div class="line">[root<span class="symbol">@localhost</span> /]<span class="meta"># ./shelltest</span></div><div class="line">Hello world.</div></pre></td></tr></table></figure>
+<h3 id="shell变量"><a href="#shell变量" class="headerlink" title="shell变量"></a>shell变量</h3><p><img src="https://i.imgur.com/wFwYM2X.png" alt=""></p>
 <p><img src="https://i.imgur.com/mVvy0c5.png" alt=""></p>
 <p><img src="https://i.imgur.com/c1kQkjT.png" alt=""></p>
 <p><img src="https://i.imgur.com/v17XzC4.png" alt=""></p>
 <p><img src="https://i.imgur.com/HecJ5Ap.png" alt=""></p>
-<p>shell脚本</p>
-<pre><code> #!/bin/bash
- # program
- # This program shows &quot;Helloworld!&quot;
-
- #echo -e &quot;Hello world.\n&quot;
- #exit 0
-v1=centos
-v2=&quot;this is a test filed&quot;
-a=10
-b=20
-echo $a
-echo $b
-echo $v2
- # mathmatical
-echo $(($a+$b))
-echo $(($a*$b))
- # String length
-echo ${#v2}
-echo $v2
-echo ${v2:5}
-echo ${v2:5:5}
-echo ${v2#this is}
-</code></pre><p>运行结果</p>
-<pre><code>[root@localhost /]# ./shelltest
-10
-20
-this is a test filed
-30
-200
-20
-this is a test filed
-is a test filed
-is a
-a test filed
-</code></pre><h3 id="shell中的判断"><a href="#shell中的判断" class="headerlink" title="shell中的判断"></a>shell中的判断</h3><p><img src="https://i.imgur.com/aT7HiPM.png" alt=""></p>
+<p>shell脚本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#!/bin/bash</span></div><div class="line"> <span class="comment"># program</span></div><div class="line"> <span class="comment"># This program shows "Helloworld!"</span></div><div class="line"></div><div class="line"> <span class="comment">#echo -e "Hello world.\n"</span></div><div class="line"> <span class="comment">#exit 0</span></div><div class="line">v1=centos</div><div class="line">v2=<span class="string">"this is a test filed"</span></div><div class="line">a=10</div><div class="line">b=20</div><div class="line"><span class="built_in">echo</span> <span class="variable">$a</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$b</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$v2</span></div><div class="line"> <span class="comment"># mathmatical</span></div><div class="line"><span class="built_in">echo</span> $((<span class="variable">$a</span>+<span class="variable">$b</span>))</div><div class="line"><span class="built_in">echo</span> $((<span class="variable">$a</span>*<span class="variable">$b</span>))</div><div class="line"> <span class="comment"># String length</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#v2&#125;</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$v2</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;v2:5&#125;</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;v2:5:5&#125;</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;v2#this is&#125;</span></div></pre></td></tr></table></figure></p>
+<p>运行结果<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[<span class="symbol">root@</span>localhost /]# ./shelltest</div><div class="line"><span class="number">10</span></div><div class="line"><span class="number">20</span></div><div class="line"><span class="keyword">this</span> <span class="keyword">is</span> a test filed</div><div class="line"><span class="number">30</span></div><div class="line"><span class="number">200</span></div><div class="line"><span class="number">20</span></div><div class="line"><span class="keyword">this</span> <span class="keyword">is</span> a test filed</div><div class="line"><span class="keyword">is</span> a test filed</div><div class="line"><span class="keyword">is</span> a</div><div class="line">a test filed</div></pre></td></tr></table></figure></p>
+<h3 id="shell中的判断"><a href="#shell中的判断" class="headerlink" title="shell中的判断"></a>shell中的判断</h3><p><img src="https://i.imgur.com/aT7HiPM.png" alt=""></p>
 <p><img src="https://i.imgur.com/xwLuI55.png" alt=""></p>
 <p><img src="https://i.imgur.com/OUurS4y.png" alt=""></p>
 <p><strong>分支结束，关键字反写</strong><br><img src="https://i.imgur.com/z1KgT58.png" alt=""></p>
 <p><img src="https://i.imgur.com/6No07Gi.png" alt=""></p>
-<p>for循环</p>
-<pre><code> #! /bin/bash
-for((i=1;i&lt;=10;i++));do
-echo $i;
-done;
-~
-</code></pre><pre><code>[root@localhost /]# vi for
-[root@localhost /]# sh for
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</code></pre>
+<p>for循环<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#! /bin/bash</span></div><div class="line"><span class="keyword">for</span>((i=1;i&lt;=10;i++));<span class="keyword">do</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$i</span>;</div><div class="line"><span class="keyword">done</span>;</div><div class="line">~</div></pre></td></tr></table></figure></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[root@localhost /]# vi for</div><div class="line">[root@localhost /]# sh for</div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">4</span></div><div class="line"><span class="number">5</span></div><div class="line"><span class="number">6</span></div><div class="line"><span class="number">7</span></div><div class="line"><span class="number">8</span></div><div class="line"><span class="number">9</span></div><div class="line"><span class="number">10</span></div></pre></td></tr></table></figure>
+
       
 
       
@@ -538,18 +464,18 @@ done;
   
 <nav id="article-nav">
   
-    <a href="/2018/04/13/ssh/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/13/iptables/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          ssh依赖
+          iptables
         
       </div>
     </a>
   
   
-    <a href="/2018/04/13/PowerDesigner中DBMS设置的问题/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">PowerDesigner中DBMS设置的问题</div>
+    <a href="/2018/04/13/记一次部署经历/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">记一次部署经历</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -736,7 +662,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -748,15 +674,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -768,19 +698,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
