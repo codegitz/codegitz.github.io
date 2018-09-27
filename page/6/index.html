@@ -171,112 +171,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-ajax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/ajax/">ajax(asynchronous javascript and xml)</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/ajax/" class="archive-article-date">
-  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="ajax-asynchronous-javascript-and-xml"><a href="#ajax-asynchronous-javascript-and-xml" class="headerlink" title="ajax(asynchronous javascript and xml)"></a>ajax(asynchronous javascript and xml)</h1><h2 id="1-ajax是什么"><a href="#1-ajax是什么" class="headerlink" title="1.ajax是什么"></a>1.ajax是什么</h2><p>ajax是一种用来改善用户体验的技术，其本质是利用浏览器提供的一个特殊的对象（XMLHttpRequest,也可称之为ajax对象）向服务器发送异步请求。服务器返回部分数据（通常不需要返回完整页面），浏览器利用这些数据对当前页面做部分更新。整个过程，页面无刷新，不打断用户的操作。<br>注：<br>异步请求：发送请求的同时，浏览器不会销毁当前页面，用户仍然可以对当前页面做其他操作。<br>使用ajax请求的过程：<br><img src="https://i.imgur.com/1K90kh4.png" alt=""><br>不使用ajax的请求过程：<br><img src="https://i.imgur.com/iWOnkph.png" alt=""></p>
-<h2 id="2-如何获得ajax对象"><a href="#2-如何获得ajax对象" class="headerlink" title="2.如何获得ajax对象"></a>2.如何获得ajax对象</h2><p>要区分浏览器：</p>
-<pre><code>function getXhr(){
-    var xhr=null;
-    if(window.XMLHttpRequest){
-         //非IE
-       xhr= new XMLHttpRequest();
-    }else{
-        x hr=new ActiveXObject(&quot;Microsoft.XMLHttp&quot;);
-    }
-    return xhr;
-}
-</code></pre><p><img src="https://i.imgur.com/XMpHS9P.png" alt=""></p>
-<h2 id="3-ajax对象的几个重要的属性"><a href="#3-ajax对象的几个重要的属性" class="headerlink" title="3.ajax对象的几个重要的属性"></a>3.ajax对象的几个重要的属性</h2><p>a.onreadystatechange:用来绑定一个事件处理函数，用来处理readystatechange时间。<br>注意：当ajax对象的readystate属性值返生了任何改变，比如从0变成了1，就会产生readystatechange事件。<br>b.readyState：有五个值（0,1,2,3,4）,表示ajax对象与服务器通信的状态。其中，当值为4的时候，表示ajax对象已经获得了服务器返回的所有数据。<br>c.responseText：获得服务器返回的文本数据。<br>d.responseXML：获得服务器返回的xml数据。<br>e.status ：获得状态码。</p>
-<h2 id="4-编程步骤"><a href="#4-编程步骤" class="headerlink" title="4.编程步骤"></a>4.编程步骤</h2><p>step1.获得ajax对象<br>比如：var xhr=getXhr();<br>step2.发送请求。<br><strong>发送get请求</strong>：<br>a.xhr.open(‘get’,’check_uname.do?uname=tom&amp;age=22’,true);<br>b.xhr.onreadystatechange=f1;<br>c.xhr.send(null);<br>注：<br>true：异步<br>false：同步，发送请求时，浏览器会锁定当前页面，用户不能够对当前页面做其他操作。<br><strong>发送post请求</strong><br>a.xhr.open(‘post’,’check_uname.do’,true);<br>b.xhr.setRequestHeader(‘content-type’,’application/x-www-form-urlencoded’);<br>c.xhr.onreadystatechange=f1;<br>xhr.send(‘name=tom’);<br>注：按照HTTP协议规范，如果发送的是post请求，在请求的数据包里面，应该有content-type消息头。默认情况下，ajax对象不带该消息头，所以需要调用setRequestHeader方法来设置这个消息头。<br>step3 .编写服务器端的程序，<br>注：通常不需要返回完整的页面，只需要返回部分数据。<br>step4.编写事件处理函数</p>
-<pre><code>function fi(){
-     //先获得服务器返回的数据
-     if(xhr.readyState==4 &amp;&amp; xhr.status==200){
-     var txt=xhr.resppnseText;
-     //利用这些数据（txt）更新页面
-     ....
- } 
-
-}
-</code></pre><h2 id="5-缓存问题"><a href="#5-缓存问题" class="headerlink" title="5.缓存问题"></a>5.缓存问题</h2><h3 id="什么事缓存问题"><a href="#什么事缓存问题" class="headerlink" title="什么事缓存问题"></a>什么事缓存问题</h3><p>当使用IE浏览器发送get请求时，浏览器会查看请求地址是否访问过，如果访问过，则不再发送新的请求，而是显示第一次访问的结果（也就是说，会将第一次的请求结果缓存下来）</p>
-<h3 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h3><p>在请求地址后添加一个随机数。<br>    xhr.open(‘get’,’getLucky.do?’+Math.random(),true);</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/ajax/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-mysql报错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -488,19 +382,19 @@ mysql&gt; select host,user from mysql.user;
 
 
   
-    <article id="post-json" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-ajax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/json/">Json</a>
+      <a class="article-title" href="/2018/04/13/ajax/">ajax(asynchronous javascript and xml)</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/json/" class="archive-article-date">
+        <a href="/2018/04/13/ajax/" class="archive-article-date">
   	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
@@ -512,59 +406,32 @@ mysql&gt; select host,user from mysql.user;
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="编码问题"><a href="#编码问题" class="headerlink" title="编码问题"></a>编码问题</h1><h2 id="1-发送get请求"><a href="#1-发送get请求" class="headerlink" title="1.发送get请求"></a>1.发送get请求</h2><p>IE浏览器会使用gbk进行编码，而其他浏览器会使用utf-8来编码，服务器端默认使用iso-8859-1来解码，所以会产生乱码。<br>解决方法：<br>step1.服务器端统一使用utf-8来解码。<br>    URIEncoding=utf-8<br>step2.浏览器端使用encodeURI函数来编码。<br>注：encodeURI是JavaScript内置的函数。</p>
-<h2 id="2-发送post"><a href="#2-发送post" class="headerlink" title="2.发送post"></a>2.发送post</h2><p>浏览器会使用utf-8来编码。服务器端默认使用ISO-8859-1来解码，所以会产生乱码<br>解决方法：<br>request.setCharacterEncoding(“utf-8”);</p>
-<h1 id="JSON-javascript-object-notation"><a href="#JSON-javascript-object-notation" class="headerlink" title="JSON(javascript object notation)"></a>JSON(javascript object notation)</h1><h2 id="1-JSON是什么"><a href="#1-JSON是什么" class="headerlink" title="1.JSON是什么"></a>1.JSON是什么</h2><p>是一种轻量级的数据交换格式<br>注：<br>数据交换：将要转换的数据先转换为一种与平台无关的数据格式，然后交给接收方来处理。<br><br>轻量级：相对于xml，JSON文档更小，解析速度更快。</p>
-<h2 id="2-语法"><a href="#2-语法" class="headerlink" title="2.语法"></a>2.语法</h2><h3 id="表示一个对象"><a href="#表示一个对象" class="headerlink" title="表示一个对象"></a>表示一个对象</h3><p>{属性名：属性值，属性名：属性值….}<br>注意：<br>a.属性名必须使用双引号括起来。<br>b.属性值的类型可以使string,number,true/false,null,object<br>c.属性值如果是string，必须使用双括号括起来。    </p>
-<h3 id="表示一个由对象组成的数组"><a href="#表示一个由对象组成的数组" class="headerlink" title="表示一个由对象组成的数组"></a>表示一个由对象组成的数组</h3><p>[{},{},{}….]</p>
-<h2 id="3-使用json"><a href="#3-使用json" class="headerlink" title="3.使用json"></a>3.使用json</h2><h3 id="将java对象转变为json字符串"><a href="#将java对象转变为json字符串" class="headerlink" title="将java对象转变为json字符串"></a>将java对象转变为json字符串</h3><p>可以使用json官方的工具(json-lib).<br>JSONObject，JSONArray<br><img src="https://i.imgur.com/hFQgwNu.png" alt=""><br>ex：</p>
-<pre><code>package json;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import bean.stock;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
-public class jsonTest {
-     /*
-      * 将java对象转换为json字符串
-      */
-    public static void test1(){
-        stock s=new stock();
-        s.setCode(&quot;345435&quot;);
-        s.setName(&quot;中国嘉陵&quot;);
-        s.setPrice(10);
-        //使用json-lib提供的工具来转换
-        JSONObject jsonobj=JSONObject.fromObject(s);
-        String jsonstr=jsonobj.toString();
-        System.out.println(jsonstr);
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="ajax-asynchronous-javascript-and-xml"><a href="#ajax-asynchronous-javascript-and-xml" class="headerlink" title="ajax(asynchronous javascript and xml)"></a>ajax(asynchronous javascript and xml)</h1><h2 id="1-ajax是什么"><a href="#1-ajax是什么" class="headerlink" title="1.ajax是什么"></a>1.ajax是什么</h2><p>ajax是一种用来改善用户体验的技术，其本质是利用浏览器提供的一个特殊的对象（XMLHttpRequest,也可称之为ajax对象）向服务器发送异步请求。服务器返回部分数据（通常不需要返回完整页面），浏览器利用这些数据对当前页面做部分更新。整个过程，页面无刷新，不打断用户的操作。<br>注：<br>异步请求：发送请求的同时，浏览器不会销毁当前页面，用户仍然可以对当前页面做其他操作。<br>使用ajax请求的过程：<br><img src="https://i.imgur.com/1K90kh4.png" alt=""><br>不使用ajax的请求过程：<br><img src="https://i.imgur.com/iWOnkph.png" alt=""></p>
+<h2 id="2-如何获得ajax对象"><a href="#2-如何获得ajax对象" class="headerlink" title="2.如何获得ajax对象"></a>2.如何获得ajax对象</h2><p>要区分浏览器：</p>
+<pre><code>function getXhr(){
+    var xhr=null;
+    if(window.XMLHttpRequest){
+         //非IE
+       xhr= new XMLHttpRequest();
+    }else{
+        x hr=new ActiveXObject(&quot;Microsoft.XMLHttp&quot;);
     }
-    /*
-     * 多个对象组成的数组或者是集合转换成json字符串
-     */
-    public static void test2(){
-        List&lt;stock&gt; stocks=new ArrayList&lt;stock&gt;();
-          for(int i=0;i&lt;3;i++){
-              stock s=new stock();
-              s.setCode(&quot;345435&quot;+i);
-              s.setName(&quot;中国嘉陵&quot;+i);
-              s.setPrice(10+i);
-              stocks.add(s);
-          }
-          //fromObject方法的参数可以使数组或者集合
-          JSONArray jsonArr=JSONArray.fromObject(stocks);
-          String jsonStr=jsonArr.toString();
-          System.out.println(jsonStr);
-    }
-    public static void main(String[] args) {
-        test2();
-    }
+    return xhr;
 }
-</code></pre><h3 id="将JSON字符串转换成JavaScript对象"><a href="#将JSON字符串转换成JavaScript对象" class="headerlink" title="将JSON字符串转换成JavaScript对象"></a>将JSON字符串转换成JavaScript对象</h3><p>JavaScript内置对象JSON提供的parse()方法。</p>
-<h1 id="jQuery对ajax的支持"><a href="#jQuery对ajax的支持" class="headerlink" title="jQuery对ajax的支持"></a>jQuery对ajax的支持</h1><h2 id="1-ajax-方法"><a href="#1-ajax-方法" class="headerlink" title="1.$.ajax()方法"></a>1.$.ajax()方法</h2><p>用法：<br>$.ajax({});<br>说明：{}是一个用来描述请求选项参数的对象，常见的选项参数有如下几个：<br>url:请求地址<br>data:请求格式，有两种格式：<br>第一种格式：请求字符串，比如”adminCode=sally”<br>     第二组格式：对象，比如{“adminCode”:”sally”}<br>     type:请求类型(get/post)<br>dataType:服务器返回的数据类型：<br>       text：文本数据<br>       json：json字符串<br>       html:html文档<br>       xml:xml文档<br>       script:javascript脚本<br>success:事件处理函数（当服务器处理正常，用来处理服务器返回的数据）。<br>error：事件处理函数（当服务器处理异常，用来处理服务器返回的数据）。</p>
-<h2 id="2-load"><a href="#2-load" class="headerlink" title="2.load()"></a>2.load()</h2><p>作用：向服务器发送异步请求，然后将服务器返回的数据直接添加到符合要求的节点之上。<br>用法：<br>$obj.load(url,[data]);<br>注意：<br>url:请求地址。<br>data:请求参数，格式同上。</p>
+</code></pre><p><img src="https://i.imgur.com/XMpHS9P.png" alt=""></p>
+<h2 id="3-ajax对象的几个重要的属性"><a href="#3-ajax对象的几个重要的属性" class="headerlink" title="3.ajax对象的几个重要的属性"></a>3.ajax对象的几个重要的属性</h2><p>a.onreadystatechange:用来绑定一个事件处理函数，用来处理readystatechange时间。<br>注意：当ajax对象的readystate属性值返生了任何改变，比如从0变成了1，就会产生readystatechange事件。<br>b.readyState：有五个值（0,1,2,3,4）,表示ajax对象与服务器通信的状态。其中，当值为4的时候，表示ajax对象已经获得了服务器返回的所有数据。<br>c.responseText：获得服务器返回的文本数据。<br>d.responseXML：获得服务器返回的xml数据。<br>e.status ：获得状态码。</p>
+<h2 id="4-编程步骤"><a href="#4-编程步骤" class="headerlink" title="4.编程步骤"></a>4.编程步骤</h2><p>step1.获得ajax对象<br>比如：var xhr=getXhr();<br>step2.发送请求。<br><strong>发送get请求</strong>：<br>a.xhr.open(‘get’,’check_uname.do?uname=tom&amp;age=22’,true);<br>b.xhr.onreadystatechange=f1;<br>c.xhr.send(null);<br>注：<br>true：异步<br>false：同步，发送请求时，浏览器会锁定当前页面，用户不能够对当前页面做其他操作。<br><strong>发送post请求</strong><br>a.xhr.open(‘post’,’check_uname.do’,true);<br>b.xhr.setRequestHeader(‘content-type’,’application/x-www-form-urlencoded’);<br>c.xhr.onreadystatechange=f1;<br>xhr.send(‘name=tom’);<br>注：按照HTTP协议规范，如果发送的是post请求，在请求的数据包里面，应该有content-type消息头。默认情况下，ajax对象不带该消息头，所以需要调用setRequestHeader方法来设置这个消息头。<br>step3 .编写服务器端的程序，<br>注：通常不需要返回完整的页面，只需要返回部分数据。<br>step4.编写事件处理函数</p>
+<pre><code>function fi(){
+     //先获得服务器返回的数据
+     if(xhr.readyState==4 &amp;&amp; xhr.status==200){
+     var txt=xhr.resppnseText;
+     //利用这些数据（txt）更新页面
+     ....
+ } 
+
+}
+</code></pre><h2 id="5-缓存问题"><a href="#5-缓存问题" class="headerlink" title="5.缓存问题"></a>5.缓存问题</h2><h3 id="什么事缓存问题"><a href="#什么事缓存问题" class="headerlink" title="什么事缓存问题"></a>什么事缓存问题</h3><p>当使用IE浏览器发送get请求时，浏览器会查看请求地址是否访问过，如果访问过，则不再发送新的请求，而是显示第一次访问的结果（也就是说，会将第一次的请求结果缓存下来）</p>
+<h3 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h3><p>在请求地址后添加一个随机数。<br>    xhr.open(‘get’,’getLucky.do?’+Math.random(),true);</p>
 
       
 
@@ -591,7 +458,191 @@ public class jsonTest {
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/json/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/ajax/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mybatis关联映射" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/mybatis关联映射/">Mybatis关联映射</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/mybatis关联映射/" class="archive-article-date">
+  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Mybatis关联映射"><a href="#Mybatis关联映射" class="headerlink" title="Mybatis关联映射"></a>Mybatis关联映射</h1><p>将数据库中有关联关系的表，以实体对象引用的方式体现出来</p>
+<p>关联方式：</p>
+<ul>
+<li>关联单个对象</li>
+<li>关联多个对象</li>
+</ul>
+<p>class User{</p>
+<p> private List<book> books;<br>}</book></p>
+<p>class Book{<br>  private User user;<br>}</p>
+<p>什么时候用<br>业务需要对数据库进行关联查询的时候</p>
+<p>可以通过一条SQL语句完成关联查询。也可以通过两条SQL语句进行关联查询</p>
+<h2 id="案例：通过userId查询用户信息和关联的笔记本信息"><a href="#案例：通过userId查询用户信息和关联的笔记本信息" class="headerlink" title="案例：通过userId查询用户信息和关联的笔记本信息"></a>案例：通过userId查询用户信息和关联的笔记本信息</h2><p>1.User 实体类<br>2.定义Dao接口，配置Mapper文件<br>3.定义测试类验证查询结果</p>
+<p>2个SQL语句：语句简单，但是配置繁琐，与DB两次交互</p>
+<pre><code>&lt;!-- 使用两条SQL语句加载数据 --&gt;
+    &lt;select id=&quot;findUserAndBook&quot; parameterType=&quot;String&quot; resultMap=&quot;userMap1&quot;&gt;
+        select * from cn_user where cn_user_id=#{id}
+    &lt;/select&gt;
+
+    &lt;resultMap type=&quot;io.codegitz.cloud_note.entity.User&quot; id=&quot;userMap1&quot;&gt;
+        &lt;id property=&quot;cn_user_id&quot; column=&quot;cn_user_id&quot; /&gt;
+        &lt;result property=&quot;cn_user_name&quot; column=&quot;cn_user_name&quot; /&gt;
+        &lt;!-- 指定books属性是List集合，泛型为Book --&gt;
+        &lt;!-- javaType是返回类型 --&gt;
+        &lt;collection property=&quot;books&quot; javaType=&quot;java.util.List&quot;
+            ofType=&quot;io.codegitz.cloud_note.entity.Book&quot; select=&quot;findBooks&quot;
+            column=&quot;cn_user_id&quot;&gt;
+        &lt;/collection&gt;
+    &lt;/resultMap&gt;
+    &lt;select id=&quot;findBooks&quot; parameterType=&quot;String&quot;
+        resultType=&quot;io.codegitz.cloud_note.entity.Book&quot;&gt;
+        select * from cn_user where cn_user_id=#{userId}
+    &lt;/select&gt;
+</code></pre><p>1个SQL语句：语句复杂，配置较简单，与DB交互一次</p>
+<pre><code>&lt;!-- 一条SQL加载user --&gt;
+    &lt;select id=&quot;findUserAndBook1&quot; parameterType=&quot;String&quot; resultMap=&quot;userMap2&quot;&gt;
+        select * from cn_user u join cn_notebook b
+        on(u.cn_user_id=b.cn_user_id) where u.cn_user_id=#{userId}
+    &lt;/select&gt;
+    &lt;resultMap type=&quot;io.codegitz.cloud_note.entity.User&quot; id=&quot;userMap2&quot;&gt;
+        &lt;!-- 定义cn_user 字段装载，不能忽略 --&gt;
+        &lt;id property=&quot;cn_user_id&quot; column=&quot;cn_user_id&quot; /&gt;
+        &lt;result property=&quot;cn_user_name&quot; column=&quot;cn_user_name&quot; /&gt;
+        &lt;result property=&quot;cn_user_nick&quot; column=&quot;cn_user_nick&quot; /&gt;
+        &lt;result property=&quot;cn_user_password&quot; column=&quot;cn_user_password&quot; /&gt;
+        &lt;result property=&quot;cn_user_token&quot; column=&quot;cn_user_token&quot; /&gt;
+      &lt;collection property=&quot;books&quot; 
+      javaType=&quot;java.util.List&quot;
+      ofType=&quot;io.codegitz.cloud_note.entity.Book&quot;&gt;
+          &lt;id property=&quot;cn_notebook_id&quot; column=&quot;cn_notebook_id&quot;/&gt;
+          &lt;result property=&quot;cn_user_id&quot; column=&quot;cn_user_id&quot;/&gt;
+          &lt;result property=&quot;cn_notebook_type_id&quot; column=&quot;cn_notebook_type_id&quot;/&gt;
+          &lt;result property=&quot;cn_notebook_name&quot; column=&quot;cn_notebook_name&quot;/&gt;
+          &lt;result property=&quot;cn_notebook_desc&quot; column=&quot;cn_notebook_desc&quot;/&gt;
+          &lt;result property=&quot;cn_notebook_createtime&quot; column=&quot;cn_notebook_createtime&quot;/&gt;
+      &lt;/collection&gt;
+    &lt;/resultMap&gt;
+</code></pre><h2 id="案例：通过查询笔记信息，关联用户信息"><a href="#案例：通过查询笔记信息，关联用户信息" class="headerlink" title="案例：通过查询笔记信息，关联用户信息"></a>案例：通过查询笔记信息，关联用户信息</h2><p>用一条查询语句实现</p>
+<h1 id="主键的字段处理"><a href="#主键的字段处理" class="headerlink" title="主键的字段处理"></a>主键的字段处理</h1><p>在数据库使用自增列或序列作为主键值时，如何在insert执行后、立刻获取id值<br>属性增加<br>    useGeneratedKeys=”true” keyProperty=”id”<br>-Mysql<br>    create table t_emp(id int primary key auto_increment,name varchar(20),age int)</p>
+<pre><code>&lt;mapper namespace=&quot;io.codegitz.cloud_note.dao.EmpDao&quot;&gt;
+  &lt;!-- mysql:数据库自动生成主键值，获取主键值放入对象的id属性中 --&gt;
+       &lt;insert id=&quot;save&quot; parameterType=&quot;io.codegitz.cloud_note.entity.Emp&quot;
+        useGeneratedKeys=&quot;true&quot; keyProperty=&quot;id&quot;&gt;
+           insert into t_emp (name,age) values (#{name},#{age})
+       &lt;/insert&gt;
+&lt;/mapper&gt;
+</code></pre><h1 id="spring事务管理"><a href="#spring事务管理" class="headerlink" title="spring事务管理"></a>spring事务管理</h1><p>什么是事务？程序为了保证业务处理的完整性，执行一个或多个SQL语句<br>管理：对事务中的Sql语句进行提交或回滚，叫做事务管理<br>什么时候用？作用于Service的方法上</p>
+<p>事务回顾：<br>转账：A账户转1000到B账户<br><img src="https://i.imgur.com/GKrc1NA.png" alt=""><br>通过spring进行事务管理<br>步骤：<br>1.配置Spring-transaction.xml</p>
+<ol>
+<li>使用@Transactional标记</li>
+</ol>
+<h2 id="可读可写"><a href="#可读可写" class="headerlink" title="可读可写"></a>可读可写</h2><p>   select操作时，可采用只读事务<br>@Transaction(readOnly=true)</p>
+<h2 id="回滚特性"><a href="#回滚特性" class="headerlink" title="回滚特性"></a>回滚特性</h2><p>  默认RuntimeException回滚，其他异常不回滚<br>  @Transaction(rollbackFor=IOException.class)<br>  public void f1(){<br>      //db操作(insert)<br>      //IOException<br>  }<br>public void deleteNote(String… ids) {</p>
+<pre><code>//String... 就是String[] 数组
+</code></pre><p>}</p>
+<h2 id="传播特性"><a href="#传播特性" class="headerlink" title="传播特性"></a>传播特性</h2><p> 默认类型：REQUIRED</p>
+<p>传播行为 描述<br>PROPAGATION_REQUIRED    如果没有，就开启一个事务；如果有，就加入当前事务（方法B看到自己已经运行在 方法A的事务内部，就不再起新的事务，直接加入方法A）</p>
+<p>RROPAGATION_REQUIRES_NEW    如果没有，就开启一个事务；如果有，就将当前事务挂起。（方法A所在的事务就会挂起，方法B会起一个新的事务，等待方法B的事务完成以后，方法A才继续执行）</p>
+<p>PROPAGATION_NESTED    如果没有，就开启一个事务；如果有，就在当前事务中嵌套其他事务</p>
+<p>PROPAGATION_SUPPORTS    如果没有，就以非事务方式执行；如果有，就加入当前事务（方法B看到自己已经运行在 方法A的事务内部，就不再起新的事务，直接加入方法A）</p>
+<p>PROPAGATION_NOT_SUPPORTED    如果没有，就以非事务方式执行；如果有，就将当前事务挂起，（方法A所在的事务就会挂起，而方法B以非事务的状态运行完，再继续方法A的事务）</p>
+<p>PROPAGATION_NEVER    如果没有，就以非事务方式执行；如果有，就抛出异常。</p>
+<p>PROPAGATION_MANDATORY    如果没有，就抛出异常；如果有，就使用当前事务</p>
+<h2 id="隔离特性"><a href="#隔离特性" class="headerlink" title="隔离特性"></a>隔离特性</h2><p>默认属性：READ_COMMITED<br>针对事务并发进行处理<br>脏读/幻读</p>
+<h1 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h1><p>使用<if> <choose>等标签<br><img src="https://i.imgur.com/KmB7Rwo.png" alt=""></choose></if></p>
+<pre><code> public int updateNoteByMap(Map&lt;String,Object&gt; map);
+</code></pre><pre><code>&lt;update id=&quot;updateNoteByMap&quot; parameterType=&quot;Map&quot;&gt;
+       update cn_note set 
+       &lt;trim suffixOverrides=&quot;,&quot;&gt;
+       &lt;if test=&quot;title!=null&quot;&gt; cn_note_title=#{title},&lt;/if&gt;
+       &lt;if test=&quot;body!=null&quot;&gt;cn_note_body=#{body},&lt;/if&gt;
+       &lt;choose&gt;
+              &lt;when test=&quot;time!=null&quot;&gt;
+                 cn_note_last_modify_time=#{time}
+              &lt;/when&gt;
+
+              &lt;otherwise&gt;
+              cn_note_last_modify_time=unix_timestamp()
+              &lt;/otherwise&gt;
+       &lt;/choose&gt;
+       &lt;!-- &lt;if test=&quot;time!=null&quot;&gt;cn_note_last_modify_time=#{time}&lt;/if&gt; --&gt;
+       &lt;/trim&gt;
+       where cn_note_id=#{noteId}
+
+    &lt;/update&gt;
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/mybatis关联映射/">展开全文 >></a>
         </p>
       
 
@@ -993,19 +1044,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1013,15 +1052,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1058,6 +1105,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hello world</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
             
             <div class="clearfix"></div>
