@@ -171,6 +171,321 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-数据结构题目" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/22/数据结构题目/">数据结构题目</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/22/数据结构题目/" class="archive-article-date">
+  	<time datetime="2017-11-22T03:52:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-22</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><html><br>/<strong><strong>**</strong></strong><br>【题目】试写一算法，如果三个整数a，b和c的值<br>不是依次非递增的，则通过交换，令其为非递增。<br><strong><strong><em>*</em></strong></strong>/<br>void Descend(int &amp;a, int &amp;b, int &amp;c)<br>/<em> 通过交换，令 a &gt;= b &gt;= c </em>/<br>{   int d;<br>   if(a<b) {="" d="a;" a="b;b=d;" }="" if(a<c)="" if(b<c)="" b="c;c=d;" **********="" 【题目】试编写算法求一元多项式="" p(x)="a0" +="" a1x="" a2x^2="" ...="" anx^n="" 的值p(x0)，并确定算法中每一语句的执行次数和整个算法="" 的时间复杂度。="" float="" polynomial(int="" n,="" int="" a[],="" x)="" *="" 求一元多项式的值p(x)。="" 数组a的元素a[i]为i次项的系数，i="0,...,n" j="1,i=0;" c="1;" t="0;" while(i<="n){" while(j<="i){" j++;="" (a[i]*c);="" i++;="" return="" t;="" 【题目】已知k阶裴波那契序列的定义为="" f(0)="0," f(1)="0," ...,="" f(k-2)="0," f(k-1)="1;" f(n)="f(n-1)+f(n-2)+...+f(n-k)," n="k,k+1,..." 试编写求k阶裴波那契序列的第m项值的函数算法，="" k和m均以值调用的形式在函数参数表中出现。="" status="" fibonacci(int="" k,="" m,="" &f)="" 求k阶斐波那契序列的第m项的值f="" t[60],sum,i,j;="" if(k<2||m<0)="" error;="" if(m<k-1)="" f="0;" else="" if(m="=k-1)" for(i="0;i<=k-2;i++)" {t[i]="0;" t[k-1]="1;" {sum="0;" for(j="i-k;j<i;j++)" sum+="t[j];" t[i]="sum;}}" ok;="" 【题目】试编写算法，计算i!×2^i的值并存入数组="" a[0..n-1]的第i-1个分量中(i="1,2,…,n)。假设计" 算机中允许的整数最大值为maxint，则当对某个k="" (1≤k≤n)使k!×2^k="">MAXINT时，应按出错处理。注意<br>选择你认为较好的出错处理方法。<br><strong><strong>**</strong></strong>/<br>Status Series(int a[], int n)<br>/<em> 求i!</em>2^i序列的值并依次存入长度为n的数组a；     <em>/<br>/</em> 若所有值均不超过MAXINT，则返回OK，否则OVERFLOW <em>/<br>{<br>     int i,sum=0,sum1=1,sum2=1;<br>     int j;<br>     for(i=1;i&lt;=n;i++)<br>     {<br>        for(j=i;j&gt;0;j–) sum1</em>=j;<br>        for( j=i;j&gt;0;j–) sum2=sum2<em>2;<br><br>        sum=sum1</em>sum2;<br>        if(sum&gt;MAXINT||sum1&gt;MAXINT||sum2&gt;MAXINT)<br>         {<br><br>           return OVERFLOW;<br>           break;<br>         }<br>         a[i-1]=sum;<br>         sum1=1;sum2=1;<br>     }<br>     return OK;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】假设有A、B、C、D、E五个高等院校进行田径对抗赛，<br>各院校的单项成绩均以存入计算机并构成一张表，表中每一行<br>的形式为：<br>        项目名称   性别   校名   成绩   得分<br>编写算法，处理上述表格，以统计各院校的男、女总分和团体<br>总分，并输出。<br><strong><strong>**</strong></strong>/<br>void Scores(ResultType <em>result, ScoreType </em>score)<br>/<em> 求各校的男、女总分和团体总分,并依次存入数组score </em>/<br>/<em> 假设比赛结果已经储存在result[ ]数组中,            </em>/<br>/<em> 并以特殊记录 {“”, male, ‘ ‘, “”, 0 }（域scorce=0）</em>/<br>/<em> 表示结束                                          </em>/<br>{<br>    typedef enum {female,male} Sex;<br>typedef struct{<br>  char <em>sport;     // 项目名称<br>  Sex  gender;     // 性别（女：female；男：male）<br>  char schoolname; // 校名为’A’,’B’,’C’,’D’或’E’<br>  char </em>result;    // 成绩<br>  int score;       // 得分（7,5,4,3,2或1）<br>} ResultType;<br><br>typedef struct{<br>  int malescore;   // 男子总分<br>  int femalescore; // 女子总分<br>  int totalscore;  // 男女团体总分<br>} ScoreType;<br><br>   int i=0;<br> while(result[i].sport!=NULL)<br> {<br> switch(result[i].schoolname)     /<em>使用switch语句记录各院校的成绩</em>/<br> {<br> case ‘A’:<br> score[0].totalscore+=result[i].score;<br><br> if(result[i].gender==male)<br> score[0].malescore+=result[i].score;<br> else<br> score[0].femalescore+=result[i].score;<br> break;<br> case ‘B’:<br> score[1].totalscore+=result[i].score;<br> if(result[i].gender==male)<br> score[1].malescore+=result[i].score;<br> else<br> score[1].femalescore+=result[i].score;<br> break;<br> case ‘C’:<br> score[2].totalscore+=result[i].score;<br> if(result[i].gender==male)<br> score[2].malescore+=result[i].score;<br> else<br> score[2].femalescore+=result[i].score;<br> break;<br> case ‘D’:<br> score[3].totalscore+=result[i].score;<br> if(result[i].gender==male)<br> score[3].malescore+=result[i].score;<br> else<br> score[3].femalescore+=result[i].score;<br> break;<br> case ‘E’:<br> score[4].totalscore+=result[i].score;<br> if(result[i].gender==male)<br> score[4].malescore+=result[i].score;<br> else<br> score[4].femalescore+=result[i].score;<br> break;<br> }<br> i++;<br> }<br> int j;<br> for( j=0;j<5;j++) {="" printf("the="" school="" %s:="" ",="" result[i].schoolname)="" ;="" *输出各院校的男女总分和团体总分*="" printf("total:="" %f",&score[i].totalscore);="" printf("male:="" %f",&score[i].malescore);="" printf("female:="" %f",&score[i].femalescore);="" }="" **********="" 【题目】试写一算法，对序列s的第i个元素赋以值e。="" 序列的类型定义为：="" typedef="" struct="" elemtype="" *elem;="" int="" length;="" sequence;="" ***********="" status="" assign(sequence="" &s,="" i,="" e)="" *="" 对序列s的第i个元素赋以值e，并返回ok。*="" 若s或i不合法，则赋值失败，返回error="" if(i<0||i="">S.length||S.elem==NULL) return ERROR;<br>    else<br>    {<br>      S.elem[i]=e;<br>    }<br>    return OK;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写一算法，由长度为n的一维数组a构建一个序列S。<br>序列的类型定义为：<br>typedef struct {<br>  ElemType  <em>elem;<br>  int  length;<br>} Sequence;<br><strong><strong>**</strong></strong></em>/<br>Status CreateSequence(Sequence &amp;S, int n, ElemType <em>a)<br>/</em> 由长度为n的一维数组a构建一个序列S，并返回OK。<em>/<br>/</em> 若构建失败，则返回ERROR                       <em>/<br>{<br>   S.elem=(ElemType</em>)malloc(n<em>sizeof(ElemType));<br>   if(S.elem==a||n&lt;=0) return ERROR;<br>   S.elem = a;<br>   S.length = n;<br>  if(&amp;S.elem[0]==NULL) return ERROR;<br>    else return OK;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】链表的结点和指针类型定义如下<br>    typedef struct LNode {<br>       ElemType  data;<br>       struct LNode </em>next;<br>    } LNode, <em>LinkList;<br>试写一函数，构建一个值为x的结点。<br><strong><strong>**</strong></strong></em>/<br>LinkList MakeNode(ElemType x)<br>/<em> 构建一个值为x的结点，并返回其指针。</em>/<br>/<em> 若构建失败，则返回NULL。           </em>/<br>{   LNode <em>p;<br>    p = (LNode</em>)malloc(sizeof(LNode));<br>    if(p)<br>    {<br>      p-&gt;data=x;<br>      p-&gt;next=NULL;<br>    }<br>    else return NULL;<br>    return p;<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】链表的结点和指针类型定义如下<br>    typedef struct LNode {<br>       ElemType  data;<br>       struct LNode <em>next;<br>    } LNode, </em>LinkList;<br>试写一函数，构建长度为2且两个结点的值依次为x和y的链表。<br><strong><strong>**</strong></strong>/<br>LinkList CreateLinkList(ElemType x, ElemType y)<br>/<em> 构建其两个结点的值依次为x和y的链表。</em>/<br>/<em> 若构建失败，则返回NULL。            </em>/<br>{<br>    LNode <em>p1,</em>p2;<br>    p1 = (LNode<em>)malloc(sizeof(LNode));<br>    p2 = (LNode</em>)malloc(sizeof(LNode));<br>    if(p1)<br>    {<br>      p1-&gt;data=x;<br>      p1-&gt;next=p2;<br>    }else return NULL;<br>    if(p2)<br>    {<br>      p2-&gt;data=y;<br>      p2-&gt;next=NULL;<br>    }<br><br>    else return NULL;<br>    return p1;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】链表的结点和指针类型定义如下<br>    typedef struct LNode {<br>       ElemType  data;<br>       struct LNode <em>next;<br>    } LNode, </em>LinkList;<br>试写一函数，构建长度为2的升序链表，两个结点的值<br>分别为x和y，但应小的在前，大的在后。<br><strong><strong>**</strong></strong>/<br>LinkList CreateOrdLList(ElemType x, ElemType y)<br>/<em> 构建长度为2的升序链表。  </em>/<br>/<em> 若构建失败，则返回NULL。</em>/<br>{<br>       LNode <em>p, </em>q;<br>     p = (LNode<em>)malloc(sizeof(LNode));<br>     q = (LNode</em>)malloc(sizeof(LNode));<br>     p-&gt;data = x;<br>     q-&gt;data = y;<br>     if(x&gt;y){<br>     q-&gt;next = p;<br>     p-&gt;next = NULL;<br>     return q;<br>     }else{<br>     p-&gt;next = q;<br>     q-&gt;next = NULL;<br>     return p;<br>     }<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写一算法，实现顺序栈的判空操作<br>StackEmpty_Sq(SqStack S)。<br>顺序栈的类型定义为：<br>typedef struct {<br>  ElemType <em>elem; // 存储空间的基址<br>  int top;        // 栈顶元素的下一个位置，简称栈顶位标<br>  int size;       // 当前分配的存储容量<br>  int increment;  // 扩容时，增加的存储容量<br>} SqStack;        // 顺序栈<br><strong><strong>**</strong></strong></em>/<br>Status StackEmpty_Sq(SqStack S)<br>/<em> 对顺序栈S判空。                      </em>/<br>/<em> 若S是空栈，则返回TRUE；否则返回FALSE </em>/<br>{<br>    if(S.elem==NULL||S.top==NULL) return TRUE;<br>    else return FALSE;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写一算法，实现顺序栈的取栈顶元素操作<br>GetTop_Sq(SqStack S, ElemType &amp;e)。<br>顺序栈的类型定义为：<br>typedef struct {<br>  ElemType <em>elem;  // 存储空间的基址<br>  int top;         // 栈顶元素的下一个位置，简称栈顶位标<br>  int size;        // 当前分配的存储容量<br>  int increment;   // 扩容时，增加的存储容量<br>} SqStack;         // 顺序栈<br><strong><strong>**</strong></strong></em>/<br>Status GetTop_Sq(SqStack S, ElemType &amp;e)<br>/<em> 取顺序栈S的栈顶元素到e，并返回OK；</em>/<br>/<em> 若失败，则返回ERROR。              </em>/<br>{<br>   if(S.top==0){<br>      return ERROR;<br>}<br>    e=S.elem[S.top-1];<br>    return OK;<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写一算法，实现顺序栈的出栈操作<br>Pop_Sq(SqStack &amp;S, ElemType &amp;e)。<br>顺序栈的类型定义为：<br>typedef struct {<br>  ElemType <em>elem;  // 存储空间的基址<br>  int top;         // 栈顶元素的下一个位置，简称栈顶位标<br>  int size;        // 当前分配的存储容量<br>  int increment;   // 扩容时，增加的存储容量<br>} SqStack;         // 顺序栈<br><strong><strong>**</strong></strong></em>/<br>Status Pop_Sq(SqStack &amp;S, ElemType &amp;e)<br>/<em> 顺序栈S的栈顶元素出栈到e，并返回OK；</em>/<br>/<em> 若失败，则返回ERROR。               </em>/<br>{<br>     if(0==S.top) return ERROR;<br>    e=S.elem[–S.top];<br>    return OK;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】若顺序栈的类型重新定义如下。试编写算法，<br>构建初始容量和扩容增量分别为size和inc的空顺序栈S。<br>typedef struct {<br>  ElemType <em>elem; // 存储空间的基址<br>  ElemType </em>top;  // 栈顶元素的下一个位置<br>  int size;       // 当前分配的存储容量<br>  int increment;  // 扩容时，增加的存储容量<br>} SqStack2;<br><strong><strong><em>*</em></strong></strong>/<br>Status InitStack_Sq2(SqStack2 &amp;S, int size, int inc)<br>/<em> 构建初始容量和扩容增量分别为size和inc的空顺序栈S。</em>/<br>/<em> 若成功，则返回OK；否则返回ERROR。                 </em>/<br>{<br>    S.elem=(ElemType<em>)malloc(size</em>sizeof(ElemType));<br>    if(NULL==S.elem) return OVERFLOW;<br>    if(size&lt;=0||inc&lt;=0) return ERROR;<br>    S.top=S.elem;<br>    S.size=size;<br>    S.increment=inc;<br>    return OK;<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】若顺序栈的类型重新定义如下。试编写算法，<br>实现顺序栈的判空操作。<br>typedef struct {<br>  ElemType <em>elem; // 存储空间的基址<br>  ElemType </em>top;  // 栈顶元素的下一个位置<br>  int size;       // 当前分配的存储容量<br>  int increment;  // 扩容时，增加的存储容量<br>} SqStack2;<br><strong><strong><em>*</em></strong></strong>/<br>Status StackEmpty_Sq2(SqStack2 S)<br>/<em> 对顺序栈S判空。                      </em>/<br>/<em> 若S是空栈，则返回TRUE；否则返回FALSE </em>/<br>{<br>     if(S.top==S.elem)return TRUE;<br>    else  return FALSE;<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】若顺序栈的类型重新定义如下。试编写算法，<br>实现顺序栈的入栈操作。<br>typedef struct {<br>  ElemType <em>elem; // 存储空间的基址<br>  ElemType </em>top;  // 栈顶元素的下一个位置<br>  int size;       // 当前分配的存储容量<br>  int increment;  // 扩容时，增加的存储容量<br>} SqStack2;<br><strong><strong><em>*</em></strong></strong>/<br>Status Push_Sq2(SqStack2 &amp;S, ElemType e)<br>/<em> 若顺序栈S是满的，则扩容，若失败则返回ERROR。</em>/<br>/<em> 将e压入S，返回OK。                          </em>/<br>{<br>    ElemType <em>newbase;<br>    if((S.top-S.elem)&gt;S.size){<br>       newbase=(ElemType</em>)realloc(S.elem,(S.size+S.increment)<em>sizeof(ElemType));<br>       if(NULL==newbase) return ERROR;<br>       S.elem=newbase;<br>       S.size=S.size+S.increment;<br>    }
+     </em>S.top=e;<br>    S.top++;<br>    return OK;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】若顺序栈的类型重新定义如下。试编写算法，<br>实现顺序栈的出栈操作。<br>typedef struct {<br>  ElemType <em>elem; // 存储空间的基址<br>  ElemType </em>top;  // 栈顶元素的下一个位置<br>  int size;       // 当前分配的存储容量<br>  int increment;  // 扩容时，增加的存储容量<br>} SqStack2;<br><strong><strong><em>*</em></strong></strong>/<br>Status Pop_Sq2(SqStack2 &amp;S, ElemType &amp;e)<br>/<em> 若顺序栈S是空的，则返回ERROR；    </em>/<br>/<em> 否则将S的栈顶元素出栈到e，返回OK。</em>/<br>{<br>     if(S.top==S.elem) return ERROR;<br>    e=<em>(–S.top);<br>    return OK;<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写一算法，借助辅助栈，复制顺序栈S1得到S2。<br>顺序栈的类型定义为：<br>typedef struct {<br>  ElemType </em>elem; // 存储空间的基址<br>  int top;        // 栈顶元素的下一个位置，简称栈顶位标<br>  int size;       // 当前分配的存储容量<br>  int increment;  // 扩容时，增加的存储容量<br>} SqStack;        // 顺序栈<br>可调用顺序栈接口中下列函数：<br>Status InitStack_Sq(SqStack &amp;S, int size, int inc); // 初始化顺序栈S<br>Status DestroyStack_Sq(SqStack &amp;S); // 销毁顺序栈S<br>Status StackEmpty_Sq(SqStack S);    // 栈S判空，若空则返回TRUE，否则FALSE<br>Status Push_Sq(SqStack &amp;S, ElemType e); // 将元素e压入栈S<br>Status Pop_Sq(SqStack &amp;S, ElemType &amp;e); // 栈S的栈顶元素出栈到e<br><strong><strong><em>*</em></strong></strong>/<br>Status CopyStack_Sq(SqStack S1, SqStack &amp;S2)<br>/<em> 借助辅助栈，复制顺序栈S1得到S2。    </em>/<br>/<em> 若复制成功，则返回TRUE；否则FALSE。</em>/<br>{<br>    SqStack S3;<br>    ElemType e;<br>    InitStack_Sq(S3,S1.size,S1.increment);<br>    InitStack_Sq(S2,S1.size,S1.increment);<br>    while(StackEmpty_Sq(S1)!=TRUE){<br>       Pop_Sq(S1,e);<br>       Push_Sq(S3,e);<br>       }<br>    while(StackEmpty_Sq(S3)!=TRUE){<br>       Pop_Sq(S3,e);<br>       Push_Sq(S2,e);<br>     }<br><br>     return TRUE;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写一算法，求循环队列的长度。<br>循环队列的类型定义为：<br>typedef struct {<br>  ElemType <em>base;  // 存储空间的基址<br>  int front;       // 队头位标<br>  int rear;        // 队尾位标，指示队尾元素的下一位置<br>  int maxSize;     // 最大长度<br>} SqQueue;<br><strong><strong>**</strong></strong></em>/<br>int QueueLength_Sq(SqQueue Q)<br>/<em> 返回队列Q中元素个数，即队列的长度。</em>/<br>{    return  (Q.rear-Q.front+Q.maxSize)%Q.maxSize;<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】如果希望循环队列中的元素都能得到利用，<br>则可设置一个标志域tag，并以tag值为0或1来区分尾<br>指针和头指针值相同时的队列状态是”空”还是”满”。<br>试编写与此结构相应的入队列和出队列的算法。<br>本题的循环队列CTagQueue的类型定义如下：<br>typedef struct {<br>  ElemType elem[MAXQSIZE];<br>  int tag;<br>  int front;<br>  int rear;<br>} CTagQueue;<br><strong><strong>**</strong></strong>/<br>Status EnCQueue(CTagQueue &amp;Q, ElemType x)<br>/<em> 将元素x加入队列Q，并返回OK；</em>/<br>/<em> 若失败，则返回ERROR。       </em>/<br>{<br>     if(Q.tag==1&amp;&amp;Q.front==Q.rear)return ERROR;<br>   Q.elem[Q.rear]=x;<br>   Q.rear=(Q.rear+1)%MAXSIZE;<br>   if(Q.front==Q.rear)<br>   Q.tag=1;<br>   return OK;<br>}<br><br>Status DeCQueue(CTagQueue &amp;Q, ElemType &amp;x)<br>/<em> 将队列Q的队头元素退队到x，并返回OK；</em>/<br>/<em> 若失败，则返回ERROR。               </em>/<br>{ if(Q.tag==0&amp;&amp;Q.front==Q.rear)<br>       return ERROR;<br>      x=Q.elem[Q.front];<br>      Q.front=(Q.front+1)%MAXSIZE;<br>      if(Q.front==Q.rear)<br>         Q.tag=0;<br>      return OK;<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】假设将循环队列定义为：以域变量rear<br>和length分别指示循环队列中队尾元素的位置和内<br>含元素的个数。试给出此循环队列的队满条件，并<br>写出相应的入队列和出队列的算法（在出队列的算<br>法中要返回队头元素）。<br>本题的循环队列CLenQueue的类型定义如下：<br>typedef struct {<br>  ElemType elem[MAXQSIZE];<br>  int length;<br>  int rear;<br>} CLenQueue;<br><strong><strong>**</strong></strong>/<br>Status EnCQueue(CLenQueue &amp;Q, ElemType x)<br>  /<em> 将元素x加入队列Q，并返回OK；</em>/<br>  /<em> 若失败，则返回ERROR。       </em>/<br>{    if(Q.length==MAXQSIZE) return ERROR;<br>    Q.length++;<br>    Q.rear=(Q.rear+1)%MAXQSIZE;<br>    Q.elem[Q.rear]=x;<br>    return TRUE;<br><br>}<br>Status DeCQueue(CLenQueue &amp;Q, ElemType &amp;x)<br>  /<em> 将队列Q的队头元素退队到x，并返回OK；</em>/<br>  /<em> 若失败，则返回ERROR。               </em>/<br>{<br>    int front;<br>    if(Q.length==0) return ERROR;<br>      Q.length–;<br>    front=MAXQSIZE-Q.length+Q.rear;<br>    x=Q.elem[front%MAXQSIZE];<br>    front=(front+1)%MAXQSIZE;<br>    return OK;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】已知k阶斐波那契序列的定义为:<br>    f0=0,  f1=0,  …,  fk-2=0,  fk-1=1;<br>    fn=fn-1+fn-2+…+fn-k,  n=k,k+1,…<br>试利用循环队列编写求k阶斐波那契序列中第<br>n+1项fn的算法。<br><br>本题的循环队列的类型定义如下：<br>typedef struct {<br>  ElemType <em>base; // 存储空间的基址<br>  int front;      // 队头位标<br>  int rear;       // 队尾位标，指示队尾元素的下一位置<br>  int maxSize;    // 最大长度<br>} SqQueue;<br><strong><strong>**</strong></strong>/<br>long Fib(int k, int n)<br>/</em> 求k阶斐波那契序列的第n+1项fn <em>/<br>{<br>    int i,j ;<br>   if(1 &gt;=k|| 0 &gt; n) return ERROR;<br>   SqQueue fib;<br>   fib.base = (ElemType</em>)malloc(30<em>sizeof(ElemType));<br>   fib.maxSize = 30;<br>   fib.front = fib.rear = 0;<br>   for(;fib.rear &lt; k;fib.rear++)<br>        {<br>        if(fib.rear<k-1) fib.base[fib.rear]="0;" else="" }="" while(fib.rear="" <="n)" {="" j="1;" while(j="" +="fib.base[fib.rear-j];" j++;="" fib.rear++;="" return="" fib.base[n];="" **********="" 【题目】设a="(a1,…,am)和B=(b1,…,bn)均为有序顺序表，" a'和b'分别为a和b中除去最大共同前缀后的子表（例如，="" a="(x,y,y,z,x,z)，B=(x,y,y,z,y,x,x,z)，则两者中最大" 的共同前缀为(x,y,y,z)，="" 在两表中除去最大共同前缀后="" 的子表分别为a'="(x,z)和B'=(y,x,x,z)）。若A'=B'=空表，" 则a="B；若A'=空表，而B'≠" 空表，或者两者均不为空表，="" 且a'的首元小于b'的首元，则a<b；否则a="">B。试写一个比<br>较A和B大小的算法。（注意：在算法中，不要破坏原表A<br>和B，也不一定先求得A’和B’才进行比较）。<br>顺序表类型定义如下：<br>typedef struct {<br>  ElemType </k-1)></em>elem;<br>  int       length;<br>  int       size;<br>  int       increment;<br>} SqList;<br><strong><strong>**</strong></strong>/<br>char Compare(SqList A, SqList B)<br>/<em> 比较顺序表A和B,      </em>/<br>/<em>   返回’&lt;’,若A&lt;B;    </em>/<br>/<em>       ‘=’, 若A=B;    </em>/<br>/<em>       ‘&gt;’, 若A&gt;B     </em>/<br>{<br>     int i;<br> if(0 == A.length &amp;&amp; 0 == B.length)<br>        return ‘=’;<br> else<br> {<br>  for(i = 0; i &lt; A.length||i&lt; B.length;i++)<br>      {<br>         if(A.elem[i] &lt; B.elem[i])<br>                 return ‘&lt;’;<br>         if(A.elem[i] &gt; B.elem[i])<br>                  return ‘&gt;’;<br>         }<br>  if(A.length &gt; B.length) return ‘&gt;’;<br>  if(A.length &lt; B.length) return ‘&lt;’;<br>  return ‘=’;<br><br> }<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写一算法，实现顺序表的就地逆置，<br>即利用原表的存储空间将线性表(a1,a2,…,an)<br>逆置为(an,an-1,…,a1)。<br>顺序表类型定义如下：<br>typedef struct {<br>  ElemType <em>elem;<br>  int       length;<br>  int       size;<br>  int       increment;<br>} SqList;<br><strong><strong>**</strong></strong>/<br>void Inverse(SqList &amp;L)<br>{  int i;<br>   ElemType temp;<br>   for(i=0;i&lt;L.length/2;i++) {<br>   temp=L.elem[i];<br>   L.elem[i]=L.elem[L.length-1-i];<br>   L.elem[L.length-1-i]=temp; }<br><br>}<br><br><br>/<strong><strong>**</strong></strong><br>【题目】试对一元稀疏多项式Pn(x)采用存储量同多项式<br>项数m成正比的顺序存储结构，编写求Pn(x0)的算法（x0<br>为给定值）。<br><br>一元稀疏多项式的顺序存储结构:<br>typedef struct {<br>  int  coef;  // 系数<br>  int   exp;  // 指数<br>} Term;<br><br>typedef struct {<br>  Term  </em>elem;   // 存储空间基址<br>  int    length; // 长度（项数）<br>} Poly;<br><strong><strong>**</strong></strong>/<br>float Evaluate(Poly P, float x)<br>/<em> P.elem[i].coef 存放ai，                        </em>/<br>/<em> P.elem[i].exp存放ei (i=1,2,…,m)              </em>/<br>/<em> 本算法计算并返回多项式的值。不判别溢出。       </em>/<br>/<em> 入口时要求0≤e1&lt;e2&lt;…&lt;em，算法内不对此再作验证</em>/<br>{   int i,j;<br>    float sum = 0,sum1 ;<br>    for(i = 0;i <p.length; i++)="" {="" sum1="P.elem[i].coef" ;="" for(j="0;j" <="" p.elem[i].exp;j++)="" sum="" +="sum1;" }="" return="" sum;="" **********="" 【题目】假设有两个集合a和b分别用两个线性表la和lb="" 表示(即：线性表中的数据元素即为集合中的成员），="" 试写一算法，求并集a＝a∪b。="" 顺序表类型定义如下="" typedef="" struct="" elemtype="" *elem;="" 存储空间的基址="" int="" length;="" 当前长度="" size;="" 存储容量="" increment;="" 空间不够增加空间大小="" sqlist;="" 顺序表="" 可调用顺序表的以下接口函数：="" status="" initlist_sq(sqlist="" &l,="" size,="" inc);="" 初始化顺序表l="" listlength_sq(sqlist="" l);="" 返回顺序表l中元素个数="" getelem_sq(sqlist="" l,="" i,="" &e);="" 用e返回顺序表l中第i个元素的值="" search_sq(sqlist="" e);="" 在顺序表l顺序查找元素e，成功时返回该元素在表中第一次出现的位置，否则返回-1="" append_sq(sqlist="" 在顺序表l表尾添加元素e="" void="" union(sqlist="" &la,="" sqlist="" lb)="" i,j;="" a;="" for(i="0;i" lb.length;i++)="" getelem_sq(lb,="" i+1,="" a);="" if(="" -1="=" search_sq(la,="" a))="" append_sq(la,="" la.length="ListLength_Sq(La);" 【题目】试写一算法，实现链栈的判空操作。="" 链栈的类型定义为：="" lsnode="" data;="" 数据域="" *next;="" 指针域="" lsnode,="" *lstack;="" 结点和链栈类型="" ***********="" stackempty_l(lstack="" s)="" *="" 对链栈s判空。若s是空栈，则返回true；否则返回false="" if(null="=S)" true;="" else="" false;="" 【题目】试写一算法，实现链栈的取栈顶元素操作。="" gettop_l(lstack="" s,="" &e)="" 取链栈s的栈顶元素到e，并返回ok;="" 若s是空栈，则失败，返回error。="" error;="" e="S-">data;<br>     return OK;<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写一算法，实现链队列的判空操作。<br>链队列的类型定义为：<br>typedef struct LQNode {<br>  ElemType  data;<br>  struct LQNode  <em>next;<br>} LQNode, </em>QueuePtr; // 结点和结点指针类型<br>typedef struct {<br>  QueuePtr  front;  // 队头指针<br>  QueuePtr  rear;   // 队尾指针<br>} LQueue;  // 链队列类型<br><strong><strong><em>*</em></strong></strong>/<br>Status QueueEmpty_LQ(LQueue Q)<br>/<em> 判定链队列Q是否为空队列。           </em>/<br>/<em> 若Q是空队列，则返回TRUE，否则FALSE。</em>/<br>{   if(NULL == Q.front) return TRUE;<br>    else return FALSE;<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写一算法，实现链队列的求队列长度操作。<br>链队列的类型定义为：<br>typedef struct LQNode {<br>  ElemType  data;<br>  struct LQNode  <em>next;<br>} LQNode, </em>QueuePtr; // 结点和结点指针类型<br>typedef struct {<br>  QueuePtr  front;  // 队头指针<br>  QueuePtr  rear;   // 队尾指针<br>} LQueue;  // 链队列类型<br><strong><strong><em>*</em></strong></strong>/<br>int QueueLength_LQ(LQueue Q)<br>/<em> 求链队列Q的长度并返回其值</em>/<br>{<br>   LQNode <em>p = Q.front;<br>   int i=1;<br>   if(Q.front == NULL) return ERROR;<br>   while(p!= Q.rear) {<br>    p = p-&gt;next;<br>    i++;<br>   }<br>   return i;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】假设以带头结点的循环链表表示队列，并且<br>只设一个指针指向队尾元素结点(注意不设头指针)，<br>试编写相应的队列初始化、入队列和出队列的算法。<br>带头结点循环链队列CLQueue的类型定义为：<br>typedef struct LQNode {<br>  ElemType data;<br>  struct LQNode </em>next;<br>} LQNode, <em>CLQueue;<br><strong><strong>**</strong></strong>/<br>Status InitCLQueue(CLQueue &amp;rear) // 初始化空队列<br>{   LQNode </em>p;<br>  if(NULL ==(p = (LQNode<em>)malloc(sizeof(LQNode))))<br>   return ERROR;<br>   p-&gt;next = p;<br>   rear = p;<br>   return OK;<br>}<br><br>Status EnCLQueue(CLQueue &amp;rear, ElemType x) // 入队<br>{  LQNode </em>p;<br>    if(NULL ==(p = (LQNode<em>)malloc(sizeof(LQNode))))<br>   return ERROR;<br>     p-&gt;data = x;<br>     p-&gt;next=rear-&gt;next;<br>     rear-&gt;next = p;<br>     rear = p;<br>      return OK;<br>}<br><br>Status DeCLQueue(CLQueue &amp;rear, ElemType &amp;x) // 出队<br>{<br>      if(rear == rear-&gt;next )<br>        return ERROR;<br>  else<br>  {<br>   x = rear-&gt;next-&gt;next-&gt;data;<br>   rear-&gt;next-&gt;next = rear-&gt;next-&gt;next-&gt;next;<br>  }<br>  return OK;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写一算法，实现带头结点单链表的判空操作。<br><br>单链表的类型定义为：<br>typedef struct LNode {<br>  ElemType  data;<br>  struct LNode  </em>next;<br>} LNode, <em>LinkList; // 结点和结点指针类型<br><strong><strong>**</strong></strong></em>/<br>Status ListEmpty_L(LinkList L)<br>/<em> 判定带头结点单链表L是否为空链表。   </em>/<br>/<em> 若L是空链表，则返回TRUE，否则FALSE。</em>/<br>{<br>   if(NULL == L-&gt;next) return TRUE;<br>   else return  FALSE;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写一算法，实现带头结点单链表的销毁操作。<br>单链表的类型定义为：<br>typedef struct LNode {<br>  ElemType  data;<br>  struct LNode  <em>next;<br>} LNode, </em>LinkList; // 结点和结点指针类型<br><strong><strong><em>*</em></strong></strong>/<br>Status DestroyList_L(LinkList &amp;L)<br>/<em> 销毁带头结点单链表L，并返回OK。</em>/<br>{<br>    //if(NULL == L||NULL == L-&gt;next) return ERROR；<br>    free(L);<br>    return OK;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写一算法，实现带头结点单链表的清空操作。<br><br>单链表的类型定义为：<br>typedef struct LNode {<br>  ElemType  data;<br>  struct LNode  <em>next;<br>} LNode, </em>LinkList; // 结点和结点指针类型<br><strong><strong><em>*</em></strong></strong>/<br>Status ClearList_L(LinkList &amp;L)<br>/<em> 将带头结点单链表L置为空表，并返回OK。</em>/<br>/<em> 若L不是带头结点单链表，则返回ERROR。</em>/<br>{  if(L == NULL) return ERROR;<br>    if(L-&gt;next == NULL) return OK;<br>    L-&gt;next  = NULL;<br>    return OK;<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写一算法，实现带头结点单链表的求表长度操作。<br>单链表的类型定义为：<br>typedef struct LNode {<br>  ElemType  data;<br>  struct LNode  <em>next;<br>} LNode, </em>LinkList; // 结点和结点指针类型<br><strong><strong><em>*</em></strong></strong>/<br>int ListLength_L(LinkList L)<br>/<em> 求带头结点单链表L的长度，并返回长度值。</em>/<br>/<em> 若L不是带头结点单链表，则返回-1。      </em>/<br>{  LNode <em>p;<br>    int i = 0;<br>   if(NULL == L) return -1;<br>   p = L-&gt;next;<br>   while(p != NULL)<br>   {<br>     p = p-&gt;next;<br>     i++;<br>   }<br>   return i;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写一算法，在带头结点单链表L插入第i元素e。<br>带头结点单链表的类型定义为：<br>typedef struct LNode {<br>  ElemType      data;<br>  struct LNode </em>next;<br>} LNode, <em>LinkList;<br><strong><strong>**</strong></strong>/<br>Status Insert_L(LinkList L, int i, ElemType e)<br>/</em> 在带头结点单链表L插入第i元素e，并返回OK。<em>/<br>/</em> 若参数不合理，则返回ERROR。              <em>/<br>{<br>    if(i == 0 )  return ERROR;<br>  LinkList p,q,p1,a,b;<br>  int j = 0 ,k=0;<br>  q = (LNode</em>)malloc(sizeof(LNode)) ;<br>  q-&gt;data = e;<br>  q-&gt;next = NULL;<br>  p1 = L;<br>  b=L;<br>  while(b !=NULL)<br>  {<br>    a =  b;<br>    b = a-&gt;next;<br>    k++;<br>  }<br>  if(k &lt; i )  return ERROR;<br>  while(j <i) {="" p="p1;" p1="p-">next;<br>      j++;<br><br><br>  }<br> q-&gt;next = p-&gt;next;<br>  p-&gt;next =  q;<br>  return OK;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写一算法，在带头结点单链表删除第i元素到e。<br>带头结点单链表的类型定义为：<br>typedef struct LNode {<br>  ElemType      data;<br>  struct LNode <em>next;<br>} LNode, </em>LinkList;<br><strong><strong>**</strong></strong>/<br>Status Delete_L(LinkList L, int i, ElemType &amp;e)<br>/<em> 在带头结点单链表L删除第i元素到e，并返回OK。</em>/<br>/<em> 若参数不合理，则返回ERROR。                </em>/<br>{<br>    LinkList p,q1,q2,q3;<br>    int j=0;<br>    p=L;<br>    while(p-&gt;next){<br>     q1 = p;<br>     p=q1-&gt;next;<br>     if(j==i-1)<br>     {<br>       q2 = q1;<br>       q3 = p;<br>     }<br>      ++j;<br>    }<br>   if(i== 0||j<i) return="" error;="" e="q3-">data;<br>    q2-&gt;next = q3-&gt;next;<br>    return OK;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写一算法，在带头结点单链表的第i元素起的<br>所有元素从链表移除，并构成一个带头结点的新链表。<br>带头结点单链表的类型定义为：<br>typedef struct LNode {<br>  ElemType      data;<br>  struct LNode <em>next;<br>} LNode, </em>LinkList;<br><strong><strong>**</strong></strong>/<br>Status Split_L(LinkList L, LinkList &amp;Li, int i)<br>/<em> 在带头结点单链表L的第i元素起的所有元素</em>/<br>/<em> 移除，并构成带头结点链表Li，返回OK。   </em>/<br>/<em> 若参数不合理，则Li为NULL，返回ERROR。  </em>/<br>{<br>      if(i&lt;=0||L==null) {<br>     Li==null;<br>     return ERROR;<br>     }<br>   LinkList a,b,c;<br>   int j=0,k=0;<br>   Li=(LNode<em>)malloc(sizeof(LNode));<br>   Li-&gt;next=null;<br>   a=L;<br>   b=L;<br>   while(a-&gt;next!=null){<br>     j++;<br>     a=a-&gt;next;<br>   }<br>   if(j<i) {="" li="null;" return="" error;="" }="" while(k<i-1){="" b="b-">next;<br>   k++;<br>   }<br>  c=b-&gt;next;<br>  Li-&gt;next=c;<br>  b-&gt;next=null;<br>  return OK;<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写一算法，在带头结点单链表删除第i元素<br>起的所有元素。<br>带头结点单链表的类型定义为：<br>typedef struct LNode {<br>  ElemType      data;<br>  struct LNode </i)></em>next;<br>} LNode, <em>LinkList;<br><strong><strong>**</strong></strong>/<br>Status Cut_L(LinkList L, int i)<br>/</em> 在带头结点单链表L删除第i元素起的所有元素，并返回OK。<em>/<br>/</em> 若参数不合理，则返回ERROR。                         <em>/<br>{    LinkList p1,p2,p3;<br>    int j=0,k=0;<br>    p2 =L;<br>    p1=L;<br>    p3=L;<br>    if(NULL == L||L-&gt;next ==NULL) return ERROR;<br>     while(p3-&gt;next!=null){<br>       p3=p3-&gt;next;<br>       j++;<br>     }<br>     if(j &lt; i||i==0) return ERROR;<br><br>      while(k<i){ p1="p2;" p2="p1-">next;<br>       k++;<br>     }<br>      p1-&gt;next=null;<br>      return OK;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写一算法，删除带头结点单链表中所有值<br>为x的元素，并释放被删结点空间。<br>单链表类型定义如下：<br>typedef struct LNode {<br>  ElemType      data;<br>  struct LNode </i){></em>next;<br>} LNode, <em>LinkList;<br><strong><strong>**</strong></strong>/<br>Status DeleteX_L(LinkList L, ElemType x)<br>/</em> 删除带头结点单链表L中所有值为x的元素，      <em>/<br>/</em> 并释放被删结点空间，返回实际删除的元素个数。<em>/<br>{   LinkList p1,p2,p3;<br>    int j = 0;<br>    if(NULL ==L) return ERROR;<br>    p1=p2=L;<br>    while(p2!=NULL){<br>      p2 = p1-&gt;next;<br>      if(p2-&gt;data == x){<br>        p3 = p2;<br>        p2 = p3-&gt;next;<br>        p1-&gt;next = p2;<br>        free(p3);<br>        j++;<br>      }<br>      else if(p2-&gt;data!=x)<br>       {<br>          p1 = p2;<br>          p2 = p1-&gt;next;<br>       }<br><br><br>    }<br><br>    return j;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写一算法，删除带头结点单链表中所有值<br>小于x的元素，并释放被删结点空间。<br>单链表类型定义如下：<br>typedef struct LNode {<br>  ElemType      data;<br>  struct LNode </em>next;<br>} LNode, <em>LinkList;<br><strong><strong>**</strong></strong>/<br>Status DeleteSome_L(LinkList L, ElemType x)<br>/</em> 删除带头结点单链表L中所有值小于x的元素，    <em>/<br>/</em> 并释放被删结点空间，返回实际删除的元素个数。<em>/<br>{     LinkList p1,p2,p3;<br>    int j = 0; p1=p2=L;<br>    if(NULL == p1) return j;<br><br>    while(p2!=NULL){<br>      p2 = p1-&gt;next;<br>      if(p2-&gt;data &lt; x &amp;&amp;p2!=null){<br>        p3 = p2;<br>        p2 = p3-&gt;next;<br>        p1-&gt;next = p2;<br>        free(p3);<br>        j++;<br>      }<br>      else if(p2-&gt;data &gt;= x)<br>       {<br>          p1 = p2;<br>          p2 = p1-&gt;next;<br>       }<br><br><br>    }<br><br>    return j;<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试以顺序表L的L.rcd[L.length+1]作为监视哨，<br>改写教材5.2节中给出的升序直接插入排序算法。<br>顺序表的类型RcdSqList定义如下：<br>typedef struct {<br>   KeyType key;<br>   …<br>} RcdType;<br>typedef struct {<br>   RcdType rcd[MAXSIZE+1]; // r[0]闲置<br>   int length;<br>} RcdSqList;<br><strong><strong>**</strong></strong>/<br>void InsertSort(RcdSqList &amp;L)<br>{<br>   int i,j;<br>   for(i = 1; i&lt;L.length; i++){<br>     if(L.rcd[i+1].key &lt; L.rcd[i].key) {<br>       L.rcd[0] = L.rcd[i+1];<br>       j = i+1;<br>       do{<br>         j–;L.rcd[j+1] = L.rcd[j];<br>       } while(L.rcd[0].key&lt;L.rcd[j-1].key);<br>       L.rcd[j] = L.rcd[0];<br>     }<br>   }<br><br>}<br><br><br>/<strong><strong>**</strong></strong><br>【题目】如下所述，改写教材1.5节的冒泡排序算法：<br>将算法中用以起控制作用的布尔变量change改为一个整型<br>变量，指示每一趟排序中进行交换的最后一个记录的位置，<br>并以它作为下一趟起泡排序循环终止的控制值。<br>顺序表的类型RcdSqList定义如下：<br>typedef struct {<br>   KeyType key;<br>   …<br>} RcdType;<br>typedef struct {<br>   RcdType rcd[MAXSIZE+1]; // r[0]闲置<br>   int length;<br>} RcdSqList;<br><strong><strong>**</strong></strong>/<br>void BubbleSort(RcdSqList &amp;L)<br>/</em> 元素比较和交换必须调用如下定义的比较函数和交换函数：<em>/<br>/</em> Status LT(RedType a, RedType b);   比较：”&lt;”        <em>/<br>/</em> Status GT(RedType a, RedType b);   比较：”&gt;”        <em>/<br>/</em> void Swap(RedType &amp;a, RedType &amp;b); 交换             <em>/<br>{  int i,change,j,k;<br>   for(i = L.length,change = 0;i&gt;1;i–)<br>      {<br>       change = i;<br>      for(j = 1;j&lt;i;++j)<br>        {<br>        if(GT(L.rcd[j],L.rcd[j+1]))<br>           {<br>            Swap(L.rcd[j],L.rcd[j+1]);<br>            k++;<br>            change = j+1;<br>            }<br><br>        }<br>       while(L.rcd[change].key == L.rcd[change-1].key)<br>            {            //用while来跳过那些相同关键字<br>             change = change - 1;<br>            }<br>      i = change;<br>       if(k == 0) i = 1; //当有一次比较没有交换时使i= 1结束操作<br><br>     k=0;<br>      }<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】已知记录序列L.rcd[1..L.length]中的关键<br>字各不相同，可按如下所述实现计数排序：另设数组<br>c[1..n]，对每个记录a[i]， 统计序列中关键字比它<br>小的记录个数存于c[i]，则c[i]=0的记录必为关键字<br>最小的记录，然后依c[i]值的大小对序列中记录进行<br>重新排列。试编写算法实现上述排序方法。<br>顺序表的类型RcdSqList定义如下：<br>typedef struct {<br>   KeyType key;<br>   …<br>} RcdType;<br>typedef struct {<br>   RcdType rcd[MAXSIZE+1]; // r[0]闲置<br>   int     length;<br>} RcdSqList;<br><strong><strong>**</strong></strong>/<br>void CountSort(RcdSqList &amp;L)<br>/</em> 采用顺序表存储结构，在函数内自行定义计数数组c <em>/<br>{<br>   int k = L.length ;<br>  RcdSqList L1;<br>  int c[27];<br>  int i,j;<br>  for(i = 1;i &lt;= L.length ;i++)<br>     for(j = 1;j &lt;= L.length;j++)<br>        {<br>         if(L.rcd[i].key&lt;L.rcd[j].key)<br>            c[i]++;<br>        }<br><br>    for(i = 1;i&lt;=L.length ;i++)<br>        {<br>         L1.rcd[c[i]+1].key = L.rcd[i].key;<br>        }<br>    for(i = 1;i&lt;=L.length ;i++)<br>        {<br>         L.rcd[L.length-i+1].key = L1.rcd[i].key;<br>        }<br>}<br><br><br>/<strong><strong>**</strong></strong><br>【题目】已知某哈希表的装载因子小于1，哈希函数H(key)<br>为关键字(标识符)的第一个字母在字母表中的序号，处理<br>冲突的方法为线性探测开放定址法。试编写一个按第一个<br>字母的顺序输出哈希表中所有关键字的算法。<br>哈希表的类型HashTable定义如下：<br>#define SUCCESS    1<br>#define UNSUCCESS  0<br>#define DUPLICATE -1`<br>typedef char StrKeyType[4];<br>typedef struct {<br>   StrKeyType key; // 关键字项<br>   int    tag;     // 标记 0:空；1:有效; -1:已删除<br>   void  </em>any;     // 其他信息<br>} RcdType;<br>typedef struct {<br>  RcdType <em>rcd;    // 存储空间基址<br>  int      size;   // 哈希表容量<br>  int      count;  // 表中当前记录个数<br>} HashTable;<br><strong><strong>**</strong></strong>/<br>void PrintKeys(HashTable ht, void(</em>print)(StrKeyType))<br>/<em> 依题意用print输出关键字</em>/<br>{<br>     int n,i,size;<br>    char c;<br>    for(c=’A’;c&lt;=’Z’;c++){<br>    for(i=0;i<ht.size;i++){ 0="" 1="" 7="" if(ht.rcd[i].tag="=-1)" continue;="" if(ht.rcd[i].key[0]="=c)" print(ht.rcd[i].key);="" }="" **********="" 【题目】假设哈希表长为m，哈希函数为h(x)，用链地址法="" 处理冲突。试编写输入一组关键字并建造哈希表的算法。="" 哈希表的类型chainhashtab定义如下：="" #define="" num="" nullkey="" -1="" success="" unsuccess="" duplicate="" typedef="" char="" hkeytype;="" struct="" hnode="" {="" hkeytype="" data;="" hnode*="" next;="" }*hlink;="" hlink="" *rcd;="" 指针存储基址，动态分配数组="" int="" count;="" 当前表中含有的记录个数="" size;="" 哈希表的当前容量="" }chainhashtab;="" 链地址哈希表="" hash(chainhashtab="" h,="" k)="" 哈希函数="" return="" k="" %="" h.size;="" status="" collision(chainhashtab="" &p)="" 求得下一个探查地址p="" if="" (p="" &&="" p-="">next) {<br>    p = p-&gt;next;<br>    return SUCCESS;<br>  } else return UNSUCCESS;<br>}<br><strong><strong>**</strong></strong>/<br>int BuildHashTab(ChainHashTab &amp;H, int n, HKeyType es[])<br>/<em> 直接调用下列函数                             </em>/<br>/<em> 哈希函数：                                   </em>/<br>/<em>    int Hash(ChainHashTab H, HKeyType k);     </em>/<br>/<em> 冲突处理函数：                               </em>/<br>/<em>    int Collision(ChainHashTab H, HLink &amp;p);  </em>/<br>{<br>    int i,k,j;<br>  HLink p,q,p1;<br>  H.rcd = (HLink<em>)malloc(7</em>sizeof(HLink));<br>  H.size = 7;<br>  H.count = 0;<br>  for(i = 0;es[i] &gt;= ‘A’;i++)<br>    {<br>     p = (HNode<em>)malloc(sizeof(HNode));<br>     p-&gt;next = NULL;<br>     p-&gt;data = es[i];<br>     k = Hash( H, p-&gt;data) ;<br>     if(NULL !=H.rcd[k])<br>        {  // 判断其中是否有相同的HKeyType<br>         p1 =  H.rcd[k];<br>         while(NULL != p1)<br>         {  //用j作为标记，如果j = 0表示没有相同的，插入p<br>           if(p1-&gt;data == p-&gt;data)<br>                j = 1;<br>           p1 = p1-&gt;next;<br>         }<br>         if(j == 0)<br>            {<br>             q =  H.rcd[k];<br>             p-&gt;next = q;<br>             H.rcd[k] = p;<br><br>             }<br>           j = 0;<br>        }<br>     else<br>        H.rcd[k] = p; //为什么H.rcd[k]-&gt;next = p;不会报错<br>    H.count++;<br>    }<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试编写如下定义的递归函数的递归算法:<br>    g(m,n) = 0             当m=0,n&gt;=0<br>    g(m,n) = g(m-1,2n)+n   当m&gt;0,n&gt;=0<br><strong><strong>**</strong></strong>/<br>int G(int m, int n)<br>/</em> 如果 m<0或n<0则返回-1 *="" {="" if(m<0||n<0)="" return="" -1;="" else="" if(m="=0&&n">=0)<br>     return 0;<br>     else if(m&gt;0&amp;&amp;n&gt;=0)<br>       return G(m-1,2<em>n)+n;<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写出求递归函数F(n)的递归算法：<br>    F(n) = n+1      当n=0<br>    F(n) = nF(n/2)  当n&gt;0<br><strong><strong>**</strong></strong>/<br>int F(int n)<br>/</em> 如果 n<0则返回-1 *="" {="" if(n<0)="" return="" -1;="" else="" if(n="=0)" n+1;="">0) return n<em>F(n/2);<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】求解平方根 的迭代函数定义如下：<br>  sqrt(A,p,e) = p                   当|p</em>p-A|<e sqrt(a,p,e)="sqrt(A,(p+A/p)/2,e)" 当|p*p-a|="">=e<br>其中，p是A的近似平方根，e是结果允许误差。试写出相<br>应的递归算法。<br><strong><strong>**</strong></strong>/<br>float Sqrt(float A, float p, float e)<br>{   if(fabs(p<em>p-A)&lt;e)<br>      return p;<br>   else<br>      return Sqrt(A,(p+A/p)/2,e);<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】已知Ackerman函数的定义如下：<br>   akm(m,n) = n+1                 当m=0<br>   akm(m,n) = akm(m-1,1)          当m!=0,n=0<br>   akm(m,n) = akm(m-1,akm(m,n-1)) 当m!=0,n!=0<br>请写出递归算法。<br><strong><strong>**</strong></strong>/<br>int Akm(int m, int n)<br>/</em> 若 m<0或n<0则返回-1 *="" {="" if(m<0||n<0)="" return="" -1;="" if(m="=0)" n+1;="" else="" if(m!="0&&n==0)" akm(m-1,1);="" akm(m-1,akm(m,n-1))="" ;="" }="" **********="" 【题目】试写出求递归函数f(n)的非递归算法：="" f(n)="n+1" 当n="0">0<br><strong><strong>**</strong></strong>/<br>int F(int n)<br>/<em> 如果 n&lt;0则返回-1 </em>/<br>{   int i = n,count=1;<br>    if(n<0) return="" -1;="" else="" if(n="=0)" n+1;="" for(;i="">0;i=i/2)<br>         count = count<em>i ;<br>    return count;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】求解平方根 的迭代函数定义如下：<br>  sqrt(A,p,e) = p                   当|p</em>p-A|<e sqrt(a,p,e)="sqrt(A,(p+A/p)/2,e)" 当|p*p-a|="">=e<br>其中，p是A的近似平方根，e是结果允许误差。试写出相<br>应的非递归算法。<br><strong><strong>**</strong></strong>/<br>float Sqrt(float A, float p, float e)<br>{   float mp=p;<br>    if(fabs(p<em>p-A)&lt;e)<br>      return p;<br>      else<br>         while(fabs(mp</em>mp-A)&gt;=e)<br>         {<br>           mp=(mp+A/mp)/2 ;<br>         }<br>         return mp;<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】假设以二维数组g[1..m][1..n]表示一个图像<br>区域，g[i][j]表示该区域中点(i,j)所具颜色，其值<br>为从0到k的整数。试编写递归算法，将点(i0,j0)所在<br>区域的颜色置换为颜色c。约定与(i0,j0)同色的上、<br>下、左、右的邻接点为同色区域的点。<br><br>表示图像区域的类型定义如下：<br>typedef char GTYPE[m+1][n+1];<br><strong><strong>**</strong></strong>/<br>void ChangeColor(GTYPE g, int m, int n,<br>                 char c, int i0, int j0)<br>/<em> 在g[1..m][1..n]中，将元素g[i0][j0] </em>/<br>/<em> 所在的同色区域的颜色置换为颜色c    </em>/<br>{<br>   if(i0&gt;m||j0&gt;n)//初次调用时下标不合法<br>     {<br>         return;<br>     }<br>     int color;<br>     color=g[i0][j0];<br>     g[i0][j0]=c;<br>     if(i0-1&gt;=1)//判断是否越界，下同<br>     {<br>         if(g[i0-1][j0]==color)<br>         {<br>             ChangeColor(g,m,n,c,i0-1,j0);<br>         }<br>     }<br>     if(i0+1&lt;=m)<br>     {<br>         if(g[i0+1][j0]==color)<br>         {<br>             ChangeColor(g,m,n,c,i0+1,j0);<br>         }<br>     }<br>     if(j0-1&gt;=1)<br>     {<br>         if(g[i0][j0-1]==color)<br>         {<br>             ChangeColor(g,m,n,c,i0,j0-1);<br>         }<br>     }<br>     if(j0+1&lt;=n)<br>     {<br>         if(g[i0][j0+1]==color)<br>         {<br>             ChangeColor(g,m,n,c,i0,j0+1);<br>         }<br>     }<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】若两棵二叉树T1和T2皆为空，或者皆不空<br>且T1的左、右子树和T2的左、右子树分别相似，则<br>称二叉树T1和T2相似。试编写算法，判别给定两棵<br>二叉树是否相似。<br>二叉链表类型定义：<br>typedef struct BiTNode {<br>  TElemType  data;<br>  struct BiTNode  <em>lchild, </em>rchild;<br>} BiTNode, <em>BiTree;<br><strong><strong>**</strong></strong>/<br>Status Similar(BiTree T1, BiTree T2)<br>/</em> 判断两棵二叉树是否相似的递归算法 <em>/<br>{   if(T1==null&amp;&amp;null==T2) return true;<br>    else if(T1&amp;&amp;T2){<br>      if(ERROR==  Similar(T1-&gt;lchild, T2-&gt;lchild))return ERROR;<br>      if(ERROR==  Similar(T1-&gt;rchild, T2-&gt;rchild))return ERROR;<br>    }else return ERROR;<br>     return true;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】编写递归算法，求对二叉树T先序遍历时<br>第k个访问的结点的值。<br>二叉链表类型定义：<br>typedef struct BiTNode {<br>  TElemType data;<br>  struct BiTNode  </em>lchild, <em>rchild;<br>} BiTNode, </em>BiTree;<br><strong><strong>**</strong></strong>/<br>TElemType PreOrderK(BiTree T, int k)<br>/<em> 求对二叉树T先序遍历时第k个访问的结点的值。</em>/<br>/<em> 若失败，则返回’#’                         </em>/<br>{<br><br>    int i=0,count=0;  //i为循环变量、count为记录根结点的左子树的结点个数<br>    TElemType d;      //定义一个返回值变量d<br>    BiTree a[20],b;   //a[20]记录左子树的根结点,b为一个中间变量<br>    if(k&lt;=0||!T) return ‘#’; //当k为0或者T空时，没有找到结点，返回’#’<br>    if(k==1) return T-&gt;data; //当k从给定的数减到1时，表示找到，返回bt-&gt;data<br>    d=PreOrderK(T-&gt;lchild,k-1); //左子树递归<br>    if(d!=’#’)  //当找到T时，返回T<br>        return(d);<br>    b=T-&gt;lchild; //没有找到，继续找<br>    while(b||i)   //下面是计算左子树有多少个结点的算法，并记录在count中<br>    {<br>        if(b)    //当左子树非空时，<br>        {<br>            a[i]=b;  //记录第i个结点在a[i]中，用来计算本结点的右子树用的<br>            i++;     //计算下一个结点的序号<br>            b=b-&gt;lchild;  //对下一个结点操作<br>            count++;      //记录结点数<br>            }<br>        else<br>        {<br>            i–;   //如果b空，表示执行到最左的叶子，现在要找到上一个结点的右子树<br>            b=a[i]; //把上一个结点赋给b<br>            b=b-&gt;rchild; //使b指向右子树<br>        }<br>    }<br>    d=PreOrderK(T-&gt;rchild,k-count-1); //递归右子树,并返回k-count-1，表示要找的结点可能在右子树的第k-count-1的位置<br>    if(d!=’#’)    //对T判断，当T不为’#’时，表示找到，返回T<br>        return (d);<br>    else         //否则返回 ‘#’表示没有找到<br>        return ‘#’;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】编写递归算法，计算二叉树T中叶子结点的数目。<br>二叉链表类型定义：<br>typedef struct BiTNode {<br>  TElemType  data;<br>  struct BiTNode  <em>lchild, </em>rchild;<br>} BiTNode, <em>BiTree;<br><strong><strong>**</strong></strong>/<br><br>int Leaves(BiTree T)<br>/</em> 计算二叉树T中叶子结点的数目<em>/<br>{ if(!T) return 0; /</em>空树没有叶子<em>/<br>  else if(!T-&gt;lchild&amp;&amp;!T-&gt;rchild) return 1; /</em>叶子结点<em>/<br>  else return Leaves(T-&gt;lchild)+Leaves(T-&gt;rchild);/</em>左子树的叶子数加上右子树的叶子数<em>/<br><br>}<br><br><br>/<strong><strong>**</strong></strong><br>【题目】试利用栈及其基本操作写出二叉树T的非递归<br>的先序遍历算法。<br>二叉链表类型定义：<br>typedef struct BiTNode {<br>  TElemType  data;<br>  struct BiTNode  </em>lchild,<em>rchild;<br>} BiTNode, </em>BiTree;<br>可用栈类型Stack的相关定义：<br>typedef BiTree SElemType;   // 栈的元素类型<br>Status InitStack(Stack &amp;S);<br>Status StackEmpty(Stack S);<br>Status Push(Stack &amp;S, SElemType e);<br>Status Pop(Stack &amp;S, SElemType &amp;e);<br>Status GetTop(Stack S, SElemType &amp;e);<br><strong><strong>**</strong></strong>/<br><br>void PreOrder(BiTree T, void (<em>visit)(TElemType))<br>/</em> 使用栈，非递归先序遍历二叉树T，     <em>/<br>/</em> 对每个结点的元素域data调用函数visit <em>/<br>{   Stack s;<br>    InitStack(s);<br>    BiTree p = T;<br>    while(p){<br>      visit(p-&gt;data);<br>      if(p-&gt;rchild)<br>            Push(s,p-&gt;rchild);<br>      if(p-&gt;lchild)<br>            p = p-&gt;lchild;<br>       else<br>         if(StackEmpty(s)!=true) Pop(s, p);<br>         else<br>            p = null;<br>    }<br><br>}<br><br><br>/<strong><strong>**</strong></strong><br>【题目】试利用栈及其基本操作写出二叉树T的非递归<br>的后序遍历算法(提示：为分辨后序遍历时两次进栈的<br>不同返回点，需在指针进栈时同时将一个标志进栈）。<br>二叉链表类型定义：<br>typedef struct BiTNode {<br>  TElemType  data;<br>  struct BiTNode  </em>lchild,<em>rchild;<br>} BiTNode, </em>BiTree;<br>可用栈类型Stack的相关定义：<br>typedef struct {<br>  struct BiTNode <em>ptr; // 二叉树结点的指针类型<br>  int      tag; // 0..1<br>} SElemType;    // 栈的元素类型<br>Status InitStack(Stack &amp;S);<br>Status StackEmpty(Stack S);<br>Status Push(Stack &amp;S, SElemType e);<br>Status Pop(Stack &amp;S, SElemType &amp;e);<br>Status GetTop(Stack S, SElemType &amp;e);<br><strong><strong>**</strong></strong>/<br>void PostOrder(BiTree bt, void (</em>visit)(TElemType))<br>/<em> 使用栈，非递归后序遍历二叉树T，     </em>/<br>/<em> 对每个结点的元素域data调用函数visit </em>/<br>{<br>    Stack S;<br>    InitStack(S);<br>    SElemType e;<br>    BiTree p=bt;<br>    int tag=0;<br>    if(bt){<br>        e.tag=0;<br>        while(!StackEmpty(S)||p==bt){<br>            while(p&amp;&amp;!tag){<br>                e.ptr=p;<br>                if(p-&gt;lchild){//如果存在左子树<br>                p=p-&gt;lchild;<br>                e.tag=0;<br>                }<br>                else{//否则为右子树<br>                p=p-&gt;rchild;<br>                e.tag=1;<br>                }<br>            Push(S,e);<br>        }//while<br>        GetTop(S,e);<br>        if(!StackEmpty(S)&amp;&amp;e.tag){<br>            Pop(S,e); //叶子结点出栈<br>            p=e.ptr;<br>            visit(p-&gt;data);//输出该结点<br>        }<br>        if(!StackEmpty(S)){<br>            Pop(S,e); //得到上一层结点<br>            p=e.ptr;<br>            if(e.tag){//右子树已经入栈<br>                visit(p-&gt;data);<br>                p=NULL;<br>            }<br>            else{//右子树没入过栈<br>                if(p-&gt;rchild){<br>                    p=p-&gt;rchild;<br>                    tag=0;<br>                    e.tag=1;<br>                    Push(S,e);<br>                }<br>                else{//没有右子树<br>                    visit(p-&gt;data);<br>                    p=NULL;<br>                }<br>            }<br>        }<br>        else{//栈空则，p为NULL<br>            p=NULL;<br>        }<br>    }//while<br>  }//if<br>}<br><br><br>/<strong><strong>**</strong></strong><br>【题目】二叉树采用三叉链表的存储结构，试编写<br>不借助栈的非递归中序遍历算法。<br>三叉链表类型定义：<br>typedef struct TriTNode {<br>  TElemType data;<br>  struct TriTNode  <em>parent, </em>lchild, <em>rchild;<br>} TriTNode, </em>TriTree;<br><strong><strong>**</strong></strong>/<br>void InOrder(TriTree PT, void (<em>visit)(TElemType))<br>/</em> 不使用栈，非递归中序遍历二叉树PT，  <em>/<br>/</em> 对每个结点的元素域data调用函数visit <em>/<br>{<br>    TriTree p,pr;<br> if(PT!=NULL)<br> {<br>    p = PT;<br>    while(p!=NULL)<br>    { if(p-&gt;lchild==NULL) visit(p-&gt;data);<br>         //输出有右子树的结点<br>      if(p-&gt;lchild)  p = p-&gt;lchild;<br>      else<br>          if(p-&gt;rchild)  p = p-&gt;rchild;<br>          else<br>          {<br><br>           do{<br>                pr = p;<br>                p = p-&gt;parent;<br>                if(p-&gt;rchild!=pr)  //如果pr是p的右子树则不输出<br>                     visit(p-&gt;data);<br>              }while(p!=NULL&amp;&amp;(p-&gt;rchild==pr||NULL==p-&gt;rchild));<br>           if(p!=NULL)   p = p-&gt;rchild;<br>          }<br>    }<br> }<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】假设在三叉链表的结点中增设一个标志域<br>(mark取值0,1或2)以区分在遍历过程中到达该结点<br>时应继续向左或向右或访问该结点。试以此存储结<br>构编写不用栈辅助的二叉树非递归后序遍历算法。<br>带标志域的三叉链表类型定义：<br>typedef struct TriTNode {<br>  TElemType  data;<br>  struct TriTNode  </em>lchild, <em>rchild, </em>parent;<br>  int       mark;  // 标志域<br>} TriTNode, <em>TriTree;<br><strong><strong>**</strong></strong>/<br>void PostOrder(TriTree T, void (</em>visit)(TElemType))<br>/<em> 不使用栈，非递归后序遍历二叉树T，   </em>/<br>/<em> 对每个结点的元素域data调用函数visit </em>/<br>{<br>     TriTree p,pr;<br> if(T!=NULL)<br> {<br>    p = T;<br>    while(p!=NULL)<br>    {<br>      if(p-&gt;lchild)  p = p-&gt;lchild;<br>      else<br>          if(p-&gt;rchild)  p = p-&gt;rchild;<br>          else<br>          {<br>           do{<br>             pr = p;<br>             visit(pr-&gt;data);<br>             p = p-&gt;parent;<br>           }while(p!=NULL&amp;&amp;(p-&gt;rchild==pr||NULL==p-&gt;rchild));<br>           if(p!=NULL)   p = p-&gt;rchild;<br>          }<br>    }<br> }<br><br>}<br><br><br>/<strong><strong>**</strong></strong><br>【题目】编写递归算法，将二叉树中所有结点的<br>左、右子树相互交换。<br>二叉链表类型定义：<br>typedef struct BiTNode {<br>  TElemType data;<br>  struct BiTNode  <em>lchild, </em>rchild;<br>} BiTNode, <em>BiTree;<br><strong><strong>**</strong></strong>/<br>void ExchangeSubTree(BiTree &amp;T)<br>/</em> 将二叉树中所有结点的左、右子树相互交换 <em>/<br>{    BiTree p;<br>    if(!T) return;<br>    if(T-&gt;lchild) ExchangeSubTree(T-&gt;lchild);<br>    if(T-&gt;rchild) ExchangeSubTree(T-&gt;rchild);<br>    p = T-&gt;lchild;<br>    T-&gt;lchild = T-&gt;rchild;<br>    T-&gt;rchild = p;<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】编写递归算法：求二叉树中以元素值<br>为x的结点为根的子树的深度。<br>二叉链表类型定义：<br>typedef struct BiTNode {<br>  TElemType data;<br>  struct BiTNode  </em>lchild, <em>rchild;<br>} BiTNode, </em>BiTree;<br><strong><strong>**</strong></strong>/<br>int BirTreeDepth(BiTree T){<br>  int depthLeft,depthRight;<br>  if(null==T) return 0;<br>  else {<br>    depthLeft = BirTreeDepth(T-&gt;lchild);<br>    depthRight = BirTreeDepth(T-&gt;rchild);<br>    return 1+(depthLeft &gt; depthRight?depthLeft:depthRight);<br>  }<br>}<br>int Findx(BiTree T,BiTree &amp;p,TElemType x){<br>if(T){<br>if(T-&gt;data==x){<br>p=T;<br>return 0;<br>}<br>else{<br>Findx(T-&gt;lchild,p,x);<br>Findx(T-&gt;rchild,p,x);<br>}<br>}<br>}<br><br>int Depthx(BiTree T, TElemType x)<br>/<em> 求二叉树中以值为x的结点为根的子树深度</em>/<br>{<br>    BiTree p=NULL;<br>Findx(T,p,x);<br>return BirTreeDepth(p);<br>}<br><br><br>/<strong><strong>**</strong></strong><br>【题目】编写递归算法：对于二叉树中每一个元素值为x<br>的结点，删去以它为根的子树，并释放相应的空间。<br>二叉链表类型定义：<br>typedef struct BiTNode {<br>  TElemType data;<br>  struct BiTNode  <em>lchild, </em>rchild;<br>} BiTNode, <em>BiTree;<br><strong><strong>**</strong></strong>/<br>void Destroy(BiTree &amp;T){<br> if(T){<br>    Destroy(T-&gt;lchild);<br>    Destroy(T-&gt;rchild);<br>    free(T);<br> }<br>}<br>/</em>BiTree find(BiTree &amp;T, char x){<br>   if(!T) return null;<br>   if(T-&gt;data == x) return T;<br>   find(T-&gt;lchild,x); find(T-&gt;rchild,x);<br>}       <em>/<br><br>void ReleaseX(BiTree &amp;T, char x)<br>/</em> 对于二叉树T中每一个元素值为x的结点，<em>/<br>/</em> 删去以它为根的子树，并释放相应的空间 <em>/<br>{<br>    if(!T) return ;<br>    if(T-&gt;data==x)<br>    Destroy(T);<br>    ReleaseX(T-&gt;lchild, x);<br>      ReleaseX(T-&gt;rchild, x);<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】编写复制一棵二叉树的递归算法。<br>二叉链表类型定义：<br>typedef char TElemType; // 设二叉树的元素为char类型<br>typedef struct BiTNode {<br>  TElemType data;<br>  struct BiTNode  </em>lchild, <em>rchild;<br>} BiTNode, </em>BiTree;<br><strong><strong>**</strong></strong>/<br>void CopyBiTree(BiTree T, BiTree &amp;TT)<br>/<em> 递归复制二叉树T得到TT </em>/<br>{<br>    if(!T) return ;<br>     TT = (BiTree)malloc(sizeof(BiTNode));<br>     if(!TT) return ;<br>     TT-&gt;data = T-&gt;data;<br>     if(T-&gt;lchild) CopyBiTree(T-&gt;lchild,TT-&gt;lchild);<br>     if(T-&gt;rchild) CopyBiTree(T-&gt;rchild,TT-&gt;rchild);<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】编写算法判别给定二叉树是否为完全二叉树。<br>二叉链表类型定义：<br>typedef struct BiTNode {<br>  TElemType data;<br>  struct BiTNode  <em>lchild, </em>rchild;<br>} BiTNode, <em>BiTree;<br>可用队列类型Queue的相关定义：<br>typedef BiTree QElemType; // 设队列元素为二叉树的指针类型<br>Status InitQueue(Queue &amp;Q);<br>Status EnQueue(Queue &amp;Q, QElemType e);<br>Status DeQueue(Queue &amp;Q, QElemType &amp;e);<br>Status GetHead(Queue Q, QElemType &amp;e);<br>Status QueueEmpty(Queue Q);<br><strong><strong>**</strong></strong>/<br><br>Status CompleteBiTree(BiTree bt)<br>/</em> 判别二叉树T是否为完全二叉树<em>/<br>{  Queue Q;<br>     QElemType p;<br>     int tag=0;<br>     EnQueue(Q,bt);<br>     while(!QueueEmpty(Q))<br>     {<br>       DeQueue(Q,p);<br>       if(!p) tag=1;       //如果到最后输出都为空，表示已经遍历完成，确认是完全树<br>       else if(tag) return ERROR;<br>       else<br>       {<br>       EnQueue(Q,p-&gt;lchild);<br>       EnQueue(Q,p-&gt;rchild);<br>       }<br>     }<br>     return OK;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试编写一个二叉排序树的判定算法。<br>二叉排序树的类型BSTree定义如下：<br>typedef struct {<br>  KeyType key;<br>  … …   // 其他数据域<br>} TElemType;<br>typedef struct BiTNode {<br>  TElemType data;<br>  struct BSTNode  </em>lchild, <em>rchild;<br>}BSTNode, </em>BSTree;<br><strong><strong>**</strong></strong>/<br>Status IsBSTree(BSTree t)<br>/<em> 判别二叉树T是否为二叉排序树。</em>/<br>/<em> 若是，则返回TRUE，否则FALSE  </em>/<br>{<br>    BSTree p,q;<br> if(t)<br>  {    p=t-&gt;lchild;<br>       q=t-&gt;rchild;<br>  if(p&amp;&amp;p-&gt;data.key&gt;=t-&gt;data.key)<br>    return FALSE;<br>  if(q&amp;&amp;q-&gt;data.key&lt;=t-&gt;data.key)<br>    return FALSE;<br><br>    if (IsBSTree(p))<br>     return IsBSTree(q);<br>     return FALSE;<br><br>  }<br>  return TRUE;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】编写递归算法，从大到小输出给定二叉排序树<br>中所有关键字不小于x的数据元素。<br>二叉排序树的类型BSTree定义如下：<br>typedef struct {<br>    KeyType key;<br>    … …   // 其他数据域<br>} TElemType;<br>typedef struct BSTNode {<br>  TElemType  data;<br>  struct BSTNode  <em>lchild,</em>rchild;<br>}BSTNode, <em>BSTree;<br><strong><strong>**</strong></strong>/<br>void OrderOut(BSTree t, KeyType x, void(</em>visit)(TElemType))<br>/<em> 调用visit(T-&gt;data)输出  </em>/<br>{  KeyType key = t-&gt;data.key;<br><br>    if(!t)<br>    {<br>        return;<br>    }<br>    if(key&gt;=x)<br>    {<br>        OrderOut(t-&gt;rchild,x,visit);<br>        visit(t-&gt;data);<br>        OrderOut(t-&gt;lchild,x,visit);<br>    }<br>    else<br>    {<br>        OrderOut(t-&gt;rchild,x,visit);<br>    }<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试写一非递归算法，在二叉查找树T中插入元素e。<br>二叉查找树的类型BSTree定义如下：<br>typedef struct {<br>  KeyType key;<br>    … …   // 其他数据域<br>} TElemType;<br>typedef struct BSTNode {<br>  TElemType data;<br>  struct BSTNode  <em>lchild,</em>rchild;<br>} BSTNode, <em>BSTree;<br><strong><strong>**</strong></strong>/<br>Status InsertBST_I(BSTree &amp;T, TElemType k)<br>/</em> 在二叉查找树T中插入元素e的非递归算法<em>/<br>{  BSTree p,L,q = T ;<br>  p = (BSTree)malloc(sizeof(BSTNode));<br>  if(p == NULL)   return FALSE;<br>  p-&gt;data = k;  p-&gt;lchild = NULL; p-&gt;rchild = NULL;<br>  while(q!=NULL)<br>  {<br>    if(q-&gt;data.key == k.key)   return FALSE;<br>    if(q-&gt;data.key &gt; k.key)<br>        {<br>         if(q-&gt;lchild!=NULL)    q = q-&gt;lchild;<br>          else                  q-&gt;lchild = p;<br>        }<br>    if(q-&gt;data.key &lt; k.key)<br>        {<br>         if(q-&gt;rchild!=NULL)    q = q-&gt;rchild;<br>          else                  q-&gt;rchild = p;<br>         }<br>  }<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试编写算法，求二叉树T中结点a和b的最近共同祖先。<br>二叉链表类型定义：<br>typedef struct BiTNode {<br>  TElemType data;<br>  struct BiTNode  </em>lchild,<em>rchild;<br>} BiTNode, </em>BiTree;<br>可用栈类型Stack的相关定义：<br>typedef struct {<br>  BiTNode <em>ptr; // 二叉树结点的指针类型<br>  int      tag; // 0..1<br>} SElemType;      // 栈的元素类型<br>Status InitStack(Stack &amp;S);<br>Status StackEmpty(Stack S);<br>int StackLength(SqStack S);<br>Status Push(Stack &amp;S, SElemType e);<br>Status Pop(Stack &amp;S, SElemType &amp;e);<br>Status GetTop(Stack S, SElemType &amp;e);<br><strong><strong>**</strong></strong>/<br> void findElem(BiTree T,TElemType e,Stack &amp;s)<br>{<br>    BiTree t=T;<br>    BiTNode </em>bip;<br>    SElemType se;<br>    while(t)<br>    {<br>        while(t-&gt;lchild)<br>        {<br>            if(t-&gt;data==e) return ;<br>            se.ptr=t;se.tag=1;<br>            Push(s,se);<br>            t=t-&gt;lchild;<br>        }<br>        if(t-&gt;data==e) return ;<br>        if(t-&gt;rchild) {se.ptr=t;se.tag=1;Push(s,se);t=t-&gt;rchild;}<br>        else<br>        {<br>            bip=t;Pop(s,se);t=se.ptr;<br>            while(t-&gt;rchild==bip||!t-&gt;rchild)<br>            {<br>                bip=t;<br>                if(t!=T) {Pop(s,se);t=se.ptr;}<br>                else return;<br>            }<br>            se.ptr=t;se.tag=1;<br>            Push(s,se);<br>            t=t-&gt;rchild;<br>        }<br>    }<br>}<br><br><br><br>BiTree CommAncestor(BiTree T, TElemType a, TElemType b)<br>/<em> 求二叉树T中结点a和b的最近共同祖先</em>/<br>{   Stack sa,sb,st;<br>    SElemType sea,seb;<br>    BiTree bi,bii;<br><br>    InitStack(sa);InitStack(sb);InitStack(st);<br>    findElem(T,a,sa);<br>    findElem(T,b,sb);<br><br>    while(!StackEmpty(sa))<br>    {<br>        Pop(sa,sea);<br>        bi=sea.ptr;<br>        st=sb;<br>        while(!StackEmpty(st))<br>        {<br>            Pop(st,seb);<br>            bii=seb.ptr;<br>            if(bi-&gt;data==bii-&gt;data)return bi;<br>        }<br>    }<br><br>}<br><br><br>/<strong><strong>**</strong></strong><br>【题目】在二叉排序树的每个结点中增设一个lsize域，<br>其值为该结点的左子树中的结点数加1。试编写时间复杂<br>度为O(logn)的算法，求树中第k小的结点的位置。<br>二叉排序树的类型BSTree定义如下：<br>typedef char KeyType;<br><br>typedef struct BSTNode {<br>  KeyType key;<br>  struct BSTNode  <em>lchild,</em>rchild;<br>  int lsize; // 新增域，值为左子树的结点数+1<br>} BSTNode, <em>BSTree;<br><strong><strong>**</strong></strong>/<br><br><br>BSTNode </em>Ranking(BSTree T, int k)<br>/<em> 在含lsize域的二叉排序树T中，</em>/<br>/<em> 求指向T中第k小的结点的指针  </em>/<br>{  if(!T) return null;<br>    if(T-&gt;lsize==k) return T;<br>    else if(T-&gt;lsize&gt;k) return Ranking(T-&gt;lchild, k) ;<br>         else return Ranking(T-&gt;rchild, k-T-&gt;lsize);<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】假设二叉排序树T的每个结点的平衡因子域bf当前<br>均为0。试编写算法，求二叉排序树T的深度，并为每个结点<br>的bf域赋予正确的平衡因子值。<br>平衡二叉排序树的类型BBSTree定义如下：<br>typedef char KeyType;<br>typedef struct BBSTNode {<br>  KeyType key;<br>  int bf;    // 平衡因子<br>  struct BBSTNode  <em>lchild,</em>rchild;<br>} BBSTNode, <em>BBSTree;<br><strong><strong>**</strong></strong>/<br>/</em>int depth(BBSTree t){<br>     int l;<br>     int r;<br>     if(!t) return 0;<br>     else {<br>       l = depth(t-&gt;lchild);<br>       r = depth(t-&gt;rchild);<br>       return 1+(l&gt;r?l:r);<br>     }<br>}  <em>/<br><br>int Depth_BF(BBSTree T)<br>/</em> 求二叉排序树T的深度，并为每个结点<em>/<br>/</em> 的bf域赋予正确的平衡因子值。      <em>/<br>{   int l,r;<br>    if(!T) return 0;<br>    else {<br>     l = Depth_BF(T-&gt;lchild);<br>     r = Depth_BF(T-&gt;rchild);<br>     T-&gt;bf = l-r;<br>    return 1+(l&gt;r?l:r);<br>    }<br>}<br><br><br>/<strong><strong>**</strong></strong><br>【题目】编写平衡二叉排序树的右平衡处理算法。<br>平衡二叉排序树的类型BBSTree定义如下：<br>typedef char KeyType;<br>typedef struct BBSTNode {<br>  KeyType key;<br>  int  bf;    // 平衡因子<br>  struct BBSTNode  </em>lchild,<em>rchild;<br>} BBSTNode, </em>BBSTree;<br>可调用下列旋转调整操作：<br>void L_Rotate(BBSTree &amp;p); // 对最小失衡子树p做左旋调整<br>void R_Rotate(BBSTree &amp;p); // 对最小失衡子树p做右旋调整<br><strong><strong>**</strong></strong>/<br><br>void RightBalance(BBSTree &amp;T)<br>/<em> 实现对二叉树T的右平衡处理</em>/<br>{<br>    BBSTree lc,rd;<br>   rd = T-&gt;rchild;<br>   switch(rd-&gt;bf){<br>       case RH:<br>            T-&gt;bf = rd-&gt;bf = EH; L_Rotate(T); break;<br>       case LH:<br>            lc = rd-&gt;lchild;<br>            switch(lc-&gt;bf){<br>              case LH: T-&gt;bf = EH;  lc-&gt;bf = EH; break;<br>              case EH: T-&gt;bf = rd-&gt;bf = EH;break;<br>              case RH: T-&gt;bf=LH; lc-&gt;bf = EH; break;<br>            }<br>           lc-&gt;bf=EH;<br>           R_Rotate(T-&gt;rchild);<br>           L_Rotate(T);<br>           break;<br>   }<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试编写算法，对一棵以孩子兄弟链表表示<br>的树统计叶子的个数。<br>孩子兄弟链表类型定义：<br>typedef struct CSTNode {<br>  TElemType  data;<br>  struct CSTNode  <em>firstChild, </em>nextSibling;<br>} CSTNode, <em>CSTree;<br><strong><strong>**</strong></strong>/<br>void Count(CSTree T, int &amp;n){<br>   if(T){<br>     if(!T-&gt;firstChild) n++;<br>     Count(T-&gt;firstChild, n);<br>     Count(T-&gt;nextSibling, n);<br>   }<br>}<br><br>int Leave(CSTree T) /</em> 统计树T的叶子数<em>/<br>{<br>    int n =0;<br>    Count(T , n);<br>    return n;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】试编写算法，求一棵以孩子兄弟链表表示的树的度。<br>孩子兄弟链表类型定义：<br>typedef struct CSTNode {<br>  TElemType  data;<br>  struct CSTNode  </em>firstChild, <em>nextSibling;<br>} CSTNode, </em>CSTree;<br><strong><strong>**</strong></strong>/<br><br>int Degree(CSTree T) /<em> 求树T的度</em>/<br>{<br>   int ds,dt,d;<br>   CSTree p;<br>   if(!T) return 0;<br>   else { ds=0;dt=0;<br>       for( p = T-&gt;firstChild; p ; p= p-&gt;nextSibling){<br>          dt++;<br>          d= Degree(p);<br>          if(d&gt;ds) ds =d;<br>       }<br><br>       return ds&gt;dt?ds:dt;<br>   }<br><br>}<br><br><br>/<strong><strong>**</strong></strong><br>【题目】试编写算法，对以双亲表示法存储的树计算深度。<br>typedef struct {<br>  TElemType data;<br>  int     parent;  // 双亲位置<br>} PTNode; // 结点类型<br>typedef struct {<br>  PTNode nodes[MAX_TREE_SIZE]; // 结点存储空间<br>  int  n, r; // 结点数和根的位置<br>} PTree;<br><strong><strong>**</strong></strong>/<br>int PTreeDepth(PTree T) /<em> 求树T的深度</em>/<br>{<br> int maxdep = 0,i,dep,j;<br> for(i=0; i<t.n;i++){ dep="0;" for(j="i;" j="">0; j=T.nodes[j].parent) dep++;<br>      if(dep&gt;maxdep) maxdep = dep;<br> }<br>  return maxdep+1;<br><br>}<br><br><br>/<strong><strong>**</strong></strong><br>【题目】试编写算法，对以双亲孩子表示法存储的树计算深度。<br>孩子链表类型定义：<br>typedef struct ChildNode {  // 孩子结点<br>  int childIndex;<br>  struct ChildNode <em>nextChild;<br>} ChildNode; // 孩子结点类型<br>typedef struct  {<br>  TElemType data;<br>  int     parent;  // 双亲位置<br>  struct ChildNode </em>firstChild; // 孩子链表头指针<br>} PCTreeNode; // 结点类型<br>typedef struct {<br>  PCTreeNode <em>nodes; // 结点存储空间<br>  int  n, r; // 结点数和根的位置<br>} PCTree;<br><strong><strong>**</strong></strong>/<br><br> int fun(PCTree T, int pos)<br>{<br>   if(T.nodes[pos].firstChild == NULL)  return 1;<br>   ChildNode </em>temp = T.nodes[pos].firstChild;<br>   int depth = 1, max = 1;<br><br>   while(temp != NULL)<br>   {<br>      if( T.nodes[temp-&gt;childIndex].firstChild != NULL)<br>      {<br>        depth = fun(T, temp-&gt;childIndex);<br>        if(depth &gt; max)<br>        max = depth;<br>      }<br>      temp = temp-&gt;nextChild;<br>   }<br><br>   return max + 1;<br><br>}<br>int PCTreeDepth(PCTree T) /<em> 求树T的深度</em>/<br>{<br>    int depth;<br>   depth = fun(T, T.r);<br>   return depth;<br>}<br><br><br>/<strong><strong>**</strong></strong><br>【题目】试编写算法，对以孩子-兄弟链表表示的树计算深度。<br>孩子兄弟链表类型定义：<br>typedef struct CSTNode {<br>  TElemType  data;<br>  struct CSTNode  <em>firstChild, </em>nextSibling;<br>} CSTNode, <em>CSTree;<br><strong><strong>**</strong></strong>/<br>int TreeDepth(CSTree T)<br>/</em> 求树T的深度<em>/<br>{<br>     int dep1,dep2,dep;<br>     if(!T) dep=0;<br>     else{<br>        dep1 =   TreeDepth(T-&gt;firstChild);<br>        dep2 = TreeDepth(T-&gt;nextSibling);<br>        dep = dep1+1&gt;dep2?dep1+1:dep2;<br>     }<br>     return dep;<br>}<br><br><br>/<strong><strong>**</strong></strong><br>【题目】已知一棵树的由根至叶子结点按层次输出的<br>结点序列及每个结点的度。试编写算法，构造此树的<br>孩子兄弟链表。<br>孩子兄弟链表类型定义：<br>typedef struct CSTNode {<br>  TElemType  data;<br>  struct CSTNode  </em>firstChild, <em>nextSibling;<br>} CSTNode, </em>CSTree;<br><strong><strong>**</strong></strong>/<br>CSTree CreateCSTNode(char e) {<br>    CSTNode <em>p = NULL;<br>    p = (CSTNode</em>)malloc(sizeof(CSTNode));<br>    p-&gt;data = e;<br>    p-&gt;firstChild = NULL;<br>    p-&gt;nextSibling = NULL;<br>    return p;<br>}<br><br><br>void BuildCSTree(CSTree &amp;T, char <em>node, int </em>degree)<br>/<em> 由结点的层序序列node和各结点的度degree构造树的孩子兄弟链表T </em>/<br>{<br>    int i, j, present=1;<br>    CSTree Tree[50];<br><br>    if(NULL == node) {<br>        return;<br>    }<br>    Tree[0] = CreateCSTNode(node[0]);<br>    T = Tree[0];<br>    for(i=0; node[i]!=’\0’; i++) {<br>        if(degree[i]!=0) {<br>            Tree[present] = CreateCSTNode(node[present]);<br>            Tree[i]-&gt;firstChild = Tree[present];<br>            present ++;<br>            for(j=2; j&lt;=degree[i]; j++) {<br>                Tree[present] = CreateCSTNode(node[present]);<br>                Tree[present-1]-&gt;nextSibling = Tree[present];<br>                present ++;<br>            }<br>        }<br>    }<br>}<br><br><br>/<strong><strong>**</strong></strong><br>【题目】试编写非递归算法，实现并查集带路径压缩的<br>查找操作。<br>并查集的类型定义如下：<br>typedef struct {<br>  int <em>parent;<br>  int  n;<br>} MFSet;<br><strong><strong>**</strong></strong>/<br>int find(MFSet S, int i)<br>/</em> 并查集带路径压缩的查找的非递归实现 <em>/<br>{   if(i<0||i>=S.n) return -1;<br>    if(S.parent[i]&lt;0) return i;<br>    S.parent[i] = find(S,S.parent[i]);<br>     return S.parent[i];<br>}<br><br><br>/<strong><strong>**</strong></strong><br>【题目】编写算法，创建有向图的邻接数组存储结构。<br>图的邻接数组存储结构的类型定义如下：<br>#define UNVISITED  0<br>#define VISITED    1<br>#define MAX_VEX_NUM  4<br>#define INFINITY MAXINT // 计算机允许的整数最大值，即∞<br>typedef int VRType;<br>typedef char InfoType;<br>typedef char VexType;<br>typedef enum {DG,DN,UDG,UDN} GraphKind; // 有向图,有向网,无向图,无向网<br>typedef struct {<br>    VRType adj; // 顶点关系类型。对无权图，用1(是)或0(否)表示相邻否；<br>                // 对带权图，则为权值类型<br>    InfoType </0||i></em>info; // 该弧相关信息的指针(可无)<br>}ArcCell;//,AdjMatrix[MAX_VERTEX_NUM][MAX_VERTEX_NUM];<br>typedef struct {<br>  ArcCell arcs[MAX_VEX_NUM][MAX_VEX_NUM]; // 关系数组<br>  VexType vexs[MAX_VEX_NUM]; // 顶点数组<br>  int n, e;   // 顶点数和边（弧）数<br>  GraphKind kind; // 图的类型<br>} MGraph; // 邻接数组类型<br>typedef struct {<br>  VexType v, w;<br>  int inf;<br>} ArcInfo;<br>可调用以下基本操作：<br>Status InitGraph(MGraph &amp;G, GraphKind kind, int n);<br>  // 初始化含n个顶点空间的kind类的空图G<br>int LocateVex(MGraph G, VexType v); // 查找顶点v在图G中的位序<br><strong><strong>**</strong></strong>/<br>Status CreateDG(MGraph &amp;G, VexType <em>vexs, int n,<br>                           ArcInfo </em>arcs, int e)<br>/<em> 创建含n个顶点和e条边的有向图G，vexs为顶点信息，arcs为边信息</em>/<br>{  int i,j,k;<br>    VexType v,w;<br>    if((OVERFLOW==InitGraph(G, G.kind, n))) return ERROR;<br>    G.n = n;G.e = e;<br>    for(i = 0; i<g.n; 0="" 1="" 4="" i++)="" g.vexs[i]="vexs[i];" for(k="0;" k<g.e;="" k++){="" v="arcs[k].v;" w="arcs[k].w;" i="LocateVex(G," v);="" j="LocateVex(G," w);="" if(i<0="" ||="" j<0)="" return="" error;="" g.arcs[i][j].adj="1;" }="" ok;="" **********="" 【题目】编写算法，在图g中，相对于k顶点的当前="" 邻接顶点m顶点，求下一个邻接顶点。="" 图的邻接数组存储结构的类型定义如下：="" #define="" unvisited="" visited="" max_vex_num="" infinity="" maxint="" 计算机允许的整数最大值，即∞="" typedef="" int="" vrtype;="" char="" infotype;="" vextype;="" enum="" {dg,dn,udg,udn}="" graphkind;="" 有向图,有向网,无向图,无向网="" struct="" {="" vrtype="" adj;="" 顶点关系类型。对无权图，用1(是)或0(否)表示相邻否；="" 对带权图，则为权值类型="" infotype="" *info;="" 该弧相关信息的指针(可无)="" }arccell;="" ,adjmatrix[max_vertex_num][max_vertex_num];="" arccell="" arcs[max_vex_num][max_vex_num];="" 关系数组="" vextype="" vexs[max_vex_num];="" 顶点数组="" n,="" e;="" 顶点数和边（弧）数="" graphkind="" kind;="" 图的类型="" mgraph;="" 邻接数组类型="" nextadjvex(mgraph="" g,="" k,="" m)="" *="" 在图g中，相对于k顶点的当前邻接顶点m顶点，求下一个邻接顶点*="" i;="" if(k="=0&&m==0)" 0;="" for(="" i<g.n;="" +1="" if(g.arcs[k][i].adj)="" if(i="=" (g.n-1))="" -1;="" 【题目】编写算法，在图g中置顶点v到顶点w的弧或边。="" 可调用以下基本操作：="" locatevex(mgraph="" 查找顶点v在图g中的位序="" status="" setarc(mgraph="" &g,="" v,="" w,="" info)="" 在图g中置顶点v到顶点w的弧或边*="" i,j;="" <="" j)="" if(g.arcs[i][j].adj="=" 1)="" true;="" else{="" g.arcs[i][j].info="info.info;" g.e="" +="1;" 【题目】编写算法，计算以邻接表方式存储的有向图g中k顶点的出度。="" 图的邻接表存储结构的类型定义如下：="" adjvexnode="" adjvex;="" 邻接顶点在顶点数组中的位序="" *next;="" 指向下一个邻接顶点（下一条边或弧）="" info;="" 存储边（弧）相关信息，对于非带权图可不用="" adjvexnode,="" *adjvexnodep;="" 邻接链表的结点类型="" vexnode="" data;="" 顶点值，vextype是顶点类型，由用户定义="" *firstarc;="" 邻接链表的头指针="" vexnode;="" 顶点数组的元素类型="" *vexs;="" 顶点数组，用于存储顶点信息="" *tags;="" 标志数组="" algraph;="" 邻接表类型="" outdegree(algraph="" k)="" 求有向图g中k顶点的出度。若k顶点不存在，则返回-1="" i,j="0;" adjvexnodep="" p;="" if(k<0||k="">=G.n)    return -1;<br> if(G.vexs[k].firstArc != NULL)<br>    p = G.vexs[k].firstArc;<br> for( ; p!=NULL;p = p-&gt;next)<br>   {<br>     j++;<br>   }<br>   return j;<br><br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】编写算法，计算以邻接表方式存储的有向图G中<br>k顶点的入度。<br>图的邻接表存储结构的类型定义如下：<br>#define UNVISITED  0<br>#define VISITED    1<br>#define INFINITY MAXINT // 计算机允许的整数最大值，即∞<br>typedef char VexType;<br>typedef enum {DG,DN,UDG,UDN} GraphKind; // 有向图,有向网,无向图,无向网<br>typedef struct AdjVexNode {<br>  int adjvex;  // 邻接顶点在顶点数组中的位序<br>  struct AdjVexNode <em>next; // 指向下一个邻接顶点（下一条边或弧）<br>  int info;    // 存储边（弧）相关信息，对于非带权图可不用<br>} AdjVexNode, </em>AdjVexNodeP; // 邻接链表的结点类型<br>typedef struct VexNode {<br>  VexType data;    // 顶点值，VexType是顶点类型，由用户定义<br>  struct AdjVexNode <em>firstArc; // 邻接链表的头指针<br>} VexNode; // 顶点数组的元素类型<br>typedef struct {<br>  VexNode </em>vexs;  // 顶点数组，用于存储顶点信息<br>  int n, e;       // 顶点数和边（弧）数<br>  GraphKind kind; // 图的类型<br>  int <em>tags;      // 标志数组<br>} ALGraph;  // 邻接表类型<br><strong><strong>**</strong></strong>/<br>int inDegree(ALGraph G, int k)<br>/</em> 求有向图G中k顶点的入度。若k顶点不存在，则返回-1 <em>/<br>{<br>    int i ,j;<br>  AdjVexNodeP p;<br>  if(k<0||k>=G.n)  return -1;<br>  for(i = 0,j=0;i<g.n;i++) {="" if(g.vexs[i].firstarc="" !="NULL)" p="G.vexs[i].firstArc;" for(="" ;="" p!="NULL;p" =="" p-="">next)<br>         if(p-&gt;adjvex == k)<br>             j++;<br>   }<br>  }<br>  return j;<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】编写算法，创建有向图的邻接表存储结构。<br>图的邻接表存储结构的类型定义如下：<br>#define UNVISITED  0<br>#define VISITED    1<br>#define MAX_VEX_NUM  4<br>#define INFINITY MAXINT // 计算机允许的整数最大值，即∞<br>typedef char VexType;<br>typedef enum {DG,DN,UDG,UDN} GraphKind; // 有向图,有向网,无向图,无向网<br>typedef struct AdjVexNode {<br>  int adjvex;  // 邻接顶点在顶点数组中的位序<br>  struct AdjVexNode </g.n;i++)></0||k></em>next; // 指向下一个邻接顶点（下一条边或弧）<br>  int info;    // 存储边（弧）相关信息，对于非带权图可不用<br>} AdjVexNode, <em>AdjVexNodeP; // 邻接链表的结点类型<br>typedef struct VexNode {<br>  VexType data;    // 顶点值，VexType是顶点类型，由用户定义<br>  struct AdjVexNode </em>firstArc; // 邻接链表的头指针<br>} VexNode; // 顶点数组的元素类型<br>typedef struct {<br>  VexNode vexs[MAX_VEX_NUM];  // 顶点数组，用于存储顶点信息<br>  int n, e;       // 顶点数和边（弧）数<br>  GraphKind kind; // 图的类型<br>  int <em>tags;      // 标志数组<br>} ALGraph;  // 邻接表类型<br><br>可调用以下基本操作：<br>int LocateVex(ALGraph G, VexType v); // 查找顶点v在图G中的位序<br><strong><strong>**</strong></strong>/<br>Status CreateDG(ALGraph &amp;G, VexType </em>vexs, int n,<br>                            ArcInfo <em>arcs, int e)<br>/</em> 创建含n个顶点和e条边的有向图G，vexs为顶点信息，arcs为边信息<em>/<br>{<br>    int i,j,k;<br>   VexType v,w;<br>   AdjVexNodeP p;<br>   G.n = n; G.e = e;<br>  // G.vexs = (VexNode</em>)malloc(sizeof(VexNode)<em>n);<br>   G.tags = (int</em>)malloc(sizeof(int)<em>n);<br>   for(i = 0;i&lt;G.n;i++)<br>    {<br>      G.tags[i] = UNVISITED;<br>      G.vexs[i].data = vexs[i];<br>      G.vexs[i].firstArc = NULL;<br>    }<br>   for(k = 0;k&lt;G.e;k++)<br>   {<br>     v = arcs[k].v;  w=arcs[k].w;<br>     i = LocateVex(G,v);    j = LocateVex(G,w);<br>     if(i&lt;0||j&lt;0) return ERROR;<br><br>     p = (AdjVexNode</em>)malloc(sizeof(AdjVexNode));<br>     if(NULL == p)  return ERROR;<br>     p-&gt;adjvex = j;<br>     p-&gt;next = G.vexs[i].firstArc;<br>     G.vexs[i].firstArc = p;<br><br>   }<br>}<br><br>/<strong><strong>**</strong></strong><br>【题目】编写算法，创建无向图的邻接表存储结构。<br>图的邻接表存储结构的类型定义如下：<br>#define UNVISITED  0<br>#define VISITED    1<br>#define MAX_VEX_NUM  4<br>#define INFINITY MAXINT // 计算机允许的整数最大值，即∞<br>typedef char VexType;<br>typedef enum {DG,DN,UDG,UDN} GraphKind; // 有向图,有向网,无向图,无向网<br>typedef struct AdjVexNode {<br>  int adjvex;  // 邻接顶点在顶点数组中的位序<br>  struct AdjVexNode <em>next; // 指向下一个邻接顶点（下一条边或弧）<br>  int info;    // 存储边（弧）相关信息，对于非带权图可不用<br>} AdjVexNode, </em>AdjVexNodeP; // 邻接链表的结点类型<br>typedef struct VexNode {<br>  VexType data;    // 顶点值，VexType是顶点类型，由用户定义<br>  struct AdjVexNode <em>firstArc; // 邻接链表的头指针<br>} VexNode; // 顶点数组的元素类型<br>typedef struct {<br>  VexNode vexs[MAX_VEX_NUM]; //</em>vexs; 顶点数组，用于存储顶点信息<br>  int n, e;       // 顶点数和边（弧）数<br>  GraphKind kind; // 图的类型<br>  int <em>tags;      // 标志数组<br>} ALGraph;  // 邻接表类型<br><br>可调用以下基本操作：<br>int LocateVex(ALGraph G, VexType v); // 查找顶点v在图G中的位序<br><strong><strong>**</strong></strong>/<br>Status CreateUDG(ALGraph &amp;G, VexType </em>vexs, int n,<br>                            ArcInfo <em>arcs, int e)<br>/</em> 创建含n个顶点和e条边的无向图G，vexs为顶点信息，arcs为边信息<em>/<br>{<br>   int i,j,k;<br>   VexType v,w;<br>   AdjVexNodeP p,q;<br>   G.n = n; G.e = e;<br>  // G.vexs = (VexNode</em>)malloc(sizeof(VexNode)<em>n);<br>   G.tags = (int</em>)malloc(sizeof(int)<em>n);<br>   for(i = 0;i&lt;G.n;i++)<br>    {<br>      G.tags[i] = UNVISITED;<br>      G.vexs[i].data = vexs[i];<br>      G.vexs[i].firstArc = NULL;<br>    }<br>   for(k = 0;k&lt;G.e;k++)<br>   {<br>     v = arcs[k].v;  w=arcs[k].w;<br>     i = LocateVex(G,v);    j = LocateVex(G,w);<br>     if(i&lt;0||j&lt;0) return ERROR;<br>     p = (AdjVexNode</em>)malloc(sizeof(AdjVexNode));<br>     if(NULL == p)  return ERROR;<br>     p-&gt;adjvex = j;<br>     p-&gt;next = G.vexs[i].firstArc;<br>     G.vexs[i].firstArc = p;<br><br><br>      q = (AdjVexNode*)malloc(sizeof(AdjVexNode));<br>     if(NULL == q)  return ERROR;<br>     q-&gt;adjvex = i;<br>     q-&gt;next = G.vexs[j].firstArc;<br>     G.vexs[j].firstArc = q;<br>   }<br>}<br></g.n;></t.n;i++){></e></0)></0或n<0则返回-1></e></0则返回-1></0或n<0则返回-1></ht.size;i++){></i)></i)></p.length;></5;j++)></b)></html>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/22/数据结构题目/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-怎么将GitHub中的项目导入Eclipse" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/13/怎么将GitHub中的项目导入Eclipse/">怎么将GitHub中的项目导入Eclipse</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/13/怎么将GitHub中的项目导入Eclipse/" class="archive-article-date">
+  	<time datetime="2017-11-13T14:44:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p><img src="https://i.imgur.com/90Wz7MS.jpg" alt=""></p>
+<h1 id="导入项目"><a href="#导入项目" class="headerlink" title="导入项目"></a>导入项目</h1><p>首先我们再Eclipse中打开Git视图，如图打开，选择Git，点击OK<br><img src="https://i.imgur.com/icFtWCT.png" alt=""><br><img src="https://i.imgur.com/YXqbWSC.png" alt=""><br>然后找到clone a Git Repository,如图红色框所指<br><img src="https://i.imgur.com/3blIquh.png" alt=""><br><img src="https://i.imgur.com/6yfAS7Y.png" alt=""><br>点击然后会出现如下界面，URL那一栏需要填写你要克隆的项目的地址，我们随便去GitHub上找个项目<br><img src="https://i.imgur.com/bvsux57.png" alt=""><br>点绿色框clone or download<br><img src="https://i.imgur.com/MwCLUy4.png" alt=""><br>复制出现的地址<br><img src="https://i.imgur.com/LwBLdvJ.png" alt=""><br>贴到刚刚的URL框中，就会变成这样，下面的user和passwords是我个人的，有所不同，这个没有关系，点next<br><img src="https://i.imgur.com/imqAVWV.png" alt=""><br>一般克隆项目我们只要克隆master分支，勾上，next<br><img src="https://i.imgur.com/Ybqwek5.png" alt=""><br>红色框内为存放地址，自己视情况而定，一般放到Eclipse工作空间里，点finish<br><img src="https://i.imgur.com/Iktiwog.png" alt=""><br>然后我们的Git Repository会出现我们刚刚导入的项目<br><img src="https://i.imgur.com/Et3SXxv.png" alt=""><br>展开，Working Directory选择项目文件，右击，import project<br><img src="https://i.imgur.com/2Na99gP.png" alt=""><br><img src="https://i.imgur.com/SQicf78.png" alt=""><br>如图，选择第一个，next<br><img src="https://i.imgur.com/M05JQ9f.png" alt=""><br>勾上，点finish<br><img src="https://i.imgur.com/pR1AhRO.png" alt=""><br>这时候工程目录就会出现我们刚刚导入的项目了<br><img src="https://i.imgur.com/i4PgubQ.png" alt=""><br>打开，可以完整的看到项目的结构，以及里面的文件以及jar包<br><img src="https://i.imgur.com/rlkApw4.png" alt=""></p>
+<h1 id="修改配置，去除错误"><a href="#修改配置，去除错误" class="headerlink" title="修改配置，去除错误"></a>修改配置，去除错误</h1><p>刚刚导入的项目，一般不会正常的，会出现许多奇奇怪怪的错误，有时候是jar包丢失，有时候是配置XML文件出错，这时候就要根据对应的错误去寻找解决办法了，这里就不一一叙述了。</p>
+<h1 id="关于"><a href="#关于" class="headerlink" title="关于"></a>关于</h1><p>这个教程简单粗暴，还有许多不全面的地方，或者目前还没有了解到的，以后再来补充。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/13/怎么将GitHub中的项目导入Eclipse/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-随笔" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/13/随笔/">随笔</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/13/随笔/" class="archive-article-date">
+  	<time datetime="2017-11-13T06:23:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>最近这一段时间，过得很是混乱，自己似乎失去了自己所想追求的，整天过得浑浑噩噩，学习也不好好学，玩也没有好好玩，今天才开始了做音乐播放器，希望可以一鼓作气拿下，别再过无所事事的日子了</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/13/随笔/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-世事大梦一场，人生几度秋凉" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/26/世事大梦一场，人生几度秋凉/">世事大梦一场，人生几度秋凉</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/26/世事大梦一场，人生几度秋凉/" class="archive-article-date">
+  	<time datetime="2017-10-26T03:26:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-26</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><center>岁月如诗，聆听一季秋语，岁月的脚步缱绻了一路春花秋月的梦，丰盈了岁月深处那一往情深。<br>世事大梦一场，人生几度秋凉</center><br><center><img src="https://i.imgur.com/hcwkQFs.jpg" alt=""></center><br><center><font color="black">《子夜秋歌》<br><br>唐·李白<br><br>长安一片月，万户捣衣声。<br><br>秋风吹不尽，总是玉关情。<br><br>何日平胡虏，良人罢远征。<br><br>王夫之评价这首诗说：“前四句是天壤间生成好句，被太白拾得。”<br><br><img src="https://i.imgur.com/K20i9fw.jpg" alt=""><br><br>《长安秋望》<br><br>唐·杜牧<br><br>楼倚霜树外，镜天无一毫。<br><br>南山与秋色，气势两相高。<br><br>楼台高耸，秋树披霜，天空如镜，纤尘不染。南山峭拔入云，秋色高远寥廓，远远望去，两者互相争雄。<br><br><img src="https://i.imgur.com/h6ZNbAl.jpg" alt=""><br><br>《秋夕》<br><br>唐·白居易<br><br>叶声落如雨，月色白似霜。<br><br>夜深方独卧，谁为拂尘床。<br><br>秋凉或者可以不畏，深夜独卧之人难免惆怅……<br><br><img src="https://i.imgur.com/IQMJYyw.jpg" alt=""><br><br>《秋夕》<br><br>唐·杜牧<br><br>银烛秋光冷画屏，<br><br>轻罗小扇扑流萤。<br><br>天阶夜色凉如水，<br><br>坐看牵牛织女星。<br><br>烛光映屏，流萤纷飞，夜凉如水，坐看星空，天上牛女能相会，奈何人间失意人！<br><br><img src="https://i.imgur.com/jQQDKeq.jpg" alt=""><br><br>《山居秋暝》<br><br>唐·王维<br><br>空山新雨后，天气晚来秋。<br><br>明月松间照，清泉石上流。<br><br>竹喧归浣女，莲动下渔舟。<br><br>随意春芳歇，王孙自可留。<br><br>这首诗为田园山水诗中的名篇，算是王维的代表作之一，很好地体现了王维诗的特点：有一股淡淡的禅味。<br><br><img src="https://i.imgur.com/wDP5NNS.jpg" alt=""><br><br>《秋风引》<br><br>唐·刘禹锡<br><br>何处秋风至？萧萧送雁群。<br><br>朝来入庭树，孤客最先闻。<br><br>充满凉意的秋风，孤独的人，最先感知。<br><br><img src="https://i.imgur.com/Pj32vQS.jpg" alt=""><br><br>《秋词》<br><br>唐·刘禹锡<br><br>自古逢秋悲寂寥，<br><br>我言秋日胜春朝。<br><br>晴空一鹤排云上，<br><br>便引诗情到碧霄。<br><br>古来悲秋多，刘禹锡却独辟蹊径，歌颂秋的美好。<br><br><img src="https://i.imgur.com/9CA1w6k.jpg" alt=""><br><br>《山行》<br><br>唐·杜牧<br><br>远上寒山石径斜，<br><br>白云深处有人家。<br><br>停车坐爱枫林晚，<br><br>霜叶红于二月花。<br><br>山林，人家，白云，红叶，一幅绝美的山林秋色图。<br><br><img src="https://i.imgur.com/yMVKjzW.jpg" alt=""><br><br>《西江月》<br><br>宋·苏轼<br><br>世事一场大梦，<br><br>人生几度秋凉？<br><br>夜来风叶已鸣廊，<br><br>看取眉头鬓上。<br><br>酒贱常愁客少，<br><br>月明多被云妨。<br><br>中秋谁与共孤光，<br><br>把盏凄然北望。<br><br>苏轼的这首词，和另一首中秋词《水调歌头》相比，更加低徊婉转，有悲苦之音，充满了对人生的深沉思考。<br><br><img src="https://i.imgur.com/iJWJmRQ.jpg" alt=""><br><br>《初秋行圃》<br><br>宋·杨万里<br><br>落日无情最有情，<br><br>遍催万树暮蝉鸣。<br><br>听来咫尺无寻处，<br><br>寻到旁边却不声。<br><br>蝉惊蛰始鸣，白露绝鸣。蝉在初秋还能鸣叫一段时间，所谓“寒蝉凄切”。<br><br><img src="https://i.imgur.com/Ankp5lP.jpg" alt=""><br><br>《秋凉晚步》<br><br>  宋·杨万里<br><br>秋气堪悲未必然，<br><br>轻寒正是可人天。<br><br>绿池落尽红蕖却，<br><br>荷叶犹开最小钱。<br><br>秋悲不必，秋凉可人。荷叶虽残，荷花盛开，新长小叶，铜钱般大。<br><br><img src="https://i.imgur.com/5Y922bg.jpg" alt=""><br><br>《秋登宣城谢眺北楼》<br><br>唐·李白<br><br>江城如画里，山晓望晴空。<br><br>两水夹明镜，双桥落彩虹。<br><br>人烟寒橘柚，秋色老梧桐。<br><br>谁念北楼上，临风怀谢公。<br><br>写景怀人，景语都是情语，别有怀抱。<br><br><img src="https://i.imgur.com/3uwzFDj.jpg" alt=""><br><br>《天净沙·秋思》<br><br>元·马致远<br><br>枯藤老树昏鸦，<br><br>小桥流水人家，<br><br>古道西风瘦马。<br><br>夕阳西下，<br><br>断肠人在天涯。<br><br>这首小令，五句二十八字，无一“秋”字，却是一幅很好的秋郊夕照图。<br><br><img src="https://i.imgur.com/n53Do0z.jpg" alt=""><br><br>《天净沙·秋》<br><br>元·白朴<br><br>孤村落日残霞，<br><br>轻烟老树寒鸦，<br><br>一点飞鸿影下。<br><br>青山绿水，<br><br>白草红叶黄花。<br><br>这首小令也是无一“秋”字，却是一幅色彩绚丽的黄昏秋景图。<br><br><img src="https://i.imgur.com/l4N9Xj9.jpg" alt=""><br><br>《天净沙·秋》<br><br>元·朱庭玉<br><br>庭前落尽梧桐，<br><br>水边开彻芙蓉，<br><br>解与诗人意同。<br><br>辞柯霜叶，<br><br>飞来就我题红。<br><br>梧桐叶落，芙蓉花开，霜叶有情，请我题诗。<br><br><img src="https://i.imgur.com/n53Do0z.jpg" alt=""><br><br>《清江引·秋怀》<br><br>元·张可久<br><br>西风信来家万里，<br><br>问我归期未？<br><br>雁啼红叶天，<br><br>人醉黄花地，<br><br>芭蕉雨声秋梦里。<br><br>秋日思家，红叶黄花，雨打芭蕉，伴诗人梦里回家。<br><br><img src="https://i.imgur.com/jQQDKeq.jpg" alt=""><br><br>《清江引·秋居》<br><br>元·吴西逸<br><br>白雁乱飞秋似雪，<br><br>清露生凉夜。<br><br>扫却石边云，<br><br>醉踏松根月。<br><br>星斗满天人睡也。<br><br>白雁乱飞，秋霜似雪，凉夜生露，衣袍拂走石边雾气，醉步踏着松下月光。满天星斗，伴人入眠。<br><br><img src="https://i.imgur.com/5Y922bg.jpg" alt=""><br><br>《眼儿媚·秋思》<br><br>明·刘基<br><br>萋萋芳草小楼西，<br><br>云压雁声低。<br><br>两行疏柳，<br><br>一丝残照，万点鸦栖。<br><br>春山碧树秋重绿，<br><br>人在武陵溪。<br><br>无情明月，<br><br>有情归梦，同到幽闺。<br><br>此为闺怨词，却无怨情，写秋思委婉清雅，写闺情摇曳多姿。<br><br><img src="https://i.imgur.com/9CA1w6k.jpg" alt=""><br><br>《法海寺访仁公》<br><br>清·郑板桥<br><br>树满空山叶满廊，<br><br>袈裟吹透北风凉。<br><br>不知多少秋滋味，<br><br>卷起湘帘问夕阳。<br><br>秋山、秋树、秋叶、秋风和夕阳，皆是秋之滋味，诗人一问，呼之欲出。</font></center>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">poisionous soul</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/26/世事大梦一场，人生几度秋凉/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-哈希表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -318,759 +633,6 @@ return 0;
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/10/23/哈希表/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-简易Applet音乐播放器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/23/简易Applet音乐播放器/">简易Applet音乐播放器</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/23/简易Applet音乐播放器/" class="archive-article-date">
-  	<time datetime="2017-10-23T05:28:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-23</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h1><h2 id="1-获取本地音乐文件"><a href="#1-获取本地音乐文件" class="headerlink" title="1.获取本地音乐文件"></a>1.获取本地音乐文件</h2><pre><code>int index = 0;//音乐位置索引
-String[] file = { &quot;WeddingDress.au&quot;, &quot;(violin).au&quot;, &quot;Capox.au&quot;,&quot;Jasper.au&quot;, &quot;Cn.au&quot; };//音乐名称
-/**
-     * 正确获取地址的方法
-     */
-    URL url = getClass().getResource(&quot;Cn.au&quot;);//初始化一个地址
-    audio = Applet.newAudioClip(url);
-</code></pre><h2 id="2-创建下拉框，把音乐名放进去"><a href="#2-创建下拉框，把音乐名放进去" class="headerlink" title="2.    创建下拉框，把音乐名放进去"></a>2.    创建下拉框，把音乐名放进去</h2><pre><code>   Choice c =new Choice(); 
-    String[] description = { &quot;WeddingDress.au&quot;, &quot;(violin).au&quot;,    &quot;Capox.au&quot;, &quot;Jasper.au&quot;, &quot;Cn.au&quot; };
-    int count = 0;
-    for (int i = 0; i &lt; 5; i++) {//将音乐名加入下拉框中
-        c.addItem(description[count++]);
-    }
-    c.addItemListener(this);
-    this.add(c); 
-</code></pre><h2 id="3-获取下拉框里面的内容，并且切换播放选中的音乐"><a href="#3-获取下拉框里面的内容，并且切换播放选中的音乐" class="headerlink" title="3.    获取下拉框里面的内容，并且切换播放选中的音乐"></a>3.    获取下拉框里面的内容，并且切换播放选中的音乐</h2><pre><code> public void itemStateChanged(ItemEvent ie) {//获取下拉框的选中内容
-    if (ie.getSource() == c) {
-        Choice temp = (Choice) ie.getSource();
-        /**
-         * 获取下拉框选定的内容
-         */
-        index = c.getSelectedIndex();
-        stop();
-        switch (index){//用一个switch，播放选中的音乐
-        case 0:
-            URL url0 = getClass().getResource(&quot;WeddingDress.au&quot;);
-            audio = Applet.newAudioClip(url0);
-            stop();
-            break;
-        case 1:
-            URL url1 = getClass().getResource(&quot;(violin).au&quot;);
-            audio = Applet.newAudioClip(url1);
-            stop();
-            break;
-        case 2:
-            URL url2 = getClass().getResource(&quot;Capox.au&quot;);
-            audio = Applet.newAudioClip(url2);
-            stop();
-            break;
-        case 3:
-            URL url3 = getClass().getResource(&quot;Jasper.au&quot;);
-            audio = Applet.newAudioClip(url3);
-            stop();
-            break;
-        case 4:
-            URL url4 = getClass().getResource(&quot;Cn.au&quot;);
-            audio = Applet.newAudioClip(url4);
-            stop();
-            break;
-        }
-        play();
-    }
-}
-</code></pre><h2 id="4-获取按钮点击事件"><a href="#4-获取按钮点击事件" class="headerlink" title="4.获取按钮点击事件"></a>4.获取按钮点击事件</h2><pre><code> public void actionPerformed(ActionEvent e) {
-    // 如果点击的是Play按钮
-    if (e.getSource() == btPlay) {
-        audio.stop();
-        play();
-    }
-    // 如果点击的是loop按钮
-    if (e.getSource() == btLoop) {
-        audio.loop();
-    }
-    // 如果点击的是stop按钮
-    if (e.getSource() == btStop) {
-        audio.stop();
-    }
-}
-</code></pre><h2 id="5-三个简单的点击操作方法"><a href="#5-三个简单的点击操作方法" class="headerlink" title="5.三个简单的点击操作方法"></a>5.三个简单的点击操作方法</h2><pre><code>/**
- * 
- * 方法说明：播放声音
- */
-public void play() {
-    if (audio != null)
-        stop();
-    audio.play();
-}
-
-/**
- * 方法说明：循环播放声音
- */
-public void loop() {
-    if (audio != null)
-        audio.loop();
-}
-/**
- * 
- * 方法说明：停止播放声音
- */
-public void stop() {
-    if (audio != null)
-        audio.stop();
-}
-</code></pre><h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><pre><code>import java.applet.Applet;
-import java.applet.AudioClip;
-import java.awt.event.*;
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.awt.*;
-
-@SuppressWarnings(&quot;serial&quot;)
-public class myPlayer extends Applet implements      ActionListener, ItemListener {
-AudioClip audio;// 音乐播放控件
-Button btExit, btOpen, btPlay, btLoop, btStop;// 按钮
-Choice c = new Choice(); // 下拉框
-int index = 0;// 音乐位置索引
-String[] file = { &quot;WeddingDress.au&quot;, &quot;(violin).au&quot;, &quot;Capox.au&quot;, &quot;Jasper.au&quot;, &quot;Cn.au&quot; };// 音乐名称
-
-/**
- * 
- * 方法说明：初始化Applet
- * 
- */
-public void init() {
-    /**
-     * 正确获取地址的方法
-     */
-    URL url = getClass().getResource(&quot;Cn.au&quot;);// 初始化一个地址
-    audio = Applet.newAudioClip(url);
-    setLayout(new FlowLayout());// 流式布局
-    btPlay = new Button(&quot;Play&quot;);// 新建一个Play按钮
-    btPlay.addActionListener(this);// 给Play按钮添加一个监听事件
-    btLoop = new Button(&quot;Loop&quot;);// 新建一个Loop按钮
-    btLoop.addActionListener(this);// 给Loop按钮添加一个监听事件
-    btStop = new Button(&quot;Stop&quot;);// 新建一个Stop按钮
-    btStop.addActionListener(this); // 给Stop按钮添加一个监听事件
-    // 将按钮添加到Applet中
-    this.add(btPlay);
-    this.add(btLoop);
-    this.add(btStop);
-
-    String[] description = { &quot;WeddingDress.au&quot;, &quot;(violin).au&quot;, &quot;Capox.au&quot;, &quot;Jasper.au&quot;, &quot;Cn.au&quot; };
-    int count = 0;
-    for (int i = 0; i &lt; 5; i++) {// 将音乐名加入下拉框中
-        c.addItem(description[count++]);
-    }
-    c.addItemListener(this);
-
-    this.add(c);
-
-}
-
-public void itemStateChanged(ItemEvent ie) {// 获取下拉框的选中内容
-    if (ie.getSource() == c) {
-        Choice temp = (Choice) ie.getSource();
-        /**
-         * 获取下拉框选定的内容
-         */
-        index = c.getSelectedIndex();
-        stop();
-        switch (index) {
-        case 0:
-            URL url0 = getClass().getResource(&quot;WeddingDress.au&quot;);
-            audio = Applet.newAudioClip(url0);
-            stop();
-            break;
-        case 1:
-            URL url1 = getClass().getResource(&quot;(violin).au&quot;);
-            audio = Applet.newAudioClip(url1);
-            stop();
-            break;
-        case 2:
-            URL url2 = getClass().getResource(&quot;Capox.au&quot;);
-            audio = Applet.newAudioClip(url2);
-            stop();
-            break;
-        case 3:
-            URL url3 = getClass().getResource(&quot;Jasper.au&quot;);
-            audio = Applet.newAudioClip(url3);
-            stop();
-            break;
-        case 4:
-            URL url4 = getClass().getResource(&quot;Cn.au&quot;);
-            audio = Applet.newAudioClip(url4);
-            stop();
-            break;
-        }
-        play();
-    }
-}
-
-public void actionPerformed(ActionEvent e) {
-    // 如果点击的是Play按钮
-    if (e.getSource() == btPlay) {
-        audio.stop();
-        play();
-    }
-    // 如果点击的是loop按钮
-    if (e.getSource() == btLoop) {
-        audio.loop();
-    }
-    // 如果点击的是stop按钮
-    if (e.getSource() == btStop) {
-        audio.stop();
-    }
-}
-
-/**
- * 
- * 方法说明：播放声音
- */
-public void play() {
-    if (audio != null)
-        stop();
-    audio.play();
-}
-
-/**
- * 方法说明：循环播放声音
- */
-public void loop() {
-    if (audio != null)
-        audio.loop();
-}
-
-/**
- * 
- * 方法说明：停止播放声音
- */
-public void stop() {
-    if (audio != null)
-        audio.stop();
-}
-</code></pre><p>}</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/23/简易Applet音乐播放器/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-心灵鸡汤" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/07/心灵鸡汤/">心灵鸡汤</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/07/心灵鸡汤/" class="archive-article-date">
-  	<time datetime="2017-10-07T14:39:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-07</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><p>—–这是来自河南大学广播站的一期播音稿，它说出了每对异地恋人的心声，感触真的很深。希望所以恋人都能记住，既然勇敢相爱，就该勇敢坚持。<br>漫漫的大学生活，已经过去了一半。环顾身边的剩男剩女，已经越来越像珍稀动物。在这个城市的任何一个角落，都有可能会看见那些相互依偎的身影。<br>但是有没有人注意到这样一群人，他们会一个人忙碌在自身的事情上，他们只是偶尔和朋友相约，他们对电脑和电话的依赖超过身边的人，他们会突然微笑或者流泪。他们一个人，却过着完整的生活，这就是异地恋。<br>如果你们在一个班，你们可以一起自习，一起上下课，一起记笔记，分开一秒也无所谓，因为还有下一秒在等着你们。<br>如果你们在一个学校，你们可以一起去图书馆，一起去食堂，一起看星星、看月亮，一天不见至少还有明天，至少还可以一起毕业。<br>如果仅仅在一个城市，也可以一起逛街，一起玩电玩，一起坐公交，可以一起想起某家小店，某个好玩的去处，一星期不见也会想念，毕竟不是每个星期都有空，每个假日都会放假。<br>可是，有些手很久很久没法牵，有些依依不舍的话语只能对着电话。<br>下雨了，有没人给他撑伞呢？学习累了，想捏一捏她肉肉的小脸，告诉她，“其实你不用减肥，一点也不胖”。<br>新买的发卡不知道什么时候能得到他的赞美。逛街脚疼了，那个心疼的人不在提醒说：“回家吧。”有了古怪的点子，忍者留着，打电话的时候告诉他，然后听他说：“好，下次见面的时候一起”。<br>下一次，下一次有多远呢？一个人裹紧大衣，一个人吹一吹风，一个人承受着另一个人的思想，一个人奋斗，为另一个人的承诺，一个人左手握着右手，一个人坚强，一个人守着信仰，一个人等待着，等待着一句话“下次见面时，我们一起”。<br>我们为爱还在学沟通的语言，学会谅解，学会不流泪，等到我们学会飞，飞跃黑夜和考验，日子也就从孤单里毕业了，我们用多一点点的辛苦来交换多一点点的幸福。异地恋大抵如此。有时候,那只是一场误会；有时候，我们都太倔强；有时候会有一些诱惑；有时候会有一丝动摇；有时候，孤独时你不在身边；有时候，快乐后却更加孤独；有时候时间过得太快，有时候刚相聚又要别离。但是，既然勇敢相爱，就该勇敢坚持。思念的时候相信对方也在思念；等待的时候相信对方也在等待，那么世界充满色彩。<br>爱情，在指缝中承诺，指缝，在爱情下纠缠。<br>异地恋，两个人见面是多奢侈的事情。他们珍惜在一起的分分秒秒，他们忍受着思念，忍受着压力，忍受着寂寞。见过女孩子在车站送行的场面，有的抱着男生哭，有的送着男生后独自流泪，不知道她们的男朋友懂不懂得女孩子的心情，不知道他们是否珍惜了这个女孩。<br>异地恋，真的很苦，他们不能有猜疑，不能有勉强，不能有任性。<br>异地恋在乎的不是朝朝暮暮，而是天长地久。想念对方的时候，找些事情充实自己。学习工作努力些，就为了你们的将来。走在一起是缘分；在一起走是幸福；<br>其实，有时候想一想，我们真傻，人生最宝贵的青春年华选择了不能在一起的四年；在爱情最纯真的校园里，我们选择了孤独。<br>但是，宝贝，我知道，长相思不如长相守。但是现在的相思，只是为了，为了一生的守候。你要知道，当你想我想得流泪的时候，我也在用酒精和足球排遣对你的思念。<br>宝贝，不能在一起，都怪我，怪我没有抄你高考那年的志愿表。不过请你等我好吗？这一次我真的当真了，那一年，我只想对一个人好。<br>我们省吃俭用，在电话卡里花的钱永远要比饭卡多得多。我整夜不关机，而且一定要把手机放在枕头旁，那样的话，如果你夜里失眠，想我或者不舒服的话，我都可以第一时间安慰你。<br>宝贝，当你看到别的情侣成双入对的时候，请别恨我。我会记住，记住在我人生桃花烂漫的日子里，你等了我四年，我会用我一辈子的心疼和照顾去照顾你，去偿还。请记得，我的无名指一直为你空白着。<br>我们都说，异地恋是一种痛苦。<br>他们不能陪对方逛街，只能把礼物一次次的寄过去；<br>他们在对方难过时，只能用苍白的短信给与安慰；<br>在对方无助时，只能手里无力的握着电话，努力地听着对方的呼吸和哭泣的声音；<br>他们需要温暖是，也许只能翻看往日的短信。<br>他们生病了，只能一个人躺在宿舍，或者独自去医院挂水。<br>他们吵架时，受伤的总是两个人。<br>无法理解，无法释怀。<br>他们总是形影孤单或者成群结队。<br>看着其他恋人成双成对，心里一阵难过，最多只能发条短信，告诉对方“我想你了”.<br>他们时时会担心对方，吃的怎么样，穿的怎么样，到底开不开心，会在每天晚上查好那遥远城市的天气，一大早就告诉他，“要降温了，多加件衣服”。<br>看到好玩的事情，第一时间与对方分享，可当自己难过的时候，只是到论坛上发发牢骚，他们嘴上也许会说“诶，你今天有没有偷看别的男生啊”。可是你却在内疚自己为什么，为什么不能陪在自己心爱的人的身边呢？<br>他们总是在世界的这一头，幻想着对方在做什么，他们会通过电话甚至国际长途去叫对方起床或者睡觉。<br>他们最浪漫的事情莫过于几个月一次的见面，甚至，甚至更长时间。见面时的欣喜，离别时的悲伤。两地的车站见证了他们的感情，目睹了他们的悲欢离合。每一次的见面让我们的感情得到升华，让彼此的爱更多一分。那短短的相聚是美好的，可以让他们回味，回味终生。<br>的确，分隔两地，不能相互依偎着照顾对方，心里的失落总会有的。<br>但是异地恋的人却是幸福的，比任何人都幸福。拥有异地恋的人是幸运的，因为你拥有了一个可以跟你一起坚持的人，你拥有了一颗能和你相同执着和梦想的心，你拥有了一份强烈到可以挑战距离的爱，这难道不是一种幸福吗？<br>每当一个人静静的时候，想到有一个人，和你一样在坚守者如此脆弱的爱情，那种温暖，不是异地恋的人是无法体会的。那是一种心灵无声的沟通，是无条件的信赖。茫茫人海中，能找到这样一个无条件信赖你的人，这难道不是一种幸福吗？<br>你们可能是众多异地恋中的一个，也能够真切的感受到自己的幸福。<br>在爱情里，我们最不怕的就是距离，只要是真正的爱情，终归是能走到一起的。<br>是啊，距离在那么深切的爱里算得了什么呢？<br>如果你们因为异地恋就轻易分手了，千万不要把罪过怪在距离上。你应该庆幸，庆幸自己离开了一个并不是真正爱你的人。因为在爱面前，距离真的什么也不是，所以，如果你的爱人也在遥远的地方，不要觉得寂寞，不要觉得委屈，要庆幸，因为你用寂寞和思念换来了一份真正的爱，那是别人求之不得的爱。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/07/心灵鸡汤/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-String类和Object类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/03/String类和Object类/">String类和Object类</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/03/String类和Object类/" class="archive-article-date">
-  	<time datetime="2017-10-03T15:20:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-03</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/03/String类和Object类/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-正则表达式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/28/正则表达式/">正则表达式</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/28/正则表达式/" class="archive-article-date">
-  	<time datetime="2017-09-28T13:48:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-28</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><p>正则表达式的基本语法</p>
-<h1 id="字符"><a href="#字符" class="headerlink" title="字符"></a>字符</h1><table>
-<thead>
-<tr>
-<th>字符</th>
-<th style="text-align:left">意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>.</td>
-<td style="text-align:left">任意英文字母</td>
-</tr>
-<tr>
-<td>\</td>
-<td style="text-align:left">反斜杠, 单独的反斜杠做为转义字符,与其他特殊字符一起使用。如果想匹配反斜杠本身,需要转义。两个反斜杠实际匹配一个反斜杠n字符的8进制表示.n 在0至7之间取值</td>
-</tr>
-<tr>
-<td>nn</td>
-<td style="text-align:left">字符的8进制表示.n 在0至7之间取值</td>
-</tr>
-<tr>
-<td>mnn</td>
-<td style="text-align:left">字符的8进制表示. m 在0至3之间取值, n 在0至7之间取值</td>
-</tr>
-<tr>
-<td>\xhh</td>
-<td style="text-align:left">字符的16进制表示.</td>
-</tr>
-<tr>
-<td>\uhh hh</td>
-<td style="text-align:left">字符的16进制表示 0xhhhh. 对应unicode 编码字符</td>
-</tr>
-<tr>
-<td>\t</td>
-<td style="text-align:left">缩进符.</td>
-</tr>
-<tr>
-<td>\n</td>
-<td style="text-align:left">换行符 (unicode: ‘\u000A’)</td>
-</tr>
-<tr>
-<td>\r</td>
-<td style="text-align:left">回车符 (unicode: ‘\u000D’)</td>
-</tr>
-<tr>
-<td>\f</td>
-<td style="text-align:left">制表符 (unicode: ‘\u000C’)</td>
-</tr>
-<tr>
-<td>\a</td>
-<td style="text-align:left">警报（铃声）字符 (unicode: ‘\u0007′)</td>
-</tr>
-<tr>
-<td>\e</td>
-<td style="text-align:left">转义符 (unicode: ‘\u001B’)</td>
-</tr>
-<tr>
-<td>\cx</td>
-<td style="text-align:left">控制符 x</td>
-</tr>
-</tbody>
-</table>
-<h1 id="字符分类"><a href="#字符分类" class="headerlink" title="字符分类"></a>字符分类</h1><table>
-<thead>
-<tr>
-<th>表达式</th>
-<th style="text-align:left">意义   </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>[abc]</td>
-<td style="text-align:left">匹配 a, 或 b 或 c</td>
-</tr>
-<tr>
-<td>[^abc]</td>
-<td style="text-align:left">匹配不是a,b,c 的字符，是否定匹配</td>
-</tr>
-<tr>
-<td>[a-zA-Z]</td>
-<td style="text-align:left">匹配a 到 z ，A到Z 直接的字符，是范围匹配</td>
-</tr>
-<tr>
-<td>[a-d[m-p]]</td>
-<td style="text-align:left">匹配a到d之间字符或 m到p之间字符，是并集匹配</td>
-</tr>
-<tr>
-<td>[a-z&amp;&amp;[def]]</td>
-<td style="text-align:left">匹配 d, e, 或 f. 是交集匹配 (这里是在范围 a-z和字符def之间取交集).</td>
-</tr>
-<tr>
-<td>[a-z&amp;&amp;[^bc]]</td>
-<td style="text-align:left">匹配a-z 之间所有字符，排除bc的字符。是减法匹配</td>
-</tr>
-<tr>
-<td>[a-z&amp;&amp;[^m-p]]</td>
-<td style="text-align:left">匹配a-z 之间所有字符,排除m-p之间的字符是减法匹配</td>
-</tr>
-</tbody>
-</table>
-<h1 id="内置字符分类"><a href="#内置字符分类" class="headerlink" title="内置字符分类"></a>内置字符分类</h1><table>
-<thead>
-<tr>
-<th style="text-align:center">字符</th>
-<th style="text-align:left">意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">.</td>
-<td style="text-align:left">匹配任意一个字符,根据创建Pattern是传入的标志,可能匹配行结尾符</td>
-</tr>
-<tr>
-<td style="text-align:center">\d</td>
-<td style="text-align:left">匹配任意数字 [0-9]</td>
-</tr>
-<tr>
-<td style="text-align:center">\D</td>
-<td style="text-align:left">匹配任意非数字 [^0-9]</td>
-</tr>
-<tr>
-<td style="text-align:center">\s</td>
-<td style="text-align:left">匹配任意空白符 (空格, 缩进, 换行,回车)</td>
-</tr>
-<tr>
-<td style="text-align:center">\S</td>
-<td style="text-align:left">匹配任意非空白符</td>
-</tr>
-<tr>
-<td style="text-align:center">\w</td>
-<td style="text-align:left">匹配任意单词</td>
-</tr>
-<tr>
-<td style="text-align:center">\W</td>
-<td style="text-align:left">匹配任意非单词</td>
-</tr>
-</tbody>
-</table>
-<h1 id="边界匹配"><a href="#边界匹配" class="headerlink" title="边界匹配"></a>边界匹配</h1><table>
-<thead>
-<tr>
-<th style="text-align:center">符号</th>
-<th style="text-align:left">意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">^</td>
-<td style="text-align:left">匹配行首</td>
-</tr>
-<tr>
-<td style="text-align:center">$</td>
-<td style="text-align:left">匹配行尾</td>
-</tr>
-<tr>
-<td style="text-align:center">\b</td>
-<td style="text-align:left">匹配单词边界</td>
-</tr>
-<tr>
-<td style="text-align:center">\B</td>
-<td style="text-align:left">匹配非单词边界</td>
-</tr>
-<tr>
-<td style="text-align:center">\A</td>
-<td style="text-align:left">匹配文本开头</td>
-</tr>
-<tr>
-<td style="text-align:center">\G</td>
-<td style="text-align:left">匹配前一匹配项结尾</td>
-</tr>
-<tr>
-<td style="text-align:center">\Z</td>
-<td style="text-align:left">Matches the end of the input text except the final terminator if any</td>
-</tr>
-<tr>
-<td style="text-align:center">\z</td>
-<td style="text-align:left">匹配文本结尾</td>
-</tr>
-</tbody>
-</table>
-<h1 id="量词"><a href="#量词" class="headerlink" title="量词"></a>量词</h1><table>
-<thead>
-<tr>
-<th style="text-align:center">贪婪模式</th>
-<th style="text-align:center">饥饿模式</th>
-<th style="text-align:center">独占模式</th>
-<th>意义     </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">X?</td>
-<td style="text-align:center">X??</td>
-<td style="text-align:center">X?+</td>
-<td>匹配0或1次</td>
-</tr>
-<tr>
-<td style="text-align:center">X*</td>
-<td style="text-align:center">X*?</td>
-<td style="text-align:center">X*+</td>
-<td>匹配0或多次</td>
-</tr>
-<tr>
-<td style="text-align:center">X+</td>
-<td style="text-align:center">X+?</td>
-<td style="text-align:center">X++</td>
-<td>匹配1或多次</td>
-</tr>
-<tr>
-<td style="text-align:center">X{n}</td>
-<td style="text-align:center">X{n}?</td>
-<td style="text-align:center">X{n}+</td>
-<td>匹配n次</td>
-</tr>
-<tr>
-<td style="text-align:center">X{n,}</td>
-<td style="text-align:center">X{n,}?</td>
-<td style="text-align:center">X{n,}+</td>
-<td>匹配最少n次</td>
-</tr>
-<tr>
-<td style="text-align:center">X{n, m}</td>
-<td style="text-align:center">X{n, m}?</td>
-<td style="text-align:center">X{n, m}+</td>
-<td>匹配最少n次，最多m次</td>
-</tr>
-</tbody>
-</table>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/28/正则表达式/">展开全文 >></a>
         </p>
       
 

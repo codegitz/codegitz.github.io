@@ -6,42 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Linux安装软件的方法 | Codegitz&#39;s Blog</title>
+  <title>iptables | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Linux安装软件的方法     yum和rpm">
+  <meta name="description" content="iptables基础及应用防火墙的作用及分类  iptables概述iptables流程图iptables语法">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux安装软件的方法">
-<meta property="og:url" content="http://yoursite.com/2018/04/13/Linux安装软件的方法/index.html">
+<meta property="og:title" content="iptables">
+<meta property="og:url" content="http://yoursite.com/2018/05/08/iptables/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="Linux安装软件的方法     yum和rpm">
-<meta property="og:image" content="https://i.imgur.com/8DV5gsH.png">
-<meta property="og:image" content="https://i.imgur.com/C7z1GhS.png">
-<meta property="og:image" content="https://i.imgur.com/ncVAsrv.png">
-<meta property="og:image" content="https://i.imgur.com/fr23sYz.png">
-<meta property="og:image" content="https://i.imgur.com/WPtVM8s.png">
-<meta property="og:image" content="https://i.imgur.com/GcdpYHw.png">
-<meta property="og:image" content="https://i.imgur.com/mWDkLrc.png">
-<meta property="og:image" content="https://i.imgur.com/aPSynvN.png">
-<meta property="og:image" content="https://i.imgur.com/TDwalAv.png">
-<meta property="og:image" content="https://i.imgur.com/nWFbPWy.png">
-<meta property="og:image" content="https://i.imgur.com/IUN2QCm.png">
-<meta property="og:image" content="https://i.imgur.com/demT7MD.png">
-<meta property="og:image" content="https://i.imgur.com/9aEa82D.png">
-<meta property="og:image" content="https://i.imgur.com/6qLjIZA.png">
-<meta property="og:image" content="https://i.imgur.com/AmxD94J.png">
-<meta property="og:image" content="https://i.imgur.com/q9GdPkp.png">
-<meta property="og:image" content="https://i.imgur.com/2ssOvIa.png">
-<meta property="og:image" content="https://i.imgur.com/tzyh99L.png">
-<meta property="og:image" content="https://i.imgur.com/SANreGG.png">
-<meta property="og:image" content="https://i.imgur.com/sowkWrO.png">
-<meta property="og:image" content="https://i.imgur.com/axIcN6I.png">
-<meta property="og:image" content="https://i.imgur.com/qBHzUzg.png">
-<meta property="og:updated_time" content="2018-05-17T14:05:51.514Z">
+<meta property="og:description" content="iptables基础及应用防火墙的作用及分类  iptables概述iptables流程图iptables语法">
+<meta property="og:image" content="https://i.imgur.com/3AOIU6q.png">
+<meta property="og:image" content="https://i.imgur.com/LdnCjud.png">
+<meta property="og:image" content="https://i.imgur.com/P7FaQYj.png">
+<meta property="og:image" content="https://i.imgur.com/Pq2KDNP.png">
+<meta property="og:image" content="https://i.imgur.com/ySZxsYo.png">
+<meta property="og:image" content="https://i.imgur.com/O5LOQMz.png">
+<meta property="og:image" content="https://i.imgur.com/ALRzAs9.png">
+<meta property="og:image" content="https://i.imgur.com/6Kd8NRD.png">
+<meta property="og:updated_time" content="2018-09-27T14:33:52.540Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux安装软件的方法">
-<meta name="twitter:description" content="Linux安装软件的方法     yum和rpm">
-<meta name="twitter:image" content="https://i.imgur.com/8DV5gsH.png">
+<meta name="twitter:title" content="iptables">
+<meta name="twitter:description" content="iptables基础及应用防火墙的作用及分类  iptables概述iptables流程图iptables语法">
+<meta name="twitter:image" content="https://i.imgur.com/3AOIU6q.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
   
@@ -194,20 +180,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Linux安装软件的方法" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-iptables" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Linux安装软件的方法
+      iptables
     </h1>
   
 
         
-        <a href="/2018/04/13/Linux安装软件的方法/" class="archive-article-date">
-  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+        <a href="/2018/05/08/iptables/" class="archive-article-date">
+  	<time datetime="2018-05-08T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-08</time>
 </a>
         
       </header>
@@ -232,28 +218,14 @@ gitment.render('gitment')
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Linux安装软件的方法"><a href="#Linux安装软件的方法" class="headerlink" title="Linux安装软件的方法"></a>Linux安装软件的方法</h1><p><img src="https://i.imgur.com/8DV5gsH.png" alt=""></p>
-<p><img src="https://i.imgur.com/C7z1GhS.png" alt=""></p>
-<p><img src="https://i.imgur.com/ncVAsrv.png" alt=""></p>
-<p><img src="https://i.imgur.com/fr23sYz.png" alt=""></p>
-<p><img src="https://i.imgur.com/WPtVM8s.png" alt=""></p>
-<h2 id="yum和rpm"><a href="#yum和rpm" class="headerlink" title="yum和rpm"></a>yum和rpm</h2><p><img src="https://i.imgur.com/GcdpYHw.png" alt=""></p>
-<p><img src="https://i.imgur.com/mWDkLrc.png" alt=""></p>
-<p><img src="https://i.imgur.com/aPSynvN.png" alt=""></p>
-<p><img src="https://i.imgur.com/TDwalAv.png" alt=""></p>
-<p><img src="https://i.imgur.com/nWFbPWy.png" alt=""></p>
-<p><img src="https://i.imgur.com/IUN2QCm.png" alt=""></p>
-<p><img src="https://i.imgur.com/demT7MD.png" alt=""></p>
-<p><img src="https://i.imgur.com/9aEa82D.png" alt=""></p>
-<p><img src="https://i.imgur.com/6qLjIZA.png" alt=""></p>
-<p><img src="https://i.imgur.com/AmxD94J.png" alt=""></p>
-<p><img src="https://i.imgur.com/q9GdPkp.png" alt=""></p>
-<p><img src="https://i.imgur.com/2ssOvIa.png" alt=""></p>
-<p><img src="https://i.imgur.com/tzyh99L.png" alt=""></p>
-<p><img src="https://i.imgur.com/SANreGG.png" alt=""></p>
-<p><img src="https://i.imgur.com/sowkWrO.png" alt=""></p>
-<p><img src="https://i.imgur.com/axIcN6I.png" alt=""></p>
-<p><img src="https://i.imgur.com/qBHzUzg.png" alt=""></p>
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="iptables基础及应用"><a href="#iptables基础及应用" class="headerlink" title="iptables基础及应用"></a>iptables基础及应用</h2><h3 id="防火墙的作用及分类"><a href="#防火墙的作用及分类" class="headerlink" title="防火墙的作用及分类"></a>防火墙的作用及分类</h3><p><img src="https://i.imgur.com/3AOIU6q.png" alt=""></p>
+<p><img src="https://i.imgur.com/LdnCjud.png" alt=""></p>
+<h3 id="iptables概述"><a href="#iptables概述" class="headerlink" title="iptables概述"></a>iptables概述</h3><h3 id="iptables流程图"><a href="#iptables流程图" class="headerlink" title="iptables流程图"></a>iptables流程图</h3><h3 id="iptables语法"><a href="#iptables语法" class="headerlink" title="iptables语法"></a>iptables语法</h3><p><img src="https://i.imgur.com/P7FaQYj.png" alt=""></p>
+<p><img src="https://i.imgur.com/Pq2KDNP.png" alt=""></p>
+<p><img src="https://i.imgur.com/ySZxsYo.png" alt=""></p>
+<p><img src="https://i.imgur.com/O5LOQMz.png" alt=""></p>
+<p><img src="https://i.imgur.com/ALRzAs9.png" alt=""></p>
+<p><img src="https://i.imgur.com/6Kd8NRD.png" alt=""></p>
 
       
 
@@ -352,7 +324,7 @@ gitment.render('gitment')
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/13/Linux安装软件的方法/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/05/08/iptables/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -366,18 +338,18 @@ gitment.render('gitment')
   
 <nav id="article-nav">
   
-    <a href="/2018/04/13/Springboot Web开发/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/05/10/SpringBoot与数据访问/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          springboot Web开发
+          SpringBoot与数据访问
         
       </div>
     </a>
   
   
-    <a href="/2018/04/13/CentOS7执行yum命令出错/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">CentOS7执行yum命令出错</div>
+    <a href="/2018/05/08/Linux网络测试和测试工具/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux网络测试和测试工具</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -432,7 +404,7 @@ gitment.render('gitment')
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "http://yoursite.com/2018/04/13/Linux安装软件的方法/",
+  id: "http://yoursite.com/2018/05/08/iptables/",
   owner: 'codegitz',
   repo: 'codegitz.github.io',
   oauth: {

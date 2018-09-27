@@ -171,32 +171,1180 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-PowerDesigner中DBMS设置的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-u_post/springboot入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/PowerDesigner中DBMS设置的问题/">PowerDesigner中DBMS设置的问题</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/PowerDesigner中DBMS设置的问题/" class="archive-article-date">
-  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="解决PowerDesigner中DBMS设置的问题"><a href="#解决PowerDesigner中DBMS设置的问题" class="headerlink" title="解决PowerDesigner中DBMS设置的问题"></a>解决PowerDesigner中DBMS设置的问题</h2><p>在Generate Physical Data Model 的时候出现DBMS选择框全为空的情况，而且上面的菜单栏没有database这个选项<br><img src="https://i.imgur.com/oBXAV3q.png" alt=""></p>
-<p>一开始以为是软件装错了，以为是下了什么盗版软件，后来才发现是DBMS的路径有问题<br><img src="https://i.imgur.com/8wbGyAN.png" alt=""><br>直接浏览到powderdesigner的安装路径下的\Resource Files\DBMS，软件自己配的路径有点诡异，并不是正确的，点击确定之后即可<br><img src="https://i.imgur.com/uQdlj4X.png" alt=""><br>出现了所有的DBMS，上面一行菜单栏也出现了database这个选项<br><img src="https://i.imgur.com/BHeWP5B.png" alt=""></p>
+        <script src="/assets/js/APlayer.min.js"> </script><!DOCTYPE html>
+<html>
+<head>
+<title>springboot入门</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h1>springboot 入门</h1>
+<h1>1.springboot简介</h1>
+<p>简化spring应用的一个框架
+整个spring技术的一个大整合“spring全家桶”
+J2EE的一站式解决方案</p>
+<p>优点：
+- 快速创建独立运行的Spring项目以及与主流框架集成
+- 使用嵌入式的Servlet容器，应用无需打包成war包
+- starters自动依赖与版本控制
+- 大量的自动配置，简化开发，也可以修改默认值
+- 无需配置XML，无代码生成，开箱即用
+- 准生产环境的运行时应用监控
+- 与云计算的天然集成</p>
+<p>缺点：
+- 入门容易深入难，需要十分了解spring底层API才能深入</p>
+<h1>2.微服务</h1>
+<p>2014，Martin Fowler
+微服务：架构风格
+一个应用应该是一组小型服务，可以通过HTTP的方式进行互通
+单体应用：ALL IN ONE
+<img src="https://i.imgur.com/713ylux.png">
+微服务：每一个功能元素最终都是一个可独立替换和独立升级的软件单元
+详细参照微服务文档
+<img src="https://i.imgur.com/cVYlEyt.png"></p>
+<p>环境约束
+- jdk1.8 :Spring Boot 1.7及以上，java -version&quot;1.8.0-112&quot;
+- maven3.x :maven3.3以上版本，ApacheMaven3.3.9
+- IntellijIDEA2017：intellijIDEA2017.2.2x64、STS
+- SpringBoot 1.5.9RELEASE：1.5.9</p>
+<p>我的版本：
+<code>F:\maven\apache-maven-3.5.2-bin\apache-maven-3.5.2\bin&gt; mvn -v
+Apache Maven 3.5.2 (138edd61fd100ec658bfa2d307c43b76940a5d7d; 2017-10-18T15:58:13+08:00)
+Maven home: F:\maven\apache-maven-3.5.2-bin\apache-maven-3.5.2\bin\..
+Java version: 1.8.0_131, vendor: Oracle Corporation
+Java home: C:\Program Files\Java\jdk1.8.0_131\jre
+Default locale: zh_CN, platform encoding: GBK
+OS name: &quot;windows 10&quot;, version: &quot;10.0&quot;, arch: &quot;amd64&quot;, family: &quot;windows&quot;</code>
+maven设置：
+给mavensettings.xml配置文件的profile标签添加
+```
+<profiles>
+  <profile>
+      <id>jdk-1.8</id></profile></profiles></p>
+<pre><code>  &lt;activation&gt;
+    &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
+    &lt;jdk&gt;1.8&lt;/jdk&gt;
+  &lt;/activation&gt;
+
+  &lt;properties&gt;
+      &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
+      &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
+      &lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;
+  &lt;/properties&gt;
+</code></pre>
+
+<p>
+
+```</p>
+<h2>SpringBoot Helloworld</h2>
+<p>一个功能，浏览器发送hello请求，服务器接受请求，响应并且返回hello world字符串</p>
+<h3>1.创建一个maven工程(jar)</h3>
+<h3>2.导入Sringboot相关依赖</h3>
+<p><code>&lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;1.5.9.RELEASE&lt;/version&gt;
+&lt;/parent&gt;
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;</code></p>
+<h3>3.编写一个主程序：启动Springboot应用</h3>
+<p>```
+@SpringBootApplication
+public class HelloWorldMainApplication {</p>
+<pre><code>public static void main(String[] args) {
+
+    //spring应用程序启动起来
+    SpringApplication.run(HelloWorldMainApplication.class,args);
+
+}
+</code></pre>
+
+<p>}
+```</p>
+<h3>4.编写相关的controller，service</h3>
+<p>```
+@Controller
+public class HelloController {</p>
+<pre><code>@ResponseBody
+@RequestMapping(&quot;/hello&quot;)
+public String hello(){
+    return &quot;helloworld&quot;;
+}
+</code></pre>
+
+<p>}
+```</p>
+<h3>5.运行主程序测试</h3>
+<p><img src="https://i.imgur.com/o5wuRcG.png"></p>
+<h3>6.简化配置</h3>
+<p>```</p>
+<!-- 这个插件，可以将应用打包成一个可执行的jar包-->
+<pre><code>&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre>
+
+<p>```
+将这个应用打包成jar包，使用spring -jar命令来执行</p>
+<h3>5.HelloWorld探究</h3>
+<h4>1.POM文件</h4>
+<p>1.父项目
+```
+parent&gt;
+        <groupid>org.springframework.boot</groupid>
+        <artifactid>spring-boot-starter-parent</artifactid>
+        <version>1.5.9.RELEASE</version>
+    </p>
+<p>它的父项目是
+	<parent>
+		<groupid>org.springframework.boot</groupid>
+		<artifactid>spring-boot-dependencies</artifactid>
+		<version>1.5.9.RELEASE</version>
+		<relativepath>../../spring-boot-dependencies</relativepath>
+	</parent>
+它是真正管理Spring Boot应用里的所有依赖版本
+```
+SpringBoot的版本仲裁中心
+以后我们导入依赖默认是不需要写版本（没有在dependencies里面管理的依赖自然需要声明版本号）</p>
+<p>2.导入的依赖
+<code>&lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+        &lt;/dependency&gt;</code></p>
+<p>spring-boot-starter:spring-boot场景启动器,帮我们导入了web模块正常运行所依赖的组件</p>
+<p>Spring boot将所有的功能场景都抽取出来，做成一个个starter启动器，只需要在项目里引入这个starter相关场景，所有的依赖都会导入进来，要用什么功能就导哪个场景</p>
+<h4>2.主程序类，主入口类</h4>
+<p>```
+@SpringBootApplication
+public class HelloWorldMainApplication {</p>
+<pre><code>public static void main(String[] args) {
+
+    //spring应用程序启动起来
+    SpringApplication.run(HelloWorldMainApplication.class,args);
+
+}
+</code></pre>
+
+<p>}
+<code>@SpringBootApplication: Spring Boot 应用标注在某个类上说明这个类是Springboot的主配置类
+springboot就应该运行这个类的main方法来启动springboot应用</code>
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Inherited
+@SpringBootConfiguration
+@EnableAutoConfiguration
+@ComponentScan(
+    excludeFilters = {@Filter(
+    type = FilterType.CUSTOM,
+    classes = {TypeExcludeFilter.class}
+), @Filter(
+    type = FilterType.CUSTOM,
+    classes = {AutoConfigurationExcludeFilter.class}
+)}
+)
+public @interface SpringBootApplication {
+```
+@<strong><em>SpringBootConfiguration</em></strong>: Springboot配置类
+   标注在某个类上，表示这个一个springboot的配置类
+   @<strong><em>Configuration</em></strong>：配置类上来标注这个注解</p>
+<p>配置类---配置文件：配置类也是容器的一个组件@Component</p>
+<p>@<strong><em>EnableAutoConfiguration</em></strong>：开启自动配置功能
+   以前我们需要配置的东西，springboot帮我们自动配置，@EnableAutoConfiguration告诉我们springboot开启自动配置功能，这样自动配置才能生效
+<code>@AutoConfigurationPackage
+@Import({EnableAutoConfigurationImportSelector.class})
+public @interface EnableAutoConfiguration {</code>
+@<strong><em>AutoConfigurationPackage<strong><em>：自动配置包
+   @Import({Registrar.class})
+   spring的底层注解@import，给容器倒入一个组件，导入的组件由AutoConfigurationPackage.Registrar.class
+将主配置类（@</em></strong>SpringBootConfiguration</em></strong>标注的类）的所在包及其下面所有子包里面的所有组件都扫描到Spring容器里
+@Import({EnableAutoConfigurationImportSelector.class})
+给容器中导入组件
+EnableAutoConfigurationImportSelector：导入哪些组件选择器
+将所有需要导入的组件以全类名的方式返回，这些组件就会被添加到容器中
+会给容器中导入非常多的自动配置类(xxAutoConfiguration),就是给容器导入这个场景所需要的组件，并配置好这些组件
+<img src="https://i.imgur.com/SpKPWkA.png" alt="自动配置类">
+有了自动配置类，免去了我们手动编写配置注入功能等工作
+SpringFactoriesLoader.loadFactoryNames(EnableAutoConfiguration.class,classLoader);
+SpringBoot在启动的时候从类路径下的META-INF/spring.factories获取EnableAutoConfiguration指定的值，将这些值作为自动配置类导入到容器中，自动配置就生效，帮我们进行自动配置工作，以前须要我们自己进行配置的东西，自动配置类都帮我们配置好了
+<img src="https://i.imgur.com/7nVkMZC.png">
+J2EE的整体整合解决方案和自动配置都在F:\maven\apache-maven-3.5.2-bin\repo\org\springframework\boot\spring-boot-autoconfigure\1.5.9.RELEASE\spring-boot-autoconfigure-1.5.9.RELEASE.jar!\org\springframework\boot\autoconfigure
+<img src="https://i.imgur.com/xWXQhai.png"></p>
+<h3>6.使用Spring Initializer 快速创建Springboot项目</h3>
+<p>IDE都支持使用Spring的项目创建向导快速创建一个Spring Boot项目
+选择我们需要的模板，向导会联网创建Springboot项目
+默认生成的Springboot项目
+- 主程序已经生成好了，我们只需要我们编写自己的逻辑
+- resources 文件夹中目录结构
+  1.static：保存所有的静态资源：js,css,images
+  2.templates:保存所有的模板页面，（springboot默认jar包使用嵌入式的Tomcat，默认不支持jsp页面），可以使用模板引擎(freemaker,thymeleaf)
+   3.application.properties:springboot应用的配置文件，可以修改一些默认配置</p>
+<h1>配置文件</h1>
+<h2>1、配置文件</h2>
+<p>SpringBoot使用一个全局的配置文件，配置文件名是固定的；</p>
+<p>•application.properties</p>
+<p>•application.yml</p>
+<p>配置文件的作用：修改SpringBoot自动配置的默认值；SpringBoot在底层都给我们自动配置好；</p>
+<p>YAML（YAML Ain't Markup Language）</p>
+<p>​	YAML  A Markup Language：是一个标记语言</p>
+<p>​	YAML   isn't Markup Language：不是一个标记语言；</p>
+<p>标记语言：</p>
+<p>​	以前的配置文件；大多都使用的是  <strong>xxxx.xml</strong>文件；</p>
+<p>​	YAML：<strong>以数据为中心</strong>，比json、xml等更适合做配置文件；</p>
+<p>​	YAML：配置例子</p>
+<p><code>yaml
+server:
+  port: 8081</code></p>
+<p>​	XML：</p>
+<p><code>xml
+&lt;server&gt;
+	&lt;port&gt;8081&lt;/port&gt;
+&lt;/server&gt;</code></p>
+<h2>2、YAML语法：</h2>
+<h3>1、基本语法</h3>
+<p>k:(空格)v：表示一对键值对（空格必须有）；</p>
+<p>以<strong>空格</strong>的缩进来控制层级关系；只要是左对齐的一列数据，都是同一个层级的</p>
+<p><code>yaml
+server:
+    port: 8081
+    path: /hello</code></p>
+<p>属性和值也是大小写敏感；</p>
+<h3>2、值的写法</h3>
+<h4>字面量：普通的值（数字，字符串，布尔）</h4>
+<p>```
+​	k: v：字面直接来写；</p>
+<p>​		字符串默认不用加上单引号或者双引号；</p>
+<p>​		&quot;&quot;：双引号；不会转义字符串里面的特殊字符；特殊字符会作为本身想表示的意思</p>
+<p>​				name:   &quot;zhangsan \n lisi&quot;：输出；zhangsan 换行  lisi</p>
+<p>​		''：单引号；会转义特殊字符，特殊字符最终只是一个普通的字符串数据</p>
+<p>​				name:   ‘zhangsan \n lisi’：输出；zhangsan \n  lisi</p>
+<p>```</p>
+<h4>对象、Map（属性和值）（键值对）：</h4>
+<p>​	k: v：在下一行来写对象的属性和值的关系；注意缩进</p>
+<p>​		对象还是k: v的方式</p>
+<p><code>yaml
+friends:
+		lastName: zhangsan
+		age: 20</code></p>
+<p>行内写法：</p>
+<p><code>yaml
+friends: {lastName: zhangsan,age: 18}</code></p>
+<h4>数组（List、Set）：</h4>
+<p>用- 值表示数组中的一个元素</p>
+<p><code>yaml
+pets:
+ - cat
+ - dog
+ - pig</code></p>
+<p>行内写法</p>
+<p><code>yaml
+pets: [cat,dog,pig]</code></p>
+<h2>3、配置文件值注入</h2>
+<p>配置文件</p>
+<p><code>yaml
+person:
+    lastName: hello
+    age: 18
+    boss: false
+    birth: 2017/12/12
+    maps: {k1: v1,k2: 12}
+    lists:
+      - lisi
+      - zhaoliu
+    dog:
+      name: 小狗
+      age: 12</code></p>
+<p>javaBean：</p>
+<p>```java
+/**
+ * 将配置文件中配置的每一个属性的值，映射到这个组件中
+ * @ConfigurationProperties：告诉SpringBoot将本类中的所有属性和配置文件中相关的配置进行绑定；
+ *      prefix = &quot;person&quot;：配置文件中哪个下面的所有属性进行一一映射
+ *
+ * 只有这个组件是容器中的组件，才能容器提供的@ConfigurationProperties功能；
+ *
+ */
+@Component
+@ConfigurationProperties(prefix = &quot;person&quot;)
+public class Person {</p>
+<pre><code>private String lastName;
+private Integer age;
+private Boolean boss;
+private Date birth;
+
+private Map&lt;String,Object&gt; maps;
+private List&lt;Object&gt; lists;
+private Dog dog;
+</code></pre>
+
+<p>```</p>
+<p>我们可以导入配置文件处理器，以后编写配置就有提示了</p>
+<p>```xml</p>
+<!--导入配置文件处理器，配置文件进行绑定就会有提示-->
+<pre><code>    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-configuration-processor&lt;/artifactId&gt;
+        &lt;optional&gt;true&lt;/optional&gt;
+    &lt;/dependency&gt;
+</code></pre>
+
+<p>```</p>
+<h4>1、properties配置文件在idea中默认utf-8可能会乱码</h4>
+<p>更改配置文件编码方式</p>
+<p><img src="https://i.imgur.com/JK7oG8u.png" alt="idea配置乱码"></p>
+<h4>2、@Value获取值和@ConfigurationProperties获取值比较</h4>
+<p>|            | @ConfigurationProperties | @Value |
+| ---------- | ------------------------ | ------ |
+| 功能         | 批量注入配置文件中的属性             | 一个个指定  |
+| 松散绑定（松散语法） | 支持                       | 不支持    |
+| SpEL       | 不支持                      | 支持     |
+| JSR303数据校验 | 支持                       | 不支持    |
+| 复杂类型封装     | 支持                       | 不支持    |</p>
+<p>配置文件yml还是properties他们都能获取到值；</p>
+<p>如果说，我们只是在某个业务逻辑中需要获取一下配置文件中的某项值，使用@Value；</p>
+<p>如果说，我们专门编写了一个javaBean来和配置文件进行映射，我们就直接使用@ConfigurationProperties；</p>
+<h4>3.配置文件注入数据校验值</h4>
+<p>```
+/*
+* j将配置文件中的每一个属性的值，映射到这个组件中
+*@ConfigurationProperties :告诉springboot将本类中的属性和配置文件中的对应属性进行绑定
+* prefix = &quot;person&quot; 配置属性中哪一个下面的所有属性进行一一映射
+* 只有这个组件是容器中的组件，才能有容器提供的@ConfigurationProperties功能
+ *  */
+@Component
+@ConfigurationProperties(prefix = &quot;person&quot;)
+@Validated
+public class Person {</p>
+<pre><code>/*
+* &lt;bean class=&quot;Person&quot;&gt;
+*     &lt;property name=&quot;lastName&quot; value=&quot;字面量/${key}从环境变量、配置文件中获取，#{SpEL}&quot;/&gt;
+*  &lt;bean&gt;
+*
+* */
+//@Email//last-name必须是一个邮箱格式
+</code></pre>
+
+<p>// @Value(&quot;${person.last-name}&quot;)
+    private String lastName;
+    //@Value(&quot;#{11*2}&quot;)
+    private Integer age;
+    //@Value(&quot;true&quot;)
+    private boolean boss;
+    private Date birth;
+    private Map&lt;String,Object&gt; maps;
+    private List<object> list;
+    private Dog dog;
+```</object></p>
+<h4>4.@PropertySource&amp;@ImportResource</h4>
+<p>@PropertySource:加载指定的配置文件
+```
+@PropertySource(value = {&quot;classpath:person.properties&quot;})
+@Component
+@ConfigurationProperties(prefix = &quot;person&quot;)
+//@Validated
+public class Person {</p>
+<pre><code>/*
+* &lt;bean class=&quot;Person&quot;&gt;
+*     &lt;property name=&quot;lastName&quot; value=&quot;字面量/${key}从环境变量、配置文件中获取，#{SpEL}&quot;/&gt;
+*  &lt;bean&gt;
+*
+* */
+//@Email//last-name必须是一个邮箱格式
+</code></pre>
+
+<p>// @Value(&quot;${person.last-name}&quot;)
+    private String lastName;
+    //@Value(&quot;#{11*2}&quot;)
+    private Integer age;
+    //@Value(&quot;true&quot;)
+    private boolean boss;
+    private Date birth;
+    private Map&lt;String,Object&gt; maps;
+    private List<object> list;
+    private Dog dog;</object></p>
+<pre><code>@Override
+public String toString() {
+    return &quot;Person{&quot; +
+            &quot;lastName='&quot; + lastName + '\'' +
+            &quot;, age=&quot; + age +
+            &quot;, boss=&quot; + boss +
+            &quot;, birth=&quot; + birth +
+            &quot;, maps=&quot; + maps +
+            &quot;, list=&quot; + list +
+            &quot;, dog=&quot; + dog +
+            '}';
+}
+</code></pre>
+
+<p>```</p>
+<p>@ImportResource:导入Spring的配置文件，让配置文件里面的内容生效
+Springboot里面并没有spring配置文件，我们自己编写的配置文件也不能自动识别
+想让Spring的配置文件生效，加载进来用@ImportResource标注在配置类上</p>
+<p><code>//导入spring的配置文件让其生效
+@ImportResource(locations=&quot;classpath:beans.xml&quot;)</code></p>
+<p>编写spring配置文件,现在不推荐这方式，推荐使用全注解方式
+```
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt; beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;</p>
+<pre><code>&lt;bean id=&quot;helloService&quot; class=&quot;io.springboot.service.HelloService&quot;&gt;&lt;/bean&gt;
+</code></pre>
+
+<p>
+```
+Springboot推荐给容器添加组件的方式：推荐使用全注解的方式</p>
+<p>1.配置类====spring配置文件</p>
+<p>2.使用@Bean给容器添加组件
+```
+/*
+* @Configuration:指明当前类是一个配置类，就是用来替代之前的spring配置文件
+*
+* 在配置文件中用<bean><bean>标签添加组件
+* */</bean></bean></p>
+<p>@Configuration
+public class MyAppConfig {</p>
+<pre><code>//将方法的返回值添加到容器中，容器中这个组件的默认id就是方法的名字
+@Bean
+public HelloService helloService02(){
+    System.out.println(&quot;配置类@Bean给容器中添加组件了&quot;);
+    return new HelloService();
+}
+</code></pre>
+
+<p>}
+``` </p>
+<h4>4.配置文件占位符</h4>
+<p><img src="https://i.imgur.com/Kl9NjEw.png"></p>
+<p>1、随机数</p>
+<p>```java
+${random.value}、${random.int}、${random.long}
+${random.int(10)}、${random.int[1024,65536]}</p>
+<p>```</p>
+<p>2、占位符获取之前配置的值，如果没有可以是用:指定默认值</p>
+<p><code>properties
+person.last-name=张三${random.uuid}
+person.age=${random.int}
+person.birth=2017/12/15
+person.boss=false
+person.maps.k1=v1
+person.maps.k2=14
+person.lists=a,b,c
+person.dog.name=${person.hello:hello}_dog
+person.dog.age=15</code></p>
+<h4>5.Profile</h4>
+<p>1.多Profile文件
+我们再主配置文件编写的时候，文件名可以使 application-(profile).properties/yml</p>
+<p>可以配置多个application-(***).properties的文件，默认使用application.properties</p>
+<p>2.yml支持多文档块方式</p>
+<p>```yml</p>
+<p>server:
+  port: 8081
+spring:
+  profiles:
+    active: prod</p>
+<hr>
+<p>server:
+  port: 8083
+spring:
+  profiles: dev</p>
+<hr>
+<p>server:
+  port: 8084
+spring:
+  profiles: prod  #指定属于哪个环境</p>
+<p>```
+3.激活指定profile
+- 在配置文件中指定spring.profiles.active=dev
+- 命令行：--spring.profiles.active=dev
+  java -jar spring-boot-02-config-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev；
+可以直接在测试的时候，配置传入命令行参数</p>
+<ul>
+<li>
+虚拟机参数：
+-Dspring.profiles.active=dev
+</li>
+</ul>
+<h4>6.配置文件的加载位置</h4>
+<p><img src="https://i.imgur.com/IvQRfgf.png"> 
+springboot 启动会扫描以下位置的application.properties或者application.yml文件作为Spring boot的默认配置文件</p>
+<p>–file:./config/</p>
+<p>–file:./</p>
+<p>–classpath:/config/</p>
+<p>–classpath:/
+优先级由高到低，高优先级的配置会覆盖低优先级的配置
+springboot会从这四个位置全部加载配置文件，会形成互补配置
+<strong>我们还可以通过spring.config.location来改变默认的配置文件位置，项目打包好以后，我们可以使用命令行参数的形式，启动项目的时候来指定配置文件的新路径，指定配置文件和这些默认的文件共同起作用形成互补配置</strong></p>
+<h4>7.外部配置的加载顺序</h4>
+<p><img src="https://i.imgur.com/qfEeU5F.png"></p>
+<p>springboot也可以从以下位置加载配置，优先级从高到低，高优先级的配置覆盖配置低优先级的配置，若有不同配置，会形成互补配置</p>
+<p><strong>1.命令行参数</strong></p>
+<p>所有的配置都可以在命令行上进行指定</p>
+<p>java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar --server.port=8087  --server.context-path=/abc</p>
+<p>多个配置用空格分开； --配置项=值</p>
+<p>2.来自java:comp/env的JNDI属性</p>
+<p>3.Java系统属性（System.getProperties()）</p>
+<p>4.操作系统环境变量</p>
+<p>5.RandomValuePropertySource配置的random.*属性值</p>
+<p>==<strong>由jar包外向jar包内进行寻找；</strong>==</p>
+<p>==<strong>优先加载带profile</strong>==</p>
+<p><strong>6.jar包外部的application-{profile}.properties或application.yml(带spring.profile)配置文件</strong></p>
+<p><strong>7.jar包内部的application-{profile}.properties或application.yml(带spring.profile)配置文件</strong></p>
+<p>==<strong>再来加载不带profile</strong>==</p>
+<p><strong>8.jar包外部的application.properties或application.yml(不带spring.profile)配置文件</strong></p>
+<p><strong>9.jar包内部的application.properties或application.yml(不带spring.profile)配置文件</strong></p>
+<p>10.@Configuration注解类上的@PropertySource</p>
+<p>11.通过SpringApplication.setDefaultProperties指定的默认属性</p>
+<p>所有支持的配置加载来源；</p>
+<p><a href="https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#boot-features-external-config" target="_blank" rel="external">参考官方文档</a></p>
+<h4>8.自动配置原理</h4>
+<p><img src="https://i.imgur.com/ZajWhqK.png"></p>
+<p>配置文件到底能写什么？怎么写？自动配置原理；</p>
+<p><a href="https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#common-application-properties" target="_blank" rel="external">配置文件能配置的属性参照</a></p>
+<h3>1、<strong>自动配置原理：</strong></h3>
+<p>1）、SpringBoot启动的时候加载主配置类，开启了自动配置功能 ==@EnableAutoConfiguration==</p>
+<p><strong>2）、@EnableAutoConfiguration 作用：</strong></p>
+<ul>
+<li>
+<p>利用EnableAutoConfigurationImportSelector给容器中导入一些组件？</p>
+</li>
+<li>
+<p>可以查看selectImports()方法的内容；</p>
+</li>
+<li>
+<p>List<string> configurations = getCandidateConfigurations(annotationMetadata,      attributes);获取候选的配置</string></p>
+<ul>
+<li>```java
+SpringFactoriesLoader.loadFactoryNames()
+扫描所有jar包类路径下  META-INF/spring.factories
+把扫描到的这些文件的内容包装成properties对象
+从properties中获取到EnableAutoConfiguration.class类（类名）对应的值，然后把他们添加在容器中</li>
+</ul>
+<p>```</p>
+<p>​</p>
+</li>
+</ul>
+<p><strong>==将 类路径下  META-INF/spring.factories 里面配置的所有EnableAutoConfiguration的值加入到了容器中；==</strong></p>
+<p>```properties</p>
+<h1>Auto Configure</h1>
+<p>org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration,\
+org.springframework.boot.autoconfigure.aop.AopAutoConfiguration,\
+org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration,\
+org.springframework.boot.autoconfigure.batch.BatchAutoConfiguration,\
+org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration,\
+org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfiguration,\
+org.springframework.boot.autoconfigure.cloud.CloudAutoConfiguration,\
+org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration,\
+org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration,\
+org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration,\
+org.springframework.boot.autoconfigure.couchbase.CouchbaseAutoConfiguration,\
+org.springframework.boot.autoconfigure.dao.PersistenceExceptionTranslationAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.cassandra.CassandraDataAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.cassandra.CassandraRepositoriesAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.couchbase.CouchbaseDataAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.couchbase.CouchbaseRepositoriesAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.ldap.LdapDataAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.ldap.LdapRepositoriesAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.neo4j.Neo4jDataAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.neo4j.Neo4jRepositoriesAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.solr.SolrRepositoriesAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.rest.RepositoryRestMvcAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration,\
+org.springframework.boot.autoconfigure.elasticsearch.jest.JestAutoConfiguration,\
+org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration,\
+org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration,\
+org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration,\
+org.springframework.boot.autoconfigure.hateoas.HypermediaAutoConfiguration,\
+org.springframework.boot.autoconfigure.hazelcast.HazelcastAutoConfiguration,\
+org.springframework.boot.autoconfigure.hazelcast.HazelcastJpaDependencyAutoConfiguration,\
+org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration,\
+org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration,\
+org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration,\
+org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,\
+org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration,\
+org.springframework.boot.autoconfigure.jdbc.JndiDataSourceAutoConfiguration,\
+org.springframework.boot.autoconfigure.jdbc.XADataSourceAutoConfiguration,\
+org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration,\
+org.springframework.boot.autoconfigure.jms.JmsAutoConfiguration,\
+org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration,\
+org.springframework.boot.autoconfigure.jms.JndiConnectionFactoryAutoConfiguration,\
+org.springframework.boot.autoconfigure.jms.activemq.ActiveMQAutoConfiguration,\
+org.springframework.boot.autoconfigure.jms.artemis.ArtemisAutoConfiguration,\
+org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration,\
+org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration,\
+org.springframework.boot.autoconfigure.jersey.JerseyAutoConfiguration,\
+org.springframework.boot.autoconfigure.jooq.JooqAutoConfiguration,\
+org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration,\
+org.springframework.boot.autoconfigure.ldap.embedded.EmbeddedLdapAutoConfiguration,\
+org.springframework.boot.autoconfigure.ldap.LdapAutoConfiguration,\
+org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration,\
+org.springframework.boot.autoconfigure.mail.MailSenderAutoConfiguration,\
+org.springframework.boot.autoconfigure.mail.MailSenderValidatorAutoConfiguration,\
+org.springframework.boot.autoconfigure.mobile.DeviceResolverAutoConfiguration,\
+org.springframework.boot.autoconfigure.mobile.DeviceDelegatingViewResolverAutoConfiguration,\
+org.springframework.boot.autoconfigure.mobile.SitePreferenceAutoConfiguration,\
+org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration,\
+org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration,\
+org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration,\
+org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration,\
+org.springframework.boot.autoconfigure.reactor.ReactorAutoConfiguration,\
+org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration,\
+org.springframework.boot.autoconfigure.security.SecurityFilterAutoConfiguration,\
+org.springframework.boot.autoconfigure.security.FallbackWebSecurityAutoConfiguration,\
+org.springframework.boot.autoconfigure.security.oauth2.OAuth2AutoConfiguration,\
+org.springframework.boot.autoconfigure.sendgrid.SendGridAutoConfiguration,\
+org.springframework.boot.autoconfigure.session.SessionAutoConfiguration,\
+org.springframework.boot.autoconfigure.social.SocialWebAutoConfiguration,\
+org.springframework.boot.autoconfigure.social.FacebookAutoConfiguration,\
+org.springframework.boot.autoconfigure.social.LinkedInAutoConfiguration,\
+org.springframework.boot.autoconfigure.social.TwitterAutoConfiguration,\
+org.springframework.boot.autoconfigure.solr.SolrAutoConfiguration,\
+org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration,\
+org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration,\
+org.springframework.boot.autoconfigure.transaction.jta.JtaAutoConfiguration,\
+org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.HttpEncodingAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.HttpMessageConvertersAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.MultipartAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.ServerPropertiesAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.WebClientAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration,\
+org.springframework.boot.autoconfigure.websocket.WebSocketAutoConfiguration,\
+org.springframework.boot.autoconfigure.websocket.WebSocketMessagingAutoConfiguration,\
+org.springframework.boot.autoconfigure.webservices.WebServicesAutoConfiguration
+```</p>
+<p>每一个这样的  xxxAutoConfiguration类都是容器中的一个组件，都加入到容器中；用他们来做自动配置；</p>
+<p>3）、每一个自动配置类进行自动配置功能；</p>
+<p>4）、以<strong>HttpEncodingAutoConfiguration（Http编码自动配置）</strong>为例解释自动配置原理；</p>
+<p>```java
+@Configuration   //表示这是一个配置类，以前编写的配置文件一样，也可以给容器中添加组件
+@EnableConfigurationProperties(HttpEncodingProperties.class)  //启动指定类的ConfigurationProperties功能；将配置文件中对应的值和HttpEncodingProperties绑定起来；并把HttpEncodingProperties加入到ioc容器中</p>
+<p>@ConditionalOnWebApplication //Spring底层@Conditional注解（Spring注解版），根据不同的条件，如果满足指定的条件，整个配置类里面的配置就会生效；    判断当前应用是否是web应用，如果是，当前配置类生效</p>
+<p>@ConditionalOnClass(CharacterEncodingFilter.class)  //判断当前项目有没有这个类CharacterEncodingFilter；SpringMVC中进行乱码解决的过滤器；</p>
+<p>@ConditionalOnProperty(prefix = &quot;spring.http.encoding&quot;, value = &quot;enabled&quot;, matchIfMissing = true)  //判断配置文件中是否存在某个配置  spring.http.encoding.enabled；如果不存在，判断也是成立的
+//即使我们配置文件中不配置pring.http.encoding.enabled=true，也是默认生效的；
+public class HttpEncodingAutoConfiguration {</p>
+<pre><code>//他已经和SpringBoot的配置文件映射了
+private final HttpEncodingProperties properties;
+</code></pre>
+
+<p>//只有一个有参构造器的情况下，参数的值就会从容器中拿
+  	public HttpEncodingAutoConfiguration(HttpEncodingProperties properties) {
+		this.properties = properties;
+	}</p>
+<pre><code>@Bean   //给容器中添加一个组件，这个组件的某些值需要从properties中获取
+@ConditionalOnMissingBean(CharacterEncodingFilter.class) //判断容器没有这个组件？
+public CharacterEncodingFilter characterEncodingFilter() {
+    CharacterEncodingFilter filter = new OrderedCharacterEncodingFilter();
+    filter.setEncoding(this.properties.getCharset().name());
+    filter.setForceRequestEncoding(this.properties.shouldForce(Type.REQUEST));
+    filter.setForceResponseEncoding(this.properties.shouldForce(Type.RESPONSE));
+    return filter;
+}
+</code></pre>
+
+<p>```</p>
+<p>根据当前不同的条件判断，决定这个配置类是否生效？</p>
+<p>一但这个配置类生效；这个配置类就会给容器中添加各种组件；这些组件的属性是从对应的properties类中获取的，这些类里面的每一个属性又是和配置文件绑定的；</p>
+<p>5）、所有在配置文件中能配置的属性都是在xxxxProperties类中封装者‘；配置文件能配置什么就可以参照某个功能对应的这个属性类</p>
+<p>```java
+@ConfigurationProperties(prefix = &quot;spring.http.encoding&quot;)  //从配置文件中获取指定的值和bean的属性进行绑定
+public class HttpEncodingProperties {</p>
+<p>public static final Charset DEFAULT_CHARSET = Charset.forName(&quot;UTF-8&quot;);
+```</p>
+<p><strong>精髓：</strong></p>
+<p>​	<strong>1）、SpringBoot启动会加载大量的自动配置类</strong></p>
+<p>​	<strong>2）、我们看我们需要的功能有没有SpringBoot默认写好的自动配置类；</strong></p>
+<p>​	<strong>3）、我们再来看这个自动配置类中到底配置了哪些组件；（只要我们要用的组件有，我们就不需要再来配置了）</strong></p>
+<p>​	<strong>4）、给容器中自动配置类添加组件的时候，会从properties类中获取某些属性。我们就可以在配置文件中指定这些属性的值；</strong></p>
+<p>xxxxAutoConfigurartion：自动配置类；</p>
+<p>给容器中添加组件</p>
+<p>xxxxProperties:封装配置文件中相关属性；</p>
+<h3>2、细节</h3>
+<h4>1、@Conditional派生注解（Spring注解版原生的@Conditional作用）</h4>
+<p>作用：必须是@Conditional指定的条件成立，才给容器中添加组件，配置配里面的所有内容才生效；</p>
+<p>| @Conditional扩展注解                | 作用（判断是否满足当前指定条件）               |
+| ------------------------------- | ------------------------------ |
+| @ConditionalOnJava              | 系统的java版本是否符合要求                |
+| @ConditionalOnBean              | 容器中存在指定Bean；                   |
+| @ConditionalOnMissingBean       | 容器中不存在指定Bean；                  |
+| @ConditionalOnExpression        | 满足SpEL表达式指定                    |
+| @ConditionalOnClass             | 系统中有指定的类                       |
+| @ConditionalOnMissingClass      | 系统中没有指定的类                      |
+| @ConditionalOnSingleCandidate   | 容器中只有一个指定的Bean，或者这个Bean是首选Bean |
+| @ConditionalOnProperty          | 系统中指定的属性是否有指定的值                |
+| @ConditionalOnResource          | 类路径下是否存在指定资源文件                 |
+| @ConditionalOnWebApplication    | 当前是web环境                       |
+| @ConditionalOnNotWebApplication | 当前不是web环境                      |
+| @ConditionalOnJndi              | JNDI存在指定项                      |</p>
+<p><strong>自动配置类必须在一定的条件下才能生效；</strong></p>
+<p>我们怎么知道哪些自动配置类生效；</p>
+<p><strong>==我们可以通过启用  debug=true属性；来让控制台打印自动配置报告==</strong>，这样我们就可以很方便的知道哪些自动配置类生效；</p>
+<h1>```java</h1>
+<h1>AUTO-CONFIGURATION REPORT</h1>
+<h2>Positive matches:（自动配置类启用的）</h2>
+<p>DispatcherServletAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.web.servlet.DispatcherServlet'; @ConditionalOnMissingClass did not find unwanted class (OnClassCondition)
+      - @ConditionalOnWebApplication (required) found StandardServletEnvironment (OnWebApplicationCondition)</p>
+<h2>Negative matches:（没有启动，没有匹配成功的自动配置类）</h2>
+<p>ActiveMQAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required classes 'javax.jms.ConnectionFactory', 'org.apache.activemq.ActiveMQConnectionFactory' (OnClassCondition)</p>
+<p>AopAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required classes 'org.aspectj.lang.annotation.Aspect', 'org.aspectj.lang.reflect.Advice' (OnClassCondition)</p>
+<p>```</p>
+<h1>三、日志</h1>
+<h2>1、日志框架</h2>
+<p>小张；开发一个大型系统；</p>
+<p>​		1、System.out.println(&quot;&quot;)；将关键数据打印在控制台；去掉？写在一个文件？</p>
+<p>​		2、框架来记录系统的一些运行时信息；日志框架 ；  zhanglogging.jar；</p>
+<p>​		3、高大上的几个功能？异步模式？自动归档？xxxx？  zhanglogging-good.jar？</p>
+<p>​		4、将以前框架卸下来？换上新的框架，重新修改之前相关的API；zhanglogging-prefect.jar；</p>
+<p>​		5、JDBC---数据库驱动；</p>
+<p>​			写了一个统一的接口层；日志门面（日志的一个抽象层）；logging-abstract.jar；</p>
+<p>​			给项目中导入具体的日志实现就行了；我们之前的日志框架都是实现的抽象层；</p>
+<p><strong>市面上的日志框架；</strong></p>
+<p>JUL、JCL、Jboss-logging、logback、log4j、log4j2、slf4j....</p>
+<p>| 日志门面  （日志的抽象层）                           | 日志实现                                     |
+| ---------------------------------------- | ---------------------------------------- |
+| ~~JCL（Jakarta  Commons Logging）~~    SLF4j（Simple  Logging Facade for Java）    <strong>~~jboss-logging~~</strong> | Log4j  JUL（java.util.logging）  Log4j2  <strong>Logback</strong> |</p>
+<p>左边选一个门面（抽象层）、右边来选一个实现；</p>
+<p>日志门面：  SLF4J；</p>
+<p>日志实现：Logback；</p>
+<p>SpringBoot：底层是Spring框架，Spring框架默认是用JCL；‘</p>
+<p>​	<strong>==SpringBoot选用 SLF4j和logback；==</strong></p>
+<h2>2、SLF4j使用</h2>
+<h3>1、如何在系统中使用SLF4j   https://www.slf4j.org</h3>
+<p>以后开发的时候，日志记录方法的调用，不应该来直接调用日志的实现类，而是调用日志抽象层里面的方法
+给系统里面导入slf4j的jar和logback的实现jar
+```java
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;</p>
+<p>public class HelloWorld {
+  public static void main(String[] args) {
+    Logger logger = LoggerFactory.getLogger(HelloWorld.class);
+    logger.info(&quot;Hello World&quot;);
+  }
+}
+```</p>
+<p>图示：<img src="https://i.imgur.com/wzanHz3.png"></p>
+<p>每一个日志的实现框架都有自己的配置文件，使用slf4j以后，<strong>配置文件还是做成日志实现框架自己本身的配置文件</strong></p>
+<h3>2.遗留问题</h3>
+<p>a(slf4j+logback),Spring(commons-logging),hibernate(jboss-logging),myBatis(xxx)
+统一日志记录，即使是别的框架和我一起统一使用slf4j进行输出？
+<img src="https://i.imgur.com/gdkQM8w.png">	
+<strong>如何让系统中所有的日志都统一到slf4j</strong>
+1.将系统中其他日志框架先排除出去
+2.用中间包来替换原有的日志框架
+3.我们导入slf4j其他的实现</p>
+<p><strong>3.springboot日志关系</strong>
+<code>xml
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+			&lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
+		&lt;/dependency&gt;</code>
+SpringBoot使用它来做日志功能
+<code>xml
+	&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+			&lt;artifactId&gt;spring-boot-starter-logging&lt;/artifactId&gt;
+		&lt;/dependency&gt;</code>
+底层依赖关系
+<img src="https://i.imgur.com/Y2l7KGL.png"></p>
+<p>总结：
+   1.springboot底层也是使用slf4j+logback的方式进行日志记录
+   2.springboot也把其他的日志都替换成了slf4j
+   3.中间替换包，偷梁换柱
+```java
+@SuppressWarnings(&quot;rawtypes&quot;)
+public abstract class LogFactory {</p>
+<pre><code>static String UNSUPPORTED_OPERATION_IN_JCL_OVER_SLF4J = &quot;http://www.slf4j.org/codes.html#unsupported_operation_in_jcl_over_slf4j&quot;;
+
+static LogFactory logFactory = new SLF4JLogFactory();
+</code></pre>
+
+<p>```
+<img src="https://i.imgur.com/mjiYZ1Y.png"></p>
+<p>4.如果我们要引入其他的框架，一定要把这个框架的默认依赖日志移除掉
+spring框架用的是commons-logging
+<code>xml
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+			&lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+			&lt;exclusions&gt;
+				&lt;exclusion&gt;
+					&lt;groupId&gt;commons-logging&lt;/groupId&gt;
+					&lt;artifactId&gt;commons-logging&lt;/artifactId&gt;
+				&lt;/exclusion&gt;
+			&lt;/exclusions&gt;
+		&lt;/dependency&gt;</code>
+<strong>SpringBoot能自动适配所有日志，而且底层使用slf4j+logback的方式记录日志，引入其他框架的时候，只需要把这个框架依赖的日志框架排除</strong></p>
+<h2>4.日志使用</h2>
+<h3>1.默认配置</h3>
+<p>springboot默认帮我们配置好了日志
+```
+//记录器
+		Logger logger=LoggerFactory.getLogger(getClass());
+	@Test
+	public void contextLoads() {</p>
+<pre><code>    //日志级别，由低到高 trace&lt;debug&lt;info&lt;warn&lt;error
+    //可以调整输出日志的级别，日志就只会在这个级别及以后的高级别生效
+    logger.trace(&quot;这是trace日志信息....&quot;);
+    logger.debug(&quot;这是debug信息.....&quot;);
+    //springboot默认给我们提示info级别,没有指定级别的就使用springboot默认级别，root级别
+    logger.info(&quot;这是info信息...&quot;);
+    logger.warn(&quot;这是warn信息/...&quot;);
+    logger.error(&quot;这是error信息....&quot;);
+}
+</code></pre>
+
+<p><code></code>
+        日志输出格式：
+    		%d表示日期时间，
+    		%thread表示线程名，
+    		%-5level：级别从左显示5个字符宽度
+    		%logger{50} 表示logger名字最长50个字符，否则按照句点分割。 
+    		%msg：日志消息，
+    		%n是换行符
+        --&gt;
+        %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
+```
+<strong>SpringBoot修改日志的默认配置</strong></p>
+<p>```properties
+logging.level.com.atguigu=trace</p>
+<h1>logging.path=</h1>
+<h1>不指定路径在当前项目下生成springboot.log日志</h1>
+<h1>可以指定完整的路径；</h1>
+<h1>logging.file=G:/springboot.log</h1>
+<h1>在当前磁盘的根路径下创建spring文件夹和里面的log文件夹；使用 spring.log 作为默认文件</h1>
+<p>logging.path=/spring/log</p>
+<h1>在控制台输出的日志的格式</h1>
+<p>logging.pattern.console=%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n</p>
+<h1>指定文件中日志输出的格式</h1>
+<p>logging.pattern.file=%d{yyyy-MM-dd} === [%thread] === %-5level === %logger{50} ==== %msg%n
+```</p>
+<p>| logging.file | logging.path | Example  | Description             |
+| ------------ | ------------ | -------- | ----------------------- |
+| (none)       | (none)       |          | 只在控制台输出                 |
+| 指定文件名        | (none)       | my.log   | 输出日志到my.log文件           |
+| (none)       | 指定目录         | /var/log | 输出到指定目录的 spring.log 文件中 |</p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
 
       
 
@@ -205,17 +1353,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">powerdesigner</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
          <span id="busuanzi_container_page_pv">
               |阅读量(<span id="busuanzi_value_page_pv"></span>)
         </span>
@@ -223,7 +1360,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/PowerDesigner中DBMS设置的问题/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/17/u_post/springboot入门/">展开全文 >></a>
         </p>
       
 
@@ -253,20 +1390,20 @@
 
 
   
-    <article id="post-SpringBoot与数据访问" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-springboot入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/SpringBoot与数据访问/">SpringBoot与数据访问</a>
+      <a class="article-title" href="/2018/04/13/springboot入门/">Springboot入门</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/SpringBoot与数据访问/" class="archive-article-date">
-  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+        <a href="/2018/04/13/springboot入门/" class="archive-article-date">
+  	<time datetime="2018-04-13T12:20:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
       </header>
@@ -277,507 +1414,947 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="SpringBoot与数据访问"><a href="#SpringBoot与数据访问" class="headerlink" title="SpringBoot与数据访问"></a>SpringBoot与数据访问</h2><h3 id="1-JDBC"><a href="#1-JDBC" class="headerlink" title="1.JDBC"></a>1.JDBC</h3><pre><code>&lt;dependency&gt;
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="1-springboot简介"><a href="#1-springboot简介" class="headerlink" title="1.springboot简介"></a>1.springboot简介</h2><p>简化spring应用的一个框架<br>整个spring技术的一个大整合“spring全家桶”<br>J2EE的一站式解决方案</p>
+<p>优点：</p>
+<ul>
+<li>快速创建独立运行的Spring项目以及与主流框架集成</li>
+<li>使用嵌入式的Servlet容器，应用无需打包成war包</li>
+<li>starters自动依赖与版本控制</li>
+<li>大量的自动配置，简化开发，也可以修改默认值</li>
+<li>无需配置XML，无代码生成，开箱即用</li>
+<li>准生产环境的运行时应用监控</li>
+<li>与云计算的天然集成</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>入门容易深入难，需要十分了解spring底层API才能深入</li>
+</ul>
+<h2 id="2-微服务"><a href="#2-微服务" class="headerlink" title="2.微服务"></a>2.微服务</h2><p>2014，Martin Fowler<br>微服务：架构风格<br>一个应用应该是一组小型服务，可以通过HTTP的方式进行互通<br>单体应用：ALL IN ONE<br><img src="https://i.imgur.com/713ylux.png" alt=""><br>微服务：每一个功能元素最终都是一个可独立替换和独立升级的软件单元<br>详细参照微服务文档<br><img src="https://i.imgur.com/cVYlEyt.png" alt=""></p>
+<p>环境约束</p>
+<ul>
+<li>jdk1.8 :Spring Boot 1.7及以上，java -version”1.8.0-112”</li>
+<li>maven3.x :maven3.3以上版本，ApacheMaven3.3.9</li>
+<li>IntellijIDEA2017：intellijIDEA2017.2.2x64、STS</li>
+<li>SpringBoot 1.5.9RELEASE：1.5.9</li>
+</ul>
+<p>我的版本：</p>
+<pre><code>F:\maven\apache-maven-3.5.2-bin\apache-maven-3.5.2\bin&gt; mvn -v
+Apache Maven 3.5.2 (138edd61fd100ec658bfa2d307c43b76940a5d7d; 2017-10-18T15:58:13+08:00)
+Maven home: F:\maven\apache-maven-3.5.2-bin\apache-maven-3.5.2\bin\..
+Java version: 1.8.0_131, vendor: Oracle Corporation
+Java home: C:\Program Files\Java\jdk1.8.0_131\jre
+Default locale: zh_CN, platform encoding: GBK
+OS name: &quot;windows 10&quot;, version: &quot;10.0&quot;, arch: &quot;amd64&quot;, family: &quot;windows&quot;
+</code></pre><p>maven设置：<br>给mavensettings.xml配置文件的profile标签添加</p>
+<pre><code>&lt;profiles&gt;
+  &lt;profile&gt;
+      &lt;id&gt;jdk-1.8&lt;/id&gt;
+
+      &lt;activation&gt;
+        &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
+        &lt;jdk&gt;1.8&lt;/jdk&gt;
+      &lt;/activation&gt;
+
+      &lt;properties&gt;
+          &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
+          &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
+          &lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;
+      &lt;/properties&gt;
+
+  &lt;/profile&gt;
+&lt;/profiles&gt;
+</code></pre><h2 id="SpringBoot-Helloworld"><a href="#SpringBoot-Helloworld" class="headerlink" title="SpringBoot Helloworld"></a>SpringBoot Helloworld</h2><p>一个功能，浏览器发送hello请求，服务器接受请求，响应并且返回hello world字符串</p>
+<h3 id="1-创建一个maven工程-jar"><a href="#1-创建一个maven工程-jar" class="headerlink" title="1.创建一个maven工程(jar)"></a>1.创建一个maven工程(jar)</h3><h3 id="2-导入Sringboot相关依赖"><a href="#2-导入Sringboot相关依赖" class="headerlink" title="2.导入Sringboot相关依赖"></a>2.导入Sringboot相关依赖</h3><pre><code>&lt;parent&gt;
     &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-jdbc&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;mysql&lt;/groupId&gt;
-        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
-            &lt;scope&gt;runtime&lt;/scope&gt;
-        &lt;/dependency&gt;
-</code></pre><pre><code class="yaml">spring:
-  datasource:
-    username: root
-    password: 123456
-    url: jdbc:mysql://192.168.15.22:3306/jdbc
-    driver-class-name: com.mysql.jdbc.Driver
-</code></pre>
-<p>效果：</p>
-<p>​    默认是用org.apache.tomcat.jdbc.pool.DataSource作为数据源；</p>
-<p>​    数据源的相关配置都在DataSourceProperties里面；</p>
-<p>自动配置原理：</p>
-<p>org.springframework.boot.autoconfigure.jdbc：</p>
-<p>1、参考DataSourceConfiguration，根据配置创建数据源，默认使用Tomcat连接池；可以使用spring.datasource.type指定自定义的数据源类型；</p>
-<p>2、SpringBoot默认可以支持；</p>
-<pre><code>org.apache.tomcat.jdbc.pool.DataSource、HikariDataSource、BasicDataSource、
-</code></pre><p>3、自定义数据源类型</p>
-<pre><code class="java">/**
- * Generic DataSource configuration.
- */
-@ConditionalOnMissingBean(DataSource.class)
-@ConditionalOnProperty(name = &quot;spring.datasource.type&quot;)
-static class Generic {
-
-   @Bean
-   public DataSource dataSource(DataSourceProperties properties) {
-       //使用DataSourceBuilder创建数据源，利用反射创建响应type的数据源，并且绑定相关属性
-      return properties.initializeDataSourceBuilder().build();
-   }
-
-}
-</code></pre>
-<p>4、<strong>DataSourceInitializer：ApplicationListener</strong>；</p>
-<p>​    作用：</p>
-<p>​        1）、runSchemaScripts();运行建表语句；</p>
-<p>​        2）、runDataScripts();运行插入数据的sql语句；</p>
-<p>默认只需要将文件命名为：</p>
-<pre><code class="properties">schema-*.sql、data-*.sql
-默认规则：schema.sql，schema-all.sql；
-可以使用   
-    schema:
-      - classpath:department.sql
-      指定位置
-</code></pre>
-<p>5、操作数据库：自动配置了JdbcTemplate操作数据库</p>
-<h3 id="2-整合Druid数据源"><a href="#2-整合Druid数据源" class="headerlink" title="2.整合Druid数据源"></a>2.整合Druid数据源</h3><pre><code class="java">导入druid数据源
-@Configuration
-public class DruidConfig {
-
-    @ConfigurationProperties(prefix = &quot;spring.datasource&quot;)
-    @Bean
-    public DataSource druid(){
-       return  new DruidDataSource();
-    }
-
-    //配置Druid的监控
-    //1、配置一个管理后台的Servlet
-    @Bean
-    public ServletRegistrationBean statViewServlet(){
-        ServletRegistrationBean bean = new ServletRegistrationBean(new StatViewServlet(), &quot;/druid/*&quot;);
-        Map&lt;String,String&gt; initParams = new HashMap&lt;&gt;();
-
-        initParams.put(&quot;loginUsername&quot;,&quot;admin&quot;);
-        initParams.put(&quot;loginPassword&quot;,&quot;123456&quot;);
-        initParams.put(&quot;allow&quot;,&quot;&quot;);//默认就是允许所有访问
-        initParams.put(&quot;deny&quot;,&quot;192.168.15.21&quot;);
-
-        bean.setInitParameters(initParams);
-        return bean;
-    }
-
-
-    //2、配置一个web监控的filter
-    @Bean
-    public FilterRegistrationBean webStatFilter(){
-        FilterRegistrationBean bean = new FilterRegistrationBean();
-        bean.setFilter(new WebStatFilter());
-
-        Map&lt;String,String&gt; initParams = new HashMap&lt;&gt;();
-        initParams.put(&quot;exclusions&quot;,&quot;*.js,*.css,/druid/*&quot;);
-
-        bean.setInitParameters(initParams);
-
-        bean.setUrlPatterns(Arrays.asList(&quot;/*&quot;));
-
-        return  bean;
-    }
-}
-</code></pre>
-<h3 id="3-整合MyBatis"><a href="#3-整合MyBatis" class="headerlink" title="3.整合MyBatis"></a>3.整合MyBatis</h3><pre><code class="xml">        &lt;dependency&gt;
-            &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;
-            &lt;version&gt;1.3.1&lt;/version&gt;
-        &lt;/dependency&gt;
-</code></pre>
-<p><img src="https://i.imgur.com/vurJVYF.png" alt=""></p>
-<p>步骤：</p>
-<p>​    1）、配置数据源相关属性（见上一节Druid）</p>
-<p>​    2）、给数据库建表</p>
-<p>​    3）、创建JavaBean</p>
-<h3 id="4、注解版"><a href="#4、注解版" class="headerlink" title="4、注解版"></a>4、注解版</h3><pre><code class="java">//指定这是一个操作数据库的mapper
-@Mapper
-public interface DepartmentMapper {
-
-    @Select(&quot;select * from department where id=#{id}&quot;)
-    public Department getDeptById(Integer id);
-
-    @Delete(&quot;delete from department where id=#{id}&quot;)
-    public int deleteDeptById(Integer id);
-
-    @Options(useGeneratedKeys = true,keyProperty = &quot;id&quot;)
-    @Insert(&quot;insert into department(departmentName) values(#{departmentName})&quot;)
-    public int insertDept(Department department);
-
-    @Update(&quot;update department set departmentName=#{departmentName} where id=#{id}&quot;)
-    public int updateDept(Department department);
-}
-</code></pre>
-<p>问题：</p>
-<p>自定义MyBatis的配置规则；给容器中添加一个ConfigurationCustomizer；</p>
-<pre><code class="java">@org.springframework.context.annotation.Configuration
-public class MyBatisConfig {
-
-    @Bean
-    public ConfigurationCustomizer configurationCustomizer(){
-        return new ConfigurationCustomizer(){
-
-            @Override
-            public void customize(Configuration configuration) {
-                configuration.setMapUnderscoreToCamelCase(true);
-            }
-        };
-    }
-}
-</code></pre>
-<pre><code class="java">使用MapperScan批量扫描所有的Mapper接口；
-@MapperScan(value = &quot;com.atguigu.springboot.mapper&quot;)
-@SpringBootApplication
-public class SpringBoot06DataMybatisApplication {
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;1.5.9.RELEASE&lt;/version&gt;
+&lt;/parent&gt;
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre><h3 id="3-编写一个主程序：启动Springboot应用"><a href="#3-编写一个主程序：启动Springboot应用" class="headerlink" title="3.编写一个主程序：启动Springboot应用"></a>3.编写一个主程序：启动Springboot应用</h3><pre><code>@SpringBootApplication
+public class HelloWorldMainApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBoot06DataMybatisApplication.class, args);
+
+        //spring应用程序启动起来
+        SpringApplication.run(HelloWorldMainApplication.class,args);
+
+    }
+
+}
+</code></pre><h3 id="4-编写相关的controller，service"><a href="#4-编写相关的controller，service" class="headerlink" title="4.编写相关的controller，service"></a>4.编写相关的controller，service</h3><pre><code>@Controller
+public class HelloController {
+
+    @ResponseBody
+    @RequestMapping(&quot;/hello&quot;)
+    public String hello(){
+        return &quot;helloworld&quot;;
     }
 }
-</code></pre>
-<h3 id="5、配置文件版"><a href="#5、配置文件版" class="headerlink" title="5、配置文件版"></a>5、配置文件版</h3><pre><code class="yaml">mybatis:
-  config-location: classpath:mybatis/mybatis-config.xml 指定全局配置文件的位置
-  mapper-locations: classpath:mybatis/mapper/*.xml  指定sql映射文件的位置
-</code></pre>
-<p>更多使用参照</p>
-<p><a href="http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/" target="_blank" rel="external">链接</a></p>
-<h2 id="4、整合SpringData-JPA"><a href="#4、整合SpringData-JPA" class="headerlink" title="4、整合SpringData JPA"></a>4、整合SpringData JPA</h2><h3 id="1、SpringData简介"><a href="#1、SpringData简介" class="headerlink" title="1、SpringData简介"></a>1、SpringData简介</h3><p><img src="https://i.imgur.com/Tq3nASv.png" alt=""></p>
-<h3 id="2、整合SpringData-JPA"><a href="#2、整合SpringData-JPA" class="headerlink" title="2、整合SpringData JPA"></a>2、整合SpringData JPA</h3><p>JPA:ORM（Object Relational Mapping）；</p>
-<p>1）、编写一个实体类（bean）和数据表进行映射，并且配置好映射关系；</p>
-<pre><code class="java">//使用JPA注解配置映射关系
-@Entity //告诉JPA这是一个实体类（和数据表映射的类）
-@Table(name = &quot;tbl_user&quot;) //@Table来指定和哪个数据表对应;如果省略默认表名就是user；
-public class User {
+</code></pre><h3 id="5-运行主程序测试"><a href="#5-运行主程序测试" class="headerlink" title="5.运行主程序测试"></a>5.运行主程序测试</h3><p><img src="https://i.imgur.com/o5wuRcG.png" alt=""></p>
+<h3 id="6-简化配置"><a href="#6-简化配置" class="headerlink" title="6.简化配置"></a>6.简化配置</h3><pre><code>   &lt;!-- 这个插件，可以将应用打包成一个可执行的jar包--&gt;
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+</code></pre><p>将这个应用打包成jar包，使用spring -jar命令来执行</p>
+<h3 id="5-HelloWorld探究"><a href="#5-HelloWorld探究" class="headerlink" title="5.HelloWorld探究"></a>5.HelloWorld探究</h3><h4 id="1-POM文件"><a href="#1-POM文件" class="headerlink" title="1.POM文件"></a>1.POM文件</h4><p>1.父项目</p>
+<pre><code>parent&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+        &lt;version&gt;1.5.9.RELEASE&lt;/version&gt;
+    &lt;/parent&gt;
 
-    @Id //这是一个主键
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//自增主键
-    private Integer id;
+它的父项目是
+    &lt;parent&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-dependencies&lt;/artifactId&gt;
+        &lt;version&gt;1.5.9.RELEASE&lt;/version&gt;
+        &lt;relativePath&gt;../../spring-boot-dependencies&lt;/relativePath&gt;
+    &lt;/parent&gt;
+它是真正管理Spring Boot应用里的所有依赖版本
+</code></pre><p>SpringBoot的版本仲裁中心<br>以后我们导入依赖默认是不需要写版本（没有在dependencies里面管理的依赖自然需要声明版本号）</p>
+<p>2.导入的依赖</p>
+<pre><code>&lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+</code></pre><p>spring-boot-starter:spring-boot场景启动器,帮我们导入了web模块正常运行所依赖的组件</p>
+<p>Spring boot将所有的功能场景都抽取出来，做成一个个starter启动器，只需要在项目里引入这个starter相关场景，所有的依赖都会导入进来，要用什么功能就导哪个场景</p>
+<h4 id="2-主程序类，主入口类"><a href="#2-主程序类，主入口类" class="headerlink" title="2.主程序类，主入口类"></a>2.主程序类，主入口类</h4><pre><code>@SpringBootApplication
+public class HelloWorldMainApplication {
 
-    @Column(name = &quot;last_name&quot;,length = 50) //这是和数据表对应的一个列
+    public static void main(String[] args) {
+
+        //spring应用程序启动起来
+        SpringApplication.run(HelloWorldMainApplication.class,args);
+
+    }
+
+}
+</code></pre><p>@SpringBootApplication: Spring Boot 应用标注在某个类上说明这个类是Springboot的主配置类<br>springboot就应该运行这个类的main方法来启动springboot应用</p>
+<pre><code>@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Inherited
+@SpringBootConfiguration
+@EnableAutoConfiguration
+@ComponentScan(
+    excludeFilters = {@Filter(
+    type = FilterType.CUSTOM,
+    classes = {TypeExcludeFilter.class}
+), @Filter(
+    type = FilterType.CUSTOM,
+    classes = {AutoConfigurationExcludeFilter.class}
+)}
+)
+public @interface SpringBootApplication {
+</code></pre><p>@<strong><em>SpringBootConfiguration</em></strong>: Springboot配置类<br>   标注在某个类上，表示这个一个springboot的配置类<br>   @<strong><em>Configuration</em></strong>：配置类上来标注这个注解</p>
+<p>配置类—配置文件：配置类也是容器的一个组件@Component</p>
+<p>@<strong><em>EnableAutoConfiguration</em></strong>：开启自动配置功能<br>   以前我们需要配置的东西，springboot帮我们自动配置，@EnableAutoConfiguration告诉我们springboot开启自动配置功能，这样自动配置才能生效</p>
+<pre><code>@AutoConfigurationPackage
+@Import({EnableAutoConfigurationImportSelector.class})
+public @interface EnableAutoConfiguration {
+</code></pre><p>@<strong><em>AutoConfigurationPackage</em></strong>：自动配置包<br>   @Import({Registrar.class})<br>   spring的底层注解@import，给容器倒入一个组件，导入的组件由AutoConfigurationPackage.Registrar.class<br>将主配置类（@<strong><em>SpringBootConfiguration</em></strong>标注的类）的所在包及其下面所有子包里面的所有组件都扫描到Spring容器里<br>@Import({EnableAutoConfigurationImportSelector.class})<br>给容器中导入组件<br>EnableAutoConfigurationImportSelector：导入哪些组件选择器<br>将所有需要导入的组件以全类名的方式返回，这些组件就会被添加到容器中<br>会给容器中导入非常多的自动配置类(xxAutoConfiguration),就是给容器导入这个场景所需要的组件，并配置好这些组件<br><img src="https://i.imgur.com/SpKPWkA.png" alt="自动配置类"><br>有了自动配置类，免去了我们手动编写配置注入功能等工作<br>SpringFactoriesLoader.loadFactoryNames(EnableAutoConfiguration.class,classLoader);<br>SpringBoot在启动的时候从类路径下的META-INF/spring.factories获取EnableAutoConfiguration指定的值，将这些值作为自动配置类导入到容器中，自动配置就生效，帮我们进行自动配置工作，以前须要我们自己进行配置的东西，自动配置类都帮我们配置好了<br><img src="https://i.imgur.com/7nVkMZC.png" alt=""><br>J2EE的整体整合解决方案和自动配置都在F:\maven\apache-maven-3.5.2-bin\repo\org\springframework\boot\spring-boot-autoconfigure\1.5.9.RELEASE\spring-boot-autoconfigure-1.5.9.RELEASE.jar!\org\springframework\boot\autoconfigure<br><img src="https://i.imgur.com/xWXQhai.png" alt=""></p>
+<h3 id="6-使用Spring-Initializer-快速创建Springboot项目"><a href="#6-使用Spring-Initializer-快速创建Springboot项目" class="headerlink" title="6.使用Spring Initializer 快速创建Springboot项目"></a>6.使用Spring Initializer 快速创建Springboot项目</h3><p>IDE都支持使用Spring的项目创建向导快速创建一个Spring Boot项目<br>选择我们需要的模板，向导会联网创建Springboot项目<br>默认生成的Springboot项目</p>
+<ul>
+<li>主程序已经生成好了，我们只需要我们编写自己的逻辑</li>
+<li>resources 文件夹中目录结构<br>1.static：保存所有的静态资源：js,css,images<br>2.templates:保存所有的模板页面，（springboot默认jar包使用嵌入式的Tomcat，默认不支持jsp页面），可以使用模板引擎(freemaker,thymeleaf)<br> 3.application.properties:springboot应用的配置文件，可以修改一些默认配置</li>
+</ul>
+<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><h2 id="1、配置文件"><a href="#1、配置文件" class="headerlink" title="1、配置文件"></a>1、配置文件</h2><p>SpringBoot使用一个全局的配置文件，配置文件名是固定的；</p>
+<p>•application.properties</p>
+<p>•application.yml</p>
+<p>配置文件的作用：修改SpringBoot自动配置的默认值；SpringBoot在底层都给我们自动配置好；</p>
+<p>YAML（YAML Ain’t Markup Language）</p>
+<p>​    YAML  A Markup Language：是一个标记语言</p>
+<p>​    YAML   isn’t Markup Language：不是一个标记语言；</p>
+<p>标记语言：</p>
+<p>​    以前的配置文件；大多都使用的是  <strong>xxxx.xml</strong>文件；</p>
+<p>​    YAML：<strong>以数据为中心</strong>，比json、xml等更适合做配置文件；</p>
+<p>​    YAML：配置例子</p>
+<pre><code class="yaml">server:
+  port: 8081
+</code></pre>
+<p>​    XML：</p>
+<pre><code class="xml">&lt;server&gt;
+    &lt;port&gt;8081&lt;/port&gt;
+&lt;/server&gt;
+</code></pre>
+<h2 id="2、YAML语法："><a href="#2、YAML语法：" class="headerlink" title="2、YAML语法："></a>2、YAML语法：</h2><h3 id="1、基本语法"><a href="#1、基本语法" class="headerlink" title="1、基本语法"></a>1、基本语法</h3><p>k:(空格)v：表示一对键值对（空格必须有）；</p>
+<p>以<strong>空格</strong>的缩进来控制层级关系；只要是左对齐的一列数据，都是同一个层级的</p>
+<pre><code class="yaml">server:
+    port: 8081
+    path: /hello
+</code></pre>
+<p>属性和值也是大小写敏感；</p>
+<h3 id="2、值的写法"><a href="#2、值的写法" class="headerlink" title="2、值的写法"></a>2、值的写法</h3><h4 id="字面量：普通的值（数字，字符串，布尔）"><a href="#字面量：普通的值（数字，字符串，布尔）" class="headerlink" title="字面量：普通的值（数字，字符串，布尔）"></a>字面量：普通的值（数字，字符串，布尔）</h4><pre><code>​    k: v：字面直接来写；
+
+​        字符串默认不用加上单引号或者双引号；
+
+​        &quot;&quot;：双引号；不会转义字符串里面的特殊字符；特殊字符会作为本身想表示的意思
+
+​                name:   &quot;zhangsan \n lisi&quot;：输出；zhangsan 换行  lisi
+
+​        &#39;&#39;：单引号；会转义特殊字符，特殊字符最终只是一个普通的字符串数据
+
+​                name:   ‘zhangsan \n lisi’：输出；zhangsan \n  lisi
+</code></pre><h4 id="对象、Map（属性和值）（键值对）："><a href="#对象、Map（属性和值）（键值对）：" class="headerlink" title="对象、Map（属性和值）（键值对）："></a>对象、Map（属性和值）（键值对）：</h4><p>​    k: v：在下一行来写对象的属性和值的关系；注意缩进</p>
+<p>​        对象还是k: v的方式</p>
+<pre><code class="yaml">friends:
+        lastName: zhangsan
+        age: 20
+</code></pre>
+<p>行内写法：</p>
+<pre><code class="yaml">friends: {lastName: zhangsan,age: 18}
+</code></pre>
+<h4 id="数组（List、Set）："><a href="#数组（List、Set）：" class="headerlink" title="数组（List、Set）："></a>数组（List、Set）：</h4><p>用- 值表示数组中的一个元素</p>
+<pre><code class="yaml">pets:
+ - cat
+ - dog
+ - pig
+</code></pre>
+<p>行内写法</p>
+<pre><code class="yaml">pets: [cat,dog,pig]
+</code></pre>
+<h2 id="3、配置文件值注入"><a href="#3、配置文件值注入" class="headerlink" title="3、配置文件值注入"></a>3、配置文件值注入</h2><p>配置文件</p>
+<pre><code class="yaml">person:
+    lastName: hello
+    age: 18
+    boss: false
+    birth: 2017/12/12
+    maps: {k1: v1,k2: 12}
+    lists:
+      - lisi
+      - zhaoliu
+    dog:
+      name: 小狗
+      age: 12
+</code></pre>
+<p>javaBean：</p>
+<pre><code class="java">/**
+ * 将配置文件中配置的每一个属性的值，映射到这个组件中
+ * @ConfigurationProperties：告诉SpringBoot将本类中的所有属性和配置文件中相关的配置进行绑定；
+ *      prefix = &quot;person&quot;：配置文件中哪个下面的所有属性进行一一映射
+ *
+ * 只有这个组件是容器中的组件，才能容器提供的@ConfigurationProperties功能；
+ *
+ */
+@Component
+@ConfigurationProperties(prefix = &quot;person&quot;)
+public class Person {
+
     private String lastName;
-    @Column //省略默认列名就是属性名
-    private String email;
+    private Integer age;
+    private Boolean boss;
+    private Date birth;
+
+    private Map&lt;String,Object&gt; maps;
+    private List&lt;Object&gt; lists;
+    private Dog dog;
 </code></pre>
-<p>2）、编写一个Dao接口来操作实体类对应的数据表（Repository）</p>
-<pre><code class="java">//继承JpaRepository来完成对数据库的操作
-public interface UserRepository extends JpaRepository&lt;User,Integer&gt; {
-}
+<p>我们可以导入配置文件处理器，以后编写配置就有提示了</p>
+<pre><code class="xml">&lt;!--导入配置文件处理器，配置文件进行绑定就会有提示--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-configuration-processor&lt;/artifactId&gt;
+            &lt;optional&gt;true&lt;/optional&gt;
+        &lt;/dependency&gt;
 </code></pre>
-<p>3）、基本的配置JpaProperties</p>
-<pre><code class="yaml">spring:  
- jpa:
-    hibernate:
-#     更新或者创建数据表结构
-      ddl-auto: update
-#    控制台显示SQL
-    show-sql: true
-</code></pre>
-<h1 id="七、启动配置原理"><a href="#七、启动配置原理" class="headerlink" title="七、启动配置原理"></a>七、启动配置原理</h1><p>几个重要的事件回调机制</p>
-<p>配置在META-INF/spring.factories</p>
-<p><strong>ApplicationContextInitializer</strong></p>
-<p><strong>SpringApplicationRunListener</strong></p>
-<p>只需要放在ioc容器中</p>
-<p><strong>ApplicationRunner</strong></p>
-<p><strong>CommandLineRunner</strong></p>
-<p>启动流程：</p>
-<h2 id="1、创建SpringApplication对象"><a href="#1、创建SpringApplication对象" class="headerlink" title="1、创建SpringApplication对象"></a><strong>1、创建SpringApplication对象</strong></h2><pre><code class="java">initialize(sources);
-private void initialize(Object[] sources) {
-    //保存主配置类
-    if (sources != null &amp;&amp; sources.length &gt; 0) {
-        this.sources.addAll(Arrays.asList(sources));
-    }
-    //判断当前是否一个web应用
-    this.webEnvironment = deduceWebEnvironment();
-    //从类路径下找到META-INF/spring.factories配置的所有ApplicationContextInitializer；然后保存起来
-    setInitializers((Collection) getSpringFactoriesInstances(
-        ApplicationContextInitializer.class));
-    //从类路径下找到ETA-INF/spring.factories配置的所有ApplicationListener
-    setListeners((Collection) getSpringFactoriesInstances(ApplicationListener.class));
-    //从多个配置类中找到有main方法的主配置类
-    this.mainApplicationClass = deduceMainApplicationClass();
-}
-</code></pre>
-<p><img src="https://i.imgur.com/c3rkrHd.png" alt=""></p>
-<p><img src="https://i.imgur.com/MuMtxb9.png" alt=""></p>
-<h2 id="2、运行run方法"><a href="#2、运行run方法" class="headerlink" title="2、运行run方法"></a>2、运行run方法</h2><pre><code class="java">public ConfigurableApplicationContext run(String... args) {
-   StopWatch stopWatch = new StopWatch();
-   stopWatch.start();
-   ConfigurableApplicationContext context = null;
-   FailureAnalyzers analyzers = null;
-   configureHeadlessProperty();
+<h4 id="1、properties配置文件在idea中默认utf-8可能会乱码"><a href="#1、properties配置文件在idea中默认utf-8可能会乱码" class="headerlink" title="1、properties配置文件在idea中默认utf-8可能会乱码"></a>1、properties配置文件在idea中默认utf-8可能会乱码</h4><p>更改配置文件编码方式</p>
+<p><img src="https://i.imgur.com/JK7oG8u.png" alt="idea配置乱码"></p>
+<h4 id="2、-Value获取值和-ConfigurationProperties获取值比较"><a href="#2、-Value获取值和-ConfigurationProperties获取值比较" class="headerlink" title="2、@Value获取值和@ConfigurationProperties获取值比较"></a>2、@Value获取值和@ConfigurationProperties获取值比较</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>@ConfigurationProperties</th>
+<th>@Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>功能</td>
+<td>批量注入配置文件中的属性</td>
+<td>一个个指定</td>
+</tr>
+<tr>
+<td>松散绑定（松散语法）</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>SpEL</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>JSR303数据校验</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>复杂类型封装</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+</tbody>
+</table>
+<p>配置文件yml还是properties他们都能获取到值；</p>
+<p>如果说，我们只是在某个业务逻辑中需要获取一下配置文件中的某项值，使用@Value；</p>
+<p>如果说，我们专门编写了一个javaBean来和配置文件进行映射，我们就直接使用@ConfigurationProperties；</p>
+<h4 id="3-配置文件注入数据校验值"><a href="#3-配置文件注入数据校验值" class="headerlink" title="3.配置文件注入数据校验值"></a>3.配置文件注入数据校验值</h4><pre><code>/*
+* j将配置文件中的每一个属性的值，映射到这个组件中
+*@ConfigurationProperties :告诉springboot将本类中的属性和配置文件中的对应属性进行绑定
+* prefix = &quot;person&quot; 配置属性中哪一个下面的所有属性进行一一映射
+* 只有这个组件是容器中的组件，才能有容器提供的@ConfigurationProperties功能
+ *  */
+@Component
+@ConfigurationProperties(prefix = &quot;person&quot;)
+@Validated
+public class Person {
 
-   //获取SpringApplicationRunListeners；从类路径下META-INF/spring.factories
-   SpringApplicationRunListeners listeners = getRunListeners(args);
-    //回调所有的获取SpringApplicationRunListener.starting()方法
-   listeners.starting();
-   try {
-       //封装命令行参数
-      ApplicationArguments applicationArguments = new DefaultApplicationArguments(
-            args);
-      //准备环境
-      ConfigurableEnvironment environment = prepareEnvironment(listeners,
-            applicationArguments);
-               //创建环境完成后回调SpringApplicationRunListener.environmentPrepared()；表示环境准备完成
+    /*
+    * &lt;bean class=&quot;Person&quot;&gt;
+    *     &lt;property name=&quot;lastName&quot; value=&quot;字面量/${key}从环境变量、配置文件中获取，#{SpEL}&quot;/&gt;
+    *  &lt;bean&gt;
+    *
+    * */
+    //@Email//last-name必须是一个邮箱格式
+   // @Value(&quot;${person.last-name}&quot;)
+    private String lastName;
+    //@Value(&quot;#{11*2}&quot;)
+    private Integer age;
+    //@Value(&quot;true&quot;)
+    private boolean boss;
+    private Date birth;
+    private Map&lt;String,Object&gt; maps;
+    private List&lt;Object&gt; list;
+    private Dog dog;
+</code></pre><h4 id="4-PropertySource-amp-ImportResource"><a href="#4-PropertySource-amp-ImportResource" class="headerlink" title="4.@PropertySource&amp;@ImportResource"></a>4.@PropertySource&amp;@ImportResource</h4><p>@PropertySource:加载指定的配置文件</p>
+<pre><code>@PropertySource(value = {&quot;classpath:person.properties&quot;})
+@Component
+@ConfigurationProperties(prefix = &quot;person&quot;)
+//@Validated
+public class Person {
 
-      Banner printedBanner = printBanner(environment);
+    /*
+    * &lt;bean class=&quot;Person&quot;&gt;
+    *     &lt;property name=&quot;lastName&quot; value=&quot;字面量/${key}从环境变量、配置文件中获取，#{SpEL}&quot;/&gt;
+    *  &lt;bean&gt;
+    *
+    * */
+    //@Email//last-name必须是一个邮箱格式
+   // @Value(&quot;${person.last-name}&quot;)
+    private String lastName;
+    //@Value(&quot;#{11*2}&quot;)
+    private Integer age;
+    //@Value(&quot;true&quot;)
+    private boolean boss;
+    private Date birth;
+    private Map&lt;String,Object&gt; maps;
+    private List&lt;Object&gt; list;
+    private Dog dog;
 
-       //创建ApplicationContext；决定创建web的ioc还是普通的ioc
-      context = createApplicationContext();
-
-      analyzers = new FailureAnalyzers(context);
-       //准备上下文环境;将environment保存到ioc中；而且applyInitializers()；
-       //applyInitializers()：回调之前保存的所有的ApplicationContextInitializer的initialize方法
-       //回调所有的SpringApplicationRunListener的contextPrepared()；
-       //
-      prepareContext(context, environment, listeners, applicationArguments,
-            printedBanner);
-       //prepareContext运行完成以后回调所有的SpringApplicationRunListener的contextLoaded（）；
-
-       //s刷新容器；ioc容器初始化（如果是web应用还会创建嵌入式的Tomcat）；Spring注解版
-       //扫描，创建，加载所有组件的地方；（配置类，组件，自动配置）
-      refreshContext(context);
-       //从ioc容器中获取所有的ApplicationRunner和CommandLineRunner进行回调
-       //ApplicationRunner先回调，CommandLineRunner再回调
-      afterRefresh(context, applicationArguments);
-       //所有的SpringApplicationRunListener回调finished方法
-      listeners.finished(context, null);
-      stopWatch.stop();
-      if (this.logStartupInfo) {
-         new StartupInfoLogger(this.mainApplicationClass)
-               .logStarted(getApplicationLog(), stopWatch);
-      }
-       //整个SpringBoot应用启动完成以后返回启动的ioc容器；
-      return context;
-   }
-   catch (Throwable ex) {
-      handleRunFailure(context, listeners, analyzers, ex);
-      throw new IllegalStateException(ex);
-   }
-}
-</code></pre>
-<h2 id="3、事件监听机制"><a href="#3、事件监听机制" class="headerlink" title="3、事件监听机制"></a>3、事件监听机制</h2><p>配置在META-INF/spring.factories</p>
-<p><strong>ApplicationContextInitializer</strong></p>
-<pre><code class="java">public class HelloApplicationContextInitializer implements ApplicationContextInitializer&lt;ConfigurableApplicationContext&gt; {
-    @Override
-    public void initialize(ConfigurableApplicationContext applicationContext) {
-        System.out.println(&quot;ApplicationContextInitializer...initialize...&quot;+applicationContext);
-    }
-}
-</code></pre>
-<p><strong>SpringApplicationRunListener</strong></p>
-<pre><code class="java">public class HelloSpringApplicationRunListener implements SpringApplicationRunListener {
-
-    //必须有的构造器
-    public HelloSpringApplicationRunListener(SpringApplication application, String[] args){
-
-    }
 
     @Override
-    public void starting() {
-        System.out.println(&quot;SpringApplicationRunListener...starting...&quot;);
+    public String toString() {
+        return &quot;Person{&quot; +
+                &quot;lastName=&#39;&quot; + lastName + &#39;\&#39;&#39; +
+                &quot;, age=&quot; + age +
+                &quot;, boss=&quot; + boss +
+                &quot;, birth=&quot; + birth +
+                &quot;, maps=&quot; + maps +
+                &quot;, list=&quot; + list +
+                &quot;, dog=&quot; + dog +
+                &#39;}&#39;;
     }
+</code></pre><p>@ImportResource:导入Spring的配置文件，让配置文件里面的内容生效<br>Springboot里面并没有spring配置文件，我们自己编写的配置文件也不能自动识别<br>想让Spring的配置文件生效，加载进来用@ImportResource标注在配置类上</p>
+<pre><code>//导入spring的配置文件让其生效
+@ImportResource(locations=&quot;classpath:beans.xml&quot;)
+</code></pre><p>编写spring配置文件,现在不推荐这方式，推荐使用全注解方式</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt; beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
 
-    @Override
-    public void environmentPrepared(ConfigurableEnvironment environment) {
-        Object o = environment.getSystemProperties().get(&quot;os.name&quot;);
-        System.out.println(&quot;SpringApplicationRunListener...environmentPrepared..&quot;+o);
-    }
 
-    @Override
-    public void contextPrepared(ConfigurableApplicationContext context) {
-        System.out.println(&quot;SpringApplicationRunListener...contextPrepared...&quot;);
-    }
+    &lt;bean id=&quot;helloService&quot; class=&quot;io.springboot.service.HelloService&quot;&gt;&lt;/bean&gt;
 
-    @Override
-    public void contextLoaded(ConfigurableApplicationContext context) {
-        System.out.println(&quot;SpringApplicationRunListener...contextLoaded...&quot;);
-    }
+&lt;/beans&gt;
+</code></pre><p>Springboot推荐给容器添加组件的方式：推荐使用全注解的方式</p>
+<p>1.配置类====spring配置文件</p>
+<p>2.使用@Bean给容器添加组件</p>
+<pre><code>/*
+* @Configuration:指明当前类是一个配置类，就是用来替代之前的spring配置文件
+*
+* 在配置文件中用&lt;bean&gt;&lt;bean/&gt;标签添加组件
+* */
 
-    @Override
-    public void finished(ConfigurableApplicationContext context, Throwable exception) {
-        System.out.println(&quot;SpringApplicationRunListener...finished...&quot;);
-    }
-}
-</code></pre>
-<p>配置（META-INF/spring.factories）</p>
-<pre><code class="properties">org.springframework.context.ApplicationContextInitializer=\
-com.atguigu.springboot.listener.HelloApplicationContextInitializer
+@Configuration
+public class MyAppConfig {
 
-org.springframework.boot.SpringApplicationRunListener=\
-com.atguigu.springboot.listener.HelloSpringApplicationRunListener
-</code></pre>
-<p>只需要放在ioc容器中</p>
-<p><strong>ApplicationRunner</strong></p>
-<pre><code class="java">@Component
-public class HelloApplicationRunner implements ApplicationRunner {
-    @Override
-    public void run(ApplicationArguments args) throws Exception {
-        System.out.println(&quot;ApplicationRunner...run....&quot;);
+    //将方法的返回值添加到容器中，容器中这个组件的默认id就是方法的名字
+    @Bean
+    public HelloService helloService02(){
+        System.out.println(&quot;配置类@Bean给容器中添加组件了&quot;);
+        return new HelloService();
     }
 }
+</code></pre><h4 id="4-配置文件占位符"><a href="#4-配置文件占位符" class="headerlink" title="4.配置文件占位符"></a>4.配置文件占位符</h4><p><img src="https://i.imgur.com/Kl9NjEw.png" alt=""></p>
+<p>1、随机数</p>
+<pre><code class="java">${random.value}、${random.int}、${random.long}
+${random.int(10)}、${random.int[1024,65536]}
 </code></pre>
-<p><strong>CommandLineRunner</strong></p>
-<pre><code class="java">@Component
-public class HelloCommandLineRunner implements CommandLineRunner {
-    @Override
-    public void run(String... args) throws Exception {
-        System.out.println(&quot;CommandLineRunner...run...&quot;+ Arrays.asList(args));
-    }
-}
+<p>2、占位符获取之前配置的值，如果没有可以是用:指定默认值</p>
+<pre><code class="properties">person.last-name=张三${random.uuid}
+person.age=${random.int}
+person.birth=2017/12/15
+person.boss=false
+person.maps.k1=v1
+person.maps.k2=14
+person.lists=a,b,c
+person.dog.name=${person.hello:hello}_dog
+person.dog.age=15
 </code></pre>
-<h1 id="八、自定义starter"><a href="#八、自定义starter" class="headerlink" title="八、自定义starter"></a>八、自定义starter</h1><p>starter：</p>
-<p>​    1、这个场景需要使用到的依赖是什么？</p>
-<p>​    2、如何编写自动配置</p>
-<pre><code class="java">@Configuration  //指定这个类是一个配置类
-@ConditionalOnXXX  //在指定条件成立的情况下自动配置类生效
-@AutoConfigureAfter  //指定自动配置类的顺序
-@Bean  //给容器中添加组件
+<h4 id="5-Profile"><a href="#5-Profile" class="headerlink" title="5.Profile"></a>5.Profile</h4><p>1.多Profile文件<br>我们再主配置文件编写的时候，文件名可以使 application-(profile).properties/yml</p>
+<p>可以配置多个application-(<em>*</em>).properties的文件，默认使用application.properties</p>
+<p>2.yml支持多文档块方式</p>
+<pre><code class="yml">
+server:
+  port: 8081
+spring:
+  profiles:
+    active: prod
 
-@ConfigurationPropertie结合相关xxxProperties类来绑定相关的配置
-@EnableConfigurationProperties //让xxxProperties生效加入到容器中
+---
+server:
+  port: 8083
+spring:
+  profiles: dev
 
-自动配置类要能加载
-将需要启动就加载的自动配置类，配置在META-INF/spring.factories
+
+---
+
+server:
+  port: 8084
+spring:
+  profiles: prod  #指定属于哪个环境
+</code></pre>
+<p>3.激活指定profile</p>
+<ul>
+<li>在配置文件中指定spring.profiles.active=dev</li>
+<li><p>命令行：–spring.profiles.active=dev<br>java -jar spring-boot-02-config-0.0.1-SNAPSHOT.jar –spring.profiles.active=dev；<br>可以直接在测试的时候，配置传入命令行参数</p>
+</li>
+<li><p>虚拟机参数：<br>  -Dspring.profiles.active=dev</p>
+</li>
+</ul>
+<h4 id="6-配置文件的加载位置"><a href="#6-配置文件的加载位置" class="headerlink" title="6.配置文件的加载位置"></a>6.配置文件的加载位置</h4><p><img src="https://i.imgur.com/IvQRfgf.png" alt=""><br>springboot 启动会扫描以下位置的application.properties或者application.yml文件作为Spring boot的默认配置文件</p>
+<p>–file:./config/</p>
+<p>–file:./</p>
+<p>–classpath:/config/</p>
+<p>–classpath:/<br>优先级由高到低，高优先级的配置会覆盖低优先级的配置<br>springboot会从这四个位置全部加载配置文件，会形成互补配置<br><strong>我们还可以通过spring.config.location来改变默认的配置文件位置，项目打包好以后，我们可以使用命令行参数的形式，启动项目的时候来指定配置文件的新路径，指定配置文件和这些默认的文件共同起作用形成互补配置</strong></p>
+<h4 id="7-外部配置的加载顺序"><a href="#7-外部配置的加载顺序" class="headerlink" title="7.外部配置的加载顺序"></a>7.外部配置的加载顺序</h4><p><img src="https://i.imgur.com/qfEeU5F.png" alt=""></p>
+<p>springboot也可以从以下位置加载配置，优先级从高到低，高优先级的配置覆盖配置低优先级的配置，若有不同配置，会形成互补配置</p>
+<p><strong>1.命令行参数</strong></p>
+<p>所有的配置都可以在命令行上进行指定</p>
+<p>java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar –server.port=8087  –server.context-path=/abc</p>
+<p>多个配置用空格分开； –配置项=值</p>
+<p>2.来自java:comp/env的JNDI属性</p>
+<p>3.Java系统属性（System.getProperties()）</p>
+<p>4.操作系统环境变量</p>
+<p>5.RandomValuePropertySource配置的random.*属性值</p>
+<p>==<strong>由jar包外向jar包内进行寻找；</strong>==</p>
+<p>==<strong>优先加载带profile</strong>==</p>
+<p><strong>6.jar包外部的application-{profile}.properties或application.yml(带spring.profile)配置文件</strong></p>
+<p><strong>7.jar包内部的application-{profile}.properties或application.yml(带spring.profile)配置文件</strong></p>
+<p>==<strong>再来加载不带profile</strong>==</p>
+<p><strong>8.jar包外部的application.properties或application.yml(不带spring.profile)配置文件</strong></p>
+<p><strong>9.jar包内部的application.properties或application.yml(不带spring.profile)配置文件</strong></p>
+<p>10.@Configuration注解类上的@PropertySource</p>
+<p>11.通过SpringApplication.setDefaultProperties指定的默认属性</p>
+<p>所有支持的配置加载来源；</p>
+<p><a href="https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#boot-features-external-config" target="_blank" rel="external">参考官方文档</a></p>
+<h4 id="8-自动配置原理"><a href="#8-自动配置原理" class="headerlink" title="8.自动配置原理"></a>8.自动配置原理</h4><p><img src="https://i.imgur.com/ZajWhqK.png" alt=""></p>
+<p>配置文件到底能写什么？怎么写？自动配置原理；</p>
+<p><a href="https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#common-application-properties" target="_blank" rel="external">配置文件能配置的属性参照</a></p>
+<h3 id="1、自动配置原理："><a href="#1、自动配置原理：" class="headerlink" title="1、自动配置原理："></a>1、<strong>自动配置原理：</strong></h3><p>1）、SpringBoot启动的时候加载主配置类，开启了自动配置功能 ==@EnableAutoConfiguration==</p>
+<p><strong>2）、@EnableAutoConfiguration 作用：</strong></p>
+<ul>
+<li>利用EnableAutoConfigurationImportSelector给容器中导入一些组件？</li>
+</ul>
+<ul>
+<li><p>可以查看selectImports()方法的内容；</p>
+</li>
+<li><p>List<string> configurations = getCandidateConfigurations(annotationMetadata,      attributes);获取候选的配置</string></p>
+<ul>
+<li><pre><code class="java">SpringFactoriesLoader.loadFactoryNames()
+扫描所有jar包类路径下  META-INF/spring.factories
+把扫描到的这些文件的内容包装成properties对象
+从properties中获取到EnableAutoConfiguration.class类（类名）对应的值，然后把他们添加在容器中
+</code></pre>
+<p>​</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>==将 类路径下  META-INF/spring.factories 里面配置的所有EnableAutoConfiguration的值加入到了容器中；==</strong></p>
+<pre><code class="properties"># Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration,\
 org.springframework.boot.autoconfigure.aop.AopAutoConfiguration,\
+org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration,\
+org.springframework.boot.autoconfigure.batch.BatchAutoConfiguration,\
+org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration,\
+org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfiguration,\
+org.springframework.boot.autoconfigure.cloud.CloudAutoConfiguration,\
+org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration,\
+org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration,\
+org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration,\
+org.springframework.boot.autoconfigure.couchbase.CouchbaseAutoConfiguration,\
+org.springframework.boot.autoconfigure.dao.PersistenceExceptionTranslationAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.cassandra.CassandraDataAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.cassandra.CassandraRepositoriesAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.couchbase.CouchbaseDataAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.couchbase.CouchbaseRepositoriesAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.ldap.LdapDataAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.ldap.LdapRepositoriesAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.neo4j.Neo4jDataAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.neo4j.Neo4jRepositoriesAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.solr.SolrRepositoriesAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.rest.RepositoryRestMvcAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration,\
+org.springframework.boot.autoconfigure.elasticsearch.jest.JestAutoConfiguration,\
+org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration,\
+org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration,\
+org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration,\
+org.springframework.boot.autoconfigure.hateoas.HypermediaAutoConfiguration,\
+org.springframework.boot.autoconfigure.hazelcast.HazelcastAutoConfiguration,\
+org.springframework.boot.autoconfigure.hazelcast.HazelcastJpaDependencyAutoConfiguration,\
+org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration,\
+org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration,\
+org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration,\
+org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,\
+org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration,\
+org.springframework.boot.autoconfigure.jdbc.JndiDataSourceAutoConfiguration,\
+org.springframework.boot.autoconfigure.jdbc.XADataSourceAutoConfiguration,\
+org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration,\
+org.springframework.boot.autoconfigure.jms.JmsAutoConfiguration,\
+org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration,\
+org.springframework.boot.autoconfigure.jms.JndiConnectionFactoryAutoConfiguration,\
+org.springframework.boot.autoconfigure.jms.activemq.ActiveMQAutoConfiguration,\
+org.springframework.boot.autoconfigure.jms.artemis.ArtemisAutoConfiguration,\
+org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration,\
+org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration,\
+org.springframework.boot.autoconfigure.jersey.JerseyAutoConfiguration,\
+org.springframework.boot.autoconfigure.jooq.JooqAutoConfiguration,\
+org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration,\
+org.springframework.boot.autoconfigure.ldap.embedded.EmbeddedLdapAutoConfiguration,\
+org.springframework.boot.autoconfigure.ldap.LdapAutoConfiguration,\
+org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration,\
+org.springframework.boot.autoconfigure.mail.MailSenderAutoConfiguration,\
+org.springframework.boot.autoconfigure.mail.MailSenderValidatorAutoConfiguration,\
+org.springframework.boot.autoconfigure.mobile.DeviceResolverAutoConfiguration,\
+org.springframework.boot.autoconfigure.mobile.DeviceDelegatingViewResolverAutoConfiguration,\
+org.springframework.boot.autoconfigure.mobile.SitePreferenceAutoConfiguration,\
+org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration,\
+org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration,\
+org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration,\
+org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration,\
+org.springframework.boot.autoconfigure.reactor.ReactorAutoConfiguration,\
+org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration,\
+org.springframework.boot.autoconfigure.security.SecurityFilterAutoConfiguration,\
+org.springframework.boot.autoconfigure.security.FallbackWebSecurityAutoConfiguration,\
+org.springframework.boot.autoconfigure.security.oauth2.OAuth2AutoConfiguration,\
+org.springframework.boot.autoconfigure.sendgrid.SendGridAutoConfiguration,\
+org.springframework.boot.autoconfigure.session.SessionAutoConfiguration,\
+org.springframework.boot.autoconfigure.social.SocialWebAutoConfiguration,\
+org.springframework.boot.autoconfigure.social.FacebookAutoConfiguration,\
+org.springframework.boot.autoconfigure.social.LinkedInAutoConfiguration,\
+org.springframework.boot.autoconfigure.social.TwitterAutoConfiguration,\
+org.springframework.boot.autoconfigure.solr.SolrAutoConfiguration,\
+org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration,\
+org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration,\
+org.springframework.boot.autoconfigure.transaction.jta.JtaAutoConfiguration,\
+org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.HttpEncodingAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.HttpMessageConvertersAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.MultipartAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.ServerPropertiesAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.WebClientAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration,\
+org.springframework.boot.autoconfigure.websocket.WebSocketAutoConfiguration,\
+org.springframework.boot.autoconfigure.websocket.WebSocketMessagingAutoConfiguration,\
+org.springframework.boot.autoconfigure.webservices.WebServicesAutoConfiguration
 </code></pre>
-<p>​    3、模式：</p>
-<p>启动器只用来做依赖导入；</p>
-<p>专门来写一个自动配置模块；</p>
-<p>启动器依赖自动配置；别人只需要引入启动器（starter）</p>
-<p>mybatis-spring-boot-starter；自定义启动器名-spring-boot-starter</p>
-<p>步骤：</p>
-<p>1）、启动器模块</p>
-<pre><code class="xml"> &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
-         x mlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
-    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+<p>每一个这样的  xxxAutoConfiguration类都是容器中的一个组件，都加入到容器中；用他们来做自动配置；</p>
+<p>3）、每一个自动配置类进行自动配置功能；</p>
+<p>4）、以<strong>HttpEncodingAutoConfiguration（Http编码自动配置）</strong>为例解释自动配置原理；</p>
+<pre><code class="java">@Configuration   //表示这是一个配置类，以前编写的配置文件一样，也可以给容器中添加组件
+@EnableConfigurationProperties(HttpEncodingProperties.class)  //启动指定类的ConfigurationProperties功能；将配置文件中对应的值和HttpEncodingProperties绑定起来；并把HttpEncodingProperties加入到ioc容器中
 
-    &lt;groupId&gt;com.atguigu.starter&lt;/groupId&gt;
-    &lt;artifactId&gt;atguigu-spring-boot-starter&lt;/artifactId&gt;
-    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+@ConditionalOnWebApplication //Spring底层@Conditional注解（Spring注解版），根据不同的条件，如果满足指定的条件，整个配置类里面的配置就会生效；    判断当前应用是否是web应用，如果是，当前配置类生效
 
-    &lt;!--启动器--&gt;
-    &lt;dependencies&gt;
+@ConditionalOnClass(CharacterEncodingFilter.class)  //判断当前项目有没有这个类CharacterEncodingFilter；SpringMVC中进行乱码解决的过滤器；
 
-        &lt;!--引入自动配置模块--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;com.atguigu.starter&lt;/groupId&gt;
-            &lt;artifactId&gt;atguigu-spring-boot-starter-autoconfigurer&lt;/artifactId&gt;
-            &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+@ConditionalOnProperty(prefix = &quot;spring.http.encoding&quot;, value = &quot;enabled&quot;, matchIfMissing = true)  //判断配置文件中是否存在某个配置  spring.http.encoding.enabled；如果不存在，判断也是成立的
+//即使我们配置文件中不配置pring.http.encoding.enabled=true，也是默认生效的；
+public class HttpEncodingAutoConfiguration {
+
+      //他已经和SpringBoot的配置文件映射了
+      private final HttpEncodingProperties properties;
+
+   //只有一个有参构造器的情况下，参数的值就会从容器中拿
+      public HttpEncodingAutoConfiguration(HttpEncodingProperties properties) {
+        this.properties = properties;
+    }
+
+    @Bean   //给容器中添加一个组件，这个组件的某些值需要从properties中获取
+    @ConditionalOnMissingBean(CharacterEncodingFilter.class) //判断容器没有这个组件？
+    public CharacterEncodingFilter characterEncodingFilter() {
+        CharacterEncodingFilter filter = new OrderedCharacterEncodingFilter();
+        filter.setEncoding(this.properties.getCharset().name());
+        filter.setForceRequestEncoding(this.properties.shouldForce(Type.REQUEST));
+        filter.setForceResponseEncoding(this.properties.shouldForce(Type.RESPONSE));
+        return filter;
+    }
+</code></pre>
+<p>根据当前不同的条件判断，决定这个配置类是否生效？</p>
+<p>一但这个配置类生效；这个配置类就会给容器中添加各种组件；这些组件的属性是从对应的properties类中获取的，这些类里面的每一个属性又是和配置文件绑定的；</p>
+<p>5）、所有在配置文件中能配置的属性都是在xxxxProperties类中封装者‘；配置文件能配置什么就可以参照某个功能对应的这个属性类</p>
+<pre><code class="java">@ConfigurationProperties(prefix = &quot;spring.http.encoding&quot;)  //从配置文件中获取指定的值和bean的属性进行绑定
+public class HttpEncodingProperties {
+
+   public static final Charset DEFAULT_CHARSET = Charset.forName(&quot;UTF-8&quot;);
+</code></pre>
+<p><strong>精髓：</strong></p>
+<p>​    <strong>1）、SpringBoot启动会加载大量的自动配置类</strong></p>
+<p>​    <strong>2）、我们看我们需要的功能有没有SpringBoot默认写好的自动配置类；</strong></p>
+<p>​    <strong>3）、我们再来看这个自动配置类中到底配置了哪些组件；（只要我们要用的组件有，我们就不需要再来配置了）</strong></p>
+<p>​    <strong>4）、给容器中自动配置类添加组件的时候，会从properties类中获取某些属性。我们就可以在配置文件中指定这些属性的值；</strong></p>
+<p>xxxxAutoConfigurartion：自动配置类；</p>
+<p>给容器中添加组件</p>
+<p>xxxxProperties:封装配置文件中相关属性；</p>
+<h3 id="2、细节"><a href="#2、细节" class="headerlink" title="2、细节"></a>2、细节</h3><h4 id="1、-Conditional派生注解（Spring注解版原生的-Conditional作用）"><a href="#1、-Conditional派生注解（Spring注解版原生的-Conditional作用）" class="headerlink" title="1、@Conditional派生注解（Spring注解版原生的@Conditional作用）"></a>1、@Conditional派生注解（Spring注解版原生的@Conditional作用）</h4><p>作用：必须是@Conditional指定的条件成立，才给容器中添加组件，配置配里面的所有内容才生效；</p>
+<table>
+<thead>
+<tr>
+<th>@Conditional扩展注解</th>
+<th>作用（判断是否满足当前指定条件）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@ConditionalOnJava</td>
+<td>系统的java版本是否符合要求</td>
+</tr>
+<tr>
+<td>@ConditionalOnBean</td>
+<td>容器中存在指定Bean；</td>
+</tr>
+<tr>
+<td>@ConditionalOnMissingBean</td>
+<td>容器中不存在指定Bean；</td>
+</tr>
+<tr>
+<td>@ConditionalOnExpression</td>
+<td>满足SpEL表达式指定</td>
+</tr>
+<tr>
+<td>@ConditionalOnClass</td>
+<td>系统中有指定的类</td>
+</tr>
+<tr>
+<td>@ConditionalOnMissingClass</td>
+<td>系统中没有指定的类</td>
+</tr>
+<tr>
+<td>@ConditionalOnSingleCandidate</td>
+<td>容器中只有一个指定的Bean，或者这个Bean是首选Bean</td>
+</tr>
+<tr>
+<td>@ConditionalOnProperty</td>
+<td>系统中指定的属性是否有指定的值</td>
+</tr>
+<tr>
+<td>@ConditionalOnResource</td>
+<td>类路径下是否存在指定资源文件</td>
+</tr>
+<tr>
+<td>@ConditionalOnWebApplication</td>
+<td>当前是web环境</td>
+</tr>
+<tr>
+<td>@ConditionalOnNotWebApplication</td>
+<td>当前不是web环境</td>
+</tr>
+<tr>
+<td>@ConditionalOnJndi</td>
+<td>JNDI存在指定项</td>
+</tr>
+</tbody>
+</table>
+<p><strong>自动配置类必须在一定的条件下才能生效；</strong></p>
+<p>我们怎么知道哪些自动配置类生效；</p>
+<p><strong>==我们可以通过启用  debug=true属性；来让控制台打印自动配置报告==</strong>，这样我们就可以很方便的知道哪些自动配置类生效；</p>
+<pre><code class="java">=========================
+AUTO-CONFIGURATION REPORT
+=========================
+
+
+Positive matches:（自动配置类启用的）
+-----------------
+
+   DispatcherServletAutoConfiguration matched:
+      - @ConditionalOnClass found required class &#39;org.springframework.web.servlet.DispatcherServlet&#39;; @ConditionalOnMissingClass did not find unwanted class (OnClassCondition)
+      - @ConditionalOnWebApplication (required) found StandardServletEnvironment (OnWebApplicationCondition)
+
+
+Negative matches:（没有启动，没有匹配成功的自动配置类）
+-----------------
+
+   ActiveMQAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required classes &#39;javax.jms.ConnectionFactory&#39;, &#39;org.apache.activemq.ActiveMQConnectionFactory&#39; (OnClassCondition)
+
+   AopAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required classes &#39;org.aspectj.lang.annotation.Aspect&#39;, &#39;org.aspectj.lang.reflect.Advice&#39; (OnClassCondition)
+</code></pre>
+<h1 id="三、日志"><a href="#三、日志" class="headerlink" title="三、日志"></a>三、日志</h1><h2 id="1、日志框架"><a href="#1、日志框架" class="headerlink" title="1、日志框架"></a>1、日志框架</h2><p> 小张；开发一个大型系统；</p>
+<p>​        1、System.out.println(“”)；将关键数据打印在控制台；去掉？写在一个文件？</p>
+<p>​        2、框架来记录系统的一些运行时信息；日志框架 ；  zhanglogging.jar；</p>
+<p>​        3、高大上的几个功能？异步模式？自动归档？xxxx？  zhanglogging-good.jar？</p>
+<p>​        4、将以前框架卸下来？换上新的框架，重新修改之前相关的API；zhanglogging-prefect.jar；</p>
+<p>​        5、JDBC—数据库驱动；</p>
+<p>​            写了一个统一的接口层；日志门面（日志的一个抽象层）；logging-abstract.jar；</p>
+<p>​            给项目中导入具体的日志实现就行了；我们之前的日志框架都是实现的抽象层；</p>
+<p><strong>市面上的日志框架；</strong></p>
+<p>JUL、JCL、Jboss-logging、logback、log4j、log4j2、slf4j….</p>
+<table>
+<thead>
+<tr>
+<th>日志门面  （日志的抽象层）</th>
+<th>日志实现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><del>JCL（Jakarta  Commons Logging）</del>    SLF4j（Simple  Logging Facade for Java）    <strong><del>jboss-logging</del></strong></td>
+<td>Log4j  JUL（java.util.logging）  Log4j2  <strong>Logback</strong></td>
+</tr>
+</tbody>
+</table>
+<p>左边选一个门面（抽象层）、右边来选一个实现；</p>
+<p>日志门面：  SLF4J；</p>
+<p>日志实现：Logback；</p>
+<p>SpringBoot：底层是Spring框架，Spring框架默认是用JCL；‘</p>
+<p>​    <strong>==SpringBoot选用 SLF4j和logback；==</strong></p>
+<h2 id="2、SLF4j使用"><a href="#2、SLF4j使用" class="headerlink" title="2、SLF4j使用"></a>2、SLF4j使用</h2><h3 id="1、如何在系统中使用SLF4j-https-www-slf4j-org"><a href="#1、如何在系统中使用SLF4j-https-www-slf4j-org" class="headerlink" title="1、如何在系统中使用SLF4j   https://www.slf4j.org"></a>1、如何在系统中使用SLF4j   <a href="https://www.slf4j.org" target="_blank" rel="external">https://www.slf4j.org</a></h3><p>以后开发的时候，日志记录方法的调用，不应该来直接调用日志的实现类，而是调用日志抽象层里面的方法<br>给系统里面导入slf4j的jar和logback的实现jar</p>
+<pre><code class="java">import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class HelloWorld {
+  public static void main(String[] args) {
+    Logger logger = LoggerFactory.getLogger(HelloWorld.class);
+    logger.info(&quot;Hello World&quot;);
+  }
+}
+</code></pre>
+<p>图示：<img src="https://i.imgur.com/wzanHz3.png" alt=""></p>
+<p>每一个日志的实现框架都有自己的配置文件，使用slf4j以后，<strong>配置文件还是做成日志实现框架自己本身的配置文件</strong></p>
+<h3 id="2-遗留问题"><a href="#2-遗留问题" class="headerlink" title="2.遗留问题"></a>2.遗留问题</h3><p>a(slf4j+logback),Spring(commons-logging),hibernate(jboss-logging),myBatis(xxx)<br>统一日志记录，即使是别的框架和我一起统一使用slf4j进行输出？<br><img src="https://i.imgur.com/gdkQM8w.png" alt=""><br><strong>如何让系统中所有的日志都统一到slf4j</strong><br>1.将系统中其他日志框架先排除出去<br>2.用中间包来替换原有的日志框架<br>3.我们导入slf4j其他的实现</p>
+<p><strong>3.springboot日志关系</strong></p>
+<pre><code class="xml">        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
         &lt;/dependency&gt;
-    &lt;/dependencies&gt;
-
-&lt;/project&gt;
 </code></pre>
-<p>2）、自动配置模块</p>
-<pre><code class="xml">&lt; ?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;project x mlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-   xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
-   &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
-
-   &lt;groupId&gt;com.atguigu.starter&lt;/groupId&gt;
-   &lt;artifactId&gt;atguigu-spring-boot-starter-autoconfigurer&lt;/artifactId&gt;
-   &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
-   &lt;packaging&gt;jar&lt;/packaging&gt;
-
-   &lt;name&gt;atguigu-spring-boot-starter-autoconfigurer&lt;/name&gt;
-   &lt;description&gt;Demo project for Spring Boot&lt;/description&gt;
-
-   &lt;parent&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
-      &lt;version&gt;1.5.10.RELEASE&lt;/version&gt;
-      &lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;
-   &lt;/parent&gt;
-
-   &lt;properties&gt;
-      &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-      &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
-      &lt;java.version&gt;1.8&lt;/java.version&gt;
-   &lt;/properties&gt;
-
-   &lt;dependencies&gt;
-
-      &lt;!--引入spring-boot-starter；所有starter的基本配置--&gt;
-      &lt;dependency&gt;
-         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-         &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
-      &lt;/dependency&gt;
-
-   &lt;/dependencies&gt;
-
-
-
-&lt;/project&gt;
+<p>SpringBoot使用它来做日志功能</p>
+<pre><code class="xml">    &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-logging&lt;/artifactId&gt;
+        &lt;/dependency&gt;
 </code></pre>
-<pre><code class="java">package com.atguigu.starter;
+<p>底层依赖关系<br><img src="https://i.imgur.com/Y2l7KGL.png" alt=""></p>
+<p>总结：<br>   1.springboot底层也是使用slf4j+logback的方式进行日志记录<br>   2.springboot也把其他的日志都替换成了slf4j<br>   3.中间替换包，偷梁换柱</p>
+<pre><code class="java">@SuppressWarnings(&quot;rawtypes&quot;)
+public abstract class LogFactory {
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
+    static String UNSUPPORTED_OPERATION_IN_JCL_OVER_SLF4J = &quot;http://www.slf4j.org/codes.html#unsupported_operation_in_jcl_over_slf4j&quot;;
 
-@ConfigurationProperties(prefix = &quot;atguigu.hello&quot;)
-public class HelloProperties {
-
-    private String prefix;
-    private String suffix;
-
-    public String getPrefix() {
-        return prefix;
-    }
-
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
-    }
-
-    public String getSuffix() {
-        return suffix;
-    }
-
-    public void setSuffix(String suffix) {
-        this.suffix = suffix;
-    }
-}
+    static LogFactory logFactory = new SLF4JLogFactory();
 </code></pre>
-<pre><code class="java">package com.atguigu.starter;
-
-public class HelloService {
-
-    HelloProperties helloProperties;
-
-    public HelloProperties getHelloProperties() {
-        return helloProperties;
-    }
-
-    public void setHelloProperties(HelloProperties helloProperties) {
-        this.helloProperties = helloProperties;
-    }
-
-    public String sayHellAtguigu(String name){
-        return helloProperties.getPrefix()+&quot;-&quot; +name + helloProperties.getSuffix();
-    }
-}
+<p><img src="https://i.imgur.com/mjiYZ1Y.png" alt=""></p>
+<p>4.如果我们要引入其他的框架，一定要把这个框架的默认依赖日志移除掉<br>spring框架用的是commons-logging</p>
+<pre><code class="xml">        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+            &lt;exclusions&gt;
+                &lt;exclusion&gt;
+                    &lt;groupId&gt;commons-logging&lt;/groupId&gt;
+                    &lt;artifactId&gt;commons-logging&lt;/artifactId&gt;
+                &lt;/exclusion&gt;
+            &lt;/exclusions&gt;
+        &lt;/dependency&gt;
 </code></pre>
-<pre><code class="java">package com.atguigu.starter;
+<p><strong>SpringBoot能自动适配所有日志，而且底层使用slf4j+logback的方式记录日志，引入其他框架的时候，只需要把这个框架依赖的日志框架排除</strong></p>
+<h2 id="4-日志使用"><a href="#4-日志使用" class="headerlink" title="4.日志使用"></a>4.日志使用</h2><h3 id="1-默认配置"><a href="#1-默认配置" class="headerlink" title="1.默认配置"></a>1.默认配置</h3><p>springboot默认帮我们配置好了日志</p>
+<pre><code>//记录器
+        Logger logger=LoggerFactory.getLogger(getClass());
+    @Test
+    public void contextLoads() {
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-@Configuration
-@ConditionalOnWebApplication //web应用才生效
-@EnableConfigurationProperties(HelloProperties.class)
-public class HelloServiceAutoConfiguration {
-
-    @Autowired
-    HelloProperties helloProperties;
-    @Bean
-    public HelloService helloService(){
-        HelloService service = new HelloService();
-        service.setHelloProperties(helloProperties);
-        return service;
+        //日志级别，由低到高 trace&lt;debug&lt;info&lt;warn&lt;error
+        //可以调整输出日志的级别，日志就只会在这个级别及以后的高级别生效
+        logger.trace(&quot;这是trace日志信息....&quot;);
+        logger.debug(&quot;这是debug信息.....&quot;);
+        //springboot默认给我们提示info级别,没有指定级别的就使用springboot默认级别，root级别
+        logger.info(&quot;这是info信息...&quot;);
+        logger.warn(&quot;这是warn信息/...&quot;);
+        logger.error(&quot;这是error信息....&quot;);
     }
-}
+</code></pre><pre><code>        日志输出格式：
+            %d表示日期时间，
+            %thread表示线程名，
+            %-5level：级别从左显示5个字符宽度
+            %logger{50} 表示logger名字最长50个字符，否则按照句点分割。 
+            %msg：日志消息，
+            %n是换行符
+        --&gt;
+        %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
+</code></pre><p><strong>SpringBoot修改日志的默认配置</strong></p>
+<pre><code class="properties">logging.level.com.atguigu=trace
+
+
+#logging.path=
+# 不指定路径在当前项目下生成springboot.log日志
+# 可以指定完整的路径；
+#logging.file=G:/springboot.log
+
+# 在当前磁盘的根路径下创建spring文件夹和里面的log文件夹；使用 spring.log 作为默认文件
+logging.path=/spring/log
+
+#  在控制台输出的日志的格式
+logging.pattern.console=%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n
+# 指定文件中日志输出的格式
+logging.pattern.file=%d{yyyy-MM-dd} === [%thread] === %-5level === %logger{50} ==== %msg%n
 </code></pre>
-<h1 id="更多SpringBoot整合示例"><a href="#更多SpringBoot整合示例" class="headerlink" title="更多SpringBoot整合示例"></a>更多SpringBoot整合示例</h1><p><a href="https://github.com/spring-projects/spring-boot/tree/master/spring-boot-samples" target="_blank" rel="external">链接</a></p>
+<table>
+<thead>
+<tr>
+<th>logging.file</th>
+<th>logging.path</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(none)</td>
+<td>(none)</td>
+<td></td>
+<td>只在控制台输出</td>
+</tr>
+<tr>
+<td>指定文件名</td>
+<td>(none)</td>
+<td>my.log</td>
+<td>输出日志到my.log文件</td>
+</tr>
+<tr>
+<td>(none)</td>
+<td>指定目录</td>
+<td>/var/log</td>
+<td>输出到指定目录的 spring.log 文件中</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-指定配置"><a href="#2-指定配置" class="headerlink" title="2.指定配置"></a>2.指定配置</h3><p>给类路径下放上每个每个日志框架自己的配置文件即可，springboot就不使用它的默认配置了<br>| Logging System          | Customization                            |<br>| ———————– | —————————————- |<br>| Logback                 | <code>logback-spring.xml</code>, <code>logback-spring.groovy</code>, <code>logback.xml</code> or <code>logback.groovy</code> |<br>| Log4j2                  | <code>log4j2-spring.xml</code> or <code>log4j2.xml</code>      |<br>| JDK (Java Util Logging) | <code>logging.properties</code>                     |<br>logback.xml:直接就被日志框架识别了<br>logback-spring.xml:日志框架就不能直接加载日志的配置项，由springboot解析日志配置，可以使用springboot的高级profile功能 </p>
+<pre><code class="xml">&lt;springProfile name=&quot;staging&quot;&gt;
+    &lt;!-- configuration to be enabled when the &quot;staging&quot; profile is active --&gt;
+      可以指定某段配置只在某个环境下生效
+&lt;/springProfile&gt;
+</code></pre>
+<p>如：</p>
+<pre><code class="xml">&lt;appender name=&quot;stdout&quot; class=&quot;ch.qos.logback.core.ConsoleAppender&quot;&gt;
+        &lt;!--
+        日志输出格式：
+            %d表示日期时间，
+            %thread表示线程名，
+            %-5level：级别从左显示5个字符宽度
+            %logger{50} 表示logger名字最长50个字符，否则按照句点分割。 
+            %msg：日志消息，
+            %n是换行符
+        --&gt;
+        &lt;layout class=&quot;ch.qos.logback.classic.PatternLayout&quot;&gt;
+            &lt;springProfile name=&quot;dev&quot;&gt;
+                &lt;pattern&gt;%d{yyyy-MM-dd HH:mm:ss.SSS} ----&gt; [%thread] ---&gt; %-5level %logger{50} - %msg%n&lt;/pattern&gt;
+            &lt;/springProfile&gt;
+            &lt;springProfile name=&quot;!dev&quot;&gt;
+                &lt;pattern&gt;%d{yyyy-MM-dd HH:mm:ss.SSS} ==== [%thread] ==== %-5level %logger{50} - %msg%n&lt;/pattern&gt;
+            &lt;/springProfile&gt;
+        &lt;/layout&gt;
+    &lt;/appender&gt;
+</code></pre>
+<p>配置文件命名要logback-spring.xml，否则使用profile会出现如下错误</p>
+<p> <code>no applicable action for [springProfile]</code></p>
+<h2 id="5-切换日志框架"><a href="#5-切换日志框架" class="headerlink" title="5.切换日志框架"></a>5.切换日志框架</h2><p>可以按照slf4j的日志适配图，进行相关的切换；</p>
+<p>slf4j+log4j的方式；</p>
+<pre><code class="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+  &lt;exclusions&gt;
+    &lt;exclusion&gt;
+      &lt;artifactId&gt;logback-classic&lt;/artifactId&gt;
+      &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;
+    &lt;/exclusion&gt;
+    &lt;exclusion&gt;
+      &lt;artifactId&gt;log4j-over-slf4j&lt;/artifactId&gt;
+      &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+    &lt;/exclusion&gt;
+  &lt;/exclusions&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+  &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+  &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>切换为log4j2</p>
+<pre><code class="xml">   &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+            &lt;exclusions&gt;
+                &lt;exclusion&gt;
+                    &lt;artifactId&gt;spring-boot-starter-logging&lt;/artifactId&gt;
+                    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                &lt;/exclusion&gt;
+            &lt;/exclusions&gt;
+        &lt;/dependency&gt;
+
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-boot-starter-log4j2&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
 
       
 
@@ -804,7 +2381,7 @@ public class HelloServiceAutoConfiguration {
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/SpringBoot与数据访问/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/springboot入门/">展开全文 >></a>
         </p>
       
 
@@ -1709,19 +3286,19 @@ insert的公共片段在div标签中
 
 
   
-    <article id="post-Linux安装软件的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-PowerDesigner中DBMS设置的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/Linux安装软件的方法/">Linux安装软件的方法</a>
+      <a class="article-title" href="/2018/04/13/PowerDesigner中DBMS设置的问题/">PowerDesigner中DBMS设置的问题</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/Linux安装软件的方法/" class="archive-article-date">
+        <a href="/2018/04/13/PowerDesigner中DBMS设置的问题/" class="archive-article-date">
   	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
@@ -1733,28 +3310,8 @@ insert的公共片段在div标签中
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Linux安装软件的方法"><a href="#Linux安装软件的方法" class="headerlink" title="Linux安装软件的方法"></a>Linux安装软件的方法</h1><p><img src="https://i.imgur.com/8DV5gsH.png" alt=""></p>
-<p><img src="https://i.imgur.com/C7z1GhS.png" alt=""></p>
-<p><img src="https://i.imgur.com/ncVAsrv.png" alt=""></p>
-<p><img src="https://i.imgur.com/fr23sYz.png" alt=""></p>
-<p><img src="https://i.imgur.com/WPtVM8s.png" alt=""></p>
-<h2 id="yum和rpm"><a href="#yum和rpm" class="headerlink" title="yum和rpm"></a>yum和rpm</h2><p><img src="https://i.imgur.com/GcdpYHw.png" alt=""></p>
-<p><img src="https://i.imgur.com/mWDkLrc.png" alt=""></p>
-<p><img src="https://i.imgur.com/aPSynvN.png" alt=""></p>
-<p><img src="https://i.imgur.com/TDwalAv.png" alt=""></p>
-<p><img src="https://i.imgur.com/nWFbPWy.png" alt=""></p>
-<p><img src="https://i.imgur.com/IUN2QCm.png" alt=""></p>
-<p><img src="https://i.imgur.com/demT7MD.png" alt=""></p>
-<p><img src="https://i.imgur.com/9aEa82D.png" alt=""></p>
-<p><img src="https://i.imgur.com/6qLjIZA.png" alt=""></p>
-<p><img src="https://i.imgur.com/AmxD94J.png" alt=""></p>
-<p><img src="https://i.imgur.com/q9GdPkp.png" alt=""></p>
-<p><img src="https://i.imgur.com/2ssOvIa.png" alt=""></p>
-<p><img src="https://i.imgur.com/tzyh99L.png" alt=""></p>
-<p><img src="https://i.imgur.com/SANreGG.png" alt=""></p>
-<p><img src="https://i.imgur.com/sowkWrO.png" alt=""></p>
-<p><img src="https://i.imgur.com/axIcN6I.png" alt=""></p>
-<p><img src="https://i.imgur.com/qBHzUzg.png" alt=""></p>
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="解决PowerDesigner中DBMS设置的问题"><a href="#解决PowerDesigner中DBMS设置的问题" class="headerlink" title="解决PowerDesigner中DBMS设置的问题"></a>解决PowerDesigner中DBMS设置的问题</h2><p>在Generate Physical Data Model 的时候出现DBMS选择框全为空的情况，而且上面的菜单栏没有database这个选项<br><img src="https://i.imgur.com/oBXAV3q.png" alt=""></p>
+<p>一开始以为是软件装错了，以为是下了什么盗版软件，后来才发现是DBMS的路径有问题<br><img src="https://i.imgur.com/8wbGyAN.png" alt=""><br>直接浏览到powderdesigner的安装路径下的\Resource Files\DBMS，软件自己配的路径有点诡异，并不是正确的，点击确定之后即可<br><img src="https://i.imgur.com/uQdlj4X.png" alt=""><br>出现了所有的DBMS，上面一行菜单栏也出现了database这个选项<br><img src="https://i.imgur.com/BHeWP5B.png" alt=""></p>
 
       
 
@@ -1768,7 +3325,7 @@ insert的公共片段在div标签中
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">powerdesigner</a>
         		</li>
       		
 		</ul>
@@ -1781,7 +3338,7 @@ insert的公共片段在div标签中
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/Linux安装软件的方法/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/PowerDesigner中DBMS设置的问题/">展开全文 >></a>
         </p>
       
 
@@ -1811,19 +3368,19 @@ insert的公共片段在div标签中
 
 
   
-    <article id="post-CentOS7执行yum命令出错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-ssh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/CentOS7执行yum命令出错/">CentOS7执行yum命令出错</a>
+      <a class="article-title" href="/2018/04/13/ssh/">ssh依赖</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/CentOS7执行yum命令出错/" class="archive-article-date">
+        <a href="/2018/04/13/ssh/" class="archive-article-date">
   	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
@@ -1835,36 +3392,92 @@ insert的公共片段在div标签中
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="CentOS7执行yum命令出错"><a href="#CentOS7执行yum命令出错" class="headerlink" title="CentOS7执行yum命令出错"></a>CentOS7执行yum命令出错</h2><pre><code>[root@localhost ~]# yum install docker
-Loaded plugins: fastestmirror
+        <script src="/assets/js/APlayer.min.js"> </script><p>ssh依赖</p>
+<pre><code>&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;groupId&gt;io&lt;/groupId&gt;
+  &lt;artifactId&gt;ssh&lt;/artifactId&gt;
+  &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+  &lt;dependencies&gt;
+     &lt;!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-core --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.struts&lt;/groupId&gt;
+    &lt;artifactId&gt;struts2-core&lt;/artifactId&gt;
+    &lt;version&gt;2.3.24&lt;/version&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-spring-plugin --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.struts&lt;/groupId&gt;
+    &lt;artifactId&gt;struts2-spring-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.3.24&lt;/version&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-json-plugin --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.struts&lt;/groupId&gt;
+    &lt;artifactId&gt;struts2-json-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.3.24&lt;/version&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/org.apache.poi/poi --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;
+    &lt;artifactId&gt;poi&lt;/artifactId&gt;
+    &lt;version&gt;3.13&lt;/version&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+    &lt;artifactId&gt;hibernate-core&lt;/artifactId&gt;
+    &lt;version&gt;3.6.9.Final&lt;/version&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;mysql&lt;/groupId&gt;
+    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+    &lt;version&gt;5.1.8&lt;/version&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/junit/junit --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;junit&lt;/groupId&gt;
+    &lt;artifactId&gt;junit&lt;/artifactId&gt;
+    &lt;version&gt;4.12&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/javassist/javassist --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;javassist&lt;/groupId&gt;
+    &lt;artifactId&gt;javassist&lt;/artifactId&gt;
+    &lt;version&gt;3.11.0.GA&lt;/version&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/org.springframework/spring-orm --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-orm&lt;/artifactId&gt;
+    &lt;version&gt;3.0.5.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;commons-dbcp&lt;/groupId&gt;
+    &lt;artifactId&gt;commons-dbcp&lt;/artifactId&gt;
+    &lt;version&gt;1.4&lt;/version&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;
+    &lt;version&gt;3.0.5.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/cglib/cglib --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;cglib&lt;/groupId&gt;
+    &lt;artifactId&gt;cglib&lt;/artifactId&gt;
+    &lt;version&gt;2.2.2&lt;/version&gt;
+&lt;/dependency&gt;
 
 
- One of the configured repositories failed (Unknown),
- and yum doesn&#39;t have enough cached data to continue. At this point the only
- safe thing yum can do is fail. There are a few ways to work &quot;fix&quot; this:
+  &lt;/dependencies&gt;
 
-1. Contact the upstream for the repository and get them to fix the problem.
-
- 2. Reconfigure the baseurl/etc. for the repository, to point to a working
-        upstream. This is most often useful if you are using a newer
-        distribution release than is supported by the repository (and the
-        packages for the previous distribution release still work).
-
-3. Disable the repository, so yum won&#39;t use it by default. Yum will then   just ignore the repository until you permanently enable it again or use
-        --enablerepo for temporary usage:
-  yum-config-manager --disable &lt;repoid&gt;
-
-     4. Configure the failing repository to be skipped, if it is unavailable.
-        Note that yum will try to contact the repo. when it runs most commands,
-        so will have to try and fail each time (and thus. yum will be be much
-        slower). If it is a very temporary problem though, this is often a nice
-        compromise:
-
-        yum-config-manager --save --setopt=&lt;repoid&gt;.skip_if_unavailable=true
-
-Cannot find a valid baseurl for repo: base/7/x86_64
-</code></pre><p>原因是本本虚拟机无法上网，配置再多也没用</p>
-
+&lt;/project&gt;
+</code></pre>
       
 
       
@@ -1877,7 +3490,7 @@ Cannot find a valid baseurl for repo: base/7/x86_64
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -1890,7 +3503,7 @@ Cannot find a valid baseurl for repo: base/7/x86_64
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/CentOS7执行yum命令出错/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/ssh/">展开全文 >></a>
         </p>
       
 
