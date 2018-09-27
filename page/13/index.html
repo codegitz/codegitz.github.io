@@ -171,99 +171,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-处理GitHub不允许上传大于100M的东西" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/26/处理GitHub不允许上传大于100M的东西/">处理GitHub不允许上传大于100M的文件</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/26/处理GitHub不允许上传大于100M的东西/" class="archive-article-date">
-  	<time datetime="2017-07-26T15:53:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-26</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><p>Github 修正上传时“this exceeds GitHub’s file size limit of 100 MB”错误 </p>
-<p>自己的项目的版本控制用的是Git，代码仓库在github托管。项目里用到了IJKMediaFramework 想把代码push到github上，结果出错了，被拒绝，具体信息是：<br>Total 324 (delta 78), reused 0 (delta 0)<br>remote: error: GH001: Large files detected. You may want to try Git Large File Storage - <a href="https://git-lfs.github.com" target="_blank" rel="external">https://git-lfs.github.com</a>.<br>remote: error: Trace: 812007a278d0a89c0705b8c456066938<br>remote: error: See <a href="http://git.io/iEPt8g" target="_blank" rel="external">http://git.io/iEPt8g</a> for more information.<br>remote: error: File MiaoShow/Classes/Frameworks/IJKMediaFramework.framework/IJKMediaFramework is 112.62 MB; this exceeds GitHub’s file size limit of 100.00 MB<br>To <a href="https://github.com/XXX/XXXX.git。意思是有大文件，更多信息可到http://git.io/iEPt8g查看，文件IJKMediaFramework的大小超过了GitHub限制的100M大小。想要push，必须把这个文件移除，可是要怎么移除呢？开始我是想着直接删除掉IJKMediaFramework，结果不行，还是会报上面的错，于是我又把libbaiduNaviSDK.a放到忽略文件里，结果还是不行，还是说有大文件，报同样的错。这下只能老老实实的看官方的解决办法了，于是就打开http://git.io/iEPt8g老老实实的研究了一番。大意是说为了便于管理代码库和方便合作伙伴们使用，当你push50M以上的文件时github将会警告，当push100M以上文件，就直接拒绝你的push，要想push必须把该文件从本地仓库和远程仓库全部移除掉。这个移除会永久性的从本地git和github里移除，如果这个文件很重要，要记得做一次备份。下面进入具体操作。如果这个文件是最近一次commit的，并且你还没有push到github，那么第一步输入命令" target="_blank" rel="external">https://github.com/XXX/XXXX.git。意思是有大文件，更多信息可到http://git.io/iEPt8g查看，文件IJKMediaFramework的大小超过了GitHub限制的100M大小。想要push，必须把这个文件移除，可是要怎么移除呢？开始我是想着直接删除掉IJKMediaFramework，结果不行，还是会报上面的错，于是我又把libbaiduNaviSDK.a放到忽略文件里，结果还是不行，还是说有大文件，报同样的错。这下只能老老实实的看官方的解决办法了，于是就打开http://git.io/iEPt8g老老实实的研究了一番。大意是说为了便于管理代码库和方便合作伙伴们使用，当你push50M以上的文件时github将会警告，当push100M以上文件，就直接拒绝你的push，要想push必须把该文件从本地仓库和远程仓库全部移除掉。这个移除会永久性的从本地git和github里移除，如果这个文件很重要，要记得做一次备份。下面进入具体操作。如果这个文件是最近一次commit的，并且你还没有push到github，那么第一步输入命令</a> cd /Users/Dora/Desktop/XXX（cd后面的这个路径要换成你自己项目的路径），然后第二步输入命令 git rm –cached /Users/Dora/Desktop/XXX/XXX/IJKMediaFramework（加下划线部分是你自己的要移除的文件的路径），第三步输入命令 git commit –amend -CHEAD，执行完这步后，这个大文件将会从你的commit记录里移除，并且以后commit都将不会再把它commit了，这时候就可以git push把本地代码push到github上了。<br>注意：这里可能遇到输入git rm –cached /Users/Dora/Desktop/XXX/XXX/libbaiduNaviSDK.a命令后说找不到你要删除的文件的问题，出现这个问题的原因是你要删除的文件路径名没写对，一定要仔细检查，确保要删除的文件的路径是正确的。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/git//" class="article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/26/处理GitHub不允许上传大于100M的东西/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Java小结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -772,9 +679,101 @@ public static int[] check(char[] chs,char[] imput){
 
 
   
+    <article id="post-hexo相关配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/11/hexo相关配置/">hexo相关配置</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/11/hexo相关配置/" class="archive-article-date">
+  	<time datetime="2017-07-11T03:59:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-11</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>NexT主题的个性化设置<a href="http://www.jeyzhang.com/next-theme-personal-settings.html" target="_blank" rel="external">链接</a><br>NexT主题个性化之添加文章阅读量<a href="http://www.jeyzhang.com/hexo-next-add-post-views.html" target="_blank" rel="external">链接</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/hexo//" class="article-tag-list-link color5">hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/11/hexo相关配置/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/12/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/14/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/12/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/14/">Next &raquo;</a>
     </nav>
   
 
@@ -910,6 +909,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -918,15 +921,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -934,15 +933,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">FC</a>
               </li>
              
               <li class="article-tag-list-item">

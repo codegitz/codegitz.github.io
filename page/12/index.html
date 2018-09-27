@@ -171,315 +171,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-正则表达式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/28/正则表达式/">正则表达式</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/28/正则表达式/" class="archive-article-date">
-  	<time datetime="2017-09-28T13:48:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-28</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><p>正则表达式的基本语法</p>
-<h1 id="字符"><a href="#字符" class="headerlink" title="字符"></a>字符</h1><table>
-<thead>
-<tr>
-<th>字符</th>
-<th style="text-align:left">意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>.</td>
-<td style="text-align:left">任意英文字母</td>
-</tr>
-<tr>
-<td>\</td>
-<td style="text-align:left">反斜杠, 单独的反斜杠做为转义字符,与其他特殊字符一起使用。如果想匹配反斜杠本身,需要转义。两个反斜杠实际匹配一个反斜杠n字符的8进制表示.n 在0至7之间取值</td>
-</tr>
-<tr>
-<td>nn</td>
-<td style="text-align:left">字符的8进制表示.n 在0至7之间取值</td>
-</tr>
-<tr>
-<td>mnn</td>
-<td style="text-align:left">字符的8进制表示. m 在0至3之间取值, n 在0至7之间取值</td>
-</tr>
-<tr>
-<td>\xhh</td>
-<td style="text-align:left">字符的16进制表示.</td>
-</tr>
-<tr>
-<td>\uhh hh</td>
-<td style="text-align:left">字符的16进制表示 0xhhhh. 对应unicode 编码字符</td>
-</tr>
-<tr>
-<td>\t</td>
-<td style="text-align:left">缩进符.</td>
-</tr>
-<tr>
-<td>\n</td>
-<td style="text-align:left">换行符 (unicode: ‘\u000A’)</td>
-</tr>
-<tr>
-<td>\r</td>
-<td style="text-align:left">回车符 (unicode: ‘\u000D’)</td>
-</tr>
-<tr>
-<td>\f</td>
-<td style="text-align:left">制表符 (unicode: ‘\u000C’)</td>
-</tr>
-<tr>
-<td>\a</td>
-<td style="text-align:left">警报（铃声）字符 (unicode: ‘\u0007′)</td>
-</tr>
-<tr>
-<td>\e</td>
-<td style="text-align:left">转义符 (unicode: ‘\u001B’)</td>
-</tr>
-<tr>
-<td>\cx</td>
-<td style="text-align:left">控制符 x</td>
-</tr>
-</tbody>
-</table>
-<h1 id="字符分类"><a href="#字符分类" class="headerlink" title="字符分类"></a>字符分类</h1><table>
-<thead>
-<tr>
-<th>表达式</th>
-<th style="text-align:left">意义   </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>[abc]</td>
-<td style="text-align:left">匹配 a, 或 b 或 c</td>
-</tr>
-<tr>
-<td>[^abc]</td>
-<td style="text-align:left">匹配不是a,b,c 的字符，是否定匹配</td>
-</tr>
-<tr>
-<td>[a-zA-Z]</td>
-<td style="text-align:left">匹配a 到 z ，A到Z 直接的字符，是范围匹配</td>
-</tr>
-<tr>
-<td>[a-d[m-p]]</td>
-<td style="text-align:left">匹配a到d之间字符或 m到p之间字符，是并集匹配</td>
-</tr>
-<tr>
-<td>[a-z&amp;&amp;[def]]</td>
-<td style="text-align:left">匹配 d, e, 或 f. 是交集匹配 (这里是在范围 a-z和字符def之间取交集).</td>
-</tr>
-<tr>
-<td>[a-z&amp;&amp;[^bc]]</td>
-<td style="text-align:left">匹配a-z 之间所有字符，排除bc的字符。是减法匹配</td>
-</tr>
-<tr>
-<td>[a-z&amp;&amp;[^m-p]]</td>
-<td style="text-align:left">匹配a-z 之间所有字符,排除m-p之间的字符是减法匹配</td>
-</tr>
-</tbody>
-</table>
-<h1 id="内置字符分类"><a href="#内置字符分类" class="headerlink" title="内置字符分类"></a>内置字符分类</h1><table>
-<thead>
-<tr>
-<th style="text-align:center">字符</th>
-<th style="text-align:left">意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">.</td>
-<td style="text-align:left">匹配任意一个字符,根据创建Pattern是传入的标志,可能匹配行结尾符</td>
-</tr>
-<tr>
-<td style="text-align:center">\d</td>
-<td style="text-align:left">匹配任意数字 [0-9]</td>
-</tr>
-<tr>
-<td style="text-align:center">\D</td>
-<td style="text-align:left">匹配任意非数字 [^0-9]</td>
-</tr>
-<tr>
-<td style="text-align:center">\s</td>
-<td style="text-align:left">匹配任意空白符 (空格, 缩进, 换行,回车)</td>
-</tr>
-<tr>
-<td style="text-align:center">\S</td>
-<td style="text-align:left">匹配任意非空白符</td>
-</tr>
-<tr>
-<td style="text-align:center">\w</td>
-<td style="text-align:left">匹配任意单词</td>
-</tr>
-<tr>
-<td style="text-align:center">\W</td>
-<td style="text-align:left">匹配任意非单词</td>
-</tr>
-</tbody>
-</table>
-<h1 id="边界匹配"><a href="#边界匹配" class="headerlink" title="边界匹配"></a>边界匹配</h1><table>
-<thead>
-<tr>
-<th style="text-align:center">符号</th>
-<th style="text-align:left">意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">^</td>
-<td style="text-align:left">匹配行首</td>
-</tr>
-<tr>
-<td style="text-align:center">$</td>
-<td style="text-align:left">匹配行尾</td>
-</tr>
-<tr>
-<td style="text-align:center">\b</td>
-<td style="text-align:left">匹配单词边界</td>
-</tr>
-<tr>
-<td style="text-align:center">\B</td>
-<td style="text-align:left">匹配非单词边界</td>
-</tr>
-<tr>
-<td style="text-align:center">\A</td>
-<td style="text-align:left">匹配文本开头</td>
-</tr>
-<tr>
-<td style="text-align:center">\G</td>
-<td style="text-align:left">匹配前一匹配项结尾</td>
-</tr>
-<tr>
-<td style="text-align:center">\Z</td>
-<td style="text-align:left">Matches the end of the input text except the final terminator if any</td>
-</tr>
-<tr>
-<td style="text-align:center">\z</td>
-<td style="text-align:left">匹配文本结尾</td>
-</tr>
-</tbody>
-</table>
-<h1 id="量词"><a href="#量词" class="headerlink" title="量词"></a>量词</h1><table>
-<thead>
-<tr>
-<th style="text-align:center">贪婪模式</th>
-<th style="text-align:center">饥饿模式</th>
-<th style="text-align:center">独占模式</th>
-<th>意义     </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">X?</td>
-<td style="text-align:center">X??</td>
-<td style="text-align:center">X?+</td>
-<td>匹配0或1次</td>
-</tr>
-<tr>
-<td style="text-align:center">X*</td>
-<td style="text-align:center">X*?</td>
-<td style="text-align:center">X*+</td>
-<td>匹配0或多次</td>
-</tr>
-<tr>
-<td style="text-align:center">X+</td>
-<td style="text-align:center">X+?</td>
-<td style="text-align:center">X++</td>
-<td>匹配1或多次</td>
-</tr>
-<tr>
-<td style="text-align:center">X{n}</td>
-<td style="text-align:center">X{n}?</td>
-<td style="text-align:center">X{n}+</td>
-<td>匹配n次</td>
-</tr>
-<tr>
-<td style="text-align:center">X{n,}</td>
-<td style="text-align:center">X{n,}?</td>
-<td style="text-align:center">X{n,}+</td>
-<td>匹配最少n次</td>
-</tr>
-<tr>
-<td style="text-align:center">X{n, m}</td>
-<td style="text-align:center">X{n, m}?</td>
-<td style="text-align:center">X{n, m}+</td>
-<td>匹配最少n次，最多m次</td>
-</tr>
-</tbody>
-</table>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/28/正则表达式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-java代码如何打包成jar文件并且装换成可执行的exe文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -916,9 +607,102 @@ public double area(){//重写抽象方法
 
 
   
+    <article id="post-处理GitHub不允许上传大于100M的东西" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/26/处理GitHub不允许上传大于100M的东西/">处理GitHub不允许上传大于100M的文件</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/26/处理GitHub不允许上传大于100M的东西/" class="archive-article-date">
+  	<time datetime="2017-07-26T15:53:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-26</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>Github 修正上传时“this exceeds GitHub’s file size limit of 100 MB”错误 </p>
+<p>自己的项目的版本控制用的是Git，代码仓库在github托管。项目里用到了IJKMediaFramework 想把代码push到github上，结果出错了，被拒绝，具体信息是：<br>Total 324 (delta 78), reused 0 (delta 0)<br>remote: error: GH001: Large files detected. You may want to try Git Large File Storage - <a href="https://git-lfs.github.com" target="_blank" rel="external">https://git-lfs.github.com</a>.<br>remote: error: Trace: 812007a278d0a89c0705b8c456066938<br>remote: error: See <a href="http://git.io/iEPt8g" target="_blank" rel="external">http://git.io/iEPt8g</a> for more information.<br>remote: error: File MiaoShow/Classes/Frameworks/IJKMediaFramework.framework/IJKMediaFramework is 112.62 MB; this exceeds GitHub’s file size limit of 100.00 MB<br>To <a href="https://github.com/XXX/XXXX.git。意思是有大文件，更多信息可到http://git.io/iEPt8g查看，文件IJKMediaFramework的大小超过了GitHub限制的100M大小。想要push，必须把这个文件移除，可是要怎么移除呢？开始我是想着直接删除掉IJKMediaFramework，结果不行，还是会报上面的错，于是我又把libbaiduNaviSDK.a放到忽略文件里，结果还是不行，还是说有大文件，报同样的错。这下只能老老实实的看官方的解决办法了，于是就打开http://git.io/iEPt8g老老实实的研究了一番。大意是说为了便于管理代码库和方便合作伙伴们使用，当你push50M以上的文件时github将会警告，当push100M以上文件，就直接拒绝你的push，要想push必须把该文件从本地仓库和远程仓库全部移除掉。这个移除会永久性的从本地git和github里移除，如果这个文件很重要，要记得做一次备份。下面进入具体操作。如果这个文件是最近一次commit的，并且你还没有push到github，那么第一步输入命令" target="_blank" rel="external">https://github.com/XXX/XXXX.git。意思是有大文件，更多信息可到http://git.io/iEPt8g查看，文件IJKMediaFramework的大小超过了GitHub限制的100M大小。想要push，必须把这个文件移除，可是要怎么移除呢？开始我是想着直接删除掉IJKMediaFramework，结果不行，还是会报上面的错，于是我又把libbaiduNaviSDK.a放到忽略文件里，结果还是不行，还是说有大文件，报同样的错。这下只能老老实实的看官方的解决办法了，于是就打开http://git.io/iEPt8g老老实实的研究了一番。大意是说为了便于管理代码库和方便合作伙伴们使用，当你push50M以上的文件时github将会警告，当push100M以上文件，就直接拒绝你的push，要想push必须把该文件从本地仓库和远程仓库全部移除掉。这个移除会永久性的从本地git和github里移除，如果这个文件很重要，要记得做一次备份。下面进入具体操作。如果这个文件是最近一次commit的，并且你还没有push到github，那么第一步输入命令</a> cd /Users/Dora/Desktop/XXX（cd后面的这个路径要换成你自己项目的路径），然后第二步输入命令 git rm –cached /Users/Dora/Desktop/XXX/XXX/IJKMediaFramework（加下划线部分是你自己的要移除的文件的路径），第三步输入命令 git commit –amend -CHEAD，执行完这步后，这个大文件将会从你的commit记录里移除，并且以后commit都将不会再把它commit了，这时候就可以git push把本地代码push到github上了。<br>注意：这里可能遇到输入git rm –cached /Users/Dora/Desktop/XXX/XXX/libbaiduNaviSDK.a命令后说找不到你要删除的文件的问题，出现这个问题的原因是你要删除的文件路径名没写对，一定要仔细检查，确保要删除的文件的路径是正确的。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/git//" class="article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/26/处理GitHub不允许上传大于100M的东西/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/11/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/13/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/11/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/13/">Next &raquo;</a>
     </nav>
   
 
@@ -1054,6 +838,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -1062,15 +850,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1078,15 +862,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">FC</a>
               </li>
              
               <li class="article-tag-list-item">
