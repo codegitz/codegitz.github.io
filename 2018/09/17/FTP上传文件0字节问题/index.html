@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>FTP上传文件0字节问题 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="FTP上传文件0字节问题这几天在做一个ftp图片服务器，使用的是vsftp客户端，按照一套流程下来，基本搭建完毕，在Windows窗口上传文件正常，但是到了在Java程序中就出现了问题，上传图片的时候并不会报错，而是会卡住大概30秒左右，接着返回false，并不会抛出异常。一开始在想会不会是服务器没搭好，但是逐步排查下来，并没有发现问题，并且如果是服务器本身出现了问题，那么Windows命令行也">
+  <meta name="description" content="&amp;lt;–read more–&amp;gt; FTP上传文件0字节问题这几天在做一个ftp图片服务器，使用的是vsftp客户端，按照一套流程下来，基本搭建完毕，在Windows窗口上传文件正常，但是到了在Java程序中就出现了问题，上传图片的时候并不会报错，而是会卡住大概30秒左右，接着返回false，并不会抛出异常。一开始在想会不会是服务器没搭好，但是逐步排查下来，并没有发现问题，并且如果是服务器本">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FTP上传文件0字节问题">
 <meta property="og:url" content="http://yoursite.com/2018/09/17/FTP上传文件0字节问题/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="FTP上传文件0字节问题这几天在做一个ftp图片服务器，使用的是vsftp客户端，按照一套流程下来，基本搭建完毕，在Windows窗口上传文件正常，但是到了在Java程序中就出现了问题，上传图片的时候并不会报错，而是会卡住大概30秒左右，接着返回false，并不会抛出异常。一开始在想会不会是服务器没搭好，但是逐步排查下来，并没有发现问题，并且如果是服务器本身出现了问题，那么Windows命令行也">
+<meta property="og:description" content="&amp;lt;–read more–&amp;gt; FTP上传文件0字节问题这几天在做一个ftp图片服务器，使用的是vsftp客户端，按照一套流程下来，基本搭建完毕，在Windows窗口上传文件正常，但是到了在Java程序中就出现了问题，上传图片的时候并不会报错，而是会卡住大概30秒左右，接着返回false，并不会抛出异常。一开始在想会不会是服务器没搭好，但是逐步排查下来，并没有发现问题，并且如果是服务器本">
 <meta property="og:image" content="https://i.imgur.com/3aIgoOX.png">
 <meta property="og:image" content="https://i.imgur.com/rWim9yo.png">
-<meta property="og:updated_time" content="2018-09-16T17:37:34.003Z">
+<meta property="og:updated_time" content="2018-09-27T11:44:57.658Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FTP上传文件0字节问题">
-<meta name="twitter:description" content="FTP上传文件0字节问题这几天在做一个ftp图片服务器，使用的是vsftp客户端，按照一套流程下来，基本搭建完毕，在Windows窗口上传文件正常，但是到了在Java程序中就出现了问题，上传图片的时候并不会报错，而是会卡住大概30秒左右，接着返回false，并不会抛出异常。一开始在想会不会是服务器没搭好，但是逐步排查下来，并没有发现问题，并且如果是服务器本身出现了问题，那么Windows命令行也">
+<meta name="twitter:description" content="&amp;lt;–read more–&amp;gt; FTP上传文件0字节问题这几天在做一个ftp图片服务器，使用的是vsftp客户端，按照一套流程下来，基本搭建完毕，在Windows窗口上传文件正常，但是到了在Java程序中就出现了问题，上传图片的时候并不会报错，而是会卡住大概30秒左右，接着返回false，并不会抛出异常。一开始在想会不会是服务器没搭好，但是逐步排查下来，并没有发现问题，并且如果是服务器本">
 <meta name="twitter:image" content="https://i.imgur.com/3aIgoOX.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -210,7 +210,8 @@ gitment.render('gitment')
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="FTP上传文件0字节问题"><a href="#FTP上传文件0字节问题" class="headerlink" title="FTP上传文件0字节问题"></a>FTP上传文件0字节问题</h2><p>这几天在做一个ftp图片服务器，使用的是vsftp客户端，按照一套流程下来，基本搭建完毕，在Windows窗口上传文件正常，但是到了在Java程序中就出现了问题，上传图片的时候并不会报错，而是会卡住大概30秒左右，接着返回false，并不会抛出异常。一开始在想会不会是服务器没搭好，但是逐步排查下来，并没有发现问题，并且如果是服务器本身出现了问题，那么Windows命令行也应该不能上传成功，但是窗口上传成功了，说明了服务器的搭建应该是没有问题的。后来怀疑是自己的代码有问题，但是去参考了一番，发现并没有什么异样，十分懵逼。<br><br>然后Google发现这样一个问题：<br><br>VSFTP有两种模式：pasv模式与port模式，也就是我们所说的主动和被动模式<br><br><strong>Port模式:</strong><br><br>当客户端C向服务端S连接后，使用的是Port模式,那么客户端C会发送一条命令告诉服务端S(客户端C在本地打开了一个端口N在等着你进行数据连接),当服务端S收到这个Port命令后 就会向客户端打开的那个端口N进行连接，这种数据连接就生成了。<br><br><strong>Pasv模式:</strong><br><br>当客户端C向服务端S连接后，服务端S会发信息给客户端C,这个信息是(服务端S在本地打开了一个端口M,你现在去连接我吧),当客户端C收到这个信息后，就可以向服务端S的M端口进行连接,连接成功后，数据连接也建立了。<br>从上面的解释中，大家可以看到两种模式主要的不同是数据连接建立的不同，对于Port模式，是客户端C在本地打开一个端口等服务端S去连接建立数据连接；而Pasv模式就是服务端S打开一个端口等待客户端C去建立一个数据连接。<br><br><strong>默认情况下，FTPCLIENT用的是port模式</strong><br><br>参考FTPCLIENT原码<br><br>默认参数设置：<br></p>
+        <script src="/assets/js/APlayer.min.js"> </script><p>&lt;–read more–&gt;</p>
+<h2 id="FTP上传文件0字节问题"><a href="#FTP上传文件0字节问题" class="headerlink" title="FTP上传文件0字节问题"></a>FTP上传文件0字节问题</h2><p>这几天在做一个ftp图片服务器，使用的是vsftp客户端，按照一套流程下来，基本搭建完毕，在Windows窗口上传文件正常，但是到了在Java程序中就出现了问题，上传图片的时候并不会报错，而是会卡住大概30秒左右，接着返回false，并不会抛出异常。一开始在想会不会是服务器没搭好，但是逐步排查下来，并没有发现问题，并且如果是服务器本身出现了问题，那么Windows命令行也应该不能上传成功，但是窗口上传成功了，说明了服务器的搭建应该是没有问题的。后来怀疑是自己的代码有问题，但是去参考了一番，发现并没有什么异样，十分懵逼。<br><br>然后Google发现这样一个问题：<br><br>VSFTP有两种模式：pasv模式与port模式，也就是我们所说的主动和被动模式<br><br><strong>Port模式:</strong><br><br>当客户端C向服务端S连接后，使用的是Port模式,那么客户端C会发送一条命令告诉服务端S(客户端C在本地打开了一个端口N在等着你进行数据连接),当服务端S收到这个Port命令后 就会向客户端打开的那个端口N进行连接，这种数据连接就生成了。<br><br><strong>Pasv模式:</strong><br><br>当客户端C向服务端S连接后，服务端S会发信息给客户端C,这个信息是(服务端S在本地打开了一个端口M,你现在去连接我吧),当客户端C收到这个信息后，就可以向服务端S的M端口进行连接,连接成功后，数据连接也建立了。<br>从上面的解释中，大家可以看到两种模式主要的不同是数据连接建立的不同，对于Port模式，是客户端C在本地打开一个端口等服务端S去连接建立数据连接；而Pasv模式就是服务端S打开一个端口等待客户端C去建立一个数据连接。<br><br><strong>默认情况下，FTPCLIENT用的是port模式</strong><br><br>参考FTPCLIENT原码<br><br>默认参数设置：<br></p>
 <pre><code> //两常量的定义及解释
  /**
  * A constant indicating the FTP session is expecting all transfers
@@ -311,7 +312,7 @@ public void enterLocalPassiveMode()
 </code></pre><p>效果如下：<br><br><img src="https://i.imgur.com/3aIgoOX.png" alt=""></p>
 <p>浏览器访问：<br><br><img src="https://i.imgur.com/rWim9yo.png" alt=""></p>
 <p>可以正常访问，问题解决。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这个问题，应该说是没有留意细节的问题，在一开始的时候就有听到主动与被动模式的设置，但是没有太去在意，所以造成了隐患。<br>下面附上完整的FtpUtil代码：</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这个问题，应该说是没有留意细节的问题，在一开始的时候就有听到主动与被动模式的设置，但是没有太去在意，所以造成了隐患。<br>下面附上完整的FtpUtil上传和下载代码：</p>
 <pre><code>package com.common.utils;
 
 import java.io.File;
@@ -353,6 +354,7 @@ public class FtpUtil {
             String filePath, String filename, InputStream input) {
         boolean result = false;
         FTPClient ftp = new FTPClient();
+        //ftp.enterLocalPassiveMode();
         try {
             int reply;
             ftp.connect(host, port);// 连接FTP服务器
@@ -382,6 +384,7 @@ public class FtpUtil {
             }
             //设置上传文件的类型为二进制类型
             ftp.setFileType(FTP.BINARY_FILE_TYPE);
+            ftp.enterLocalPassiveMode();
             //上传文件
             if (!ftp.storeFile(filename, input)) {
                 return result;
@@ -417,6 +420,7 @@ public class FtpUtil {
             String fileName, String localPath) {
         boolean result = false;
         FTPClient ftp = new FTPClient();
+        ftp.enterLocalPassiveMode();
         try {
             int reply;
             ftp.connect(host, port);
