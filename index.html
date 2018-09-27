@@ -193,7 +193,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><p>&lt;–read more–&gt;</p>
+        <script src="/assets/js/APlayer.min.js"> </script><p><read more=""></read></p>
 <h2 id="FTP上传文件0字节问题"><a href="#FTP上传文件0字节问题" class="headerlink" title="FTP上传文件0字节问题"></a>FTP上传文件0字节问题</h2><p>这几天在做一个ftp图片服务器，使用的是vsftp客户端，按照一套流程下来，基本搭建完毕，在Windows窗口上传文件正常，但是到了在Java程序中就出现了问题，上传图片的时候并不会报错，而是会卡住大概30秒左右，接着返回false，并不会抛出异常。一开始在想会不会是服务器没搭好，但是逐步排查下来，并没有发现问题，并且如果是服务器本身出现了问题，那么Windows命令行也应该不能上传成功，但是窗口上传成功了，说明了服务器的搭建应该是没有问题的。后来怀疑是自己的代码有问题，但是去参考了一番，发现并没有什么异样，十分懵逼。<br><br>然后Google发现这样一个问题：<br><br>VSFTP有两种模式：pasv模式与port模式，也就是我们所说的主动和被动模式<br><br><strong>Port模式:</strong><br><br>当客户端C向服务端S连接后，使用的是Port模式,那么客户端C会发送一条命令告诉服务端S(客户端C在本地打开了一个端口N在等着你进行数据连接),当服务端S收到这个Port命令后 就会向客户端打开的那个端口N进行连接，这种数据连接就生成了。<br><br><strong>Pasv模式:</strong><br><br>当客户端C向服务端S连接后，服务端S会发信息给客户端C,这个信息是(服务端S在本地打开了一个端口M,你现在去连接我吧),当客户端C收到这个信息后，就可以向服务端S的M端口进行连接,连接成功后，数据连接也建立了。<br>从上面的解释中，大家可以看到两种模式主要的不同是数据连接建立的不同，对于Port模式，是客户端C在本地打开一个端口等服务端S去连接建立数据连接；而Pasv模式就是服务端S打开一个端口等待客户端C去建立一个数据连接。<br><br><strong>默认情况下，FTPCLIENT用的是port模式</strong><br><br>参考FTPCLIENT原码<br><br>默认参数设置：<br></p>
 <pre><code> //两常量的定义及解释
  /**
