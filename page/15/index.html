@@ -171,6 +171,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java小结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/23/Java小结/">内存继承总结</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/23/Java小结/" class="archive-article-date">
+  	<time datetime="2017-07-23T09:36:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-23</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h1><p>Java中内存由JVM来管理</p>
+<h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><p>1.用于存储所有new出来的对象（包括成员变量）<br>2.成员变量的生命周期：创建对象（new）时存于堆中，对象被GC回收是一并消失<br>3.垃圾回收器（GC）不定时到堆中查看，看到垃圾则自动回收，回收过程是透明的，并不是看到垃圾就马上回收，若想回收过程迅速些，可以调用System.(gc)<br>垃圾指没有任何引用所指向的对象<br>4.内存泄漏：不再使用的对象还没有被及时回收<br>建议：当对象不再使用时，及时将引用的值设置为null<br>垃圾回收器(Garbage Collection)是JVM自带的一个线程（自动运行着的程序），用于回收没有任何引用指向的对象<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170723180759.png" alt=""></p>
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>1.用于存储正在调用中的方法的所有局部变量<br>2.调用方法时在栈中为该方法分配一块对应的栈桢，栈桢中包含所有的局部变量（包括所有参数）<br>方法调用结束时，栈桢消失，局部变量一并消失<br>3.局部变量的生命周期：<br>调用方法时存在栈桢中，方法调用结束时消失</p>
+<h2 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h2><p>1.用于存储.class字节码文件（包括方法）<br>2.方法只有一份<br>每个对象都有自己的row和col<br>所有对象共享一个drop()方法，用this关键字区分drop()方法中到底是哪个对象<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170723180807.png" alt=""></p>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p>1.目的：避免代码的重复，有利于代码的重用<br>2.通过extends关键字实现继承<br>3.父类（基类）：所有子类所共有的属性和行为<br>4.子类（派生类）：子类所特有的属性和行为<br>4.子类继承父类后，子类具有子类+父类的属性和行为<br>5.一个父类可以有多个子类，但是一个子类，只能有一个父类<br>6.继承具有传递性<br>7.Java规定：构造子类之前必先构造父类，子类构造中若没有调用父类的构造，则默认super();若已调用了，则不再默认提供super();调用父类构造方法，必须位于子类第一句</p>
+<h1 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h1><p>super：指代当前对象的父类对象<br>用法：<br>1.super.成员变量名———-访问父类成员变量<br>2.super.方法名（）———-调用父类方法<br>3.super（）—————-调用父类构造方法<br>注意系统默认的调用super();方法</p>
+<h1 id="向上造型"><a href="#向上造型" class="headerlink" title="向上造型"></a>向上造型</h1><p>1.父类型的引用指向子类的对象<br>2.能调出来什么，看引用的类型<br>父类的引用可以指向子类的对象，但是通过父类的引用只能访问父类所定义的成员，不能访问子类的扩展部分<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170721211830.jpg" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/23/Java小结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-深夜鸡汤" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -684,105 +771,6 @@ public static int[] check(char[] chs,char[] imput){
 
 
   
-    <article id="post-利用GitHub在Markdown中插入图片" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/10/利用GitHub在Markdown中插入图片/">利用GitHub在Markdown中插入图片</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/10/利用GitHub在Markdown中插入图片/" class="archive-article-date">
-  	<time datetime="2017-07-10T08:05:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-10</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="1-新建一个git仓库"><a href="#1-新建一个git仓库" class="headerlink" title="1.新建一个git仓库"></a>1.新建一个git仓库</h1><p>在github中新建一个repo，不要勾选Initalize this repository with a README选项，如建立一个MarkdownPhotos的仓库<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Inked%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170710161230_LI.jpg" alt=""></p>
-<h1 id="2-新建本地储存图片的文件夹"><a href="#2-新建本地储存图片的文件夹" class="headerlink" title="2.新建本地储存图片的文件夹"></a>2.新建本地储存图片的文件夹</h1><p>在本地电脑新建文件夹将图片放入文件夹中，如新建ImageGithubToMarkdown文件夹 </p>
-<h1 id="3-在对应文件夹建立本地仓库"><a href="#3-在对应文件夹建立本地仓库" class="headerlink" title="3.在对应文件夹建立本地仓库"></a>3.在对应文件夹建立本地仓库</h1><p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162541.png" alt=""></p>
-<h1 id="4-Push到github保存"><a href="#4-Push到github保存" class="headerlink" title="4.Push到github保存"></a>4.Push到github保存</h1><p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162608.png" alt=""><br>完成后的图片为<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162719.png" alt=""></p>
-<h1 id="5-复制图片地址"><a href="#5-复制图片地址" class="headerlink" title="5.复制图片地址"></a>5.复制图片地址</h1><p>在Google浏览器打开GitHub<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162316.png" alt=""><br>右键点击图片，选择在“新标签页中打开图片”<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162400.png" alt=""><br>复制地址栏图片地址<br>或者直接右击图片，“复制图片地址”，两种操作得到的图片地址均可</p>
-<p>两个地址，指向同一个图片</p>
-<h1 id="6-在markdown中引用需要的图片地址"><a href="#6-在markdown中引用需要的图片地址" class="headerlink" title="6.在markdown中引用需要的图片地址"></a>6.在markdown中引用需要的图片地址</h1><p>按照markdown语法格式引用图片地址即可显示图片</p>
-<p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710165719.png" alt=""><br><a href="http://blog.csdn.net/monkey_lzl/article/details/60870891" target="_blank" rel="external">更多</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/git//" class="article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/10/利用GitHub在Markdown中插入图片/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/14/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/16/">Next &raquo;</a>
@@ -921,19 +909,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -965,6 +953,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
@@ -977,15 +969,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color2">hello world</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hello world</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>String类和Object类 | Codegitz&#39;s Blog</title>
+  <title>搭建solr服务器 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="String类和Object类">
-<meta property="og:url" content="http://yoursite.com/2017/10/03/String类和Object类/index.html">
+  <meta name="description" content="什么是solrSolr 是Apache下的一个顶级开源项目，采用Java开发，它是基于Lucene的全文搜索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化。其主要功能包括全文检索、命中标示、分面搜索、动态聚类、数据库集成，以及富文本（如Word、PDF）的处理。Solr是高度可扩展的，并提供了分布式搜索和索引复制。Solr是最流行的">
+<meta name="keywords" content="Java,linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建solr服务器">
+<meta property="og:url" content="http://yoursite.com/2018/10/13/搭建solr服务器/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:updated_time" content="2017-10-03T15:20:11.826Z">
+<meta property="og:description" content="什么是solrSolr 是Apache下的一个顶级开源项目，采用Java开发，它是基于Lucene的全文搜索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化。其主要功能包括全文检索、命中标示、分面搜索、动态聚类、数据库集成，以及富文本（如Word、PDF）的处理。Solr是高度可扩展的，并提供了分布式搜索和索引复制。Solr是最流行的">
+<meta property="og:updated_time" content="2018-10-13T14:37:03.433Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="String类和Object类">
+<meta name="twitter:title" content="搭建solr服务器">
+<meta name="twitter:description" content="什么是solrSolr 是Apache下的一个顶级开源项目，采用Java开发，它是基于Lucene的全文搜索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化。其主要功能包括全文检索、命中标示、分面搜索、动态聚类、数据库集成，以及富文本（如Word、PDF）的处理。Solr是高度可扩展的，并提供了分布式搜索和索引复制。Solr是最流行的">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
   
@@ -167,20 +171,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-String类和Object类" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-搭建solr服务器" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      String类和Object类
+      搭建solr服务器
     </h1>
   
 
         
-        <a href="/2017/10/03/String类和Object类/" class="archive-article-date">
-  	<time datetime="2017-10-03T15:20:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-03</time>
+        <a href="/2018/10/13/搭建solr服务器/" class="archive-article-date">
+  	<time datetime="2018-10-13T14:33:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-13</time>
 </a>
         
       </header>
@@ -205,7 +209,8 @@ gitment.render('gitment')
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script>
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="什么是solr"><a href="#什么是solr" class="headerlink" title="什么是solr"></a>什么是solr</h2><p>Solr 是Apache下的一个顶级开源项目，采用Java开发，它是基于Lucene的全文搜索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化。其主要功能包括全文检索、命中标示、分面搜索、动态聚类、数据库集成，以及富文本（如Word、PDF）的处理。Solr是高度可扩展的，并提供了分布式搜索和索引复制。Solr是最流行的企业级搜索引擎，Solr 4还增加了NoSQL支持。 <br><br>Solr可以独立运行，运行在Jetty、Tomcat等这些Servlet容器中，Solr 索引的实现方法很简单，用 POST 方法向 Solr 服务器发送一个描述 Field 及其内容的 XML 文档，Solr根据xml文档添加、删除、更新索引 。Solr 搜索只需要发送 HTTP GET 请求，然后对 Solr 返回Xml、json等格式的查询结果进行解析，组织页面布局。Solr不提供构建UI的功能，Solr提供了一个管理界面，通过管理界面可以查询Solr的配置和运行情况。<br></p>
+
       
 
       
@@ -239,6 +244,17 @@ gitment.render('gitment')
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Java,linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
          <span id="busuanzi_container_page_pv">
               |阅读量(<span id="busuanzi_value_page_pv"></span>)
         </span>
@@ -292,7 +308,7 @@ gitment.render('gitment')
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/10/03/String类和Object类/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/10/13/搭建solr服务器/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -306,18 +322,9 @@ gitment.render('gitment')
   
 <nav id="article-nav">
   
-    <a href="/2017/10/07/心灵鸡汤/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          心灵鸡汤
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/09/28/正则表达式/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">正则表达式</div>
+    <a href="/2018/10/11/搭建redis集群/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">搭建redis集群</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -372,7 +379,7 @@ gitment.render('gitment')
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "http://yoursite.com/2017/10/03/String类和Object类/",
+  id: "http://yoursite.com/2018/10/13/搭建solr服务器/",
   owner: 'codegitz',
   repo: 'codegitz.github.io',
   oauth: {

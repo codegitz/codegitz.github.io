@@ -171,6 +171,136 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Linux网络测试和测试工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/08/Linux网络测试和测试工具/">Linux网络测试和测试工具</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/08/Linux网络测试和测试工具/" class="archive-article-date">
+  	<time datetime="2018-05-08T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-08</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="Linux网络测试和测试工具"><a href="#Linux网络测试和测试工具" class="headerlink" title="Linux网络测试和测试工具"></a>Linux网络测试和测试工具</h2><pre><code>ifconfig
+nslookup
+ping
+//跟踪路由
+traceroute
+netstat -r
+</code></pre><p>##系统启动引导器和单用户模式</p>
+<p><code>grub</code></p>
+<h2 id="守护进程"><a href="#守护进程" class="headerlink" title="守护进程"></a>守护进程</h2><p>运行在后台，直接开机启动，类似于Windows中的服务</p>
+<ul>
+<li>系统守护进程</li>
+<li>网络守护进程</li>
+</ul>
+<pre><code>ps -ef
+</code></pre><h3 id="查看守护进程优先级"><a href="#查看守护进程优先级" class="headerlink" title="查看守护进程优先级"></a>查看守护进程优先级</h3><pre><code>[root@iZwz95jk243fcqv90p12gpZ etc]# pstree
+systemd─┬─AliYunDun───15*[{AliYunDun}]
+        ├─AliYunDunUpdate───3*[{AliYunDunUpdate}]
+        ├─2*[agetty]
+        ├─aliyun-service───6*[{aliyun-service}]
+        ├─atd
+        ├─auditd───{auditd}
+        ├─crond
+        ├─dbus-daemon
+        ├─dhclient
+        ├─ntpd
+        ├─polkitd───5*[{polkitd}]
+        ├─rsyslogd───2*[{rsyslogd}]
+        ├─sshd───sshd───bash───pstree
+        ├─systemd-journal
+        ├─systemd-logind
+        ├─systemd-udevd
+        └─tuned───4*[{tuned}]
+</code></pre><h3 id="守护进程的操作"><a href="#守护进程的操作" class="headerlink" title="守护进程的操作"></a>守护进程的操作</h3><pre><code>service ** stop
+service ** start
+service ** restart
+service ** reload  //重新读取配置，不会重启
+</code></pre><h3 id="设置守护进程"><a href="#设置守护进程" class="headerlink" title="设置守护进程"></a>设置守护进程</h3><pre><code>ntsysv
+</code></pre><p>Centos6</p>
+<pre><code>chkconfig
+chkconfig --list
+</code></pre><p>Centos7</p>
+<pre><code>systemctl 
+systemctl list-unit-files
+</code></pre><h2 id="系统时间同步"><a href="#系统时间同步" class="headerlink" title="系统时间同步"></a>系统时间同步</h2><pre><code>date 
+hwclock
+ntpd
+</code></pre><h2 id="crond"><a href="#crond" class="headerlink" title="crond"></a>crond</h2><p><img src="https://i.imgur.com/ZI1QNZ1.png" alt=""></p>
+<p><img src="https://i.imgur.com/ch8mqZa.png" alt=""></p>
+<p><img src="https://i.imgur.com/qFYMS1n.png" alt=""></p>
+<p><img src="https://i.imgur.com/MyaBuKy.png" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/08/Linux网络测试和测试工具/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-iptables" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1188,587 +1318,6 @@ Finished. Reboot to start upgrade.
 
 
   
-    <article id="post-SpringBoot与数据访问" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/30/SpringBoot与数据访问/">SpringBoot与数据访问</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/30/SpringBoot与数据访问/" class="archive-article-date">
-  	<time datetime="2018-04-30T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-30</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="SpringBoot与数据访问"><a href="#SpringBoot与数据访问" class="headerlink" title="SpringBoot与数据访问"></a>SpringBoot与数据访问</h2><h3 id="1-JDBC"><a href="#1-JDBC" class="headerlink" title="1.JDBC"></a>1.JDBC</h3><pre><code>&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-jdbc&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;mysql&lt;/groupId&gt;
-        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
-            &lt;scope&gt;runtime&lt;/scope&gt;
-        &lt;/dependency&gt;
-</code></pre><pre><code class="yaml">spring:
-  datasource:
-    username: root
-    password: 123456
-    url: jdbc:mysql://192.168.15.22:3306/jdbc
-    driver-class-name: com.mysql.jdbc.Driver
-</code></pre>
-<p>效果：</p>
-<p>​    默认是用org.apache.tomcat.jdbc.pool.DataSource作为数据源；</p>
-<p>​    数据源的相关配置都在DataSourceProperties里面；</p>
-<p>自动配置原理：</p>
-<p>org.springframework.boot.autoconfigure.jdbc：</p>
-<p>1、参考DataSourceConfiguration，根据配置创建数据源，默认使用Tomcat连接池；可以使用spring.datasource.type指定自定义的数据源类型；</p>
-<p>2、SpringBoot默认可以支持；</p>
-<pre><code>org.apache.tomcat.jdbc.pool.DataSource、HikariDataSource、BasicDataSource、
-</code></pre><p>3、自定义数据源类型</p>
-<pre><code class="java">/**
- * Generic DataSource configuration.
- */
-@ConditionalOnMissingBean(DataSource.class)
-@ConditionalOnProperty(name = &quot;spring.datasource.type&quot;)
-static class Generic {
-
-   @Bean
-   public DataSource dataSource(DataSourceProperties properties) {
-       //使用DataSourceBuilder创建数据源，利用反射创建响应type的数据源，并且绑定相关属性
-      return properties.initializeDataSourceBuilder().build();
-   }
-
-}
-</code></pre>
-<p>4、<strong>DataSourceInitializer：ApplicationListener</strong>；</p>
-<p>​    作用：</p>
-<p>​        1）、runSchemaScripts();运行建表语句；</p>
-<p>​        2）、runDataScripts();运行插入数据的sql语句；</p>
-<p>默认只需要将文件命名为：</p>
-<pre><code class="properties">schema-*.sql、data-*.sql
-默认规则：schema.sql，schema-all.sql；
-可以使用   
-    schema:
-      - classpath:department.sql
-      指定位置
-</code></pre>
-<p>5、操作数据库：自动配置了JdbcTemplate操作数据库</p>
-<h3 id="2-整合Druid数据源"><a href="#2-整合Druid数据源" class="headerlink" title="2.整合Druid数据源"></a>2.整合Druid数据源</h3><pre><code class="java">导入druid数据源
-@Configuration
-public class DruidConfig {
-
-    @ConfigurationProperties(prefix = &quot;spring.datasource&quot;)
-    @Bean
-    public DataSource druid(){
-       return  new DruidDataSource();
-    }
-
-    //配置Druid的监控
-    //1、配置一个管理后台的Servlet
-    @Bean
-    public ServletRegistrationBean statViewServlet(){
-        ServletRegistrationBean bean = new ServletRegistrationBean(new StatViewServlet(), &quot;/druid/*&quot;);
-        Map&lt;String,String&gt; initParams = new HashMap&lt;&gt;();
-
-        initParams.put(&quot;loginUsername&quot;,&quot;admin&quot;);
-        initParams.put(&quot;loginPassword&quot;,&quot;123456&quot;);
-        initParams.put(&quot;allow&quot;,&quot;&quot;);//默认就是允许所有访问
-        initParams.put(&quot;deny&quot;,&quot;192.168.15.21&quot;);
-
-        bean.setInitParameters(initParams);
-        return bean;
-    }
-
-
-    //2、配置一个web监控的filter
-    @Bean
-    public FilterRegistrationBean webStatFilter(){
-        FilterRegistrationBean bean = new FilterRegistrationBean();
-        bean.setFilter(new WebStatFilter());
-
-        Map&lt;String,String&gt; initParams = new HashMap&lt;&gt;();
-        initParams.put(&quot;exclusions&quot;,&quot;*.js,*.css,/druid/*&quot;);
-
-        bean.setInitParameters(initParams);
-
-        bean.setUrlPatterns(Arrays.asList(&quot;/*&quot;));
-
-        return  bean;
-    }
-}
-</code></pre>
-<h3 id="3-整合MyBatis"><a href="#3-整合MyBatis" class="headerlink" title="3.整合MyBatis"></a>3.整合MyBatis</h3><pre><code class="xml">        &lt;dependency&gt;
-            &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;
-            &lt;version&gt;1.3.1&lt;/version&gt;
-        &lt;/dependency&gt;
-</code></pre>
-<p><img src="https://i.imgur.com/vurJVYF.png" alt=""></p>
-<p>步骤：</p>
-<p>​    1）、配置数据源相关属性（见上一节Druid）</p>
-<p>​    2）、给数据库建表</p>
-<p>​    3）、创建JavaBean</p>
-<h3 id="4、注解版"><a href="#4、注解版" class="headerlink" title="4、注解版"></a>4、注解版</h3><pre><code class="java">//指定这是一个操作数据库的mapper
-@Mapper
-public interface DepartmentMapper {
-
-    @Select(&quot;select * from department where id=#{id}&quot;)
-    public Department getDeptById(Integer id);
-
-    @Delete(&quot;delete from department where id=#{id}&quot;)
-    public int deleteDeptById(Integer id);
-
-    @Options(useGeneratedKeys = true,keyProperty = &quot;id&quot;)
-    @Insert(&quot;insert into department(departmentName) values(#{departmentName})&quot;)
-    public int insertDept(Department department);
-
-    @Update(&quot;update department set departmentName=#{departmentName} where id=#{id}&quot;)
-    public int updateDept(Department department);
-}
-</code></pre>
-<p>问题：</p>
-<p>自定义MyBatis的配置规则；给容器中添加一个ConfigurationCustomizer；</p>
-<pre><code class="java">@org.springframework.context.annotation.Configuration
-public class MyBatisConfig {
-
-    @Bean
-    public ConfigurationCustomizer configurationCustomizer(){
-        return new ConfigurationCustomizer(){
-
-            @Override
-            public void customize(Configuration configuration) {
-                configuration.setMapUnderscoreToCamelCase(true);
-            }
-        };
-    }
-}
-</code></pre>
-<pre><code class="java">使用MapperScan批量扫描所有的Mapper接口；
-@MapperScan(value = &quot;com.atguigu.springboot.mapper&quot;)
-@SpringBootApplication
-public class SpringBoot06DataMybatisApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(SpringBoot06DataMybatisApplication.class, args);
-    }
-}
-</code></pre>
-<h3 id="5、配置文件版"><a href="#5、配置文件版" class="headerlink" title="5、配置文件版"></a>5、配置文件版</h3><pre><code class="yaml">mybatis:
-  config-location: classpath:mybatis/mybatis-config.xml 指定全局配置文件的位置
-  mapper-locations: classpath:mybatis/mapper/*.xml  指定sql映射文件的位置
-</code></pre>
-<p>更多使用参照</p>
-<p><a href="http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/" target="_blank" rel="external">链接</a></p>
-<h2 id="4、整合SpringData-JPA"><a href="#4、整合SpringData-JPA" class="headerlink" title="4、整合SpringData JPA"></a>4、整合SpringData JPA</h2><h3 id="1、SpringData简介"><a href="#1、SpringData简介" class="headerlink" title="1、SpringData简介"></a>1、SpringData简介</h3><p><img src="https://i.imgur.com/Tq3nASv.png" alt=""></p>
-<h3 id="2、整合SpringData-JPA"><a href="#2、整合SpringData-JPA" class="headerlink" title="2、整合SpringData JPA"></a>2、整合SpringData JPA</h3><p>JPA:ORM（Object Relational Mapping）；</p>
-<p>1）、编写一个实体类（bean）和数据表进行映射，并且配置好映射关系；</p>
-<pre><code class="java">//使用JPA注解配置映射关系
-@Entity //告诉JPA这是一个实体类（和数据表映射的类）
-@Table(name = &quot;tbl_user&quot;) //@Table来指定和哪个数据表对应;如果省略默认表名就是user；
-public class User {
-
-    @Id //这是一个主键
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//自增主键
-    private Integer id;
-
-    @Column(name = &quot;last_name&quot;,length = 50) //这是和数据表对应的一个列
-    private String lastName;
-    @Column //省略默认列名就是属性名
-    private String email;
-</code></pre>
-<p>2）、编写一个Dao接口来操作实体类对应的数据表（Repository）</p>
-<pre><code class="java">//继承JpaRepository来完成对数据库的操作
-public interface UserRepository extends JpaRepository&lt;User,Integer&gt; {
-}
-</code></pre>
-<p>3）、基本的配置JpaProperties</p>
-<pre><code class="yaml">spring:  
- jpa:
-    hibernate:
-#     更新或者创建数据表结构
-      ddl-auto: update
-#    控制台显示SQL
-    show-sql: true
-</code></pre>
-<h1 id="七、启动配置原理"><a href="#七、启动配置原理" class="headerlink" title="七、启动配置原理"></a>七、启动配置原理</h1><p>几个重要的事件回调机制</p>
-<p>配置在META-INF/spring.factories</p>
-<p><strong>ApplicationContextInitializer</strong></p>
-<p><strong>SpringApplicationRunListener</strong></p>
-<p>只需要放在ioc容器中</p>
-<p><strong>ApplicationRunner</strong></p>
-<p><strong>CommandLineRunner</strong></p>
-<p>启动流程：</p>
-<h2 id="1、创建SpringApplication对象"><a href="#1、创建SpringApplication对象" class="headerlink" title="1、创建SpringApplication对象"></a><strong>1、创建SpringApplication对象</strong></h2><pre><code class="java">initialize(sources);
-private void initialize(Object[] sources) {
-    //保存主配置类
-    if (sources != null &amp;&amp; sources.length &gt; 0) {
-        this.sources.addAll(Arrays.asList(sources));
-    }
-    //判断当前是否一个web应用
-    this.webEnvironment = deduceWebEnvironment();
-    //从类路径下找到META-INF/spring.factories配置的所有ApplicationContextInitializer；然后保存起来
-    setInitializers((Collection) getSpringFactoriesInstances(
-        ApplicationContextInitializer.class));
-    //从类路径下找到ETA-INF/spring.factories配置的所有ApplicationListener
-    setListeners((Collection) getSpringFactoriesInstances(ApplicationListener.class));
-    //从多个配置类中找到有main方法的主配置类
-    this.mainApplicationClass = deduceMainApplicationClass();
-}
-</code></pre>
-<p><img src="https://i.imgur.com/c3rkrHd.png" alt=""></p>
-<p><img src="https://i.imgur.com/MuMtxb9.png" alt=""></p>
-<h2 id="2、运行run方法"><a href="#2、运行run方法" class="headerlink" title="2、运行run方法"></a>2、运行run方法</h2><pre><code class="java">public ConfigurableApplicationContext run(String... args) {
-   StopWatch stopWatch = new StopWatch();
-   stopWatch.start();
-   ConfigurableApplicationContext context = null;
-   FailureAnalyzers analyzers = null;
-   configureHeadlessProperty();
-
-   //获取SpringApplicationRunListeners；从类路径下META-INF/spring.factories
-   SpringApplicationRunListeners listeners = getRunListeners(args);
-    //回调所有的获取SpringApplicationRunListener.starting()方法
-   listeners.starting();
-   try {
-       //封装命令行参数
-      ApplicationArguments applicationArguments = new DefaultApplicationArguments(
-            args);
-      //准备环境
-      ConfigurableEnvironment environment = prepareEnvironment(listeners,
-            applicationArguments);
-               //创建环境完成后回调SpringApplicationRunListener.environmentPrepared()；表示环境准备完成
-
-      Banner printedBanner = printBanner(environment);
-
-       //创建ApplicationContext；决定创建web的ioc还是普通的ioc
-      context = createApplicationContext();
-
-      analyzers = new FailureAnalyzers(context);
-       //准备上下文环境;将environment保存到ioc中；而且applyInitializers()；
-       //applyInitializers()：回调之前保存的所有的ApplicationContextInitializer的initialize方法
-       //回调所有的SpringApplicationRunListener的contextPrepared()；
-       //
-      prepareContext(context, environment, listeners, applicationArguments,
-            printedBanner);
-       //prepareContext运行完成以后回调所有的SpringApplicationRunListener的contextLoaded（）；
-
-       //s刷新容器；ioc容器初始化（如果是web应用还会创建嵌入式的Tomcat）；Spring注解版
-       //扫描，创建，加载所有组件的地方；（配置类，组件，自动配置）
-      refreshContext(context);
-       //从ioc容器中获取所有的ApplicationRunner和CommandLineRunner进行回调
-       //ApplicationRunner先回调，CommandLineRunner再回调
-      afterRefresh(context, applicationArguments);
-       //所有的SpringApplicationRunListener回调finished方法
-      listeners.finished(context, null);
-      stopWatch.stop();
-      if (this.logStartupInfo) {
-         new StartupInfoLogger(this.mainApplicationClass)
-               .logStarted(getApplicationLog(), stopWatch);
-      }
-       //整个SpringBoot应用启动完成以后返回启动的ioc容器；
-      return context;
-   }
-   catch (Throwable ex) {
-      handleRunFailure(context, listeners, analyzers, ex);
-      throw new IllegalStateException(ex);
-   }
-}
-</code></pre>
-<h2 id="3、事件监听机制"><a href="#3、事件监听机制" class="headerlink" title="3、事件监听机制"></a>3、事件监听机制</h2><p>配置在META-INF/spring.factories</p>
-<p><strong>ApplicationContextInitializer</strong></p>
-<pre><code class="java">public class HelloApplicationContextInitializer implements ApplicationContextInitializer&lt;ConfigurableApplicationContext&gt; {
-    @Override
-    public void initialize(ConfigurableApplicationContext applicationContext) {
-        System.out.println(&quot;ApplicationContextInitializer...initialize...&quot;+applicationContext);
-    }
-}
-</code></pre>
-<p><strong>SpringApplicationRunListener</strong></p>
-<pre><code class="java">public class HelloSpringApplicationRunListener implements SpringApplicationRunListener {
-
-    //必须有的构造器
-    public HelloSpringApplicationRunListener(SpringApplication application, String[] args){
-
-    }
-
-    @Override
-    public void starting() {
-        System.out.println(&quot;SpringApplicationRunListener...starting...&quot;);
-    }
-
-    @Override
-    public void environmentPrepared(ConfigurableEnvironment environment) {
-        Object o = environment.getSystemProperties().get(&quot;os.name&quot;);
-        System.out.println(&quot;SpringApplicationRunListener...environmentPrepared..&quot;+o);
-    }
-
-    @Override
-    public void contextPrepared(ConfigurableApplicationContext context) {
-        System.out.println(&quot;SpringApplicationRunListener...contextPrepared...&quot;);
-    }
-
-    @Override
-    public void contextLoaded(ConfigurableApplicationContext context) {
-        System.out.println(&quot;SpringApplicationRunListener...contextLoaded...&quot;);
-    }
-
-    @Override
-    public void finished(ConfigurableApplicationContext context, Throwable exception) {
-        System.out.println(&quot;SpringApplicationRunListener...finished...&quot;);
-    }
-}
-</code></pre>
-<p>配置（META-INF/spring.factories）</p>
-<pre><code class="properties">org.springframework.context.ApplicationContextInitializer=\
-com.atguigu.springboot.listener.HelloApplicationContextInitializer
-
-org.springframework.boot.SpringApplicationRunListener=\
-com.atguigu.springboot.listener.HelloSpringApplicationRunListener
-</code></pre>
-<p>只需要放在ioc容器中</p>
-<p><strong>ApplicationRunner</strong></p>
-<pre><code class="java">@Component
-public class HelloApplicationRunner implements ApplicationRunner {
-    @Override
-    public void run(ApplicationArguments args) throws Exception {
-        System.out.println(&quot;ApplicationRunner...run....&quot;);
-    }
-}
-</code></pre>
-<p><strong>CommandLineRunner</strong></p>
-<pre><code class="java">@Component
-public class HelloCommandLineRunner implements CommandLineRunner {
-    @Override
-    public void run(String... args) throws Exception {
-        System.out.println(&quot;CommandLineRunner...run...&quot;+ Arrays.asList(args));
-    }
-}
-</code></pre>
-<h1 id="八、自定义starter"><a href="#八、自定义starter" class="headerlink" title="八、自定义starter"></a>八、自定义starter</h1><p>starter：</p>
-<p>​    1、这个场景需要使用到的依赖是什么？</p>
-<p>​    2、如何编写自动配置</p>
-<pre><code class="java">@Configuration  //指定这个类是一个配置类
-@ConditionalOnXXX  //在指定条件成立的情况下自动配置类生效
-@AutoConfigureAfter  //指定自动配置类的顺序
-@Bean  //给容器中添加组件
-
-@ConfigurationPropertie结合相关xxxProperties类来绑定相关的配置
-@EnableConfigurationProperties //让xxxProperties生效加入到容器中
-
-自动配置类要能加载
-将需要启动就加载的自动配置类，配置在META-INF/spring.factories
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration,\
-org.springframework.boot.autoconfigure.aop.AopAutoConfiguration,\
-</code></pre>
-<p>​    3、模式：</p>
-<p>启动器只用来做依赖导入；</p>
-<p>专门来写一个自动配置模块；</p>
-<p>启动器依赖自动配置；别人只需要引入启动器（starter）</p>
-<p>mybatis-spring-boot-starter；自定义启动器名-spring-boot-starter</p>
-<p>步骤：</p>
-<p>1）、启动器模块</p>
-<pre><code class="xml"> &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
-         x mlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
-    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
-
-    &lt;groupId&gt;com.atguigu.starter&lt;/groupId&gt;
-    &lt;artifactId&gt;atguigu-spring-boot-starter&lt;/artifactId&gt;
-    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
-
-    &lt;!--启动器--&gt;
-    &lt;dependencies&gt;
-
-        &lt;!--引入自动配置模块--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;com.atguigu.starter&lt;/groupId&gt;
-            &lt;artifactId&gt;atguigu-spring-boot-starter-autoconfigurer&lt;/artifactId&gt;
-            &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
-        &lt;/dependency&gt;
-    &lt;/dependencies&gt;
-
-&lt;/project&gt;
-</code></pre>
-<p>2）、自动配置模块</p>
-<pre><code class="xml">&lt; ?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;project x mlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-   xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
-   &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
-
-   &lt;groupId&gt;com.atguigu.starter&lt;/groupId&gt;
-   &lt;artifactId&gt;atguigu-spring-boot-starter-autoconfigurer&lt;/artifactId&gt;
-   &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
-   &lt;packaging&gt;jar&lt;/packaging&gt;
-
-   &lt;name&gt;atguigu-spring-boot-starter-autoconfigurer&lt;/name&gt;
-   &lt;description&gt;Demo project for Spring Boot&lt;/description&gt;
-
-   &lt;parent&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
-      &lt;version&gt;1.5.10.RELEASE&lt;/version&gt;
-      &lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;
-   &lt;/parent&gt;
-
-   &lt;properties&gt;
-      &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-      &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
-      &lt;java.version&gt;1.8&lt;/java.version&gt;
-   &lt;/properties&gt;
-
-   &lt;dependencies&gt;
-
-      &lt;!--引入spring-boot-starter；所有starter的基本配置--&gt;
-      &lt;dependency&gt;
-         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-         &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
-      &lt;/dependency&gt;
-
-   &lt;/dependencies&gt;
-
-
-
-&lt;/project&gt;
-</code></pre>
-<pre><code class="java">package com.atguigu.starter;
-
-import org.springframework.boot.context.properties.ConfigurationProperties;
-
-@ConfigurationProperties(prefix = &quot;atguigu.hello&quot;)
-public class HelloProperties {
-
-    private String prefix;
-    private String suffix;
-
-    public String getPrefix() {
-        return prefix;
-    }
-
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
-    }
-
-    public String getSuffix() {
-        return suffix;
-    }
-
-    public void setSuffix(String suffix) {
-        this.suffix = suffix;
-    }
-}
-</code></pre>
-<pre><code class="java">package com.atguigu.starter;
-
-public class HelloService {
-
-    HelloProperties helloProperties;
-
-    public HelloProperties getHelloProperties() {
-        return helloProperties;
-    }
-
-    public void setHelloProperties(HelloProperties helloProperties) {
-        this.helloProperties = helloProperties;
-    }
-
-    public String sayHellAtguigu(String name){
-        return helloProperties.getPrefix()+&quot;-&quot; +name + helloProperties.getSuffix();
-    }
-}
-</code></pre>
-<pre><code class="java">package com.atguigu.starter;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-@Configuration
-@ConditionalOnWebApplication //web应用才生效
-@EnableConfigurationProperties(HelloProperties.class)
-public class HelloServiceAutoConfiguration {
-
-    @Autowired
-    HelloProperties helloProperties;
-    @Bean
-    public HelloService helloService(){
-        HelloService service = new HelloService();
-        service.setHelloProperties(helloProperties);
-        return service;
-    }
-}
-</code></pre>
-<h1 id="更多SpringBoot整合示例"><a href="#更多SpringBoot整合示例" class="headerlink" title="更多SpringBoot整合示例"></a>更多SpringBoot整合示例</h1><p><a href="https://github.com/spring-projects/spring-boot/tree/master/spring-boot-samples" target="_blank" rel="external">链接</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Java,Springboot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/30/SpringBoot与数据访问/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1907,19 +1456,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1951,6 +1500,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
@@ -1963,15 +1516,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color2">hello world</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hello world</a>
               </li>
              
               <li class="article-tag-list-item">
