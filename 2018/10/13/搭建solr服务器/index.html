@@ -9,16 +9,30 @@
   <title>搭建solr服务器 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="什么是solrSolr 是Apache下的一个顶级开源项目，采用Java开发，它是基于Lucene的全文搜索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化。其主要功能包括全文检索、命中标示、分面搜索、动态聚类、数据库集成，以及富文本（如Word、PDF）的处理。Solr是高度可扩展的，并提供了分布式搜索和索引复制。Solr是最流行的">
-<meta name="keywords" content="Java,linux">
+<meta name="keywords" content="solr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搭建solr服务器">
 <meta property="og:url" content="http://yoursite.com/2018/10/13/搭建solr服务器/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
 <meta property="og:description" content="什么是solrSolr 是Apache下的一个顶级开源项目，采用Java开发，它是基于Lucene的全文搜索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化。其主要功能包括全文检索、命中标示、分面搜索、动态聚类、数据库集成，以及富文本（如Word、PDF）的处理。Solr是高度可扩展的，并提供了分布式搜索和索引复制。Solr是最流行的">
-<meta property="og:updated_time" content="2018-10-13T14:37:03.433Z">
+<meta property="og:image" content="https://i.imgur.com/F9oSMFQ.png">
+<meta property="og:image" content="https://i.imgur.com/E2UwPXV.png">
+<meta property="og:image" content="https://i.imgur.com/eD9RoyT.png">
+<meta property="og:image" content="https://i.imgur.com/uO2taVJ.png">
+<meta property="og:image" content="https://i.imgur.com/znD9inE.png">
+<meta property="og:image" content="https://i.imgur.com/z3fbdVl.png">
+<meta property="og:image" content="https://i.imgur.com/Fqzfv3q.png">
+<meta property="og:image" content="https://i.imgur.com/qw2W4hp.png">
+<meta property="og:image" content="https://i.imgur.com/3HkFuqp.png">
+<meta property="og:image" content="https://i.imgur.com/U9Ablux.png">
+<meta property="og:image" content="https://i.imgur.com/y2YmLHA.png">
+<meta property="og:image" content="https://i.imgur.com/JPyfQqP.png">
+<meta property="og:image" content="https://i.imgur.com/lAmwbBg.png">
+<meta property="og:updated_time" content="2018-10-13T16:29:53.353Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建solr服务器">
 <meta name="twitter:description" content="什么是solrSolr 是Apache下的一个顶级开源项目，采用Java开发，它是基于Lucene的全文搜索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化。其主要功能包括全文检索、命中标示、分面搜索、动态聚类、数据库集成，以及富文本（如Word、PDF）的处理。Solr是高度可扩展的，并提供了分布式搜索和索引复制。Solr是最流行的">
+<meta name="twitter:image" content="https://i.imgur.com/F9oSMFQ.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
   
@@ -210,6 +224,40 @@ gitment.render('gitment')
     <div class="article-entry" itemprop="articleBody">
       
         <script src="/assets/js/APlayer.min.js"> </script><h2 id="什么是solr"><a href="#什么是solr" class="headerlink" title="什么是solr"></a>什么是solr</h2><p>Solr 是Apache下的一个顶级开源项目，采用Java开发，它是基于Lucene的全文搜索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化。其主要功能包括全文检索、命中标示、分面搜索、动态聚类、数据库集成，以及富文本（如Word、PDF）的处理。Solr是高度可扩展的，并提供了分布式搜索和索引复制。Solr是最流行的企业级搜索引擎，Solr 4还增加了NoSQL支持。 <br><br>Solr可以独立运行，运行在Jetty、Tomcat等这些Servlet容器中，Solr 索引的实现方法很简单，用 POST 方法向 Solr 服务器发送一个描述 Field 及其内容的 XML 文档，Solr根据xml文档添加、删除、更新索引 。Solr 搜索只需要发送 HTTP GET 请求，然后对 Solr 返回Xml、json等格式的查询结果进行解析，组织页面布局。Solr不提供构建UI的功能，Solr提供了一个管理界面，通过管理界面可以查询Solr的配置和运行情况。<br></p>
+<h2 id="solr的安装及其配置"><a href="#solr的安装及其配置" class="headerlink" title="solr的安装及其配置"></a>solr的安装及其配置</h2><h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>solr 需要运行在一个Servlet容器中，Solr4.10.3要求jdk使用1.7以上，Solr默认提供Jetty（java写的Servlet容器），本教程使用Tocmat作为Servlet容器，环境如下：<br></p>
+<ul>
+<li>Solr：Solr4.10.3<br></li>
+<li>Jdk：jdk1.7.0_72<br></li>
+<li>Tomcat：apache-tomcat-7.0.53<br></li>
+</ul>
+<p>Jdk和Tomcat的安装就不详细介绍了，只需要下载好对应的包解压到指定目录，再配置好环境变量就OK。<br><br>运行java -version,输出如下即安装成功。<br><br><img src="https://i.imgur.com/F9oSMFQ.png" alt=""><br>Tomcat通过startup.sh启动运行：<br><br><img src="https://i.imgur.com/E2UwPXV.png" alt=""><br>浏览器访问到如下页面即安装成功：<br><br><img src="https://i.imgur.com/eD9RoyT.png" alt=""></p>
+<h3 id="安装solr"><a href="#安装solr" class="headerlink" title="安装solr"></a>安装solr</h3><p>将solr包上传到服务器，解压。我这里的安装路径是<code>/usr/local/solr</code><br>,将文件上传到这个路径下并解压：<br><br>    [root@iZwz9c6u1iybgf3f7s8cg6Z solr]# tar -zxvf solr-4.10.3.tgz.tgz<br><img src="https://i.imgur.com/uO2taVJ.png" alt=""><br>解压之后得到一个solr-4.10.3文件夹，里面内容如下：<br><br><img src="https://i.imgur.com/znD9inE.png" alt=""><br>bin：solr的运行脚本<br>contrib：solr的一些贡献软件/插件，用于增强solr的功能。<br><br>dist：该目录包含build过程中产生的war和jar文件，以及相关的依赖文件。<br><br>docs：solr的API文档<br><br>example：solr工程的例子目录：<br></p>
+<ul>
+<li>example/solr：该目录是一个包含了默认配置信息的Solr的Core目录。<br></li>
+<li>example/multicore：该目录包含了在Solr的multicore中设置的多个Core目录。 <br></li>
+<li>example/webapps：该目录中包括一个solr.war，该war可作为solr的运行实例工程。<br><br>licenses：solr相关的一些许可信息<br></li>
+</ul>
+<h3 id="solr整合tomcat"><a href="#solr整合tomcat" class="headerlink" title="solr整合tomcat"></a>solr整合tomcat</h3><ol>
+<li><p>将dist\solr-4.10.3.war拷贝到Tomcat的webapp目录下改名为solr.war。这里的Tomcat目录理论上可以是任何位置，但是我为了方便管理起见，把Tomcat也放到了solr目录下面。<br><br>[root@iZwz9c6u1iybgf3f7s8cg6Z dist]# cp solr-4.10.3.war /usr/local/solr/tomcat/webapps/solr.war<br>这是webapps下就有了solr.war这个war包。<br><br><img src="https://i.imgur.com/z3fbdVl.png" alt=""></p>
+</li>
+<li><p>启动tomcat后，solr.war自动解压，出现solr文件夹，然后将原来的solr.war删除，不然下次启动又会解压覆盖你的solr文件夹，删除solr.war时一定要把Tomcat关掉，不然会连带着把刚刚解压出来的solr文件夹也删掉。<br><br><img src="https://i.imgur.com/Fqzfv3q.png" alt=""></p>
+<p>[root@iZwz9c6u1iybgf3f7s8cg6Z webapps]# rm -f solr.war<br><img src="https://i.imgur.com/qw2W4hp.png" alt=""> </p>
+</li>
+<li><p>拷贝example\lib\ext 目录下所有jar包到Tomcat的webapp\solr\WEB-INF\lib目录下<br></p>
+<p>root@iZwz9c6u1iybgf3f7s8cg6Z ext]# cp * /usr/local/solr/tomcat/webapps/solr/WEB-INF/lib/</p>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/3HkFuqp.png" alt=""></p>
+<ol>
+<li><p>拷贝log4j.properties文件<br><br>在  Tomcat下webapps\solr\WEB-INF目录中创建文件 classes文件夹，<br>复制Solr目录下example\resources\log4j.properties至Tomcat下webapps\solr\WEB-INF\classes目录 <br></p>
+<p>[root@iZwz9c6u1iybgf3f7s8cg6Z solr]# cd solr-4.10.3<br>[root@iZwz9c6u1iybgf3f7s8cg6Z solr-4.10.3]# cd example/resources/<br>[root@iZwz9c6u1iybgf3f7s8cg6Z resources]# ll<br>total 4<br>-rw-r–r–. 1 root root 846 Dec  1  2014 log4j.properties<br>[root@iZwz9c6u1iybgf3f7s8cg6Z resources]# cp log4j.properties /usr/local/solr/tomcat/webapps/solr<br>/WEB-INF/classes/</p>
+</li>
+<li><p>创建solrhome及配置solrcore的solrconfig.xml文件，理论上solrhome也可以在任何位置，这里我放在了solr下。<br><br><img src="https://i.imgur.com/U9Ablux.png" alt=""><br>然后把/solr-4.10.3/example下面的solr文件夹复制到刚刚建立的solrhome下面。<br><br>[root@iZwz9c6u1iybgf3f7s8cg6Z example]#  cp -r solr /usr/local/solr/solrhome/<br><img src="https://i.imgur.com/y2YmLHA.png" alt=""></p>
+</li>
+<li>设置solrhome配置，是要通过<a href="https://en.wikipedia.org/wiki/Java_Naming_and_Directory_Interface" target="_blank" rel="external">JNDI</a>告诉Tomcat连接池利用的是什么。修改Tomcat目录 下webapp\solr\WEB-INF\web.xml文件，如下所示：<br><br><img src="https://i.imgur.com/JPyfQqP.png" alt=""></li>
+</ol>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>启动Tomcat，在浏览器访问<a href="http://47.107.71.209:8080/solr" target="_blank" rel="external">http://47.107.71.209:8080/solr</a><br>出现如下页面则说明搭建成功：<br><br><img src="https://i.imgur.com/lAmwbBg.png" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这个安装也较为简单，没有复杂的配置，但是在Tomcat的Catalina_home配置要小心，出现这种情况一般是在直接移动安装好的Tomcat文件夹。Tomcat所对应的Catalina_home都必须是自身的安装路径，如果指向其他的Tomcat的路径，则会出现在TomcatA目录启动Tomcat服务，但是启动的是TomcatB的情况。<br></p>
 
       
 
@@ -249,7 +297,7 @@ gitment.render('gitment')
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Java,linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">solr</a>
         		</li>
       		
 		</ul>
@@ -592,6 +640,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
             
             <div class="clearfix"></div>
