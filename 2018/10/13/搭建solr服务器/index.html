@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://i.imgur.com/y2YmLHA.png">
 <meta property="og:image" content="https://i.imgur.com/JPyfQqP.png">
 <meta property="og:image" content="https://i.imgur.com/lAmwbBg.png">
-<meta property="og:updated_time" content="2018-10-13T16:29:53.353Z">
+<meta property="og:updated_time" content="2018-10-13T16:38:02.187Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建solr服务器">
 <meta name="twitter:description" content="什么是solrSolr 是Apache下的一个顶级开源项目，采用Java开发，它是基于Lucene的全文搜索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化。其主要功能包括全文检索、命中标示、分面搜索、动态聚类、数据库集成，以及富文本（如Word、PDF）的处理。Solr是高度可扩展的，并提供了分布式搜索和索引复制。Solr是最流行的">
@@ -237,25 +237,20 @@ gitment.render('gitment')
 <li>example/multicore：该目录包含了在Solr的multicore中设置的多个Core目录。 <br></li>
 <li>example/webapps：该目录中包括一个solr.war，该war可作为solr的运行实例工程。<br><br>licenses：solr相关的一些许可信息<br></li>
 </ul>
-<h3 id="solr整合tomcat"><a href="#solr整合tomcat" class="headerlink" title="solr整合tomcat"></a>solr整合tomcat</h3><ol>
-<li><p>将dist\solr-4.10.3.war拷贝到Tomcat的webapp目录下改名为solr.war。这里的Tomcat目录理论上可以是任何位置，但是我为了方便管理起见，把Tomcat也放到了solr目录下面。<br><br>[root@iZwz9c6u1iybgf3f7s8cg6Z dist]# cp solr-4.10.3.war /usr/local/solr/tomcat/webapps/solr.war<br>这是webapps下就有了solr.war这个war包。<br><br><img src="https://i.imgur.com/z3fbdVl.png" alt=""></p>
-</li>
-<li><p>启动tomcat后，solr.war自动解压，出现solr文件夹，然后将原来的solr.war删除，不然下次启动又会解压覆盖你的solr文件夹，删除solr.war时一定要把Tomcat关掉，不然会连带着把刚刚解压出来的solr文件夹也删掉。<br><br><img src="https://i.imgur.com/Fqzfv3q.png" alt=""></p>
-<p>[root@iZwz9c6u1iybgf3f7s8cg6Z webapps]# rm -f solr.war<br><img src="https://i.imgur.com/qw2W4hp.png" alt=""> </p>
-</li>
-<li><p>拷贝example\lib\ext 目录下所有jar包到Tomcat的webapp\solr\WEB-INF\lib目录下<br></p>
-<p>root@iZwz9c6u1iybgf3f7s8cg6Z ext]# cp * /usr/local/solr/tomcat/webapps/solr/WEB-INF/lib/</p>
-</li>
-</ol>
-<p><img src="https://i.imgur.com/3HkFuqp.png" alt=""></p>
-<ol>
-<li><p>拷贝log4j.properties文件<br><br>在  Tomcat下webapps\solr\WEB-INF目录中创建文件 classes文件夹，<br>复制Solr目录下example\resources\log4j.properties至Tomcat下webapps\solr\WEB-INF\classes目录 <br></p>
-<p>[root@iZwz9c6u1iybgf3f7s8cg6Z solr]# cd solr-4.10.3<br>[root@iZwz9c6u1iybgf3f7s8cg6Z solr-4.10.3]# cd example/resources/<br>[root@iZwz9c6u1iybgf3f7s8cg6Z resources]# ll<br>total 4<br>-rw-r–r–. 1 root root 846 Dec  1  2014 log4j.properties<br>[root@iZwz9c6u1iybgf3f7s8cg6Z resources]# cp log4j.properties /usr/local/solr/tomcat/webapps/solr<br>/WEB-INF/classes/</p>
-</li>
-<li><p>创建solrhome及配置solrcore的solrconfig.xml文件，理论上solrhome也可以在任何位置，这里我放在了solr下。<br><br><img src="https://i.imgur.com/U9Ablux.png" alt=""><br>然后把/solr-4.10.3/example下面的solr文件夹复制到刚刚建立的solrhome下面。<br><br>[root@iZwz9c6u1iybgf3f7s8cg6Z example]#  cp -r solr /usr/local/solr/solrhome/<br><img src="https://i.imgur.com/y2YmLHA.png" alt=""></p>
-</li>
-<li>设置solrhome配置，是要通过<a href="https://en.wikipedia.org/wiki/Java_Naming_and_Directory_Interface" target="_blank" rel="external">JNDI</a>告诉Tomcat连接池利用的是什么。修改Tomcat目录 下webapp\solr\WEB-INF\web.xml文件，如下所示：<br><br><img src="https://i.imgur.com/JPyfQqP.png" alt=""></li>
-</ol>
+<h3 id="solr整合tomcat"><a href="#solr整合tomcat" class="headerlink" title="solr整合tomcat"></a>solr整合tomcat</h3><p>1.将dist\solr-4.10.3.war拷贝到Tomcat的webapp目录下改名为solr.war。这里的Tomcat目录理论上可以是任何位置，但是我为了方便管理起见，把Tomcat也放到了solr目录下面。<br><br>    [root@iZwz9c6u1iybgf3f7s8cg6Z dist]# cp solr-4.10.3.war /usr/local/solr/tomcat/webapps/solr.war<br>这是webapps下就有了solr.war这个war包。<br><br><img src="https://i.imgur.com/z3fbdVl.png" alt=""></p>
+<p>2.启动tomcat后，solr.war自动解压，出现solr文件夹，然后将原来的solr.war删除，不然下次启动又会解压覆盖你的solr文件夹，删除solr.war时一定要把Tomcat关掉，不然会连带着把刚刚解压出来的solr文件夹也删掉。<br><br><img src="https://i.imgur.com/Fqzfv3q.png" alt=""></p>
+<pre><code>[root@iZwz9c6u1iybgf3f7s8cg6Z webapps]# rm -f solr.war
+</code></pre><p><img src="https://i.imgur.com/qw2W4hp.png" alt=""><br>3.拷贝example\lib\ext 目录下所有jar包到Tomcat的webapp\solr\WEB-INF\lib目录下<br></p>
+<pre><code>root@iZwz9c6u1iybgf3f7s8cg6Z ext]# cp * /usr/local/solr/tomcat/webapps/solr/WEB-INF/lib/
+</code></pre><p><img src="https://i.imgur.com/3HkFuqp.png" alt=""><br>4.拷贝log4j.properties文件<br><br>在  Tomcat下webapps\solr\WEB-INF目录中创建文件 classes文件夹，<br>复制Solr目录下example\resources\log4j.properties至Tomcat下webapps\solr\WEB-INF\classes目录 <br></p>
+<pre><code>[root@iZwz9c6u1iybgf3f7s8cg6Z solr]# cd solr-4.10.3
+[root@iZwz9c6u1iybgf3f7s8cg6Z solr-4.10.3]# cd example/resources/
+[root@iZwz9c6u1iybgf3f7s8cg6Z resources]# ll
+total 4
+-rw-r--r--. 1 root root 846 Dec  1  2014 log4j.properties
+[root@iZwz9c6u1iybgf3f7s8cg6Z resources]# cp log4j.properties /usr/local/solr/tomcat/webapps/solr
+/WEB-INF/classes/
+</code></pre><p>5.创建solrhome及配置solrcore的solrconfig.xml文件，理论上solrhome也可以在任何位置，这里我放在了solr下。<br><br><img src="https://i.imgur.com/U9Ablux.png" alt=""><br>然后把/solr-4.10.3/example下面的solr文件夹复制到刚刚建立的solrhome下面。<br><br>    [root@iZwz9c6u1iybgf3f7s8cg6Z example]#  cp -r solr /usr/local/solr/solrhome/<br><img src="https://i.imgur.com/y2YmLHA.png" alt=""><br>6.设置solrhome配置，是要通过<a href="https://en.wikipedia.org/wiki/Java_Naming_and_Directory_Interface" target="_blank" rel="external">JNDI</a>告诉Tomcat连接池利用的是什么。修改Tomcat目录 下webapp\solr\WEB-INF\web.xml文件，如下所示：<br><br><img src="https://i.imgur.com/JPyfQqP.png" alt=""></p>
 <h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>启动Tomcat，在浏览器访问<a href="http://47.107.71.209:8080/solr" target="_blank" rel="external">http://47.107.71.209:8080/solr</a><br>出现如下页面则说明搭建成功：<br><br><img src="https://i.imgur.com/lAmwbBg.png" alt=""></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这个安装也较为简单，没有复杂的配置，但是在Tomcat的Catalina_home配置要小心，出现这种情况一般是在直接移动安装好的Tomcat文件夹。Tomcat所对应的Catalina_home都必须是自身的安装路径，如果指向其他的Tomcat的路径，则会出现在TomcatA目录启动Tomcat服务，但是启动的是TomcatB的情况。<br></p>
 
