@@ -171,6 +171,277 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/18/方法/">Java方法</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/18/方法/" class="archive-article-date">
+  	<time datetime="2017-07-18T10:01:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-18</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>方法总结：</p>
+<h1 id="方法的作用"><a href="#方法的作用" class="headerlink" title="方法的作用"></a>方法的作用</h1><p>1.方法实现封装特定的逻辑功能，方法之间互相独立，一个方法一般只完成一件独立的事，遵循单一职责原则。<br>2.方法可以多次调用，避免大量代码重复，有利于复用，维护，团队协作开发。</p>
+<h1 id="方法的类型"><a href="#方法的类型" class="headerlink" title="方法的类型"></a>方法的类型</h1><p>1.方法分为有参数和无参数，有返回值和无返回值两种<br>无参数的方法参数列表为空<br>无返回值的方法定义时的方法类型为void</p>
+<h1 id="方法的定义"><a href="#方法的定义" class="headerlink" title="方法的定义"></a>方法的定义</h1><p>方法的定义的一般形式为：<br>   修饰词  返回类型 方法名（参数列表）{<br>        //方法体<br>     }<br>  例如：<br>    public static void eat() {<br>    //方法体<br>    }<br>    public static char[] generate(int level){<br>    //方法体<br>    }<br>public static 为修饰词，void和char[]分别表示没有返回值和返回一个char[]型的变量，（）圆括号里面的为参数，花括号里面为方法执行的方法体。</p>
+<h1 id="方法的调用"><a href="#方法的调用" class="headerlink" title="方法的调用"></a>方法的调用</h1><p>无返回值的：方法名（有参传参）；<br>有返回值的：数据类型 变量名=方法名（有参传参）；<br>如：<br>    <code>eat（）；</code><br>    <code>char[] b=generate(4);</code></p>
+<h1 id="return关键字"><a href="#return关键字" class="headerlink" title="return关键字"></a>return关键字</h1><p>1.return 值；//结束方法，返回结果给调用方法<br>2.return；结束方法</p>
+<h1 id="猜字符小游戏"><a href="#猜字符小游戏" class="headerlink" title="猜字符小游戏"></a>猜字符小游戏</h1><p>这个小游戏定义了一个随机生成字符串的方法generate（）和判断字符对错的check（）方法</p>
+<pre><code>package day06;
+import java.util.*;
+public class Guessing {
+ /*猜字符小游戏
+  * 系统随机生成数个字母，生成字母个数由玩家选择
+  * 玩家随意输入几个字母
+ * 系统判断正确的个数，并统计数据，计算得分
+  * 猜字过程输入exit则退出游戏
+ * 
+ * */
+
+public static void main(String[] args) {
+     Scanner scan=new Scanner(System.in);
+     int level;
+     do{
+       System.out.println(&quot;请选择等级5、7、9：&quot;);
+       level=scan.nextInt();             
+     }while(level!=5&amp;&amp;level!=7&amp;&amp;level!=9);
+     char[] gen=generate(level);
+     int sroce;
+     int count=0;
+     for(int i=0;i&lt;gen.length;i++){
+         System.out.print(gen[i]);
+     }
+     System.out.println();
+     while(true){
+     System.out.println(&quot;猜吧！&quot;);
+     String str=scan.next().toUpperCase();
+     if(str.equals(&quot;EXIT&quot;)){
+         System.out.println(&quot;下次再来吧！&quot;);
+         break;
+             }
+     char[] imput=str.toCharArray();
+     int[] result=check(gen,imput);
+     if(result[1]==gen.length){
+         sroce=gen.length*100-count*10;
+         System.out.println(&quot;恭喜你，猜对了！得分为&quot;+sroce);
+         break;          
+     }else{
+         count++;
+     System.out.println(&quot;字符对了&quot;+result[0]+&quot;个，位置对了&quot;+result[1]+&quot;次&quot;);
+       }
+     }
+
+     scan.close();
+}
+public static char[] generate(int level){
+    char[] chs=new char[level];
+    char[] letters=new char[]{&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;D&#39;,&#39;E&#39;,&#39;F&#39;,&#39;G&#39;,&#39;H&#39;,&#39;I&#39;,&#39;J&#39;,&#39;K&#39;,&#39;L&#39;,&#39;M&#39;,&#39;N&#39;,&#39;O&#39;,&#39;P&#39;,&#39;Q&#39;,&#39;R&#39;,&#39;S&#39;,&#39;T&#39;,&#39;U&#39;,&#39;V&#39;,&#39;W&#39;,&#39;X&#39;,&#39;Y&#39;,&#39;Z&#39;};
+
+    boolean[] flags=new boolean[letters.length];
+    for(int i=0;i&lt;chs.length;i++){
+        int index;
+        do{
+        index=(int)(Math.random()*26);
+
+        }while(flags[index]);
+        chs[i]=letters[index];
+        flags[index]=true;
+    }
+
+    return chs;
+}
+public static int[] check(char[] chs,char[] imput){
+    int[] result=new int[2];
+
+    for(int i=0;i&lt;chs.length;i++){
+        for(int j=0;j&lt;imput.length;j++){
+            if(chs[i]==imput[j]){
+                result[0]++;
+                if(i==j){
+              result[1]++;
+              break;
+                }
+            }
+        }
+    }
+    return result;
+}
+
+}
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/18/方法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-hexo相关配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/11/hexo相关配置/">hexo相关配置</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/11/hexo相关配置/" class="archive-article-date">
+  	<time datetime="2017-07-11T03:59:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-11</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>NexT主题的个性化设置<a href="http://www.jeyzhang.com/next-theme-personal-settings.html" target="_blank" rel="external">链接</a><br>NexT主题个性化之添加文章阅读量<a href="http://www.jeyzhang.com/hexo-next-add-post-views.html" target="_blank" rel="external">链接</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/hexo//" class="article-tag-list-link color5">hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/11/hexo相关配置/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-利用GitHub在Markdown中插入图片" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -511,160 +782,9 @@ System.out.println(&quot;hello world&quot;);
 
 
   
-    <article id="post-我的标题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/30/我的标题/">我的标题</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/30/我的标题/" class="archive-article-date">
-  	<time datetime="2017-06-29T16:48:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-30</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/one.png" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hello world</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/30/我的标题/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-我的第一篇博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/22/我的第一篇博客/">我的第一篇博客</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/22/我的第一篇博客/" class="archive-article-date">
-  	<time datetime="2017-06-22T07:17:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-22</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><p>话说这就是我的第一篇博客，才疏学浅，无法吟诗一首以作纪念，就写这样几个字来纪念一下吧</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/22/我的第一篇博客/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/15/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span>
+      <a class="extend prev" rel="prev" href="/page/15/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/17/">Next &raquo;</a>
     </nav>
   
 
@@ -800,11 +920,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -812,7 +936,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -844,7 +968,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -852,11 +976,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -868,11 +988,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">solr</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
               </li>
             
             <div class="clearfix"></div>

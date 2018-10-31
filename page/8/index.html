@@ -171,92 +171,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Mapper映射器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/Mapper映射器/">Mapper映射器</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/Mapper映射器/" class="archive-article-date">
-  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="（1）什么是Mapper映射器"><a href="#（1）什么是Mapper映射器" class="headerlink" title="（1）什么是Mapper映射器"></a>（1）什么是Mapper映射器</h1><p>符合映射文件要求的接口<br>注：mybatis会自动实现一个符合该接口要求的的对象。</p>
-<h2 id="Mapper映射器的要求："><a href="#Mapper映射器的要求：" class="headerlink" title="Mapper映射器的要求："></a>Mapper映射器的要求：</h2><p>a.接口方法的名称与映射文件中的SQL的id要一样。<br>b.方法的参数类型要与映射文件当中的parameterType一致。<br>c.方法的返回类型要与映射文件中的resultType一致<br>此外，映射文件的namespace必须等于Mapper映射器的全限定名。</p>
-<h2 id="（3）编程步骤"><a href="#（3）编程步骤" class="headerlink" title="（3）编程步骤"></a>（3）编程步骤</h2><p>step1.写一个映射器，即一个接口。<br>step2.调用SQLSession提供的getMapper方法<br>注：该方法会返回一个符合映射器要求的对象。</p>
-<h1 id="spring集成mybatis"><a href="#spring集成mybatis" class="headerlink" title="spring集成mybatis"></a>spring集成mybatis</h1><h2 id="1-编程步骤"><a href="#1-编程步骤" class="headerlink" title="1.编程步骤"></a>1.编程步骤</h2><p>step1.导包<br>spring-webmvc.mybatis<br>mybatis-spring,spring-jdbc,dbcp,jdbc,junit<br><img src="https://i.imgur.com/svgcUoZ.png" alt=""><br>step2.添加spring的配置文件<br>注：mybatis配置信息可以添加到spring的配置文件当中，只需要配置SqlSessionFactoryBean。<br><img src="https://i.imgur.com/tlM28Y2.png" alt=""><br>step3.实体类<br>step4.映射文件<br>step5.Mapper映射器<br>step6.在spring的配置文件中添加MapperScannerConfigurer.该bean负责调用SqlSession的getMapper方法，创建符合Mapper映射器要求的对象。<br>注：<br>该bean会将这个对象添加到spring容器里面。</p>
-<h2 id="（2）只扫描特定的Mapper映射器"><a href="#（2）只扫描特定的Mapper映射器" class="headerlink" title="（2）只扫描特定的Mapper映射器"></a>（2）只扫描特定的Mapper映射器</h2><p>step1.开发一个注解，比如@MybatisRepository<br>step2.将该注解添加到需要扫描的映射器<br>step3.配置MapperScannerConfigurer，设置annotationClass,指定注解类。</p>
-<h2 id="（3）另一种集成方式"><a href="#（3）另一种集成方式" class="headerlink" title="（3）另一种集成方式"></a>（3）另一种集成方式</h2><p>SqlSessionTemplate<br>JdbcTemplate<br>step1.导包。<br>step2.添加spring的配置文件<br>注：删掉MapperScannerConfigurer的配置。<br>step3.实体类<br>step4.映射文件<br>step5.dao接口。<br>step6.写一个dao接口的实现类。<br>注：注入SqlSessionTemplate，调用该对象的方法<br><img src="https://i.imgur.com/Nxpt5yk.png" alt=""><br>step7. 配置SqlSessionTemplate<br>step8.添加组件扫描<br><img src="https://i.imgur.com/AL3BzLS.png" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/Mapper映射器/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-mysql命令行创建新用户" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -371,20 +285,20 @@ mysql&gt; select host,user from mysql.user;
 
 
   
-    <article id="post-Hibernate入门系列（五）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-json" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/18/Hibernate入门系列（五）/">Hibernate入门系列（五）</a>
+      <a class="article-title" href="/2018/04/13/json/">Json</a>
     </h1>
   
 
         
-        <a href="/2018/03/18/Hibernate入门系列（五）/" class="archive-article-date">
-  	<time datetime="2018-03-17T16:48:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-18</time>
+        <a href="/2018/04/13/json/" class="archive-article-date">
+  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
       </header>
@@ -395,97 +309,59 @@ mysql&gt; select host,user from mysql.user;
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Hibernate入门系列（五）"><a href="#Hibernate入门系列（五）" class="headerlink" title="Hibernate入门系列（五）"></a>Hibernate入门系列（五）</h1><h2 id="Hibernate-检索策略"><a href="#Hibernate-检索策略" class="headerlink" title="Hibernate 检索策略"></a>Hibernate 检索策略</h2><p>检索数据时的 2 个问题：<br><br>不浪费内存：当 Hibernate 从数据库中加载 Customer 对象时, 如果同时加载所有关联的 Order 对象, 而程序实际上仅仅需要访问 Customer 对象, 那么这些关联的 Order 对象就白白浪费了许多内存.<br><br>更高的查询效率：发送尽可能少的 SQL 语句<br><img src="https://i.imgur.com/rcMQ103.png" alt=""></p>
-<h3 id="类级别的检索策略"><a href="#类级别的检索策略" class="headerlink" title="类级别的检索策略"></a>类级别的检索策略</h3><p>类级别可选的检索策略包括立即检索和延迟检索, 默认为延迟检索<br><br>立即检索: 立即加载检索方法指定的对象<br><br>延迟检索: 延迟加载检索方法指定的对象。在使用具体的属性时，再进行加载<br><br>类级别的检索策略可以通过 <class> 元素的 lazy 属性进行设置<br><br>如果程序加载一个对象的目的是为了访问它的属性, 可以采取立即检索.<br><br>如果程序加载一个持久化对象的目的是仅仅为了获得它的引用, 可以采用延迟检索。注意出现懒加载异常！<br><br>无论 <class> 元素的 lazy 属性是 true 还是 false, Session 的 get() 方法及 Query 的 list() 方法在类级别总是使用立即检索策略<br><br>若 <class> 元素的 lazy 属性为 true 或取默认值, Session 的 load() 方法不会执行查询数据表的 SELECT 语句, 仅返回代理类对象的实例, 该代理类实例有如下特征:<br><br>由 Hibernate 在运行时采用 CGLIB 工具动态生成<br><br>Hibernate 创建代理类实例时, 仅初始化其 OID 属性<br><br>在应用程序第一次访问代理类实例的非 OID 属性时, Hibernate 会初始化代理类实例<br></class></class></class></p>
-<h3 id="一对多和多对多的检索策略"><a href="#一对多和多对多的检索策略" class="headerlink" title="一对多和多对多的检索策略"></a>一对多和多对多的检索策略</h3><p>在映射文件中, 用 <set> 元素来配置一对多关联及多对多关联关系.<br> <set> 元素有 lazy 和 fetch 属性<br><br>lazy: 主要决定 orders 集合被初始化的时机. 即到底是在加载 <br>Customer 对象时就被初始化, 还是在程序访问 orders 集合时被初始化<br><br>fetch: 取值为 “select” 或 “subselect” 时, 决定初始化 orders 的查询语句的形式;  若取值为”join”, 则决定 orders 集合被初始化的时机<br><br>若把 fetch 设置为 “join”, lazy 属性将被忽略<br></set></set></p>
-<p><set> 元素的 batch-size 属性：用来为延迟检索策略或立即检索策略设定批量检索的数量. 批量检索能减少 SELECT 语句的数目, 提高延迟检索或立即检索的运行性能.<br><br><strong><set> 元素的 lazy 和 fetch 属性</set></strong><br></set></p>
-<p><img src="https://i.imgur.com/O98iEuD.png" alt=""></p>
-<p><strong><set> 元素的 batch-size 属性</set></strong></p>
-<p><set> 元素有一个 batch-size 属性, 用来为延迟检索策略或立即检索策略设定批量检索的数量. 批量检索能减少 SELECT 语句的数目, 提高延迟检索或立即检索的运行性能<br></set></p>
-<p><strong>延迟检索和增强延迟检索</strong><br><br>在延迟检索(lazy 属性值为 true) 集合属性时, Hibernate 在以下情况下初始化集合代理类实例 <br><br>应用程序第一次访问集合属性: iterator(), size(), isEmpty(), contains() 等方法<br><br>通过 Hibernate.initialize() 静态方法显式初始化<br><br>增强延迟检索(lazy 属性为 extra): 与 lazy=“true” 类似. 主要区别是增强延迟检索策略能进一步延迟 Customer 对象的 orders 集合代理实例的初始化时机：<br><br>当程序第一次访问 orders 属性的 iterator() 方法时, 会导致 orders 集合代理类实例的初始化<br><br>当程序第一次访问 order 属性的 size(), contains() 和 isEmpty() 方法时, Hibernate 不会初始化 orders 集合类的实例, 仅通过特定的 select 语句查询必要的信息, 不会检索所有的 Order 对象<br></p>
-<h3 id="多对一和一对一关联的检索策略"><a href="#多对一和一对一关联的检索策略" class="headerlink" title="多对一和一对一关联的检索策略"></a>多对一和一对一关联的检索策略</h3><p>在映射文件中, 用 <set> 元素来配置一对多关联及多对多关联关系. /br&gt;<set> 元素有 lazy 和 fetch 属性<br><br>lazy: 主要决定 orders 集合被初始化的时机. 即到底是在加载 Customer 对象时就被初始化, 还是在程序访问 orders 集合时被初始化<br><br>fetch: 取值为 “select” 或 “subselect” 时, 决定初始化 orders 的查询语句的形式;  若取值为”join”, 则决定 orders 集合被初始化的时机/br&gt;<br>若把 fetch 设置为 “join”, lazy 属性将被忽略<br><br><strong>用带子查询的 select 语句整批量初始化 orders 集合(fetch 属性为 “subselect”)</strong></set></set></p>
-<p><set> 元素的 fetch 属性: 取值为 “select” 或 “subselect” 时, 决定初始化 orders 的查询语句的形式;  若取值为”join”, 则决定 orders 集合被初始化的时机.默认值为 select <br><br>当 fetch 属性为 “subselect” 时<br><br>假定 Session 缓存中有 n 个 orders 集合代理类实例没有被初始化, Hibernate 能够通过带子查询的 select 语句, 来批量初始化 n 个 orders 集合代理类实例<br>batch-size 属性将被忽略<br><br>子查询中的 select 语句为查询 CUSTOMERS 表 OID 的 SELECT 语句<br><br><strong>迫切左外连接检索(fetch 属性值设为 “join”)</strong></set></p>
-<p><set> 元素的 fetch 属性: 取值为 “select” 或 “subselect” 时, 决定初始化 orders 的查询语句的形式;  若取值为”join”, 则决定 orders 集合被初始化的时机.默认值为 select <br><br>当 fetch 属性为 “join” 时:<br><br>检索 Customer 对象时, 会采用迫切左外连接(通过左外连接加载与检索指定的对象关联的对象)策略来检索所有关联的 Order 对象<br>lazy 属性将被忽略<br><br>Query 的list() 方法会忽略映射文件中配置的迫切左外连接检索策略, 而依旧采用延迟加载策略<br><br>和 <set> 一样, <many-to-one> 元素也有一个 lazy 属性和 fetch 属性.<br></many-to-one></set></set></p>
-<p><img src="https://i.imgur.com/cIGByXK.png" alt=""></p>
-<p>若 fetch 属性设为 join, 那么 lazy 属性被忽略<br><br>迫切左外连接检索策略的优点在于比立即检索策略使用的 SELECT 语句更少. <br><br>无代理延迟检索需要增强持久化类的字节码才能实现<br>Query 的 list 方法会忽略映射文件配置的迫切左外连接检索策略, 而采用延迟检索策略<br><br>如果在关联级别使用了延迟加载或立即加载检索策略, 可以设定批量检索的大小, 以帮助提高延迟检索或立即检索的运行性能. <br><br>Hibernate 允许在应用程序中覆盖映射文件中设定的检索策略<br></p>
-<h3 id="检索策略小结"><a href="#检索策略小结" class="headerlink" title="检索策略小结"></a>检索策略小结</h3><p>类级别和关联级别可选的检索策略及默认的检索策略<br></p>
-<p><img src="https://i.imgur.com/r32YY7j.png" alt=""></p>
-<p>3 种检索策略的运行机制<br></p>
-<p><img src="https://i.imgur.com/GjPwINY.png" alt=""></p>
-<p>映射文件中用于设定检索策略的几个属性<br></p>
-<p><img src="https://i.imgur.com/TwOhbnU.png" alt=""></p>
-<p>比较 Hibernate 的三种检索策略<br><br><img src="https://i.imgur.com/llBlsGE.png" alt=""></p>
-<h2 id="Hibernate-检索方式"><a href="#Hibernate-检索方式" class="headerlink" title="Hibernate 检索方式"></a>Hibernate 检索方式</h2><p>Hibernate 提供了以下几种检索对象的方式<br><br>导航对象图检索方式:  根据已经加载的对象导航到其他对象<br><br>OID 检索方式:  按照对象的 OID 来检索对象<br><br>HQL 检索方式: 使用面向对象的 HQL 查询语言<br><br>QBC 检索方式: 使用 QBC(Query By Criteria) API 来检索对象. 这种 API 封装了基于字符串形式的查询语句, 提供了更加面向对象的查询接口. <br><br>本地 SQL 检索方式: 使用本地数据库的 SQL 查询语句<br></p>
-<h3 id="HQL-检索方式"><a href="#HQL-检索方式" class="headerlink" title="HQL 检索方式"></a>HQL 检索方式</h3><p>HQL(Hibernate Query Language) 是面向对象的查询语言, 它和 SQL 查询语言有些相似. 在 Hibernate 提供的各种检索方式中, HQL 是使用最广的一种检索方式. <br>它有如下功能:<br><br>在查询语句中设定各种查询条件<br><br>支持投影查询, 即仅检索出对象的部分属性<br><br>支持分页查询<br><br>支持连接查询<br><br>支持分组查询, 允许使用 HAVING 和 GROUP BY 关键字<br><br>提供内置聚集函数, 如 sum(), min() 和 max()<br><br>支持子查询<br><br>支持动态绑定参数<br><br>能够调用 用户定义的 SQL 函数或标准的 SQL 函数<br><br>HQL 检索方式包括以下步骤:<br><br>通过 Session 的 createQuery() 方法创建一个 Query 对象, 它包括一个 HQL 查询语句. HQL 查询语句中可以包含命名参数<br><br>动态绑定参数<br><br>调用 Query 相关方法执行查询语句. <br><br>Qurey 接口支持方法链编程风格, 它的 setXxx() 方法返回自身实例, 而不是 void 类型<br><br>HQL vs SQL:<br><br>HQL 查询语句是面向对象的, Hibernate 负责解析 HQL 查询语句, 然后根据对象-关系映射文件中的映射信息, 把 HQL 查询语句翻译成相应的 SQL 语句. HQL 查询语句中的主体是域模型中的类及类的属性<br>SQL 查询语句是与关系数据库绑定在一起的. SQL 查询语句中的主体是数据库表及表的字段. <br><br>绑定参数:<br><br>Hibernate 的参数绑定机制依赖于 JDBC API 中的 PreparedStatement 的预定义 SQL 语句功能.<br><br>HQL 的参数绑定由两种形式:<br><br>按参数名字绑定: 在 HQL 查询语句中定义命名参数, 命名参数以 “:” 开头.<br><br>按参数位置绑定: 在 HQL 查询语句中用 “?” 来定义参数位置<br><br>相关方法:<br><br>setEntity(): 把参数与一个持久化类绑定<br><br>setParameter(): 绑定任意类型的参数. 该方法的第三个参数显式指定 Hibernate 映射类型<br><br>HQL 采用 ORDER BY 关键字对查询结果排序<br><br>分页查询:<br><br>setFirstResult(int firstResult): 设定从哪一个对象开始检索, 参数 firstResult 表示这个对象在查询结果中的索引位置, 索引位置的起始值为 0. 默认情况下, Query 从查询结果中的第一个对象开始检索<br><br>setMaxResults(int maxResults): 设定一次最多检索出的对象的数目. 在默认情况下, Query 和 Criteria 接口检索出查询结果中所有的对象<br><br>在映射文件中定义命名查询语句<br>Hibernate 允许在映射文件中定义字符串形式的查询语句. <br><br><code>&lt;query&gt;</code> 元素用于定义一个 HQL 查询语句, 它和 <code>&lt;class&gt;</code>元素并列. <br><br>在程序中通过 Session 的 getNamedQuery() 方法获取查询语句对应的 Query 对象. <br></p>
-<p><strong>投影查询</strong><br><br>投影查询: 查询结果仅包含实体的部分属性. 通过 SELECT 关键字实现.<br>Query 的 list() 方法返回的集合中包含的是数组类型的元素, 每个对象数组代表查询结果的一条记录<br><br>可以在持久化类中定义一个对象的构造器来包装投影查询返回的记录, 使程序代码能完全运用面向对象的语义来访问查询结果集. <br><br>可以通过 DISTINCT 关键字来保证查询结果不会返回重复元素<br><br><strong>报表查询</strong><br><br>报表查询用于对数据分组和统计, 与 SQL 一样, HQL 利用 GROUP BY 关键字对数据分组, 用 HAVING 关键字对分组数据设定约束条件.<br><br>在 HQL 查询语句中可以调用以下聚集函数<br><br>count()<br><br>min()<br><br>max()<br><br>sum()<br><br>avg()<br><br><strong>HQL (迫切)左外连接</strong><br><br>迫切左外连接:<br><br>LEFT JOIN FETCH 关键字表示迫切左外连接检索策略.<br><br>list() 方法返回的集合中存放实体对象的引用, 每个 Department 对象关联的 Employee  集合都被初始化, 存放所有关联的 Employee 的实体对象. <br><br>查询结果中可能会包含重复元素, 可以通过一个 HashSet 来过滤重复元素<br><br>左外连接:<br><br>LEFT JOIN 关键字表示左外连接查询. <br><br>list() 方法返回的集合中存放的是对象数组类型<br><br>根据配置文件来决定 Employee 集合的检索策略. <br><br>如果希望 list() 方法返回的集合中仅包含 Department 对象, 可以在HQL 查询语句中使用 SELECT 关键字<br><br><strong>HQL (迫切)内连接</strong><br><br>迫切内连接:<br><br>INNER JOIN FETCH 关键字表示迫切内连接, 也可以省略 INNER 关键字<br><br>list() 方法返回的集合中存放 Department 对象的引用, 每个 Department 对象的 Employee 集合都被初始化, 存放所有关联的 Employee 对象<br><br>内连接:<br><br>INNER JOIN 关键字表示内连接, 也可以省略 INNER 关键字<br><br>list() 方法的集合中存放的每个元素对应查询结果的一条记录, 每个元素都是对象数组类型<br><br>如果希望 list() 方法的返回的集合仅包含 Department  对象, 可以在 HQL 查询语句中使用 SELECT 关键字<br></p>
-<h3 id="关联级别运行时的检索策略"><a href="#关联级别运行时的检索策略" class="headerlink" title="关联级别运行时的检索策略"></a>关联级别运行时的检索策略</h3><p>如果在 HQL 中没有显式指定检索策略, 将使用映射文件配置的检索策略. <br><br>HQL 会忽略映射文件中设置的迫切左外连接检索策略, 如果希望 HQL 采用迫切左外连接策略, 就必须在 HQL 查询语句中显式的指定它<br><br>若在 HQL 代码中显式指定了检索策略, 就会覆盖映射文件中配置的检索策略<br></p>
-<h3 id="QBC-检索和本地-SQL-检索"><a href="#QBC-检索和本地-SQL-检索" class="headerlink" title="QBC 检索和本地 SQL 检索"></a>QBC 检索和本地 SQL 检索</h3><p>QBC 查询就是通过使用 Hibernate 提供的 Query By Criteria API 来查询对象，这种 API 封装了 SQL 语句的动态拼装，对查询提供了更加面向对象的功能接口<br><br>本地SQL查询来完善HQL不能涵盖所有的查询特性<br></p>
-<h2 id="Hibernate-二级缓存"><a href="#Hibernate-二级缓存" class="headerlink" title="Hibernate 二级缓存"></a>Hibernate 二级缓存</h2><p>缓存(Cache): 计算机领域非常通用的概念。它介于应用程序和永久性数据存储源(如硬盘上的文件或者数据库)之间，其作用是降低应用程序直接读写永久性数据存储源的频率，从而提高应用的运行性能。缓存中的数据是数据存储源中数据的拷贝。缓存的物理介质通常是内存<br><br>Hibernate中提供了两个级别的缓存<br><br>第一级别的缓存是 Session 级别的缓存，它是属于事务范围的缓存。这一级别的缓存由 hibernate 管理的<br><br>第二级别的缓存是SessionFactory 级别的缓存，它是属于进程范围的缓存<br><br><strong>使用 Hibernate 的二级缓存</strong><br>适合放入二级缓存中的数据:<br><br>很少被修改<br><br>不是很重要的数据, 允许出现偶尔的并发问题<br><br>不适合放入二级缓存中的数据:<br><br>经常被修改<br><br>财务数据, 绝对不允许出现并发问题<br>与其他应用程序共享的数据<br></p>
-<p><strong>Hibernate 二级缓存的架构</strong><br><img src="https://i.imgur.com/8QnBa4G.png" alt=""></p>
-<h4 id="SessionFactory-级别的缓存"><a href="#SessionFactory-级别的缓存" class="headerlink" title="SessionFactory 级别的缓存"></a>SessionFactory 级别的缓存</h4><p>SessionFactory 的缓存可以分为两类:<br><br>内置缓存: Hibernate 自带的, 不可卸载. 通常在 Hibernate 的初始化阶段, Hibernate 会把映射元数据和预定义的 SQL 语句放到 SessionFactory 的缓存中, 映射元数据是映射文件中数据（.hbm.xml 文件中的数据）的复制. 该内置缓存是只读的. <br><br>外置缓存(二级缓存): 一个可配置的缓存插件. 在默认情况下, SessionFactory 不会启用这个缓存插件. 外置缓存中的数据是数据库数据的复制, 外置缓存的物理介质可以是内存或硬盘<br></p>
-<h4 id="二级缓存的并发访问策略"><a href="#二级缓存的并发访问策略" class="headerlink" title="二级缓存的并发访问策略"></a>二级缓存的并发访问策略</h4><p>两个并发的事务同时访问持久层的缓存的相同数据时, 也有可能出现各类并发问题. <br><br>二级缓存可以设定以下 4 种类型的并发访问策略, 每一种访问策略对应一种事务隔离级别<br><br>非严格读写(Nonstrict-read-write): 不保证缓存与数据库中数据的一致性. 提供 Read Uncommited 事务隔离级别, 对于极少被修改, 而且允许脏读的数据, 可以采用这种策略<br><br>读写型(Read-write): 提供 Read Commited 数据隔离级别.对于经常读但是很少被修改的数据, 可以采用这种隔离类型, 因为它可以防止脏读<br><br>事务型(Transactional): 仅在受管理环境下适用. 它提供了 Repeatable Read 事务隔离级别. 对于经常读但是很少被修改的数据, 可以采用这种隔离类型, 因为它可以防止脏读和不可重复读<br><br>只读型(Read-Only):提供 Serializable 数据隔离级别, 对于从来不会被修改的数据, 可以采用这种访问策略<br></p>
-<h4 id="管理-Hibernate-的二级缓存"><a href="#管理-Hibernate-的二级缓存" class="headerlink" title="管理 Hibernate 的二级缓存"></a>管理 Hibernate 的二级缓存</h4><p>Hibernate 的二级缓存是进程或集群范围内的缓存<br><br>二级缓存是可配置的的插件, Hibernate 允许选用以下类型的缓存插件:<br><br>EHCache: 可作为进程范围内的缓存, 存放数据的物理介质可以使内存或硬盘, 对 Hibernate 的查询缓存提供了支持<br><br>OpenSymphony OSCache:可作为进程范围内的缓存, 存放数据的物理介质可以使内存或硬盘, 提供了丰富的缓存数据过期策略, 对 Hibernate 的查询缓存提供了支持<br><br>SwarmCache: 可作为集群范围内的缓存, 但不支持 Hibernate 的查询缓存<br><br>JBossCache:可作为集群范围内的缓存, 支持 Hibernate 的查询缓存<br><br>4 种缓存插件支持的并发访问策略(x 代表支持, 空白代表不支持)<br></p>
-<p><img src="https://i.imgur.com/YQ4crb1.png" alt=""></p>
-<h4 id="配置进程范围内的二级缓存"><a href="#配置进程范围内的二级缓存" class="headerlink" title="配置进程范围内的二级缓存"></a>配置进程范围内的二级缓存</h4><p>配置进程范围内的二级缓存的步骤: <br><br>选择合适的缓存插件: EHCache(jar 包和 配置文件), 并编译器配置文件<br><br>在 Hibernate 的配置文件中启用二级缓存并指定和 EHCache 对应的缓存适配器<br><br>选择需要使用二级缓存的持久化类, 设置它的二级缓存的并发访问策略<br></p>
-<p><class> 元素的 cache 子元素表明 Hibernate 会缓存对象的简单属性, 但不会缓存集合属性, 若希望缓存集合属性中的元素, 必须在 <code>&lt;set&gt;</code> 元素中加入 <code>&lt;cache&gt;</code> 子元素<br><br>在 hibernate 配置文件中通过 <code>&lt;class-cache/&gt;</code> 节点配置使用缓存<br></class></p>
-<pre><code>&lt;dependency&gt;
-    &lt;groupId&gt;net.sf.ehcache&lt;/groupId&gt;
-    &lt;artifactId&gt;ehcache-core&lt;/artifactId&gt;
-    &lt;version&gt;2.4.3&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
-    &lt;artifactId&gt;hibernate-ehcache&lt;/artifactId&gt;
-    &lt;version&gt;4.2.4.Final&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre><h4 id="ehcache-xml"><a href="#ehcache-xml" class="headerlink" title="ehcache.xml"></a>ehcache.xml</h4><p><diskstore>: 指定一个目录：当 EHCache 把数据写到硬盘上时, 将把数据写到这个目录下.<br></diskstore></p>
-<p><defaultcache>: 设置缓存的默认数据过期策略 <br></defaultcache></p>
-<p><cache> 设定具体的命名缓存的数据过期策略。每个命名缓存代表一个缓存区域<br><br>缓存区域(region)：一个具有名称的缓存块，可以给每一个缓存块设置不同的缓存策略。如果没有设置任何的缓存区域，则所有被缓存的对象，都将使用默认的缓存策略。即：<code>&lt;defaultCache.../&gt;</code><br>Hibernate在不同的缓存区域保存不同的类/集合。<br><br>对于类而言，区域的名称是类名。如:com.atguigu.domain.Customer<br><br>对于集合而言，区域的名称是类名加属性名。如com.atguigu.domain.Customer.orders<br><br>cache 元素的属性   <br><br>name:设置缓存的名字,它的取值为类的全限定名或类的集合的名字 <br><br>maxInMemory:设置基于内存的缓存中可存放的对象最大数目 <br><br>eternal:设置对象是否为永久的,true表示永不过期,此时将忽略timeToIdleSeconds 和 timeToLiveSeconds属性; 默认值是false <br><br>timeToIdleSeconds:设置对象空闲最长时间,以秒为单位, 超过这个时间,对象过期。当对象过期时,EHCache会把它从缓存中清除。如果此值为0,表示对象可以无限期地处于空闲状态。<br><br>timeToLiveSeconds:设置对象生存最长时间,超过这个时间,对象过期。如果此值为0,表示对象可以无限期地存在于缓存中. 该属性值必须大于或等于 timeToIdleSeconds 属性值 <br><br>overflowToDisk:设置基于内存的缓存中的对象数目达到上限后,是否把溢出的对象写到基于硬盘的缓存中 <br></cache></p>
-<pre><code>&lt;ehcache xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;../config/ehcache.xsd&quot;&gt;     
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="编码问题"><a href="#编码问题" class="headerlink" title="编码问题"></a>编码问题</h1><h2 id="1-发送get请求"><a href="#1-发送get请求" class="headerlink" title="1.发送get请求"></a>1.发送get请求</h2><p>IE浏览器会使用gbk进行编码，而其他浏览器会使用utf-8来编码，服务器端默认使用iso-8859-1来解码，所以会产生乱码。<br>解决方法：<br>step1.服务器端统一使用utf-8来解码。<br>    URIEncoding=utf-8<br>step2.浏览器端使用encodeURI函数来编码。<br>注：encodeURI是JavaScript内置的函数。</p>
+<h2 id="2-发送post"><a href="#2-发送post" class="headerlink" title="2.发送post"></a>2.发送post</h2><p>浏览器会使用utf-8来编码。服务器端默认使用ISO-8859-1来解码，所以会产生乱码<br>解决方法：<br>request.setCharacterEncoding(“utf-8”);</p>
+<h1 id="JSON-javascript-object-notation"><a href="#JSON-javascript-object-notation" class="headerlink" title="JSON(javascript object notation)"></a>JSON(javascript object notation)</h1><h2 id="1-JSON是什么"><a href="#1-JSON是什么" class="headerlink" title="1.JSON是什么"></a>1.JSON是什么</h2><p>是一种轻量级的数据交换格式<br>注：<br>数据交换：将要转换的数据先转换为一种与平台无关的数据格式，然后交给接收方来处理。<br><br>轻量级：相对于xml，JSON文档更小，解析速度更快。</p>
+<h2 id="2-语法"><a href="#2-语法" class="headerlink" title="2.语法"></a>2.语法</h2><h3 id="表示一个对象"><a href="#表示一个对象" class="headerlink" title="表示一个对象"></a>表示一个对象</h3><p>{属性名：属性值，属性名：属性值….}<br>注意：<br>a.属性名必须使用双引号括起来。<br>b.属性值的类型可以使string,number,true/false,null,object<br>c.属性值如果是string，必须使用双括号括起来。    </p>
+<h3 id="表示一个由对象组成的数组"><a href="#表示一个由对象组成的数组" class="headerlink" title="表示一个由对象组成的数组"></a>表示一个由对象组成的数组</h3><p>[{},{},{}….]</p>
+<h2 id="3-使用json"><a href="#3-使用json" class="headerlink" title="3.使用json"></a>3.使用json</h2><h3 id="将java对象转变为json字符串"><a href="#将java对象转变为json字符串" class="headerlink" title="将java对象转变为json字符串"></a>将java对象转变为json字符串</h3><p>可以使用json官方的工具(json-lib).<br>JSONObject，JSONArray<br><img src="https://i.imgur.com/hFQgwNu.png" alt=""><br>ex：</p>
+<pre><code>package json;
 
-    &lt;diskStore path=&quot;java.io.tmpdir&quot;/&gt;     
+import java.util.ArrayList;
+import java.util.List;
 
-    &lt;!--     
-    Mandatory Default Cache configuration. These settings will be applied to caches     
-    created programmtically using CacheManager.add(String cacheName)     
-    --&gt;     
-    &lt;!--     
-       name:缓存名称。     
-       maxElementsInMemory：缓存最大个数。     
-       eternal:对象是否永久有效，一但设置了，timeout将不起作用。     
-       timeToIdleSeconds：设置对象在失效前的允许闲置时间（单位：秒）。仅当eternal=false对象不是永久有效时使用，可选属性，默认值是0，也就是可闲置时间无穷大。     
-       timeToLiveSeconds：设置对象在失效前允许存活时间（单位：秒）。最大时间介于创建时间和失效时间之间。仅当eternal=false对象不是永久有效时使用，默认是0.，也就是对象存活时间无穷大。     
-       overflowToDisk：当内存中对象数量达到maxElementsInMemory时，Ehcache将会对象写到磁盘中。     
-       diskSpoolBufferSizeMB：这个参数设置DiskStore（磁盘缓存）的缓存区大小。默认是30MB。每个Cache都应该有自己的一个缓冲区。     
-       maxElementsOnDisk：硬盘最大缓存个数。     
-       diskPersistent：是否缓存虚拟机重启期数据 Whether the disk store persists between restarts of the Virtual Machine. The default value is false.     
-       diskExpiryThreadIntervalSeconds：磁盘失效线程运行时间间隔，默认是120秒。     
-       memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将会根据指定的策略去清理内存。默认策略是LRU（最近最少使用）。你可以设置为FIFO（先进先出）或是LFU（较少使用）。     
-       clearOnFlush：内存数量最大时是否清除。     
-    --&gt;     
-    &lt;defaultCache     
-            maxElementsInMemory=&quot;10000&quot;    
-            eternal=&quot;false&quot;    
-            timeToIdleSeconds=&quot;120&quot;    
-            timeToLiveSeconds=&quot;120&quot;    
-            overflowToDisk=&quot;true&quot;    
-            maxElementsOnDisk=&quot;10000000&quot;    
-            diskPersistent=&quot;false&quot;    
-            diskExpiryThreadIntervalSeconds=&quot;120&quot;    
-            memoryStoreEvictionPolicy=&quot;LRU&quot;    
-            /&gt;     
-&lt;/ehcache&gt;  
-</code></pre><h4 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h4><p>对于经常使用的查询语句, 如果启用了查询缓存, 当第一次执行查询语句时, Hibernate 会把查询结果存放在查询缓存中. 以后再次执行该查询语句时, 只需从缓存中获得查询结果, 从而提高查询性能<br><br>查询缓存使用于如下场合:<br><br>应用程序运行时经常使用查询语句<br><br>很少对与查询语句检索到的数据进行插入, 删除和更新操作<br><br>启用查询缓存的步骤<br><br>配置二级缓存, 因为查询缓存依赖于二级缓存<br><br>在 hibernate 配置文件中启用查询缓存<br><br>对于希望启用查询缓存的查询语句, 调用 Query 的 setCacheable() 方法<br></p>
-<h4 id="时间戳缓存区域"><a href="#时间戳缓存区域" class="headerlink" title="时间戳缓存区域"></a>时间戳缓存区域</h4><p>时间戳缓存区域存放了对于查询结果相关的表进行插入, 更新或删除操作的时间戳.  Hibernate 通过时间戳缓存区域来判断被缓存的查询结果是否过期, 其运行过程如下:<br><br>T1 时刻执行查询操作, 把查询结果存放在 QueryCache 区域, 记录该区域的时间戳为 T1<br><br>T2 时刻对查询结果相关的表进行更新操作, Hibernate 把 T2 时刻存放在 UpdateTimestampCache 区域.<br><br>T3 时刻执行查询结果前, 先比较 QueryCache 区域的时间戳和 UpdateTimestampCache 区域的时间戳, 若 T2 &gt;T1, 那么就丢弃原先存放在 QueryCache 区域的查询结果, 重新到数据库中查询数据, 再把结果存放到 QueryCache 区域; 若 T2 &lt; T1, 直接从 QueryCache 中获得查询结果<br></p>
-<h4 id="Query-接口的-iterate-方法"><a href="#Query-接口的-iterate-方法" class="headerlink" title="Query 接口的 iterate() 方法"></a>Query 接口的 iterate() 方法</h4><p>Query 接口的 iterator() 方法<br><br>同 list() 一样也能执行查询操作<br><br>list() 方法执行的 SQL 语句包含实体类对应的数据表的所有字段<br><br>Iterator() 方法执行的SQL 语句中仅包含实体类对应的数据表的 ID 字段<br><br>当遍历访问结果集时, 该方法先到 Session 缓存及二级缓存中查看是否存在特定 OID 的对象, 如果存在, 就直接返回该对象, 如果不存在该对象就通过相应的 SQL Select 语句到数据库中加载特定的实体对象<br><br>大多数情况下, 应考虑使用 list() 方法执行查询操作. iterator() 方法仅在满足以下条件的场合, 可以<strong>稍微</strong>提高查询性能:<br><br>要查询的数据表中包含大量字段<br><br>启用了二级缓存, 且二级缓存中可能已经包含了待查询的对象<br></p>
-<h4 id="管理-Session"><a href="#管理-Session" class="headerlink" title="管理 Session"></a>管理 Session</h4><p>Hibernate  自身提供了三种管理 Session 对象的方法<br><br>Session 对象的生命周期与本地线程绑定<br><br>Session 对象的生命周期与 JTA 事务绑定<br><br>Hibernate 委托程序管理 Session 对象的生命周期<br><br>在 Hibernate 的配置文件中, hibernate.current_session_context_class 属性用于指定 Session 管理方式, 可选值包括<br><br>thread: Session 对象的生命周期与本地线程绑定<br><br>jta*: Session 对象的生命周期与 JTA 事务绑定<br><br>managed: Hibernate 委托程序来管理 Session 对象的生命周期<br></p>
-<h4 id="Session-对象的生命周期与本地线程绑定"><a href="#Session-对象的生命周期与本地线程绑定" class="headerlink" title="Session 对象的生命周期与本地线程绑定"></a>Session 对象的生命周期与本地线程绑定</h4><p>如果把 Hibernate 配置文件的 hibernate.current_session_context_class 属性值设为 thread, Hibernate 就会按照与本地线程绑定的方式来管理 Session<br><br>Hibernate 按以下规则把 Session 与本地线程绑定<br><br>当一个线程(threadA)第一次调用 SessionFactory 对象的 getCurrentSession() 方法时, 该方法会创建一个新的 Session(sessionA) 对象, 把该对象与 threadA 绑定, 并将 sessionA 返回<br>当 threadA 再次调用 SessionFactory 对象的 getCurrentSession() 方法时, 该方法将返回 sessionA 对象<br><br>当 threadA 提交 sessionA 对象关联的事务时, Hibernate 会自动flush sessionA 对象的缓存, 然后提交事务, 关闭 sessionA 对象. 当 threadA 撤销 sessionA 对象关联的事务时, 也会自动关闭 sessionA 对象<br><br>若 threadA 再次调用 SessionFactory 对象的 getCurrentSession() 方法时, 该方法会又创建一个新的 Session(sessionB) 对象, 把该对象与 threadA 绑定, 并将 sessionB 返回 <br></p>
-<h4 id="批量处理数据"><a href="#批量处理数据" class="headerlink" title="批量处理数据"></a>批量处理数据</h4><p>批量处理数据是指在一个事务中处理大量数据.<br><br>在应用层进行批量操作, 主要有以下方式:<br><br>通过 Session <br><br>通过 HQL <br><br>通过 StatelessSession <br><br>通过 JDBC API<br></p>
-<p><strong>通过 Session 来进行批量操作</strong><br><br>Session 的 save() 及 update() 方法都会把处理的对象存放在自己的缓存中. 如果通过一个 Session 对象来处理大量持久化对象, 应该及时从缓存中清空已经处理完毕并且不会再访问的对象. 具体的做法是在处理完一个对象或小批量对象后, 立即调用 flush() 方法刷新缓存, 然后在调用 clear() 方法清空缓存<br><br>通过 Session 来进行处理操作会受到以下约束<br><br>需要在  Hibernate 配置文件中设置 JDBC 单次批量处理的数目, 应保证每次向数据库发送的批量的 SQL 语句数目与 batch_size 属性一致<br><br>若对象采用 “identity” 标识符生成器, 则 Hibernate 无法在 JDBC 层进行批量插入操作<br>进行批量操作时, 建议关闭 Hibernate 的二级缓存<br><br>批量插入数据:<br></p>
-<p><img src="https://i.imgur.com/3jutCzp.png" alt=""></p>
-<p>批量更新: 在进行批量更新时, 如果一下子把所有对象都加载到 Session 缓存, 然后再缓存中一一更新, 显然是不可取的<br><br>使用可滚动的结果集 org.hibernate.ScrollableResults, 该对象中实际上并不包含任何对象, 只包含用于在线定位记录的游标. 只有当程序遍历访问 ScrollableResults 对象的特定元素时, 它才会到数据库中加载相应的对象. <br><br>org.hibernate.ScrollableResults 对象由 Query 的 scroll 方法返回<br><br><strong>通过 HQL 来进行批量操作</strong><br><br>注意: HQL 只支持 INSERT INTO … SELECT 形式的插入语句, 但不支持 INSERT INTO … VALUES 形式的插入语句. 所以使用 HQL 不能进行批量插入操作. <br></p>
-<p><strong>通过StatelessSession来进行批量操作</strong><br>从形式上看，StatelessSession与session的用法类似。StatelessSession与session相比，有以下区别:<br><br>StatelessSession没有缓存，通过StatelessSession来加载、保存或更新后的对象处于游离状态。<br><br>StatelessSession不会与Hibernate的第二级缓存交互。<br><br>当调用StatelessSession的save()、update()或delete()方法时，这些方法会立即执行相应的SQL语句，而不会仅计划执行一条SQL语句<br><br>StatelessSession不会进行脏检查，因此修改了Customer对象属性后，还需要调用StatelessSession的update()方法来更新数据库中数据。<br><br>StatelessSession不会对关联的对象进行任何级联操作。<br><br>通过同一个StatelessSession对象两次加载OID为1的Customer对象，得到的两个对象内存地址不同。<br>StatelessSession所做的操作可以被Interceptor拦截器捕获到，但是会被Hibernate的事件处理系统忽略掉。<br></p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>由于个人和时间原因，很多例子没有贴上来，时间有点赶，得睡觉了，导致这个文章看着很空洞，全是套话空话，有空会将例子补全，其实也可以去参考最新<a href="https://docs.jboss.org/hibernate/stable/orm/userguide/html_single/Hibernate_User_Guide.html" target="_blank" rel="external">官方文档</a>。</p>
+import bean.stock;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+public class jsonTest {
+     /*
+      * 将java对象转换为json字符串
+      */
+    public static void test1(){
+        stock s=new stock();
+        s.setCode(&quot;345435&quot;);
+        s.setName(&quot;中国嘉陵&quot;);
+        s.setPrice(10);
+        //使用json-lib提供的工具来转换
+        JSONObject jsonobj=JSONObject.fromObject(s);
+        String jsonstr=jsonobj.toString();
+        System.out.println(jsonstr);
+    }
+    /*
+     * 多个对象组成的数组或者是集合转换成json字符串
+     */
+    public static void test2(){
+        List&lt;stock&gt; stocks=new ArrayList&lt;stock&gt;();
+          for(int i=0;i&lt;3;i++){
+              stock s=new stock();
+              s.setCode(&quot;345435&quot;+i);
+              s.setName(&quot;中国嘉陵&quot;+i);
+              s.setPrice(10+i);
+              stocks.add(s);
+          }
+          //fromObject方法的参数可以使数组或者集合
+          JSONArray jsonArr=JSONArray.fromObject(stocks);
+          String jsonStr=jsonArr.toString();
+          System.out.println(jsonStr);
+    }
+    public static void main(String[] args) {
+        test2();
+    }
+}
+</code></pre><h3 id="将JSON字符串转换成JavaScript对象"><a href="#将JSON字符串转换成JavaScript对象" class="headerlink" title="将JSON字符串转换成JavaScript对象"></a>将JSON字符串转换成JavaScript对象</h3><p>JavaScript内置对象JSON提供的parse()方法。</p>
+<h1 id="jQuery对ajax的支持"><a href="#jQuery对ajax的支持" class="headerlink" title="jQuery对ajax的支持"></a>jQuery对ajax的支持</h1><h2 id="1-ajax-方法"><a href="#1-ajax-方法" class="headerlink" title="1.$.ajax()方法"></a>1.$.ajax()方法</h2><p>用法：<br>$.ajax({});<br>说明：{}是一个用来描述请求选项参数的对象，常见的选项参数有如下几个：<br>url:请求地址<br>data:请求格式，有两种格式：<br>第一种格式：请求字符串，比如”adminCode=sally”<br>     第二组格式：对象，比如{“adminCode”:”sally”}<br>     type:请求类型(get/post)<br>dataType:服务器返回的数据类型：<br>       text：文本数据<br>       json：json字符串<br>       html:html文档<br>       xml:xml文档<br>       script:javascript脚本<br>success:事件处理函数（当服务器处理正常，用来处理服务器返回的数据）。<br>error：事件处理函数（当服务器处理异常，用来处理服务器返回的数据）。</p>
+<h2 id="2-load"><a href="#2-load" class="headerlink" title="2.load()"></a>2.load()</h2><p>作用：向服务器发送异步请求，然后将服务器返回的数据直接添加到符合要求的节点之上。<br>用法：<br>$obj.load(url,[data]);<br>注意：<br>url:请求地址。<br>data:请求参数，格式同上。</p>
 
       
 
@@ -499,7 +375,7 @@ mysql&gt; select host,user from mysql.user;
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -512,7 +388,489 @@ mysql&gt; select host,user from mysql.user;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/18/Hibernate入门系列（五）/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/json/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mysql报错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/mysql报错/">Mysql报错</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/mysql报错/" class="archive-article-date">
+  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Mysql报错：Unable-to-connect-to-remote-host-Catalog-download-has-failed"><a href="#Mysql报错：Unable-to-connect-to-remote-host-Catalog-download-has-failed" class="headerlink" title="Mysql报错：Unable to connect to remote host. Catalog download has failed."></a>Mysql报错：Unable to connect to remote host. Catalog download has failed.</h1><pre><code>=================== Start Initialization ===================
+MySQL Installer is running in Community mode
+
+Initializing product requirements
+Loading product catalog
+Checking for product catalog snippets
+Checking for product packages in the bundle
+Categorizing product catalog
+Finding all installed packages.
+Your product catalog was last updated at 4/9/2018 9:54:11 PM
+=================== End Initialization ===================
+
+
+
+Unable to connect to remote host.  Catalog download has failed.
+</code></pre><p>问题分析<br>该问题是由于新版本的 Mysql 在安装的时候会自动在 Windows 的“任务计划程序”中安装一个定时任务，任务的触发时间为每天上午十点。</p>
+<p>解决方式<br>找到相应的定时任务，并禁用该任务。 </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/mysql报错/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-note" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/note/">云笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/note/" class="archive-article-date">
+  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h2><ul>
+<li>用户模块：登录注册修改密码，退出</li>
+<li>笔记本模块:创建 删除 更新 查看</li>
+<li>笔记模块：创建 删除 更新 查看 转移</li>
+<li>分享、收藏模块：分享 收藏 查看 搜索</li>
+<li>回收模块：先看 彻底删除 恢复</li>
+<li>活动模块：查看活动 参加活动<h2 id="设计思想"><a href="#设计思想" class="headerlink" title="设计思想"></a>设计思想</h2>MVC设计思想<br>表现层：HTML+CSS+JQuery+ajax<br>控制层：springmvc<br>业务层：service组件<br>持久层：Dao组件<h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2>1.开发环境：WindowsXP+Tomcat+mysql<br>2.采用技术：java+jQuery+ajax+springmvc+IOC+AOP+mybatis<br>java:开发核心技术<br>jQuery：简化前端JavaScript（$对象和API）<br>ajax：局部处理页面，提升用户体验度<br>spring(IOC/AOP):管理相关组件<br>IOC：负责管理Controller/service/dao,维护他们之间的关系<br>AOP：面向切面编程，不改变原有的代码，给系统增加新的功能<br>mybatis：对数据库进行操作<h2 id="整体规范"><a href="#整体规范" class="headerlink" title="整体规范"></a>整体规范</h2></li>
+<li>所有的请求ajax方式访问</li>
+<li>前端页面采用HTML</li>
+<li>对所有的请求结果进行json响应{status: ,”msg”: ,”data”:}<h2 id="数据库构建"><a href="#数据库构建" class="headerlink" title="数据库构建"></a>数据库构建</h2>mysql<br>mysql -uroot -t //启动数据库命令行<br>show databases;//查看有哪些数据库<br>create database cloud_note; //创建数据库<br>drop database cloud_note; //删除数据库<br>use 数据库名; //连接数据库<br>show tables; //查看有哪些表<br>source /…/../**.sql//导入SQL文件</li>
+</ul>
+<h2 id="E-R-实体–关系模型图"><a href="#E-R-实体–关系模型图" class="headerlink" title="E-R 实体–关系模型图"></a>E-R 实体–关系模型图</h2><p>由业务分析产生，作为实体类和数据库设计的依据。<br><img src="https://i.imgur.com/XupPkl0.png" alt=""></p>
+<h3 id="关联关系"><a href="#关联关系" class="headerlink" title="关联关系"></a>关联关系</h3><p>一对多关系<br><img src="https://i.imgur.com/OCLROca.png" alt=""><br>多对多关系<br><img src="https://i.imgur.com/w9BVSob.png" alt=""></p>
+<h3 id="绘图工具"><a href="#绘图工具" class="headerlink" title="绘图工具"></a>绘图工具</h3><p>Microsoft Office vision<br>Mysql workbench</p>
+<h1 id="项目流程"><a href="#项目流程" class="headerlink" title="项目流程"></a>项目流程</h1><h2 id="cmmi"><a href="#cmmi" class="headerlink" title="cmmi"></a>cmmi</h2><ul>
+<li>前身是CMM，软件成熟度模型，认证</li>
+<li>过程域：指软件开发的某一方面</li>
+<li>分级：五个等级<br>初始级-可管理级-已定义级-量化管理及-优先管理级<br>QA–评审<h2 id="项目开发流程："><a href="#项目开发流程：" class="headerlink" title="项目开发流程："></a>项目开发流程：</h2><img src="https://i.imgur.com/f1JFOUT.png" alt=""><h3 id="项目模型："><a href="#项目模型：" class="headerlink" title="项目模型："></a>项目模型：</h3>  瀑布模型<br><img src="https://i.imgur.com/GZIZpuB.png" alt=""></li>
+</ul>
+<h3 id="阶段产品"><a href="#阶段产品" class="headerlink" title="阶段产品"></a>阶段产品</h3><p>项目总计划</p>
+<h4 id="需求阶段"><a href="#需求阶段" class="headerlink" title="需求阶段"></a>需求阶段</h4><p>需求规格说明书  用户需求</p>
+<h4 id="设计阶段"><a href="#设计阶段" class="headerlink" title="设计阶段"></a>设计阶段</h4><p>概要设计说明书<br>详细设计说明书</p>
+<h4 id="编码阶段"><a href="#编码阶段" class="headerlink" title="编码阶段"></a>编码阶段</h4><p>需求源码<br>单元测试文档</p>
+<h4 id="测试阶段"><a href="#测试阶段" class="headerlink" title="测试阶段"></a>测试阶段</h4><p>测试案例<br>测试报告</p>
+<h2 id="人员结构"><a href="#人员结构" class="headerlink" title="人员结构"></a>人员结构</h2><p>项目经理<br>QA CM dev test 测试经理</p>
+<p>SSM框架 springMVC+spring+Mybatis</p>
+<p>spring-mybatis</p>
+<h1 id="创建云笔记的环境"><a href="#创建云笔记的环境" class="headerlink" title="创建云笔记的环境"></a>创建云笔记的环境</h1><h2 id="导包"><a href="#导包" class="headerlink" title="导包"></a>导包</h2><h2 id="添加配置文件"><a href="#添加配置文件" class="headerlink" title="添加配置文件"></a>添加配置文件</h2><ul>
+<li>conf/spring-mvc.xml</li>
+<li>conf/spring-mybatis.xml</li>
+<li>mapper/SQL文件</li>
+<li>web.xml<h2 id="划分包结构"><a href="#划分包结构" class="headerlink" title="划分包结构"></a>划分包结构</h2></li>
+<li>io.codegit.cloud_note.dao</li>
+<li>io.codegit.cloud_note.service</li>
+<li>io.codegit.cloud_note.controller</li>
+<li>io.codegit.cloud_note.entity</li>
+<li>io.codegit.cloud_note.util <h2 id="将html目录下的内容拷贝到webApp下"><a href="#将html目录下的内容拷贝到webApp下" class="headerlink" title="将html目录下的内容拷贝到webApp下"></a>将html目录下的内容拷贝到webApp下</h2></li>
+</ul>
+<h1 id="登录功能"><a href="#登录功能" class="headerlink" title="登录功能"></a>登录功能</h1><h2 id="发送ajax请求"><a href="#发送ajax请求" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
+<li>事件绑定</li>
+<li>获取参数</li>
+<li>$.ajax发送请求<h2 id="服务器处理"><a href="#服务器处理" class="headerlink" title="服务器处理"></a>服务器处理</h2>请求–&gt;DispatcherServlet<br>–&gt;HandlerMapping<br>–&gt;Controller.execute()<br>–&gt;Service–&gt;Dao–&gt;cn_user<br>–&gt;返回数据</li>
+</ul>
+<h2 id="ajax回调处理"><a href="#ajax回调处理" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><ul>
+<li>成功：edit.html</li>
+<li>失败：提示信息，重新操作</li>
+</ul>
+<h1 id="注册功能"><a href="#注册功能" class="headerlink" title="注册功能"></a>注册功能</h1><h2 id="发送ajax请求-1"><a href="#发送ajax请求-1" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
+<li>发送事件：注册按钮的单击</li>
+<li>获取参数：用户名 昵称 密码</li>
+<li>请求地址：/user/add.do<h2 id="服务器处理-1"><a href="#服务器处理-1" class="headerlink" title="服务器处理"></a>服务器处理</h2>请求-&gt;DispatchServlet<br>–&gt;HandlerMapping<br>–&gt;Controller.execute</li>
+</ul>
+<p>–&gt;Service(addUser)</p>
+<pre><code>//检查用户
+findByName(name)
+user!=null
+result
+//添加用户
+createId()
+//处理password
+user.set()
+save(user)
+//设置result
+</code></pre><p>–&gt;Dao–cn_user(insert)<br>1.UserDao(save(User))<br>2.UserMapper.xml(insert)<br>–&gt;json响应</p>
+<h2 id="ajax回调处理-1"><a href="#ajax回调处理-1" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><p>success：<br>注册成功<br>注册失败<br>error（异常）：<br>提示：注册失败</p>
+<ul>
+<li>成功：edit.html</li>
+<li>失败：提示信息，重新登录</li>
+</ul>
+<p>UUID<br>是一个生成字符串的算法<br>用于生成数据库的主键</p>
+<p>生成主键有两种方式：<br>在应用服务器端生成主键<br>在数据库端生成主键</p>
+<h2 id="MD5：摘要算法，加密处理"><a href="#MD5：摘要算法，加密处理" class="headerlink" title="MD5：摘要算法，加密处理"></a>MD5：摘要算法，加密处理</h2><ul>
+<li>最初用于文本比较</li>
+<li>将任意长度的字节处理成等长的结果</li>
+<li>不可逆</li>
+</ul>
+<h2 id="Base64"><a href="#Base64" class="headerlink" title="Base64"></a>Base64</h2><p>将自己转换成字符串输出<br>构成</p>
+<ul>
+<li>(a-z A-Z)</li>
+<li>(0-9)</li>
+<li>(+ =)<br>更新数据库密码：<br>update cn_user set cn_user_password=’4QrcOUm6Wau+VuBX8g+IPg==’</li>
+</ul>
+<h1 id="笔记本显示功能"><a href="#笔记本显示功能" class="headerlink" title="笔记本显示功能"></a>笔记本显示功能</h1><h2 id="发送ajax请求-2"><a href="#发送ajax请求-2" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
+<li>发送事件：进入到edit.html发送请求</li>
+<li>请求参数：userId</li>
+<li>请求地址：/book/loadBooks.do<h2 id="服务器处理-2"><a href="#服务器处理-2" class="headerlink" title="服务器处理"></a>服务器处理</h2>/book/loadBookds.do<br>–&gt;LoadBooksController.execute<br>测试：<br>http:localhost:8080/cloud_note/book/loadBooks.do?userId=ecd976d53a88484eaf911049241073ad<br>–&gt;BookService.LoadUserBooks<br>ecd976d53a88484eaf911049241073ad</li>
+<li>1.BookService接口loadUserBooks<pre><code>  NoteResult&lt;List&lt;Book&gt;&gt; loadUserBooks
+  (userId)
+</code></pre></li>
+<li>2.实现类中调用dao.findByUserId<pre><code>  调用dao.findByUserId(userId)
+</code></pre></li>
+<li><p>3.实现类中构建Result结果</p>
+<pre><code>  构建Result结果
+</code></pre><p>–&gt;BookDao.findByUserId</p>
+</li>
+<li><p>BookDao接口定义findByUserId</p>
+</li>
+<li>配置BookMapper.xml<br>–&gt;cn_userbook(查询)<br>–&gt;JSON响应<h2 id="ajax回调处理-2"><a href="#ajax回调处理-2" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2>success:<br>解析JSON数据，循环生成笔记本列表项<pre><code>（li）
+&lt;ul&gt;
+&lt;li class=&quot;online&quot;&gt;
+&lt;a  class=&#39;checked&#39;&gt;
+&lt;i class=&quot;fa fa-book&quot; title=&quot;online&quot; rel=&quot;tooltip-bottom&quot;&gt;
+&lt;/i&gt; bookName&lt;/a&gt;&lt;/li&gt; 
+error:
+alter(&quot;笔记本加载失败&quot;);
+</code></pre><h2 id="标记互斥"><a href="#标记互斥" class="headerlink" title="标记互斥"></a><script>标记互斥</h2></li>
+<li>要么使用SRC属性引用外部js文件</li>
+<li>要么在标记内自己写JavaScript代码</li>
+</ul>
+<h1 id="笔记本列表显示"><a href="#笔记本列表显示" class="headerlink" title="笔记本列表显示"></a>笔记本列表显示</h1><h2 id="发送ajax请求-3"><a href="#发送ajax请求-3" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
+<li>发送事件：笔记本li的点击</li>
+<li>请求的参数：笔记本的id</li>
+<li>请求地址：/note/loadnotes.do<h2 id="服务器的处理"><a href="#服务器的处理" class="headerlink" title="服务器的处理"></a>服务器的处理</h2>/note/loadnotes.do<br>–&gt;loadNoteController.execute<br>–&gt;NoteService.loadBookNotes</li>
+</ul>
+<p>1.定义接口文件NoteService-loadBookNotes(bookId)<br>2.实现类中重写方法<br>noteDao.findByBookId()<br>构建Result–set方法<br>setData=List<Map></p>
+<p>–&gt;NoteDao.findByBookId(bookId)</p>
+<p>1 接口文件定义方法<br>2.配置mapper文件<br>3 TestNoteDao<br>–&gt;cn_note(select_bookId &amp;cn_note_status_id=’1’)</p>
+<h2 id="ajax回调处理-3"><a href="#ajax回调处理-3" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><p>success:<br>成功：解析json数据，生成笔记li,添加到笔记本列表中 </p>
+<p><li class="online"><br>                                        <a  class='checked'><br>                                            <i class="fa fa-file-text-o" title="online" rel="tooltip-bottom"></i> 使用Java操作符<button type="button" class="btn btn-default btn-xs btn_position btn_slide_down"><i class="fa fa-chevron-down"></i></button><br>                                        </a><br>                                        <div class="note_menu" tabindex='-1'><br>                                            <dl><br>                                                <dt><button type="button" class="btn btn-default btn-xs btn_move" title='移动至...'><i class="fa fa-random"></i></button></dt><br>                                                <dt><button type="button" class="btn btn-default btn-xs btn_share" title='分享'><i class="fa fa-sitemap"></i></button></dt><br>                                                <dt><button type="button" class="btn btn-default btn-xs btn_delete" title='删除'><i class="fa fa-times"></i></button></dt><br>                                            </dl><br>                                        </div><br>                                    </li><br>error：<br>提示alert(“笔记加载失败”);</p>
+<p> 事件绑定<br>静态绑定：元素.click(function(){})<br>动态绑定：<br>父元素.on(“click”,”li”,fn)<br>元素.click(); </p>
+<p>Dao接口的传值特点<br> public interface Dao{<br>        public void fn();<br>        public void fn(String str);<br>        public void fn(Map map);<br>        public void fn(User user);</p>
+<p>}<br>总结：mybatis中Dao方法要么没有参数，要么只有一个参数</p>
+<p>设置选中效果<br>    $(“#book_ul a”).removeClass(“checked”);<br>      $(this).find(“a”).addClass(“checked”);</p>
+<p>清空原列表<br>$(“#note_ul”).empty();</p>
+<p>UEdit<br>用js开发的开源组件</p>
+<p>为什么使用？<br>通过JS代码实现表单功能的增强</p>
+<p>如何用？<br>1.引用脚本<br>2.实例化<br>3.通过<script>指定位置<br>4.</p>
+<ul>
+<li>um.setContent(“str”);</li>
+<li>um.getContent(“str”);</li>
+</ul>
+<h1 id="显示笔记信息"><a href="#显示笔记信息" class="headerlink" title="显示笔记信息"></a>显示笔记信息</h1><h2 id="发送ajax请求-4"><a href="#发送ajax请求-4" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
+<li>发送事件：笔记列表li元素的单击事件（动态绑定）</li>
+<li>请求参数：笔记ID（noteId）</li>
+<li>请求地址：</li>
+</ul>
+<h2 id="服务器处理-3"><a href="#服务器处理-3" class="headerlink" title="服务器处理"></a>服务器处理</h2><ul>
+<li>Controller:</li>
+<li>LoadNoteController.execute(String noteId)</li>
+<li>Service</li>
+<li>NoteService.loadNote(String noteId)</li>
+<li>Dao</li>
+<li>NoteDao.findByNoteId(String noteId)</li>
+<li>cn_note(查询 )</li>
+<li>json响应<h2 id="ajax回调处理-4"><a href="#ajax回调处理-4" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2>success:<br>-设置笔记标题</li>
+<li>设计笔记内容（body）</li>
+<li>um.setContent(“str”);</li>
+<li>um.getContent(“str”);<br>error:<br>alert(“笔记信息加载失败”);</li>
+</ul>
+<h1 id="更新笔记信息"><a href="#更新笔记信息" class="headerlink" title="更新笔记信息"></a>更新笔记信息</h1><p>##发送ajax请求</p>
+<ul>
+<li>发送事件：保存笔记 按钮单击事件（静态）</li>
+<li>请求参数：笔记ID（id） 标题（title）内容(body)</li>
+<li>请求地址： /note/update.do<br>##服务器处理</li>
+<li>UpdateNoteController(id,title,body)</li>
+<li>NoteService.updateNote(Note)</li>
+<li>NoteDao.updateNote(Note)</li>
+<li>cn_note(更新处理–最后修改时间)<br>##ajax回调处理<br>success：对被更新的笔记名称进行更新<br><li><a class="check"></a></li><br>var $li=$(“#note_ul a.checked”).parent();</li>
+</ul>
+<h1 id="使用alert"><a href="#使用alert" class="headerlink" title="使用alert"></a>使用alert</h1><h2 id="如何显示"><a href="#如何显示" class="headerlink" title="如何显示"></a>如何显示</h2><ul>
+<li>通过load，加载HTML</li>
+<li>通过show(),显示背景</li>
+<li></li>
+</ul>
+<h1 id="创建笔记本"><a href="#创建笔记本" class="headerlink" title="创建笔记本"></a>创建笔记本</h1><h2 id="发送ajax请求-5"><a href="#发送ajax请求-5" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
+<li>发送事件：对话框中的创建按钮的单击（动态）</li>
+<li>请求参数：笔记本名称、笔记本ID和用户id</li>
+<li>请求地址：/book/add.do<h2 id="服务器处理-4"><a href="#服务器处理-4" class="headerlink" title="服务器处理"></a>服务器处理</h2></li>
+<li>AddBookController.execute</li>
+<li>BookService.addBook(book)</li>
+<li>BookDao.save(book)</li>
+<li>cn_notebook(insert)</li>
+</ul>
+<p>insert 遇到的错误<br>原因是因为插入语句要遵循严格语法，所有的属性都必须有值</p>
+<pre><code>org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLException: Field &#39;cn_notebook_id&#39; doesn&#39;t have a default value
+### The error may involve io.codegitz.cloud_note.dao.BookDao.save-Inline
+### The error occurred while setting parameters
+### SQL: insert into cn_notebook (cn_user_id,cn_notebook_name,cn_notebook_type_id,cn_notebook_desc,cn_notebook_createtime) values (?,?,?,?,?)
+### Cause: java.sql.SQLException: Field &#39;cn_notebook_id&#39; doesn&#39;t have a default value
+; SQL []; Field &#39;cn_notebook_id&#39; doesn&#39;t have a default value; nested exception is java.sql.SQLException: Field &#39;cn_notebook_id&#39; doesn&#39;t have a default value
+    at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:249)
+    at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:72)
+    at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:74)
+    at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:399)
+    at com.sun.proxy.$Proxy11.insert(Unknown Source)
+    at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:253)
+    at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:52)
+    at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:53)
+    at com.sun.proxy.$Proxy12.save(Unknown Source)
+    at test.dao.TestBookDao.testAddBook(TestBookDao.java:49)
+    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:606)
+    at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+    at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+    at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+    at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+    at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+    at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+    at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+    at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+    at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+    at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+    at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+    at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+    at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+    at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+    at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+    at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+    at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+    at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+    at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+Caused by: java.sql.SQLException: Field &#39;cn_notebook_id&#39; doesn&#39;t have a default value
+    at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:959)
+    at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3870)
+    at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3806)
+    at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2470)
+    at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2617)
+    at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2550)
+    at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+    at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:1192)
+    at org.apache.commons.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+    at org.apache.commons.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+    at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:45)
+    at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:73)
+    at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:49)
+    at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:115)
+    at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:75)
+    at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:170)
+    at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:157)
+    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:606)
+    at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:386)
+    ... 29 more
+</code></pre><ul>
+<li>json响应<h2 id="ajax回调处理-5"><a href="#ajax回调处理-5" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2>success:</li>
+<li>关闭对话框</li>
+<li>添加笔记本li</li>
+<li>提示创建笔记本成功、失败</li>
+</ul>
+<p>error:<br>提示创建失败</p>
+<h1 id="创建笔记功能"><a href="#创建笔记功能" class="headerlink" title="创建笔记功能"></a>创建笔记功能</h1><h2 id="发送请求"><a href="#发送请求" class="headerlink" title="发送请求"></a>发送请求</h2><ul>
+<li>发送事件：对话框中 创建 按钮的单击</li>
+<li>请求参数：笔记名称 笔记本ID 用户ID</li>
+<li>请求地址：/note/add.do<h2 id="服务器处理-5"><a href="#服务器处理-5" class="headerlink" title="服务器处理"></a>服务器处理</h2></li>
+<li>Controller.execute</li>
+<li>NoteService.addNote</li>
+<li>NoteDao.save</li>
+<li>cn_note(insert)<h2 id="ajax回调处理-6"><a href="#ajax回调处理-6" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2></li>
+<li>关闭对话框</li>
+<li>解析json数据，生成一个li元素添加到笔记本列表</li>
+<li>1 获取noteTitle</li>
+<li>2.获取noteId</li>
+<li>提示创建笔记成功</li>
+</ul>
+<p>error:提示创建失败</p>
+<h1 id="显示笔记下拉菜单"><a href="#显示笔记下拉菜单" class="headerlink" title="显示笔记下拉菜单"></a>显示笔记下拉菜单</h1><p>1.通过点击’箭头’按钮显示三个菜单项</p>
+<ul>
+<li>获取div对象 slideDown(1000);</li>
+</ul>
+<h1 id="笔记分享"><a href="#笔记分享" class="headerlink" title="笔记分享"></a>笔记分享</h1><h2 id="发送请求-1"><a href="#发送请求-1" class="headerlink" title="发送请求"></a>发送请求</h2><ul>
+<li>发送事件：点击分享按钮</li>
+<li>请求参数：noteId</li>
+<li>请求地址：/share/add.do<h2 id="服务器处理-6"><a href="#服务器处理-6" class="headerlink" title="服务器处理"></a>服务器处理</h2></li>
+<li>创建share类</li>
+<li>Controller</li>
+<li>Service</li>
+<li>Dao-insert</li>
+<li>cn_share<br>先在cn_note里面查找，然后再插入cn_share<br>##回调处理<br>success：</li>
+<li>提示分享成功</li>
+<li>增加图标处理<i class="fa fa-sitemap"></li>
+</ul>
+<h1 id="分享笔记搜索功能"><a href="#分享笔记搜索功能" class="headerlink" title="分享笔记搜索功能"></a>分享笔记搜索功能</h1><h2 id="功能描述：用户输入搜索关键词，然后回车，触发查询"><a href="#功能描述：用户输入搜索关键词，然后回车，触发查询" class="headerlink" title="功能描述：用户输入搜索关键词，然后回车，触发查询"></a>功能描述：用户输入搜索关键词，然后回车，触发查询</h2><h2 id="发送ajax请求-6"><a href="#发送ajax请求-6" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
+<li>发送请求：输入关键词后，点回车</li>
+<li>请求参数：输入的关键词</li>
+<li>请求地址：/share/search.do</li>
+</ul>
+<h2 id="服务器处理-7"><a href="#服务器处理-7" class="headerlink" title="服务器处理"></a>服务器处理</h2><ul>
+<li>Controller</li>
+<li>Service</li>
+<li>Dao(select)</li>
+<li>cn_share</li>
+</ul>
+<p>select * from cn_share like %关键字%</p>
+<p>select <em> from cn_share limit m,n<br>select </em> from cn_share like #{title} limit #{begin},3<br>1    0<br>2    3<br>3    6<br>n    (n-1)*3<br>m:记录的位置<br>n:每页显示的最大记录数</p>
+<h2 id="ajax回调处理-7"><a href="#ajax回调处理-7" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><p>List<br>success:</p>
+<ul>
+<li>显示搜索笔记结果列表（pc_part_6）</li>
+<li>将解析后的搜索结果，添加到列表中</li>
+</ul>
+<p>error</p>
+<ul>
+<li>提示搜索失败</li>
+</ul>
+<p>$(“#id”).keydown(function(event){<br>      var code=event.keyCode;<br>      if(code==13){<br>         //发送ajax请求<br>}<br>})    </p>
+<pre><code>报错：
+Uncaught TypeError: Cannot read property &#39;cn_share_id&#39; of undefined
+原因是循环越界：
+var i = 0; i &lt;=shares.length; i++
+改为：
+var i = 0; i &lt;shares.length; i++
+</code></pre></script></h2></li></ul>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/note/">展开全文 >></a>
         </p>
       
 
@@ -797,126 +1155,9 @@ mysql&gt; select host,user from mysql.user;
 
 
   
-    <article id="post-Hibernate入门系列（三）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/17/Hibernate入门系列（三）/">Hibernate入门系列（三）</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/17/Hibernate入门系列（三）/" class="archive-article-date">
-  	<time datetime="2018-03-16T16:48:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-17</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Hibernate入门系列（三）"><a href="#Hibernate入门系列（三）" class="headerlink" title="Hibernate入门系列（三）"></a>Hibernate入门系列（三）</h1><h2 id="Hibernate-的配置文件"><a href="#Hibernate-的配置文件" class="headerlink" title="Hibernate 的配置文件"></a>Hibernate 的配置文件</h2><p>1.Hibernate 配置文件主要用于配置数据库连接和 Hibernate 运行时所需的各种属性<br><br>2.每个 Hibernate 配置文件对应一个 Configuration 对象<br><br>3.Hibernate配置文件可以有两种格式:</p>
-<ul>
-<li>hibernate.properties</li>
-<li>hibernate.cfg.xml </li>
-</ul>
-<h2 id="hibernate-cfg-xml的常用属性"><a href="#hibernate-cfg-xml的常用属性" class="headerlink" title="hibernate.cfg.xml的常用属性"></a>hibernate.cfg.xml的常用属性</h2><h3 id="JDBC-连接属性"><a href="#JDBC-连接属性" class="headerlink" title="JDBC 连接属性"></a>JDBC 连接属性<br></h3><p>connection.url：数据库URL <br><br>connection.username：数据库用户名<br><br>connection.password：数据库用户密码 <br><br>connection.driver_class：数据库JDBC驱动 <br><br>dialect：配置数据库的方言，根据底层的数据库不同产生不同的 sql 语句，Hibernate 会针对数据库的特性在访问时进行优化<br></p>
-<h3 id="C3P0-数据库连接池属性"><a href="#C3P0-数据库连接池属性" class="headerlink" title="C3P0 数据库连接池属性"></a>C3P0 数据库连接池属性<br></h3><p>hibernate.c3p0.max_size: 数据库连接池的最大连接数<br><br>hibernate.c3p0.min_size: 数据库连接池的最小连接数<br><br>hibernate.c3p0.timeout:   数据库连接池中连接对象在多长时间没有使用过后，就应该被销毁<br><br>hibernate.c3p0.max_statements:  缓存 Statement 对象的数量<br><br>hibernate.c3p0.idle_test_period:  表示连接池检测线程多长时间检测一次池内的所有链接对象是否超时. 连接池本身不会把自己从连接池中移除，而是专门有一个线程按照一定的时间间隔来做这件事，这个线程通过比较连接对象最后一次被使用时间和当前时间的时间差来和 timeout 做对比，进而决定是否销毁这个连接对象。 <br><br>hibernate.c3p0.acquire_increment: 当数据库连接池中的连接耗尽时, 同一时刻获取多少个数据库连接<br><br>通过C3P0获取的连接</p>
-<pre><code>七月 17, 2018 9:22:24 上午 org.hibernate.tool.hbm2ddl.SchemaUpdate execute
-INFO: HHH000232: Schema update complete
-com.mchange.v2.c3p0.impl.NewProxyConnection@5824a83d
-</code></pre><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>show_sql：是否将运行期生成的SQL输出到日志以供调试。取值 true | false <br><br>format_sql：是否将 SQL 转化为格式良好的 SQL . 取值 true | false<br><br>hbm2ddl.auto：在启动和停止时自动地创建，更新或删除数据库模式。取值 create | update | create-drop | validate<br><br>hibernate.jdbc.fetch_size<br><br>hibernate.jdbc.fetch_size：实质是调用 Statement.setFetchSize() 方法设定 JDBC 的 Statement 读取数据的时候每次从数据库中取出的记录条数。<br><br>例如一次查询1万条记录，对于Oracle的JDBC驱动来说，是不会 1 次性把1万条取出来的，而只会取出 fetchSize 条数，当结果集遍历完了这些记录以后，再去数据库取 fetchSize 条数据。因此大大节省了无谓的内存消耗。Fetch Size设的越大，读数据库的次数越少，速度越快；Fetch Size越小，读数据库的次数越多，速度越慢。Oracle数据库的JDBC驱动默认的Fetch Size = 10，是一个保守的设定，根据测试，当Fetch Size=50时，性能会提升1倍之多，当 fetchSize=100，性能还能继续提升20%，Fetch Size继续增大，性能提升的就不显著了。并不是所有的数据库都支持Fetch Size特性，<strong>例如MySQL就不支持</strong></p>
-<p>hibernate.jdbc.batch_size<br><br>hibernate.jdbc.batch_size：设定对数据库进行批量删除，批量更新和批量插入的时候的批次大小，类似于设置缓冲区大小的意思。batchSize 越大，批量操作时向数据库发送sql的次数越少，速度就越快。<br>测试结果是当Batch Size=0的时候，使用Hibernate对Oracle数据库删除1万条记录需要25秒，Batch Size = 50的时候，删除仅仅需要5秒！Oracle数据库 batchSize=30 的时候比较合适</p>
-<h2 id="对象关系映射文件"><a href="#对象关系映射文件" class="headerlink" title="对象关系映射文件"></a>对象关系映射文件</h2><h3 id="POJO-类和数据库的映射文件-hbm-xml"><a href="#POJO-类和数据库的映射文件-hbm-xml" class="headerlink" title="POJO 类和数据库的映射文件*.hbm.xml"></a>POJO 类和数据库的映射文件*.hbm.xml</h3><ul>
-<li>POJO 类和关系数据库之间的映射可以用一个XML文档来定义。</li>
-<li>通过 POJO 类的数据库映射文件，Hibernate可以理解持久化类和数据表之间的对应关系，也可以理解持久化类属性与数据库表列之间的对应关系</li>
-<li>在运行时 Hibernate 将根据这个映射文件来生成各种 SQL 语句</li>
-<li>映射文件的扩展名为 .hbm.xml</li>
-</ul>
-<h3 id="映射文件说明"><a href="#映射文件说明" class="headerlink" title="映射文件说明"></a>映射文件说明</h3><p>hibernate-mapping<br><br>类层次：class<br><br>主键：id<br><br>基本类型:property<br><br>实体引用类: many-to-one  |  one-to-one<br><br>集合:set | list | map | array<br><br>one-to-many<br><br>many-to-many<br><br>子类:subclass | joined-subclass<br><br>其它:component | any 等<br><br>查询语句:query（用来放置查询语句，便于对数据库查询的统一管理和优化）<br><br>每个Hibernate-mapping中可以同时定义多个类. 但更推荐为每个类都创建一个单独的映射文件<br></p>
-<h4 id="hibernate-mapping"><a href="#hibernate-mapping" class="headerlink" title="hibernate-mapping"></a>hibernate-mapping</h4><p>hibernate-mapping 是 hibernate 映射文件的根元素<br><br>schema: 指定所映射的数据库schema的名称。若指定该属性, 则表明会自动添加该 schema 前缀<br><br>catalog:指定所映射的数据库catalog的名称。  <br><br>default-cascade(默认为 none): 设置hibernate默认的级联风格. 若配置 Java 属性, 集合映射时没有指定 cascade 属性, 则 Hibernate 将采用此处指定的级联风格.   <br><br>default-access (默认为 property): 指定 Hibernate 的默认的属性访问策略。默认值为 property, 即使用 getter, setter 方法来访问属性. 若指定 access, 则 Hibernate 会忽略 getter/setter 方法, 而通过反射访问成员变量.<br><br>default-lazy(默认为 true): 设置 Hibernat morning的延迟加载策略. 该属性的默认值为 true, 即启用延迟加载策略. 若配置 Java 属性映射, 集合映射时没有指定 lazy 属性, 则 Hibernate 将采用此处指定的延迟加载策略 <br><br>auto-import (默认为 true): 指定是否可以在查询语言中使用非全限定的类名（仅限于本映射文件中的类）。 <br><br>package (可选): 指定一个包前缀，如果在映射文档中没有指定全限定的类名， 就使用这个作为包名。<br></p>
-<h4 id="class"><a href="#class" class="headerlink" title="class"></a>class</h4><p>class 元素用于指定类和表的映射<br><br>name:指定该持久化类映射的持久化类的类名<br><br>table:指定该持久化类映射的表名, Hibernate 默认以持久化类的类名作为表名<br><br>dynamic-insert: 若设置为 true, 表示当保存一个对象时, 会动态生成 insert 语句, insert 语句中仅包含所有取值不为 null 的字段. 默认值为 false<br><br>dynamic-update: 若设置为 true, 表示当更新一个对象时, 会动态生成 update 语句, update 语句中仅包含所有取值需要更新的字段. 默认值为 false<br><br>select-before-update:设置 Hibernate 在更新某个持久化对象之前是否需要先执行一次查询. 默认值为 false<br><br>batch-size:指定根据 OID 来抓取实例时每批抓取的实例数.<br><br>lazy: 指定是否使用延迟加载.  <br><br>mutable: 若设置为 true, 等价于所有的<code>&lt;property&gt;</code>元素的 update 属性为 false, 表示整个实例不能被更新. 默认为 true.<br><br>discriminator-value: 指定区分不同子类的值. 当使用 <code>&lt;subclass/&gt;</code> 元素来定义持久化类的继承关系时需要使用该属性</p>
-<h3 id="映射对象标识符"><a href="#映射对象标识符" class="headerlink" title="映射对象标识符"></a>映射对象标识符</h3><p>Hibernate 使用对象标识符(OID) 来建立内存中的对象和数据库表中记录的对应关系. 对象的 OID 和数据表的主键对应. Hibernate 通过标识符生成器来为主键赋值<br><br>Hibernate 推荐在数据表中使用代理主键, 即不具备业务含义的字段. 代理主键通常为整数类型, 因为整数类型比字符串类型要节省更多的数据库空间.<br><br>在对象-关系映射文件中, <code>&lt;id&gt;</code> 元素用来设置对象标识符. <code>&lt;generator&gt;</code> 子元素用来设定标识符生成器.<br><br>Hibernate 提供了标识符生成器接口: IdentifierGenerator, 并提供了各种内置实现<br> </p>
-<h4 id="id"><a href="#id" class="headerlink" title="id"></a>id</h4><p>id：设定持久化类的 OID 和表的主键的映射<br><br>name: 标识持久化类 OID 的属性名  <br><br>column: 设置标识属性所映射的数据表的列名(主键字段的名字). <br><br>unsaved-value:若设定了该属性, Hibernate 会通过比较持久化类的 OID 值和该属性值来区分当前持久化类的对象是否为临时对象<br><br>type:指定 Hibernate 映射类型. Hibernate 映射类型是 Java 类型与 SQL 类型的桥梁. 如果没有为某个属性显式设定映射类型, Hibernate 会运用反射机制先识别出持久化类的特定属性的 Java 类型, 然后自动使用与之对应的默认的 Hibernate 映射类型<br><br>Java 的基本数据类型和包装类型对应相同的 Hibernate 映射类型. 基本数据类型无法表达 null, 所以对于持久化类的 OID 推荐使用包装类型<br> </p>
-<h4 id="generator"><a href="#generator" class="headerlink" title="generator"></a>generator</h4><p>generator：设定持久化类设定标识符生成器<br><br>class: 指定使用的标识符生成器全限定类名或其缩写名<br></p>
-<p><strong>主键生成策略generator</strong><br>Hibernate提供的内置标识符生成器</p>
-<h5 id="increment-标识符生成器"><a href="#increment-标识符生成器" class="headerlink" title="increment 标识符生成器"></a>increment 标识符生成器</h5><p>increment 标识符生成器由 Hibernate 以递增的方式为代理主键赋值<br><br>Hibernate 会先读取 NEWS 表中的主键的最大值, 而接下来向 NEWS 表中插入记录时, 就在 max(id) 的基础上递增, 增量为 1.<br><br>适用范围:<br><br>由于 increment 生存标识符机制不依赖于底层数据库系统, 因此它适合所有的数据库系统<br><br>适用于只有单个 Hibernate 应用进程访问同一个数据库的场合, 在集群环境下不推荐使用它<br><br>OID 必须为 long, int 或 short 类型, 如果把 OID 定义为 byte 类型, 在运行时会抛出异常<br></p>
-<h5 id="identity-标识符生成器"><a href="#identity-标识符生成器" class="headerlink" title="identity 标识符生成器"></a>identity 标识符生成器</h5><p>identity 标识符生成器由底层数据库来负责生成标识符, 它要求底层数据库把主键定义为自动增长字段类型<br><br>适用范围:<br><br>由于 identity 生成标识符的机制依赖于底层数据库系统, 因此, 要求底层数据库系统必须支持自动增长字段类型. 支持自动增长字段类型的数据库包括: DB2, Mysql, MSSQLServer, Sybase 等<br><br>OID 必须为 long, int 或 short 类型, 如果把 OID 定义为 byte 类型, 在运行时会抛出异常<br></p>
-<h5 id="sequence-标识符生成器"><a href="#sequence-标识符生成器" class="headerlink" title="sequence 标识符生成器"></a>sequence 标识符生成器</h5><p>sequence  标识符生成器利用底层数据库提供的序列来生成标识符. <br><br>Hibernate 在持久化一个 News 对象时, 先从底层数据库的 news_seq 序列中获得一个唯一的标识号, 再把它作为主键值<br><br>适用范围:<br><br><strong>由于 sequence 生成标识符的机制依赖于底层数据库系统的序列, 因此, 要求底层数据库系统必须支持序列. 支持序列的数据库包括: DB2, Oracle 等</strong><br><br>OID 必须为 long, int 或 short 类型, 如果把 OID 定义为 byte 类型, 在运行时会抛出异常<br></p>
-<h5 id="hilo-标识符生成器"><a href="#hilo-标识符生成器" class="headerlink" title="hilo 标识符生成器"></a>hilo 标识符生成器</h5><p>hilo 标识符生成器由 Hibernate 按照一种 high/low 算法*生成标识符, 它从数据库的特定表的字段中获取 high 值.<br><br>Hibernate 在持久化一个 News 对象时, 由 Hibernate 负责生成主键值. hilo 标识符生成器在生成标识符时, 需要读取并修改 HI_TABLE 表中的 NEXT_VALUE 值.<br><br>适用范围:<br><br>由于 hilo 生存标识符机制不依赖于底层数据库系统, 因此它适合所有的数据库系统<br><br>OID 必须为 long, int 或 short 类型, 如果把 OID 定义为 byte 类型, 在运行时会抛出异常<br></p>
-<h5 id="native-标识符生成器"><a href="#native-标识符生成器" class="headerlink" title="native 标识符生成器"></a>native 标识符生成器</h5><p>native 标识符生成器依据底层数据库对自动生成标识符的支持能力, 来选择使用 identity, sequence 或 hilo 标识符生成器. <br><br>适用范围:<br><br>由于 native 能根据底层数据库系统的类型, 自动选择合适的标识符生成器, 因此很适合于跨数据库平台开发<br><br>OID 必须为 long, int 或 short 类型, 如果把 OID 定义为 byte 类型, 在运行时会抛出异常<br></p>
-<h4 id="Property"><a href="#Property" class="headerlink" title="Property"></a>Property</h4><p><strong>property 元素用于指定类的属性和表的字段的映射</strong><br><br>name:指定该持久化类的属性的名字<br><br>column:指定与类的属性映射的表的字段名. 如果没有设置该属性, Hibernate 将直接使用类的属性名作为字段名. <br><br>type:指定 Hibernate 映射类型. Hibernate 映射类型是 Java 类型与 SQL 类型的桥梁. 如果没有为某个属性显式设定映射类型, Hibernate 会运用反射机制先识别出持久化类的特定属性的 Java 类型, 然后自动使用与之对应的默认的 Hibernate 映射类型.<br><br>not-null:若该属性值为 true, 表明不允许为 null, 默认为 false<br><br>access:指定 Hibernate 的默认的属性访问策略。默认值为 property, 即使用 getter, setter 方法来访问属性. 若指定 field, 则 Hibernate 会忽略 getter/setter 方法, 而通过反射访问成员变量<br><br>unique: 设置是否为该属性所映射的数据列添加唯一约束. <br><br><strong>property 元素用于指定类的属性和表的字段的映射</strong><br><br>index: 指定一个字符串的索引名称. 当系统需要 Hibernate 自动建表时, 用于为该属性所映射的数据列创建索引, 从而加快该数据列的查询.<br><br>length: 指定该属性所映射数据列的字段的长度<br><br>scale: 指定该属性所映射数据列的小数位数, 对 double, float, decimal 等类型的数据列有效.<br><br>formula：设置一个 SQL 表达式, Hibernate 将根据它来计算出派生属性的值. <br><br>派生属性: 并不是持久化类的所有属性都直接和表的字段匹配, 持久化类的有些属性的值必须在运行时通过计算才能得出来, 这种属性称为派生属性<br><br><strong>使用 formula 属性时</strong><br><br>formula=“(sql)” 的英文括号不能少<br><br>Sql 表达式中的列名和表名都应该和数据库对应, 而不是和持久化对象的属性对应<br><br>如果需要在 formula 属性中使用参数, 这直接使用 where cur.id=id 形式, 其中 id 就是参数, 和当前持久化对象的 id 属性对应的列的 id 值将作为参数传入. <br></p>
-<h3 id="Java-类型-Hibernate-映射类型及-SQL-类型之间的对应关系"><a href="#Java-类型-Hibernate-映射类型及-SQL-类型之间的对应关系" class="headerlink" title="Java 类型, Hibernate 映射类型及 SQL 类型之间的对应关系"></a>Java 类型, Hibernate 映射类型及 SQL 类型之间的对应关系</h3><p>详细对应略。</p>
-<p>Java 时间和日期类型的 Hibernate 映射<br><br>在 Java 中, 代表时间和日期的类型包括: java.util.Date 和 java.util.Calendar. 此外, 在 JDBC API 中还提供了 3 个扩展了 java.util.Date 类的子类: java.sql.Date, java.sql.Time 和 java.sql.Timestamp, 这三个类分别和标准 SQL 类型中的 DATE, TIME 和 TIMESTAMP 类型对应<br><br>在标准 SQL 中, DATE 类型表示日期, TIME 类型表示时间, TIMESTAMP 类型表示时间戳, 同时包含日期和时间信息. <br><br><strong>使用 Hibernate 内置映射类型</strong><br>以下情况下必须显式指定 Hibernate 映射类型<br><br>一个 Java 类型可能对应多个 Hibernate 映射类型. 例如: 如果持久化类的属性为 java.util.Date 类型, 对应的 Hibernate 映射类型可以是 date, time 或 timestamp. 此时必须根据对应的数据表的字段的 SQL 类型, 来确定 Hibernate 映射类型. 如果字段为 DATE 类型, 那么 Hibernate 映射类型为 date; 如果字段为 TIME 类型, 那么 Hibernate 映射类型为 time; 如果字段为 TIMESTATMP 类型, 那么 Hibernate 映射类型为 timestamp.<br></p>
-<h3 id="Java-大对象类型的-Hiberante-映射"><a href="#Java-大对象类型的-Hiberante-映射" class="headerlink" title="Java 大对象类型的 Hiberante 映射"></a>Java 大对象类型的 Hiberante 映射</h3><p>在 Java 中, java.lang.String 可用于表示长字符串(长度超过 255), 字节数组 byte[] 可用于存放图片或文件的二进制数据. 此外, 在 JDBC API 中还提供了 java.sql.Clob 和 java.sql.Blob 类型, 它们分别和标准 SQL 中的 CLOB 和 BLOB 类型对应. CLOB 表示字符串大对象(Character Large Object), BLOB表示二进制对象(Binary Large Object)<br><br><img src="https://i.imgur.com/VjdXRf3.png" alt=""><br>Mysql 不支持标准 SQL 的 CLOB 类型, 在 Mysql 中, 用 TEXT, MEDIUMTEXT 及 LONGTEXT 类型来表示长度操作 255 的长文本数据<br><br>在持久化类中, 二进制大对象可以声明为 byte[] 或 java.sql.Blob 类型; 字符串可以声明为 java.lang.String 或 java.sql.Clob<br><br>实际上在 Java 应用程序中处理长度超过 255 的字符串, 使用 java.lang.String 比 java.sql.Clob 更方便<br></p>
-<h3 id="映射组成关系"><a href="#映射组成关系" class="headerlink" title="映射组成关系"></a>映射组成关系</h3><p>建立域模型和关系数据模型有着不同的出发点:<br><br>域模型: 由程序代码组成, 通过细化持久化类的的粒度可提高代码的可重用性, 简化编程<br><br>在没有数据冗余的情况下, 应该尽可能减少表的数目, 简化表之间的参照关系, 以便提高数据的访问速度<br><br>Hibernate 把持久化类的属性分为两种:<br>值(value)类型: 没有 OID, 不能被单独持久化, 生命周期依赖于所属的持久化类的对象的生命周期<br>实体(entity)类型: 有 OID, 可以被单独持久化, 有独立的生命周期<br>显然无法直接用 property 映射 pay 属性<br>Hibernate 使用 <component> 元素来映射组成关系, 该元素表名 pay 属性是 Worker 类一个组成部分, 在 Hibernate 中称之为组件<br><img src="https://i.imgur.com/2NSgxFZ.png" alt=""><br><strong>component</strong></component></p>
-<p><component> 元素来映射组成关系<br>class:设定组成关系属性的类型, 此处表明 pay 属性为 Pay 类型</component></p>
-<p><parent> 元素指定组件属性所属的整体类<br>name: 整体类在组件类中的属性名</parent></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/17/Hibernate入门系列（三）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
     </nav>
   
 
@@ -1052,11 +1293,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1064,7 +1309,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1096,7 +1341,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1104,11 +1349,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1120,11 +1361,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">solr</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
               </li>
             
             <div class="clearfix"></div>
