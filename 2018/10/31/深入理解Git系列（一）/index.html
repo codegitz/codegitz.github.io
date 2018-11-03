@@ -8,13 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>深入理解Git系列（一） | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="前言 最近版本管理使用了自己搭建的gitlab服务器，git命令大家肯定都或多或少用过，以前用的时候也只是git add . git commit等等几个简单的命令，并没有深入去了解Git的内部原理。这次面对可以会出现各种管理的冲突，我觉得有必要深入学习一下Git的原理和使用。下面就一步一步来开始这趟旅程吧！首先申明一下，这系列文章可能会有点枯燥，大部分都是讲解一些命令用法概念，并没有很新奇的玩">
+<meta name="keywords" content="Git">
+<meta property="og:type" content="article">
 <meta property="og:title" content="深入理解Git系列（一）">
 <meta property="og:url" content="http://yoursite.com/2018/10/31/深入理解Git系列（一）/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:updated_time" content="2018-10-31T14:45:10.037Z">
+<meta property="og:description" content="前言 最近版本管理使用了自己搭建的gitlab服务器，git命令大家肯定都或多或少用过，以前用的时候也只是git add . git commit等等几个简单的命令，并没有深入去了解Git的内部原理。这次面对可以会出现各种管理的冲突，我觉得有必要深入学习一下Git的原理和使用。下面就一步一步来开始这趟旅程吧！首先申明一下，这系列文章可能会有点枯燥，大部分都是讲解一些命令用法概念，并没有很新奇的玩">
+<meta property="og:image" content="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/one.png">
+<meta property="og:updated_time" content="2018-11-02T05:36:54.697Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解Git系列（一）">
+<meta name="twitter:description" content="前言 最近版本管理使用了自己搭建的gitlab服务器，git命令大家肯定都或多或少用过，以前用的时候也只是git add . git commit等等几个简单的命令，并没有深入去了解Git的内部原理。这次面对可以会出现各种管理的冲突，我觉得有必要深入学习一下Git的原理和使用。下面就一步一步来开始这趟旅程吧！首先申明一下，这系列文章可能会有点枯燥，大部分都是讲解一些命令用法概念，并没有很新奇的玩">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/one.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
   
@@ -205,7 +211,257 @@ gitment.render('gitment')
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script>
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><!-- read more-->
+<p>最近版本管理使用了自己搭建的gitlab服务器，git命令大家肯定都或多或少用过，以前用的时候也只是git add . git commit等等几个简单的命令，并没有深入去了解Git的内部原理。这次面对可以会出现各种管理的冲突，我觉得有必要深入学习一下Git的原理和使用。下面就一步一步来开始这趟旅程吧！<br><br>首先申明一下，这系列文章可能会有点枯燥，大部分都是讲解一些命令用法概念，并没有很新奇的玩意。<br></p>
+<p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/one.png" alt=""></p>
+<h2 id="Git命令概览"><a href="#Git命令概览" class="headerlink" title="Git命令概览"></a>Git命令概览</h2><p>输入git,Git就会不带任何参数的列出他的选项和最常用的子命令。<br></p>
+<pre><code>$ git
+usage: git [--version] [--help] [-C &lt;path&gt;] [-c name=value]
+           [--exec-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=&lt;path&gt;] [--work-tree=&lt;path&gt;] [--namespace=&lt;name&gt;]
+           &lt;command&gt; [&lt;args&gt;]
+
+These are common Git commands used in various situations:
+
+start a working area (see also: git help tutorial)
+   clone      Clone a repository into a new directory
+   init       Create an empty Git repository or reinitialize an existing one
+
+work on the current change (see also: git help everyday)
+   add        Add file contents to the index
+   mv         Move or rename a file, a directory, or a symlink
+   reset      Reset current HEAD to the specified state
+   rm         Remove files from the working tree and from the index
+
+examine the history and state (see also: git help revisions)
+   bisect     Use binary search to find the commit that introduced a bug
+   grep       Print lines matching a pattern
+   log        Show commit logs
+   show       Show various types of objects
+   status     Show the working tree status
+
+grow, mark and tweak your common history
+   branch     List, create, or delete branches
+   checkout   Switch branches or restore working tree files
+   commit     Record changes to the repository
+   diff       Show changes between commits, commit and working tree, etc
+   merge      Join two or more development histories together
+   rebase     Reapply commits on top of another base tip
+   tag        Create, list, delete or verify a tag object signed with GPG
+
+collaborate (see also: git help workflows)
+   fetch      Download objects and refs from another repository
+   pull       Fetch from and integrate with another repository or a local branch
+   push       Update remote refs along with associated objects
+
+&#39;git help -a&#39; and &#39;git help -g&#39; list available subcommands and some
+concept guides. See &#39;git help &lt;command&gt;&#39; or &#39;git help &lt;concept&gt;&#39;
+to read about a specific subcommand or concept.
+</code></pre><p><strong>要想得到一个完整的git子命令列表（看着有点让人害怕），可以输入git help -a.</strong><br></p>
+<pre><code>$ git help -a
+usage: git [--version] [--help] [-C &lt;path&gt;] [-c name=value]
+           [--exec-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=&lt;path&gt;] [--work-tree=&lt;path&gt;] [--namespace=&lt;name&gt;]
+           &lt;command&gt; [&lt;args&gt;]
+
+  add                 fsck-objects        rebase--helper
+  add--interactive    gc                  receive-pack
+  am                  get-tar-commit-id   reflog
+  annotate            grep                remote
+  apply               gui                 remote-ext
+  archimport          gui--askpass        remote-fd
+  archive             gui--askyesno       remote-ftp
+  askpass             gui.tcl             remote-ftps
+  bisect              hash-object         remote-http
+  bisect--helper      help                remote-https
+  blame               http-backend        repack
+  branch              http-fetch          replace
+  bundle              http-push           request-pull
+  cat-file            imap-send           rerere
+  check-attr          index-pack          reset
+  check-ignore        init                rev-list
+  check-mailmap       init-db             rev-parse
+  check-ref-format    instaweb            revert
+  checkout            interpret-trailers  rm
+  checkout-index      log                 send-email
+  cherry              ls-files            send-pack
+  cherry-pick         ls-remote           sh-i18n--envsubst
+  citool              ls-tree             shortlog
+  clean               mailinfo            show
+  clone               mailsplit           show-branch
+  column              merge               show-index
+  commit              merge-base          show-ref
+  commit-tree         merge-file          stage
+  config              merge-index         stash
+  count-objects       merge-octopus       status
+  credential          merge-one-file      stripspace
+  credential-manager  merge-ours          submodule
+  credential-store    merge-recursive     submodule--helper
+  credential-wincred  merge-resolve       subtree
+  cvsexportcommit     merge-subtree       svn
+  cvsimport           merge-tree          symbolic-ref
+  cvsserver           mergetool           tag
+  daemon              mktag               unpack-file
+  describe            mktree              unpack-objects
+  diff                mv                  update-index
+  diff-files          name-rev            update-ref
+  diff-index          notes               update-server-info
+  diff-tree           p4                  upload-archive
+  difftool            pack-objects        upload-pack
+  difftool--helper    pack-redundant      var
+  fast-export         pack-refs           verify-commit
+  fast-import         patch-id            verify-pack
+  fetch               prune               verify-tag
+  fetch-pack          prune-packed        web--browse
+  filter-branch       pull                whatchanged
+  fmt-merge-msg       push                worktree
+  for-each-ref        quiltimport         write-tree
+  format-patch        read-tree
+  fsck                rebase
+</code></pre><p>可以从提示中看出，只有少数选项使用与git。大多数选项以[ARDS]的形式出现提示中，适用于特定的子命令。<br><br>例如，–version选项影响git命令，并显示版本号。<br></p>
+<pre><code>$ git --version
+git version 2.13.0
+</code></pre><p>为了方便起见，每个git子命令的文档都可以通过<code>git help subcommand、git --help subcommand 或者git subcommand --help</code>来查看。</p>
+<p>Git命令能理解“短”和“长”选项。例如git commit 命令将下面两条命令视为等价的</p>
+<pre><code>$ git commit -m &quot;Fixed bug&quot;
+$ git commit --message=&quot;Fixed bug&quot; 
+</code></pre><p>缩写形式-m使用了一个连字符，而长形式–message使用了两个连字符（这符合GNU的长选项扩展），有些选项只存在一种形式。<br><br>最后，可以通过“裸双破折号”的约定来分离一些列参数。例如，使用双破折号来分离命令行的控制部分与操作数部分，如文件名等。<br></p>
+<pre><code>$ git diff -w master origin -- tools/Makefile
+</code></pre><p>有时候需要使用双破折号分离并显式表示文件名，否则可能会误认为他们是命令的另一部分。例如，如果恰好有一个文件和一个标签都叫main.c，然后你会看到不同的行为。<br></p>
+<pre><code># 检出名为main.c的标签
+$ git checkout main.c
+# 检出名为main.c的文件
+$ git checkout --mainc.
+</code></pre><h2 id="快速使用"><a href="#快速使用" class="headerlink" title="快速使用"></a>快速使用</h2><h3 id="初始化一个版本库"><a href="#初始化一个版本库" class="headerlink" title="初始化一个版本库"></a>初始化一个版本库</h3><p>上面说了很多命令，为了实际见识Git的操作，我们可以新建一个版本库，添加一些内容，进行管理。<br><br>我新建了一个repo目录，并且进入到了此目录下，操作如下：<br></p>
+<pre><code>$ echo &#39;My new repo&#39; &gt; index.html
+</code></pre><p>执行<code>git init</code>，将repo转化为Git版本库。</p>
+<pre><code>$ git init
+Initialized empty Git repository in C:/Users/zhangguang/Desktop/repo/.git/
+</code></pre><p>Git不关心你是从一个完全空白的目录还是一个装满文件的目录开始的。这两种情况下，将目录转换到Git版本库的过程是一样的。为了显示目录是一个GIt版本库，<code>git init</code> 命令创建了一个隐藏目录，在项目的顶层目录，名为<code>.git</code>。不同于CVS和SVN，git只有唯一的一个顶层<code>.git</code>目录。<br><br>初始仓库完成后，repo目录下面一切保持不变，只是增加了一个.git的隐藏目录。Git将这个目录当做项目的工作目录，或者修改文件的目录。隐藏在.git内的版本库由Git维护。<br></p>
+<h3 id="向版本库中添加文件"><a href="#向版本库中添加文件" class="headerlink" title="向版本库中添加文件"></a>向版本库中添加文件</h3><p>为了管理内容，你必须明确地把它放入版本库中，这种有意识的步骤将重要文件与临时文件分离开来。<br><br>使用<code>git add file</code> 将file添加到版本库中。<br></p>
+<pre><code>$ git add index.html
+</code></pre><p><strong>注意：如果目录中已经有了很多文件，使用git add .命令让Git把当前目录及子目录中的文件都添加到版本库里（参数”.”,点或者UNIX说法中的”dot”,是当前目录的简写）。</strong><br><br>在add之后，Git知道index.html这个文件是要留在版本库里。到目前为止，Git还只是暂存(staged)了这个文件，这是提交之前的中间步骤。Git将add和commit这两部分开以避免频繁的变化，一个commit可以提交多次累积下来的add。试想一个如果删除一个文件夹，修改两三行代码，都要去更新一次版本库，这样将会耗费大量的时间去做重复性的操作。<br><br>运行git status，显示中间状态的index.html<br></p>
+<pre><code>$ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)
+
+        new file:   index.html
+</code></pre><p>这个命令显示新闻界index.html健在下一个提交的时候添加到版本库里。<br></p>
+<p>提交的时候，除了会提交目录和文件内容的实际变化，Git还会在每次提交的时候记录其他一些元数据，包括日志消息和本次变更的作者。一条完全限定的git commit命令必须提供日志消息和作者：<br></p>
+<pre><code>$ git commit -m&quot;Initial contents of repo&quot;\--author=&quot;Test Repo@test.com&quot;
+[master (root-commit) c773409] Initial contents of repo--author=Test Repo@test.com
+ 1 file changed, 1 insertion(+)
+ create mode 100644 index.html
+</code></pre><p><strong>注意：可以在交互式编辑器回话期间创建日志消息。</strong></p>
+<p>提交之后再次查看状态，显示没有突出的、暂存的变更需要提交。<br></p>
+<pre><code>$ git status
+On branch master
+nothing to commit, working tree clean
+</code></pre><p>Git提示，工作目录是干净的，这意味着工作目录里不包含任何与版本库种不同的或者更改过的文件。<br><br>在对版本进行多次提交之前，需要让Git知道你的名字和邮件地址。<br></p>
+<pre><code>$ git config user.name &quot;your username&quot;
+$ git config user.email &quot;your email&quot;
+</code></pre><h4 id="再次提交"><a href="#再次提交" class="headerlink" title="再次提交"></a>再次提交</h4><p>为了了解更多的Git特性，我们需要创建一个稍微复杂的变更历史。我们来提交一个队index.html文件的修改，打开这个文件，转换成HTML保存。<br></p>
+<pre><code>$ vim index.html
+
+$ cat index.html
+&lt;html&gt;
+&lt;body&gt;
+My new repo.
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>提交：</p>
+<pre><code>$ git commit index.html -m&quot;Convert to HTML&quot;
+</code></pre><p>这里提个小问题太，为什么这里不用git add index.html而是直接commit了？<br></p>
+<p>查看提交，git log命令会查收版本库里一系列单独提交的历史。<br></p>
+<pre><code>$ git log
+commit 306f94dc429956fc94a3b6ebcb0b3d075ce37366 (HEAD -&gt; master)
+Author: Repo@test.com
+Date:   Thu Nov 1 00:24:51 2018 +0800
+
+    Convert to HTML
+
+commit c773409a4d6da80e69858095be509f0fcf0c8632
+Author: Repo@test.com
+Date:   Thu Nov 1 00:10:37 2018 +0800
+
+Initial contents of repo--author=Test Repo@test.com
+</code></pre><p>条目顺序按照最新到最老的顺序列出来，每个条目显示了提交作者名字和email地址，提交日期，变更的日志信息和提交的内部识别码。<br><br>为了查看特定提交的更加详细的信息，可以使用<code>git show</code>命令带一个提交码。<br></p>
+<pre><code>$ git show c773409a4d6da80e69858095be509f0fcf0c8632
+commit c773409a4d6da80e69858095be509f0fcf0c8632
+Author: Repo@test.com
+Date:   Thu Nov 1 00:10:37 2018 +0800
+
+    Initial contents of repo--author=Test Repo@test.com
+
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000..7343a90
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1 @@
++My new repo
+</code></pre><p>如果在执行git show命令的时候没有显示的指定提交码，它将只显示最近一次提交的详细信息。<br><br>另一种产看方式是使用show-branch，提供当期那开发分支简洁的当行摘要。<br></p>
+<pre><code>$ git show-branch --more=10
+[master] Convert to HTML
+[master^] Initial contents of repo--author=Test Repo@test.com
+</code></pre><p>参数–more=10表示额外10个版本，但是因为目前仓库只有两个版本，所以全部显示了。master是默认分支名。<br></p>
+<h4 id="查看差异"><a href="#查看差异" class="headerlink" title="查看差异"></a>查看差异</h4><p>每次我们提交了之后都会希望能够看到哪些文件发生了改变，更详细的话希望知道更改了那几行代码。对于这个需求我们可以使用<code>git diff</code>命令。</p>
+<pre><code>$ git diff c773409a4d6da80e69858095be509f0fcf0c8632
+diff --git a/index.html b/index.html
+index 7343a90..16d8662 100644
+--- a/index.html
++++ b/index.html
+@@ -1 +1,5 @@
+-My new repo
++&lt;html&gt;
++&lt;body&gt;
++My new repo.
++&lt;/body&gt;
++&lt;/html&gt;
+</code></pre><p>命名为<code>c773409a4d6da80e69858095be509f0fcf0c8632</code>是较新的版本，因此每行新的内容面前都有一个加号(+)。</p>
+<h4 id="版本库内文件的删除和重命名"><a href="#版本库内文件的删除和重命名" class="headerlink" title="版本库内文件的删除和重命名"></a>版本库内文件的删除和重命名</h4><p>在版本库里面删除和添加一个文件是类似的，除了使用的命令是<code>git rm</code>。假设在你的仓库里有一个不再需要的文件：poem.html，可以运行命令如下。</p>
+<pre><code>$ git rm poem.html
+rm &#39;poem.html&#39;
+
+$ git commit -m&quot;Remove a poem&quot;
+[master 7a02d23] Remove a poem
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 poem.html
+</code></pre><p>和添加操作一样，删除操作也是两步：<code>git rm</code> 表示你想要删除这个文件的意图并暂存这个变更，接着<code>git commit</code>在版本库里实现这个变更。<br></p>
+<p>可以通过<code>git rm</code>和<code>git add</code>命令来间接为一个文件命名。<br><br>假如你都版本库里存在一个<code>foo.html</code>的文件，需要命名为<code>bar.html</code>：<br></p>
+<pre><code>$ mv foo.html bar.html
+
+$ git rm foo.html
+rm &#39;foo.html&#39;
+
+$ git add bar.html
+
+$ ls
+bar.html  index.html
+</code></pre><p>在这个序列里，必须先执行<code>mv foo.html bar.html</code>，以防git rm命令会把foo.html从系统中永久删除。<br></p>
+<p>也可以使用更简洁的git mv来实现相同的操作：<br></p>
+<pre><code>$ git mv foo.html bar.html
+</code></pre><p>在任意情况下，暂存的变更都必须随后进行提交。<br></p>
+<pre><code>$ git commit -m&quot;Moved foo to bar&quot;
+[master 8b72b0c] Moved foo to bar
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename foo.html =&gt; bar.html (100%)
+</code></pre><p>Git在对文件的移动操作上与其他同类系统不同，他利用一个基于两个文件版本内容相似度的机制。<br></p>
+<h4 id="创建版本库副本"><a href="#创建版本库副本" class="headerlink" title="创建版本库副本"></a>创建版本库副本</h4><p>如果已经建立了一个厨师版本库，可以使用git clone命令来创建一个完整的副本，或者叫克隆。这就是人们如何通过Git在相同的文件上做自己的项目，并保持和其他版本库的同步。<br></p>
+<pre><code>$git clone repo repoOfCopy
+</code></pre><p>虽然这两个Git版本库里面包含相同的对象文件目录，但还有一些细微的差别，如果想探索其中的不同，可以使用如下命令。<br></p>
+<pre><code>$ls -lsa repo repoOfCopy
+$diff -r repo repoOfCopy
+</code></pre><h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>Git的配置文件全都是简单的.ini文件风格的文本文件。他们记录了很多Git命令使用的各种选项和设置。<br><br>Git支持不同层次的配置文件，按优先级递减的顺序如下：<br><br>.git/config<br><br>版本库特定的配置设置，可用–file选项修改，是默认选项，这些配置拥有最高优先级。<br><br>~/.gitconfig<br><br>用户特定的配置设置。可用–global选项修改。<br><br>/etc/gitconfig<br><br>这是系统范围的配置设置，如果你拥有他的写权限，可以用–system选项修改它。这些设置的优先级最低。<br><br>可以用<code>git config -l</code>命令查看配置：<br></p>
+<pre><code>$ git config -l
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这一章介绍了很多基本命令的使用，但是关于git的一些基本概念和关于Git是如何工作的还没有讲到。例如Git是如何存储文件的每个版本的？一次提交由什么组成？那一串长长的提交码是哪里来的？分支的概念该如何理解？下一篇将介绍Git的一些概念。<br></p>
+
       
 
       
@@ -239,6 +495,17 @@ gitment.render('gitment')
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
          <span id="busuanzi_container_page_pv">
               |阅读量(<span id="busuanzi_value_page_pv"></span>)
         </span>
@@ -305,6 +572,15 @@ gitment.render('gitment')
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/11/02/深入理解Git系列（二）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          深入理解Git系列（二）
+        
+      </div>
+    </a>
   
   
     <a href="/2018/10/28/CentOS-6-4-系统下-GitLab-搭建与基本配置/" id="article-nav-older" class="article-nav-link-wrap">
@@ -503,15 +779,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">music</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,15 +799,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -555,11 +831,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,11 +843,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hello world</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color2">hello world</a>
               </li>
              
               <li class="article-tag-list-item">

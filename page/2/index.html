@@ -171,6 +171,177 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-httpclient的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/08/httpclient的使用/">httpclient的使用</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/08/httpclient的使用/" class="archive-article-date">
+  	<time datetime="2018-10-08T07:46:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-08</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><!-- read more-->
+<h2 id="什么是httpclient"><a href="#什么是httpclient" class="headerlink" title="什么是httpclient"></a>什么是httpclient</h2><p>HttpClient 是 Apache <a href="https://hc.apache.org/" target="_blank" rel="external">Jakarta Common </a>下的子项目，用来提供高效的、最新的、功能丰富的支持 HTTP 协议的客户端编程工具包，并且它支持 HTTP 协议最新的版本和建议。<br><br>HttpClient相比传统JDK自带的URLConnection，增加了易用性和灵活性（具体区别，日后我们再讨论），它不仅是客户端发送Http请求变得容易，而且也方便了开发人员测试接口（基于Http协议的），即提高了开发的效率，也方便提高代码的健壮性。<br>在项目中，内部服务的调用需要使用httpclient要获取想要的内容，然后返回的是json格式数据，调用方再做处理。</p>
+<h2 id="使用方法步骤"><a href="#使用方法步骤" class="headerlink" title="使用方法步骤"></a>使用方法步骤</h2><ol>
+<li>创建HttpClient对象。<br></li>
+<li>创建请求方法的实例，并指定请求URL。如果需要发送GET请求，创建HttpGet对象；如果需要发送POST请求，创建HttpPost对象。<br></li>
+<li>如果需要发送请求参数，可调用HttpGet、HttpPost共同的setParams(HetpParams params)方法来添加请求参数；对于HttpPost对象而言，也可调用setEntity(HttpEntity entity)方法来设置请求参数。<br></li>
+<li>调用HttpClient对象的execute(HttpUriRequest request)发送请求，该方法返回一个HttpResponse。<br></li>
+<li>调用HttpResponse的getAllHeaders()、getHeaders(String name)等方法可获取服务器的响应头；调用HttpResponse的getEntity()方法可获取HttpEntity对象，该对象包装了服务器的响应内容。程序可通过该对象获取服务器的响应内容。可以根据自己的展示需要转换为对应的json数据或者Java Object<br></li>
+<li>释放连接。<br></li>
+</ol>
+<h2 id="使用样例"><a href="#使用样例" class="headerlink" title="使用样例"></a>使用样例</h2><h3 id="不带参数Get请求"><a href="#不带参数Get请求" class="headerlink" title="不带参数Get请求"></a>不带参数Get请求</h3><pre><code>@Test
+public void doGet() throws Exception{
+    //创建一个httpclient对象
+    CloseableHttpClient httpClient =HttpClients.createDefault();
+    //创建一个Get对象
+    HttpGet get=new HttpGet(&quot;http://localhost:8081/rest/content/list/89&quot;);
+    //执行请求
+    CloseableHttpResponse response = httpClient.execute(get);
+    //取响应的结果
+    int code = response.getStatusLine().getStatusCode();
+    System.out.println(code);
+    HttpEntity entity = response.getEntity();
+    String string = EntityUtils.toString(entity,&quot;utf-8&quot;);
+    System.out.println(string);
+    //关闭httpclient
+    response.close();
+    httpClient.close();
+}
+</code></pre><h3 id="带参数Get请求"><a href="#带参数Get请求" class="headerlink" title="带参数Get请求"></a>带参数Get请求</h3><pre><code>@Test
+public void doGetWithParam() throws Exception{
+    //创建一个httpclient对象
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    //创建一个uri对象
+    URIBuilder uriBuilder = new URIBuilder(&quot;http://www.sogou.com/web&quot;);
+    uriBuilder.addParameter(&quot;query&quot;, &quot;Java&quot;);
+    HttpGet get = new HttpGet(uriBuilder.build());
+    //执行请求
+    CloseableHttpResponse response = httpClient.execute(get);
+    //取响应的结果
+    int statusCode = response.getStatusLine().getStatusCode();
+    System.out.println(statusCode);
+    HttpEntity entity = response.getEntity();
+    String string = EntityUtils.toString(entity, &quot;utf-8&quot;);
+    System.out.println(string);
+    //关闭httpclient
+    response.close();
+    httpClient.close();
+}
+</code></pre><h3 id="不带参数Post请求"><a href="#不带参数Post请求" class="headerlink" title="不带参数Post请求"></a>不带参数Post请求</h3><pre><code>@Test
+public void doPost() throws Exception {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+
+    //创建一个post对象
+    HttpPost post = new HttpPost(&quot;http://localhost:8082/httpclient/post.html&quot;);
+    //执行post请求
+    CloseableHttpResponse response = httpClient.execute(post);
+    String string = EntityUtils.toString(response.getEntity());
+    System.out.println(string);
+    response.close();
+    httpClient.close();
+
+}
+</code></pre><h3 id="带参数Post请求"><a href="#带参数Post请求" class="headerlink" title="带参数Post请求"></a>带参数Post请求</h3><pre><code>@Test
+public void doPostWithParam() throws Exception{
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+
+    //创建一个post对象
+    HttpPost post = new HttpPost(&quot;http://localhost:8082/httpclient/post.html&quot;);
+    //创建一个Entity。模拟一个表单
+    List&lt;NameValuePair&gt; kvList = new ArrayList&lt;&gt;();
+    kvList.add(new BasicNameValuePair(&quot;username&quot;, &quot;zhangsan&quot;));
+    kvList.add(new BasicNameValuePair(&quot;password&quot;, &quot;123&quot;));
+
+    //包装成一个Entity对象
+    StringEntity entity = new UrlEncodedFormEntity(kvList, &quot;utf-8&quot;);
+    //设置请求的内容
+    post.setEntity(entity);
+
+    //执行post请求
+    CloseableHttpResponse response = httpClient.execute(post);
+    String string = EntityUtils.toString(response.getEntity());
+    System.out.println(string);
+    response.close();
+    httpClient.close();
+}
+</code></pre><p>实现post请求要自己模拟一个表单，匹配controller</p>
+<pre><code>@RequestMapping(value=&quot;/httpclient/post&quot;,method=RequestMethod.POST)
+@ResponseBody
+public String testPost(){
+    return &quot;OK&quot;;
+}
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/08/httpclient的使用/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-maven找不到父工程依赖问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -195,7 +366,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这两天maven新建工程的时候遇到一个很奇怪的问题，要依赖的父工程找不到，并且新建的工程目录有缺失，如下：<br><br><img src="https://i.imgur.com/X8lyU2E.jpg" alt=""><br>Google了一番都没有找到到问题所在，很多说是project-&gt;properties-&gt;java build path的问题，但是我的并不是。最后看到一个说是父工程命名的问题，所以顺着这个思路去检查了一番，果然发现了父工程<code>artifactId</code>有问题。原因是之前曾经重命名了这个父工程，但是pom.xml文件的artifactId并没有别改变，所以这个工程里面模块依赖下来都是重命名之前的artifactId。<br></p>
+        <script src="/assets/js/APlayer.min.js"> </script><!-- read more-->
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这两天maven新建工程的时候遇到一个很奇怪的问题，要依赖的父工程找不到，并且新建的工程目录有缺失，如下：<br><br><img src="https://i.imgur.com/X8lyU2E.jpg" alt=""><br>Google了一番都没有找到到问题所在，很多说是project-&gt;properties-&gt;java build path的问题，但是我的并不是。最后看到一个说是父工程命名的问题，所以顺着这个思路去检查了一番，果然发现了父工程<code>artifactId</code>有问题。原因是之前曾经重命名了这个父工程，但是pom.xml文件的artifactId并没有别改变，所以这个工程里面模块依赖下来都是重命名之前的artifactId。<br></p>
 <h2 id="说说Refactor的Rename"><a href="#说说Refactor的Rename" class="headerlink" title="说说Refactor的Rename"></a>说说Refactor的Rename</h2><p>这个操作只会重命名相应的目录名称，但是没办法改变里面文件已有的名称，所以会出现artifactId跟目录名称不一致的问题，就像这样：<br><br><img src="https://i.imgur.com/2idSjqC.png" alt=""><br>我的Refactor History<br><img src="https://i.imgur.com/QA4pFDR.png" alt=""><br>想想还真是有点坑，就差了一个字母o。</p>
 <h2 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h2><p>由于这两天是新建了一个maven工程，需要做一个新的功能，但是也要依赖父工程，这个时候输入的父工程artifactId就是重命名之后的，接着就出现了找不到父工程和目录结构混乱的问题。</p>
 <h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>把新建的工程删了，然后修改父工程的artifactId以及所有依赖此工程的pom.xml文件，然后再新建一个maven工程，重新依赖父工程，问题解决。<br><br><img src="https://i.imgur.com/QgKrt5Z.png" alt=""><br><br>折腾了一天的问题只是一个小小的命名不一致，重命名时候的粗心大意导致了莫名其妙的问题。<br></p>
@@ -279,8 +451,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><p>似乎很久都没有动过这一块了呢，今晚整理了一下自己乱如狗窝的博客，回看了曾经写过的一些文字，也想起了过往所经历的一切，开心的、不开心的，兴奋的，压抑的都有。想想这一切也是人生的一部分，经历过才能让人愈发的感触于心。<br><br>中秋节刚过，趁着小假期溜回了家。很高兴我有一个比很多人都要温暖的家，在家里可以过得很舒适，很融洽，可以什么都不想。这几年来，父母的白发似乎猛地多了起来，我才在心里提醒自己，爸妈都在变老了，不再是我小时候高大无比无所不能的超人了。以后的日子我要像爸妈曾经给过我的那样反馈回去，乌鸦尚会反哺，更何况人，感恩爸爸妈妈。<br><br>几天假过后回到学校发现，种了快两年的花全部枯萎了，也算是一个了结了吧。一开始种的这十五盆薰衣草，有的死于粗心，有的死于大意，有的死于关爱过度，有的死于照顾不足。最后一盆挂在了2018年9月，虽然原因不同，但是最后它们都化为干枯的枝干了。<br><br>这些花，是为了我所喜欢的人所种，现在所喜欢之人已不在，它们也该随风而去了。可能真是越长大，越不想矫情，我现在可以客观的看待这个事情，以及经历过或者正在经历着的芸芸众生。这是人类社会的一个普遍的现象，我们的内心在离开后留恋的到底是什么，我们的思维模式是什么样的。换作以前，我可能飘飘洒洒几千字，但是现在我只想安安静静，属于一个人的安静。这一切都只是人生的一个经历，往昔不可留，虽然内心还是相当不舍，但是既然选择了离开，就应该适应，世上既没有孟婆汤，也没有忘情水，那就让时间去抚平吧。<br><br>这也是这段时间开我第一次写关于她的文字，可能她永远也不会知道，像我这样的人，是要怎样才会求她不要离开，最后又是花了多大的勇气才将她彻底赶出我的生活。她问，我为什么要这么绝情，我想绝情的不是我吧…多少的心痛无奈与眼泪，只有自己懂，这不能跟任何人分享，倾吐也不会让自己实质上好受多少，夜醉不归也只是暂时的麻痹。平静的看待，平静的就过去了。各自安好，愿我们在彼此看不见的世界里熠熠生辉。<br><br>关于自己，可以慢慢的做技术了，可以做自己想做的，玩自己想玩的，也没有那么大的生活工作压力了，毕竟一个人，很好打理。踏踏实实充实自己，做自己喜欢的，大家都能健健康康开开心心就好，别无所求。<br></p>
-
+        <p>似乎很久都没有动过这一块了呢，今晚整理了一下自己乱如狗窝的博客，回看了曾经写过的一些文字，也想起了过往所经历的一切，开心的、不开心的，兴奋的，压抑的都有。想想这一切也是人生的一部分，经历过才能让人愈发的感触于心。<br><br>
+        
+          <a class="article-more-a" href="/2018/09/27/花谢了/#more">read more >></a>
+        
       
 
       
@@ -360,7 +534,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><p><read more=""></read></p>
+        <script src="/assets/js/APlayer.min.js"> </script><!-- read more-->
 <h2 id="FTP上传文件0字节问题"><a href="#FTP上传文件0字节问题" class="headerlink" title="FTP上传文件0字节问题"></a>FTP上传文件0字节问题</h2><p>这几天在做一个ftp图片服务器，使用的是vsftp客户端，按照一套流程下来，基本搭建完毕，在Windows窗口上传文件正常，但是到了在Java程序中就出现了问题，上传图片的时候并不会报错，而是会卡住大概30秒左右，接着返回false，并不会抛出异常。一开始在想会不会是服务器没搭好，但是逐步排查下来，并没有发现问题，并且如果是服务器本身出现了问题，那么Windows命令行也应该不能上传成功，但是窗口上传成功了，说明了服务器的搭建应该是没有问题的。后来怀疑是自己的代码有问题，但是去参考了一番，发现并没有什么异样，十分懵逼。<br><br>然后Google发现这样一个问题：<br><br>VSFTP有两种模式：pasv模式与port模式，也就是我们所说的主动和被动模式<br><br><strong>Port模式:</strong><br><br>当客户端C向服务端S连接后，使用的是Port模式,那么客户端C会发送一条命令告诉服务端S(客户端C在本地打开了一个端口N在等着你进行数据连接),当服务端S收到这个Port命令后 就会向客户端打开的那个端口N进行连接，这种数据连接就生成了。<br><br><strong>Pasv模式:</strong><br><br>当客户端C向服务端S连接后，服务端S会发信息给客户端C,这个信息是(服务端S在本地打开了一个端口M,你现在去连接我吧),当客户端C收到这个信息后，就可以向服务端S的M端口进行连接,连接成功后，数据连接也建立了。<br>从上面的解释中，大家可以看到两种模式主要的不同是数据连接建立的不同，对于Port模式，是客户端C在本地打开一个端口等服务端S去连接建立数据连接；而Pasv模式就是服务端S打开一个端口等待客户端C去建立一个数据连接。<br><br><strong>默认情况下，FTPCLIENT用的是port模式</strong><br><br>参考FTPCLIENT原码<br><br>默认参数设置：<br></p>
 <pre><code> //两常量的定义及解释
  /**
@@ -769,117 +943,6 @@ public class FtpUtil {
 
 
   
-    <article id="post-Nginx-ftp搭建图片服务器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/12/Nginx-ftp搭建图片服务器/">Nginx+ftp搭建图片服务器</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/12/Nginx-ftp搭建图片服务器/" class="archive-article-date">
-  	<time datetime="2018-09-12T14:32:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-12</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx<br></h2><p>这里就不说了<br></p>
-<h2 id="安装vsftp"><a href="#安装vsftp" class="headerlink" title="安装vsftp"></a>安装vsftp</h2><p>这里也不说了<br></p>
-<p>主要是Nginx代理路径的配置和图片上传的根目录，一定要设置对应的读写权限，不然在上传文件是会报错：<br></p>
-<pre><code>500 OOPS: cannot change directory:/var/www/images
-500 OOPS: priv_sock_get_cmd
-//Windows 命令行报错 
-ftp&gt; put E:\1491756492.jpg
-200 PORT command successful. Consider using PASV.
-553 Could not create file.
-</code></pre><h2 id="更改路径"><a href="#更改路径" class="headerlink" title="更改路径"></a>更改路径<br></h2><p>更改路径需要更改vsftp的vsftpd.conf文件<br><br>文件默认在/etc/vsftpd目录下</p>
-<pre><code># new defaut root create by Quan 2018/9/12
-local_root=/var/www/images  //针对系统用户
-chroot_local_user=NO     //是不是锁定在当前目录
-anon_root=/var/www/images  //针对匿名用户
-</code></pre><p>配置Nginx的nginx.conf配置文件<br><br>文件默认在 /usr/local/nginx/conf/目录下<br></p>
-<pre><code>    server {
-        listen       80;
-        server_name  localhost;
-
-        #charset koi8-r;
-
-        #access_log  logs/host.access.log  main;
-
-        location / {
-#  default root
-#  root   /home/ftpuser;
-#  new root
-             root   /var/www/images;
-            index  index.html index.htm;
-        }
-</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里新建的路径www/images一定要设置读写权限，否则会出现<code>553 Could not create file.</code>错误<br><br><strong>关于配置：</strong>这里面的配置还有很多，这里只是列举了一两个，下面附上完整配置<a href="https://blog.csdn.net/jianhong1990/article/details/52001785" target="_blank" rel="external">vsftp链接</a>、<a href="https://blog.csdn.net/chenweijiSun/article/details/70823482" target="_blank" rel="external">nginx.conf链接</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/12/Nginx-ftp搭建图片服务器/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1014,15 +1077,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">music</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1034,15 +1097,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1066,11 +1129,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1078,11 +1141,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hello world</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color2">hello world</a>
               </li>
              
               <li class="article-tag-list-item">

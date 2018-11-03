@@ -171,6 +171,89 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-广义表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/28/广义表/">广义表</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/28/广义表/" class="archive-article-date">
+  	<time datetime="2017-11-28T11:54:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="广义表的定义"><a href="#广义表的定义" class="headerlink" title="广义表的定义"></a>广义表的定义</h1><p>广义表(Lists，又称列表)是一种非线性的数据结构，是线性表的一种推广。即广义表中放松对表元素的原子限制，容许它们具有其自身结构，每一个元素也可以是一个表，得到一个表中有表的结构，这就是广义表。<br>广义表（Generalized List）一般记作<br>           L=（a1,a2….,an）<br>其中，ai可以是不可再分的元素，也可以是广义表，分别称为广义表L的原子和子表。<br>ADT Glist<br>{<br>   数据对象： D={ei | i=1,2,..,n;n&gt;=0 ;  eiÎAtomSet 或ei ÎGlist,<br>                                     AtomSet为某个数据对象}<br>   数据关系：R1={&lt; ei-1, ei &gt; | ei-1 , ei ÎD,2&lt;=i&lt;=n}<br>   基本操作：<br>       InitGList( &amp;L);<br>             操作结果：创建空的广义表L。<br>       CreateGList(&amp;L,S);<br>             初始条件：S是广义表的书写形式串。<br>             操作结果：由S创建广义表L。<br>       DestroyGList(&amp;L);<br>            初始条件：广义表L存在。<br>            操作结果：销毁广义表L。<br>CopyGList( &amp;T,L);<br>            初始条件：广义表L存在。<br>            操作结果：由广义表L复制得到广义表T。<br>       GListLength(L);<br>            初始条件：广义表L存在。<br>            操作结果：求广义表L的长度，即元素个数。<br>       GListDepth(L);<br>            初始条件：广义表L存在。<br>            操作结果：求广义表L的深度。<br>       GListEmpty (L);<br>            初始条件：广义表L存在。<br>            操作结果：判定广义表L是否为空。<br>       GetHead(L);<br>            初始条件：广义表L存在。<br>            操作结果：取广义表L的头。<br>GetTail( &amp;T,L);<br>            初始条件：广义表L存在。<br>            操作结果：取广义表L的尾。<br>       InsertFirst_GL(&amp;L,e);<br>            初始条件：广义表L存在。<br>            操作结果：插入元素e作为广义表L的第一元素。<br>       DeleteFirst_GL(&amp;L,&amp;e);<br>            初始条件：广义表L存在。<br>            操作结果：删除广义表L的第一元素，并用e返回其值。<br>       Traverse_GL (L,visit());<br>            初始条件：广义表L存在。<br>            操作结果：遍历广义表L，用函数visit处理每个元素。<br>｝</p>
+<h1 id="广义表的存储结构"><a href="#广义表的存储结构" class="headerlink" title="广义表的存储结构"></a>广义表的存储结构</h1><p>由于广义表(a1,a2,a3,…an)中的数据元素可以具有不同的结构，（或是原子，或是广义表），因此，难以用顺序存储结构表示，通常采用链式存储结构，每个数据元素可用一个结点表示。<br>    由于广义表中有两种数据元素，原子或广义表，因此，需要两种结构的结点：一种是表结点，用以表示列表；一种是原子结点，用以表示原子。  </p>
+<p>　　若列表不空，则可分解成表头和表尾；反之，一对确定的表头和表尾可唯一确定列表。由此，一个表结点可由三个域组成：标志域、指示表头的指针域和指示表尾的指针域；而原子结点只需两个域：标志域和值域。<br><img src="https://i.imgur.com/WF1GSh0.png" alt=""><br>例如<br><img src="https://i.imgur.com/xQg2I5x.jpg" alt=""><br><img src="https://i.imgur.com/oOxaL3n.jpg" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/28/广义表/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-林间新绿一重重，小蕾深藏数点红" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -531,90 +614,6 @@ return OK;
 
 
   
-    <article id="post-怎么将GitHub中的项目导入Eclipse" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/13/怎么将GitHub中的项目导入Eclipse/">怎么将GitHub中的项目导入Eclipse</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/13/怎么将GitHub中的项目导入Eclipse/" class="archive-article-date">
-  	<time datetime="2017-11-13T14:44:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><p><img src="https://i.imgur.com/90Wz7MS.jpg" alt=""></p>
-<h1 id="导入项目"><a href="#导入项目" class="headerlink" title="导入项目"></a>导入项目</h1><p>首先我们再Eclipse中打开Git视图，如图打开，选择Git，点击OK<br><img src="https://i.imgur.com/icFtWCT.png" alt=""><br><img src="https://i.imgur.com/YXqbWSC.png" alt=""><br>然后找到clone a Git Repository,如图红色框所指<br><img src="https://i.imgur.com/3blIquh.png" alt=""><br><img src="https://i.imgur.com/6yfAS7Y.png" alt=""><br>点击然后会出现如下界面，URL那一栏需要填写你要克隆的项目的地址，我们随便去GitHub上找个项目<br><img src="https://i.imgur.com/bvsux57.png" alt=""><br>点绿色框clone or download<br><img src="https://i.imgur.com/MwCLUy4.png" alt=""><br>复制出现的地址<br><img src="https://i.imgur.com/LwBLdvJ.png" alt=""><br>贴到刚刚的URL框中，就会变成这样，下面的user和passwords是我个人的，有所不同，这个没有关系，点next<br><img src="https://i.imgur.com/imqAVWV.png" alt=""><br>一般克隆项目我们只要克隆master分支，勾上，next<br><img src="https://i.imgur.com/Ybqwek5.png" alt=""><br>红色框内为存放地址，自己视情况而定，一般放到Eclipse工作空间里，点finish<br><img src="https://i.imgur.com/Iktiwog.png" alt=""><br>然后我们的Git Repository会出现我们刚刚导入的项目<br><img src="https://i.imgur.com/Et3SXxv.png" alt=""><br>展开，Working Directory选择项目文件，右击，import project<br><img src="https://i.imgur.com/2Na99gP.png" alt=""><br><img src="https://i.imgur.com/SQicf78.png" alt=""><br>如图，选择第一个，next<br><img src="https://i.imgur.com/M05JQ9f.png" alt=""><br>勾上，点finish<br><img src="https://i.imgur.com/pR1AhRO.png" alt=""><br>这时候工程目录就会出现我们刚刚导入的项目了<br><img src="https://i.imgur.com/i4PgubQ.png" alt=""><br>打开，可以完整的看到项目的结构，以及里面的文件以及jar包<br><img src="https://i.imgur.com/rlkApw4.png" alt=""></p>
-<h1 id="修改配置，去除错误"><a href="#修改配置，去除错误" class="headerlink" title="修改配置，去除错误"></a>修改配置，去除错误</h1><p>刚刚导入的项目，一般不会正常的，会出现许多奇奇怪怪的错误，有时候是jar包丢失，有时候是配置XML文件出错，这时候就要根据对应的错误去寻找解决办法了，这里就不一一叙述了。</p>
-<h1 id="关于"><a href="#关于" class="headerlink" title="关于"></a>关于</h1><p>这个教程简单粗暴，还有许多不全面的地方，或者目前还没有了解到的，以后再来补充。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/13/怎么将GitHub中的项目导入Eclipse/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/11/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/13/">Next &raquo;</a>
@@ -749,15 +748,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">music</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -769,15 +768,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -801,11 +800,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -813,11 +812,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hello world</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color2">hello world</a>
               </li>
              
               <li class="article-tag-list-item">
