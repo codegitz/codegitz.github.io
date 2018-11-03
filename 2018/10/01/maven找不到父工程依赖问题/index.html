@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>maven找不到父工程依赖问题 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言这两天maven新建工程的时候遇到一个很奇怪的问题，要依赖的父工程找不到，并且新建的工程目录有缺失，如下：Google了一番都没有找到到问题所在，很多说是project-&amp;gt;properties-&amp;gt;java build path的问题，但是我的并不是。最后看到一个说是父工程命名的问题，所以顺着这个思路去检查了一番，果然发现了父工程artifactId有问题。原因是之前曾经重命名了">
+  <meta name="description" content="前言这两天maven新建工程的时候遇到一个很奇怪的问题，要依赖的父工程找不到，并且新建的工程目录有缺失，如下：Google了一番都没有找到到问题所在，很多说是project-&amp;gt;properties-&amp;gt;java build path的问题，但是我的并不是。最后看到一个说是父工程命名的问题，所以顺着这个思路去检查了一番，果然发现了父工程artifactId有问题。原因是之前曾经重命名了这">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="maven找不到父工程依赖问题">
 <meta property="og:url" content="http://yoursite.com/2018/10/01/maven找不到父工程依赖问题/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="前言这两天maven新建工程的时候遇到一个很奇怪的问题，要依赖的父工程找不到，并且新建的工程目录有缺失，如下：Google了一番都没有找到到问题所在，很多说是project-&amp;gt;properties-&amp;gt;java build path的问题，但是我的并不是。最后看到一个说是父工程命名的问题，所以顺着这个思路去检查了一番，果然发现了父工程artifactId有问题。原因是之前曾经重命名了">
+<meta property="og:description" content="前言这两天maven新建工程的时候遇到一个很奇怪的问题，要依赖的父工程找不到，并且新建的工程目录有缺失，如下：Google了一番都没有找到到问题所在，很多说是project-&amp;gt;properties-&amp;gt;java build path的问题，但是我的并不是。最后看到一个说是父工程命名的问题，所以顺着这个思路去检查了一番，果然发现了父工程artifactId有问题。原因是之前曾经重命名了这">
 <meta property="og:image" content="https://i.imgur.com/X8lyU2E.jpg">
 <meta property="og:image" content="https://i.imgur.com/2idSjqC.png">
 <meta property="og:image" content="https://i.imgur.com/QA4pFDR.png">
 <meta property="og:image" content="https://i.imgur.com/QgKrt5Z.png">
-<meta property="og:updated_time" content="2018-11-02T05:33:56.890Z">
+<meta property="og:updated_time" content="2018-11-03T07:27:08.063Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="maven找不到父工程依赖问题">
-<meta name="twitter:description" content="前言这两天maven新建工程的时候遇到一个很奇怪的问题，要依赖的父工程找不到，并且新建的工程目录有缺失，如下：Google了一番都没有找到到问题所在，很多说是project-&amp;gt;properties-&amp;gt;java build path的问题，但是我的并不是。最后看到一个说是父工程命名的问题，所以顺着这个思路去检查了一番，果然发现了父工程artifactId有问题。原因是之前曾经重命名了">
+<meta name="twitter:description" content="前言这两天maven新建工程的时候遇到一个很奇怪的问题，要依赖的父工程找不到，并且新建的工程目录有缺失，如下：Google了一番都没有找到到问题所在，很多说是project-&amp;gt;properties-&amp;gt;java build path的问题，但是我的并不是。最后看到一个说是父工程命名的问题，所以顺着这个思路去检查了一番，果然发现了父工程artifactId有问题。原因是之前曾经重命名了这">
 <meta name="twitter:image" content="https://i.imgur.com/X8lyU2E.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -215,7 +215,7 @@ gitment.render('gitment')
     <div class="article-entry" itemprop="articleBody">
       
         <script src="/assets/js/APlayer.min.js"> </script><!-- read more-->
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这两天maven新建工程的时候遇到一个很奇怪的问题，要依赖的父工程找不到，并且新建的工程目录有缺失，如下：<br><br><img src="https://i.imgur.com/X8lyU2E.jpg" alt=""><br>Google了一番都没有找到到问题所在，很多说是project-&gt;properties-&gt;java build path的问题，但是我的并不是。最后看到一个说是父工程命名的问题，所以顺着这个思路去检查了一番，果然发现了父工程<code>artifactId</code>有问题。原因是之前曾经重命名了这个父工程，但是pom.xml文件的artifactId并没有别改变，所以这个工程里面模块依赖下来都是重命名之前的artifactId。<br></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这两天maven新建工程的时候遇到一个很奇怪的问题，要依赖的父工程找不到，并且新建的工程目录有缺失，如下：<br><br><img src="https://i.imgur.com/X8lyU2E.jpg" alt=""><br>Google了一番都没有找到到问题所在，很多说是project-&gt;properties-&gt;java build path的问题，但是我的并不是。最后看到一个说是父工程命名的问题，所以顺着这个思路去检查了一番，果然发现了父工程<code>artifactId</code>有问题。原因是之前曾经重命名了这个父工程，但是pom.xml文件的artifactId并没有别改变，所以这个工程里面模块依赖下来都是重命名之前的artifactId。<br><br><a id="more"></a></p>
 <h2 id="说说Refactor的Rename"><a href="#说说Refactor的Rename" class="headerlink" title="说说Refactor的Rename"></a>说说Refactor的Rename</h2><p>这个操作只会重命名相应的目录名称，但是没办法改变里面文件已有的名称，所以会出现artifactId跟目录名称不一致的问题，就像这样：<br><br><img src="https://i.imgur.com/2idSjqC.png" alt=""><br>我的Refactor History<br><img src="https://i.imgur.com/QA4pFDR.png" alt=""><br>想想还真是有点坑，就差了一个字母o。</p>
 <h2 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h2><p>由于这两天是新建了一个maven工程，需要做一个新的功能，但是也要依赖父工程，这个时候输入的父工程artifactId就是重命名之后的，接着就出现了找不到父工程和目录结构混乱的问题。</p>
 <h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>把新建的工程删了，然后修改父工程的artifactId以及所有依赖此工程的pom.xml文件，然后再新建一个maven工程，重新依赖父工程，问题解决。<br><br><img src="https://i.imgur.com/QgKrt5Z.png" alt=""><br><br>折腾了一天的问题只是一个小小的命名不一致，重命名时候的粗心大意导致了莫名其妙的问题。<br></p>

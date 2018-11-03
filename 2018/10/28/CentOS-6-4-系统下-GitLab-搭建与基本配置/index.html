@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://i.imgur.com/L6MfjEr.png">
 <meta property="og:image" content="https://i.imgur.com/H5KPWxk.png">
 <meta property="og:image" content="https://i.imgur.com/z3dLiLU.png">
-<meta property="og:updated_time" content="2018-11-02T05:33:19.680Z">
+<meta property="og:updated_time" content="2018-11-03T07:25:55.568Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS 6.4 系统下 GitLab 搭建与基本配置">
 <meta name="twitter:description" content="Gitlab简介 GitLab 是一个开源的版本管理系统，提供了类似于 GitHub 的源代码浏览，管理缺陷和注释等功能，你可以将代码免费托管到 GitLab.com，而且不限项目数量和成员数。最吸引人的一点是，可以在自己的服务器上搭建 GitLab CE （社区免费版）版本，方便内部团队协作开发和代码管理。最近需要用到Gitlab管理项目，所以手动搭建了一个Gitlab平台。环境和资源准备：">
@@ -221,10 +221,8 @@ gitment.render('gitment')
 <p><a href="https://about.gitlab.com/" target="_blank" rel="external">GitLab</a> 是一个开源的版本管理系统，提供了类似于 GitHub 的源代码浏览，管理缺陷和注释等功能，你可以将代码免费托管到 GitLab.com，而且不限项目数量和成员数。最吸引人的一点是，可以在自己的服务器上搭建 GitLab CE （社区免费版）版本，方便内部团队协作开发和代码管理。<br><br>最近需要用到Gitlab管理项目，所以手动搭建了一个Gitlab平台。<br><br>环境和资源准备：<br></p>
 <ul>
 <li>阿里云CentOS 6.4服务器<br></li>
-<li>gitlab-ce-10.2.3-ce.0.el6.x86_64.rpm<br></li>
-</ul>
-<h2 id="GitLab服务构成"><a href="#GitLab服务构成" class="headerlink" title="GitLab服务构成"></a>GitLab服务构成</h2><p>GitLab由以下服务构成：</p>
-<ul>
+<li>gitlab-ce-10.2.3-ce.0.el6.x86_64.rpm<br><a id="more"></a>
+<h2 id="GitLab服务构成"><a href="#GitLab服务构成" class="headerlink" title="GitLab服务构成"></a>GitLab服务构成</h2>GitLab由以下服务构成：</li>
 <li>nginx：静态Web服务器</li>
 <li>gitlab-shell：用于处理Git命令和修改authorized keys列表</li>
 <li>gitlab-workhorse:轻量级的反向代理服务器</li>
