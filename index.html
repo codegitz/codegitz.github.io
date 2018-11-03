@@ -195,80 +195,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><!--read more-->
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇介绍了Git的一些典型的使用方法，并且留下了很多疑问。这一篇来讨论一下Git的冠军架构组成和一些重要的概念来探讨Git的不同之处和原因。下面开始吧。<br></p>
-<h2 id="Git基本概念"><a href="#Git基本概念" class="headerlink" title="Git基本概念"></a>Git基本概念</h2><h3 id="版本库"><a href="#版本库" class="headerlink" title="版本库"></a>版本库</h3><p>Git版本库(repository)只是一个简单的数据库，其中包含所有用来维护与管理项目的修订版本和历史信息。在Git中，跟大多数版本控制系统一样，一个版本库维护项目整个生命周期的完整副本。Git版本库不仅仅提供版本库中所有文件的完整副本，还提供版本库本身的副本。<br><br>Git在每个版本库里维护一组配置值。例如用户名和email地址，不想文件数据和他版本库的元数据，在把一个版本库克隆（clone）或者复制到另一个版本库的时候配置设置是不跟着转移的。相反，Git对每个网站，每个用户和每个版本库的配置和设置信息都进行管理与检查。<br><br>在版本库中，Git维护两个主要的数据结构：对象库(object store) 和索引(index)。所有这些版本库数据存放在工作目录根目录下一个名为<code>.git</code>的子目录中。<br><br>对象库在复制操作的时候能进行有效复制，这也是用来支持完全分布式VCS的一种技术。索引是暂时的信息，对版本库来说是私有的，并且可以在需要的时候按需求进行创建和修改。<br></p>
-<h3 id="Git对象类型"><a href="#Git对象类型" class="headerlink" title="Git对象类型"></a>Git对象类型</h3><p>对象库是Git版本库实现的心脏。它包含你的原始数据文件和所有的日志消息，锁着信息，日期，以及其他用来重建项目任意版本或分支的信息。<br><br>Git放在对象库里的对象只有4种类型：块(blob)、目录树(tree)、提交(commit)和标签(tag)。这4种原子对象构成Git高层数据结构的基础。<br></p>
-<ul>
-<li><strong>块(blob)</strong><br><br>文件的每一个版本表示为一个块(blob)。blob是二进制大对象(binary large object)的缩写,用来指代某些可以包含任意数据的变量或文件，同时其内部结构会被程序忽略。一个blob被视为一个黑盒，一个blob保存一个文件的数据，但是不包含任何关于这个文件的元数据，甚至连文件名都没有。<br></li>
-<li><strong>目录树(tree)</strong><br><br>一个目录树(tree)对象代表一层目录信息。它记录blob标识符，路径名和在一个目录里所有文件的一些元数据。它也可以递归引用其他目录树或者子树对象，从而建立一个包含文件和子目录的完整层次结构。<br></li>
-<li>提交(commit)<br><br>一个提交(commit)对象保存版本库中每一次变化的元数据，包括作者、提交者、提交日期和日志消息。每一个提交对象指向一个目录树对象，这个目录树对象在一张完整的快照中捕获提交时版本库的状态。最初的提交或者根提交(root commit)是没有父提交的。大多数提交都有一个父提交。<br></li>
-<li><strong>标签(tag)</strong><br><br>一个标签对象分配一个任意的且人类可读的名字给一个特定对象，通常是一个提交对象。虽然<code>c773409a4d6da80e69858095be509f0fcf0c8632</code>指的是一个确切且定义好的对象，但是一个熟悉的标签名可能会更清晰易懂。<br></li>
-</ul>
-<p>随着时间的推移，所有信息在对象库中会变化和增长，项目的编辑，添加和删除都会被跟踪和建模。Git把对象压缩并存储在打包文件(pack file)里,这些文件也在对象库里。<br></p>
-<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><p>索引是一个临时的、动态的二进制文件，它描述整个版本库的目录结构。更具体地说，索引捕获项目在某个时刻的整体结构的一个版本。项目的状态可以用一个提交和一颗目录树表示，它可以来自项目历史中的任意时刻，或者他可以是你正在开发的未知状态。<br><br>作为开发人员，你通过Git命令在索引中暂存(stage)变更。变更通常是添加，删除或者编辑某个文件或某些文件。索引会记录和保存那些变更，保障他们的安全直到你准备好提交了。还可以删除或者替换索引中的变更。因此，索引支持一个由你主导的从复杂的版本库状态到一个可推测的更好状态的逐步过渡。<br></p>
-<h3 id="可寻址内容名称"><a href="#可寻址内容名称" class="headerlink" title="可寻址内容名称"></a>可寻址内容名称</h3><p>Git对象库被组织及实现在一个内容寻址的存储系统。具体而言，对象库中的每个对象都有一个唯一的名称，这个名称是向对象的内容应用SHA1得到的SHA1散列值。因为一个对象的完整内容决定了这个散列值，并且认为这个散列值能有效并唯一地对应特定的内容，所以SHA1散列值用来做对象数据库中对象的名字和索引是完全充分的。文件的任何微小变化都会导致SHA1散列值的改变，使得文件的新版本被单独编入索引。<br><br>SHA1的值是一个160位的数，通常表示为一个40位的十六进制数。SHA1散列计算的一个重要特性是不管内容在哪里，它对同样的内容始终产生同样的ID。因此，文件的SHA1散列ID是一种有效的全局唯一标识符。<br><br>这里有一个强大的推论，在互联网上，文件或者任意大小的blob都可以通过仅比较他们的SHA1标识符来判断是否相同。<br></p>
-<h3 id="Git追踪文件"><a href="#Git追踪文件" class="headerlink" title="Git追踪文件"></a>Git追踪文件</h3><p>Git追踪文件的方式和大多数其他的版本控制系统不一样。Git使用SHA1给文件命名，前面已经说过，如果两个blob的SHA1值一样，那么它们内容就是一样的，这样无论这个文件位于哪个目录下，对象库里只会存一份blob，并且以SHA1作为索引，不管文件位于用户目录结构的哪个位置，都是用那个相同的对象指代其内容。<br><br>如果这些文件发生了变化，就会生成新的SHA1值，Git会识别它是一个不同的blob，然后把这个新的blob加到对象库中。原来的blob在对象库里保持不变，为没有变化的文件使用。<br><br>其次，当文件从一个版本表单下一个版本的时候，Git的内部数据库有效的存储每个文件的每个版本，而不是它们的差异。<br></p>
-<h3 id="打包文件"><a href="#打包文件" class="headerlink" title="打包文件"></a>打包文件</h3><p>Git使用了一种叫做打包文件(pack file)的更有效的存储机制。要创建一个打包文件，Git首先定位内容非常相似的全部文件，然后为它们之一存储整个内容，之后计算文件之间的差异并且只储存差异。这非常高效，实在是很妙啊，不得不服这些设计人员的脑洞。<br></p>
-<h2 id="对象库图示"><a href="#对象库图示" class="headerlink" title="对象库图示"></a>对象库图示</h2><p>前面说了这么多，可能还不是很清晰，下面上图，图看起来更加清晰好理解一点，让我们来看看对象之间是如歌写作来形成完整系统的。<br><br>blob对象时数据结构的底端，它什么都不引用而且只被树对象引用。<br><br>树对象指向若干个blob对象，也可能指向其他的树对象，许多不同的提交对象可能指向任何给定的树对象。<br><br>一个圆圈表示一个提交对象，一个提交对象指向一个特定的树对象，并且这个树对象是有提交对象引入版本库的。<br><br>每个标签由一个平行四边形表示。每个标签可以指向最多一个提交对象。<br><br>分支不是一个基本的Git对象，但是它在命名提交对象的时候起到了至关重要的作用。<br><br><img src="https://i.imgur.com/TsdRXcR.png" alt=""></p>
-<p>这张图显示了一个版本库在添加了两个文件的初始提交后的状态。两个文件都在顶级目录中。同时他们的master分支和一个叫V1.0的标签都指向ID为1492的提交对象。<br><br>现在我们增加一些东西，让它看起来不那么单薄。保留原来的两个文件不变。添加一个包含一个文件的新子目录。对象库就如下图所示。<br></p>
-<p><img src="https://i.imgur.com/ZJbcUMq.png" alt=""><br>如同上一张图，新提交对象添加了一个关联的树对象来表示目录和文件结构的总状态。在这里，他是ID为cafed00d的树对象。<br><br>因为顶级目录被添加的新子目录改变了，顶级树对象的内容也跟着改变了。所以Git引进了一个新的树对象cafed00d。<br><br>然后blob对象dead23和feeble在从第一次提交到第二次提交的时候没有发生变化，Git意识到ID没有变化，所以可以直接被cafed00d树对象直接饮用和共享。<br><br>注意提交之间的箭头方向，父提交在时间上更早些，因此，在Git的实现里，每个提交对象指回它的一个或多个父提交。可能你会有些困惑，因为版本库的状态通常画成反方向：数据流从父提交流向子提交。<br><br>这其实也不难理解，自己缕一下思路就清楚了。<br></p>
-<h2 id="Git工作时的概念"><a href="#Git工作时的概念" class="headerlink" title="Git工作时的概念"></a>Git工作时的概念</h2><p>前面说了相当多的概念，下面我们来看看所有这些概念好组件是图和在版本库里结合在一起的。我们创建一个新的版本库，并更详细的检查内部文件和对象库。</p>
-<pre><code>$ mkdir hello
-
-$ cd hello
-
-$ git init
-Initialized empty Git repository in ../hello/.git/
-
-$ find .
-.
-./.git
-./.git/config
-./.git/description
-./.git/HEAD
-./.git/hooks
-./.git/hooks/applypatch-msg.sample
-./.git/hooks/commit-msg.sample
-./.git/hooks/post-update.sample
-./.git/hooks/pre-applypatch.sample
-./.git/hooks/pre-commit.sample
-./.git/hooks/pre-push.sample
-./.git/hooks/pre-rebase.sample
-./.git/hooks/pre-receive.sample
-./.git/hooks/prepare-commit-msg.sample
-./.git/hooks/update.sample
-./.git/info
-./.git/info/exclude
-./.git/objects
-./.git/objects/info
-./.git/objects/pack
-./.git/refs
-./.git/refs/heads
-./.git/refs/tags
-</code></pre><p>可以看到.git目录包含很多内容。这些文件是基于模板目录显示的，根据需要可以进行调整。一般情况下我们并不需要查看这里面的目录，认为这些事隐藏的文件。我们重点来看<code>.git/objects</code>目录，这是用来存放所有Git对象的目录，在初始化完成的时候，这个目录下只有几个占位符，也就是说可以看做是空的。<br></p>
-<pre><code>$ find .git/objects/
-.git/objects/
-.git/objects/info
-.git/objects/pack
-</code></pre><p>我们创建一个简单的对象看看这个目录会如何变化。<br></p>
-<pre><code>$ echo &quot;hello world&quot; &gt; hello.txt
-$ git add hello.txt
-#如果这里输入的hello world跟这里一样，没有间距和大小写的差别，那个objects目录应该如下
-$ find .git/objects/
-.git/objects/
-.git/objects/3b
-.git/objects/3b/18e512dba79e4c8300dd08aeb37f8e728b8dad
-.git/objects/info
-.git/objects/pack
-</code></pre><p>为什么会冒出这一串长长的东西，看看这个是不是跟之前说的SHA1散列值很像？</p>
-<h2 id="再来回顾一下对象、散列和blob"><a href="#再来回顾一下对象、散列和blob" class="headerlink" title="再来回顾一下对象、散列和blob"></a>再来回顾一下对象、散列和blob</h2><p>当创建hello.txt的时候，Git并不关心它的文件名。Git只关心文件里的内容，Git根据内容对这个blob执行一些操作，计算它的SHA1散列值，把散列值的十六进制表示作为文件名放进对象库中。<br><br>这里的SHA1值认为是唯一的，发生碰撞的概率几乎可以忽略，可以参考《应用密码学》。<br><br>在这种情况下的散列值是<br><code>3b18e512dba79e4c8300dd08aeb37f8e728b8dad</code>，160位的SHA1值可以用40位十六进制数表示。因此，这个文件另存为<code>.git/objects/3b/18e512dba79e4c8300dd08aeb37f8e728b8dad</code>。Git在前两个数字后面插入一个”/“来提高文件系统效率。<br><br>我们可以使用散列值把它从对象库中取出来。<br></p>
-<pre><code>$ git cat-file -p 3b18e512dba79e4c8300dd08aeb37f8e728b8dad
-hello world
-</code></pre><p>Git提供这个命令通过对象的前缀查找对象的散列值。<br></p>
-<pre><code>$ git rev-parse 3b18e512d
-3b18e512dba79e4c8300dd08aeb37f8e728b8dad
-</code></pre><h2 id="文件和树"><a href="#文件和树" class="headerlink" title="文件和树"></a>文件和树</h2>
+        <!--read more-->
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇介绍了Git的一些典型的使用方法，并且留下了很多疑问。这一篇来讨论一下Git的冠军架构组成和一些重要的概念来探讨Git的不同之处和原因。下面开始吧。<br><br>
+        
+          <a class="article-more-a" href="/2018/11/02/深入理解Git系列（二）/#more">read more >></a>
+        
       
 
       
@@ -348,8 +279,7 @@ hello world
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><!-- read more-->
-<p>最近版本管理使用了自己搭建的gitlab服务器，git命令大家肯定都或多或少用过，以前用的时候也只是git add . git commit等等几个简单的命令，并没有深入去了解Git的内部原理。这次面对可以会出现各种管理的冲突，我觉得有必要深入学习一下Git的原理和使用。下面就一步一步来开始这趟旅程吧！<br><br>首先申明一下，这系列文章可能会有点枯燥，大部分都是讲解一些命令用法概念，并没有很新奇的玩意。<br></p>
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近版本管理使用了自己搭建的gitlab服务器，git命令大家肯定都或多或少用过，以前用的时候也只是git add . git commit等等几个简单的命令，并没有深入去了解Git的内部原理。这次面对可以会出现各种管理的冲突，我觉得有必要深入学习一下Git的原理和使用。下面就一步一步来开始这趟旅程吧！<br><br>首先申明一下，这系列文章可能会有点枯燥，大部分都是讲解一些命令用法概念，并没有很新奇的玩意。<br></p>
 <p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/one.png" alt=""></p>
 <h2 id="Git命令概览"><a href="#Git命令概览" class="headerlink" title="Git命令概览"></a>Git命令概览</h2><p>输入git,Git就会不带任何参数的列出他的选项和最常用的子命令。<br></p>
 <pre><code>$ git
