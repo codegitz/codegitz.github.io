@@ -17,7 +17,7 @@
 <meta property="og:description" content="前言上一篇介绍了Git的一些典型的使用方法，并且留下了很多疑问。这一篇来讨论一下Git的冠军架构组成和一些重要的概念来探讨Git的不同之处和原因。下面开始吧。">
 <meta property="og:image" content="https://i.imgur.com/TsdRXcR.png">
 <meta property="og:image" content="https://i.imgur.com/ZJbcUMq.png">
-<meta property="og:updated_time" content="2018-11-03T07:22:36.595Z">
+<meta property="og:updated_time" content="2018-11-03T08:46:11.405Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解Git系列（二）">
 <meta name="twitter:description" content="前言上一篇介绍了Git的一些典型的使用方法，并且留下了很多疑问。这一篇来讨论一下Git的冠军架构组成和一些重要的概念来探讨Git的不同之处和原因。下面开始吧。">
@@ -285,7 +285,29 @@ hello world
 </code></pre><p>Git提供这个命令通过对象的前缀查找对象的散列值。<br></p>
 <pre><code>$ git rev-parse 3b18e512d
 3b18e512dba79e4c8300dd08aeb37f8e728b8dad
-</code></pre><h2 id="文件和树"><a href="#文件和树" class="headerlink" title="文件和树"></a>文件和树</h2>
+</code></pre><h2 id="文件和树"><a href="#文件和树" class="headerlink" title="文件和树"></a>文件和树</h2><p>可以想到的疑问是，文件名到哪去了？我们应该也可以通过文件名来找到文件。Git通过另一种叫做目录树(tree)的对象来跟踪文件的路径名。当使用<code>git add</code>命令增加文件的时候，Git会为每个文件的内容创建一个对象，但是它并不会马上给树创建一个对象。Git会去更新索引，索引位于<code>.git/index</code>中，每次执行命令（如git add,git rm，git mv ）的时候，Git会用新的路径名和blob信息来更新索引。<br><br>任何时候都可以从当前索引创建一个树对象，只要通过底层的<code>git write-tree</code>来捕获索引当前信息的快照就可以了。<br><br>目前，该索引只包含一个hello.txt文件。<br></p>
+<pre><code>//可以看到文件的关联
+$ git ls-files -s
+100644 3b18e512dba79e4c8300dd08aeb37f8e728b8dad 0       hello.txt
+//捕获索引状态并保存到一个树对象里
+$ git write-tree
+68aba62e560c0ebc3396e8ae9335232cd93a3f60
+
+$ find .git/objects/
+.git/objects/
+.git/objects/3b
+.git/objects/3b/18e512dba79e4c8300dd08aeb37f8e728b8dad
+.git/objects/68
+.git/objects/68/aba62e560c0ebc3396e8ae9335232cd93a3f60
+.git/objects/info
+.git/objects/pack
+</code></pre><p>现在有两个对象 ，    3b18e5的blob对象，和一个新的68aba6树对象。可以看到，SHA1对象名完全对应<code>.git/objects</code>下的子目录和文件名。<br></p>
+<p>树对象，就像blob一样，可以用底层命令来查看它。<br></p>
+<pre><code>$ git cat-file -p 68aba6
+100644 blob 3b18e512dba79e4c8300dd08aeb37f8e728b8dad    hello.txt
+</code></pre><p>这里可以看到对应的blob对象和文件名的关联关系。<br></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里还是介绍了Git底层的一些存储原理和方式，弄清楚可以让我们更好地去理解Git的工作方式。</p>
+
       
 
       
