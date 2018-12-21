@@ -39,7 +39,7 @@
 <!-- ����gitment��css��js�ļ� -->
 <link rel="stylesheet" href="/gitment.css"> 
 <script src="/gitment.js"></script> 
-<link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"></script></head>
+</head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -171,20 +171,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Dplayer的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Hibernate入门系列（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/07/Dplayer的使用/">Dplayer的使用</a>
+      <a class="article-title" href="/2018/03/14/Hibernate入门系列（二）/">Hibernate入门系列（二）</a>
     </h1>
   
 
         
-        <a href="/2017/12/07/Dplayer的使用/" class="archive-article-date">
-  	<time datetime="2017-12-06T16:56:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
+        <a href="/2018/03/14/Hibernate入门系列（二）/" class="archive-article-date">
+  	<time datetime="2018-03-13T16:48:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-14</time>
 </a>
         
       </header>
@@ -195,16 +195,124 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><pre><code>npm install dplayer --save
-npm install hexo-tag-dplayer
-</code></pre><p>简单的安装完成之后在文章中就可以正常使用了，关于标签的使用，可以到插件作者主页<a href="https://github.com/MoePlayer/DPlayer" target="_blank" rel="external">使用文档</a>去查看<br>如果提示缺少文件什么的，请参照这篇文章进行添加:<a href="http://www.jianshu.com/p/53e0d2a617da" target="_blank" rel="external">参考</a></p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>插入代码</p>
-<pre><code>{% dplayer "url=http://p0e6ktyto.bkt.clouddn.com/MSN%20%E6%9C%80%E5%90%8E%E7%9A%84%E4%B8%89%E9%87%8D%E5%A5%8F_%20%E7%BB%9D%E5%94%B12017_%E9%AB%98%E6%B8%85.mp4"  "pic=https://i.imgur.com/n3YAGhq.jpg" "loop=yes" "theme=#FADFA3" "autoplay=false" "token=tokendemo" %}
-</code></pre><pre><code>插入视频代码内容大致如下
-{% dplayer "视频链接"  "封面图片链接" "循环播放loop=yes" "theme=#FADFA3" "自动播放autoplay=false" "token=tokendemo" %}
-</code></pre><p>效果如下：</p>
-<p><center>MSN 最后的三重奏_ 绝唱2017</center><br><div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","loop":true,"video":{"url":"http://p0e6ktyto.bkt.clouddn.com/MSN%20%E6%9C%80%E5%90%8E%E7%9A%84%E4%B8%89%E9%87%8D%E5%A5%8F_%20%E7%BB%9D%E5%94%B12017_%E9%AB%98%E6%B8%85.mp4","pic":"https://i.imgur.com/n3YAGhq.jpg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script><br><img src="https://i.imgur.com/n3YAGhq.jpg" alt=""></p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>以上就是关于Dplayer的简单使用，详细配置见作者<a href="http://dplayer.js.org/docs/" target="_blank" rel="external">Doc</a></p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Hibernate入门系列（二）"><a href="#Hibernate入门系列（二）" class="headerlink" title="Hibernate入门系列（二）"></a>Hibernate入门系列（二）</h1><h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><h3 id="Session-概述"><a href="#Session-概述" class="headerlink" title="Session 概述"></a>Session 概述</h3><ul>
+<li>Session 接口是 Hibernate 向应用程序提供的操纵数据库的最主要的接口, 它提供了基本的保存, 更新, 删除和加载 Java 对象的方法.</li>
+<li>Session 具有一个缓存, 位于缓存中的对象称为持久化对象, 它和数据库中的相关记录对应. Session 能够在某些时间点, 按照缓存中对象的变化来执行相关的 SQL 语句, 来同步更新数据库, 这一过程被称为刷新缓存(flush)</li>
+<li>站在持久化的角度, Hibernate 把对象分为 4 种状态: 持久化状态, 临时状态, 游离状态, 删除状态. Session 的特定方法能使对象从一个状态转换到另一个状态. <h3 id="Session-缓存"><a href="#Session-缓存" class="headerlink" title="Session 缓存"></a>Session 缓存</h3></li>
+<li>在 Session 接口的实现中包含一系列的 Java 集合, 这些 Java 集合构成了 Session 缓存. 只要 Session 实例没有结束生命周期, 且没有清理缓存，则存放在它缓存中的对象也不会结束生命周期</li>
+<li><p>Session 缓存可减少 Hibernate 应用程序访问数据库的频率。<br><img src="https://i.imgur.com/ImtQv3c.png" alt=""></p>
+<pre><code>  News news1=(News) session.get(News.class, 2);
+  News news2=(News) session.get(News.class, 2);
+</code></pre><p>例如执行上面这两行代码，hibernate只会向数据库发送一次SQL语句。<br><br>操作session缓存模型<br><img src="https://i.imgur.com/lNSw9XC.png" alt=""></p>
+<h4 id="flush-缓存"><a href="#flush-缓存" class="headerlink" title="flush 缓存"></a>flush 缓存</h4><p>flush：Session 按照缓存中对象的属性变化来同步更新数据库<br>默认情况下 Session 在以下时间点刷新缓存：</p>
+</li>
+<li><p>显式调用 Session 的 flush() 方法</p>
+</li>
+<li>当应用程序调用 Transaction 的 commit（）方法的时, 该方法先 flush ，然后在向数据库提交事务</li>
+<li>当应用程序执行一些查询(HQL, Criteria)操作时，如果缓存中持久化对象的属性已经发生了变化，会先 flush 缓存，以保证查询结果能够反映持久化对象的最新状态<br>注：若希望改变 flush 的默认时间点, 可以通过 Session 的 setFlushMode() 方法显式设定 flush 的时间点</li>
+</ul>
+<p><strong>flush 缓存的例外情况: 如果对象使用 native 生成器生成 OID, 那么当调用 Session 的 save() 方法保存对象时, 会立即执行向数据库插入该实体的 insert 语句.</strong><br><br>commit() 和 flush() 方法的区别：flush 执行一系列 sql 语句，但不提交事务；commit 方法先调用flush() 方法，然后提交事务. 意味着提交事务意味着对数据库操作永久保存下来。<br><br><strong>Hibernate 主键生成策略:</strong></p>
+<p>increment：代理主键，适合于所有数据库，由hibernate维护主键自增，和底层数据库无关，但是不适合于2个或以上hibernate进程。(少用)</p>
+<p>identity：代理主键，适合于Mysql或ms sql server等支持自增的dbms，主键值不由hibernate维护。</p>
+<p>sequence：代理主键，适合于oracle等支持序列的dbms，主键值不由hibernate维护，由序列产生。</p>
+<p>native：代理主键，根据底层数据库的具体特性选择适合的主键生成策略，如果是mysql或sqlserver，选择identity，如果是oracle，选择sequence。</p>
+<p>hilo：代理主键，hibernate把特定表的字段作为hign值，生成主键值</p>
+<p>uuid.hex：代理主键，hibernate采用uuid 128位算法生成基于字符串的主键值</p>
+<p>assign：适合于应用程序维护的自然主键。</p>
+<p>注：代理主键是指与业务无关且能唯一标识数据库中记录,一般是数据库自动生成的,比如mysql可以使用auto_increment,Sql2000可以使用identity生成方式,oracle可以使用sequence生成方式 自然主键指业务相关,由用户指定,且能唯一标识数据库中的任意一条记录<br><br><strong>数据库的隔离级别</strong><br><br>数据库事务的隔离级别有4个，由低到高依次为Read uncommitted、Read committed、Repeatable read、Serializable，这四个级别可以逐个解决脏读、不可重复读、幻读这几类问题。<br>对于同时运行的多个事务, 当这些事务访问数据库中相同的数据时, 如果没有采取必要的隔离机制, 就会导致各种并发问题:<br><br><strong>脏读</strong>: 对于两个事物 T1, T2, T1 读取了已经被 T2 更新但还没有被提交的字段. 之后, 若 T2 回滚, T1读取的内容就是临时且无效的.<br></p>
+<p><strong>不可重复读</strong>: 对于两个事物 T1, T2, T1 读取了一个字段, 然后 T2 更新了该字段. 之后, T1再次读取同一个字段, 值就不同了.<br></p>
+<p><strong>幻读</strong>: 对于两个事物 T1, T2, T1 从一个表中读取了一个字段, 然后 T2 在该表中插入了一些新的行. 之后, 如果 T1 再次读取同一个表, 就会多出几行.<br></p>
+<p>数据库事务的隔离性: 数据库系统必须具有隔离并发运行各个事务的能力, 使它们不会相互影响, 避免各种并发问题. <br><br>一个事务与其他事务隔离的程度称为隔离级别. 数据库规定了多种事务隔离级别, 不同隔离级别对应不同的干扰程度, 隔离级别越高, 数据一致性就越好, 但并发性越弱<br></p>
+<p><span style="background-color:inherit;font-size:16px;">√: 可能出现    ×: 不会出现</span></p><p></p>
+<table border="1" cellpadding="2" cellspacing="0" style="border-collapse:collapse;color:rgb(51,51,51);"><tbody style="background-color:inherit;"><tr style="background-color:inherit;"><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><div style="min-width:2px;background-color:inherit;"><br style="background-color:inherit;"></div><br></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">脏读</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">不可重复读</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">幻读</span></td><br></tr><tr style="background-color:inherit;"><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">Read uncommitted</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">√</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">√</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">√</span></td><br></tr><tr style="background-color:inherit;"><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">Read committed–<span style="background-color:rgb();">Sql Server , Oracle</span></span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;****min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">×</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">√</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">√</span></td><br></tr><tr style="background-color:inherit;"><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">Repeatable read–<a rel="nofollow" style="color;font-weight:bold;">MySQL</a></span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">×</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">×</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">√</span></td><br></tr><tr style="background-color:inherit;"><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">Serializable</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">×</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">×</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">×</span></td><br></tr></tbody></table>
+
+<p>Oracle 支持的 2 种事务隔离级别：READ COMMITED, SERIALIZABLE. Oracle 默认的事务隔离级别为: READ COMMITED <br><br>Mysql 支持 4 中事务隔离级别. Mysql 默认的事务隔离级别为: REPEATABLE READ、<br></p>
+<p><strong>在 MySql 中设置隔离级别</strong><br><br>每启动一个 mysql 程序, 就会获得一个单独的数据库连接. 每个数据库连接都有一个全局变量 @@tx_isolation, 表示当前的事务隔离级别. MySQL 默认的隔离级别为 Repeatable Read<br><br>查看当前的隔离级别: SELECT @@tx_isolation;<br><br>设置当前 mySQL 连接的隔离级别:  <br><br>set transaction isolation level read committed;<br><br>设置数据库系统的全局的隔离级别:<br><br> set global transaction isolation level read committed;<br><br><strong>在 Hibernate 中设置隔离级别</strong><br><br>JDBC 数据库连接使用数据库系统默认的隔离级别. 在 Hibernate 的配置文件中可以显式的设置隔离级别. 每一个隔离级别都对应一个整数:<br></p>
+<ol>
+<li>READ UNCOMMITED<br></li>
+<li>READ COMMITED<br></li>
+<li>REPEATABLE READ<br></li>
+<li>SERIALIZEABLE<br><br>Hibernate 通过为 Hibernate 映射文件指定 hibernate.connection.isolation 属性来设置事务的隔离级别<br><br>例如：<br><pre><code>&lt;property name=&quot;hibernate.connection.isolation&quot;&gt;2&lt;/property&gt;
+</code></pre><h3 id="持久化对象的状态"><a href="#持久化对象的状态" class="headerlink" title="持久化对象的状态"></a>持久化对象的状态</h3>站在持久化的角度, Hibernate 把对象分为 4 种状态: 持久化状态, 临时状态, 游离状态, 删除状态. Session 的特定方法能使对象从一个状态转换到另一个状态. <br></li>
+</ol>
+<p><strong>临时对象（Transient）:</strong></p>
+<ul>
+<li>在使用代理主键的情况下, OID 通常为 null<br></li>
+<li>不处于 Session 的缓存中<br></li>
+<li>在数据库中没有对应的记录<br><br><strong>持久化对象(也叫”托管”)（Persist）：</strong><br></li>
+<li>OID 不为 null<br></li>
+<li>位于 Session 缓存中<br></li>
+<li>若在数据库中已经有和其对应的记录, 持久化对象和数据库中的相关记录对应<br></li>
+<li>Session 在 flush 缓存时, 会根据持久化对象的属性变化, 来同步更新数据库<br></li>
+<li>在同一个 Session 实例的缓存中, 数据库表中的每条记录只对应唯一的持久化对象<br><br><strong>删除对象(Removed)</strong><br></li>
+<li>在数据库中没有和其 OID 对应的记录<br></li>
+<li>不再处于 Session 缓存中<br></li>
+<li>一般情况下, 应用程序不该再使用被删除的对象<br><br><strong>游离对象(也叫”脱管”) （Detached）：</strong><br></li>
+<li>OID 不为 null</li>
+<li>不再处于 Session 缓存中<br></li>
+<li>一般情况需下, 游离对象是由持久化对象转变过来的, 因此在数据库中可能还存在与它对应的记录<br><br><img src="https://i.imgur.com/iA4KR6U.png" alt=""></li>
+</ul>
+<h3 id="session的核心方法"><a href="#session的核心方法" class="headerlink" title="session的核心方法"></a>session的核心方法</h3><h4 id="save-方法"><a href="#save-方法" class="headerlink" title="save() 方法"></a>save() 方法</h4><p><strong>1.</strong>Session 的 save() 方法使一个临时对象转变为持久化对象<br><br><strong>2.</strong>Session 的 save() 方法完成以下操作:<br></p>
+<ul>
+<li>把 News 对象加入到 Session 缓存中, 使它进入持久化状态<br></li>
+<li>选用映射文件指定的标识符生成器, 为持久化对象分配唯一的 OID. 在 使用代理主键的情况下, setId() 方法为 News 对象设置 OID 使无效的.<br></li>
+<li>计划执行一条 insert 语句：在 flush 缓存的时候<br></li>
+</ul>
+<p><strong>3.</strong>Hibernate 通过持久化对象的 OID 来维持它和数据库相关记录的对应关系. 当 News 对象处于持久化状态时, 不允许程序随意修改它的 ID<br><br><strong>4.</strong>persist() 和 save() 区别：<br><br>当对一个 OID 不为 Null 的对象执行 save() 方法时, 会把该对象以一个新的 oid 保存到数据库中;  但执行 persist() 方法时会抛出一个异常<br></p>
+<h4 id="get-和-load-方法"><a href="#get-和-load-方法" class="headerlink" title="get() 和 load() 方法"></a>get() 和 load() 方法</h4><p>都可以根据跟定的 OID 从数据库中加载一个持久化对象<br><br>区别:<br><br>当数据库中不存在与 OID 对应的记录时, load() 方法抛出 ObjectNotFoundException 异常, 而 get() 方法返回 null<br><br>两者采用不同的延迟检索策略：load 方法支持延迟加载策略。而 get 不支持。<br><br> 1.执行get方法会立即加载对象<br><br> 执行load方法，若不使用该对象，则不会立即进行查询操作，而是返回一个代理对象<br><br> <strong>get是立即检索，load是延时检索</strong><br><br> 2.load方法可能会抛出LazyInitializationException异常：在需要初始化代理对象之前就已经关闭了session<br></p>
+<p>3.若数据表中没有相应的记录,且session也没有被关闭，同时需要使用该对象时get返回null<br><br> load在使用对象时抛出异常，若不使用，没问题<br></p>
+<h4 id="update-方法"><a href="#update-方法" class="headerlink" title="update() 方法"></a>update() 方法</h4><ul>
+<li>Session 的 update() 方法使一个游离对象转变为持久化对象, 并且计划执行一条 update 语句.<br>若希望 Session 仅当修改了 News 对象的属性时, 才执行 update() 语句, 可以把映射文件中 <class> 元素的 select-before-update 设为 true. 该属性的默认值为 false</class></li>
+<li>当 update() 方法关联一个游离对象时, 如果在 Session 的缓存中已经存在相同 OID 的持久化对象, 会抛出异常</li>
+<li>当 update() 方法关联一个游离对象时, 如果在数据库中不存在相应的记录, 也会抛出异常. <h4 id="saveOrUpdate-方法"><a href="#saveOrUpdate-方法" class="headerlink" title="saveOrUpdate() 方法"></a>saveOrUpdate() 方法</h4>Session 的 saveOrUpdate() 方法同时包含了 save() 与 update() 方法的功能<br>判定对象为临时对象的标准<br><img src="https://i.imgur.com/6kpGR9e.png" alt=""></li>
+<li>Java 对象的 OID 为 null</li>
+<li><p>映射文件中为 <id> 设置了 unsaved-value  属性, 并且 Java 对象的 OID 取值与这个 unsaved-value 属性值匹配</id></p>
+<h4 id="merge-方法"><a href="#merge-方法" class="headerlink" title="merge() 方法"></a>merge() 方法</h4><p><img src="https://i.imgur.com/A6E9FUJ.png" alt=""></p>
+<h4 id="delete-方法"><a href="#delete-方法" class="headerlink" title="delete() 方法"></a>delete() 方法</h4><p><strong>1.</strong>Session 的 delete() 方法既可以删除一个游离对象, 也可以删除一个持久化对象<br><strong>2.</strong>Session 的 delete() 方法处理过程</p>
+</li>
+<li><p>计划执行一条 delete 语句</p>
+</li>
+<li>把对象从 Session 缓存中删除, 该对象进入删除状态.<br></li>
+</ul>
+<p><strong>3.</strong>Hibernate 的 cfg.xml 配置文件中有一个 hibernate.use_identifier_rollback 属性, 其默认值为 false, 若把它设为 true, 将改变 delete() 方法的运行行为: delete() 方法会把持久化对象或游离对象的 OID 设置为 null, 使它们变为临时对象</p>
+<h4 id="通过-Hibernate-调用存储过程"><a href="#通过-Hibernate-调用存储过程" class="headerlink" title="通过 Hibernate 调用存储过程"></a>通过 Hibernate 调用存储过程</h4><p>Work 接口: 直接通过 JDBC API 来访问数据库的操作<br></p>
+<pre><code>public interface Work {
+    /**
+     * Execute the discrete work encapsulated by this work instance using the supplied connection.
+     *
+     * @param connection The connection on which to perform the work.
+     * @throws SQLException Thrown during execution of the underlying JDBC interaction.
+     * @throws HibernateException Generally indicates a wrapped SQLException.
+     */
+    public void execute(Connection connection) throws SQLException;
+}
+</code></pre><p>Session 的 doWork(Work) 方法用于执行 Work 对象指定的操作, 即调用 Work 对象的 execute() 方法. Session 会把当前使用的数据库连接传递给 execute() 方法.</p>
+<pre><code>@Test
+    public void testdoWork(){
+        session.doWork(new Work(){
+
+            @Override
+            public void execute(Connection connection) throws SQLException {
+                System.out.println(connection);//调用存储过程
+            }
+
+        });
+    }
+</code></pre><p>返回连接实例</p>
+<pre><code>七月 16, 2018 5:17:38 下午 org.hibernate.tool.hbm2ddl.SchemaUpdate execute
+INFO: HHH000232: Schema update complete
+com.mysql.jdbc.JDBC4Connection@6c130c45
+</code></pre><h4 id="Hibernate-与触发器协同工作"><a href="#Hibernate-与触发器协同工作" class="headerlink" title="Hibernate 与触发器协同工作"></a>Hibernate 与触发器协同工作</h4><p>1.Hibernate 与数据库中的触发器协同工作时, 会造成两类问题</p>
+<ul>
+<li>触发器使 Session 的缓存中的持久化对象与数据库中对应的数据不一致:触发器运行在数据库中, 它执行的操作对 Session 是透明的</li>
+<li><p>Session 的 update() 方法盲目地激发触发器: 无论游离对象的属性是否发生变化, 都会执行 update 语句, 而 update 语句会激发数据库中相应的触发器<br>2.解决方案: </p>
+</li>
+<li><p>在执行完 Session 的相关操作后, 立即调用 Session 的 flush() 和 refresh() 方法, 迫使 Session 的缓存与数据库同步(refresh() 方法重新从数据库中加载对象)<br><img src="https://i.imgur.com/G3xJbG1.png" alt=""></p>
+</li>
+<li><p>在映射文件的的 <class> 元素中设置 select-before-update 属性: 当 Session 的 update 或 saveOrUpdate() 方法更新一个游离对象时, 会先执行 Select 语句, 获得当前游离对象在数据库中的最新数据, 只有在不一致的情况下才会执行 update 语句</class></p>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>session的方法调用都是现成的方法，不用自己写SQL语句，相对于mybatis，开发速度快了不少，并且API简单明了，方便使用。</p>
 
       
 
@@ -218,7 +326,7 @@ npm install hexo-tag-dplayer
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
         		</li>
       		
 		</ul>
@@ -231,7 +339,7 @@ npm install hexo-tag-dplayer
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/07/Dplayer的使用/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/03/14/Hibernate入门系列（二）/">展开全文 >></a>
         </p>
       
 
@@ -261,20 +369,20 @@ npm install hexo-tag-dplayer
 
 
   
-    <article id="w-情有所感，情难" class="article article-type-w  article-index" itemscope itemprop="blogPost">
+    <article id="post-Hibernate入门系列（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/05/情有所感，情难/">情有所感，情难</a>
+      <a class="article-title" href="/2018/03/13/Hibernate入门系列（一）/">Hibernate入门系列（一）</a>
     </h1>
   
 
         
-        <a href="/2017/12/05/情有所感，情难/" class="archive-article-date">
-  	<time datetime="2017-12-05T14:22:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
+        <a href="/2018/03/13/Hibernate入门系列（一）/" class="archive-article-date">
+  	<time datetime="2018-03-12T16:48:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-13</time>
 </a>
         
       </header>
@@ -285,7 +393,403 @@ npm install hexo-tag-dplayer
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><div id="dplayer1" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer1"),"theme":"#FADFA3","loop":true,"video":{"url":"http://p0e6ktyto.bkt.clouddn.com/18c226772a4dc01c920a3562916d6fbb.mp4","pic":"https://i.imgur.com/MnADAP8.jpg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Hibernate入门系列（一）"><a href="#Hibernate入门系列（一）" class="headerlink" title="Hibernate入门系列（一）"></a>Hibernate入门系列（一）</h1><h2 id="hibernate是什么"><a href="#hibernate是什么" class="headerlink" title="hibernate是什么"></a>hibernate是什么</h2><ul>
+<li>一个框架</li>
+<li>一个 Java 领域的持久化框架</li>
+<li>一个 ORM 框架</li>
+</ul>
+<h3 id="对象的持久化"><a href="#对象的持久化" class="headerlink" title="对象的持久化"></a>对象的持久化</h3><p>狭义的理解，“持久化”仅仅指把对象永久保存到数据库中<br>广义的理解，“持久化”包括和数据库相关的各种操作：</p>
+<ul>
+<li>保存：把对象永久保存到数据库中。</li>
+<li>更新：更新数据库中对象(记录)的状态。</li>
+<li>删除：从数据库中删除一个对象。</li>
+<li>查询：根据特定的查询条件，把符合查询条件的一个或多个对象从数据库加载到内存中。</li>
+<li><strong>加载</strong>：根据特定的<strong>OID</strong>，把一个对象从数据库加载到内存中。<br><strong>注:OID,为了在系统中能够找到所需对象，需要为每一个对象分配一个唯一的标识号。在关系数据库中称之为主键，而在对象术语中，则叫做对象标识(Object identifier-OID).</strong> </li>
+</ul>
+<h3 id="ORM"><a href="#ORM" class="headerlink" title="ORM"></a>ORM</h3><p><strong>ORM(Object/Relation Mapping): 对象/关系映射</strong></p>
+<ul>
+<li>ORM 主要解决对象-关系的映射<table><br><tbody><br><tr style="line-height:normal;"></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">面向对象的概念</tt></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">面向关系的概念</tt></td></tr><br><tr style="line-height:normal;"></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">类</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">表</tt></td></tr><br><tr style="line-height:normal;"></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">对象</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">表的行（记录）</tt></td></tr><br><tr style="line-height:normal;"></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">属性</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">表的列（字段）</tt></td></tr><br></tbody><br></table></li>
+<li>ORM的思想：将关系数据库中表中的记录映射成为对象，以对象的形式展现，程序员可以把对数据库的操作转化为对对象的操作。</li>
+<li>ORM 采用元数据来描述对象-关系映射细节, 元数据通常采用 XML 格式, 并且存放在专门的对象-关系映射文件中.<br><img src="https://i.imgur.com/qq9Ji03.png" alt=""></li>
+</ul>
+<h3 id="流行的ORM框架"><a href="#流行的ORM框架" class="headerlink" title="流行的ORM框架"></a>流行的ORM框架</h3><p>Hibernate:</p>
+<ul>
+<li>非常优秀、成熟的 ORM 框架。<br>完成对象的持久化操作</li>
+<li>Hibernate 允许开发者采用面向对象的方式来操作关系数据库。</li>
+<li>消除那些针对特定数据库厂商的 SQL 代码</li>
+</ul>
+<p>myBatis：</p>
+<ul>
+<li>相比 Hibernate 灵活高，运行速度快</li>
+<li>开发速度慢，不支持纯粹的面向对象操作，需熟悉sql语句，并且熟练使用sql语句优化功能 </li>
+</ul>
+<p>TopLink</p>
+<p>OJB</p>
+<h3 id="Hibernate-与-Jdbc-代码对比"><a href="#Hibernate-与-Jdbc-代码对比" class="headerlink" title="Hibernate 与 Jdbc 代码对比"></a>Hibernate 与 Jdbc 代码对比</h3><p><img src="https://i.imgur.com/TRA9dZh.png" alt=""></p>
+<h2 id="hibernate的helloworld"><a href="#hibernate的helloworld" class="headerlink" title="hibernate的helloworld"></a>hibernate的helloworld</h2><h3 id="准备环境，导入相应的jar包"><a href="#准备环境，导入相应的jar包" class="headerlink" title="准备环境，导入相应的jar包"></a>准备环境，导入相应的jar包</h3><p><img src="https://i.imgur.com/lKGl7HC.png" alt=""></p>
+<h3 id="创建hibernate基本配置文件"><a href="#创建hibernate基本配置文件" class="headerlink" title="创建hibernate基本配置文件"></a>创建hibernate基本配置文件</h3><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE hibernate-configuration PUBLIC
+        &quot;-//Hibernate/Hibernate Configuration DTD 3.0//EN&quot;
+        &quot;http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd&quot;&gt;
+ &lt;hibernate-configuration&gt;
+    &lt;session-factory&gt;
+    &lt;!-- 配置连接数据库的基本信息 --&gt;
+    &lt;property name=&quot;hibernate.connection.username&quot;&gt;root&lt;/property&gt;
+    &lt;property name=&quot;hibernate.connection.password&quot;&gt;zhang1997&lt;/property&gt;
+    &lt;property name=&quot;hibernate.connection.driver_class&quot;&gt;com.mysql.jdbc.Driver&lt;/property&gt;
+    &lt;property name=&quot;hibernate.connection.url&quot;&gt;jdbc:mysql://localhost:3306/hibernate&lt;/property&gt;
+
+    &lt;!-- 配置hibernate的基本信息 --&gt;
+    &lt;!--  hibernate所使用的数据库方言--&gt;
+    &lt;property name=&quot;dialect&quot;&gt;org.hibernate.dialect.MySQL5InnoDBDialect&lt;/property&gt;
+
+    &lt;!--  执行操作时是否在控制台打印SQL--&gt;
+    &lt;property name=&quot;show_sql&quot;&gt;true&lt;/property&gt;
+    &lt;!--  是否对SQL进行格式化--&gt;
+    &lt;property name=&quot;format_sql&quot;&gt;true&lt;/property&gt;
+    &lt;!--  指定自动生成数据表的策略--&gt;
+    &lt;property name=&quot;hbm2ddl.auto&quot;&gt;update&lt;/property&gt;
+    &lt;!--  指定关联的 .hbm.xml文件位置--&gt;
+    &lt;mapping resource=&quot;io/hibernate/helloworld/News.hbm.xml&quot;/&gt;
+    &lt;/session-factory&gt;
+    &lt;/hibernate-configuration&gt;
+</code></pre><p><strong>特别提醒：数据库方言org.hibernate.dialect.MySQLInnoDBDialect和org.hibernate.dialect.MySQLDialect 两个方言的区别，MySQLDialect是兼容性方言，MySQLInnoDBDialect支持事务的方言版。但是如果数据库版本是5.5以下，就可以直接用，如果是5.5版本及以上，需要改成MySQL5InnoDBDialect。</strong><br>我的开始就是因为使用了MySQLInnoDBDialect方言而导致一直报找不到表的错误。</p>
+<h3 id="创建一个实体类"><a href="#创建一个实体类" class="headerlink" title="创建一个实体类"></a>创建一个实体类</h3><pre><code>package io.hibernate.helloworld;
+
+import java.sql.Date;
+
+public class News {
+
+    private Integer Id;
+    private String title;
+    private String author;
+    private Date date;
+    public Integer getId() {
+        return Id;
+    }
+    public void setId(Integer id) {
+        Id = id;
+    }
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public String getAuthor() {
+        return author;
+    }
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+    public Date getDate() {
+        return date;
+    }
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public News(String title, String author, Date date) {
+        super();
+        this.title = title;
+        this.author = author;
+        this.date = date;
+    }
+
+    public News() {
+        //super();
+    }
+    @Override
+    public String toString() {
+        return &quot;News [Id=&quot; + Id + &quot;, title=&quot; + title + &quot;, author=&quot; + author + &quot;, date=&quot; + date + &quot;]&quot;;
+    }
+
+
+}
+</code></pre><h3 id="生成对应的对象关系映射-hbm-xml文件"><a href="#生成对应的对象关系映射-hbm-xml文件" class="headerlink" title="生成对应的对象关系映射.hbm.xml文件"></a>生成对应的对象关系映射.hbm.xml文件</h3><pre><code>&lt; ?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE hibernate-mapping PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;
+&quot;http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd&quot;&gt;
+&lt;!-- Generated 2018-7-13 21:10:20 by Hibernate Tools 3.5.0.Final --&gt;
+&lt;hibernate-mapping&gt;
+    &lt;class name=&quot;io.hibernate.helloworld.News&quot; table=&quot;NEWS&quot;&gt;
+        &lt;id name=&quot;Id&quot; type=&quot;java.lang.Integer&quot;&gt;
+            &lt;column name=&quot;ID&quot; /&gt;
+            &lt;!-- 指定主键的生成方式  native：使用数据库本地方式 --&gt;
+            &lt;generator class=&quot;native&quot; /&gt;
+        &lt;/id&gt;
+        &lt;property name=&quot;title&quot; type=&quot;java.lang.String&quot;&gt;
+            &lt;column name=&quot;TITLE&quot; /&gt;
+        &lt;/property&gt;
+        &lt;property name=&quot;author&quot; type=&quot;java.lang.String&quot;&gt;
+            &lt;column name=&quot;AUTHOR&quot; /&gt;
+        &lt;/property&gt;
+        &lt;property name=&quot;date&quot; type=&quot;java.sql.Date&quot;&gt;
+            &lt;column name=&quot;DATE&quot; /&gt;
+        &lt;/property&gt;
+    &lt;/class&gt;
+&lt;/hibernate-mapping&gt;
+</code></pre><h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><pre><code>    public class HibernateTest {
+
+        @Test
+        public void test(){
+
+    //        1.创建一个SessionFactory对象
+            SessionFactory sessionFactory=null;
+    //        1.1创建configuration对象：对应hibernate的基本配置信息和对象关系映射信息
+            Configuration configuration=new Configuration().configure();
+            //4.0以前这样创建
+    //        sessionFactory=configuration.buildSessionFactory();
+    //        1.2创建一个serviceRegistry对象 hibernate 4.x新添加的对象
+            //hibernate的任何配置和服务都需要在该对象中注册才能有效
+            ServiceRegistry serviceRegistry=
+                    new             ServiceRegistryBuilder    ().applySettings    (configuration.getProperties    ()).buildServiceRegistry();
+    //        1.3
+                    sessionFactory=configuration.buil    dSessionFactory(serviceRegistry);
+
+    //        2.创建一个Session对象 
+            Session session=sessionFactory.openSession();
+
+    //        3.开启事务
+            Transaction transaction=session.beginTransaction();
+
+    //        4.执行保存操作
+            News news=new News(&quot;Java&quot;,&quot;haha&quot;,new Date(new java.util.Date().getTime()));
+            session.save(news);
+    //        5.提交事务
+            transaction.commit();
+
+    //        6.关闭Session
+            session.close();
+
+    //        7.关闭SessionFactory对象
+            sessionFactory.close();
+        }
+    }
+</code></pre><h3 id="查看数据库出现了一个新表News，并且新插入了一条记录"><a href="#查看数据库出现了一个新表News，并且新插入了一条记录" class="headerlink" title="查看数据库出现了一个新表News，并且新插入了一条记录"></a>查看数据库出现了一个新表News，并且新插入了一条记录</h3><p>在进行测试前，数据库应存在名为hibernate的库</p>
+<pre><code>mysql&gt; use hibernate;
+Database changed
+
+mysql&gt; show tables;
++---------------------+
+| Tables_in_hibernate |
++---------------------+
+| news                |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql&gt; desc news;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| ID     | int(11)      | NO   | PRI | NULL    | auto_increment |
+| TITLE  | varchar(255) | YES  |     | NULL    |                |
+| AUTHOR | varchar(255) | YES  |     | NULL    |                |
+| DATE   | date         | YES  |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+
+mysql&gt; select * from news;
++----+-------+--------+------------+
+| ID | TITLE | AUTHOR | DATE       |
++----+-------+--------+------------+
+|  1 | Java  | haha   | 2018-07-13 |
++----+-------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql&gt;
+</code></pre><h2 id="hibernate的helloworld配置简介"><a href="#hibernate的helloworld配置简介" class="headerlink" title="hibernate的helloworld配置简介"></a>hibernate的helloworld配置简介</h2><h3 id="hibernate环境的准备"><a href="#hibernate环境的准备" class="headerlink" title="hibernate环境的准备"></a>hibernate环境的准备</h3><p>导入 Hibernate 必须的 jar 包:</p>
+<pre><code>      &lt;dependency&gt;
+              &lt;groupId&gt;antlr&lt;/groupId&gt;
+              &lt;artifactId&gt;antlr&lt;/artifactId&gt;
+              &lt;version&gt;2.7.6&lt;/version&gt;
+      &lt;/dependency&gt;
+
+      &lt;dependency&gt;
+              &lt;groupId&gt;dom4j&lt;/groupId&gt;
+              &lt;artifactId&gt;dom4j&lt;/artifactId&gt;
+              &lt;version&gt;1.6.1&lt;/version&gt;
+      &lt;/dependency&gt;
+
+    &lt;!-- https://mvnrepository.com/artifact/org.hibernate.common/hibernate-commons-annotations --&gt;
+    &lt;dependency&gt;
+     &lt;groupId&gt;org.hibernate.common&lt;/groupId&gt;
+        &lt;artifactId&gt;hibernate-commons-annotations&lt;/artifactId&gt;
+        &lt;version&gt;4.0.2.Final&lt;/version&gt;
+    &lt;/dependency&gt;
+
+          &lt;dependency&gt;
+              &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+              &lt;artifactId&gt;hibernate-core&lt;/artifactId&gt;
+              &lt;version&gt;4.2.4.Final&lt;/version&gt;
+          &lt;/dependency&gt;
+
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.hibernate.javax.pers istence&lt;/groupId&gt;
+              &lt;artifactId&gt;hibernate-jpa-2.0-api&lt;/artifactId&gt;
+              &lt;version&gt;1.0.1.Final&lt;/version&gt;
+          &lt;/dependency&gt;
+
+      &lt;dependency&gt;
+              &lt;groupId&gt;javassist&lt;/groupId&gt;
+              &lt;artifactId&gt;javassist&lt;/artifactId&gt;
+              &lt;version&gt;3.11.0.GA&lt;/version&gt;
+      &lt;/dependency&gt;
+
+    &lt;!-- https://mvnrepository.com/artifact/org.jboss.logging/jboss-logging --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.jboss.logging&lt;/groupId&gt;
+        &lt;artifactId&gt;jboss-logging&lt;/artifactId&gt;
+        &lt;version&gt;3.1.0.GA&lt;/version&gt;
+    &lt;/dependency&gt;
+
+    &lt;!-- https://mvnrepository.com/artifact/org.jboss.spec.javax.transaction/jboss-transaction-api_1.1_spec --&gt;
+    &lt;dependency&gt;              &lt;groupId&gt;org.jboss.spec.javax.transaction&lt;/groupId&gt;
+        &lt;artifactId&gt;jboss-transaction-api_1.1_spec&lt;/artifactId&gt;
+        &lt;version&gt;1.0.1.Final&lt;/version&gt;
+    &lt;/dependency&gt;
+</code></pre><p>导入数据库驱动和Junit测试包：</p>
+<pre><code>    &lt;dependency&gt;
+          &lt;groupId&gt;mysql&lt;/groupId&gt;
+          &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+          &lt;version&gt;5.1.37&lt;/version&gt;
+      &lt;/dependency&gt;
+      &lt;dependency&gt;
+          &lt;groupId&gt;junit&lt;/groupId&gt;
+          &lt;artifactId&gt;junit&lt;/artifactId&gt;
+          &lt;version&gt;4.12&lt;/version&gt;
+      &lt;/dependency&gt;
+</code></pre><h3 id="创建-Hibernate-配置文件"><a href="#创建-Hibernate-配置文件" class="headerlink" title="创建 Hibernate 配置文件"></a>创建 Hibernate 配置文件</h3><p>Hibernate 从其配置文件<strong>hibernate.cfg.xml</strong>中读取和数据库连接的有关信息, 这个文件应该位于应用的 classpath 下.</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE hibernate-configuration PUBLIC
+        &quot;-//Hibernate/Hibernate Configuration DTD 3.0//EN&quot;
+        &quot;http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd&quot;&gt;
+&lt;hibernate-configuration&gt;
+    &lt;session-factory&gt;
+    &lt;!-- 配置连接数据库的基本信息 --&gt;
+    &lt;property name=&quot;hibernate.connection.username&quot;&gt;root&lt;/property&gt;
+    &lt;property name=&quot;hibernate.connection.password&quot;&gt;zhang1997&lt;/property&gt;
+    &lt;property name=&quot;hibernate.connection.driver_class&quot;&gt;com.mysql.jdbc.Driver&lt;/property&gt;
+    &lt;property name=&quot;hibernate.connection.url&quot;&gt;jdbc:mysql://localhost:3306/hibernate&lt;/property&gt;
+
+    &lt;!-- 配置hibernate的基本信息 --&gt;
+    &lt;!--  hibernate所使用的数据库方言--&gt;
+    &lt;property name=&quot;dialect&quot;&gt;org.hibernate.dialect.MySQL5InnoDBDialect&lt;/property&gt;
+
+    &lt;!--  执行操作时是否在控制台打印SQL--&gt;
+    &lt;property name=&quot;show_sql&quot;&gt;true&lt;/property&gt;
+    &lt;!--  是否对SQL进行格式化--&gt;
+    &lt;property name=&quot;format_sql&quot;&gt;true&lt;/property&gt;
+    &lt;!--  指定自动生成数据表的策略--&gt;
+    &lt;property name=&quot;hbm2ddl.auto&quot;&gt;update&lt;/property&gt;
+    &lt;!--  指定关联的 .hbm.xml文件位置--&gt;
+    &lt;mapping resource=&quot;io/hibernate/helloworld/News.hbm.xml&quot;/&gt;
+    &lt;/session-factory&gt;
+&lt;/hibernate-configuration&gt;
+</code></pre><p>Hibernate 配置文件的两个配置项:<br><br><strong>hbm2ddl.auto</strong>：该属性可帮助程序员实现正向工程, 即由 java 代码生成数据库脚本, 进而生成具体的表结构。取值 create | update | create-drop | validate<br></p>
+<ul>
+<li>create : 会根据 .hbm.xml  文件来生成数据表, 但是每次运行都会删除上一次的表 ,重新生成表, 哪怕二次没有任何改变 <br></li>
+<li>create-drop : 会根据 .hbm.xml 文件生成表,但是SessionFactory一关闭, 表就自动删除<br> </li>
+<li>update : 最常用的属性值，也会根据 .hbm.xml 文件生成表, 但若 .hbm.xml  文件和数据库中对应的数据表的表结构不同, Hiberante  将更新数据表结构，但不会删除已有的行和列 <br></li>
+<li>validate : 会和数据库中的表进行比较, 若 .hbm.xml 文件中的列在数据表中不存在，则抛出异常<br></li>
+</ul>
+<p><strong>format_sql</strong>：是否将 SQL 转化为格式良好的 SQL . 取值 true | false<br></p>
+<h3 id="创建持久化-Java-类"><a href="#创建持久化-Java-类" class="headerlink" title="创建持久化 Java 类"></a>创建持久化 Java 类</h3><p>Hibernate 不要求持久化类继承任何父类或实现接口，这可以保证代码不被污染。这就是Hibernate被称为低侵入式设计的原因<br><strong>持久化类的几个要求：</strong></p>
+<ul>
+<li>提供一个无参的构造器:使Hibernate可以使用Constructor.newInstance() 来实例化持久化类</li>
+<li>提供一个标识属性(identifier property): 通常映射为数据库表的主键字段. 如果没有该属性，一些功能将不起作用，如：Session.saveOrUpdate()</li>
+<li>为类的持久化类字段声明访问方法(get/set): Hibernate对JavaBeans 风格的属性实行持久化。</li>
+<li>使用非 final 类: 在运行时生成代理是 Hibernate 的一个重要的功能. 如果持久化类没有实现任何接口, Hibnernate 使用 CGLIB - 生成代理. 如果使用的是 final 类, 则无法生成 CGLIB 代理.</li>
+<li>重写 eqauls 和 hashCode 方法: 如果需要把持久化类的实例放到 Set 中(当需要进行关联映射时), 则应该重写这两个方法</li>
+</ul>
+<h3 id="创建对象-关系映射文件"><a href="#创建对象-关系映射文件" class="headerlink" title="创建对象-关系映射文件"></a>创建对象-关系映射文件</h3><p>Hibernate 采用 XML 格式的文件来指定对象和关系数据之间的映射. 在运行时 Hibernate 将根据这个映射文件来生成各种 SQL 语句<br>映射文件的扩展名为 <strong>.hbm.xml</strong></p>
+<pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE hibernate-mapping PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;
+&quot;http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd&quot;&gt;
+&lt;!-- Generated 2018-7-13 21:10:20 by Hibernate Tools 3.5.0.Final --&gt;
+&lt;hibernate-mapping&gt;
+    &lt;class name=&quot;io.hibernate.helloworld.News&quot; table=&quot;NEWS&quot;&gt;
+        &lt;id name=&quot;Id&quot; type=&quot;java.lang.Integer&quot;&gt;
+            &lt;column name=&quot;ID&quot; /&gt;
+            &lt;!-- 指定主键的生成方式  native：使用数据库本地方式 --&gt;
+            &lt;generator class=&quot;native&quot; /&gt;
+        &lt;/id&gt;
+        &lt;property name=&quot;title&quot; type=&quot;java.lang.String&quot;&gt;
+            &lt;column name=&quot;TITLE&quot; /&gt;
+        &lt;/property&gt;
+        &lt;property name=&quot;author&quot; type=&quot;java.lang.String&quot;&gt;
+            &lt;column name=&quot;AUTHOR&quot; /&gt;
+        &lt;/property&gt;
+        &lt;property name=&quot;date&quot; type=&quot;java.sql.Date&quot;&gt;
+            &lt;column name=&quot;DATE&quot; /&gt;
+        &lt;/property&gt;
+    &lt;/class&gt;
+&lt;/hibernate-mapping&gt;
+</code></pre><h3 id="通过-Hibernate-API-编写访问数据库的代码"><a href="#通过-Hibernate-API-编写访问数据库的代码" class="headerlink" title="通过 Hibernate API 编写访问数据库的代码"></a>通过 Hibernate API 编写访问数据库的代码</h3><p>测试代码：</p>
+<pre><code>@Test
+        public void test(){
+            SessionFactory sessionFactory=null;
+            Configuration configuration=new Configuration().configure();
+            ServiceRegistry serviceRegistry=
+                    new             ServiceRegistryBuilder    ().applySettings    (configuration.getProperties    ()).buildServiceRegistry();
+                    sessionFactory=configuration.buil    dSessionFactory(serviceRegistry);
+            Session session=sessionFactory.openSession();
+            Transaction transaction=session.beginTransaction();
+            News news=new News(&quot;Java&quot;,&quot;haha&quot;,new Date(new java.util.Date().getTime()));
+            session.save(news);
+            transaction.commit();
+            session.close();
+            sessionFactory.close();
+        }
+</code></pre><p>下面讲解一下测试里面用到的类和接口：<br><br><strong>一、Configuration 类</strong><br><br>Configuration 类负责管理 Hibernate 的配置信息。<br><br>包括如下内容：<br></p>
+<ul>
+<li>Hibernate 运行的底层信息：数据库的URL、用户名、密码、JDBC驱动类，数据库Dialect,数据库连接池等（对应 hibernate.cfg.xml 文件）。<br></li>
+<li>持久化类与数据表的映射关系（*.hbm.xml 文件）<br></li>
+</ul>
+<p>创建 Configuration 的两种方式：<br></p>
+<p>1.属性文件（hibernate.properties）<br><br> Configuration cfg = new Configuration();<br><br><strong>2.Xml文件（hibernate.cfg.xml）(常用)</strong><br><br>Configuration cfg = new Configuration().configure();<br><br>3.Configuration 的 configure 方法还支持带参数的访问：<br><br>File file = new File(“simpleit.xml”);<br><br>Configuration cfg = new Configuration().configure(file);<br></p>
+<p><strong>二、SessionFactory 接口</strong></p>
+<ul>
+<li>针对单个数据库映射关系经过编译后的内存镜像，是线程安全的。 </li>
+<li>SessionFactory 对象一旦构造完毕，即被赋予特定的配置信息</li>
+<li>SessionFactory是生成Session的工厂</li>
+<li>构造 SessionFactory 很消耗资源，一般情况下一个应用中只初始化一个 SessionFactory 对象。</li>
+<li>Hibernate4 新增了一个 ServiceRegistry 接口，所有基于 Hibernate 的配置或者服务都必须统一向这个 ServiceRegistry  注册后才能生效</li>
+<li>Hibernate4 中创建 SessionFactory 的步骤<br>-<br>  Configuration configuration=new Configuration().configure();<br>  //        sessionFactory=configuration.buildSessionFactory();<br>  //        创建一个serviceRegistry对象 hibernate 4.x新添加的对象<pre><code>      //hibernate的任何配置和服务都需要在该对象中注册才能有效
+      ServiceRegistry serviceRegistry=
+              new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+      sessionFactory=configuration.buildSessionFactory(serviceRegistry);
+</code></pre></li>
+</ul>
+<p><strong>三、Session 接口</strong><br>Session 是应用程序与数据库之间交互操作的一个单线程对象，是 Hibernate 运作的中心，所有持久化对象必须在 session 的管理下才可以进行持久化操作。此对象的生命周期很短。Session 对象有一个一级缓存，显式执行 flush 之前，所有的持久层操作的数据都缓存在 session 对象处。相当于 JDBC 中的 Connection。<br><img src="https://i.imgur.com/58SJbmk.png" alt=""></p>
+<p><strong>持久化类与 Session 关联起来后就具有了持久化的能力</strong>。<br><br><strong>Session 类的方法：</strong></p>
+<ul>
+<li>取得持久化对象的方法： get() load()</li>
+<li>持久化对象都得保存，更新和删除：save(),update(),saveOrUpdate(),delete()</li>
+<li>开启事务: beginTransaction().</li>
+<li>管理 Session 的方法：isOpen(),flush(), clear(), evict(), close()等</li>
+</ul>
+<p><strong>四、Transaction(事务)</strong></p>
+<p>一次事务代表一次原子操作，它具有数据库事务的概念。所有持久层都应该在事务管理下进行，即使是只读操作。<br><br>   Transaction tx = session.beginTransaction();<br><br>常用方法:</p>
+<ul>
+<li>commit():提交相关联的session实例</li>
+<li>rollback():撤销事务操作</li>
+<li>wasCommitted():检查事务是否提交</li>
+</ul>
+<p><strong>注：使用 Hibernate 进行数据持久化操作，通常有如下步骤：</strong></p>
+<ul>
+<li>编写持久化类： POJO + 映射文件</li>
+<li>获取 Configuration 对象</li>
+<li>获取 SessionFactory 对象</li>
+<li>获取 Session，打开事务</li>
+<li>用面向对象的方式操作数据库</li>
+<li>关闭事务，关闭 Session</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>hibernate的helloworld很简单，很容易上手。以上就是hibernate的简单的操作和介绍，主要的问题可能会出在数据库方言和数据库的映射关系上。<br>附录：<br>方言大全</p>
+<div class="con editor-preview-side"><p>RDBMS 方言</p><table><tbody><tr style="line-height:normal;"><td><br></td><td><br></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">DB2</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.DB2Dialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">DB2 AS/400</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.DB2400Dialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">DB2 OS390</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.DB2390Dialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">PostgreSQL</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.PostgreSQLDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">MySQL</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.MySQLDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">MySQL with InnoDB</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.MySQLInnoDBDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">MySQL with MyISAM</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.MySQLMyISAMDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Oracle (any version)</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.OracleDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Oracle 9i/10g</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.Oracle9Dialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Sybase</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.SybaseDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Sybase Anywhere</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.SybaseAnywhereDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Microsoft SQL Server</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.SQLServerDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">SAP DB</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.SAPDBDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Informix</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.InformixDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">HypersonicSQL</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.HSQLDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Ingres</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.IngresDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Progress</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.ProgressDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Mckoi SQL</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.MckoiDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Interbase</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.InterbaseDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Pointbase</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.PointbaseDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">FrontBase</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.FrontbaseDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Firebird</span></td><td style="font-size:12px;line-height:normal;"><p><tt style="line-height:normal;">org.hibernate.dialect.FirebirdDialect</tt></p></td></tr></tbody></table><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;">Access数据库的方言包：<a href="http://www.hxtt.com/test/hibernate.zip" target="_blank" rel="external">http://www.hxtt.com/test/hibernate.zip</a><br>路径：com.hxtt.support.hibernate.HxttAccessDialect</p><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;">&nbsp;</p><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;"><span style="font-size:x-small;">例子：&nbsp;&nbsp;&nbsp;&nbsp;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.connection.username” value=”sa”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.connection.password” value=”sa”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.connection.url” value=”jdbc:sqlserver://localhost:1433;databaseName=test”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.connection.driver_class” value=”com.microsoft.sqlserver.jdbc.SQLServerDriver”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.cache.provider_class” value=”org.hibernate.cache.NoCacheProvider”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.dialect” value=”org.hibernate.dialect.SQLServerDialect”/&gt;</span></p><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;"><span style="font-size:x-small;color:rgb(255,0,0);line-height:normal;">&lt;property name=”hibernate.dialect” value=”org.hibernate.dialect.SQLServerDialect”/&gt;</span></p><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;"><span style="font-size:x-small;">如果是Toplink则添加：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;"><span style="font-size:x-small;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”toplink.jdbc.user” value=”sa”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”toplink.jdbc.password” value=”sa”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”toplink.jdbc.url” value=”jdbc:mysql://localhost:3306/test”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”toplink.jdbc.driver” value=”com.mysql.jdbc.Driver”/&gt;<br style="line-height:normal;"><span style="color:rgb(255,0,0);line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”toplink.plafrom.class.name” value=”oracle.toplink.essentials.platform.database.HSQLPlatform” /&gt;</span></span></p><p><br></p><p>方言转自:<a href="http://qsfwy.iteye.com/blog/471858" target="_blank">http://qsfwy.iteye.com/blog/471858</a>&nbsp;</p></div>
+
+
+
 
       
 
@@ -299,7 +803,7 @@ npm install hexo-tag-dplayer
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
         		</li>
       		
 		</ul>
@@ -312,7 +816,7 @@ npm install hexo-tag-dplayer
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/05/情有所感，情难/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/03/13/Hibernate入门系列（一）/">展开全文 >></a>
         </p>
       
 
@@ -342,20 +846,20 @@ npm install hexo-tag-dplayer
 
 
   
-    <article id="post-hexo进阶配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-java反射" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/04/hexo进阶配置/">hexo进阶配置</a>
+      <a class="article-title" href="/2018/01/25/java反射/">java反射</a>
     </h1>
   
 
         
-        <a href="/2017/12/04/hexo进阶配置/" class="archive-article-date">
-  	<time datetime="2017-12-04T05:08:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-04</time>
+        <a href="/2018/01/25/java反射/" class="archive-article-date">
+  	<time datetime="2018-01-25T14:30:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-25</time>
 </a>
         
       </header>
@@ -366,25 +870,120 @@ npm install hexo-tag-dplayer
     
     <div class="article-entry" itemprop="articleBody">
       
-        <div id="aplayer1" class="aplayer" style="margin-bottom: 20px;"></div>
-		<script>
-			new APlayer({
-				element: document.getElementById("aplayer1"),
-				narrow: false,
-				autoplay: true,
-				showlrc: 0,
-				music: {
-					title: "River Flows In You",
-					author: "Capox",
-					url: "http://p0e6ktyto.bkt.clouddn.com/Capox.mp3",
-					pic: "https://i.imgur.com/jbfIiGM.jpg",
-				}
-			});
-		</script>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1>
-        
-          <a class="article-more-a" href="/2017/12/04/hexo进阶配置/#more">read more >></a>
-        
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="反射是什么"><a href="#反射是什么" class="headerlink" title="反射是什么"></a>反射是什么</h1><p> 1.反射是Java API，是Java提供的现成的类，是Java提供的功能.<br> 2.反射是Java提供的动态执行机制，动态加载类，动态创建对象，动态访问属性，动态调用方法。</p>
+<h3 id="动态与静态"><a href="#动态与静态" class="headerlink" title="动态与静态"></a>动态与静态</h3><p>静态：事先约定的规则，执行期间按照固定的规则执行<br>动态：事先没有约定，在执行期间动态确定执行规则<br>Java中的静态执行：编译就已经确定执行规则（执行次序），在运行期间按照结果顺序执行，如：</p>
+<pre><code>Foo foo=new Foo();
+foo.hello();
+</code></pre><p>Java中的动态执行：运行期间才能确定加载哪些类，创建哪些对象，执行哪些方法</p>
+<h3 id="动态加载类"><a href="#动态加载类" class="headerlink" title="动态加载类"></a>动态加载类</h3><p>Java提供了动态加载类的API<br>    Class cls=Class.forName(类名);</p>
+<h3 id="动态创建对象"><a href="#动态创建对象" class="headerlink" title="动态创建对象"></a>动态创建对象</h3><pre><code>cls.newInstance();
+</code></pre><p>执行cls应用的类的信息中的无参构造器，动态创建实例，如果没有无参构造器，则抛异常。</p>
+<blockquote>
+<p>反射可以调用有参构造器（复杂）</p>
+<h3 id="动态获取类的方法信息和动态执行方法"><a href="#动态获取类的方法信息和动态执行方法" class="headerlink" title="动态获取类的方法信息和动态执行方法"></a>动态获取类的方法信息和动态执行方法</h3><pre><code>method.invoke(执行方法的对象，传递的参数)
+</code></pre><p>必须在一个对象上执行一个非静态方法，调用方法时必须有对象<br>在invoke方法执行时，必须传递包含当前方法的对象<br>    Object obj=method.invoke(对象，参数1，参数2，….);<br>invoke方法有返回值，返回被调用方法执行的结果，对象后面的参数是执行方法时候传递的参数<br>invoke可以调用私有方法，打破了封装<br>例子：<br>辅助方法类<br>```<br>//辅助方法类<br>package demo;</p>
+</blockquote>
+<p>public class Foo {</p>
+<pre><code>public void test1(){
+    System.out.println(&quot;test1()&quot;);
+}
+public void test2(){
+    System.out.println(&quot;test2()&quot;);
+}
+public void test3(){
+    System.out.println(&quot;test3()&quot;);
+}
+private String demo(String name,int age){
+    return name+age;
+}
+</code></pre><p>}</p>
+<pre><code>测试类
+</code></pre><p>//测试类<br>package demo;</p>
+<p>import java.lang.reflect.InvocationTargetException;<br>import java.lang.reflect.Method;<br>import java.util.Scanner;</p>
+<p>public class demo3 {<br>      public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {<br>            Scanner scan=new Scanner(System.in);<br>            System.out.println(“请输入类名”);<br>            String name=scan.nextLine();<br>            Class cls=Class.forName(name);<br>            //找到demo方法<br>            //Class提供了根据方法的标签名找到方法的API<br>            String methodName=”demo”;//方法名<br>            //类型列表Class[]<br>            //String.class表示字符串类型，int.class表示整型 ，任何.class表示任何类型<br>            Class[] types={String.class,int.class};<br>            //根据方法签名查找方法<br>            Method method=cls.getDeclaredMethod(methodName, types);<br>            //找到了私有方法<br>            System.out.println(method);<br>            //执行私有方法<br>            //打开方法的执行权限！违反封装！<br>            method.setAccessible(true);<br>            Object obj=cls.newInstance();<br>            Object value=method.invoke(obj, “tom”,12);<br>            System.out.println(value);</p>
+<pre><code>}
+</code></pre><p>}</p>
+<pre><code># 反射用途
+1.eclipse中解析类的结构使用了反射
+2.JUnit识别被测试的方法使用了反射
+  2.1JUnit利用反射查找@Test开头的方法
+  2.2JUnit利用反射解析@Test标注的测试方法
+3.spring管理bean对象，注入bean属性使用了反射
+  3.1利用反射创建bean实例
+  3.2利用发射注入bean属性
+4.注解的解析使用了反射，利用反射API支持注解
+5.强行执行私有方法，访问私有属性
+# JUnit原型
+原理：
+![](https://i.imgur.com/aDntwhe.png)
+</code></pre><p>//自己定义一个注解<br>package demo;</p>
+<p>import java.lang.annotation.Retention;<br>import java.lang.annotation.RetentionPolicy;</p>
+<p>@Retention(RetentionPolicy.RUNTIME)<br>public @interface Demo {</p>
+<p>}</p>
+<pre><code>测试方法
+</code></pre><p>//测试方法<br>package demo;<br>/*</p>
+<ul>
+<li>执行一个类中全部以@Demo标注的方法<br>*/<br>public class TestCase {<br> @Demo<br> public void Hello(){<pre><code> System.out.println(&quot;hello()&quot;);
+</code></pre> }<br> @Demo<br> public void hi(){<pre><code> System.out.println(&quot;hi()&quot;);
+</code></pre> }<br> public void test(){<pre><code> System.out.println(&quot;test()&quot;);
+</code></pre> }</li>
+</ul>
+<p>}</p>
+<pre><code># spring原型
+原理：
+![](https://i.imgur.com/7HjCYae.png)
+</code></pre><p>package demo;</p>
+<p>import java.io.IOException;<br>import java.io.InputStream;<br>import java.util.HashMap;<br>import java.util.List;<br>import java.util.Map;</p>
+<p>import org.dom4j.Document;<br>import org.dom4j.DocumentException;<br>import org.dom4j.Element;<br>import org.dom4j.io.SAXReader;</p>
+<p>public class ApplicationContext {<br>    //缓存spring容器中的bean对象<br>    private Map<string,object> beans=new HashMap<string,object>();</string,object></string,object></p>
+<pre><code>/*
+ * 利用配置文件初始化当前容器
+ * 利用XML，初始化全部bean对象
+ */
+public ApplicationContext(String xml) throws DocumentException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+    //利用dom4j,读取想XML文件
+    //解析文件内容，得到bean id和bean类名
+    //根据类名动态加载列并创建对象，将对象和对应的id传到map中
+     //从Resource（classpath）中读取流
+    InputStream in=getClass().getClassLoader().getResourceAsStream(xml);
+    SAXReader reader=new SAXReader();
+    Document doc=reader.read(in);
+    in.close();
+    //解析XML&lt;beans&gt;&lt;bean&gt;&lt;bean&gt;&lt;bean&gt;...
+    Element root=doc.getRootElement();
+    //读取根元素中全部bean子元素
+    List&lt;Element&gt; list=root.elements(&quot;bean&quot;);
+    for (Element e : list) {
+        //e 就是bean元素id属性和class属性
+        String id=e.attributeValue(&quot;id&quot;);
+        String className=e.attributeValue(&quot;class&quot;);
+        //动态加载类，动态创建对象
+        Class cls=Class.forName(className);
+        Object bean=    cls.newInstance();
+        beans.put(id, bean);
+
+    }
+
+}
+
+
+public Object getBean(String id){
+    //根据id在map中查找对象，并返回对象
+
+    return beans.get(id);
+}
+//泛型方法，优点：可以减少一次类型转换
+public&lt;T&gt; T getBean(String id,Class&lt;T&gt; cls){
+    return (T)beans.get(id);
+}
+</code></pre><p>}</p>
+<pre><code>一个测试的XML配置文件
+</code></pre><p>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</p>
+<beans><br>     <bean id="foo" class="demo.Foo"></bean><br>     <bean id="date" class="java.util.Date"></bean><br>     <bean id="TestCase" class="demo.TestCase"></bean><br></beans>
+
+
+<p>```</p>
+
       
 
       
@@ -397,7 +996,7 @@ npm install hexo-tag-dplayer
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -410,7 +1009,7 @@ npm install hexo-tag-dplayer
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/04/hexo进阶配置/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/01/25/java反射/">展开全文 >></a>
         </p>
       
 
@@ -440,20 +1039,20 @@ npm install hexo-tag-dplayer
 
 
   
-    <article id="post-鸡汤" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-spring配置文件找不到标签错误" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/03/鸡汤/">心灵鸡汤</a>
+      <a class="article-title" href="/2018/01/24/spring配置文件找不到标签错误/">spring配置文件找不到标签错误</a>
     </h1>
   
 
         
-        <a href="/2017/12/03/鸡汤/" class="archive-article-date">
-  	<time datetime="2017-12-03T06:46:28.660Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-03</time>
+        <a href="/2018/01/24/spring配置文件找不到标签错误/" class="archive-article-date">
+  	<time datetime="2018-01-24T12:01:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-24</time>
 </a>
         
       </header>
@@ -464,40 +1063,36 @@ npm install hexo-tag-dplayer
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="你也是那种把难过藏在心里的人吧"><a href="#你也是那种把难过藏在心里的人吧" class="headerlink" title="你也是那种把难过藏在心里的人吧"></a>你也是那种把难过藏在心里的人吧</h1><h3 id="却道故人心易变"><a href="#却道故人心易变" class="headerlink" title="却道故人心易变"></a>却道故人心易变</h3><p>　　你一定听过这句话，悲伤的时候别听慢歌。</p>
-<p>　　好死不死，我前一段时间心情不好，结果听了陈升的《把悲伤留给自己》。歌里唱：把我的悲伤留给自己，你的美丽让你带走，从此以后我再没有，快乐起来的理由。</p>
-<p>　　那时就有些自怜自艾，觉得无人在身边的日子实在有些苦。</p>
-<p>　　然后，我去找朋友聊天。我对他说，最近心情不好，许多事情都很焦虑，有些迷茫，还有点懒。</p>
-<p>　　朋友意兴阑珊，哦，是吗？</p>
-<p>　　我装作生气的样子，你怎么也不劝我两句？</p>
-<p>　　朋友说，如果劝你能解决这些事情的话，那活着也太容易了吧。你不就是想发泄吗，你说我听，你说出来就好些了。</p>
-<p>　　一时间，我有些泄气，算了，我去洗澡了。狠狠心咬着牙，洗了个冷水澡。</p>
-<p>　　被冷水劈头盖脸浇着的时候，我脑子里逐渐开始清醒。其实，不能埋怨朋友看似不通人情，实际上，我的气急败坏恰恰证明了他是对的。</p>
-<h3 id="人生若只如初见"><a href="#人生若只如初见" class="headerlink" title="人生若只如初见"></a>人生若只如初见</h3><p>　　你可能也会有这样的感觉，有时候，就因为一句话、一首歌，或者一些平时根本不会注意的细节，就能够引发一系列的情绪反应。随后，突如其来的，就是诸多的回忆。各种各样的感受和片段会挤进脑子里，来不及分辨，来不及细细梳理，轰你个措手不及。</p>
-<p>　　而在这些片段里，最容易被看到的，就是那些不被人察觉的难过。</p>
-<p>　　有一句话是这样说的：幸福总是短暂，且让人容易忘记，而痛苦往往刻骨铭心。</p>
-<p>　　它之所以难忘，不仅是因为感受深刻，更重要的是，你在这些难过里经历过许多，这些经历让你无法释然。</p>
-<p>　　我一同事，之前和男朋友分手，拉着身边所有人倒苦水。一开始，大家还耐心地安慰她，让她想开点，别为了一个男人毁了自己的生活。</p>
-<p>　　但你是否察觉过，有些人在难过时，会因为别人的几句劝慰，变得有恃无恐，愈加愿意把自己扮演成一个弱者的形象，渴望从别人那里得到更多的安慰。</p>
-<p>　　我这位同事就是如此。眼看她就要走向另外一个极端，有人提醒她不要钻牛角尖。结果，她讶异地说，你不是我的朋友吗？怎么向着那个臭男人说话？</p>
-<p>　　后来，大家都有些烦了，安慰的话说了一箩筐，一点作用都没有，反而加剧了她的偏激。于是，很多朋友和她渐行渐远，见面都躲着走。</p>
-<p>　　过了一段时日，她疑惑地问我，是不是大家都很讨厌她？自己究竟做错了什么？</p>
-<p>　　我说，你没有做错，只是有些事情，真的需要你自己度过，不要在别人身上寻找慰藉。</p>
-<h3 id="何事秋风悲画扇"><a href="#何事秋风悲画扇" class="headerlink" title="何事秋风悲画扇"></a>何事秋风悲画扇</h3><p>　　每个人都无可避免地在成长，无论你是否愿意，生活总会给你一些压力和挫折，让你不得不面对。</p>
-<p>　　在青春年少的时候，我们想要刺激的生活，渴望有新鲜感。而渐渐长大后，就开始期待稳定和踏实，最后一定会归于平淡。</p>
-<p>　　平淡是什么概念？它不仅仅是要你接受生活中的一些无趣，更要你把时时刻刻侵扰你的那些不快，当做习以为常的事情。</p>
-<p>　　我曾经和一个朋友聊天，她说，之所以不愿意将自己的心情和别人分享，就是知道它不过是暂时的、无用的，甚至是卑微的，没有必要让所有人都知道。</p>
-<p>　　或许你也是这样的人吧，把所有悲伤的话，都留给了自己。</p>
-<p>　　无论你是否愿意，都无可避免地，会面对这些旧伤发作的时刻。有些事情，要来来回回地想；有些痛苦，要坦坦荡荡地面对。</p>
-<h3 id="等闲变却故人心"><a href="#等闲变却故人心" class="headerlink" title="等闲变却故人心"></a>等闲变却故人心</h3><p>　　你肯定也有很多时刻觉得当下无法度过吧？</p>
-<p>　　失恋的时候，觉得全世界都背弃了你；失业的时候，苦恼以后的日子可怎么过；失眠的时候，辗转反侧内心无法安静。</p>
-<p>　　任何不顺心的当下，都觉得可能这一次，是没办法安然度过了。</p>
-<p>　　但是，我们就是这么一天天过来的。无论你是开心还是难过，无论你内心满足还是失意，时间都不会停下来等你。然后，你就慢慢学会了独自承受，习惯了一个人生活，习惯了独自面对诸多的难，习惯了忍受那些糟糕的情绪，甚至把它当做了人生的必修课。</p>
-<p>　　有人说，人不是主动接受着长大的，而是在一次次生命的重压之下，被迫历练成今天的样子。</p>
-<p>　　我深以为然。如果可以，我宁愿活得任性一点、矫情一点，宁愿把所有内心的边边角角都敞开来告诉身边的人。但我们不能，唯有自己学会勇敢，才能承受生活给予的一次次挑战。</p>
-<p>　　生活永远都是一个蹬鼻子上脸的角色，它欺软怕硬，你若软弱，它就越强硬；你若是坚强，它反倒会退避三尺。</p>
-<p>　　就是因为明白了这些，我逐渐学着自己处理很多事情，学着让自己不要陷入情绪当中无法自拔。别人的安慰只能解一时苦闷，但却不能实质性地替你解决问题。最终要面对的，还是你自己。</p>
-<p>　　你也是那种把难过藏在心里的人吧，对自己说句辛苦了，但是，千万别怂。</p>
+        <script src="/assets/js/APlayer.min.js"> </script><a id="more"></a>
+<h3 id="spring配置文件出错：cvc-complex-type-2-4-c-The-matching-wildcard-is-strict-but-no-declaration-can-be-found-for-element-‘mvc-annotation-driven’"><a href="#spring配置文件出错：cvc-complex-type-2-4-c-The-matching-wildcard-is-strict-but-no-declaration-can-be-found-for-element-‘mvc-annotation-driven’" class="headerlink" title="spring配置文件出错：cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element   ‘mvc:annotation-driven’."></a>spring配置文件出错：cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element   ‘mvc:annotation-driven’.</h3><pre><code>Multiple annotations found at this line:
+    - schema_reference.4: Failed to read schema document &#39;http://www.springframework.org/schema/m/
+     spring-mvc-3.2.xsd&#39;, because 1) could not find the document; 2) the document could not be read; 3) the root 
+     element of the document is not &lt;xsd:schema&gt;.
+    - cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element 
+     &#39;mvc:annotation-driven&#39;.
+</code></pre><p>出现这个错误万万没想到是复制过来的spring配置文件有问题，刚刚出现这个问题的时候，去网上搜解决办法，大多数都是说xsd文件与jar包版本不对，或者是网络问题导致无法访问xsd文件，但是折腾好久，确认jar包版本没毛病而且网络是通畅的，但是问题依然出现了，今晚偶然对比了每个标签的路径，发现了复制过来的配置文件很多路径都有/tx,就想会不会是这个小玩意在作祟，于是就改成了对应的标签名，结果就行了。<br>原来的配置文件<br></p>
+<pre><code>    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+        http://www.springframework.org/schema/jms http://www.springframework.org/schema/tx/spring-jms-3.2.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/tx/spring-lang-3.2.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/tx/spring-util-3.2.xsd&quot;&gt;
+</code></pre><p>修改后的配置文件<br></p>
+<pre><code>    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+        http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd&quot;&gt;
+</code></pre><p>我也不清楚为什么中间会有几个夹杂着/tx,导致了出现了莫名其妙的错误，解决了心情很是舒畅<br></p>
 
       
 
@@ -511,7 +1106,7 @@ npm install hexo-tag-dplayer
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">poisionous soul</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -521,21 +1116,10 @@ npm install hexo-tag-dplayer
               |阅读量(<span id="busuanzi_value_page_pv"></span>)
         </span>
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Poisionous-soul//" class="article-tag-list-link color1">Poisionous soul</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/03/鸡汤/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/01/24/spring配置文件找不到标签错误/">展开全文 >></a>
         </p>
       
 
@@ -565,20 +1149,20 @@ npm install hexo-tag-dplayer
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-tomcat启动报错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/03/hello-world/">hello</a>
+      <a class="article-title" href="/2018/01/13/tomcat启动报错/">tomcat启动报错</a>
     </h1>
   
 
         
-        <a href="/2017/12/03/hello-world/" class="archive-article-date">
-  	<time datetime="2017-12-03T06:46:28.560Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-03</time>
+        <a href="/2018/01/13/tomcat启动报错/" class="archive-article-date">
+  	<time datetime="2018-01-13T06:58:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-13</time>
 </a>
         
       </header>
@@ -589,19 +1173,100 @@ npm install hexo-tag-dplayer
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="启动错误"><a href="#启动错误" class="headerlink" title="启动错误"></a>启动错误</h1><p>tomcat启动报错：Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/tab]]<br>Tomcat日志如下：</p>
+<pre><code>严重: ContainerBase.addChild: start: 
+org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/tab]]
+    at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:154)
+    at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:866)
+    at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:842)
+    at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:615)
+    at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1095)
+    at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1617)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.tomcat.util.bcel.classfile.ClassFormatException: Invalid byte tag in constant pool: 15
+    at org.apache.tomcat.util.bcel.classfile.Constant.readConstant(Constant.java:131)
+    at org.apache.tomcat.util.bcel.classfile.ConstantPool.&lt;init&gt;(ConstantPool.java:60)
+    at org.apache.tomcat.util.bcel.classfile.ClassParser.readConstantPool(ClassParser.java:209)
+    at org.apache.tomcat.util.bcel.classfile.ClassParser.parse(ClassParser.java:119)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsStream(ContextConfig.java:1949)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsJar(ContextConfig.java:1840)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsUrl(ContextConfig.java:1808)
+    at org.apache.catalina.startup.ContextConfig.processAnnotations(ContextConfig.java:1794)
+    at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1214)
+    at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:828)
+    at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:302)
+    at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+    at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+    at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5148)
+    at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+    ... 10 more
+
+一月 13, 2018 2:57:45 下午 org.apache.catalina.startup.HostConfig deployDirectory
+严重: Error deploying web application directory E:\devtool\tomcat-7.0.23\webapps\tab
+java.lang.IllegalStateException: ContainerBase.addChild: start: org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/tab]]
+    at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:869)
+    at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:842)
+    at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:615)
+    at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1095)
+    at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1617)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:748)
+
+一月 13, 2018 2:57:45 下午 org.apache.catalina.startup.HostConfig deployDirectory
+信息: Deploying web application directory E:\devtool\tomcat-7.0.23\webapps\theme
+一月 13, 2018 2:57:46 下午 org.apache.catalina.core.ContainerBase addChildInternal
+严重: ContainerBase.addChild: start: 
+org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/theme]]
+    at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:154)
+    at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:866)
+    at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:842)
+    at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:615)
+    at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1095)
+    at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1617)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.tomcat.util.bcel.classfile.ClassFormatException: Invalid byte tag in constant pool: 15
+    at org.apache.tomcat.util.bcel.classfile.Constant.readConstant(Constant.java:131)
+    at org.apache.tomcat.util.bcel.classfile.ConstantPool.&lt;init&gt;(ConstantPool.java:60)
+    at org.apache.tomcat.util.bcel.classfile.ClassParser.readConstantPool(ClassParser.java:209)
+    at org.apache.tomcat.util.bcel.classfile.ClassParser.parse(ClassParser.java:119)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsStream(ContextConfig.java:1949)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsJar(ContextConfig.java:1840)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsUrl(ContextConfig.java:1808)
+    at org.apache.catalina.startup.ContextConfig.processAnnotations(ContextConfig.java:1794)
+    at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1214)
+    at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:828)
+    at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:302)
+    at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+    at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+    at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5148)
+    at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+    ... 10 more
+
+一月 13, 2018 2:57:46 下午 org.apache.catalina.startup.HostConfig deployDirectory
+严重: Error deploying web application directory E:\devtool\tomcat-7.0.23\webapps\theme
+java.lang.IllegalStateException: ContainerBase.addChild: start: org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/theme]]
+    at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:869)
+    at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:842)
+    at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:615)
+    at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1095)
+    at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1617)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:748)
+</code></pre><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>修改catalina.properties配置文件<br>在tomcat.util.scan.DefaultJarScanner.jarsToSkip=\ 值后面加”*”<br><img src="https://i.imgur.com/w9avEGT.png" alt=""></p>
 
       
 
@@ -610,6 +1275,17 @@ npm install hexo-tag-dplayer
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
          <span id="busuanzi_container_page_pv">
               |阅读量(<span id="busuanzi_value_page_pv"></span>)
         </span>
@@ -617,7 +1293,7 @@ npm install hexo-tag-dplayer
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/03/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/01/13/tomcat启动报错/">展开全文 >></a>
         </p>
       
 
@@ -649,7 +1325,7 @@ npm install hexo-tag-dplayer
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/10/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/12/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/10/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/12/">Next &raquo;</a>
     </nav>
   
 
@@ -781,15 +1457,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">music</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -797,19 +1465,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -818,6 +1494,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -837,11 +1517,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">

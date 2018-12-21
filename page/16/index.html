@@ -171,20 +171,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="w-类和对象" class="article article-type-w  article-index" itemscope itemprop="blogPost">
+    <article id="post-java代码如何打包成jar文件并且装换成可执行的exe文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/20/类和对象/">类和对象</a>
+      <a class="article-title" href="/2017/09/23/java代码如何打包成jar文件并且装换成可执行的exe文件/">java代码如何打包成jar文件并且装换成可执行的exe文件</a>
     </h1>
   
 
         
-        <a href="/2017/07/20/类和对象/" class="archive-article-date">
-  	<time datetime="2017-07-20T10:53:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-20</time>
+        <a href="/2017/09/23/java代码如何打包成jar文件并且装换成可执行的exe文件/" class="archive-article-date">
+  	<time datetime="2017-09-23T08:41:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-23</time>
 </a>
         
       </header>
@@ -195,28 +195,56 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="什么是类？什么是对象？"><a href="#什么是类？什么是对象？" class="headerlink" title="什么是类？什么是对象？"></a>什么是类？什么是对象？</h1><h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>1.现实世界是由很多对象组成的<br>2.对象时真实存在的单个个体</p>
-<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>类是由对象抽象出来的类别，类具有对象的统一的特征，包含一类个体<br>类中包括：<br>1.所由对象共有的特征（属性：静）———即变量（成员变量）<br>2.所有的共同行为（属性：动）————-即方法</p>
-<h1 id="如何创建类？如何创建对象？"><a href="#如何创建类？如何创建对象？" class="headerlink" title="如何创建类？如何创建对象？"></a>如何创建类？如何创建对象？</h1><p>一个类可以创建多个对象，对象的结构相同，数据不同<br>类是对象的模板，对象是类的具体实例<br>对象存于堆，引用存于栈<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192654.png" alt=""><br>类用关键词class创建，如：<br>     class Student {<br>      String name;<br>      int age;<br>      String address;<br>      void study(){<br>        System.out.println(name+”在学习”);<br>      }<br>      void sayHi(){<br>          System.out.println(“大家好！我叫”+name+”家住”+address);<br>      }<br>    }<br>这就创建了一个简单的类，创建了类，可以用关键词new来创建对象,如：<br>    Student    zs           =    new Student();<br>     类      引用类型变量    指向   对象<br>Student 为类，zs为引用类型变量，简称引用，=为指向的意思，new Student()为心创建的对象</p>
-<h1 id="引用类型之间画等号的意义"><a href="#引用类型之间画等号的意义" class="headerlink" title="引用类型之间画等号的意义"></a>引用类型之间画等号的意义</h1><p>引用类型之间画等号：指向了同一个对象<br>   1.对其中一个引用的修改会影响另一个引用<br>   2.eg:房门钥匙<br>基本类型之间画等号：赋值<br>   1.对其中一个值的修改不会影响另外一个值<br>   2.eg:身份证复印件<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192755.png" alt=""></p>
-<h1 id="null-和-NullPointerException"><a href="#null-和-NullPointerException" class="headerlink" title="null 和 NullPointerException"></a>null 和 NullPointerException</h1><p>null:空，没有指向任何对象<br>不能对null进行任何操作，若操作则会报NullPointerException空指针异常，出现此异常，大部分跟构造方法有关，但不绝对<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192756.png" alt=""></p>
-<hr>
-<h1 id="方法的重载"><a href="#方法的重载" class="headerlink" title="方法的重载"></a>方法的重载</h1><p>首先有一个概念叫方法的签名<br>方法的签名：方法名和参数列表<br>一个类中，不可能有两个方法的方法签名完全相同<br>方法的重载：<br>1.同一个类中，方法名相同，参数列表不同<br>2.编译器在编译时会自动根据方法的签名绑定调用的方法<br>方法的重载及其意义：(⊙o⊙)…这个，大概是在调用的时候会十分方便吧</p>
-<h1 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h1><p>构造方法（构造器，构建器，构造函数）<br>1.常常由于给成员变量赋初值<br>2.与类同名，没有返回类型，不能写void<br>3.在创建（new）对象时被自动调用<br>4.若自己不构造方法，系统默认提供无参构造方法，若已构造，则系统不再提供默认的无参构造方法<br>5.构造方法可以重载<br>    public class Cell {<br>     int row;<br>     int clo;</p>
-<pre><code> Cell(){
-     this(0);
- }
- Cell(int n){
-     this(n,n);
- }
- Cell(int row,int clo){
-     this.row=row;
-     this.clo=clo;
- }
-}
-</code></pre><h1 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h1><p>this：指代当前的对象，哪个对象调用指的就是哪个对象，方法中访问成员变量之前默认有个this，this关键字用于方法体中，指代当前调用的对象<br>this用法：<br>1.this.成员变量名——–访问成员变量<br>2.this.方法名———–调用方法<br>3.this();————–调用构造方法（注意是构造方法）</p>
-<h1 id="引用类型数组"><a href="#引用类型数组" class="headerlink" title="引用类型数组"></a>引用类型数组</h1><p>数组是对象，数组是引用类型，数组的元素可以为任意类型</p>
-<p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192857.png" alt=""><br>         Cell[] cells=new Cell[4];<br>        cells[0]=new Cell(2,5);<br>        cells[1]=new Cell(3,6);<br>        cells[2]=new Cell(4,7);<br>        cells[3]=new Cell(5,8);<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192858.png" alt=""></p>
+        <script src="/assets/js/APlayer.min.js"> </script><p>最近刚刚做了一个小游戏，想打包给同学玩一下，后来又发现没有JRE的电脑无法运行jar包，所以上网找了一下办法，想生成exe可执行程序并且可以打包发布。<br>java代码如何打包成jar文件并且装换成可执行的exe文件<br>这是别的大神的<a href="http://blog.csdn.net/xxyy888/article/details/13169389" target="_blank" rel="external">链接</a>，但是按照这样的方法生成的EXE却无法运行，可能是我的exe4j的版本不一致导致，我尝试了几次，EXE可以本机运行，但还是无法在别的电脑上运行</p>
+<h1 id="打包生成jar包"><a href="#打包生成jar包" class="headerlink" title="打包生成jar包"></a>打包生成jar包</h1><p>首先是将代码打包成jar包<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/TIM%E6%88%AA%E5%9B%BE20170926130311.png" alt=""><br>右击项目，点击Export<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170926130428.png" alt=""><br>然后选择JAR file,点击next<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170926130624.png" alt=""><br>.classpath和.project不要勾选，系统默认的是勾选<br>下面是选择导出的路径，自己根据情况选择一个路径，点next<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170926130637.png" alt=""><br>一切默认，点next<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170926130709.png" alt=""><br>这里用自己的MANIFEST.MF文件，至于这个文件怎么建，自己去百度，然后点finish<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/TIM%E6%88%AA%E5%9B%BE20170926130800.png" alt=""><br>出现警告，不必理会，点击OK，然后在自己对应的文件夹就会生成一个jar包，在本机以及装有JRE的电脑双击这个jar包均可正常运行，没有运行环境的无法运行<br><img src="https://github.com/codegitz/TestCapacity/blob/e53f23293da8277ca69954c3fe827b1fbb031207/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170926131334.png?raw=true" alt=""></p>
+<h1 id="生成exe可执行程序"><a href="#生成exe可执行程序" class="headerlink" title="生成exe可执行程序"></a>生成exe可执行程序</h1><p>jar包已经打包完成，下面就是要生成exe可执行程序<br>工具使用的是exe4j,下载安装可以到网上找<br>打开exe4j<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/TIM%E6%88%AA%E5%9B%BE20170926131517.png" alt=""><br>出现如下界面，点击next<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/TIM%E6%88%AA%E5%9B%BE20170926131529.png" alt=""><br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/TIM%E6%88%AA%E5%9B%BE20170926131549.png" alt=""><br>选择JAR in EXE mode，点击next<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/TIM%E6%88%AA%E5%9B%BE20170926131737.png" alt=""><br>在short name of your application给你的应用起个名字<br>在Output Directory填上你要生成EXE的路径，一般就是生成jar包的位置，然后next<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/TIM%E6%88%AA%E5%9B%BE20170926131829.png" alt=""><br>第一个框为要生成的EXE取个名字，第二个框给EXE选择一个ico文件，没有直接可以默认不填，下面的打圈√如果不想一台电脑上运行多个此程序可以勾上,然后next<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/TIM%E6%88%AA%E5%9B%BE20170926132056.png" alt=""><br>点击绿色的加号，设置程序执行的classpath<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/TIM%E6%88%AA%E5%9B%BE20170926132558.png" alt=""><br>填上你要选择的可执行jar包，OK<br><img src="https://github.com/codegitz/TestCapacity/blob/master/TIM%E6%88%AA%E5%9B%BE20170926145748.png?raw=true" alt=""><br>点击红框位置<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/TIM%E6%88%AA%E5%9B%BE20170926132731.png" alt=""><br>exe4j会自动搜索所有的main方法，点击选择，然后点OK<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/TIM%E6%88%AA%E5%9B%BE20170926132745.png" alt=""><br>出现下图<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/TIM%E6%88%AA%E5%9B%BE20170926132803.png" alt=""><br>点击next<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/TIM%E6%88%AA%E5%9B%BE20170926132822.png" alt=""><br>填写运行最低JDK版本号，点击next<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/TIM%E6%88%AA%E5%9B%BE20170926132918.png" alt=""><br>点击绿色加号添加捆绑JRE的位置,点击OK<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/TIM%E6%88%AA%E5%9B%BE20170926133030.png" alt=""><br>如图，点next<br><img src="https://github.com/codegitz/TestCapacity/blob/master/TIM%E6%88%AA%E5%9B%BE20170926151617.png?raw=true" alt=""><br>生成EXE<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/TIM%E6%88%AA%E5%9B%BE20170926133119.png" alt=""><br>完成，点击Exit退出<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/TIM%E6%88%AA%E5%9B%BE20170926133136.png" alt=""><br>保存配置信息<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/TIM%E6%88%AA%E5%9B%BE20170926133152.png" alt=""><br>这样在相应的位置下就会生成EXE文件，双击可以运行<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/e53f23293da8277ca69954c3fe827b1fbb031207/TIM%E6%88%AA%E5%9B%BE20170926133227.png" alt=""><br>一开始生成的这个EXE运行时会提示 no JVM 错误<br><img src="https://github.com/codegitz/TestCapacity/blob/master/535159294686688019.png?raw=true" alt=""><br>并且提示需要32位JDK，这个应该是跟exe4j的版本有所联系，于是我又安装了32位JDK，将eclipse中的JDK换成了新安装的JDK，重新编译了程序，并且再次打包成jar包，在生成EXE是绑定的也是这个32位的JDK，并且配置了EXE4J-JAVA-HOME变量，然后再次生成EXE，此时EXE可以再本机运行了，但是依然无法在别的电脑运行，我想可能是生成EXE是捆绑的JRE的路径有问题，但是检查了几次，上网找资料，发现有人说了这么一段话：<code>生成.exe文件只是套了一个外壳而已，不能生成可执行文件exe
+java文件依靠java虚拟机运行，没有jre（java runtime environment）的电脑永远都无法运行。
+exe是依靠微软的运行库运行。
+这两个平台完全不一样。
+综上所述，写好的java代码无法弄成可执行exe文件。就算按照楼主所说的方法生成了exe，也无法在没有jre环境的电脑上运行.</code></p>
+<p>先不说这段话是对是错，是不是过于主观，但是隐隐约约觉得问题肯定就是出在了JRE上，关键是怎么把这么运行环境也打包到没有JRE的电脑上</p>
+<h1 id="生成安装包"><a href="#生成安装包" class="headerlink" title="生成安装包"></a>生成安装包</h1><p>经过了之前的摸索，但是还是不能在别的电脑运行，浪费了不少时间，但是放弃又心有不甘，干脆一不做二不休，把JDK和EXE打包成一个安装包，然后再在别的电脑上进行安装，试试能不能运行<br>工具：Inno Setup</p>
+<h2 id="生成脚本程序"><a href="#生成脚本程序" class="headerlink" title="生成脚本程序"></a>生成脚本程序</h2><p>下载安装好，然后就可以开始了，点击运行<br><img src="https://github.com/codegitz/TestCapacity/blob/master/TIM%E6%88%AA%E5%9B%BE20170926162008.png?raw=true" alt=""><br>出现这个界面可以直接关掉自己编辑脚本程序，但是如果不熟悉写法，可以按照下面的教程使用。<br>使用<a href="http://jingyan.baidu.comarticle/295430f1232df70c7e0050fe.html" target="_blank" rel="external">教程</a><br>自己按照步骤配置好，接下来编译脚本程序，此脚本程序是根据上面教程你的选择操作所生成，大概查看一下<br>     ; Script generated by the Inno Setup Script Wizard.<br>     ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!</p>
+<pre><code> [Setup]
+ ; NOTE: The value of AppId uniquely identifies this application.
+ ; Do not use the same AppId value in installers for other applications.
+ ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
+ AppId={{F21ED7F6-6A12-4499-837A-9C0E8333D90E}
+ AppName=My Program
+ AppVersion=1.5
+ ;AppVerName=My Program 1.5
+ AppPublisher=Quan
+ AppPublisherURL=http://www.example.com/
+ AppSupportURL=http://www.example.com/
+ AppUpdatesURL=http://www.example.com/
+ DefaultDirName=F:\Myshootsetup\My Program
+ DisableProgramGroupPage=yes
+ OutputDir=F:\Myshootsetup
+ OutputBaseFilename=Myshootsetup
+ Compression=lzma
+ SolidCompression=yes
+
+[Languages]
+Name: &quot;english&quot;; MessagesFile: &quot;compiler:Default.isl&quot;
+
+[Tasks]
+Name: &quot;desktopicon&quot;; Description: &quot;{cm:CreateDesktopIcon}&quot;; GroupDescription: &quot;{cm:AdditionalIcons}&quot;; Flags: unchecked
+
+[Files]
+Source: &quot;F:\Myshoot2\MyshootWith31JDK.jar&quot;; DestDir: &quot;{app}&quot;; Flags: ignoreversion
+Source: &quot;F:\Myshoot2\jdk32bit\*&quot;; DestDir: &quot;{app}&quot;; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: &quot;F:\Myshoot2\lib\*&quot;; DestDir: &quot;{app}&quot;; Flags: ignoreversion recursesubdirs createallsubdirs
+; NOTE: Don&#39;t use &quot;Flags: ignoreversion&quot; on any shared system files
+
+[Icons]
+Name: &quot;{commonprograms}\My Program&quot;; Filename: &quot;{app}\Myshoot.exe&quot;
+Name: &quot;{commondesktop}\My Program&quot;; Filename: &quot;{app}\Myshoot.exe&quot;; Tasks: desktopicon
+
+[Run]
+Filename: &quot;{app}\Myshoot.exe&quot;; Description: &quot;{cm:LaunchProgram,My Program}&quot;; Flags: nowait postinstall skipifsilent
+</code></pre><p> 有些解释一下：<br>[Setup这个段包含用于安装程序和卸载程序的全局设置。<br>AppName（要安装的）程序名称<br>AppVersion程序版本号<br>DefaultDirName安装时默认的文件夹<br>DefaultGroupName快捷菜单或开始菜单的默认文件夹<br>OutputDir安装程序的输出路径</p>
+<p>[Files]这是定义安装程序安装文件到用户系统中的可选文件段。<br>Source资源文件<br>DestDir文件安装到用户系统中的目录。<br>[Icons]这个可选段定义所有创建在开始菜单和/或其它位置 (比如桌面)的快捷方式。<br>Name要创建的快捷方式的名字和位置。<br>Filename捷方式的命令行文件名，通常用一个目录常量开头。</p>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>脚本程序编辑好了，点击run编译<br><img src="https://github.com/codegitz/TestCapacity/blob/master/TIM%E6%88%AA%E5%9B%BE20170926163408.png?raw=true" alt=""><br>编译完成<br><img src="https://github.com/codegitz/TestCapacity/blob/master/TIM%E6%88%AA%E5%9B%BE20170926163541.png?raw=true" alt=""><br>这时候就会在你选中的路径中生成一个EXE安装程序，但是由于没有精简JRE，所以程序会显得十分臃肿，而且很不合理<br>然后就生成了一个可供安装的安装程序，似乎是大功告成了，兴高采烈地拿到别的电脑安装，发现还是运行不了，此时虽然心里情绪剧烈翻腾，但还是要告诉自己，冷静冷静，别砸电脑，留得青山在不愁没柴烧<br><img src="https://raw.githubusercontent.com/codegitz/TestCapacity/3385bb410a2ddd9b88e6f2e94ab8f72a17604d88/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170927123556.jpg" alt=""><br>这个坑以后有时间我再来踩踩，现在时机还不成熟<br> </p>
 
       
 
@@ -240,21 +268,10 @@
               |阅读量(<span id="busuanzi_value_page_pv"></span>)
         </span>
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/20/类和对象/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/09/23/java代码如何打包成jar文件并且装换成可执行的exe文件/">展开全文 >></a>
         </p>
       
 
@@ -284,20 +301,20 @@
 
 
   
-    <article id="post-方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-多态、内部类、面向对象总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/18/方法/">Java方法</a>
+      <a class="article-title" href="/2017/09/09/多态、内部类、面向对象总结/">多态、内部类、面向对象总结</a>
     </h1>
   
 
         
-        <a href="/2017/07/18/方法/" class="archive-article-date">
-  	<time datetime="2017-07-18T10:01:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-18</time>
+        <a href="/2017/09/09/多态、内部类、面向对象总结/" class="archive-article-date">
+  	<time datetime="2017-09-09T05:36:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-09</time>
 </a>
         
       </header>
@@ -308,95 +325,142 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><p>方法总结：</p>
-<h1 id="方法的作用"><a href="#方法的作用" class="headerlink" title="方法的作用"></a>方法的作用</h1><p>1.方法实现封装特定的逻辑功能，方法之间互相独立，一个方法一般只完成一件独立的事，遵循单一职责原则。<br>2.方法可以多次调用，避免大量代码重复，有利于复用，维护，团队协作开发。</p>
-<h1 id="方法的类型"><a href="#方法的类型" class="headerlink" title="方法的类型"></a>方法的类型</h1><p>1.方法分为有参数和无参数，有返回值和无返回值两种<br>无参数的方法参数列表为空<br>无返回值的方法定义时的方法类型为void</p>
-<h1 id="方法的定义"><a href="#方法的定义" class="headerlink" title="方法的定义"></a>方法的定义</h1><p>方法的定义的一般形式为：<br>   修饰词  返回类型 方法名（参数列表）{<br>        //方法体<br>     }<br>  例如：<br>    public static void eat() {<br>    //方法体<br>    }<br>    public static char[] generate(int level){<br>    //方法体<br>    }<br>public static 为修饰词，void和char[]分别表示没有返回值和返回一个char[]型的变量，（）圆括号里面的为参数，花括号里面为方法执行的方法体。</p>
-<h1 id="方法的调用"><a href="#方法的调用" class="headerlink" title="方法的调用"></a>方法的调用</h1><p>无返回值的：方法名（有参传参）；<br>有返回值的：数据类型 变量名=方法名（有参传参）；<br>如：<br>    <code>eat（）；</code><br>    <code>char[] b=generate(4);</code></p>
-<h1 id="return关键字"><a href="#return关键字" class="headerlink" title="return关键字"></a>return关键字</h1><p>1.return 值；//结束方法，返回结果给调用方法<br>2.return；结束方法</p>
-<h1 id="猜字符小游戏"><a href="#猜字符小游戏" class="headerlink" title="猜字符小游戏"></a>猜字符小游戏</h1><p>这个小游戏定义了一个随机生成字符串的方法generate（）和判断字符对错的check（）方法</p>
-<pre><code>package day06;
-import java.util.*;
-public class Guessing {
- /*猜字符小游戏
-  * 系统随机生成数个字母，生成字母个数由玩家选择
-  * 玩家随意输入几个字母
- * 系统判断正确的个数，并统计数据，计算得分
-  * 猜字过程输入exit则退出游戏
- * 
- * */
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="一、多态"><a href="#一、多态" class="headerlink" title="一、多态"></a>一、多态</h1><p>多态：多种形态，同意类型的引用指向不同的对象有不同的实现<br>1.意义：<br>  1.1.同一类型的引用指向不同的对象，有不同的实现–行为多态<br>  1.2.同一对象被造型为不同的类型时，有不同的实现–对象多态<br>2.向上造型：<br>  2.1.父类型的引用指向子类的对象<br>  2.2.能造型成的类型有：父类型，实现的接口<br>  2.3.能点出来什么，看引用的类型，向上造型之后，能点出来的东西一般少于或等于，一般是少于子类<br>3.强制类型转换，成功的条件有两个：<br>  3.1.引用所指向的对象就是该类型<br>  3.2.引用所指向的对象实现了该接口<br>4.建议强转之前通过instanceof来判断引用是否是某种类型<br>   instanceof返回的类型为Boolean型，强转成功的条件就是它为true</p>
+<h1 id="二、内部类"><a href="#二、内部类" class="headerlink" title="二、内部类"></a>二、内部类</h1><p>1.成员内部类：不太常用<br>  1.1.类中套类，外面的类叫外部类，里面的类叫做内部类<br>  1.2.内部类通常只服务于外部类，对外不具备可见性<br>  1.3.内部类对象通常是在外部类中创建的<br>  1.4.内部类可是直接访问外部类的成员，包含私用的private，内部类中有个隐式的引用，指向创建它的外部类对象<br>  语法：外部类名.this.xxx(外部成员变量名)<br>2.匿名内部类：比较常用<br>  2.1.如果想创建一个类的对象，并且对象只被创建一次，此时该类不必命名，称为匿名内部类<br>  2.2.匿名内部类想访问外部数据，该数据必须是final的<br>内部类都有独立的.class文件</p>
+<h1 id="三、面向对象的三大特征"><a href="#三、面向对象的三大特征" class="headerlink" title="三、面向对象的三大特征"></a>三、面向对象的三大特征</h1><h2 id="一、封装"><a href="#一、封装" class="headerlink" title="一、封装"></a>一、封装</h2><p>1.类：封装的事对象的属性和行为<br>2.方法：封装的事具体的逻辑功能实现<br>3.访问控制修饰符：封装的是访问的权限</p>
+<h2 id="二、继承"><a href="#二、继承" class="headerlink" title="二、继承"></a>二、继承</h2><p>1.作用：避免代码的重复，有利于代码的复用<br>2.父类：所有子类所共有的属性和行为<br>3.子继承（extends）父类，子类具有：父+子<br>4.单一继承，多接口实现，传递性</p>
+<h2 id="三、多态"><a href="#三、多态" class="headerlink" title="三、多态"></a>三、多态</h2><p>1.意义：行为的多态，对象的多态<br>2.向上造型，强制类型转换，instanceof<br>3.多态的表现形式：重写+重载</p>
+<h1 id="四、调试"><a href="#四、调试" class="headerlink" title="四、调试"></a>四、调试</h1><p>F5：逐步调试（进入方法中）<br>F6：逐过程调试（不进入方法中）<br>F7：跳出当前方法<br>F8：跳到下一个断点，若没有下一个断点，则调试结束</p>
 
-public static void main(String[] args) {
-     Scanner scan=new Scanner(System.in);
-     int level;
-     do{
-       System.out.println(&quot;请选择等级5、7、9：&quot;);
-       level=scan.nextInt();             
-     }while(level!=5&amp;&amp;level!=7&amp;&amp;level!=9);
-     char[] gen=generate(level);
-     int sroce;
-     int count=0;
-     for(int i=0;i&lt;gen.length;i++){
-         System.out.print(gen[i]);
-     }
-     System.out.println();
-     while(true){
-     System.out.println(&quot;猜吧！&quot;);
-     String str=scan.next().toUpperCase();
-     if(str.equals(&quot;EXIT&quot;)){
-         System.out.println(&quot;下次再来吧！&quot;);
-         break;
-             }
-     char[] imput=str.toCharArray();
-     int[] result=check(gen,imput);
-     if(result[1]==gen.length){
-         sroce=gen.length*100-count*10;
-         System.out.println(&quot;恭喜你，猜对了！得分为&quot;+sroce);
-         break;          
-     }else{
-         count++;
-     System.out.println(&quot;字符对了&quot;+result[0]+&quot;个，位置对了&quot;+result[1]+&quot;次&quot;);
-       }
-     }
+      
 
-     scan.close();
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/09/多态、内部类、面向对象总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-抽象方法、抽象类，接口" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/07/抽象方法、抽象类，接口/">抽象方法、抽象类，接口</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/07/抽象方法、抽象类，接口/" class="archive-article-date">
+  	<time datetime="2017-09-07T02:39:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="抽象方法"><a href="#抽象方法" class="headerlink" title="抽象方法"></a>抽象方法</h1><p>1.由abstract修饰<br>2.只有方法的定义，没有方法的实现，没有大括号</p>
+<h1 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h1><p>1.由abstract修饰<br>2.包含抽象方法的类都必须是抽象类，不包含抽象方法也可以声明为抽象类（不建议）<br>3.抽象类不能被实例化，不能new<br>4.抽象类是需要被继承的<br>  子类：<br>   1.重写所有的抽象方法–常用<br>   2.子类也为抽象类—不常用<br>5.抽象类的意义：<br>1.包含公共的属性和行为，被子类所共享–代码的复用性<br>2.为所有子类提供一种公共的类型—向上造型<br>3.包含抽象方法，为子类提供一个统一的入口，子类有不同的实现<br>abstract和final不能同时修饰一个类，abstract必须被继承，final不能被继承，矛盾冲突<br>    public class ShapeTest {</p>
+<pre><code>public static void main(String[] args) {
+
+   Shape[] shape =new Shape[6];
+   shape[0]= new Sqaure(1);//向上造型
+   shape[1]= new Sqaure(2);
+   shape[2]= new Sqaure(3);
+   shape[3]= new Circle(1);
+   shape[4]= new Circle(2);
+   shape[5]= new Circle(3);
+   maxArea(shape);
+   System.exit(0);
 }
-public static char[] generate(int level){
-    char[] chs=new char[level];
-    char[] letters=new char[]{&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;D&#39;,&#39;E&#39;,&#39;F&#39;,&#39;G&#39;,&#39;H&#39;,&#39;I&#39;,&#39;J&#39;,&#39;K&#39;,&#39;L&#39;,&#39;M&#39;,&#39;N&#39;,&#39;O&#39;,&#39;P&#39;,&#39;Q&#39;,&#39;R&#39;,&#39;S&#39;,&#39;T&#39;,&#39;U&#39;,&#39;V&#39;,&#39;W&#39;,&#39;X&#39;,&#39;Y&#39;,&#39;Z&#39;};
-
-    boolean[] flags=new boolean[letters.length];
-    for(int i=0;i&lt;chs.length;i++){
-        int index;
-        do{
-        index=(int)(Math.random()*26);
-
-        }while(flags[index]);
-        chs[i]=letters[index];
-        flags[index]=true;
-    }
-
-    return chs;
-}
-public static int[] check(char[] chs,char[] imput){
-    int[] result=new int[2];
-
-    for(int i=0;i&lt;chs.length;i++){
-        for(int j=0;j&lt;imput.length;j++){
-            if(chs[i]==imput[j]){
-                result[0]++;
-                if(i==j){
-              result[1]++;
-              break;
-                }
-            }
+public static void maxArea(Shape[] shape){
+    double maxArea=shape[0].area();
+    int index=0;
+    for(int i=0;i&lt;shape.length;i++){
+        double area=shape[i].area();
+        if(area&gt;maxArea){
+            maxArea=area;
+            index=i+1;
         }
     }
-    return result;
+    System.out.println(&quot;第&quot;+index+&quot;面积最大，&quot;+&quot;最大面积为&quot;+maxArea);
+}
 }
 
+abstract class Shape{//抽象类
+protected double c;
+abstract double area();//抽象方法
+} 
+class Sqaure extends Shape{
+public Sqaure(double c){
+    this.c=c;
 }
-</code></pre>
+public double area(){//重写抽象方法
+    return 0.0625*c*c;//抽象方法在子类中不同的实现
+    }
+}
+ class Circle extends Shape{
+public Circle (double c){
+    this.c=c;
+}
+public double area(){//重写抽象方法
+    return 0.0796*c*c;//抽象方法在子类中不同的实现
+}
+}
+</code></pre><h1 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h1><p>1.是一个标准，规范<br>2.由interface定义<br>3.只能包含常量和抽象方法，不能有变量和普通方法<br>4.接口不能被实例化<br>5.接口是需要被实现的/继承的，实现类/子类，必须重写接口中的所有抽象方法，方法前加public<br>6.一个类可以实现多个接口，用逗号分割，若又继承又实现时，应先继承后实现implements<br>7.接口可以继承接口<br>类对类——继承<br>接口对接口—继承<br>类对接口—-实现<br>接口可以看成是特殊的抽象类，既只包含抽象方法的抽象类，接口是完全抽象的抽象类</p>
+
       
 
       
@@ -409,7 +473,7 @@ public static int[] check(char[] chs,char[] imput){
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
@@ -419,21 +483,10 @@ public static int[] check(char[] chs,char[] imput){
               |阅读量(<span id="busuanzi_value_page_pv"></span>)
         </span>
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/18/方法/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/09/07/抽象方法、抽象类，接口/">展开全文 >></a>
         </p>
       
 
@@ -463,20 +516,20 @@ public static int[] check(char[] chs,char[] imput){
 
 
   
-    <article id="post-hexo相关配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-继承、方法的重写与重载" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/11/hexo相关配置/">hexo相关配置</a>
+      <a class="article-title" href="/2017/09/03/继承、方法的重写与重载/">继承、方法的重写与重载</a>
     </h1>
   
 
         
-        <a href="/2017/07/11/hexo相关配置/" class="archive-article-date">
-  	<time datetime="2017-07-11T03:59:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-11</time>
+        <a href="/2017/09/03/继承、方法的重写与重载/" class="archive-article-date">
+  	<time datetime="2017-09-03T05:52:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-03</time>
 </a>
         
       </header>
@@ -487,7 +540,17 @@ public static int[] check(char[] chs,char[] imput){
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><p>NexT主题的个性化设置<a href="http://www.jeyzhang.com/next-theme-personal-settings.html" target="_blank" rel="external">链接</a><br>NexT主题个性化之添加文章阅读量<a href="http://www.jeyzhang.com/hexo-next-add-post-views.html" target="_blank" rel="external">链接</a></p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="方法的重写Override"><a href="#方法的重写Override" class="headerlink" title="方法的重写Override"></a>方法的重写Override</h1><p>1.发生在父子类中，方法名相同，参数列表相同<br>2.重写的方法被调用时，看对象的类型<br>重写要遵循两同、两小、一大原则（一般都是一模一样的）<br>1.两同：方法名相同，参数列表相同<br>2.两小：<br> 1.子类的返回值类型小于或等于父类的<br>   1.1void和基本类型是必须相同<br>   1.2引用类型时，小于或等于<br> 2.子类抛出的异常小于或等于父类的–异常<br>3.一大：<br>子类方法的访问权限大于或等于父类的—访问修饰符</p>
+<h1 id="重写与重载的区别"><a href="#重写与重载的区别" class="headerlink" title="重写与重载的区别"></a>重写与重载的区别</h1><p>1.重写：父子类中，方法名相同，参数列表相同，方法体不同，遵循运行期绑定，根据对象的类型调用方法<br>2.重载：一个类中，方法名相同，参数列表不同，方法体不同，遵循编译期绑定，根据引用的类型调用方法<br>一句话：重写看对象，重载看引用</p>
+<h1 id="package和import"><a href="#package和import" class="headerlink" title="package和import"></a>package和import</h1><p>package:<br>1.作用：避免类名冲突<br>2.包名可以有层次结构<br>3.建议：包名所有字母都小写<br>4.类名的完全限定名：包名.类名<br>import<br>1.作用：声明类，引入类<br>2.同包中的类可以直接访问<br>不同包中的类调用：<br>1.先import声明类再调用访问类（建议）<br>2.类的全称–太繁琐（不建议）</p>
+<h1 id="封装的意义"><a href="#封装的意义" class="headerlink" title="封装的意义"></a>封装的意义</h1><p>1.对外提供可调用的，稳定的功能<br>2.封装容易变化的，具体的实现的细节，外界不可访问<br>意义在于：降低代码出错的可能性，增强维护性</p>
+<h1 id="访问控制修饰符"><a href="#访问控制修饰符" class="headerlink" title="访问控制修饰符"></a>访问控制修饰符</h1><p>1.public:公开的、任何类<br>2.private：私有的、本类<br>3.protected：受保护的、本类、子类、同包类<br>4.默认的：什么也不写，同包类<br>类的访问修饰：public和默认的<br>类成员的访问修饰：以上四种均可</p>
+<h1 id="static"><a href="#static" class="headerlink" title="static"></a>static</h1><p>static:静态的</p>
+<p>##　１.静态变量<br>1.由static来修饰<br>2.属于类，存在方法区中，只有一份<br>3.常常通过类名.来访问<br>4.何时用：所有对象的数据都一样时使用<br>成员变量：<br>1实例变量：对象.来访问<br>2静态变量：类名.来访问</p>
+<h2 id="2-静态方法"><a href="#2-静态方法" class="headerlink" title="2.静态方法"></a>2.静态方法</h2><p>1.由static修饰<br>2.属于类，存在方法区中，只有一份<br>3.常常通过类名.来访问<br>4.没有隐式this传递，没有this就没有对象，就不能访问实例变量，实例变量必须通过对象.来访问，所以静态方法中不能直接访问实例成员，静态方法里只能访问静态变量<br>实例变量比静态变量用得多，实例方法比静态方法用得多<br>5.何时用：方法的操作只与参数相关而与对象无关</p>
+<p>##　静态块<br>静态块：给静态变量赋值<br>1.由static修饰<br>2.属于类，类被加载期间自动执行，类只能被加载一次，所以静态块也只执行一次<br>3.何时用：常常用于加载静态资源（图片、音频等）</p>
+<h1 id="final"><a href="#final" class="headerlink" title="final"></a>final</h1><p>final：不能变<br>1.修饰变量：变量不能被改变<br>2.修饰方法：方法不能被重写<br>3.修饰类:类不能被继承，不能被继承，但是可以继承别的类，使一个类不被继承的意义在于：可以保护类不被继承修改，可以控制滥用继承对系统造成的危害<br>final修饰成员变量两种方式初始化：1.声明的同时初始化2.构造方法中初始化<br>final修饰局部变量，只需在使用之前初始化即可</p>
+<h1 id="static-final常量"><a href="#static-final常量" class="headerlink" title="static final常量"></a>static final常量</h1><p>1.必须在声明的同时初始化<br>2.不能改变，通过类名点来访问<br>3.建议：常量名所有的字母都大写<br>4.编译时会自动替换为具体的值，效率高</p>
 
       
 
@@ -501,7 +564,7 @@ public static int[] check(char[] chs,char[] imput){
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
@@ -511,21 +574,10 @@ public static int[] check(char[] chs,char[] imput){
               |阅读量(<span id="busuanzi_value_page_pv"></span>)
         </span>
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/hexo//" class="article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/11/hexo相关配置/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/09/03/继承、方法的重写与重载/">展开全文 >></a>
         </p>
       
 
@@ -555,20 +607,20 @@ public static int[] check(char[] chs,char[] imput){
 
 
   
-    <article id="post-利用GitHub在Markdown中插入图片" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-处理GitHub不允许上传大于100M的东西" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/10/利用GitHub在Markdown中插入图片/">利用GitHub在Markdown中插入图片</a>
+      <a class="article-title" href="/2017/07/26/处理GitHub不允许上传大于100M的东西/">处理GitHub不允许上传大于100M的文件</a>
     </h1>
   
 
         
-        <a href="/2017/07/10/利用GitHub在Markdown中插入图片/" class="archive-article-date">
-  	<time datetime="2017-07-10T08:05:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-10</time>
+        <a href="/2017/07/26/处理GitHub不允许上传大于100M的东西/" class="archive-article-date">
+  	<time datetime="2017-07-26T15:53:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-26</time>
 </a>
         
       </header>
@@ -579,14 +631,8 @@ public static int[] check(char[] chs,char[] imput){
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="1-新建一个git仓库"><a href="#1-新建一个git仓库" class="headerlink" title="1.新建一个git仓库"></a>1.新建一个git仓库</h1><p>在github中新建一个repo，不要勾选Initalize this repository with a README选项，如建立一个MarkdownPhotos的仓库<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Inked%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170710161230_LI.jpg" alt=""></p>
-<h1 id="2-新建本地储存图片的文件夹"><a href="#2-新建本地储存图片的文件夹" class="headerlink" title="2.新建本地储存图片的文件夹"></a>2.新建本地储存图片的文件夹</h1><p>在本地电脑新建文件夹将图片放入文件夹中，如新建ImageGithubToMarkdown文件夹 </p>
-<h1 id="3-在对应文件夹建立本地仓库"><a href="#3-在对应文件夹建立本地仓库" class="headerlink" title="3.在对应文件夹建立本地仓库"></a>3.在对应文件夹建立本地仓库</h1><p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162541.png" alt=""></p>
-<h1 id="4-Push到github保存"><a href="#4-Push到github保存" class="headerlink" title="4.Push到github保存"></a>4.Push到github保存</h1><p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162608.png" alt=""><br>完成后的图片为<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162719.png" alt=""></p>
-<h1 id="5-复制图片地址"><a href="#5-复制图片地址" class="headerlink" title="5.复制图片地址"></a>5.复制图片地址</h1><p>在Google浏览器打开GitHub<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162316.png" alt=""><br>右键点击图片，选择在“新标签页中打开图片”<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162400.png" alt=""><br>复制地址栏图片地址<br>或者直接右击图片，“复制图片地址”，两种操作得到的图片地址均可</p>
-<p>两个地址，指向同一个图片</p>
-<h1 id="6-在markdown中引用需要的图片地址"><a href="#6-在markdown中引用需要的图片地址" class="headerlink" title="6.在markdown中引用需要的图片地址"></a>6.在markdown中引用需要的图片地址</h1><p>按照markdown语法格式引用图片地址即可显示图片</p>
-<p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710165719.png" alt=""><br><a href="http://blog.csdn.net/monkey_lzl/article/details/60870891" target="_blank" rel="external">更多</a></p>
+        <script src="/assets/js/APlayer.min.js"> </script><p>Github 修正上传时“this exceeds GitHub’s file size limit of 100 MB”错误 </p>
+<p>自己的项目的版本控制用的是Git，代码仓库在github托管。项目里用到了IJKMediaFramework 想把代码push到github上，结果出错了，被拒绝，具体信息是：<br>Total 324 (delta 78), reused 0 (delta 0)<br>remote: error: GH001: Large files detected. You may want to try Git Large File Storage - <a href="https://git-lfs.github.com" target="_blank" rel="external">https://git-lfs.github.com</a>.<br>remote: error: Trace: 812007a278d0a89c0705b8c456066938<br>remote: error: See <a href="http://git.io/iEPt8g" target="_blank" rel="external">http://git.io/iEPt8g</a> for more information.<br>remote: error: File MiaoShow/Classes/Frameworks/IJKMediaFramework.framework/IJKMediaFramework is 112.62 MB; this exceeds GitHub’s file size limit of 100.00 MB<br>To <a href="https://github.com/XXX/XXXX.git。意思是有大文件，更多信息可到http://git.io/iEPt8g查看，文件IJKMediaFramework的大小超过了GitHub限制的100M大小。想要push，必须把这个文件移除，可是要怎么移除呢？开始我是想着直接删除掉IJKMediaFramework，结果不行，还是会报上面的错，于是我又把libbaiduNaviSDK.a放到忽略文件里，结果还是不行，还是说有大文件，报同样的错。这下只能老老实实的看官方的解决办法了，于是就打开http://git.io/iEPt8g老老实实的研究了一番。大意是说为了便于管理代码库和方便合作伙伴们使用，当你push50M以上的文件时github将会警告，当push100M以上文件，就直接拒绝你的push，要想push必须把该文件从本地仓库和远程仓库全部移除掉。这个移除会永久性的从本地git和github里移除，如果这个文件很重要，要记得做一次备份。下面进入具体操作。如果这个文件是最近一次commit的，并且你还没有push到github，那么第一步输入命令" target="_blank" rel="external">https://github.com/XXX/XXXX.git。意思是有大文件，更多信息可到http://git.io/iEPt8g查看，文件IJKMediaFramework的大小超过了GitHub限制的100M大小。想要push，必须把这个文件移除，可是要怎么移除呢？开始我是想着直接删除掉IJKMediaFramework，结果不行，还是会报上面的错，于是我又把libbaiduNaviSDK.a放到忽略文件里，结果还是不行，还是说有大文件，报同样的错。这下只能老老实实的看官方的解决办法了，于是就打开http://git.io/iEPt8g老老实实的研究了一番。大意是说为了便于管理代码库和方便合作伙伴们使用，当你push50M以上的文件时github将会警告，当push100M以上文件，就直接拒绝你的push，要想push必须把该文件从本地仓库和远程仓库全部移除掉。这个移除会永久性的从本地git和github里移除，如果这个文件很重要，要记得做一次备份。下面进入具体操作。如果这个文件是最近一次commit的，并且你还没有push到github，那么第一步输入命令</a> cd /Users/Dora/Desktop/XXX（cd后面的这个路径要换成你自己项目的路径），然后第二步输入命令 git rm –cached /Users/Dora/Desktop/XXX/XXX/IJKMediaFramework（加下划线部分是你自己的要移除的文件的路径），第三步输入命令 git commit –amend -CHEAD，执行完这步后，这个大文件将会从你的commit记录里移除，并且以后commit都将不会再把它commit了，这时候就可以git push把本地代码push到github上了。<br>注意：这里可能遇到输入git rm –cached /Users/Dora/Desktop/XXX/XXX/libbaiduNaviSDK.a命令后说找不到你要删除的文件的问题，出现这个问题的原因是你要删除的文件路径名没写对，一定要仔细检查，确保要删除的文件的路径是正确的。</p>
 
       
 
@@ -624,86 +670,7 @@ public static int[] check(char[] chs,char[] imput){
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/10/利用GitHub在Markdown中插入图片/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-first-java" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/01/first-java/">first java</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/01/first-java/" class="archive-article-date">
-  	<time datetime="2017-07-01T04:16:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-01</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><pre><code>package database;
-</code></pre><p>public class Database {</p>
-<pre><code>public static void main(String[] args) {
-    // TODO Auto-generated method stub
-
-System.out.println(&quot;hello world&quot;);
-
-
-}
-</code></pre><p>}</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/01/first-java/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/07/26/处理GitHub不允许上传大于100M的东西/">展开全文 >></a>
         </p>
       
 
@@ -735,7 +702,7 @@ System.out.println(&quot;hello world&quot;);
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/15/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/17/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/15/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/17/">Next &raquo;</a>
     </nav>
   
 
@@ -867,15 +834,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">music</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -883,19 +842,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -904,6 +871,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -923,11 +894,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">

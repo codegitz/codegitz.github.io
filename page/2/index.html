@@ -171,20 +171,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-httpclient的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-gogs-sample" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/08/httpclient的使用/">httpclient的使用</a>
+      <a class="article-title" href="/2018/11/07/gogs-sample/">gogs的简单实用</a>
     </h1>
   
 
         
-        <a href="/2018/10/08/httpclient的使用/" class="archive-article-date">
-  	<time datetime="2018-10-08T07:46:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-08</time>
+        <a href="/2018/11/07/gogs-sample/" class="archive-article-date">
+  	<time datetime="2018-11-07T10:34:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-07</time>
 </a>
         
       </header>
@@ -195,11 +195,58 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- read more-->
-<h2 id="什么是httpclient"><a href="#什么是httpclient" class="headerlink" title="什么是httpclient"></a>什么是httpclient</h2><p>HttpClient 是 Apache <a href="https://hc.apache.org/" target="_blank" rel="external">Jakarta Common </a>下的子项目，用来提供高效的、最新的、功能丰富的支持 HTTP 协议的客户端编程工具包，并且它支持 HTTP 协议最新的版本和建议。<br><br>HttpClient相比传统JDK自带的URLConnection，增加了易用性和灵活性（具体区别，日后我们再讨论），它不仅是客户端发送Http请求变得容易，而且也方便了开发人员测试接口（基于Http协议的），即提高了开发的效率，也方便提高代码的健壮性。<br>在项目中，内部服务的调用需要使用httpclient要获取想要的内容，然后返回的是json格式数据，调用方再做处理。<br>
-        
-          <a class="article-more-a" href="/2018/10/08/httpclient的使用/#more">read more >></a>
-        
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="gogs"><a href="#gogs" class="headerlink" title="gogs"></a>gogs</h2><p>gogs是类似于gitlab和GitHub的代码托管平台，自己搭建的是私服，使用方式基本类似。本文介绍gogs的简单的使用步骤。<br></p>
+<h3 id="创建本地仓库"><a href="#创建本地仓库" class="headerlink" title="创建本地仓库"></a>创建本地仓库</h3><p>首先我们在本地创建一个新的git仓库。首先建立一个新的文件夹，然后进入到文件夹里。<br></p>
+<pre><code>$ mkdir test-repo
+
+$ cd test-repo/
+</code></pre><p>这是命令行的创建文件夹的方式，Windows系统下可以直接在你的建立文件夹，然后右键 git bash<br><br><img src="https://i.imgur.com/R50E3Qr.png" alt=""><br>接下来我们就可以新建一个git仓库了。<br></p>
+<pre><code>$ git init
+Initialized empty Git repository in C:/Users/zhangguang/Desktop/test-repo/.git/
+</code></pre><p><img src="https://i.imgur.com/N7MkNV1.png" alt=""><br>可以看到建立了一个隐藏的<code>.git</code>文件夹。<br><br>至此我们已经建立了一个本地仓库，接下来我们可以让本地仓库和远程仓库建立连接。<br></p>
+<pre><code>$ git remote add origin http://10.21.65.103:3000/helloKitty/test.git
+</code></pre><p><code>http://10.21.65.103:3000/helloKitty/test.git</code>为远程仓库的地址。<br><br>然后我们就可以试着在本地新建一个文件，然后push到服务器的远程仓库上。我这里新建一个readme文档。<br></p>
+<pre><code>$ touch README.md
+</code></pre><p>用vim在里面添加一些内容。<br></p>
+<pre><code>$ vim README.md
+</code></pre><p><img src="https://i.imgur.com/ZdaQz57.png" alt=""><br>查看里面的内容。<br></p>
+<pre><code>$ cat README.md
+一个好的readme文档是一个项目的招牌！
+</code></pre><p>文件已经写好了，接下来首先要把它添加到本地git仓库缓存，否则如果没有添加到仓库，Git并不知道你做了什么工作。<br></p>
+<pre><code>$ git add README.md
+The file will have its original line endings in your working directory.
+</code></pre><p>暂存之后就可以进行提交了，一开始接触可能会对这里暂存和提交有疑问，觉得这是重复操作，其实这是为了提升性能，每一个<code>add</code>，只是一个小修改，<code>add</code>的数量多了就可以产生一次提交。就好比一个快递点，快递员不可能在有一个快递的时候就装车出发，需要快递达到一个相对的数量才发车，这样可以提升性能。<br></p>
+<pre><code>$ git commit -m &quot;first commit&quot;
+[master (root-commit) 366d373] first commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+</code></pre><h3 id="推送到服务器仓库"><a href="#推送到服务器仓库" class="headerlink" title="推送到服务器仓库"></a>推送到服务器仓库</h3><p>这时候更改就成功提交到了本地仓库了。接下来就把它推送到远程仓库里。<br></p>
+<pre><code>$ git push -u origin master
+</code></pre><p>然后会提示你输入用户名和密码，正确输入后就可以将修改推送到远程仓库了。<br><br><img src="https://i.imgur.com/5ROQnrM.png" alt=""><br>推送成功输出如下：<br></p>
+<pre><code>$ git push -u origin master
+Counting objects: 3, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 258 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+git: &#39;credential-cache&#39; is not a git command. See &#39;git --help&#39;.
+To http://10.21.65.103:3000/helloKitty/test.git
+ * [new branch]      master -&gt; master
+Branch master set up to track remote branch master from origin.
+</code></pre><p>到远程仓库查看，可以看到刚刚的提交历史。<br><br><img src="https://i.imgur.com/IUUb3DS.png" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上就是Git的基本操作。用到的命令也很简单，总结如下：<br></p>
+<pre><code>#初始化仓库
+git init
+#暂存文件
+git add README.md
+#提交
+git commit -m &quot;first commit&quot;
+#与远程仓库建立连接
+git remote add origin http://10.21.65.103:3000/helloKitty/test.git
+#推送到远程仓库
+git push -u origin master
+</code></pre><p><strong>注意：commit一定要书写提交信息，不然提交会出现问题。</strong><br></p>
+
       
 
       
@@ -212,7 +259,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
         		</li>
       		
 		</ul>
@@ -225,7 +272,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/08/httpclient的使用/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/11/07/gogs-sample/">展开全文 >></a>
         </p>
       
 
@@ -255,20 +302,20 @@
 
 
   
-    <article id="post-maven找不到父工程依赖问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-深入理解Git系列（三）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/01/maven找不到父工程依赖问题/">maven找不到父工程依赖问题</a>
+      <a class="article-title" href="/2018/11/06/深入理解Git系列（三）/">深入理解Git系列（三）</a>
     </h1>
   
 
         
-        <a href="/2018/10/01/maven找不到父工程依赖问题/" class="archive-article-date">
-  	<time datetime="2018-10-01T12:19:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-01</time>
+        <a href="/2018/11/06/深入理解Git系列（三）/" class="archive-article-date">
+  	<time datetime="2018-11-06T10:34:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-06</time>
 </a>
         
       </header>
@@ -279,11 +326,105 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- read more-->
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这两天maven新建工程的时候遇到一个很奇怪的问题，要依赖的父工程找不到，并且新建的工程目录有缺失，如下：<br><br><img src="https://i.imgur.com/X8lyU2E.jpg" alt=""><br>Google了一番都没有找到到问题所在，很多说是project-&gt;properties-&gt;java build path的问题，但是我的并不是。最后看到一个说是父工程命名的问题，所以顺着这个思路去检查了一番，果然发现了父工程<code>artifactId</code>有问题。原因是之前曾经重命名了这个父工程，但是pom.xml文件的artifactId并没有别改变，所以这个工程里面模块依赖下来都是重命名之前的artifactId。<br><br>
-        
-          <a class="article-more-a" href="/2018/10/01/maven找不到父工程依赖问题/#more">read more >></a>
-        
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前面的一些概念的东西写的好像过于详细，下面的介绍将从简出发。这篇文章来说一下重要的分支。</p>
+<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><p>分支是软件项目中启动一条单独的开发线的基本方法。分支是从一种统一的、原始的状态分离出来的，使开发功能在多个方向上同时进行，并可能产生项目的不同版本。通常情况下分支会被调解与其它分支合并，来重聚不同的力量。<br></p>
+<p>Git允许很多分支，因此同一个版本库中可以有许多不同的开发现。这也是处于不同地方的工作者可以对同一个项目进行开发的方法，每个单独修复的bug或者功能都可以是一个新的分支，这样的处理可以让庞大的项目显得更加清晰，回溯历史版本的时候也可以更容易找出问题的所在。<br></p>
+<h3 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h3><p>新的分支基于版本库中现有的提交，由你来决定哪次提交作为分支的开始。Git支持任意复杂的分支结构，包括分支的分支和从同一个提交分叉出的多个给定的分支名可以在其版本库的整个生命周期里多次添加或删除。<br></p>
+<p>一旦确定了从哪个提交开始分支，只需要使用<code>git branch</code>命令，例如为了解决报告问题#1，要从当前分支的HEAD创建一个新的分支点，可以使用</p>
+<pre><code>$ git branch prs/prs-1
+</code></pre><p>这条命令的基本形式是：<br>    $ git branch branch [starting-commit]</p>
+<p>如果没有指定的starting-commit，就默认在当前分支上的最近提交。也就是说，默认是在你现在的工作的地方启动一个新的分支。<br><br>需要注意的是，git branch命令指示把分支名引进版本库，并没有去改变工作目录去使用新的分支，没有工作目录文件发生变化。直到你切换到它。<br></p>
+<h3 id="列出分支名"><a href="#列出分支名" class="headerlink" title="列出分支名"></a>列出分支名</h3><p>git branch命令列出版本库中的分支名。</p>
+<pre><code>$ git branch
+* master
+  prs/prs-1
+  prs/prs-2
+</code></pre><p>这里显示了三个分支，当前已检出到你的工作目录的分支用星号标记。如果没有额外的参数，则只列出版本库中的特性分支，可以用-r选项列出那些远程追踪分支，也可以用-a选项把特性分支和远程分支都列出来。<br></p>
+<h3 id="查看分支"><a href="#查看分支" class="headerlink" title="查看分支"></a>查看分支</h3><p>git show-branch命令提供比git branch 更详细的删除，按时间以递序的形式列出对一个或多个分支的有贡献的提交。<br></p>
+<pre><code>$ git show-branch
+* [master] add line4 and line5
+ ! [prs/prs-1] fixed prs-1
+  ! [prs/prs-2] add line2 and line3
+-----
+*  ++ [master] add line4 and line5
+  +   [prs/prs-2] add line2 and line3
+*++++ [prs/prs-1] fixed prs-1
+</code></pre><p>git show-branch的输出被一排破折号分为两部分。分隔符上方的部分列出分支名，并且用方括号括起来，每行一个。<br><br>输出的下半部分是一个表示每个分支中提交的矩阵。每个提交后面跟着该提交中日志消息的第一行。如果有一个加号(+)、星号(*)或减号(-)在分支的列中，对应的田炯就会在该分支中显示。加号表示提交在一个分支中，星号突出显示存在于活动分支的提交，减号表示合并一个分支。<br></p>
+<h3 id="检出分支"><a href="#检出分支" class="headerlink" title="检出分支"></a>检出分支</h3><p>工作目录一次只能反映一个分支。要在不同的分支上开始工作，要发出git checkout命令。给定一个分支名，git checkout会使该分支成为当前工作分支。它改变了工作树文件和目录结构来匹配给定的分支状态。但是Git会采取措施来使你避免丢失未提交的工作数据。<br><br>Git会让你访问版本库的所有状态，从分支的最前端到项目的最开始。这是因为每次提交会捕获在一个给定时刻版本库完整状态的快照。<br></p>
+<pre><code>$ git branch
+* master
+  prs/prs-1
+  prs/prs-2
+
+
+$ git checkout prs/prs-1
+Switched to branch &#39;prs/prs-1&#39;
+
+$ git branch
+  master
+* prs/prs-1
+  prs/prs-2
+</code></pre><p>工作树中的文件和目录结构已更新来反应新的分支的状态和内容。工作目录中的文件已经发生了变化以符合该分支顶端的状态。<br><br>选择一个新的当前分支可能会对工作树文件和目录结构产生巨大影响，改变的程度取决于当前分支和你检出分支之间的差异。改变分支的影响有：<br></p>
+<ul>
+<li>在要被检出的分支哄但不在当前分支中的文件和目录，会从树对象库中检<br>出并放置到工作树上。<br></li>
+<li>在当前分支中但不在要被检出的分之中的文件和目录，会从工作树中删除</li>
+<li>这两个分支都有的文件会被修改为要被检出的分支的内容。<br></li>
+</ul>
+<h3 id="有未提交的更改是进行检出"><a href="#有未提交的更改是进行检出" class="headerlink" title="有未提交的更改是进行检出"></a>有未提交的更改是进行检出</h3><p>毫无疑问，这样是不能检出成功的，如果数据没有被提交，一但检出覆盖，那么未提交的数据会丢失。Git会发出如下错误消息，并拒绝检出目标分支。<br></p>
+<pre><code>$ git checkout master
+error: Your local changes to the following files would be overwritten by checkout:
+        hello.txt
+Please commit your changes or stash them before you switch branches.
+Aborting
+</code></pre><p>此时你需要提交然后才可以检出为新的分支，或者合并变更到不同分支。<br><br>工作目录的当前状态与你想切换到的分支相冲突，我们需要的是一个合并：工作目录中的改变必须要被检出的文件合并。<br><br>检出时使用-m参数，git通过在你的本地修改和对目录分支之间进行一个合并操作，尝试将你的本地修改加入到新的工作目录中。<br></p>
+<pre><code>$ git checkout -m master
+Switched to branch &#39;master&#39;
+M       hello.txt
+</code></pre><p>在这里，Git已经修改了hello.txt文件，并成功检出master分支。<br></p>
+<pre><code>$ cat hello.txt
+hello world
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; master
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+add line4
+add line5
+=======
+add line2
+add line3
+add line2
+add line3
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; prs/prs-2
+=======
+test uncommit checkout
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; local
+</code></pre><p>进行这种合并时一定要小心，虽然它看起来合并的很干净并且一切都没有问题。这个命令有时候也十分有用，当你在一个分支上耗费了大量的时间之后，发现这不是你想要提交的分支，可能你会陷入抓狂，这个命令可以替你解决问题，不过工作的时候一定要注意分支。<br></p>
+<h3 id="创建并检出新的分支"><a href="#创建并检出新的分支" class="headerlink" title="创建并检出新的分支"></a>创建并检出新的分支</h3><p>另一种比较常见的情况是当你想创建一个分支并同时切换到它，Git提供了一个快捷方式-b new-branch来处理这种情况。<br></p>
+<pre><code>$ git checkout -b prs/prs-4
+Switched to a new branch &#39;prs/prs-4&#39;
+
+$ git show-branch
+! [master] fixed commit
+ ! [prs/prs-1] fixed prs-1
+  ! [prs/prs-2] add line2 and line3
+   ! [prs/prs-3] add line4 and line5
+    * [prs/prs-4] fixed commit
+     ! [rel-2.3] add line4 and line5
+------
++   *  [master] fixed commit
+-   -  [master^] fixed conflit
++ + *  [prs/prs-2] add line2 and line3
++  +*+ [prs/prs-3] add line4 and line5
+++++*+ [prs/prs-1] fixed prs-1
+</code></pre><p>以下这个命令<br></p>
+<pre><code>$ git checkout -b new-branch start-point
+</code></pre><p>与两个命令序列是等价的：<br></p>
+<pre><code>$ git branch new-branch start-point
+$ git checkout new-branch
+</code></pre><h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><p>Git阻止你删除当前工作分支，删除当前分支将导致Git无法确定工作目录树应该是什么样的。必须始终选择一个非当前分支。还有一个问题，Git不会让你删除一个包含不存在于当前分之中的提交的分支。也就是说，如果分支被删除则开发的提交部分就会丢失，Git会阻止你意外删除提交中的开发。</p>
+<pre><code>$ git branch -d prs/prs-3
+Deleted branch prs/prs-3 (was 03b66ff).
+</code></pre><p>Git不会保持任何形式的关于分支名创建，移动，操纵，合并或者删除的历史记录，一旦某个分支删除了，它就没了。但是，该分支的提交历史记录是一个独立的问题。Git最终会删除那些不再被引用的提交和不能从某些命名（如分支和标签名）的引用的可达的提交。如果你想保留那些提交，必须将它们合并到不同的分支，为它们创建一个分支，或者用标签指向它们，否则，如果没有对他们的引用或者提交，blob是不可以达的，最终将被 git gc工具当成垃圾回收。<br><br>注：意外删除分支或其他引用后，可以使用git reflog命令恢复。<br></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这篇大概讲解了分支的使用方法和切换，理解分支的工作原理很重要，下一篇是关于分支之间的合并问题，产生冲突时的解决方法。Git鼓励的就是小规模频繁的提交，这就有利于将问题细致化，一个分支解决一个问题，虽然有点杀鸡用牛刀的意思。所以这个模式有时候会不可避免地产生一些冲突，怎么正确的解决冲突也相当重要。</p>
+
       
 
       
@@ -296,7 +437,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
         		</li>
       		
 		</ul>
@@ -309,7 +450,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/01/maven找不到父工程依赖问题/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/11/06/深入理解Git系列（三）/">展开全文 >></a>
         </p>
       
 
@@ -339,20 +480,20 @@
 
 
   
-    <article id="post-花谢了" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-深入理解Git系列（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/27/花谢了/">花谢了</a>
+      <a class="article-title" href="/2018/11/02/深入理解Git系列（二）/">深入理解Git系列（二）</a>
     </h1>
   
 
         
-        <a href="/2018/09/27/花谢了/" class="archive-article-date">
-  	<time datetime="2018-09-27T15:36:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-27</time>
+        <a href="/2018/11/02/深入理解Git系列（二）/" class="archive-article-date">
+  	<time datetime="2018-11-02T05:38:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-02</time>
 </a>
         
       </header>
@@ -363,9 +504,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>似乎很久都没有动过这一块了呢，今晚整理了一下自己乱如狗窝的博客，回看了曾经写过的一些文字，也想起了过往所经历的一切，开心的、不开心的，兴奋的，压抑的都有。想想这一切也是人生的一部分，经历过才能让人愈发的感触于心。<br><br>
+        <!--read more-->
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇介绍了Git的一些典型的使用方法，并且留下了很多疑问。这一篇来讨论一下Git的冠军架构组成和一些重要的概念来探讨Git的不同之处和原因。下面开始吧。<br><br>
         
-          <a class="article-more-a" href="/2018/09/27/花谢了/#more">read more >></a>
+          <a class="article-more-a" href="/2018/11/02/深入理解Git系列（二）/#more">read more >></a>
         
       
 
@@ -379,7 +521,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
         		</li>
       		
 		</ul>
@@ -392,7 +534,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/27/花谢了/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/11/02/深入理解Git系列（二）/">展开全文 >></a>
         </p>
       
 
@@ -422,20 +564,20 @@
 
 
   
-    <article id="post-FTP上传文件0字节问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-深入理解Git系列（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/17/FTP上传文件0字节问题/">FTP上传文件0字节问题</a>
+      <a class="article-title" href="/2018/10/31/深入理解Git系列（一）/">深入理解Git系列（一）</a>
     </h1>
   
 
         
-        <a href="/2018/09/17/FTP上传文件0字节问题/" class="archive-article-date">
-  	<time datetime="2018-09-16T16:47:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-17</time>
+        <a href="/2018/10/31/深入理解Git系列（一）/" class="archive-article-date">
+  	<time datetime="2018-10-31T14:45:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-31</time>
 </a>
         
       </header>
@@ -446,10 +588,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- read more-->
-<h2 id="FTP上传文件0字节问题"><a href="#FTP上传文件0字节问题" class="headerlink" title="FTP上传文件0字节问题"></a>FTP上传文件0字节问题</h2><p>这几天在做一个ftp图片服务器，使用的是vsftp客户端，按照一套流程下来，基本搭建完毕，在Windows窗口上传文件正常，但是到了在Java程序中就出现了问题，上传图片的时候并不会报错，而是会卡住大概30秒左右，接着返回false，并不会抛出异常。一开始在想会不会是服务器没搭好，但是逐步排查下来，并没有发现问题，并且如果是服务器本身出现了问题，那么Windows命令行也应该不能上传成功，但是窗口上传成功了，说明了服务器的搭建应该是没有问题的。后来怀疑是自己的代码有问题，但是去参考了一番，发现并没有什么异样，十分懵逼。<br><br>然后Google发现这样一个问题：<br><br>VSFTP有两种模式：pasv模式与port模式，也就是我们所说的主动和被动模式<br><br>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近版本管理使用了自己搭建的gitlab服务器，git命令大家肯定都或多或少用过，以前用的时候也只是git add . git commit等等几个简单的命令，并没有深入去了解Git的内部原理。这次面对可以会出现各种管理的冲突，我觉得有必要深入学习一下Git的原理和使用。下面就一步一步来开始这趟旅程吧！<br><br>首先申明一下，这系列文章可能会有点枯燥，大部分都是讲解一些命令用法概念，并没有很新奇的玩意。<br></p>
+<p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/one.png" alt=""><br>
         
-          <a class="article-more-a" href="/2018/09/17/FTP上传文件0字节问题/#more">read more >></a>
+          <a class="article-more-a" href="/2018/10/31/深入理解Git系列（一）/#more">read more >></a>
         
       
 
@@ -463,7 +605,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
         		</li>
       		
 		</ul>
@@ -476,7 +618,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/17/FTP上传文件0字节问题/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/10/31/深入理解Git系列（一）/">展开全文 >></a>
         </p>
       
 
@@ -506,20 +648,20 @@
 
 
   
-    <article id="post-A-Thousand-Years" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-CentOS-6-4-系统下-GitLab-搭建与基本配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/12/A-Thousand-Years/">A Thousand Years</a>
+      <a class="article-title" href="/2018/10/28/CentOS-6-4-系统下-GitLab-搭建与基本配置/">CentOS 6.4 系统下 GitLab 搭建与基本配置</a>
     </h1>
   
 
         
-        <a href="/2018/09/12/A-Thousand-Years/" class="archive-article-date">
-  	<time datetime="2018-09-12T15:33:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-12</time>
+        <a href="/2018/10/28/CentOS-6-4-系统下-GitLab-搭建与基本配置/" class="archive-article-date">
+  	<time datetime="2018-10-28T05:28:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-28</time>
 </a>
         
       </header>
@@ -530,22 +672,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="听到的都是猪儿虫"><a href="#听到的都是猪儿虫" class="headerlink" title="听到的都是猪儿虫"></a>听到的都是猪儿虫</h2><div id="aplayer0" class="aplayer" style="margin-bottom: 20px;"></div>
-		<script>
-			new APlayer({
-				element: document.getElementById("aplayer0"),
-				narrow: false,
-				autoplay: false,
-				showlrc: 0,
-				music: {
-					title: "Beautiful In White",
-					author: "Shane Filan",
-					url: "http://p0e6ktyto.bkt.clouddn.com/Shane%20Filan%20-%20Beautiful%20In%20White%20%28Demo%29.mp3",
-					pic: "https://i.imgur.com/sRZqFvh.jpg",
-				}
-			});
-		</script>
-
+        <h2 id="Gitlab简介"><a href="#Gitlab简介" class="headerlink" title="Gitlab简介"></a>Gitlab简介</h2><!-- read more-->
+<p><a href="https://about.gitlab.com/" target="_blank" rel="external">GitLab</a> 是一个开源的版本管理系统，提供了类似于 GitHub 的源代码浏览，管理缺陷和注释等功能，你可以将代码免费托管到 GitLab.com，而且不限项目数量和成员数。最吸引人的一点是，可以在自己的服务器上搭建 GitLab CE （社区免费版）版本，方便内部团队协作开发和代码管理。<br><br>最近需要用到Gitlab管理项目，所以手动搭建了一个Gitlab平台。<br><br>环境和资源准备：<br></p>
+<ul>
+<li>阿里云CentOS 6.4服务器<br></li>
+<li>gitlab-ce-10.2.3-ce.0.el6.x86_64.rpm<br>
+        
+          <a class="article-more-a" href="/2018/10/28/CentOS-6-4-系统下-GitLab-搭建与基本配置/#more">read more >></a>
+        
       
 
       
@@ -558,7 +692,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">music</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
         		</li>
       		
 		</ul>
@@ -571,7 +705,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/12/A-Thousand-Years/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/10/28/CentOS-6-4-系统下-GitLab-搭建与基本配置/">展开全文 >></a>
         </p>
       
 
@@ -603,7 +737,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -735,15 +869,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">music</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -751,19 +877,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -772,6 +906,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -791,11 +929,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -171,20 +171,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Nginx-ftp搭建图片服务器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-搭建solr服务器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/12/Nginx-ftp搭建图片服务器/">Nginx+ftp搭建图片服务器</a>
+      <a class="article-title" href="/2018/10/13/搭建solr服务器/">搭建solr服务器</a>
     </h1>
   
 
         
-        <a href="/2018/09/12/Nginx-ftp搭建图片服务器/" class="archive-article-date">
-  	<time datetime="2018-09-12T14:32:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-12</time>
+        <a href="/2018/10/13/搭建solr服务器/" class="archive-article-date">
+  	<time datetime="2018-10-13T14:33:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-13</time>
 </a>
         
       </header>
@@ -195,39 +195,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><!-- read more-->
-<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx<br></h2><p>这里就不说了<br></p>
-<h2 id="安装vsftp"><a href="#安装vsftp" class="headerlink" title="安装vsftp"></a>安装vsftp</h2><p>这里也不说了<br></p>
-<p>主要是Nginx代理路径的配置和图片上传的根目录，一定要设置对应的读写权限，不然在上传文件是会报错：<br></p>
-<pre><code>500 OOPS: cannot change directory:/var/www/images
-500 OOPS: priv_sock_get_cmd
-//Windows 命令行报错 
-ftp&gt; put E:\1491756492.jpg
-200 PORT command successful. Consider using PASV.
-553 Could not create file.
-</code></pre><h2 id="更改路径"><a href="#更改路径" class="headerlink" title="更改路径"></a>更改路径<br></h2><p>更改路径需要更改vsftp的vsftpd.conf文件<br><br>文件默认在/etc/vsftpd目录下</p>
-<pre><code># new defaut root create by Quan 2018/9/12
-local_root=/var/www/images  //针对系统用户
-chroot_local_user=NO     //是不是锁定在当前目录
-anon_root=/var/www/images  //针对匿名用户
-</code></pre><p>配置Nginx的nginx.conf配置文件<br><br>文件默认在 /usr/local/nginx/conf/目录下<br></p>
-<pre><code>    server {
-        listen       80;
-        server_name  localhost;
-
-        #charset koi8-r;
-
-        #access_log  logs/host.access.log  main;
-
-        location / {
-#  default root
-#  root   /home/ftpuser;
-#  new root
-             root   /var/www/images;
-            index  index.html index.htm;
-        }
-</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里新建的路径www/images一定要设置读写权限，否则会出现<code>553 Could not create file.</code>错误<br><br><strong>关于配置：</strong>这里面的配置还有很多，这里只是列举了一两个，下面附上完整配置<a href="https://blog.csdn.net/jianhong1990/article/details/52001785" target="_blank" rel="external">vsftp链接</a>、<a href="https://blog.csdn.net/chenweijiSun/article/details/70823482" target="_blank" rel="external">nginx.conf链接</a></p>
-
+        <h2 id="什么是solr"><a href="#什么是solr" class="headerlink" title="什么是solr"></a>什么是solr</h2><!-- read more-->
+<p>Solr 是Apache下的一个顶级开源项目，采用Java开发，它是基于Lucene的全文搜索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化。其主要功能包括全文检索、命中标示、分面搜索、动态聚类、数据库集成，以及富文本（如Word、PDF）的处理。Solr是高度可扩展的，并提供了分布式搜索和索引复制。Solr是最流行的企业级搜索引擎，Solr 4还增加了NoSQL支持。 <br><br>Solr可以独立运行，运行在Jetty、Tomcat等这些Servlet容器中，Solr 索引的实现方法很简单，用 POST 方法向 Solr 服务器发送一个描述 Field 及其内容的 XML 文档，Solr根据xml文档添加、删除、更新索引 。Solr 搜索只需要发送 HTTP GET 请求，然后对 Solr 返回Xml、json等格式的查询结果进行解析，组织页面布局。Solr不提供构建UI的功能，Solr提供了一个管理界面，通过管理界面可以查询Solr的配置和运行情况。<br><br>
+        
+          <a class="article-more-a" href="/2018/10/13/搭建solr服务器/#more">read more >></a>
+        
       
 
       
@@ -240,7 +212,7 @@ anon_root=/var/www/images  //针对匿名用户
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">solr</a>
         		</li>
       		
 		</ul>
@@ -253,7 +225,7 @@ anon_root=/var/www/images  //针对匿名用户
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/12/Nginx-ftp搭建图片服务器/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/10/13/搭建solr服务器/">展开全文 >></a>
         </p>
       
 
@@ -283,20 +255,20 @@ anon_root=/var/www/images  //针对匿名用户
 
 
   
-    <article id="post-Nginx安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-搭建redis集群" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/09/Nginx安装/">Nginx的安装及其使用</a>
+      <a class="article-title" href="/2018/10/11/搭建redis集群/">搭建redis集群</a>
     </h1>
   
 
         
-        <a href="/2018/09/09/Nginx安装/" class="archive-article-date">
-  	<time datetime="2018-09-09T14:32:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-09</time>
+        <a href="/2018/10/11/搭建redis集群/" class="archive-article-date">
+  	<time datetime="2018-10-11T09:29:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-11</time>
 </a>
         
       </header>
@@ -307,290 +279,16 @@ anon_root=/var/www/images  //针对匿名用户
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><!-- read more-->
-<h1 id="Nginx的安装及其启动"><a href="#Nginx的安装及其启动" class="headerlink" title="Nginx的安装及其启动"></a>Nginx的安装及其启动</h1><h2 id="1-nginx安装环境"><a href="#1-nginx安装环境" class="headerlink" title="1 nginx安装环境"></a>1 nginx安装环境</h2><p>nginx是C语言开发，建议在linux上运行，本教程使用阿里云服务器Centos6.8作为安装环境。<br><br><strong>gcc</strong><br><br>安装nginx需要先将官网下载的源码进行编译，编译依赖gcc环境，如果没有gcc环境，需要安装gcc：<br><br><code>yum install gcc-c++</code> <br><br><strong>PCRE</strong><br><br>PCRE(Perl Compatible Regular Expressions)是一个Perl库，包括 perl 兼容的正则表达式库。nginx的http模块使用pcre来解析正则表达式，所以需要在linux上安装pcre库。<br><br><code>yum install -y pcre pcre-devel</code><br><br>注：pcre-devel是使用pcre开发的一个二次开发库。nginx也需要此库。<br><strong>zlib</strong><br><br>zlib库提供了很多种压缩和解压缩的方式，nginx使用zlib对http包的内容进行gzip，所以需要在linux上安装zlib库。<br><br><code>yum install -y zlib zlib-devel</code><br></p>
-<p><strong>openssl</strong><br><br>OpenSSL 是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及SSL协议，并提供丰富的应用程序供测试或其它目的使用。<br><br>nginx不仅支持http协议，还支持https（即在ssl协议上传输http），所以需要在linux安装openssl库。<br><br><code>yum install -y openssl openssl-devel</code><br></p>
-<h2 id="2-编译安装"><a href="#2-编译安装" class="headerlink" title="2 编译安装"></a>2 编译安装</h2><p>将nginx-1.8.0.tar.gz拷贝至linux服务器。</p>
-<p>解压：<br><br>    tar -zxvf nginx-1.8.0.tar.gz<br>解压之后目录如下：<br></p>
-<pre><code>[root@iZwz9c6u1iybgf3f7s8cg6Z ~]# ll
-total 820
-drwxr-xr-x 8 1001 1001   4096 Apr 21  2015 nginx-1.8.0
--rw-r--r-- 1 root root 832104 Sep  9 11:52   nginx-1.8.0.tar.gz
-</code></pre><p>进入解压目录：<br><br>    cd nginx-1.8.0</p>
-<p>1、    configure<br><br>./configure –help查询详细参数<br></p>
-<p>参数设置如下：<br></p>
-<pre><code>./configure \
---prefix=/usr/local/nginx \
---pid-path=/var/run/nginx/nginx.pid \
---lock-path=/var/lock/nginx.lock \
---error-log-path=/var/log/nginx/error.log \
---http-log-path=/var/log/nginx/access.log \
---with-http_gzip_static_module \
---http-client-body-temp-path=/var/temp/nginx/client \
---http-proxy-temp-path=/var/temp/nginx/proxy \
---http-fastcgi-temp-path=/var/temp/nginx/fastcgi \
---http-uwsgi-temp-path=/var/temp/nginx/uwsgi \
---http-scgi-temp-path=/var/temp/nginx/scgi
-</code></pre><p><img src="https://i.imgur.com/6imQ4kI.png" alt=""><br>执行完之后会生成Makefile文件<br><img src="https://i.imgur.com/ysJKB8Y.png" alt=""><br><br><br>注意：上边将临时文件目录指定为/var/temp/nginx，需要在/var下创建temp及nginx目录</p>
-<p>2、    编译安装<br><br>    make<br><br>    make  install<br><br>安装成功，查看Nginx<br><br><img src="https://i.imgur.com/7gWlD3g.png" alt="">    </p>
-<h2 id="3-启动nginx"><a href="#3-启动nginx" class="headerlink" title="3 启动nginx"></a>3 启动nginx</h2><p>默认安装路径为/usr/local/nginx<br></p>
-<pre><code>cd /usr/local/nginx/sbin/
-./nginx
-</code></pre><p><img src="https://i.imgur.com/sJBnCg9.png" alt=""></p>
-<p>我这里启动遇到了问题，因为上边将临时文件目录指定为/var/temp/nginx,需要新建路径/var/temp/nginx<br><br><img src="https://i.imgur.com/ZG3mweD.png" alt=""><br><strong>注意：执行./nginx启动nginx，这里可以-c指定加载的nginx配置文件，如下：<br>./nginx -c /usr/local/nginx/conf/nginx.conf<br>如果不指定-c，nginx在启动时默认加载conf/nginx.conf文件，此文件的地址也可以在编译安装nginx时指定./configure的参数（–conf-path= 指向配置文件（nginx.conf））</strong></p>
-<p>成功启动，但是在浏览器无法访问，阿里的服务器，安全组跑不了干系，主要有两个问题<br></p>
-<ol>
-<li>服务器外围：阿里云安全组设置<br></li>
-<li>服务器内部：防火墙设置<br></li>
-</ol>
-<p>首先配置安全组规则：<br><br><img src="https://i.imgur.com/FZrAskX.png" alt=""><br>然后关掉防火墙：<br></p>
-<pre><code>[root@iZwz9c6u1iybgf3f7s8cg6Z sbin]# iptables -P INPUT ACCEPT
-[root@iZwz9c6u1iybgf3f7s8cg6Z sbin]# iptables -F
-</code></pre><p>用curl命令查看，可以访问Nginx<br></p>
-<pre><code>[root@iZwz9c6u1iybgf3f7s8cg6Z nginx-1.8.0]# curl http://47.107.71.209/
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;title&gt;Welcome to nginx!&lt;/title&gt;
-&lt;style&gt;
-    body {
-        width: 35em;
-        margin: 0 auto;
-        font-family: Tahoma, Verdana, Arial, sans-serif;
-    }
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
-&lt;p&gt;If you see this page, the nginx web server is successfully installed and
-working. Further configuration is required.&lt;/p&gt;
-
-&lt;p&gt;For online documentation and support please refer to
-&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
-Commercial support is available at
-&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>用浏览器访问也可以访问成功<br><img src="https://i.imgur.com/vJrK0Lg.png" alt=""></p>
-<h2 id="4-停止nginx"><a href="#4-停止nginx" class="headerlink" title="4 停止nginx"></a>4 停止nginx</h2><p>方式1，快速停止：<br>cd /usr/local/nginx/sbin<br>./nginx -s stop<br>此方式相当于先查出nginx进程id再使用kill命令强制杀掉进程。</p>
-<p>方式2，完整停止(建议使用)：<br>cd /usr/local/nginx/sbin<br>./nginx -s quit<br>此方式停止步骤是待nginx进程处理任务完毕进行停止。</p>
-<h2 id="5-重启nginx"><a href="#5-重启nginx" class="headerlink" title="5 重启nginx"></a>5 重启nginx</h2><p>方式1，先停止再启动（建议使用）：<br>对nginx进行重启相当于先停止nginx再启动nginx，即先执行停止命令再执行启动命令。<br>如下：<br>./nginx -s quit<br>./nginx</p>
-<p>方式2，重新加载配置文件：<br>当nginx的配置文件nginx.conf修改后，要想让配置生效需要重启nginx，使用-s reload不用先停止nginx再启动nginx即可将配置信息在nginx中生效，如下：<br>./nginx -s reload</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里的安装都比较简单，可能遇到的问题就是外网无法访问，所以需要在控制台配置安全组规则，放行对应的端口，在防火墙也需要进行放行。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/09/Nginx安装/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-messi" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/20/messi/">Messi</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/20/messi/" class="archive-article-date">
-  	<time datetime="2018-06-20T14:32:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-20</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><p><img src="https://i.imgur.com/orNX4PP.jpg" alt=""><br><img src="https://i.imgur.com/yfjb8hp.png" alt=""><br><img src="https://i.imgur.com/NnzjuXD.png" alt=""><br><img src="https://i.imgur.com/NcfqyME.png" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Messi</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/20/messi/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Linux网络测试和测试工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/08/Linux网络测试和测试工具/">Linux网络测试和测试工具</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/08/Linux网络测试和测试工具/" class="archive-article-date">
-  	<time datetime="2018-05-08T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-08</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="Linux网络测试和测试工具"><a href="#Linux网络测试和测试工具" class="headerlink" title="Linux网络测试和测试工具"></a>Linux网络测试和测试工具</h2><pre><code>ifconfig
-nslookup
-ping
-//跟踪路由
-traceroute
-netstat -r
-</code></pre><p>##系统启动引导器和单用户模式</p>
-<p><code>grub</code></p>
-<h2 id="守护进程"><a href="#守护进程" class="headerlink" title="守护进程"></a>守护进程</h2><p>运行在后台，直接开机启动，类似于Windows中的服务</p>
+        <!-- read more-->
+<h2 id="redis集群"><a href="#redis集群" class="headerlink" title="redis集群"></a>redis集群</h2><h3 id="redis集群简介"><a href="#redis集群简介" class="headerlink" title="redis集群简介"></a>redis集群简介</h3><p>Redis 集群是一个提供在多个Redis间节点间共享数据的程序集。<br><br>Redis集群并不支持处理多个keys的命令,因为这需要在不同的节点间移动数据,从而达不到像Redis那样的性能,在高负载的情况下可能会导致不可预料的错误.<br><br>Redis 集群通过分区来提供一定程度的可用性,在实际环境中当某个节点宕机或者不可达的情况下继续处理命令. Redis 集群的优势:<br></p>
 <ul>
-<li>系统守护进程</li>
-<li>网络守护进程</li>
+<li>自动分割数据到不同的节点上。<br></li>
+<li>整个集群的部分节点失败或者不可达的情况下能够继续处理命令。<br></li>
 </ul>
-<pre><code>ps -ef
-</code></pre><h3 id="查看守护进程优先级"><a href="#查看守护进程优先级" class="headerlink" title="查看守护进程优先级"></a>查看守护进程优先级</h3><pre><code>[root@iZwz95jk243fcqv90p12gpZ etc]# pstree
-systemd─┬─AliYunDun───15*[{AliYunDun}]
-        ├─AliYunDunUpdate───3*[{AliYunDunUpdate}]
-        ├─2*[agetty]
-        ├─aliyun-service───6*[{aliyun-service}]
-        ├─atd
-        ├─auditd───{auditd}
-        ├─crond
-        ├─dbus-daemon
-        ├─dhclient
-        ├─ntpd
-        ├─polkitd───5*[{polkitd}]
-        ├─rsyslogd───2*[{rsyslogd}]
-        ├─sshd───sshd───bash───pstree
-        ├─systemd-journal
-        ├─systemd-logind
-        ├─systemd-udevd
-        └─tuned───4*[{tuned}]
-</code></pre><h3 id="守护进程的操作"><a href="#守护进程的操作" class="headerlink" title="守护进程的操作"></a>守护进程的操作</h3><pre><code>service ** stop
-service ** start
-service ** restart
-service ** reload  //重新读取配置，不会重启
-</code></pre><h3 id="设置守护进程"><a href="#设置守护进程" class="headerlink" title="设置守护进程"></a>设置守护进程</h3><pre><code>ntsysv
-</code></pre><p>Centos6</p>
-<pre><code>chkconfig
-chkconfig --list
-</code></pre><p>Centos7</p>
-<pre><code>systemctl 
-systemctl list-unit-files
-</code></pre><h2 id="系统时间同步"><a href="#系统时间同步" class="headerlink" title="系统时间同步"></a>系统时间同步</h2><pre><code>date 
-hwclock
-ntpd
-</code></pre><h2 id="crond"><a href="#crond" class="headerlink" title="crond"></a>crond</h2><p><img src="https://i.imgur.com/ZI1QNZ1.png" alt=""></p>
-<p><img src="https://i.imgur.com/ch8mqZa.png" alt=""></p>
-<p><img src="https://i.imgur.com/qFYMS1n.png" alt=""></p>
-<p><img src="https://i.imgur.com/MyaBuKy.png" alt=""></p>
-
+<p><img src="https://i.imgur.com/1ysbV8v.png" alt="集群架构模型"><br>
+        
+          <a class="article-more-a" href="/2018/10/11/搭建redis集群/#more">read more >></a>
+        
       
 
       
@@ -603,7 +301,7 @@ ntpd
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Java,linux</a>
         		</li>
       		
 		</ul>
@@ -616,7 +314,7 @@ ntpd
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/08/Linux网络测试和测试工具/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/10/11/搭建redis集群/">展开全文 >></a>
         </p>
       
 
@@ -646,20 +344,20 @@ ntpd
 
 
   
-    <article id="post-iptables" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-httpclient的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/08/iptables/">iptables</a>
+      <a class="article-title" href="/2018/10/08/httpclient的使用/">httpclient的使用</a>
     </h1>
   
 
         
-        <a href="/2018/05/08/iptables/" class="archive-article-date">
-  	<time datetime="2018-05-08T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-08</time>
+        <a href="/2018/10/08/httpclient的使用/" class="archive-article-date">
+  	<time datetime="2018-10-08T07:46:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-08</time>
 </a>
         
       </header>
@@ -670,15 +368,11 @@ ntpd
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="iptables基础及应用"><a href="#iptables基础及应用" class="headerlink" title="iptables基础及应用"></a>iptables基础及应用</h2><h3 id="防火墙的作用及分类"><a href="#防火墙的作用及分类" class="headerlink" title="防火墙的作用及分类"></a>防火墙的作用及分类</h3><p><img src="https://i.imgur.com/3AOIU6q.png" alt=""></p>
-<p><img src="https://i.imgur.com/LdnCjud.png" alt=""></p>
-<h3 id="iptables概述"><a href="#iptables概述" class="headerlink" title="iptables概述"></a>iptables概述</h3><h3 id="iptables流程图"><a href="#iptables流程图" class="headerlink" title="iptables流程图"></a>iptables流程图</h3><h3 id="iptables语法"><a href="#iptables语法" class="headerlink" title="iptables语法"></a>iptables语法</h3><p><img src="https://i.imgur.com/P7FaQYj.png" alt=""></p>
-<p><img src="https://i.imgur.com/Pq2KDNP.png" alt=""></p>
-<p><img src="https://i.imgur.com/ySZxsYo.png" alt=""></p>
-<p><img src="https://i.imgur.com/O5LOQMz.png" alt=""></p>
-<p><img src="https://i.imgur.com/ALRzAs9.png" alt=""></p>
-<p><img src="https://i.imgur.com/6Kd8NRD.png" alt=""></p>
-
+        <!-- read more-->
+<h2 id="什么是httpclient"><a href="#什么是httpclient" class="headerlink" title="什么是httpclient"></a>什么是httpclient</h2><p>HttpClient 是 Apache <a href="https://hc.apache.org/" target="_blank" rel="external">Jakarta Common </a>下的子项目，用来提供高效的、最新的、功能丰富的支持 HTTP 协议的客户端编程工具包，并且它支持 HTTP 协议最新的版本和建议。<br><br>HttpClient相比传统JDK自带的URLConnection，增加了易用性和灵活性（具体区别，日后我们再讨论），它不仅是客户端发送Http请求变得容易，而且也方便了开发人员测试接口（基于Http协议的），即提高了开发的效率，也方便提高代码的健壮性。<br>在项目中，内部服务的调用需要使用httpclient要获取想要的内容，然后返回的是json格式数据，调用方再做处理。<br>
+        
+          <a class="article-more-a" href="/2018/10/08/httpclient的使用/#more">read more >></a>
+        
       
 
       
@@ -691,7 +385,7 @@ ntpd
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
@@ -704,7 +398,174 @@ ntpd
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/08/iptables/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/10/08/httpclient的使用/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-maven找不到父工程依赖问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/01/maven找不到父工程依赖问题/">maven找不到父工程依赖问题</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/01/maven找不到父工程依赖问题/" class="archive-article-date">
+  	<time datetime="2018-10-01T12:19:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-01</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- read more-->
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这两天maven新建工程的时候遇到一个很奇怪的问题，要依赖的父工程找不到，并且新建的工程目录有缺失，如下：<br><br><img src="https://i.imgur.com/X8lyU2E.jpg" alt=""><br>Google了一番都没有找到到问题所在，很多说是project-&gt;properties-&gt;java build path的问题，但是我的并不是。最后看到一个说是父工程命名的问题，所以顺着这个思路去检查了一番，果然发现了父工程<code>artifactId</code>有问题。原因是之前曾经重命名了这个父工程，但是pom.xml文件的artifactId并没有别改变，所以这个工程里面模块依赖下来都是重命名之前的artifactId。<br><br>
+        
+          <a class="article-more-a" href="/2018/10/01/maven找不到父工程依赖问题/#more">read more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/01/maven找不到父工程依赖问题/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-花谢了" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/27/花谢了/">花谢了</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/27/花谢了/" class="archive-article-date">
+  	<time datetime="2018-09-27T15:36:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-27</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>似乎很久都没有动过这一块了呢，今晚整理了一下自己乱如狗窝的博客，回看了曾经写过的一些文字，也想起了过往所经历的一切，开心的、不开心的，兴奋的，压抑的都有。想想这一切也是人生的一部分，经历过才能让人愈发的感触于心。<br><br>
+        
+          <a class="article-more-a" href="/2018/09/27/花谢了/#more">read more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/27/花谢了/">展开全文 >></a>
         </p>
       
 
@@ -736,7 +597,7 @@ ntpd
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -868,15 +729,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">music</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -884,19 +737,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -905,6 +766,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -924,11 +789,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
