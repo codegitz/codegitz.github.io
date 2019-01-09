@@ -171,19 +171,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-mysql报错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql命令行创建新用户" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/mysql报错/">Mysql报错</a>
+      <a class="article-title" href="/2018/04/13/mysql命令行创建新用户/">Mysql命令行添加新用户</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/mysql报错/" class="archive-article-date">
+        <a href="/2018/04/13/mysql命令行创建新用户/" class="archive-article-date">
   	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
@@ -195,24 +195,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Mysql报错：Unable-to-connect-to-remote-host-Catalog-download-has-failed"><a href="#Mysql报错：Unable-to-connect-to-remote-host-Catalog-download-has-failed" class="headerlink" title="Mysql报错：Unable to connect to remote host. Catalog download has failed."></a>Mysql报错：Unable to connect to remote host. Catalog download has failed.</h1><pre><code>=================== Start Initialization ===================
-MySQL Installer is running in Community mode
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Mysql命令行添加新用户"><a href="#Mysql命令行添加新用户" class="headerlink" title="Mysql命令行添加新用户"></a>Mysql命令行添加新用户</h1><p>创建用户root ，密码为123456，@%代表登录主机通配<br>     CREATE USER ‘root’@’%’ IDENTIFIED BY ‘123456’;<br>刷新<br>    flush privileges;<br>授权<br>    GRANT ALL ON cloud_note.* TO ‘root’@’%’;</p>
+<pre><code>mysql&gt; CREATE USER &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;123456&#39;;
+Query OK, 0 rows affected (0.00 sec)
 
-Initializing product requirements
-Loading product catalog
-Checking for product catalog snippets
-Checking for product packages in the bundle
-Categorizing product catalog
-Finding all installed packages.
-Your product catalog was last updated at 4/9/2018 9:54:11 PM
-=================== End Initialization ===================
+mysql&gt; flush privileges;
+Query OK, 0 rows affected (0.00 sec)
 
+mysql&gt; select host,user from mysql.user;
++-----------+-----------+
+| host      | user      |
++-----------+-----------+
+| %         | root      |
+| localhost | mysql.sys |
+| localhost | mysqlxsys |
+| localhost | root      |
++-----------+-----------+
+4 rows in set (0.00 sec)
 
+mysql&gt; GRANT ALL ON cloud_note.* TO &#39;root&#39;@&#39;%&#39;;
+Query OK, 0 rows affected (0.00 sec)
 
-Unable to connect to remote host.  Catalog download has failed.
-</code></pre><p>问题分析<br>该问题是由于新版本的 Mysql 在安装的时候会自动在 Windows 的“任务计划程序”中安装一个定时任务，任务的触发时间为每天上午十点。</p>
-<p>解决方式<br>找到相应的定时任务，并禁用该任务。 </p>
+mysql&gt; flush privileges;
+Query OK, 0 rows affected (0.00 sec)
 
+mysql&gt; select host,user from mysql.user;
++-----------+-----------+
+| host      | user      |
++-----------+-----------+
+| %         | root      |
+| localhost | mysql.sys |
+| localhost | mysqlxsys |
+| localhost | root      |
++-----------+-----------+
+4 rows in set (0.00 sec)
+</code></pre>
       
 
       
@@ -238,7 +255,7 @@ Unable to connect to remote host.  Catalog download has failed.
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/mysql报错/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/mysql命令行创建新用户/">展开全文 >></a>
         </p>
       
 
@@ -268,19 +285,19 @@ Unable to connect to remote host.  Catalog download has failed.
 
 
   
-    <article id="post-mybatis关联映射" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-ajax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/mybatis关联映射/">Mybatis关联映射</a>
+      <a class="article-title" href="/2018/04/13/ajax/">ajax(asynchronous javascript and xml)</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/mybatis关联映射/" class="archive-article-date">
+        <a href="/2018/04/13/ajax/" class="archive-article-date">
   	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
@@ -292,111 +309,33 @@ Unable to connect to remote host.  Catalog download has failed.
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Mybatis关联映射"><a href="#Mybatis关联映射" class="headerlink" title="Mybatis关联映射"></a>Mybatis关联映射</h1><p>将数据库中有关联关系的表，以实体对象引用的方式体现出来</p>
-<p>关联方式：</p>
-<ul>
-<li>关联单个对象</li>
-<li>关联多个对象</li>
-</ul>
-<p>class User{</p>
-<p> private List<book> books;<br>}</book></p>
-<p>class Book{<br>  private User user;<br>}</p>
-<p>什么时候用<br>业务需要对数据库进行关联查询的时候</p>
-<p>可以通过一条SQL语句完成关联查询。也可以通过两条SQL语句进行关联查询</p>
-<h2 id="案例：通过userId查询用户信息和关联的笔记本信息"><a href="#案例：通过userId查询用户信息和关联的笔记本信息" class="headerlink" title="案例：通过userId查询用户信息和关联的笔记本信息"></a>案例：通过userId查询用户信息和关联的笔记本信息</h2><p>1.User 实体类<br>2.定义Dao接口，配置Mapper文件<br>3.定义测试类验证查询结果</p>
-<p>2个SQL语句：语句简单，但是配置繁琐，与DB两次交互</p>
-<pre><code>&lt;!-- 使用两条SQL语句加载数据 --&gt;
-    &lt;select id=&quot;findUserAndBook&quot; parameterType=&quot;String&quot; resultMap=&quot;userMap1&quot;&gt;
-        select * from cn_user where cn_user_id=#{id}
-    &lt;/select&gt;
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="ajax-asynchronous-javascript-and-xml"><a href="#ajax-asynchronous-javascript-and-xml" class="headerlink" title="ajax(asynchronous javascript and xml)"></a>ajax(asynchronous javascript and xml)</h1><h2 id="1-ajax是什么"><a href="#1-ajax是什么" class="headerlink" title="1.ajax是什么"></a>1.ajax是什么</h2><p>ajax是一种用来改善用户体验的技术，其本质是利用浏览器提供的一个特殊的对象（XMLHttpRequest,也可称之为ajax对象）向服务器发送异步请求。服务器返回部分数据（通常不需要返回完整页面），浏览器利用这些数据对当前页面做部分更新。整个过程，页面无刷新，不打断用户的操作。<br>注：<br>异步请求：发送请求的同时，浏览器不会销毁当前页面，用户仍然可以对当前页面做其他操作。<br>使用ajax请求的过程：<br><img src="https://i.imgur.com/1K90kh4.png" alt=""><br>不使用ajax的请求过程：<br><img src="https://i.imgur.com/iWOnkph.png" alt=""></p>
+<h2 id="2-如何获得ajax对象"><a href="#2-如何获得ajax对象" class="headerlink" title="2.如何获得ajax对象"></a>2.如何获得ajax对象</h2><p>要区分浏览器：</p>
+<pre><code>function getXhr(){
+    var xhr=null;
+    if(window.XMLHttpRequest){
+         //非IE
+       xhr= new XMLHttpRequest();
+    }else{
+        x hr=new ActiveXObject(&quot;Microsoft.XMLHttp&quot;);
+    }
+    return xhr;
+}
+</code></pre><p><img src="https://i.imgur.com/XMpHS9P.png" alt=""></p>
+<h2 id="3-ajax对象的几个重要的属性"><a href="#3-ajax对象的几个重要的属性" class="headerlink" title="3.ajax对象的几个重要的属性"></a>3.ajax对象的几个重要的属性</h2><p>a.onreadystatechange:用来绑定一个事件处理函数，用来处理readystatechange时间。<br>注意：当ajax对象的readystate属性值返生了任何改变，比如从0变成了1，就会产生readystatechange事件。<br>b.readyState：有五个值（0,1,2,3,4）,表示ajax对象与服务器通信的状态。其中，当值为4的时候，表示ajax对象已经获得了服务器返回的所有数据。<br>c.responseText：获得服务器返回的文本数据。<br>d.responseXML：获得服务器返回的xml数据。<br>e.status ：获得状态码。</p>
+<h2 id="4-编程步骤"><a href="#4-编程步骤" class="headerlink" title="4.编程步骤"></a>4.编程步骤</h2><p>step1.获得ajax对象<br>比如：var xhr=getXhr();<br>step2.发送请求。<br><strong>发送get请求</strong>：<br>a.xhr.open(‘get’,’check_uname.do?uname=tom&amp;age=22’,true);<br>b.xhr.onreadystatechange=f1;<br>c.xhr.send(null);<br>注：<br>true：异步<br>false：同步，发送请求时，浏览器会锁定当前页面，用户不能够对当前页面做其他操作。<br><strong>发送post请求</strong><br>a.xhr.open(‘post’,’check_uname.do’,true);<br>b.xhr.setRequestHeader(‘content-type’,’application/x-www-form-urlencoded’);<br>c.xhr.onreadystatechange=f1;<br>xhr.send(‘name=tom’);<br>注：按照HTTP协议规范，如果发送的是post请求，在请求的数据包里面，应该有content-type消息头。默认情况下，ajax对象不带该消息头，所以需要调用setRequestHeader方法来设置这个消息头。<br>step3 .编写服务器端的程序，<br>注：通常不需要返回完整的页面，只需要返回部分数据。<br>step4.编写事件处理函数</p>
+<pre><code>function fi(){
+     //先获得服务器返回的数据
+     if(xhr.readyState==4 &amp;&amp; xhr.status==200){
+     var txt=xhr.resppnseText;
+     //利用这些数据（txt）更新页面
+     ....
+ } 
 
-    &lt;resultMap type=&quot;io.codegitz.cloud_note.entity.User&quot; id=&quot;userMap1&quot;&gt;
-        &lt;id property=&quot;cn_user_id&quot; column=&quot;cn_user_id&quot; /&gt;
-        &lt;result property=&quot;cn_user_name&quot; column=&quot;cn_user_name&quot; /&gt;
-        &lt;!-- 指定books属性是List集合，泛型为Book --&gt;
-        &lt;!-- javaType是返回类型 --&gt;
-        &lt;collection property=&quot;books&quot; javaType=&quot;java.util.List&quot;
-            ofType=&quot;io.codegitz.cloud_note.entity.Book&quot; select=&quot;findBooks&quot;
-            column=&quot;cn_user_id&quot;&gt;
-        &lt;/collection&gt;
-    &lt;/resultMap&gt;
-    &lt;select id=&quot;findBooks&quot; parameterType=&quot;String&quot;
-        resultType=&quot;io.codegitz.cloud_note.entity.Book&quot;&gt;
-        select * from cn_user where cn_user_id=#{userId}
-    &lt;/select&gt;
-</code></pre><p>1个SQL语句：语句复杂，配置较简单，与DB交互一次</p>
-<pre><code>&lt;!-- 一条SQL加载user --&gt;
-    &lt;select id=&quot;findUserAndBook1&quot; parameterType=&quot;String&quot; resultMap=&quot;userMap2&quot;&gt;
-        select * from cn_user u join cn_notebook b
-        on(u.cn_user_id=b.cn_user_id) where u.cn_user_id=#{userId}
-    &lt;/select&gt;
-    &lt;resultMap type=&quot;io.codegitz.cloud_note.entity.User&quot; id=&quot;userMap2&quot;&gt;
-        &lt;!-- 定义cn_user 字段装载，不能忽略 --&gt;
-        &lt;id property=&quot;cn_user_id&quot; column=&quot;cn_user_id&quot; /&gt;
-        &lt;result property=&quot;cn_user_name&quot; column=&quot;cn_user_name&quot; /&gt;
-        &lt;result property=&quot;cn_user_nick&quot; column=&quot;cn_user_nick&quot; /&gt;
-        &lt;result property=&quot;cn_user_password&quot; column=&quot;cn_user_password&quot; /&gt;
-        &lt;result property=&quot;cn_user_token&quot; column=&quot;cn_user_token&quot; /&gt;
-      &lt;collection property=&quot;books&quot; 
-      javaType=&quot;java.util.List&quot;
-      ofType=&quot;io.codegitz.cloud_note.entity.Book&quot;&gt;
-          &lt;id property=&quot;cn_notebook_id&quot; column=&quot;cn_notebook_id&quot;/&gt;
-          &lt;result property=&quot;cn_user_id&quot; column=&quot;cn_user_id&quot;/&gt;
-          &lt;result property=&quot;cn_notebook_type_id&quot; column=&quot;cn_notebook_type_id&quot;/&gt;
-          &lt;result property=&quot;cn_notebook_name&quot; column=&quot;cn_notebook_name&quot;/&gt;
-          &lt;result property=&quot;cn_notebook_desc&quot; column=&quot;cn_notebook_desc&quot;/&gt;
-          &lt;result property=&quot;cn_notebook_createtime&quot; column=&quot;cn_notebook_createtime&quot;/&gt;
-      &lt;/collection&gt;
-    &lt;/resultMap&gt;
-</code></pre><h2 id="案例：通过查询笔记信息，关联用户信息"><a href="#案例：通过查询笔记信息，关联用户信息" class="headerlink" title="案例：通过查询笔记信息，关联用户信息"></a>案例：通过查询笔记信息，关联用户信息</h2><p>用一条查询语句实现</p>
-<h1 id="主键的字段处理"><a href="#主键的字段处理" class="headerlink" title="主键的字段处理"></a>主键的字段处理</h1><p>在数据库使用自增列或序列作为主键值时，如何在insert执行后、立刻获取id值<br>属性增加<br>    useGeneratedKeys=”true” keyProperty=”id”<br>-Mysql<br>    create table t_emp(id int primary key auto_increment,name varchar(20),age int)</p>
-<pre><code>&lt;mapper namespace=&quot;io.codegitz.cloud_note.dao.EmpDao&quot;&gt;
-  &lt;!-- mysql:数据库自动生成主键值，获取主键值放入对象的id属性中 --&gt;
-       &lt;insert id=&quot;save&quot; parameterType=&quot;io.codegitz.cloud_note.entity.Emp&quot;
-        useGeneratedKeys=&quot;true&quot; keyProperty=&quot;id&quot;&gt;
-           insert into t_emp (name,age) values (#{name},#{age})
-       &lt;/insert&gt;
-&lt;/mapper&gt;
-</code></pre><h1 id="spring事务管理"><a href="#spring事务管理" class="headerlink" title="spring事务管理"></a>spring事务管理</h1><p>什么是事务？程序为了保证业务处理的完整性，执行一个或多个SQL语句<br>管理：对事务中的Sql语句进行提交或回滚，叫做事务管理<br>什么时候用？作用于Service的方法上</p>
-<p>事务回顾：<br>转账：A账户转1000到B账户<br><img src="https://i.imgur.com/GKrc1NA.png" alt=""><br>通过spring进行事务管理<br>步骤：<br>1.配置Spring-transaction.xml</p>
-<ol>
-<li>使用@Transactional标记</li>
-</ol>
-<h2 id="可读可写"><a href="#可读可写" class="headerlink" title="可读可写"></a>可读可写</h2><p>   select操作时，可采用只读事务<br>@Transaction(readOnly=true)</p>
-<h2 id="回滚特性"><a href="#回滚特性" class="headerlink" title="回滚特性"></a>回滚特性</h2><p>  默认RuntimeException回滚，其他异常不回滚<br>  @Transaction(rollbackFor=IOException.class)<br>  public void f1(){<br>      //db操作(insert)<br>      //IOException<br>  }<br>public void deleteNote(String… ids) {</p>
-<pre><code>//String... 就是String[] 数组
-</code></pre><p>}</p>
-<h2 id="传播特性"><a href="#传播特性" class="headerlink" title="传播特性"></a>传播特性</h2><p> 默认类型：REQUIRED</p>
-<p>传播行为 描述<br>PROPAGATION_REQUIRED    如果没有，就开启一个事务；如果有，就加入当前事务（方法B看到自己已经运行在 方法A的事务内部，就不再起新的事务，直接加入方法A）</p>
-<p>RROPAGATION_REQUIRES_NEW    如果没有，就开启一个事务；如果有，就将当前事务挂起。（方法A所在的事务就会挂起，方法B会起一个新的事务，等待方法B的事务完成以后，方法A才继续执行）</p>
-<p>PROPAGATION_NESTED    如果没有，就开启一个事务；如果有，就在当前事务中嵌套其他事务</p>
-<p>PROPAGATION_SUPPORTS    如果没有，就以非事务方式执行；如果有，就加入当前事务（方法B看到自己已经运行在 方法A的事务内部，就不再起新的事务，直接加入方法A）</p>
-<p>PROPAGATION_NOT_SUPPORTED    如果没有，就以非事务方式执行；如果有，就将当前事务挂起，（方法A所在的事务就会挂起，而方法B以非事务的状态运行完，再继续方法A的事务）</p>
-<p>PROPAGATION_NEVER    如果没有，就以非事务方式执行；如果有，就抛出异常。</p>
-<p>PROPAGATION_MANDATORY    如果没有，就抛出异常；如果有，就使用当前事务</p>
-<h2 id="隔离特性"><a href="#隔离特性" class="headerlink" title="隔离特性"></a>隔离特性</h2><p>默认属性：READ_COMMITED<br>针对事务并发进行处理<br>脏读/幻读</p>
-<h1 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h1><p>使用<if> <choose>等标签<br><img src="https://i.imgur.com/KmB7Rwo.png" alt=""></choose></if></p>
-<pre><code> public int updateNoteByMap(Map&lt;String,Object&gt; map);
-</code></pre><pre><code>&lt;update id=&quot;updateNoteByMap&quot; parameterType=&quot;Map&quot;&gt;
-       update cn_note set 
-       &lt;trim suffixOverrides=&quot;,&quot;&gt;
-       &lt;if test=&quot;title!=null&quot;&gt; cn_note_title=#{title},&lt;/if&gt;
-       &lt;if test=&quot;body!=null&quot;&gt;cn_note_body=#{body},&lt;/if&gt;
-       &lt;choose&gt;
-              &lt;when test=&quot;time!=null&quot;&gt;
-                 cn_note_last_modify_time=#{time}
-              &lt;/when&gt;
+}
+</code></pre><h2 id="5-缓存问题"><a href="#5-缓存问题" class="headerlink" title="5.缓存问题"></a>5.缓存问题</h2><h3 id="什么事缓存问题"><a href="#什么事缓存问题" class="headerlink" title="什么事缓存问题"></a>什么事缓存问题</h3><p>当使用IE浏览器发送get请求时，浏览器会查看请求地址是否访问过，如果访问过，则不再发送新的请求，而是显示第一次访问的结果（也就是说，会将第一次的请求结果缓存下来）</p>
+<h3 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h3><p>在请求地址后添加一个随机数。<br>    xhr.open(‘get’,’getLucky.do?’+Math.random(),true);</p>
 
-              &lt;otherwise&gt;
-              cn_note_last_modify_time=unix_timestamp()
-              &lt;/otherwise&gt;
-       &lt;/choose&gt;
-       &lt;!-- &lt;if test=&quot;time!=null&quot;&gt;cn_note_last_modify_time=#{time}&lt;/if&gt; --&gt;
-       &lt;/trim&gt;
-       where cn_note_id=#{noteId}
-
-    &lt;/update&gt;
-</code></pre>
       
 
       
@@ -422,7 +361,226 @@ Unable to connect to remote host.  Catalog download has failed.
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/mybatis关联映射/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/ajax/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Mapper映射器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/Mapper映射器/">Mapper映射器</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/Mapper映射器/" class="archive-article-date">
+  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="（1）什么是Mapper映射器"><a href="#（1）什么是Mapper映射器" class="headerlink" title="（1）什么是Mapper映射器"></a>（1）什么是Mapper映射器</h1><p>符合映射文件要求的接口<br>注：mybatis会自动实现一个符合该接口要求的的对象。</p>
+<h2 id="Mapper映射器的要求："><a href="#Mapper映射器的要求：" class="headerlink" title="Mapper映射器的要求："></a>Mapper映射器的要求：</h2><p>a.接口方法的名称与映射文件中的SQL的id要一样。<br>b.方法的参数类型要与映射文件当中的parameterType一致。<br>c.方法的返回类型要与映射文件中的resultType一致<br>此外，映射文件的namespace必须等于Mapper映射器的全限定名。</p>
+<h2 id="（3）编程步骤"><a href="#（3）编程步骤" class="headerlink" title="（3）编程步骤"></a>（3）编程步骤</h2><p>step1.写一个映射器，即一个接口。<br>step2.调用SQLSession提供的getMapper方法<br>注：该方法会返回一个符合映射器要求的对象。</p>
+<h1 id="spring集成mybatis"><a href="#spring集成mybatis" class="headerlink" title="spring集成mybatis"></a>spring集成mybatis</h1><h2 id="1-编程步骤"><a href="#1-编程步骤" class="headerlink" title="1.编程步骤"></a>1.编程步骤</h2><p>step1.导包<br>spring-webmvc.mybatis<br>mybatis-spring,spring-jdbc,dbcp,jdbc,junit<br><img src="https://i.imgur.com/svgcUoZ.png" alt=""><br>step2.添加spring的配置文件<br>注：mybatis配置信息可以添加到spring的配置文件当中，只需要配置SqlSessionFactoryBean。<br><img src="https://i.imgur.com/tlM28Y2.png" alt=""><br>step3.实体类<br>step4.映射文件<br>step5.Mapper映射器<br>step6.在spring的配置文件中添加MapperScannerConfigurer.该bean负责调用SqlSession的getMapper方法，创建符合Mapper映射器要求的对象。<br>注：<br>该bean会将这个对象添加到spring容器里面。</p>
+<h2 id="（2）只扫描特定的Mapper映射器"><a href="#（2）只扫描特定的Mapper映射器" class="headerlink" title="（2）只扫描特定的Mapper映射器"></a>（2）只扫描特定的Mapper映射器</h2><p>step1.开发一个注解，比如@MybatisRepository<br>step2.将该注解添加到需要扫描的映射器<br>step3.配置MapperScannerConfigurer，设置annotationClass,指定注解类。</p>
+<h2 id="（3）另一种集成方式"><a href="#（3）另一种集成方式" class="headerlink" title="（3）另一种集成方式"></a>（3）另一种集成方式</h2><p>SqlSessionTemplate<br>JdbcTemplate<br>step1.导包。<br>step2.添加spring的配置文件<br>注：删掉MapperScannerConfigurer的配置。<br>step3.实体类<br>step4.映射文件<br>step5.dao接口。<br>step6.写一个dao接口的实现类。<br>注：注入SqlSessionTemplate，调用该对象的方法<br><img src="https://i.imgur.com/Nxpt5yk.png" alt=""><br>step7. 配置SqlSessionTemplate<br>step8.添加组件扫描<br><img src="https://i.imgur.com/AL3BzLS.png" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/Mapper映射器/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-json" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/json/">Json</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/json/" class="archive-article-date">
+  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="编码问题"><a href="#编码问题" class="headerlink" title="编码问题"></a>编码问题</h1><h2 id="1-发送get请求"><a href="#1-发送get请求" class="headerlink" title="1.发送get请求"></a>1.发送get请求</h2><p>IE浏览器会使用gbk进行编码，而其他浏览器会使用utf-8来编码，服务器端默认使用iso-8859-1来解码，所以会产生乱码。<br>解决方法：<br>step1.服务器端统一使用utf-8来解码。<br>    URIEncoding=utf-8<br>step2.浏览器端使用encodeURI函数来编码。<br>注：encodeURI是JavaScript内置的函数。</p>
+<h2 id="2-发送post"><a href="#2-发送post" class="headerlink" title="2.发送post"></a>2.发送post</h2><p>浏览器会使用utf-8来编码。服务器端默认使用ISO-8859-1来解码，所以会产生乱码<br>解决方法：<br>request.setCharacterEncoding(“utf-8”);</p>
+<h1 id="JSON-javascript-object-notation"><a href="#JSON-javascript-object-notation" class="headerlink" title="JSON(javascript object notation)"></a>JSON(javascript object notation)</h1><h2 id="1-JSON是什么"><a href="#1-JSON是什么" class="headerlink" title="1.JSON是什么"></a>1.JSON是什么</h2><p>是一种轻量级的数据交换格式<br>注：<br>数据交换：将要转换的数据先转换为一种与平台无关的数据格式，然后交给接收方来处理。<br><br>轻量级：相对于xml，JSON文档更小，解析速度更快。</p>
+<h2 id="2-语法"><a href="#2-语法" class="headerlink" title="2.语法"></a>2.语法</h2><h3 id="表示一个对象"><a href="#表示一个对象" class="headerlink" title="表示一个对象"></a>表示一个对象</h3><p>{属性名：属性值，属性名：属性值….}<br>注意：<br>a.属性名必须使用双引号括起来。<br>b.属性值的类型可以使string,number,true/false,null,object<br>c.属性值如果是string，必须使用双括号括起来。    </p>
+<h3 id="表示一个由对象组成的数组"><a href="#表示一个由对象组成的数组" class="headerlink" title="表示一个由对象组成的数组"></a>表示一个由对象组成的数组</h3><p>[{},{},{}….]</p>
+<h2 id="3-使用json"><a href="#3-使用json" class="headerlink" title="3.使用json"></a>3.使用json</h2><h3 id="将java对象转变为json字符串"><a href="#将java对象转变为json字符串" class="headerlink" title="将java对象转变为json字符串"></a>将java对象转变为json字符串</h3><p>可以使用json官方的工具(json-lib).<br>JSONObject，JSONArray<br><img src="https://i.imgur.com/hFQgwNu.png" alt=""><br>ex：</p>
+<pre><code>package json;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import bean.stock;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+public class jsonTest {
+     /*
+      * 将java对象转换为json字符串
+      */
+    public static void test1(){
+        stock s=new stock();
+        s.setCode(&quot;345435&quot;);
+        s.setName(&quot;中国嘉陵&quot;);
+        s.setPrice(10);
+        //使用json-lib提供的工具来转换
+        JSONObject jsonobj=JSONObject.fromObject(s);
+        String jsonstr=jsonobj.toString();
+        System.out.println(jsonstr);
+    }
+    /*
+     * 多个对象组成的数组或者是集合转换成json字符串
+     */
+    public static void test2(){
+        List&lt;stock&gt; stocks=new ArrayList&lt;stock&gt;();
+          for(int i=0;i&lt;3;i++){
+              stock s=new stock();
+              s.setCode(&quot;345435&quot;+i);
+              s.setName(&quot;中国嘉陵&quot;+i);
+              s.setPrice(10+i);
+              stocks.add(s);
+          }
+          //fromObject方法的参数可以使数组或者集合
+          JSONArray jsonArr=JSONArray.fromObject(stocks);
+          String jsonStr=jsonArr.toString();
+          System.out.println(jsonStr);
+    }
+    public static void main(String[] args) {
+        test2();
+    }
+}
+</code></pre><h3 id="将JSON字符串转换成JavaScript对象"><a href="#将JSON字符串转换成JavaScript对象" class="headerlink" title="将JSON字符串转换成JavaScript对象"></a>将JSON字符串转换成JavaScript对象</h3><p>JavaScript内置对象JSON提供的parse()方法。</p>
+<h1 id="jQuery对ajax的支持"><a href="#jQuery对ajax的支持" class="headerlink" title="jQuery对ajax的支持"></a>jQuery对ajax的支持</h1><h2 id="1-ajax-方法"><a href="#1-ajax-方法" class="headerlink" title="1.$.ajax()方法"></a>1.$.ajax()方法</h2><p>用法：<br>$.ajax({});<br>说明：{}是一个用来描述请求选项参数的对象，常见的选项参数有如下几个：<br>url:请求地址<br>data:请求格式，有两种格式：<br>第一种格式：请求字符串，比如”adminCode=sally”<br>     第二组格式：对象，比如{“adminCode”:”sally”}<br>     type:请求类型(get/post)<br>dataType:服务器返回的数据类型：<br>       text：文本数据<br>       json：json字符串<br>       html:html文档<br>       xml:xml文档<br>       script:javascript脚本<br>success:事件处理函数（当服务器处理正常，用来处理服务器返回的数据）。<br>error：事件处理函数（当服务器处理异常，用来处理服务器返回的数据）。</p>
+<h2 id="2-load"><a href="#2-load" class="headerlink" title="2.load()"></a>2.load()</h2><p>作用：向服务器发送异步请求，然后将服务器返回的数据直接添加到符合要求的节点之上。<br>用法：<br>$obj.load(url,[data]);<br>注意：<br>url:请求地址。<br>data:请求参数，格式同上。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/json/">展开全文 >></a>
         </p>
       
 
@@ -686,394 +844,6 @@ str.length();
 
 
   
-    <article id="post-json" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/json/">Json</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/json/" class="archive-article-date">
-  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="编码问题"><a href="#编码问题" class="headerlink" title="编码问题"></a>编码问题</h1><h2 id="1-发送get请求"><a href="#1-发送get请求" class="headerlink" title="1.发送get请求"></a>1.发送get请求</h2><p>IE浏览器会使用gbk进行编码，而其他浏览器会使用utf-8来编码，服务器端默认使用iso-8859-1来解码，所以会产生乱码。<br>解决方法：<br>step1.服务器端统一使用utf-8来解码。<br>    URIEncoding=utf-8<br>step2.浏览器端使用encodeURI函数来编码。<br>注：encodeURI是JavaScript内置的函数。</p>
-<h2 id="2-发送post"><a href="#2-发送post" class="headerlink" title="2.发送post"></a>2.发送post</h2><p>浏览器会使用utf-8来编码。服务器端默认使用ISO-8859-1来解码，所以会产生乱码<br>解决方法：<br>request.setCharacterEncoding(“utf-8”);</p>
-<h1 id="JSON-javascript-object-notation"><a href="#JSON-javascript-object-notation" class="headerlink" title="JSON(javascript object notation)"></a>JSON(javascript object notation)</h1><h2 id="1-JSON是什么"><a href="#1-JSON是什么" class="headerlink" title="1.JSON是什么"></a>1.JSON是什么</h2><p>是一种轻量级的数据交换格式<br>注：<br>数据交换：将要转换的数据先转换为一种与平台无关的数据格式，然后交给接收方来处理。<br><br>轻量级：相对于xml，JSON文档更小，解析速度更快。</p>
-<h2 id="2-语法"><a href="#2-语法" class="headerlink" title="2.语法"></a>2.语法</h2><h3 id="表示一个对象"><a href="#表示一个对象" class="headerlink" title="表示一个对象"></a>表示一个对象</h3><p>{属性名：属性值，属性名：属性值….}<br>注意：<br>a.属性名必须使用双引号括起来。<br>b.属性值的类型可以使string,number,true/false,null,object<br>c.属性值如果是string，必须使用双括号括起来。    </p>
-<h3 id="表示一个由对象组成的数组"><a href="#表示一个由对象组成的数组" class="headerlink" title="表示一个由对象组成的数组"></a>表示一个由对象组成的数组</h3><p>[{},{},{}….]</p>
-<h2 id="3-使用json"><a href="#3-使用json" class="headerlink" title="3.使用json"></a>3.使用json</h2><h3 id="将java对象转变为json字符串"><a href="#将java对象转变为json字符串" class="headerlink" title="将java对象转变为json字符串"></a>将java对象转变为json字符串</h3><p>可以使用json官方的工具(json-lib).<br>JSONObject，JSONArray<br><img src="https://i.imgur.com/hFQgwNu.png" alt=""><br>ex：</p>
-<pre><code>package json;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import bean.stock;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
-public class jsonTest {
-     /*
-      * 将java对象转换为json字符串
-      */
-    public static void test1(){
-        stock s=new stock();
-        s.setCode(&quot;345435&quot;);
-        s.setName(&quot;中国嘉陵&quot;);
-        s.setPrice(10);
-        //使用json-lib提供的工具来转换
-        JSONObject jsonobj=JSONObject.fromObject(s);
-        String jsonstr=jsonobj.toString();
-        System.out.println(jsonstr);
-    }
-    /*
-     * 多个对象组成的数组或者是集合转换成json字符串
-     */
-    public static void test2(){
-        List&lt;stock&gt; stocks=new ArrayList&lt;stock&gt;();
-          for(int i=0;i&lt;3;i++){
-              stock s=new stock();
-              s.setCode(&quot;345435&quot;+i);
-              s.setName(&quot;中国嘉陵&quot;+i);
-              s.setPrice(10+i);
-              stocks.add(s);
-          }
-          //fromObject方法的参数可以使数组或者集合
-          JSONArray jsonArr=JSONArray.fromObject(stocks);
-          String jsonStr=jsonArr.toString();
-          System.out.println(jsonStr);
-    }
-    public static void main(String[] args) {
-        test2();
-    }
-}
-</code></pre><h3 id="将JSON字符串转换成JavaScript对象"><a href="#将JSON字符串转换成JavaScript对象" class="headerlink" title="将JSON字符串转换成JavaScript对象"></a>将JSON字符串转换成JavaScript对象</h3><p>JavaScript内置对象JSON提供的parse()方法。</p>
-<h1 id="jQuery对ajax的支持"><a href="#jQuery对ajax的支持" class="headerlink" title="jQuery对ajax的支持"></a>jQuery对ajax的支持</h1><h2 id="1-ajax-方法"><a href="#1-ajax-方法" class="headerlink" title="1.$.ajax()方法"></a>1.$.ajax()方法</h2><p>用法：<br>$.ajax({});<br>说明：{}是一个用来描述请求选项参数的对象，常见的选项参数有如下几个：<br>url:请求地址<br>data:请求格式，有两种格式：<br>第一种格式：请求字符串，比如”adminCode=sally”<br>     第二组格式：对象，比如{“adminCode”:”sally”}<br>     type:请求类型(get/post)<br>dataType:服务器返回的数据类型：<br>       text：文本数据<br>       json：json字符串<br>       html:html文档<br>       xml:xml文档<br>       script:javascript脚本<br>success:事件处理函数（当服务器处理正常，用来处理服务器返回的数据）。<br>error：事件处理函数（当服务器处理异常，用来处理服务器返回的数据）。</p>
-<h2 id="2-load"><a href="#2-load" class="headerlink" title="2.load()"></a>2.load()</h2><p>作用：向服务器发送异步请求，然后将服务器返回的数据直接添加到符合要求的节点之上。<br>用法：<br>$obj.load(url,[data]);<br>注意：<br>url:请求地址。<br>data:请求参数，格式同上。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/json/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hibernate入门系列（四）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/18/Hibernate入门系列（四）/">Hibernate入门系列（四）</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/18/Hibernate入门系列（四）/" class="archive-article-date">
-  	<time datetime="2018-03-17T16:48:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-18</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Hibernate入门系列（四）"><a href="#Hibernate入门系列（四）" class="headerlink" title="Hibernate入门系列（四）"></a>Hibernate入门系列（四）</h1><h2 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h2><h3 id="映射一对多关联关系"><a href="#映射一对多关联关系" class="headerlink" title="映射一对多关联关系"></a>映射一对多关联关系</h3><p>在领域模型中, 类与类之间最普遍的关系就是关联关系. <br><br>在 UML 中, 关联是有方向的. <br><br>以 Customer 和 Order 为例： 一个用户能发出多个订单, 而一个订单只能属于一个客户. 从 Order 到 Customer 的关联是多对一关联; 而从 Customer 到 Order 是一对多关联<br><br>单向关联<br></p>
-<p><img src="https://i.imgur.com/RcBWePb.png" alt=""></p>
-<p>双向关联<br></p>
-<p><img src="https://i.imgur.com/V9XYGJw.png" alt=""></p>
-<h4 id="单向-n-1"><a href="#单向-n-1" class="headerlink" title="单向 n-1"></a>单向 n-1</h4><p>单向 n-1 关联只需从 n 的一端可以访问 1 的一端<br><br>域模型: 从 Order 到 Customer 的多对一单向关联需要在Order 类中定义一个 Customer 属性, 而在 Customer 类中无需定义存放 Order 对象的集合属性<br></p>
-<p><img src="https://i.imgur.com/9rAt2m2.png" alt=""></p>
-<p>关系数据模型:ORDERS 表中的 CUSTOMER_ID 参照 CUSTOMER 表的主键<br><br><img src="https://i.imgur.com/CaydOhI.png" alt=""></p>
-<p>显然无法直接用 property 映射 customer 属性<br><br>Hibernate 使用 <many-to-one> 元素来映射多对一关联关系<br></many-to-one></p>
-<p>映射多对一的关联关系,使用many-to-one来映射多对一的关联关系<br>name：多这一端关联着一那一端的属性的名字<br><br>class：一那一端对应的属性的类名<br><br>column：一那一端在多那一端对应的数据表中的外键的名字 <br>  </p>
-<pre><code>&lt;many-to-one name=&quot;customer&quot; class=&quot;io.hibernate.entities.n21.Customer&quot; column=&quot;CUSTOMER_ID&quot;&gt;
-&lt;/many-to-one&gt;
-</code></pre><p><strong>many-to-one</strong></p>
-<p><many-to-one> 元素来映射组成关系<br><br>name: 设定待映射的持久化类的属性的名字<br><br>column: 设定和持久化类的属性对应的表的外键<br><br>class：设定待映射的持久化类的属性的类型<br></many-to-one></p>
-<h4 id="双向-1-n"><a href="#双向-1-n" class="headerlink" title="双向 1-n"></a>双向 1-n</h4><p>双向 1-n 与 双向 n-1 是完全相同的两种情形<br><br>双向 1-n 需要在 1 的一端可以访问 n 的一端, 反之依然.<br><br>域模型:从 Order 到 Customer 的多对一双向关联需要在Order 类中定义一个 Customer 属性, 而在 Customer 类中需定义存放 Order 对象的集合属性<br></p>
-<p><img src="https://i.imgur.com/g7vkobq.png" alt=""></p>
-<p>关系数据模型:ORDERS 表中的 CUSTOMER_ID 参照 CUSTOMER 表的主键<br></p>
-<p><img src="https://i.imgur.com/UlbjSpR.png" alt=""></p>
-<p>当 Session 从数据库中加载 Java 集合时, 创建的是 Hibernate 内置集合类的实例, 因此在持久化类中定义集合属性时必须把属性声明为 Java 接口类型<br></p>
-<ul>
-<li>Hibernate 的内置集合类具有集合代理功能, 支持延迟检索策略<br></li>
-<li><p>事实上, Hibernate 的内置集合类封装了 JDK 中的集合类, 这使得 Hibernate 能够对缓存中的集合对象进行脏检查, 按照集合对象的状态来同步更新数据库。<br><br>在定义集合属性时, 通常把它初始化为集合实现类的一个实例. 这样可以提高程序的健壮性, 避免应用程序访问取值为 null 的集合的方法抛出 <strong>NullPointerException</strong><br></p>
-<pre><code>      /*
-       * 1.声明集合类型时需要使用接口类型，因为hibernate在获取集合类型时，返回的是
-       * hibernate的内置集合类型，而不是JAVASE一个标准的集合实现
-       * 2.需要对集合进行初始化，不会出现空指针异常的问题
-       */
-      private Set&lt;Order&gt; orders=new HashSet&lt;&gt;();
-</code></pre></li>
-</ul>
-<p>Hibernate 使用 <set> 元素来映射 set 类型的属性<br><br>映射关系如下：</set></p>
-<pre><code>  &lt;!-- 映射一对多的集合属性 --&gt;
-    &lt;!-- set：映射set类型的属性，table：set中的元素对应的记录放在哪个数据表中，该值需要和多对一的那个多的表的名字一致 --&gt;
-    &lt;!-- inverse：指定由哪一方来维护关联关系，通常设置为true，来指定由多的一方来维护关联关系 --&gt;
-    &lt;!-- cascade:设定级联操作,开发时不建议设定该属性，建议使用手工的方式来处理 --&gt;
-    &lt;!-- order-by:在查询时对集合中的元素进行排序，order-by中使用的是表的字段名，而非持久化类的属性名 --&gt;
-    &lt;set name=&quot;orders&quot; table=&quot;ORDERS&quot; inverse=&quot;true&quot; cascade=&quot;delete-orphan&quot; order-by=&quot;&quot;&gt;
-    &lt;!-- 执行对的表的外键列的名称 --&gt;
-        &lt;key column=&quot;CUSTOMER_ID&quot;&gt;&lt;/key&gt;
-        &lt;!-- 指定映射类型 --&gt;
-        &lt;one-to-many class=&quot;io.hibernate.entities.n21.both.Order&quot;/&gt;
-    &lt;/set&gt;
-</code></pre><p><strong>各节点的含义：</strong></p>
-<p><set> 元素来映射持久化类的 set 类型的属性<br><br>name: 设定待映射的持久化类的属性的<br></set></p>
-<p><key> 元素设定与所关联的持久化类对应的表的外键<br><br>column: 指定关联表的外键名<br></key></p>
-<p><one-to-many> 元素设定集合属性中所关联的持久化类<br><br>class: 指定关联的持久化类的类名<br><br><img src="https://i.imgur.com/zku0VBO.png" alt=""></one-to-many></p>
-<p>inverse 属性</p>
-<ul>
-<li>在hibernate中通过对 inverse 属性的来决定是由双向关联的哪一方来维护表和表之间的关系. inverse = false 的为主动方，inverse = true 的为被动方, 由主动方负责维护关联关系<br></li>
-<li>在没有设置 inverse=true 的情况下，父子两边都维护父子<br>关系 <br></li>
-<li>在 1-n 关系中，将 n 方设为主控方将有助于性能改善(如果要国家元首记住全国人民的名字，不是太可能，但要让全国人民知道国家元首，就容易的多)<br></li>
-<li>在 1-N 关系中，若将 1 方设为主控方<br><br>1.会额外多出 update 语句。<br><br>2.插入数据时无法同时插入外键列，因而无法为外键列添加非空约束<br><br>cascade 属性<br>在对象 – 关系映射文件中, 用于映射持久化类之间关联关系的元素, <set>, <many-to-one> 和 <one-to-one> 都有一个 cascade 属性, 它用于指定如何操纵与当前对象关联的其他对象.<br><img src="https://i.imgur.com/84VRUWl.png" alt=""><br>order-by 属性方<br><br><set> 元素有一个 order-by 属性, 如果设置了该属性, 当 Hibernate 通过 select 语句到数据库中检索集合对象时, 利用 order by 子句进行排序方<br><br>order-by 属性中还可以加入 SQL 函数方<br></set></one-to-one></many-to-one></set></li>
-</ul>
-<h3 id="映射一对一关联关系"><a href="#映射一对一关联关系" class="headerlink" title="映射一对一关联关系"></a>映射一对一关联关系</h3><p>1.域模型</p>
-<p><img src="https://i.imgur.com/VqNOd1L.png" alt=""></p>
-<p>2.关系数据模型</p>
-<p>按照外键映射:</p>
-<p><img src="https://i.imgur.com/5yfxMXp.png" alt=""></p>
-<p>按照主键映射:</p>
-<p><img src="https://i.imgur.com/TyscoD5.png" alt=""></p>
-<h4 id="基于外键映射的-1-1"><a href="#基于外键映射的-1-1" class="headerlink" title="基于外键映射的 1-1"></a>基于外键映射的 1-1</h4><p>对于基于外键的1-1关联，其外键可以存放在任意一边，在需要存放外键一端，增加many-to-one元素。为many-to-one元素增加unique=“true” 属性来表示为1-1关联</p>
-<pre><code>&lt;!-- 使用many-to-one方式来映射1-1关联关系 --&gt;
-         &lt;many-to-one name=&quot;mgr&quot; class=&quot;io.hibernate.entities.Manager&quot; column=&quot;MGR_ID&quot; unique=&quot;true&quot;&gt;&lt;/many-to-one&gt;
-</code></pre><p>另一端需要使用one-to-one元素，该元素使用 property-ref 属性指定使用被关联实体主键以外的字段作为关联字段</p>
-<pre><code> &lt;!--  映射1—1关联关系，在对应数据表中已经有外键了，当前持久化类使用one-to-one进行映射--&gt;
-        &lt;!-- 
-             没有外键的一端需要使用one-to-one元素，该元素使用 property-ref 属性指定使用被关联实体主键以外的字段作为关联字段
-        --&gt;
-        &lt;one-to-one name=&quot;dept&quot; class=&quot;io.hibernate.entities.Department&quot;
-         property-ref=&quot;mgr&quot;&gt;&lt;/one-to-one&gt;
-</code></pre><p>不使用 property-ref 属性的 sql</p>
-<pre><code>Hibernate: 
-            select
-                manager0_.MGR_ID as MGR_ID1_1_1_,
-                manager0_.MGR_NAME as MGR_NAME2_1_1_,
-                department1_.DEPT_ID as DEPT_ID1_0_0_,
-                department1_.DEPT_NAME as DEPT_NAM2_0_0_,
-                department1_.MGR_ID as MGR_ID3_0_0_ 
-            from
-                MANAGERS manager0_ 
-            left outer join
-                DEPARTMENTS department1_ 
-                    on manager0_.MGR_ID=department1_.DEPT_ID //明显有误
-            where
-                manager0_.MGR_ID=?
-</code></pre><p>使用 property-ref 属性的 sql</p>
-<pre><code>Hibernate: 
-    select
-        manager0_.MGR_ID as MGR_ID1_1_1_,
-        manager0_.MGR_NAME as MGR_NAME2_1_1_,
-        department1_.DEPT_ID as DEPT_ID1_0_0_,
-        department1_.DEPT_NAME as DEPT_NAM2_0_0_,
-        department1_.MGR_ID as MGR_ID3_0_0_ 
-    from
-        MANAGERS manager0_ 
-    left outer join
-        DEPARTMENTS department1_ 
-            on manager0_.MGR_ID=department1_.MGR_ID //正确
-    where
-        manager0_.MGR_ID=?
-</code></pre><p>两边都使用外键映射的 1-1<br><br>此应用方式会导致引用之间不一一对应，从而产生引用混乱的情况,一般不会这样使用。<br><br><img src="https://i.imgur.com/TjSFnAK.png" alt=""></p>
-<h4 id="基于主键映射的-1-1"><a href="#基于主键映射的-1-1" class="headerlink" title="基于主键映射的 1-1"></a>基于主键映射的 1-1</h4><p>基于主键的映射策略:指一端的主键生成器使用 foreign 策略,表明根据”对方”的主键来生成自己的主键，自己并不能独立生成主键. <param> 子元素指定使用当前持久化类的哪个属性作为 “对方”<br><br>采用foreign主键生成器策略的一端增加 one-to-one 元素映射关联属性，其one-to-one属性还应增加 constrained=“true” 属性；另一端增加one-to-one元素映射关联属性。<br><br>constrained(约束):指定为当前持久化类对应的数据库表的主键添加一个外键约束，引用被关联的对象(“对方”)所对应的数据库表主键<br></p>
-<h3 id="映射多对多关联关系"><a href="#映射多对多关联关系" class="headerlink" title="映射多对多关联关系"></a>映射多对多关联关系</h3><h4 id="单向-n-n"><a href="#单向-n-n" class="headerlink" title="单向 n-n"></a>单向 n-n</h4><p>域模型: <br></p>
-<p><img src="https://i.imgur.com/6hFCg9i.png" alt=""></p>
-<p>关系数据模型:<br></p>
-<p><img src="https://i.imgur.com/COpWyLF.png" alt=""></p>
-<p><strong>n-n 的关联必须使用连接表</strong><br><br>与 1-n 映射类似，必须为 set 集合元素添加 key 子元素，指定 CATEGORIES_ITEMS 表中参照 CATEGORIES 表的外键为 CATEGORIY_ID. 与 1-n 关联映射不同的是，建立 n-n 关联时, 集合中的元素使用 many-to-many. many-to-many 子元素的 class 属性指定 items 集合中存放的是 Item 对象, column 属性指定  CATEGORIES_ITEMS 表中参照 ITEMS 表的外键为 ITEM_ID<br></p>
-<p><img src="https://i.imgur.com/VQaCib9.png" alt=""><br><img src="https://i.imgur.com/AXArowf.png" alt=""></p>
-<h4 id="双向-n-n"><a href="#双向-n-n" class="headerlink" title="双向 n-n"></a>双向 n-n</h4><p>域模型: </p>
-<p><img src="https://i.imgur.com/sIOuGr2.png" alt=""></p>
-<p>关系数据模型:</p>
-<p><img src="https://i.imgur.com/EFzJ7DM.png" alt=""></p>
-<p>双向 n-n 关联需要两端都使用集合属性<br><br>双向n-n关联必须使用连接表<br><br>集合属性应增加 key 子元素用以映射外键列, 集合元素里还应增加many-to-many子元素关联实体类<br><br>在双向 n-n 关联的两边都需指定连接表的表名及外键列的列名. 两个集合元素 set 的 table 元素的值必须指定，而且必须相同。set元素的两个子元素：key 和 many-to-many 都必须指定 column 属性，其中，key 和 many-to-many 分别指定本持久化类和关联类在连接表中的外键列名，因此两边的 key 与 many-to-many 的column属性交叉相同。也就是说，一边的set元素的key的 cloumn值为a,many-to-many 的 column 为b；则另一边的 set 元素的 key 的 column 值 b,many-to-many的 column 值为 a.  <br><br>对于双向 n-n 关联, 必须把其中一端的 inverse 设置为 true, 否则两端都维护关联关系可能会造成主键冲突.<br></p>
-<p><img src="https://i.imgur.com/CbOJU4l.png" alt=""></p>
-<h3 id="映射继承关系"><a href="#映射继承关系" class="headerlink" title="映射继承关系"></a>映射继承关系</h3><p>对于面向对象的程序设计语言而言，继承和多态是两个最基本的概念。Hibernate 的继承映射可以理解持久化类之间的继承关系。例如：人和学生之间的关系。学生继承了人，可以认为学生是一个特殊的人，如果对人进行查询，学生的实例也将被得到。<br><br><img src="https://i.imgur.com/NuVLIWd.png" alt=""></p>
-<p>Hibernate支持三种继承映射策略：<br></p>
-<ul>
-<li>使用 subclass 进行映射：将域模型中的每一个实体对象映射到一个独立的表中，也就是说不用在关系数据模型中考虑域模型中的继承关系和多态。 <br></li>
-<li>使用 joined-subclass 进行映射： 对于继承关系中的子类使用同一个表，这就需要在数据库表中增加额外的区分子类类型的字段。 <br></li>
-<li>使用 union-subclass 进行映射：域模型中的每个类映射到一个表，通过关系数据模型中的外键来描述表之间的继承关系。这也就相当于按照域模型的结构来建立数据库中的表，并通过外键来建立表之间的继承关系。<br></li>
-</ul>
-<h4 id="采用-subclass-元素的继承映射"><a href="#采用-subclass-元素的继承映射" class="headerlink" title="采用 subclass 元素的继承映射"></a>采用 subclass 元素的继承映射</h4><p>采用 subclass 的继承映射可以实现对于继承关系中父类和子类使用同一张表<br><br>因为父类和子类的实例全部保存在同一个表中，因此需要在该表内增加一列，使用该列来区分每行记录到低是哪个类的实例—-这个列被称为辨别者列(discriminator).<br><br>在这种映射策略下，使用 subclass 来映射子类，使用 class 或 subclass 的 discriminator-value 属性指定辨别者列的值<br><br>所有子类定义的字段都不能有非空约束。如果为那些字段添加非空约束，那么父类的实例在那些列其实并没有值，这将引起数据库完整性冲突，导致父类的实例无法保存到数据库中<br><br><img src="https://i.imgur.com/cVdYs1A.png" alt=""></p>
-<pre><code>&lt;class name=&quot;io.hibernate.entities.subclass.Person&quot; table=&quot;PERSONS&quot; discriminator-value=&quot;PERSON&quot;&gt;
-        &lt;id name=&quot;id&quot; type=&quot;java.lang.Integer&quot;&gt;
-            &lt;column name=&quot;ID&quot; /&gt;
-            &lt;generator class=&quot;native&quot; /&gt;
-        &lt;/id&gt;
-        &lt;!--  配置辨别者列--&gt;
-        &lt;discriminator column=&quot;TYPE&quot; type=&quot;string&quot;&gt;&lt;/discriminator&gt;
-
-        &lt;property name=&quot;name&quot; type=&quot;java.lang.String&quot;&gt;
-            &lt;column name=&quot;NAME&quot; /&gt;
-        &lt;/property&gt;
-        &lt;property name=&quot;age&quot; type=&quot;int&quot;&gt;
-            &lt;column name=&quot;AGE&quot; /&gt;
-        &lt;/property&gt;
-        &lt;!-- 映射子类student，使用subclass进行映射 --&gt;
-        &lt;subclass name=&quot;io.hibernate.entities.subclass.Student&quot; discriminator-value=&quot;STUDENT&quot;&gt;
-             &lt;property name=&quot;school&quot; type=&quot;string&quot; column=&quot;SCHOOL&quot;&gt;&lt;/property&gt;
-        &lt;/subclass&gt;
-    &lt;/class&gt;
-</code></pre><h4 id="采用-joined-subclass-元素的继承映射"><a href="#采用-joined-subclass-元素的继承映射" class="headerlink" title="采用 joined-subclass 元素的继承映射"></a>采用 joined-subclass 元素的继承映射</h4><p>采用 joined-subclass 元素的继承映射可以实现每个子类一张表<br><br>采用这种映射策略时，父类实例保存在父类表中，子类实例由父类表和子类表共同存储。因为子类实例也是一个特殊的父类实例，因此必然也包含了父类实例的属性。于是将子类和父类共有的属性保存在父类表中，子类增加的属性，则保存在子类表中。<br><br>在这种映射策略下，无须使用鉴别者列，但需要为每个子类使用 key 元素映射共有主键。<br><br>子类增加的属性可以添加非空约束。因为子类的属性和父类的属性没有保存在同一个表中<br><br><img src="https://i.imgur.com/pE38vZK.png" alt=""></p>
-<pre><code> &lt;class name=&quot;io.hibernate.entities.joined.subclass.Person&quot; table=&quot;PERSONS&quot;&gt;
-        &lt;id name=&quot;id&quot; type=&quot;java.lang.Integer&quot;&gt;
-            &lt;column name=&quot;ID&quot; /&gt;
-            &lt;generator class=&quot;native&quot; /&gt;
-        &lt;/id&gt;
-        &lt;property name=&quot;name&quot; type=&quot;java.lang.String&quot;&gt;
-            &lt;column name=&quot;NAME&quot; /&gt;
-        &lt;/property&gt;
-        &lt;property name=&quot;age&quot; type=&quot;int&quot;&gt;
-            &lt;column name=&quot;AGE&quot; /&gt;
-        &lt;/property&gt;
-        &lt;joined-subclass name=&quot;io.hibernate.entities.joined.subclass.Student&quot; table=&quot;STUDENTS&quot;&gt;
-              &lt;key column=&quot;STUDENT_id&quot;&gt;&lt;/key&gt;
-              &lt;property name=&quot;school&quot; type=&quot;string&quot; column=&quot;SCHOOL&quot;&gt;&lt;/property&gt;
-        &lt;/joined-subclass&gt;
-    &lt;/class&gt;
-</code></pre><h4 id="采用-union-subclass-元素的继承映射"><a href="#采用-union-subclass-元素的继承映射" class="headerlink" title="采用 union-subclass 元素的继承映射"></a>采用 union-subclass 元素的继承映射</h4><p><img src="https://i.imgur.com/SRnzqGX.png" alt=""></p>
-<pre><code> &lt;class name=&quot;io.hibernate.entities.joined.subclass.Person&quot; table=&quot;PERSONS&quot;&gt;
-            &lt;id name=&quot;id&quot; type=&quot;java.lang.Integer&quot;&gt;
-                &lt;column name=&quot;ID&quot; /&gt;
-                &lt;generator class=&quot;increment&quot; /&gt;
-            &lt;/id&gt;
-            &lt;property name=&quot;name&quot; type=&quot;java.lang.String&quot;&gt;
-                &lt;column name=&quot;NAME&quot; /&gt;
-            &lt;/property&gt;
-            &lt;property name=&quot;age&quot; type=&quot;int&quot;&gt;
-                &lt;column name=&quot;AGE&quot; /&gt;
-            &lt;/property&gt;
-            &lt;union-subclass name=&quot;io.hibernate.entities.joined.subclass.Student&quot; table=&quot;STUDENTS&quot;&gt;
-                  &lt;property name=&quot;school&quot;&gt;&lt;/property&gt;
-            &lt;/union-subclass&gt;
-        &lt;/class&gt;
-</code></pre><h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><p><img src="https://i.imgur.com/0LRRBLu.png" alt=""></p>
-<p><img src="https://i.imgur.com/bxRPyAf.png" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/18/Hibernate入门系列（四）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/9/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/11/">Next &raquo;</a>
@@ -1212,7 +982,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1220,11 +990,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1232,11 +998,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1272,11 +1042,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1284,11 +1054,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">solr</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
             
             <div class="clearfix"></div>

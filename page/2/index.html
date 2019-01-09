@@ -171,6 +171,245 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-深入理解Git系列（四）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/16/深入理解Git系列（四）/">深入理解Git系列（四）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/16/深入理解Git系列（四）/" class="archive-article-date">
+  	<time datetime="2018-12-16T03:24:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-16</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇我们大概讲解了一下分支，如何创建分支以及分支的检出，那么在我们工作的时候，每个人很大概率拥有自己的分支，当我们在自己的分支愉快地完成了开发工作的时候，我们提交到了自己的分支上，一切都相安无事，但是很不幸，当有时候我们进行分支合并的时候，可能会出现意料之外的情况，例如自己分支与主分支合并的时候产生了冲突。冲突虽然能通过预先的计划尽量减少，但是是不可避免的，在一些情况下，还是会出现恼人的冲突。那么对于出现的冲突，我们该如何解决呢？<br></p>
+<h2 id="冲突复现"><a href="#冲突复现" class="headerlink" title="冲突复现"></a>冲突复现</h2><h3 id="初始化master分支"><a href="#初始化master分支" class="headerlink" title="初始化master分支"></a>初始化master分支</h3><p>下面我们来复现一下冲突，首先新建一个版本库，然后增加一些文件，然后提交到本地仓库。<br></p>
+<pre><code>$ git init
+
+$ vim hello.s
+
+$ cat hello.s
+This is hello.s create in master~~
+</code></pre><p>这里我们已经简单建立了一个仓库，然后添加了一个hello.s文件，并且在里面写了一些内容。下面我们提交到本地仓库。<br></p>
+<pre><code>$ git add hello.s
+
+$ git commit -m&quot;first commit in master&quot;
+[master (root-commit) b4010f7] first commit in master
+ 1 file changed, 1 insertion(+)
+ create mode 100644 hello.s
+</code></pre><p>查看状态，工作树是干净的，提交已经完成。</p>
+<pre><code>$ git status
+On branch master
+nothing to commit, working tree clean
+</code></pre><h3 id="checkout-新分支"><a href="#checkout-新分支" class="headerlink" title="checkout 新分支"></a>checkout 新分支</h3><p>主分支已经建立完成，接下来我们假设有一个开发者dev参加了进来，dev开发者checkout一个dev分支来完成自己的开发工作。下面我们来模拟一下这个工作流程。<br></p>
+<pre><code>~/Desktop/conflict (master)
+$ git checkout -b dev
+Switched to a new branch &#39;dev&#39;
+
+~/Desktop/conflict (dev)
+$ ls
+hello.s
+</code></pre><p>可以看到新checkout的dev分支拥有master主分支所有的文件，共同的文件是冲突的来源，如果两个分支同时修改了一个文件，在进行分支合并的时候，就会出现合并冲突的情况。 <br></p>
+<p>下面我们来模拟一下这个冲突。<br><br>我们假设dev开发者对hello.s进行了修改<br></p>
+<pre><code>~/Desktop/conflict (dev)
+$ vim hello.s
+
+~/Desktop/conflict (dev)
+$ cat hello.s
+This is hello.s create in master~~
+
+dev has changed it in dev branch,what would happend after?
+</code></pre><p>修改完成后，dev开发者把修改提交到dev分支上<br></p>
+<pre><code>~/Desktop/conflict (dev)
+$ git add hello.s
+warning: LF will be replaced by CRLF in hello.s.
+The file will have its original line endings in your working directory.
+
+~/Desktop/conflict (dev)
+$ git commit -m&quot;dev change hello.s&quot;
+[dev 0802ff0] dev change hello.s
+ 1 file changed, 2 insertions(+)
+
+~/Desktop/conflict (dev)
+$ git status
+On branch dev
+nothing to commit, working tree clean
+</code></pre><p>提交成功，没有问题。<br><br><br><br>同时master分支也对hello.s进行了修改<br></p>
+<pre><code>~/Desktop/conflict (master)
+$ vim hello.s
+
+~/Desktop/conflict (master)
+$ git add hello.s
+
+~/Desktop/conflict (master)
+$ git commit -m&quot;change hello.s in master&quot;
+[master 052f60c] change hello.s in master
+ 1 file changed, 2 insertions(+)
+
+~/Desktop/conflict (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+</code></pre><p>提交修改的时候也没有发生报错，在本分支上一切正常。这时候一切都还相安无事，看起来都没有问题。<br><br>接下来我们合并分支，会发生什么<br></p>
+<pre><code>~/Desktop/conflict (master)
+$ git merge dev
+Auto-merging hello.s
+CONFLICT (content): Merge conflict in hello.s
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre><p>之前一切正常的分支，合并的时候出现了冲突。<br><br>合并出现的冲突需要我们手动去合并发生冲突的文件。<br><br>我们先来查看一下发生了冲突的内容是什么<br></p>
+<pre><code>~/Desktop/conflict (master|MERGING)
+$ cat hello.s
+
+This is hello.s create in master~~
+
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+master has changed it in master branch,what would happend after?
+=======
+dev has changed it in dev branch,what would happend after?
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; dev
+</code></pre><p>这个就是我们刚刚修改的地方，显而易见的就是我们修改了同一个文件，造成了合并的冲突。<br><br>如果你不想合并冲突，只需要简单的退出合并即可。可以通过<code>git merge --abort</code>来简单地退出合并。</p>
+<pre><code>~/Desktop/conflict (master|MERGING)
+$ git diff -b
+diff --cc hello.s
+index 2ec140a,0a490ab..0000000
+--- a/hello.s
++++ b/hello.s
+@@@ -1,3 -1,3 +1,7 @@@
+  This is hello.s create in master~~
+
+++&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+ +master has changed it in master branch,what would happend after?
+++=======
++ dev has changed it in dev branch,what would happend after?
+++&gt;&gt;&gt;&gt;&gt;&gt;&gt; dev
+
+zhangguang@DESKTOP-T9RMAQ8 MINGW32 ~/Desktop/conflict (master|MERGING)
+$ cat hello.s
+This is hello.s create in master~~
+
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+master has changed it in master branch,what would happend after?
+=======
+dev has changed it in dev branch,what would happend after?
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; dev
+</code></pre><p>手动合并之后，我们查看工作树的状态，可以看到一个待提交的hello.s文件，我们可以<code>git merge --abort</code>简单退出合并，也可以用<code>git add</code>来完成我们的合并。这里我们提交到master分支来完成我们的合并。<br></p>
+<pre><code> ~/Desktop/conflict (master|MERGING)
+$ git status
+On branch master
+You have unmerged paths.
+  (fix conflicts and run &quot;git commit&quot;)
+  (use &quot;git merge --abort&quot; to abort the merge)
+
+Unmerged paths:
+  (use &quot;git add &lt;file&gt;...&quot; to mark resolution)
+
+        both modified:   hello.s
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+
+~/Desktop/conflict (master|MERGING)
+$ git add hello.s
+
+~/Desktop/conflict (master|MERGING)
+$ git commit -m&quot;fix conflict&quot;
+[master f08d749] fix conflict
+</code></pre><p>我们可以来查看一下提交历史和合并的分支情况。</p>
+<pre><code>$ git log --graph
+*   commit f08d7494707c63e883b2be215939358536e05c92 (HEAD -&gt; master)
+*   commit f08d7494707c63e883b2be215939358536e05c92 (HEAD -&gt; master)
+|\  Merge: 052f60c 0802ff0
+| | Author: codegitz &lt;codegit@foxmail.com&gt;
+| | Date:   Sun Dec 16 13:39:32 2018 +0800
+| |
+| |     fix conflict
+| |
+| * commit 0802ff0d22b91215d1757495ebb00ad262547a6a (dev)
+| | Author: codegitz &lt;codegit@foxmail.com&gt;
+| | Date:   Sun Dec 16 12:18:36 2018 +0800
+| |
+| |     dev change hello.s
+| |
+* | commit 052f60c173ab4f13aaef5043cf956de867988e74
+|/  Author: codegitz &lt;codegit@foxmail.com&gt;
+|   Date:   Sun Dec 16 13:05:22 2018 +0800
+|
+|       change hello.s in master
+|
+* commit b4010f765f1f11fafa13fd36e96a4a68fa492b78
+  Author: codegitz &lt;codegit@foxmail.com&gt;
+  Date:   Sun Dec 16 11:53:51 2018 +0800
+
+      first commit in master
+</code></pre><p>这里就简单的完成了一个冲突分支的合并，合并之后的文件拥有了两个分支的修改。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/16/深入理解Git系列（四）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Vue初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -704,90 +943,6 @@ Deleted branch prs/prs-3 (was 03b66ff).
 
 
   
-    <article id="post-深入理解Git系列（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/02/深入理解Git系列（二）/">深入理解Git系列（二）</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/02/深入理解Git系列（二）/" class="archive-article-date">
-  	<time datetime="2018-11-02T05:38:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-02</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!--read more-->
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇介绍了Git的一些典型的使用方法，并且留下了很多疑问。这一篇来讨论一下Git的冠军架构组成和一些重要的概念来探讨Git的不同之处和原因。下面开始吧。<br><br>
-        
-          <a class="article-more-a" href="/2018/11/02/深入理解Git系列（二）/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/02/深入理解Git系列（二）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -926,7 +1081,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -934,11 +1089,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -946,11 +1097,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -986,11 +1141,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -998,11 +1153,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">solr</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
             
             <div class="clearfix"></div>
