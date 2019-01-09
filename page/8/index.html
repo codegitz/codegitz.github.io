@@ -171,204 +171,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-CentOS7执行yum命令出错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/CentOS7执行yum命令出错/">CentOS7执行yum命令出错</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/CentOS7执行yum命令出错/" class="archive-article-date">
-  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="CentOS7执行yum命令出错"><a href="#CentOS7执行yum命令出错" class="headerlink" title="CentOS7执行yum命令出错"></a>CentOS7执行yum命令出错</h2><pre><code>[root@localhost ~]# yum install docker
-Loaded plugins: fastestmirror
-
-
- One of the configured repositories failed (Unknown),
- and yum doesn&#39;t have enough cached data to continue. At this point the only
- safe thing yum can do is fail. There are a few ways to work &quot;fix&quot; this:
-
-1. Contact the upstream for the repository and get them to fix the problem.
-
- 2. Reconfigure the baseurl/etc. for the repository, to point to a working
-        upstream. This is most often useful if you are using a newer
-        distribution release than is supported by the repository (and the
-        packages for the previous distribution release still work).
-
-3. Disable the repository, so yum won&#39;t use it by default. Yum will then   just ignore the repository until you permanently enable it again or use
-        --enablerepo for temporary usage:
-  yum-config-manager --disable &lt;repoid&gt;
-
-     4. Configure the failing repository to be skipped, if it is unavailable.
-        Note that yum will try to contact the repo. when it runs most commands,
-        so will have to try and fail each time (and thus. yum will be be much
-        slower). If it is a very temporary problem though, this is often a nice
-        compromise:
-
-        yum-config-manager --save --setopt=&lt;repoid&gt;.skip_if_unavailable=true
-
-Cannot find a valid baseurl for repo: base/7/x86_64
-</code></pre><p>原因是本本虚拟机无法上网，配置再多也没用</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/CentOS7执行yum命令出错/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-markdown无法显示" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/markdown无法显示/">markdown注入错误</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/markdown无法显示/" class="archive-article-date">
-  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="神奇的markdown"><a href="#神奇的markdown" class="headerlink" title="神奇的markdown"></a>神奇的markdown</h2><pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-       &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot; &gt;
-
-    &lt;bean id=&quot;helloService&quot; class=&quot;io.springboot.service.HelloService&quot;&gt;&lt;/bean&gt;
-
-&lt;/beans&gt;
-</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/markdown无法显示/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-ssh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -534,20 +336,20 @@ Cannot find a valid baseurl for repo: base/7/x86_64
 
 
   
-    <article id="post-记一次部署经历" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-markdown无法显示" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/记一次部署经历/">记一次部署经历</a>
+      <a class="article-title" href="/2018/04/13/markdown无法显示/">markdown注入错误</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/记一次部署经历/" class="archive-article-date">
-  	<time datetime="2018-04-13T03:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+        <a href="/2018/04/13/markdown无法显示/" class="archive-article-date">
+  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
       </header>
@@ -558,184 +360,15 @@ Cannot find a valid baseurl for repo: base/7/x86_64
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前本人照葫芦画瓢做了个大概的云笔记，后来巧合之下租了个阿里云的服务器，于是就开始了部署项目的折腾之路</p>
-<h2 id="服务器环境准备"><a href="#服务器环境准备" class="headerlink" title="服务器环境准备"></a>服务器环境准备</h2><p>cloud_note是一个基于javaweb的项目，所以需要配置java环境，还有需要Tomcat启动服务，jdk我选择的是1.7.79，Tomcat7.0.23，然后就是安装，配置路径，这里就不多说了。</p>
-<h2 id="项目导出与部署"><a href="#项目导出与部署" class="headerlink" title="项目导出与部署"></a>项目导出与部署</h2><p>我使用的是eclipse，右击项目，export，导出war file<br><img src="https://i.imgur.com/jukkZsN.png" alt=""><br>destination 选择你要导出的路径<br><img src="https://i.imgur.com/ayBnrat.png" alt=""><br>然后将war文件上传到服务器上，放到webapps目录下，Tomcat启动运行之后会自动生成一个与你war文件名对应的文件夹，里面就包含了你项目的所有东西，如图<br><img src="https://i.imgur.com/mf0OXOA.png" alt=""><br>然后通过bin目录下的startup.bat启动Tomcat，可以在本地访问项目了。<br>值得一提的是，阿里云服务器需要在安全组开放对应的端口才可以访问，不然是无法访问的，例如启动Tomcat需要开放8080端口，还有数据库的3306端口也要开放<br>安全组–&gt;配置规则–&gt;添加安全组规则<br><img src="https://i.imgur.com/IKTF8jb.png" alt=""><br>至此项目服务器部署已经完毕</p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>部署完毕后我发现用服务器的公网ip加项目名无法访问项目，而且控制台也没有报错，后来在浏览器发现是无法加载资源，经老三提醒后发现是js跨域的问题，找到了方向之后成功解决了这个问题。第一次部署，没有留意到跨域的问题，莫名了很久，终于解决了。</p>
-<h2 id="js跨域"><a href="#js跨域" class="headerlink" title="js跨域"></a>js跨域</h2><p>跨域访问，或者说 JavaScript 的跨域访问问题，是浏览器出于安全考虑而设置的一个限制，即同源策略。举例说明，当 A，B 两个网站属于不同的域时，如果来自于 A 网站的页面中的 JavaScript 代码希望访问 B 网站的时候，浏览器会拒绝该访问。</p>
-<p>解决跨域方式有很多种，其中有jsonp,但是只能处理get请求。<br>所以我采用了CORS。</p>
-<h2 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h2><p>CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。</p>
-<p>它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。</p>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。</p>
-<p>整个CORS通信过程，都是浏览器自动完成，不需要用户参与。对于开发者来说，CORS通信与同源的AJAX通信没有差别，代码完全一样。浏览器一旦发现AJAX请求跨源，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，但用户不会有感觉。</p>
-<p>因此，实现CORS通信的关键是服务器。只要服务器实现了CORS接口，就可以跨源通信。</p>
-<h3 id="两种请求方式"><a href="#两种请求方式" class="headerlink" title="两种请求方式"></a>两种请求方式</h3><p>浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request），浏览器对于两种请求的处理方式不一样。<br>满足以下两大条件就是简单请求</p>
-<pre><code>(1) 请求方法是以下三种方法之一：
-HEAD
-GET
-POST
-2）HTTP的头信息不超出以下几种字段：
-Accept
-Accept-Language
-Content-Language
-Last-Event-ID
-Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain
-</code></pre><p>java后台解决方法有两个：</p>
-<h4 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h4><p>1.自己建一个corsfilter类</p>
-<pre><code>package io.codegitz.cloud_note.filter;
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="神奇的markdown"><a href="#神奇的markdown" class="headerlink" title="神奇的markdown"></a>神奇的markdown</h2><pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+       &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot; &gt;
 
-import java.io.IOException;
+    &lt;bean id=&quot;helloService&quot; class=&quot;io.springboot.service.HelloService&quot;&gt;&lt;/bean&gt;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.stereotype.Component;
-
-@Component
-public class CorsFilter implements Filter{
-
-    //@Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
-    }
-
-    //@Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
-            throws IOException, ServletException {
-        HttpServletResponse response = (HttpServletResponse)servletResponse;  
-        response.setHeader(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);  
-        response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;POST, GET, OPTIONS, DELETE&quot;);  
-        response.setHeader(&quot;Access-Control-Max-Age&quot;, &quot;3600&quot;);  
-        response.setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;x-requested-with,Authorization&quot;);  
-        response.setHeader(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;);  
-        filterChain.doFilter(servletRequest, servletResponse); 
-
-    }
-
-    //@Override
-    public void destroy() {
-
-    }
-
-}
-</code></pre><p>预检请求会附带一些关于接下来的请求的信息给服务器，主要有以下几种：</p>
-<p>Origin：请求的源域信息<br>Access-Control-Request-Method：接下来的请求类型，如POST、GET等<br>Access-Control-Request-Headers：接下来的请求中包含的用户显式设置的Header列表<br>服务器端收到请求之后，会根据附带的信息来判断是否允许该跨域请求，信息返回同样是通过Header完成的：</p>
-<p>Access-Control-Allow-Origin：允许跨域的Origin列表<br>Access-Control-Allow-Methods：允许跨域的方法列表<br>Access-Control-Allow-Headers：允许跨域的Header列表<br>Access-Control-Expose-Headers：允许暴露给JavaScript代码的Header列表<br>Access-Control-Max-Age：最大的浏览器缓存时间，单位s<br>以上行为都是浏览器自动完成的，用户无需关注这些细节。如果服务器配置正确，那么和正常非跨域请求是一样的。</p>
-<p>2.在web.xml文件中配置</p>
-<pre><code>&lt;filter&gt;  
-    &lt;filter-name&gt;cors&lt;/filter-name&gt;  
-    &lt;filter-class&gt;io.codegitz.cloud_note.filter.CorsFilter&lt;/filter-class&gt;  
-&lt;/filter&gt;  
-&lt;filter-mapping&gt;  
-    &lt;filter-name&gt;cors&lt;/filter-name&gt;  
-    &lt;url-pattern&gt;*.do&lt;/url-pattern&gt;  
-&lt;/filter-mapping&gt;
-</code></pre><h4 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h4><p>这种方式似乎要spring4.2以上才支持，利用提供的jar包，下载 cors-filter-1.7.jar, java-property-utils-1.9.jar 这两个库文件放到lib目录下。(放到对应项目的webcontent/WEB-INF/lib/下)，如果是maven项目，可以简单添加如下依赖到pom.xml中即可</p>
-<pre><code>&lt;dependency&gt;
-    &lt;groupId&gt;com.thetransactioncompany&lt;/groupId&gt;
-    &lt;artifactId&gt;cors-filter&lt;/artifactId&gt;
-    &lt;version&gt;[ version ]&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre><p>接着添加CORS配置到web.xml文件中</p>
-<pre><code>&lt;!-- 跨域配置，此filter应该放在所有filter之前--&gt;    
-&lt;filter&gt;
-        &lt;!-- The CORS filter with parameters --&gt;
-        &lt;filter-name&gt;CORS&lt;/filter-name&gt;
-        &lt;filter-class&gt;com.thetransactioncompany.cors.CORSFilter&lt;/filter-class&gt;
-
-        &lt;!-- Note: All parameters are options, if omitted the CORS 
-             Filter will fall back to the respective default values.
-          --&gt;
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.allowGenericHttpRequests&lt;/param-name&gt;
-            &lt;param-value&gt;true&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.allowOrigin&lt;/param-name&gt;
-            &lt;param-value&gt;*&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.allowSubdomains&lt;/param-name&gt;
-            &lt;param-value&gt;false&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.supportedMethods&lt;/param-name&gt;
-            &lt;param-value&gt;GET, HEAD, POST, OPTIONS&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.supportedHeaders&lt;/param-name&gt;
-            &lt;param-value&gt;Accept, Origin, X-Requested-With, Content-Type, Last-Modified&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.exposedHeaders&lt;/param-name&gt;
-            &lt;!--这里可以添加一些自己的暴露Headers   --&gt;
-            &lt;param-value&gt;X-Test-1, X-Test-2&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.supportsCredentials&lt;/param-name&gt;
-            &lt;param-value&gt;true&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.maxAge&lt;/param-name&gt;
-            &lt;param-value&gt;3600&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-    &lt;/filter&gt;
-
-    &lt;filter-mapping&gt;
-        &lt;!-- CORS Filter mapping --&gt;
-        &lt;filter-name&gt;CORS&lt;/filter-name&gt;
-        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
-    &lt;/filter-mapping&gt;
-</code></pre><p>配置完成之后可以发送另起一个项目或者页面来测试配置是否成功</p>
-<pre><code>&lt;!DOCTYPE HTML&gt;  
-&lt;html&gt;  
-&lt;head&gt;  
-&lt;meta charset=&quot;utf-8&quot;&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;scripts/jquery.min.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;scripts/basevalue.js&quot;&gt;&lt;/script&gt;  
-&lt;script type=&quot;text/javascript&quot;&gt;  
-    $(function(){  
-        //按钮单击时执行  
-        $(&quot;#testAjax&quot;).click(function(){  
-              //取Ajax返回结果  
-              $.ajax({
-                  url:path+&quot;/test/ajax.do&quot;,
-                  data:{},
-                  dataType:&quot;json&quot;,
-                  type:&quot;post&quot;,
-                  success:function(result){ 
-                      $(&quot;#myDiv&quot;).empty; 
-                 $(&quot;#myDiv&quot;).html(result.msg);
-                  //显示Ajax返回结果  
-                  alert(result.msg);
-                  },
-                  error:function(){
-                      alert(&quot;错误&quot;);
-                  }});  
-         });  
-    });  
-&lt;/script&gt;      
-&lt;/head&gt;  
-    &lt;body&gt;  
-        &lt;div id=&quot;myDiv&quot;&gt;&lt;h2&gt;返回跨域的文本&lt;/h2&gt;&lt;/div&gt;  
-        &lt;button id=&quot;testAjax&quot; type=&quot;button&quot;&gt;点击获取Ajax跨域返回内容&lt;/button&gt;  
-    &lt;/body&gt;  
-&lt;/html&gt;
-</code></pre><p>浏览器输入<a href="http://47.106.120.224/cloud_note/Filter.html" target="_blank" rel="external">http://47.106.120.224/cloud_note/Filter.html</a><br>成功返回文本跨域请求成功<br><img src="https://i.imgur.com/fhWTkym.png" alt=""></p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>本次遇到的问题不大，都是没留意的小问题，倒是项目本身还有许多不完整的地方，bug多多，有时间再修改，源码稍后传到GitHub上，欢迎<a href="https://github.com/codegitz/cloud_note" target="_blank" rel="external">star</a>。</p>
+&lt;/beans&gt;
+</code></pre>
 
       
 
@@ -749,7 +382,7 @@ public class CorsFilter implements Filter{
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
         		</li>
       		
 		</ul>
@@ -762,7 +395,7 @@ public class CorsFilter implements Filter{
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/记一次部署经历/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/markdown无法显示/">展开全文 >></a>
         </p>
       
 
@@ -792,20 +425,20 @@ public class CorsFilter implements Filter{
 
 
   
-    <article id="post-mybatis关联映射" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-CentOS7执行yum命令出错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/mybatis关联映射/">Mybatis关联映射</a>
+      <a class="article-title" href="/2018/04/13/CentOS7执行yum命令出错/">CentOS7执行yum命令出错</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/mybatis关联映射/" class="archive-article-date">
-  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+        <a href="/2018/04/13/CentOS7执行yum命令出错/" class="archive-article-date">
+  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
       </header>
@@ -816,110 +449,166 @@ public class CorsFilter implements Filter{
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Mybatis关联映射"><a href="#Mybatis关联映射" class="headerlink" title="Mybatis关联映射"></a>Mybatis关联映射</h1><p>将数据库中有关联关系的表，以实体对象引用的方式体现出来</p>
-<p>关联方式：</p>
-<ul>
-<li>关联单个对象</li>
-<li>关联多个对象</li>
-</ul>
-<p>class User{</p>
-<p> private List<book> books;<br>}</book></p>
-<p>class Book{<br>  private User user;<br>}</p>
-<p>什么时候用<br>业务需要对数据库进行关联查询的时候</p>
-<p>可以通过一条SQL语句完成关联查询。也可以通过两条SQL语句进行关联查询</p>
-<h2 id="案例：通过userId查询用户信息和关联的笔记本信息"><a href="#案例：通过userId查询用户信息和关联的笔记本信息" class="headerlink" title="案例：通过userId查询用户信息和关联的笔记本信息"></a>案例：通过userId查询用户信息和关联的笔记本信息</h2><p>1.User 实体类<br>2.定义Dao接口，配置Mapper文件<br>3.定义测试类验证查询结果</p>
-<p>2个SQL语句：语句简单，但是配置繁琐，与DB两次交互</p>
-<pre><code>&lt;!-- 使用两条SQL语句加载数据 --&gt;
-    &lt;select id=&quot;findUserAndBook&quot; parameterType=&quot;String&quot; resultMap=&quot;userMap1&quot;&gt;
-        select * from cn_user where cn_user_id=#{id}
-    &lt;/select&gt;
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="CentOS7执行yum命令出错"><a href="#CentOS7执行yum命令出错" class="headerlink" title="CentOS7执行yum命令出错"></a>CentOS7执行yum命令出错</h2><pre><code>[root@localhost ~]# yum install docker
+Loaded plugins: fastestmirror
 
-    &lt;resultMap type=&quot;io.codegitz.cloud_note.entity.User&quot; id=&quot;userMap1&quot;&gt;
-        &lt;id property=&quot;cn_user_id&quot; column=&quot;cn_user_id&quot; /&gt;
-        &lt;result property=&quot;cn_user_name&quot; column=&quot;cn_user_name&quot; /&gt;
-        &lt;!-- 指定books属性是List集合，泛型为Book --&gt;
-        &lt;!-- javaType是返回类型 --&gt;
-        &lt;collection property=&quot;books&quot; javaType=&quot;java.util.List&quot;
-            ofType=&quot;io.codegitz.cloud_note.entity.Book&quot; select=&quot;findBooks&quot;
-            column=&quot;cn_user_id&quot;&gt;
-        &lt;/collection&gt;
-    &lt;/resultMap&gt;
-    &lt;select id=&quot;findBooks&quot; parameterType=&quot;String&quot;
-        resultType=&quot;io.codegitz.cloud_note.entity.Book&quot;&gt;
-        select * from cn_user where cn_user_id=#{userId}
-    &lt;/select&gt;
-</code></pre><p>1个SQL语句：语句复杂，配置较简单，与DB交互一次</p>
-<pre><code>&lt;!-- 一条SQL加载user --&gt;
-    &lt;select id=&quot;findUserAndBook1&quot; parameterType=&quot;String&quot; resultMap=&quot;userMap2&quot;&gt;
-        select * from cn_user u join cn_notebook b
-        on(u.cn_user_id=b.cn_user_id) where u.cn_user_id=#{userId}
-    &lt;/select&gt;
-    &lt;resultMap type=&quot;io.codegitz.cloud_note.entity.User&quot; id=&quot;userMap2&quot;&gt;
-        &lt;!-- 定义cn_user 字段装载，不能忽略 --&gt;
-        &lt;id property=&quot;cn_user_id&quot; column=&quot;cn_user_id&quot; /&gt;
-        &lt;result property=&quot;cn_user_name&quot; column=&quot;cn_user_name&quot; /&gt;
-        &lt;result property=&quot;cn_user_nick&quot; column=&quot;cn_user_nick&quot; /&gt;
-        &lt;result property=&quot;cn_user_password&quot; column=&quot;cn_user_password&quot; /&gt;
-        &lt;result property=&quot;cn_user_token&quot; column=&quot;cn_user_token&quot; /&gt;
-      &lt;collection property=&quot;books&quot; 
-      javaType=&quot;java.util.List&quot;
-      ofType=&quot;io.codegitz.cloud_note.entity.Book&quot;&gt;
-          &lt;id property=&quot;cn_notebook_id&quot; column=&quot;cn_notebook_id&quot;/&gt;
-          &lt;result property=&quot;cn_user_id&quot; column=&quot;cn_user_id&quot;/&gt;
-          &lt;result property=&quot;cn_notebook_type_id&quot; column=&quot;cn_notebook_type_id&quot;/&gt;
-          &lt;result property=&quot;cn_notebook_name&quot; column=&quot;cn_notebook_name&quot;/&gt;
-          &lt;result property=&quot;cn_notebook_desc&quot; column=&quot;cn_notebook_desc&quot;/&gt;
-          &lt;result property=&quot;cn_notebook_createtime&quot; column=&quot;cn_notebook_createtime&quot;/&gt;
-      &lt;/collection&gt;
-    &lt;/resultMap&gt;
-</code></pre><h2 id="案例：通过查询笔记信息，关联用户信息"><a href="#案例：通过查询笔记信息，关联用户信息" class="headerlink" title="案例：通过查询笔记信息，关联用户信息"></a>案例：通过查询笔记信息，关联用户信息</h2><p>用一条查询语句实现</p>
-<h1 id="主键的字段处理"><a href="#主键的字段处理" class="headerlink" title="主键的字段处理"></a>主键的字段处理</h1><p>在数据库使用自增列或序列作为主键值时，如何在insert执行后、立刻获取id值<br>属性增加<br>    useGeneratedKeys=”true” keyProperty=”id”<br>-Mysql<br>    create table t_emp(id int primary key auto_increment,name varchar(20),age int)</p>
-<pre><code>&lt;mapper namespace=&quot;io.codegitz.cloud_note.dao.EmpDao&quot;&gt;
-  &lt;!-- mysql:数据库自动生成主键值，获取主键值放入对象的id属性中 --&gt;
-       &lt;insert id=&quot;save&quot; parameterType=&quot;io.codegitz.cloud_note.entity.Emp&quot;
-        useGeneratedKeys=&quot;true&quot; keyProperty=&quot;id&quot;&gt;
-           insert into t_emp (name,age) values (#{name},#{age})
-       &lt;/insert&gt;
-&lt;/mapper&gt;
-</code></pre><h1 id="spring事务管理"><a href="#spring事务管理" class="headerlink" title="spring事务管理"></a>spring事务管理</h1><p>什么是事务？程序为了保证业务处理的完整性，执行一个或多个SQL语句<br>管理：对事务中的Sql语句进行提交或回滚，叫做事务管理<br>什么时候用？作用于Service的方法上</p>
-<p>事务回顾：<br>转账：A账户转1000到B账户<br><img src="https://i.imgur.com/GKrc1NA.png" alt=""><br>通过spring进行事务管理<br>步骤：<br>1.配置Spring-transaction.xml</p>
-<ol>
-<li>使用@Transactional标记</li>
-</ol>
-<h2 id="可读可写"><a href="#可读可写" class="headerlink" title="可读可写"></a>可读可写</h2><p>   select操作时，可采用只读事务<br>@Transaction(readOnly=true)</p>
-<h2 id="回滚特性"><a href="#回滚特性" class="headerlink" title="回滚特性"></a>回滚特性</h2><p>  默认RuntimeException回滚，其他异常不回滚<br>  @Transaction(rollbackFor=IOException.class)<br>  public void f1(){<br>      //db操作(insert)<br>      //IOException<br>  }<br>public void deleteNote(String… ids) {</p>
-<pre><code>//String... 就是String[] 数组
-</code></pre><p>}</p>
-<h2 id="传播特性"><a href="#传播特性" class="headerlink" title="传播特性"></a>传播特性</h2><p> 默认类型：REQUIRED</p>
-<p>传播行为 描述<br>PROPAGATION_REQUIRED    如果没有，就开启一个事务；如果有，就加入当前事务（方法B看到自己已经运行在 方法A的事务内部，就不再起新的事务，直接加入方法A）</p>
-<p>RROPAGATION_REQUIRES_NEW    如果没有，就开启一个事务；如果有，就将当前事务挂起。（方法A所在的事务就会挂起，方法B会起一个新的事务，等待方法B的事务完成以后，方法A才继续执行）</p>
-<p>PROPAGATION_NESTED    如果没有，就开启一个事务；如果有，就在当前事务中嵌套其他事务</p>
-<p>PROPAGATION_SUPPORTS    如果没有，就以非事务方式执行；如果有，就加入当前事务（方法B看到自己已经运行在 方法A的事务内部，就不再起新的事务，直接加入方法A）</p>
-<p>PROPAGATION_NOT_SUPPORTED    如果没有，就以非事务方式执行；如果有，就将当前事务挂起，（方法A所在的事务就会挂起，而方法B以非事务的状态运行完，再继续方法A的事务）</p>
-<p>PROPAGATION_NEVER    如果没有，就以非事务方式执行；如果有，就抛出异常。</p>
-<p>PROPAGATION_MANDATORY    如果没有，就抛出异常；如果有，就使用当前事务</p>
-<h2 id="隔离特性"><a href="#隔离特性" class="headerlink" title="隔离特性"></a>隔离特性</h2><p>默认属性：READ_COMMITED<br>针对事务并发进行处理<br>脏读/幻读</p>
-<h1 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h1><p>使用<if> <choose>等标签<br><img src="https://i.imgur.com/KmB7Rwo.png" alt=""></choose></if></p>
-<pre><code> public int updateNoteByMap(Map&lt;String,Object&gt; map);
-</code></pre><pre><code>&lt;update id=&quot;updateNoteByMap&quot; parameterType=&quot;Map&quot;&gt;
-       update cn_note set 
-       &lt;trim suffixOverrides=&quot;,&quot;&gt;
-       &lt;if test=&quot;title!=null&quot;&gt; cn_note_title=#{title},&lt;/if&gt;
-       &lt;if test=&quot;body!=null&quot;&gt;cn_note_body=#{body},&lt;/if&gt;
-       &lt;choose&gt;
-              &lt;when test=&quot;time!=null&quot;&gt;
-                 cn_note_last_modify_time=#{time}
-              &lt;/when&gt;
 
-              &lt;otherwise&gt;
-              cn_note_last_modify_time=unix_timestamp()
-              &lt;/otherwise&gt;
-       &lt;/choose&gt;
-       &lt;!-- &lt;if test=&quot;time!=null&quot;&gt;cn_note_last_modify_time=#{time}&lt;/if&gt; --&gt;
-       &lt;/trim&gt;
-       where cn_note_id=#{noteId}
+ One of the configured repositories failed (Unknown),
+ and yum doesn&#39;t have enough cached data to continue. At this point the only
+ safe thing yum can do is fail. There are a few ways to work &quot;fix&quot; this:
 
-    &lt;/update&gt;
+1. Contact the upstream for the repository and get them to fix the problem.
+
+ 2. Reconfigure the baseurl/etc. for the repository, to point to a working
+        upstream. This is most often useful if you are using a newer
+        distribution release than is supported by the repository (and the
+        packages for the previous distribution release still work).
+
+3. Disable the repository, so yum won&#39;t use it by default. Yum will then   just ignore the repository until you permanently enable it again or use
+        --enablerepo for temporary usage:
+  yum-config-manager --disable &lt;repoid&gt;
+
+     4. Configure the failing repository to be skipped, if it is unavailable.
+        Note that yum will try to contact the repo. when it runs most commands,
+        so will have to try and fail each time (and thus. yum will be be much
+        slower). If it is a very temporary problem though, this is often a nice
+        compromise:
+
+        yum-config-manager --save --setopt=&lt;repoid&gt;.skip_if_unavailable=true
+
+Cannot find a valid baseurl for repo: base/7/x86_64
+</code></pre><p>原因是本本虚拟机无法上网，配置再多也没用</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/CentOS7执行yum命令出错/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-hexo-yilia-文章浏览量统计" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/hexo-yilia-文章浏览量统计/">hexo yilia 文章浏览量统计</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/hexo-yilia-文章浏览量统计/" class="archive-article-date">
+  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="不蒜子"><a href="#不蒜子" class="headerlink" title="不蒜子"></a>不蒜子</h2><p>不蒜子的配置很简单,先去不蒜子<a href="http://busuanzi.ibruce.info/" target="_blank" rel="external">官网</a>获取代码,修改hexo\themes\yilia\layout_partial\footer.ejs，在后,添加如下代码：<br></p>
+<pre><code>&lt;script async src=&quot;//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>然后，根据个人爱好选择下列代码:<br><br>网站的总的访问量<br></p>
+<pre><code>&lt;span id=&quot;busuanzi_container_site_pv&quot;&gt;
+    总访问量: &lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;
+&lt;/span&gt;
+网站总的访问人数:
+</code></pre><pre><code>&lt;span id=&quot;busuanzi_container_site_uv&quot;&gt;
+    总访客: &lt;span id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt;
+&lt;/span&gt;
+</code></pre><p>单页访问量:<br></p>
+<pre><code>&lt;span id=&quot;busuanzi_container_page_pv&quot;&gt;
+  本文总阅读量&lt;span id=&quot;busuanzi_value_page_pv&quot;&gt;&lt;/span&gt;次
+&lt;/span&gt;
+</code></pre><p>添加单页访问量,修改hexo\themes\yilia\layout_partial\article.ejs,在&lt;%- partial(‘post/tag’) %&gt; 后添加如下代码:<br></p>
+<pre><code>&lt;span id=&quot;busuanzi_container_page_pv&quot;&gt;
+  |阅读量(&lt;span id=&quot;busuanzi_value_page_pv&quot;&gt;&lt;/span&gt;)
+&lt;/span&gt;
+</code></pre><p>添加总的访问量跟总的访问人数,修改hexo\themes\yilia\layout_partial\footer.ejs:<br></p>
+<pre><code>&lt;div calss=&quot;count-span&quot;&gt;
+    &lt;span id=&quot;busuanzi_container_site_pv&quot;&gt;
+        总访问量: &lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;|
+    &lt;/span&gt;
+    &lt;span id=&quot;busuanzi_container_site_uv&quot;&gt;
+        总访客: &lt;span id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt;
+    &lt;/span&gt;
+&lt;/div&gt;
+</code></pre><p>我的footer.ejs配置<br></p>
+<pre><code>&lt;footer id=&quot;footer&quot;&gt;
+  &lt;div class=&quot;outer&quot;&gt;
+    &lt;div id=&quot;footer-info&quot;&gt;
+        &lt;div class=&quot;footer-left&quot;&gt;
+            &amp;copy; &lt;%= date(new Date(), &#39;YYYY&#39;) %&gt; &lt;%= config.author || config.title %&gt;
+        &lt;/div&gt;
+          &lt;div class=&quot;footer-right&quot;&gt;
+              &lt;a href=&quot;http://hexo.io/&quot; target=&quot;_blank&quot;&gt;Hexo&lt;/a&gt;  Theme &lt;a href=&quot;https://github.com/litten/hexo-theme-yilia&quot; target=&quot;_blank&quot;&gt;Yilia&lt;/a&gt; by Litten
+          &lt;/div&gt;
+    &lt;/div&gt;
+
+      &lt;div calss=&quot;count-span&quot;&gt;
+    &lt;span id=&quot;busuanzi_container_site_pv&quot;&gt;
+        总访问量: &lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;|
+    &lt;/span&gt;
+
+    &lt;span id=&quot;busuanzi_container_site_uv&quot;&gt;
+        总访客: &lt;span id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt;
+    &lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+&lt;script async src=&quot;//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;
 </code></pre>
       
 
@@ -933,7 +622,7 @@ public class CorsFilter implements Filter{
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
         		</li>
       		
 		</ul>
@@ -946,7 +635,89 @@ public class CorsFilter implements Filter{
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/mybatis关联映射/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/hexo-yilia-文章浏览量统计/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-PowerDesigner中DBMS设置的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/PowerDesigner中DBMS设置的问题/">PowerDesigner中DBMS设置的问题</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/PowerDesigner中DBMS设置的问题/" class="archive-article-date">
+  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="解决PowerDesigner中DBMS设置的问题"><a href="#解决PowerDesigner中DBMS设置的问题" class="headerlink" title="解决PowerDesigner中DBMS设置的问题"></a>解决PowerDesigner中DBMS设置的问题</h2><p>在Generate Physical Data Model 的时候出现DBMS选择框全为空的情况，而且上面的菜单栏没有database这个选项<br><img src="https://i.imgur.com/oBXAV3q.png" alt=""></p>
+<p>一开始以为是软件装错了，以为是下了什么盗版软件，后来才发现是DBMS的路径有问题<br><img src="https://i.imgur.com/8wbGyAN.png" alt=""><br>直接浏览到powderdesigner的安装路径下的\Resource Files\DBMS，软件自己配的路径有点诡异，并不是正确的，点击确定之后即可<br><img src="https://i.imgur.com/uQdlj4X.png" alt=""><br>出现了所有的DBMS，上面一行菜单栏也出现了database这个选项<br><img src="https://i.imgur.com/BHeWP5B.png" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">powerdesigner</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/PowerDesigner中DBMS设置的问题/">展开全文 >></a>
         </p>
       
 
@@ -978,7 +749,7 @@ public class CorsFilter implements Filter{
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
     </nav>
   
 
@@ -1002,7 +773,7 @@ $(document).ready(function(){
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Codegitz
+    		&copy; 2019 Codegitz
     	</div>
       	<!--<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1122,6 +893,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -1130,23 +913,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1175,10 +950,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">

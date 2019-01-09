@@ -171,6 +171,230 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Vue初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/12/Vue初探/">Vue初探</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/12/Vue初探/" class="archive-article-date">
+  	<time datetime="2018-12-12T06:51:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-12</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>对Vue感兴趣很久了，但是还没有去写过一行Vue的代码，今天忽然想起这个，就准备动手搭建一下Vue的脚手架。<br> </p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ul>
+<li>环境<br><br>我的是Windows10，node 6.11,Vue2.X版本。<br> </li>
+</ul>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="构建项目"><a href="#构建项目" class="headerlink" title="构建项目"></a>构建项目</h3><p>在一个你喜欢的地方，新建一个目录，然后进入到里面，全局安装vue-cli.<br><br>由于国外访问速度较慢，可以切换淘宝的镜像源。<br> </p>
+<pre><code>$ npm install -g cnpm --registry=https://registry.npm.taobao.org
+</code></pre><p>开始安装，输入以下命令：<br> </p>
+<pre><code># 全局安装 vue-cli
+$ npm install -g vue-cli
+# 创建一个基于 &quot;webpack&quot; 模板的新项目
+$ vue init webpack my-firstVvue
+# 进入到项目，安装依赖
+$ cd my-firstVvue
+$ npm install
+$ npm run dev
+</code></pre><p>启动成功后命令行提示：<br> </p>
+<pre><code>DONE  Compiled successfully in 14710ms                                                                         15:08:43
+
+I  Your application is running here: http://localhost:8080
+</code></pre><p><img src="https://i.imgur.com/c0NJSjV.png" alt=""><br><br>此时项目已经成功运行在8080端口，打开浏览器访问8080端口，可以看到已经成功启动了。<br><br><img src="https://i.imgur.com/UXCtobZ.png" alt=""></p>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><p>至此一个简单的项目已经跑起来了，我们来看一下它的目录结构，进入到我们刚刚创建项目的地方。<br><br><img src="https://i.imgur.com/IYPAmem.png" alt=""><br>我们可以看到完整的项目结构。<br><br>用sublime打开，会发现…<br><br><br><br><img src="https://i.imgur.com/BGqkzyk.png" alt=""><br><br><br><br>这黑乎乎的一片，实在是看着无味。但是别慌，我们有万能的插件，简单安装插件即可搞定。<br><br>最新的安装方法，直接在控制台输入如下代码即可，安装完成后关闭重启就可以看到高亮效果了。<br></p>
+<pre><code>import urllib.request,os,hashlib; h = &#39;df21e130d211cfc94d9b0905775a7c0f&#39; + &#39;1e3d39e33b79698005270310898eea76&#39;; pf = &#39;Package Control.sublime-package&#39;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( &#39;http://packagecontrol.io/&#39; + pf.replace(&#39; &#39;, &#39;%20&#39;)).read(); dh = hashlib.sha256(by).hexdigest(); print(&#39;Error validating download (got %s instead of %s), please try manual install&#39; % (dh, h)) if dh != h else open(os.path.join( ipp, pf), &#39;wb&#39; ).write(by)
+</code></pre><p><img src="https://i.imgur.com/RREVaPF.png" alt=""></p>
+<p>高亮之后看着舒服多了，详细安装步骤见<a href="https://devework.com/sublime-text-3-package-control.html" target="_blank" rel="external">这里</a>。<br></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Vue的搭建还是相当简单明了的，项目中的目录也一目了然，感觉很不错，看接下来使用感觉如何。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Vue.js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/12/Vue初探/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-剑指offer题目" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/07/剑指offer题目/">剑指offer题目</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/07/剑指offer题目/" class="archive-article-date">
+  	<time datetime="2018-12-07T06:16:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-07</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>题目描述：<br><br>在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<pre><code>public class Solution {
+    public boolean Find(int target, int [][] array) {
+        int length=array.length-1;//下标
+        int i=0;
+        while(length&gt;=0 &amp;&amp; array[0].length&gt;i){
+            if(target&lt;array[length][i]){
+                length--;
+            }else if(target&gt;array[length][i]){
+                i++;
+            }else{
+                return true;
+            }
+        }
+        return false;
+
+    }
+}
+</code></pre><p>题目描述:<br><br>请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</p>
+<pre><code>public class Solution {
+    public String replaceSpace(StringBuffer str) {
+           if(str==null){
+            return null;
+        }
+       StringBuilder newStr = new StringBuilder();
+        for(int i=0;i&lt;str.length();i++){
+            if(str.charAt(i)==&#39; &#39;){
+                newStr.append(&#39;%&#39;);
+                newStr.append(&#39;2&#39;);
+                newStr.append(&#39;0&#39;);
+            }else{
+                newStr.append(str.charAt(i));
+            }
+        }
+        return newStr.toString();
+
+    }
+}
+</code></pre><p>题目描述：<br><br>输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/07/剑指offer题目/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-gogs-sample" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -564,180 +788,9 @@ Deleted branch prs/prs-3 (was 03b66ff).
 
 
   
-    <article id="post-深入理解Git系列（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/31/深入理解Git系列（一）/">深入理解Git系列（一）</a>
-    </h1>
-  
-
-        
-        <a href="/2018/10/31/深入理解Git系列（一）/" class="archive-article-date">
-  	<time datetime="2018-10-31T14:45:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-31</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近版本管理使用了自己搭建的gitlab服务器，git命令大家肯定都或多或少用过，以前用的时候也只是git add . git commit等等几个简单的命令，并没有深入去了解Git的内部原理。这次面对可以会出现各种管理的冲突，我觉得有必要深入学习一下Git的原理和使用。下面就一步一步来开始这趟旅程吧！<br><br>首先申明一下，这系列文章可能会有点枯燥，大部分都是讲解一些命令用法概念，并没有很新奇的玩意。<br></p>
-<p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/one.png" alt=""><br>
-        
-          <a class="article-more-a" href="/2018/10/31/深入理解Git系列（一）/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/31/深入理解Git系列（一）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-CentOS-6-4-系统下-GitLab-搭建与基本配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/28/CentOS-6-4-系统下-GitLab-搭建与基本配置/">CentOS 6.4 系统下 GitLab 搭建与基本配置</a>
-    </h1>
-  
-
-        
-        <a href="/2018/10/28/CentOS-6-4-系统下-GitLab-搭建与基本配置/" class="archive-article-date">
-  	<time datetime="2018-10-28T05:28:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-28</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Gitlab简介"><a href="#Gitlab简介" class="headerlink" title="Gitlab简介"></a>Gitlab简介</h2><!-- read more-->
-<p><a href="https://about.gitlab.com/" target="_blank" rel="external">GitLab</a> 是一个开源的版本管理系统，提供了类似于 GitHub 的源代码浏览，管理缺陷和注释等功能，你可以将代码免费托管到 GitLab.com，而且不限项目数量和成员数。最吸引人的一点是，可以在自己的服务器上搭建 GitLab CE （社区免费版）版本，方便内部团队协作开发和代码管理。<br><br>最近需要用到Gitlab管理项目，所以手动搭建了一个Gitlab平台。<br><br>环境和资源准备：<br></p>
-<ul>
-<li>阿里云CentOS 6.4服务器<br></li>
-<li>gitlab-ce-10.2.3-ce.0.el6.x86_64.rpm<br>
-        
-          <a class="article-more-a" href="/2018/10/28/CentOS-6-4-系统下-GitLab-搭建与基本配置/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/28/CentOS-6-4-系统下-GitLab-搭建与基本配置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -761,7 +814,7 @@ $(document).ready(function(){
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Codegitz
+    		&copy; 2019 Codegitz
     	</div>
       	<!--<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -881,6 +934,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -889,23 +954,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -934,10 +991,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
