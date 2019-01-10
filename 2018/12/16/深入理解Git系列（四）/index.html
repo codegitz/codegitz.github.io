@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>深入理解Git系列（四） | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言上一篇我们大概讲解了一下分支，如何创建分支以及分支的检出，那么在我们工作的时候，每个人很大概率拥有自己的分支，当我们在自己的分支愉快地完成了开发工作的时候，我们提交到了自己的分支上，一切都相安无事，但是很不幸，当有时候我们进行分支合并的时候，可能会出现意料之外的情况，例如自己分支与主分支合并的时候产生了冲突。冲突虽然能通过预先的计划尽量减少，但是是不可避免的，在一些情况下，还是会出现恼人的冲">
+  <meta name="description" content="前言上一篇我们大概讲解了一下分支，如何创建分支以及分支的检出，那么在我们工作的时候，每个人很大概率拥有自己的分支，当我们在自己的分支愉快地完成了开发工作的时候，我们提交到了自己的分支上，一切都相安无事，但是很不幸，当有时候我们进行分支合并的时候，可能会出现意料之外的情况，例如自己分支与主分支合并的时候产生了冲突。冲突虽然能通过预先的计划尽量减少，但是是不可避免的，在一些情况下，还是会出现恼人的冲突">
 <meta name="keywords" content="Git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入理解Git系列（四）">
 <meta property="og:url" content="http://yoursite.com/2018/12/16/深入理解Git系列（四）/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="前言上一篇我们大概讲解了一下分支，如何创建分支以及分支的检出，那么在我们工作的时候，每个人很大概率拥有自己的分支，当我们在自己的分支愉快地完成了开发工作的时候，我们提交到了自己的分支上，一切都相安无事，但是很不幸，当有时候我们进行分支合并的时候，可能会出现意料之外的情况，例如自己分支与主分支合并的时候产生了冲突。冲突虽然能通过预先的计划尽量减少，但是是不可避免的，在一些情况下，还是会出现恼人的冲">
-<meta property="og:updated_time" content="2018-12-16T05:54:17.687Z">
+<meta property="og:description" content="前言上一篇我们大概讲解了一下分支，如何创建分支以及分支的检出，那么在我们工作的时候，每个人很大概率拥有自己的分支，当我们在自己的分支愉快地完成了开发工作的时候，我们提交到了自己的分支上，一切都相安无事，但是很不幸，当有时候我们进行分支合并的时候，可能会出现意料之外的情况，例如自己分支与主分支合并的时候产生了冲突。冲突虽然能通过预先的计划尽量减少，但是是不可避免的，在一些情况下，还是会出现恼人的冲突">
+<meta property="og:updated_time" content="2019-01-10T07:00:04.781Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解Git系列（四）">
-<meta name="twitter:description" content="前言上一篇我们大概讲解了一下分支，如何创建分支以及分支的检出，那么在我们工作的时候，每个人很大概率拥有自己的分支，当我们在自己的分支愉快地完成了开发工作的时候，我们提交到了自己的分支上，一切都相安无事，但是很不幸，当有时候我们进行分支合并的时候，可能会出现意料之外的情况，例如自己分支与主分支合并的时候产生了冲突。冲突虽然能通过预先的计划尽量减少，但是是不可避免的，在一些情况下，还是会出现恼人的冲">
+<meta name="twitter:description" content="前言上一篇我们大概讲解了一下分支，如何创建分支以及分支的检出，那么在我们工作的时候，每个人很大概率拥有自己的分支，当我们在自己的分支愉快地完成了开发工作的时候，我们提交到了自己的分支上，一切都相安无事，但是很不幸，当有时候我们进行分支合并的时候，可能会出现意料之外的情况，例如自己分支与主分支合并的时候产生了冲突。冲突虽然能通过预先的计划尽量减少，但是是不可避免的，在一些情况下，还是会出现恼人的冲突">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
   
@@ -209,7 +209,7 @@ gitment.render('gitment')
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇我们大概讲解了一下分支，如何创建分支以及分支的检出，那么在我们工作的时候，每个人很大概率拥有自己的分支，当我们在自己的分支愉快地完成了开发工作的时候，我们提交到了自己的分支上，一切都相安无事，但是很不幸，当有时候我们进行分支合并的时候，可能会出现意料之外的情况，例如自己分支与主分支合并的时候产生了冲突。冲突虽然能通过预先的计划尽量减少，但是是不可避免的，在一些情况下，还是会出现恼人的冲突。那么对于出现的冲突，我们该如何解决呢？<br></p>
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇我们大概讲解了一下分支，如何创建分支以及分支的检出，那么在我们工作的时候，每个人很大概率拥有自己的分支，当我们在自己的分支愉快地完成了开发工作的时候，我们提交到了自己的分支上，一切都相安无事，但是很不幸，当有时候我们进行分支合并的时候，可能会出现意料之外的情况，例如自己分支与主分支合并的时候产生了冲突。冲突虽然能通过预先的计划尽量减少，但是是不可避免的，在一些情况下，还是会出现恼人的冲突。那么对于出现的冲突，我们该如何解决呢？<br><br><a id="more"></a></p>
 <h2 id="冲突复现"><a href="#冲突复现" class="headerlink" title="冲突复现"></a>冲突复现</h2><h3 id="初始化master分支"><a href="#初始化master分支" class="headerlink" title="初始化master分支"></a>初始化master分支</h3><p>下面我们来复现一下冲突，首先新建一个版本库，然后增加一些文件，然后提交到本地仓库。<br></p>
 <pre><code>$ git init
 
@@ -690,7 +690,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -698,7 +698,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -706,15 +706,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -726,11 +726,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -738,19 +738,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -762,11 +762,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">solr</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
               </li>
             
             <div class="clearfix"></div>

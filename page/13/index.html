@@ -171,6 +171,320 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-平衡二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/15/平衡二叉树/">平衡二叉树</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/15/平衡二叉树/" class="archive-article-date">
+  	<time datetime="2017-12-15T12:43:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-15</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+#include &lt;iostream&gt;
+using namespace std;
+typedef int RcdType;
+typedef int Status;
+
+
+#define OVERFLOW 0
+#define OK 1
+#define ERROR 0
+#define TRUE 1
+#define FALSE 0
+#define LH +1
+#define EH 0
+#define RH -1
+typedef struct BBSTNode {            //平衡二叉树结构
+    RcdType data;
+    int bf;                          //节点平衡因子
+    struct BBSTNode *lchild, *rchild;
+}*BBSTree;                           //平衡二叉树 
+void R_Rotate(BBSTree &amp;p);        //右旋
+void L_Rotate(BBSTree &amp;p);        //左旋
+void LeftBalance(BBSTree &amp;T);
+void RightBalance(BBSTree &amp;T);
+bool InsertAVL(BBSTree &amp;T,RcdType e,bool &amp;taller);
+void InOrderTraverse(BBSTree T);
+BBSTree SearchBBST(BBSTree &amp;T,RcdType e);
+void DeleteNode(BBSTree &amp;p);
+int main() {
+    BBSTree T=NULL;
+    bool taller;
+    int DeletePoint;
+    srand((unsigned)time(NULL));
+    cout &lt;&lt; &quot;生成一组随机数&quot; &lt;&lt; endl;
+    for (int i = 0; i &lt;10; i++) {
+        int temp = rand()%100;
+        InsertAVL(T, temp, taller);
+        printf(&quot;%5d&quot;, temp);
+    }
+    cout &lt;&lt; endl;
+    printf(&quot;生成一颗平衡二叉树，遍历平衡二叉树\n&quot;);
+    InOrderTraverse(T);
+    printf(&quot;\n&quot;);
+    printf(&quot;请输入要删除的节点\n&quot;);
+    scanf_s(&quot;%d&quot;,&amp;DeletePoint);
+    BBSTree BT=SearchBBST(T, DeletePoint);
+    DeleteNode(BT);
+    printf(&quot;删除%d后遍历二叉树为\n&quot;,DeletePoint);
+    InOrderTraverse(T);
+    cout &lt;&lt; endl;
+    cout &lt;&lt; &quot;请输入要插入的节点&quot; &lt;&lt; endl;
+    int InsertPoint;
+    cin &gt;&gt; InsertPoint;
+    InsertAVL(T,InsertPoint,taller);
+    cout &lt;&lt; &quot;添加节点&quot;&lt;&lt;InsertPoint&lt;&lt; &quot;后遍历顺序为&quot;;
+    cout &lt;&lt; endl;
+    InOrderTraverse(T);
+    cout &lt;&lt; endl;
+}
+void R_Rotate(BBSTree &amp;p) {        //对最小失衡树进行右旋调整
+    BBSTree lc = p-&gt;lchild;        //lc指向p节点的的左孩子
+    p-&gt;lchild = lc-&gt;rchild;        //lc节点的右子树作为p节点的左子树 
+    lc-&gt;rchild = p;                //p节点（原来的根节点）作为lc节点的右孩子
+    p = lc;                        //p指向新的根节点
+}
+void L_Rotate(BBSTree &amp;p) {        //对最小失衡树进行左旋调整
+     BBSTree rc = p-&gt;rchild;        //rc指向p节点的右孩子
+    p-&gt;rchild = rc-&gt;lchild;        //rc节点的左子树作为p节点的右子树
+    rc-&gt;lchild = p;                //p节点（原根节点）作为rc节点的左孩子
+    p = rc;                        //p指向新的根节点    
+}
+void LeftBalance(BBSTree &amp;T) {     //左平衡处理操作
+    BBSTree lc, rd;
+    lc = T-&gt;lchild;
+    switch (lc-&gt;bf)
+    {
+    case LH:                      //LL型
+        T-&gt;bf = lc-&gt;bf = EH;
+        R_Rotate(T);
+        break;
+    case RH:                      //LR型
+        rd = lc-&gt;rchild;
+        switch (rd-&gt;bf)           //修改T及其左孩子的平衡因子
+        {
+        case LH:
+            T-&gt;bf = RH;
+            lc-&gt;bf = EH;
+            break;
+        case EH:
+            T-&gt;bf = lc-&gt;bf = EH;
+            break;
+        case RH:
+            T-&gt;bf = EH;
+            lc-&gt;bf = LH;
+            break;
+        }
+        rd-&gt;bf = EH;
+        L_Rotate(T-&gt;lchild);
+        R_Rotate(T);
+        break;
+    }
+}
+void RightBalance(BBSTree &amp;T) {      //右平衡调整
+    BBSTree rc, ld;
+    rc = T-&gt;rchild;
+    switch (rc-&gt;bf)
+    {
+    case RH:
+        T-&gt;bf = rc-&gt;bf = EH;
+        L_Rotate(T);
+        break;
+    case LH:
+        ld = rc-&gt;lchild;
+        switch (ld-&gt;bf)
+        {
+        case LH:
+            T-&gt;bf = EH;
+            rc-&gt;bf = RH;
+            break;
+        case EH:
+            T-&gt;bf = rc-&gt;bf = EH;
+            break;
+        case RH:
+            T-&gt;bf = LH;
+            rc-&gt;bf = EH;
+            break;
+        }
+        ld-&gt;bf = EH;
+        R_Rotate(T-&gt;rchild);
+        L_Rotate(T);
+        break;
+    }
+}
+void InOrderTraverse(BBSTree T) { //中序遍历
+    if (T) {
+        InOrderTraverse(T-&gt;lchild);
+        printf(&quot;%5d&quot;,T-&gt;data);
+        InOrderTraverse(T-&gt;rchild);
+    }
+}
+bool InsertAVL(BBSTree &amp;T, RcdType e, bool &amp;taller) {   //插入e到二叉树中
+    if (T == NULL) {  //T为空，树长高
+        T = (BBSTree)malloc(sizeof(BBSTNode));
+        T-&gt;data = e;
+        T-&gt;bf = EH;
+        T-&gt;lchild = NULL;
+        T-&gt;rchild = NULL;
+        taller = TRUE;
+    }
+    else if (e == T-&gt;data) {           //树中已经存在和e相同的节点
+        taller = FALSE;
+        return FALSE;      //未插入
+
+    }
+    else if (e&lt;T-&gt;data) { //插入到左子树
+        if (FALSE == InsertAVL(T-&gt;lchild, e, taller)) return FALSE;
+        if (TRUE==taller) {
+            switch (T-&gt;bf) //检查T的平衡因子
+            {
+            case LH:
+                LeftBalance(T);//原左高，左平衡处理
+                taller = FALSE;
+                break;
+            case EH:
+                T-&gt;bf = LH;
+                taller = TRUE;
+                break;
+            case RH:
+                T-&gt;bf = EH;
+                taller = FALSE;
+                break;
+            }
+        }
+
+    }
+    else{  //插入到右子树
+        if (FALSE == InsertAVL(T-&gt;rchild, e, taller)) return FALSE;
+        if (TRUE==taller) {
+            switch (T-&gt;bf)
+            {
+            case LH:
+                T-&gt;bf = EH;
+                taller = false;
+                break;
+            case EH:
+                T-&gt;bf=RH;
+                taller = FALSE;
+                break;
+            case RH:
+                RightBalance(T);
+                taller = FALSE;
+                break;
+            }
+
+        }
+    }
+    return TRUE;
+}
+void DeleteNode(BBSTree &amp;p) {
+
+    //删除二叉树中的p节点，引用的形参p是实参要删除的p节点的双亲指向其的指针域
+    BBSTNode *q, *s;
+    q = p;
+    if (p-&gt;rchild == NULL) {
+        p = p-&gt;lchild;
+        free(q);
+    }
+    else if (p-&gt;lchild == NULL) {
+        p = p-&gt;rchild;
+        free(q);
+    }
+    else {
+        s = p-&gt;lchild;
+        while (s-&gt;rchild!=NULL) //寻找直接前驱
+        {
+            q = s;
+            s = s-&gt;rchild;
+        }
+        p-&gt;data = s-&gt;data;
+        if (q == p)
+            q-&gt;lchild = s-&gt;lchild;
+        else q-&gt;rchild = s-&gt;lchild;
+        free(s);
+    }
+}
+BBSTree SearchBBST(BBSTree &amp;T, RcdType e) {    //查找节点
+    if (T == NULL) return NULL;
+    if (T-&gt;data == e) return T;
+    if (T-&gt;data &gt; e)
+        return SearchBBST(T-&gt;lchild,e);
+    return SearchBBST(T-&gt;rchild,e);
+}
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/15/平衡二叉树/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Dplayer的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -565,88 +879,6 @@ npm install hexo-tag-dplayer
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/03/hello-world/">hello</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/03/hello-world/" class="archive-article-date">
-  	<time datetime="2017-12-03T06:46:28.560Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-03</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/03/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/12/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/14/">Next &raquo;</a>
@@ -785,7 +1017,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -793,7 +1025,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -801,15 +1033,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -821,11 +1053,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -833,19 +1065,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -857,11 +1089,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">solr</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
               </li>
             
             <div class="clearfix"></div>

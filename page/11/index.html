@@ -171,6 +171,391 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-note" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/note/">云笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/note/" class="archive-article-date">
+  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h2><ul>
+<li>用户模块：登录注册修改密码，退出</li>
+<li>笔记本模块:创建 删除 更新 查看</li>
+<li>笔记模块：创建 删除 更新 查看 转移</li>
+<li>分享、收藏模块：分享 收藏 查看 搜索</li>
+<li>回收模块：先看 彻底删除 恢复</li>
+<li>活动模块：查看活动 参加活动<h2 id="设计思想"><a href="#设计思想" class="headerlink" title="设计思想"></a>设计思想</h2>MVC设计思想<br>表现层：HTML+CSS+JQuery+ajax<br>控制层：springmvc<br>业务层：service组件<br>持久层：Dao组件<h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2>1.开发环境：WindowsXP+Tomcat+mysql<br>2.采用技术：java+jQuery+ajax+springmvc+IOC+AOP+mybatis<br>java:开发核心技术<br>jQuery：简化前端JavaScript（$对象和API）<br>ajax：局部处理页面，提升用户体验度<br>spring(IOC/AOP):管理相关组件<br>IOC：负责管理Controller/service/dao,维护他们之间的关系<br>AOP：面向切面编程，不改变原有的代码，给系统增加新的功能<br>mybatis：对数据库进行操作<h2 id="整体规范"><a href="#整体规范" class="headerlink" title="整体规范"></a>整体规范</h2></li>
+<li>所有的请求ajax方式访问</li>
+<li>前端页面采用HTML</li>
+<li>对所有的请求结果进行json响应{status: ,”msg”: ,”data”:}<h2 id="数据库构建"><a href="#数据库构建" class="headerlink" title="数据库构建"></a>数据库构建</h2>mysql<br>mysql -uroot -t //启动数据库命令行<br>show databases;//查看有哪些数据库<br>create database cloud_note; //创建数据库<br>drop database cloud_note; //删除数据库<br>use 数据库名; //连接数据库<br>show tables; //查看有哪些表<br>source /…/../**.sql//导入SQL文件</li>
+</ul>
+<h2 id="E-R-实体–关系模型图"><a href="#E-R-实体–关系模型图" class="headerlink" title="E-R 实体–关系模型图"></a>E-R 实体–关系模型图</h2><p>由业务分析产生，作为实体类和数据库设计的依据。<br><img src="https://i.imgur.com/XupPkl0.png" alt=""></p>
+<h3 id="关联关系"><a href="#关联关系" class="headerlink" title="关联关系"></a>关联关系</h3><p>一对多关系<br><img src="https://i.imgur.com/OCLROca.png" alt=""><br>多对多关系<br><img src="https://i.imgur.com/w9BVSob.png" alt=""></p>
+<h3 id="绘图工具"><a href="#绘图工具" class="headerlink" title="绘图工具"></a>绘图工具</h3><p>Microsoft Office vision<br>Mysql workbench</p>
+<h1 id="项目流程"><a href="#项目流程" class="headerlink" title="项目流程"></a>项目流程</h1><h2 id="cmmi"><a href="#cmmi" class="headerlink" title="cmmi"></a>cmmi</h2><ul>
+<li>前身是CMM，软件成熟度模型，认证</li>
+<li>过程域：指软件开发的某一方面</li>
+<li>分级：五个等级<br>初始级-可管理级-已定义级-量化管理及-优先管理级<br>QA–评审<h2 id="项目开发流程："><a href="#项目开发流程：" class="headerlink" title="项目开发流程："></a>项目开发流程：</h2><img src="https://i.imgur.com/f1JFOUT.png" alt=""><h3 id="项目模型："><a href="#项目模型：" class="headerlink" title="项目模型："></a>项目模型：</h3>  瀑布模型<br><img src="https://i.imgur.com/GZIZpuB.png" alt=""></li>
+</ul>
+<h3 id="阶段产品"><a href="#阶段产品" class="headerlink" title="阶段产品"></a>阶段产品</h3><p>项目总计划</p>
+<h4 id="需求阶段"><a href="#需求阶段" class="headerlink" title="需求阶段"></a>需求阶段</h4><p>需求规格说明书  用户需求</p>
+<h4 id="设计阶段"><a href="#设计阶段" class="headerlink" title="设计阶段"></a>设计阶段</h4><p>概要设计说明书<br>详细设计说明书</p>
+<h4 id="编码阶段"><a href="#编码阶段" class="headerlink" title="编码阶段"></a>编码阶段</h4><p>需求源码<br>单元测试文档</p>
+<h4 id="测试阶段"><a href="#测试阶段" class="headerlink" title="测试阶段"></a>测试阶段</h4><p>测试案例<br>测试报告</p>
+<h2 id="人员结构"><a href="#人员结构" class="headerlink" title="人员结构"></a>人员结构</h2><p>项目经理<br>QA CM dev test 测试经理</p>
+<p>SSM框架 springMVC+spring+Mybatis</p>
+<p>spring-mybatis</p>
+<h1 id="创建云笔记的环境"><a href="#创建云笔记的环境" class="headerlink" title="创建云笔记的环境"></a>创建云笔记的环境</h1><h2 id="导包"><a href="#导包" class="headerlink" title="导包"></a>导包</h2><h2 id="添加配置文件"><a href="#添加配置文件" class="headerlink" title="添加配置文件"></a>添加配置文件</h2><ul>
+<li>conf/spring-mvc.xml</li>
+<li>conf/spring-mybatis.xml</li>
+<li>mapper/SQL文件</li>
+<li>web.xml<h2 id="划分包结构"><a href="#划分包结构" class="headerlink" title="划分包结构"></a>划分包结构</h2></li>
+<li>io.codegit.cloud_note.dao</li>
+<li>io.codegit.cloud_note.service</li>
+<li>io.codegit.cloud_note.controller</li>
+<li>io.codegit.cloud_note.entity</li>
+<li>io.codegit.cloud_note.util <h2 id="将html目录下的内容拷贝到webApp下"><a href="#将html目录下的内容拷贝到webApp下" class="headerlink" title="将html目录下的内容拷贝到webApp下"></a>将html目录下的内容拷贝到webApp下</h2></li>
+</ul>
+<h1 id="登录功能"><a href="#登录功能" class="headerlink" title="登录功能"></a>登录功能</h1><h2 id="发送ajax请求"><a href="#发送ajax请求" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
+<li>事件绑定</li>
+<li>获取参数</li>
+<li>$.ajax发送请求<h2 id="服务器处理"><a href="#服务器处理" class="headerlink" title="服务器处理"></a>服务器处理</h2>请求–&gt;DispatcherServlet<br>–&gt;HandlerMapping<br>–&gt;Controller.execute()<br>–&gt;Service–&gt;Dao–&gt;cn_user<br>–&gt;返回数据</li>
+</ul>
+<h2 id="ajax回调处理"><a href="#ajax回调处理" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><ul>
+<li>成功：edit.html</li>
+<li>失败：提示信息，重新操作</li>
+</ul>
+<h1 id="注册功能"><a href="#注册功能" class="headerlink" title="注册功能"></a>注册功能</h1><h2 id="发送ajax请求-1"><a href="#发送ajax请求-1" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
+<li>发送事件：注册按钮的单击</li>
+<li>获取参数：用户名 昵称 密码</li>
+<li>请求地址：/user/add.do<h2 id="服务器处理-1"><a href="#服务器处理-1" class="headerlink" title="服务器处理"></a>服务器处理</h2>请求-&gt;DispatchServlet<br>–&gt;HandlerMapping<br>–&gt;Controller.execute</li>
+</ul>
+<p>–&gt;Service(addUser)</p>
+<pre><code>//检查用户
+findByName(name)
+user!=null
+result
+//添加用户
+createId()
+//处理password
+user.set()
+save(user)
+//设置result
+</code></pre><p>–&gt;Dao–cn_user(insert)<br>1.UserDao(save(User))<br>2.UserMapper.xml(insert)<br>–&gt;json响应</p>
+<h2 id="ajax回调处理-1"><a href="#ajax回调处理-1" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><p>success：<br>注册成功<br>注册失败<br>error（异常）：<br>提示：注册失败</p>
+<ul>
+<li>成功：edit.html</li>
+<li>失败：提示信息，重新登录</li>
+</ul>
+<p>UUID<br>是一个生成字符串的算法<br>用于生成数据库的主键</p>
+<p>生成主键有两种方式：<br>在应用服务器端生成主键<br>在数据库端生成主键</p>
+<h2 id="MD5：摘要算法，加密处理"><a href="#MD5：摘要算法，加密处理" class="headerlink" title="MD5：摘要算法，加密处理"></a>MD5：摘要算法，加密处理</h2><ul>
+<li>最初用于文本比较</li>
+<li>将任意长度的字节处理成等长的结果</li>
+<li>不可逆</li>
+</ul>
+<h2 id="Base64"><a href="#Base64" class="headerlink" title="Base64"></a>Base64</h2><p>将自己转换成字符串输出<br>构成</p>
+<ul>
+<li>(a-z A-Z)</li>
+<li>(0-9)</li>
+<li>(+ =)<br>更新数据库密码：<br>update cn_user set cn_user_password=’4QrcOUm6Wau+VuBX8g+IPg==’</li>
+</ul>
+<h1 id="笔记本显示功能"><a href="#笔记本显示功能" class="headerlink" title="笔记本显示功能"></a>笔记本显示功能</h1><h2 id="发送ajax请求-2"><a href="#发送ajax请求-2" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
+<li>发送事件：进入到edit.html发送请求</li>
+<li>请求参数：userId</li>
+<li>请求地址：/book/loadBooks.do<h2 id="服务器处理-2"><a href="#服务器处理-2" class="headerlink" title="服务器处理"></a>服务器处理</h2>/book/loadBookds.do<br>–&gt;LoadBooksController.execute<br>测试：<br>http:localhost:8080/cloud_note/book/loadBooks.do?userId=ecd976d53a88484eaf911049241073ad<br>–&gt;BookService.LoadUserBooks<br>ecd976d53a88484eaf911049241073ad</li>
+<li>1.BookService接口loadUserBooks<pre><code>  NoteResult&lt;List&lt;Book&gt;&gt; loadUserBooks
+  (userId)
+</code></pre></li>
+<li>2.实现类中调用dao.findByUserId<pre><code>  调用dao.findByUserId(userId)
+</code></pre></li>
+<li><p>3.实现类中构建Result结果</p>
+<pre><code>  构建Result结果
+</code></pre><p>–&gt;BookDao.findByUserId</p>
+</li>
+<li><p>BookDao接口定义findByUserId</p>
+</li>
+<li>配置BookMapper.xml<br>–&gt;cn_userbook(查询)<br>–&gt;JSON响应<h2 id="ajax回调处理-2"><a href="#ajax回调处理-2" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2>success:<br>解析JSON数据，循环生成笔记本列表项<pre><code>（li）
+&lt;ul&gt;
+&lt;li class=&quot;online&quot;&gt;
+&lt;a  class=&#39;checked&#39;&gt;
+&lt;i class=&quot;fa fa-book&quot; title=&quot;online&quot; rel=&quot;tooltip-bottom&quot;&gt;
+&lt;/i&gt; bookName&lt;/a&gt;&lt;/li&gt; 
+error:
+alter(&quot;笔记本加载失败&quot;);
+</code></pre><h2 id="标记互斥"><a href="#标记互斥" class="headerlink" title="标记互斥"></a><script>标记互斥</h2></li>
+<li>要么使用SRC属性引用外部js文件</li>
+<li>要么在标记内自己写JavaScript代码</li>
+</ul>
+<h1 id="笔记本列表显示"><a href="#笔记本列表显示" class="headerlink" title="笔记本列表显示"></a>笔记本列表显示</h1><h2 id="发送ajax请求-3"><a href="#发送ajax请求-3" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
+<li>发送事件：笔记本li的点击</li>
+<li>请求的参数：笔记本的id</li>
+<li>请求地址：/note/loadnotes.do<h2 id="服务器的处理"><a href="#服务器的处理" class="headerlink" title="服务器的处理"></a>服务器的处理</h2>/note/loadnotes.do<br>–&gt;loadNoteController.execute<br>–&gt;NoteService.loadBookNotes</li>
+</ul>
+<p>1.定义接口文件NoteService-loadBookNotes(bookId)<br>2.实现类中重写方法<br>noteDao.findByBookId()<br>构建Result–set方法<br>setData=List<Map></p>
+<p>–&gt;NoteDao.findByBookId(bookId)</p>
+<p>1 接口文件定义方法<br>2.配置mapper文件<br>3 TestNoteDao<br>–&gt;cn_note(select_bookId &amp;cn_note_status_id=’1’)</p>
+<h2 id="ajax回调处理-3"><a href="#ajax回调处理-3" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><p>success:<br>成功：解析json数据，生成笔记li,添加到笔记本列表中 </p>
+<p><li class="online"><br>                                        <a  class='checked'><br>                                            <i class="fa fa-file-text-o" title="online" rel="tooltip-bottom"></i> 使用Java操作符<button type="button" class="btn btn-default btn-xs btn_position btn_slide_down"><i class="fa fa-chevron-down"></i></button><br>                                        </a><br>                                        <div class="note_menu" tabindex='-1'><br>                                            <dl><br>                                                <dt><button type="button" class="btn btn-default btn-xs btn_move" title='移动至...'><i class="fa fa-random"></i></button></dt><br>                                                <dt><button type="button" class="btn btn-default btn-xs btn_share" title='分享'><i class="fa fa-sitemap"></i></button></dt><br>                                                <dt><button type="button" class="btn btn-default btn-xs btn_delete" title='删除'><i class="fa fa-times"></i></button></dt><br>                                            </dl><br>                                        </div><br>                                    </li><br>error：<br>提示alert(“笔记加载失败”);</p>
+<p> 事件绑定<br>静态绑定：元素.click(function(){})<br>动态绑定：<br>父元素.on(“click”,”li”,fn)<br>元素.click(); </p>
+<p>Dao接口的传值特点<br> public interface Dao{<br>        public void fn();<br>        public void fn(String str);<br>        public void fn(Map map);<br>        public void fn(User user);</p>
+<p>}<br>总结：mybatis中Dao方法要么没有参数，要么只有一个参数</p>
+<p>设置选中效果<br>    $(“#book_ul a”).removeClass(“checked”);<br>      $(this).find(“a”).addClass(“checked”);</p>
+<p>清空原列表<br>$(“#note_ul”).empty();</p>
+<p>UEdit<br>用js开发的开源组件</p>
+<p>为什么使用？<br>通过JS代码实现表单功能的增强</p>
+<p>如何用？<br>1.引用脚本<br>2.实例化<br>3.通过<script>指定位置<br>4.</p>
+<ul>
+<li>um.setContent(“str”);</li>
+<li>um.getContent(“str”);</li>
+</ul>
+<h1 id="显示笔记信息"><a href="#显示笔记信息" class="headerlink" title="显示笔记信息"></a>显示笔记信息</h1><h2 id="发送ajax请求-4"><a href="#发送ajax请求-4" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
+<li>发送事件：笔记列表li元素的单击事件（动态绑定）</li>
+<li>请求参数：笔记ID（noteId）</li>
+<li>请求地址：</li>
+</ul>
+<h2 id="服务器处理-3"><a href="#服务器处理-3" class="headerlink" title="服务器处理"></a>服务器处理</h2><ul>
+<li>Controller:</li>
+<li>LoadNoteController.execute(String noteId)</li>
+<li>Service</li>
+<li>NoteService.loadNote(String noteId)</li>
+<li>Dao</li>
+<li>NoteDao.findByNoteId(String noteId)</li>
+<li>cn_note(查询 )</li>
+<li>json响应<h2 id="ajax回调处理-4"><a href="#ajax回调处理-4" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2>success:<br>-设置笔记标题</li>
+<li>设计笔记内容（body）</li>
+<li>um.setContent(“str”);</li>
+<li>um.getContent(“str”);<br>error:<br>alert(“笔记信息加载失败”);</li>
+</ul>
+<h1 id="更新笔记信息"><a href="#更新笔记信息" class="headerlink" title="更新笔记信息"></a>更新笔记信息</h1><p>##发送ajax请求</p>
+<ul>
+<li>发送事件：保存笔记 按钮单击事件（静态）</li>
+<li>请求参数：笔记ID（id） 标题（title）内容(body)</li>
+<li>请求地址： /note/update.do<br>##服务器处理</li>
+<li>UpdateNoteController(id,title,body)</li>
+<li>NoteService.updateNote(Note)</li>
+<li>NoteDao.updateNote(Note)</li>
+<li>cn_note(更新处理–最后修改时间)<br>##ajax回调处理<br>success：对被更新的笔记名称进行更新<br><li><a class="check"></a></li><br>var $li=$(“#note_ul a.checked”).parent();</li>
+</ul>
+<h1 id="使用alert"><a href="#使用alert" class="headerlink" title="使用alert"></a>使用alert</h1><h2 id="如何显示"><a href="#如何显示" class="headerlink" title="如何显示"></a>如何显示</h2><ul>
+<li>通过load，加载HTML</li>
+<li>通过show(),显示背景</li>
+<li></li>
+</ul>
+<h1 id="创建笔记本"><a href="#创建笔记本" class="headerlink" title="创建笔记本"></a>创建笔记本</h1><h2 id="发送ajax请求-5"><a href="#发送ajax请求-5" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
+<li>发送事件：对话框中的创建按钮的单击（动态）</li>
+<li>请求参数：笔记本名称、笔记本ID和用户id</li>
+<li>请求地址：/book/add.do<h2 id="服务器处理-4"><a href="#服务器处理-4" class="headerlink" title="服务器处理"></a>服务器处理</h2></li>
+<li>AddBookController.execute</li>
+<li>BookService.addBook(book)</li>
+<li>BookDao.save(book)</li>
+<li>cn_notebook(insert)</li>
+</ul>
+<p>insert 遇到的错误<br>原因是因为插入语句要遵循严格语法，所有的属性都必须有值</p>
+<pre><code>org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLException: Field &#39;cn_notebook_id&#39; doesn&#39;t have a default value
+### The error may involve io.codegitz.cloud_note.dao.BookDao.save-Inline
+### The error occurred while setting parameters
+### SQL: insert into cn_notebook (cn_user_id,cn_notebook_name,cn_notebook_type_id,cn_notebook_desc,cn_notebook_createtime) values (?,?,?,?,?)
+### Cause: java.sql.SQLException: Field &#39;cn_notebook_id&#39; doesn&#39;t have a default value
+; SQL []; Field &#39;cn_notebook_id&#39; doesn&#39;t have a default value; nested exception is java.sql.SQLException: Field &#39;cn_notebook_id&#39; doesn&#39;t have a default value
+    at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:249)
+    at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:72)
+    at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:74)
+    at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:399)
+    at com.sun.proxy.$Proxy11.insert(Unknown Source)
+    at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:253)
+    at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:52)
+    at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:53)
+    at com.sun.proxy.$Proxy12.save(Unknown Source)
+    at test.dao.TestBookDao.testAddBook(TestBookDao.java:49)
+    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:606)
+    at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+    at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+    at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+    at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+    at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+    at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+    at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+    at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+    at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+    at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+    at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+    at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+    at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+    at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+    at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+    at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+    at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+    at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+    at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+Caused by: java.sql.SQLException: Field &#39;cn_notebook_id&#39; doesn&#39;t have a default value
+    at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:959)
+    at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3870)
+    at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3806)
+    at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2470)
+    at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2617)
+    at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2550)
+    at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+    at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:1192)
+    at org.apache.commons.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+    at org.apache.commons.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+    at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:45)
+    at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:73)
+    at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:49)
+    at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:115)
+    at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:75)
+    at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:170)
+    at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:157)
+    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:606)
+    at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:386)
+    ... 29 more
+</code></pre><ul>
+<li>json响应<h2 id="ajax回调处理-5"><a href="#ajax回调处理-5" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2>success:</li>
+<li>关闭对话框</li>
+<li>添加笔记本li</li>
+<li>提示创建笔记本成功、失败</li>
+</ul>
+<p>error:<br>提示创建失败</p>
+<h1 id="创建笔记功能"><a href="#创建笔记功能" class="headerlink" title="创建笔记功能"></a>创建笔记功能</h1><h2 id="发送请求"><a href="#发送请求" class="headerlink" title="发送请求"></a>发送请求</h2><ul>
+<li>发送事件：对话框中 创建 按钮的单击</li>
+<li>请求参数：笔记名称 笔记本ID 用户ID</li>
+<li>请求地址：/note/add.do<h2 id="服务器处理-5"><a href="#服务器处理-5" class="headerlink" title="服务器处理"></a>服务器处理</h2></li>
+<li>Controller.execute</li>
+<li>NoteService.addNote</li>
+<li>NoteDao.save</li>
+<li>cn_note(insert)<h2 id="ajax回调处理-6"><a href="#ajax回调处理-6" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2></li>
+<li>关闭对话框</li>
+<li>解析json数据，生成一个li元素添加到笔记本列表</li>
+<li>1 获取noteTitle</li>
+<li>2.获取noteId</li>
+<li>提示创建笔记成功</li>
+</ul>
+<p>error:提示创建失败</p>
+<h1 id="显示笔记下拉菜单"><a href="#显示笔记下拉菜单" class="headerlink" title="显示笔记下拉菜单"></a>显示笔记下拉菜单</h1><p>1.通过点击’箭头’按钮显示三个菜单项</p>
+<ul>
+<li>获取div对象 slideDown(1000);</li>
+</ul>
+<h1 id="笔记分享"><a href="#笔记分享" class="headerlink" title="笔记分享"></a>笔记分享</h1><h2 id="发送请求-1"><a href="#发送请求-1" class="headerlink" title="发送请求"></a>发送请求</h2><ul>
+<li>发送事件：点击分享按钮</li>
+<li>请求参数：noteId</li>
+<li>请求地址：/share/add.do<h2 id="服务器处理-6"><a href="#服务器处理-6" class="headerlink" title="服务器处理"></a>服务器处理</h2></li>
+<li>创建share类</li>
+<li>Controller</li>
+<li>Service</li>
+<li>Dao-insert</li>
+<li>cn_share<br>先在cn_note里面查找，然后再插入cn_share<br>##回调处理<br>success：</li>
+<li>提示分享成功</li>
+<li>增加图标处理<i class="fa fa-sitemap"></li>
+</ul>
+<h1 id="分享笔记搜索功能"><a href="#分享笔记搜索功能" class="headerlink" title="分享笔记搜索功能"></a>分享笔记搜索功能</h1><h2 id="功能描述：用户输入搜索关键词，然后回车，触发查询"><a href="#功能描述：用户输入搜索关键词，然后回车，触发查询" class="headerlink" title="功能描述：用户输入搜索关键词，然后回车，触发查询"></a>功能描述：用户输入搜索关键词，然后回车，触发查询</h2><h2 id="发送ajax请求-6"><a href="#发送ajax请求-6" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
+<li>发送请求：输入关键词后，点回车</li>
+<li>请求参数：输入的关键词</li>
+<li>请求地址：/share/search.do</li>
+</ul>
+<h2 id="服务器处理-7"><a href="#服务器处理-7" class="headerlink" title="服务器处理"></a>服务器处理</h2><ul>
+<li>Controller</li>
+<li>Service</li>
+<li>Dao(select)</li>
+<li>cn_share</li>
+</ul>
+<p>select * from cn_share like %关键字%</p>
+<p>select <em> from cn_share limit m,n<br>select </em> from cn_share like #{title} limit #{begin},3<br>1    0<br>2    3<br>3    6<br>n    (n-1)*3<br>m:记录的位置<br>n:每页显示的最大记录数</p>
+<h2 id="ajax回调处理-7"><a href="#ajax回调处理-7" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><p>List<br>success:</p>
+<ul>
+<li>显示搜索笔记结果列表（pc_part_6）</li>
+<li>将解析后的搜索结果，添加到列表中</li>
+</ul>
+<p>error</p>
+<ul>
+<li>提示搜索失败</li>
+</ul>
+<p>$(“#id”).keydown(function(event){<br>      var code=event.keyCode;<br>      if(code==13){<br>         //发送ajax请求<br>}<br>})    </p>
+<pre><code>报错：
+Uncaught TypeError: Cannot read property &#39;cn_share_id&#39; of undefined
+原因是循环越界：
+var i = 0; i &lt;=shares.length; i++
+改为：
+var i = 0; i &lt;shares.length; i++
+</code></pre></script></h2></li></ul>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/note/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Hibernate入门系列（四）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -912,483 +1297,6 @@ com.mysql.jdbc.JDBC4Connection@6c130c45
 
 
   
-    <article id="post-Hibernate入门系列（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/13/Hibernate入门系列（一）/">Hibernate入门系列（一）</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/13/Hibernate入门系列（一）/" class="archive-article-date">
-  	<time datetime="2018-03-12T16:48:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Hibernate入门系列（一）"><a href="#Hibernate入门系列（一）" class="headerlink" title="Hibernate入门系列（一）"></a>Hibernate入门系列（一）</h1><h2 id="hibernate是什么"><a href="#hibernate是什么" class="headerlink" title="hibernate是什么"></a>hibernate是什么</h2><ul>
-<li>一个框架</li>
-<li>一个 Java 领域的持久化框架</li>
-<li>一个 ORM 框架</li>
-</ul>
-<h3 id="对象的持久化"><a href="#对象的持久化" class="headerlink" title="对象的持久化"></a>对象的持久化</h3><p>狭义的理解，“持久化”仅仅指把对象永久保存到数据库中<br>广义的理解，“持久化”包括和数据库相关的各种操作：</p>
-<ul>
-<li>保存：把对象永久保存到数据库中。</li>
-<li>更新：更新数据库中对象(记录)的状态。</li>
-<li>删除：从数据库中删除一个对象。</li>
-<li>查询：根据特定的查询条件，把符合查询条件的一个或多个对象从数据库加载到内存中。</li>
-<li><strong>加载</strong>：根据特定的<strong>OID</strong>，把一个对象从数据库加载到内存中。<br><strong>注:OID,为了在系统中能够找到所需对象，需要为每一个对象分配一个唯一的标识号。在关系数据库中称之为主键，而在对象术语中，则叫做对象标识(Object identifier-OID).</strong> </li>
-</ul>
-<h3 id="ORM"><a href="#ORM" class="headerlink" title="ORM"></a>ORM</h3><p><strong>ORM(Object/Relation Mapping): 对象/关系映射</strong></p>
-<ul>
-<li>ORM 主要解决对象-关系的映射<table><br><tbody><br><tr style="line-height:normal;"></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">面向对象的概念</tt></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">面向关系的概念</tt></td></tr><br><tr style="line-height:normal;"></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">类</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">表</tt></td></tr><br><tr style="line-height:normal;"></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">对象</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">表的行（记录）</tt></td></tr><br><tr style="line-height:normal;"></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">属性</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">表的列（字段）</tt></td></tr><br></tbody><br></table></li>
-<li>ORM的思想：将关系数据库中表中的记录映射成为对象，以对象的形式展现，程序员可以把对数据库的操作转化为对对象的操作。</li>
-<li>ORM 采用元数据来描述对象-关系映射细节, 元数据通常采用 XML 格式, 并且存放在专门的对象-关系映射文件中.<br><img src="https://i.imgur.com/qq9Ji03.png" alt=""></li>
-</ul>
-<h3 id="流行的ORM框架"><a href="#流行的ORM框架" class="headerlink" title="流行的ORM框架"></a>流行的ORM框架</h3><p>Hibernate:</p>
-<ul>
-<li>非常优秀、成熟的 ORM 框架。<br>完成对象的持久化操作</li>
-<li>Hibernate 允许开发者采用面向对象的方式来操作关系数据库。</li>
-<li>消除那些针对特定数据库厂商的 SQL 代码</li>
-</ul>
-<p>myBatis：</p>
-<ul>
-<li>相比 Hibernate 灵活高，运行速度快</li>
-<li>开发速度慢，不支持纯粹的面向对象操作，需熟悉sql语句，并且熟练使用sql语句优化功能 </li>
-</ul>
-<p>TopLink</p>
-<p>OJB</p>
-<h3 id="Hibernate-与-Jdbc-代码对比"><a href="#Hibernate-与-Jdbc-代码对比" class="headerlink" title="Hibernate 与 Jdbc 代码对比"></a>Hibernate 与 Jdbc 代码对比</h3><p><img src="https://i.imgur.com/TRA9dZh.png" alt=""></p>
-<h2 id="hibernate的helloworld"><a href="#hibernate的helloworld" class="headerlink" title="hibernate的helloworld"></a>hibernate的helloworld</h2><h3 id="准备环境，导入相应的jar包"><a href="#准备环境，导入相应的jar包" class="headerlink" title="准备环境，导入相应的jar包"></a>准备环境，导入相应的jar包</h3><p><img src="https://i.imgur.com/lKGl7HC.png" alt=""></p>
-<h3 id="创建hibernate基本配置文件"><a href="#创建hibernate基本配置文件" class="headerlink" title="创建hibernate基本配置文件"></a>创建hibernate基本配置文件</h3><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;!DOCTYPE hibernate-configuration PUBLIC
-        &quot;-//Hibernate/Hibernate Configuration DTD 3.0//EN&quot;
-        &quot;http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd&quot;&gt;
- &lt;hibernate-configuration&gt;
-    &lt;session-factory&gt;
-    &lt;!-- 配置连接数据库的基本信息 --&gt;
-    &lt;property name=&quot;hibernate.connection.username&quot;&gt;root&lt;/property&gt;
-    &lt;property name=&quot;hibernate.connection.password&quot;&gt;zhang1997&lt;/property&gt;
-    &lt;property name=&quot;hibernate.connection.driver_class&quot;&gt;com.mysql.jdbc.Driver&lt;/property&gt;
-    &lt;property name=&quot;hibernate.connection.url&quot;&gt;jdbc:mysql://localhost:3306/hibernate&lt;/property&gt;
-
-    &lt;!-- 配置hibernate的基本信息 --&gt;
-    &lt;!--  hibernate所使用的数据库方言--&gt;
-    &lt;property name=&quot;dialect&quot;&gt;org.hibernate.dialect.MySQL5InnoDBDialect&lt;/property&gt;
-
-    &lt;!--  执行操作时是否在控制台打印SQL--&gt;
-    &lt;property name=&quot;show_sql&quot;&gt;true&lt;/property&gt;
-    &lt;!--  是否对SQL进行格式化--&gt;
-    &lt;property name=&quot;format_sql&quot;&gt;true&lt;/property&gt;
-    &lt;!--  指定自动生成数据表的策略--&gt;
-    &lt;property name=&quot;hbm2ddl.auto&quot;&gt;update&lt;/property&gt;
-    &lt;!--  指定关联的 .hbm.xml文件位置--&gt;
-    &lt;mapping resource=&quot;io/hibernate/helloworld/News.hbm.xml&quot;/&gt;
-    &lt;/session-factory&gt;
-    &lt;/hibernate-configuration&gt;
-</code></pre><p><strong>特别提醒：数据库方言org.hibernate.dialect.MySQLInnoDBDialect和org.hibernate.dialect.MySQLDialect 两个方言的区别，MySQLDialect是兼容性方言，MySQLInnoDBDialect支持事务的方言版。但是如果数据库版本是5.5以下，就可以直接用，如果是5.5版本及以上，需要改成MySQL5InnoDBDialect。</strong><br>我的开始就是因为使用了MySQLInnoDBDialect方言而导致一直报找不到表的错误。</p>
-<h3 id="创建一个实体类"><a href="#创建一个实体类" class="headerlink" title="创建一个实体类"></a>创建一个实体类</h3><pre><code>package io.hibernate.helloworld;
-
-import java.sql.Date;
-
-public class News {
-
-    private Integer Id;
-    private String title;
-    private String author;
-    private Date date;
-    public Integer getId() {
-        return Id;
-    }
-    public void setId(Integer id) {
-        Id = id;
-    }
-    public String getTitle() {
-        return title;
-    }
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    public String getAuthor() {
-        return author;
-    }
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-    public Date getDate() {
-        return date;
-    }
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public News(String title, String author, Date date) {
-        super();
-        this.title = title;
-        this.author = author;
-        this.date = date;
-    }
-
-    public News() {
-        //super();
-    }
-    @Override
-    public String toString() {
-        return &quot;News [Id=&quot; + Id + &quot;, title=&quot; + title + &quot;, author=&quot; + author + &quot;, date=&quot; + date + &quot;]&quot;;
-    }
-
-
-}
-</code></pre><h3 id="生成对应的对象关系映射-hbm-xml文件"><a href="#生成对应的对象关系映射-hbm-xml文件" class="headerlink" title="生成对应的对象关系映射.hbm.xml文件"></a>生成对应的对象关系映射.hbm.xml文件</h3><pre><code>&lt; ?xml version=&quot;1.0&quot;?&gt;
-&lt;!DOCTYPE hibernate-mapping PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;
-&quot;http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd&quot;&gt;
-&lt;!-- Generated 2018-7-13 21:10:20 by Hibernate Tools 3.5.0.Final --&gt;
-&lt;hibernate-mapping&gt;
-    &lt;class name=&quot;io.hibernate.helloworld.News&quot; table=&quot;NEWS&quot;&gt;
-        &lt;id name=&quot;Id&quot; type=&quot;java.lang.Integer&quot;&gt;
-            &lt;column name=&quot;ID&quot; /&gt;
-            &lt;!-- 指定主键的生成方式  native：使用数据库本地方式 --&gt;
-            &lt;generator class=&quot;native&quot; /&gt;
-        &lt;/id&gt;
-        &lt;property name=&quot;title&quot; type=&quot;java.lang.String&quot;&gt;
-            &lt;column name=&quot;TITLE&quot; /&gt;
-        &lt;/property&gt;
-        &lt;property name=&quot;author&quot; type=&quot;java.lang.String&quot;&gt;
-            &lt;column name=&quot;AUTHOR&quot; /&gt;
-        &lt;/property&gt;
-        &lt;property name=&quot;date&quot; type=&quot;java.sql.Date&quot;&gt;
-            &lt;column name=&quot;DATE&quot; /&gt;
-        &lt;/property&gt;
-    &lt;/class&gt;
-&lt;/hibernate-mapping&gt;
-</code></pre><h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><pre><code>    public class HibernateTest {
-
-        @Test
-        public void test(){
-
-    //        1.创建一个SessionFactory对象
-            SessionFactory sessionFactory=null;
-    //        1.1创建configuration对象：对应hibernate的基本配置信息和对象关系映射信息
-            Configuration configuration=new Configuration().configure();
-            //4.0以前这样创建
-    //        sessionFactory=configuration.buildSessionFactory();
-    //        1.2创建一个serviceRegistry对象 hibernate 4.x新添加的对象
-            //hibernate的任何配置和服务都需要在该对象中注册才能有效
-            ServiceRegistry serviceRegistry=
-                    new             ServiceRegistryBuilder    ().applySettings    (configuration.getProperties    ()).buildServiceRegistry();
-    //        1.3
-                    sessionFactory=configuration.buil    dSessionFactory(serviceRegistry);
-
-    //        2.创建一个Session对象 
-            Session session=sessionFactory.openSession();
-
-    //        3.开启事务
-            Transaction transaction=session.beginTransaction();
-
-    //        4.执行保存操作
-            News news=new News(&quot;Java&quot;,&quot;haha&quot;,new Date(new java.util.Date().getTime()));
-            session.save(news);
-    //        5.提交事务
-            transaction.commit();
-
-    //        6.关闭Session
-            session.close();
-
-    //        7.关闭SessionFactory对象
-            sessionFactory.close();
-        }
-    }
-</code></pre><h3 id="查看数据库出现了一个新表News，并且新插入了一条记录"><a href="#查看数据库出现了一个新表News，并且新插入了一条记录" class="headerlink" title="查看数据库出现了一个新表News，并且新插入了一条记录"></a>查看数据库出现了一个新表News，并且新插入了一条记录</h3><p>在进行测试前，数据库应存在名为hibernate的库</p>
-<pre><code>mysql&gt; use hibernate;
-Database changed
-
-mysql&gt; show tables;
-+---------------------+
-| Tables_in_hibernate |
-+---------------------+
-| news                |
-+---------------------+
-1 row in set (0.00 sec)
-
-mysql&gt; desc news;
-+--------+--------------+------+-----+---------+----------------+
-| Field  | Type         | Null | Key | Default | Extra          |
-+--------+--------------+------+-----+---------+----------------+
-| ID     | int(11)      | NO   | PRI | NULL    | auto_increment |
-| TITLE  | varchar(255) | YES  |     | NULL    |                |
-| AUTHOR | varchar(255) | YES  |     | NULL    |                |
-| DATE   | date         | YES  |     | NULL    |                |
-+--------+--------------+------+-----+---------+----------------+
-4 rows in set (0.00 sec)
-
-
-mysql&gt; select * from news;
-+----+-------+--------+------------+
-| ID | TITLE | AUTHOR | DATE       |
-+----+-------+--------+------------+
-|  1 | Java  | haha   | 2018-07-13 |
-+----+-------+--------+------------+
-1 row in set (0.00 sec)
-
-mysql&gt;
-</code></pre><h2 id="hibernate的helloworld配置简介"><a href="#hibernate的helloworld配置简介" class="headerlink" title="hibernate的helloworld配置简介"></a>hibernate的helloworld配置简介</h2><h3 id="hibernate环境的准备"><a href="#hibernate环境的准备" class="headerlink" title="hibernate环境的准备"></a>hibernate环境的准备</h3><p>导入 Hibernate 必须的 jar 包:</p>
-<pre><code>      &lt;dependency&gt;
-              &lt;groupId&gt;antlr&lt;/groupId&gt;
-              &lt;artifactId&gt;antlr&lt;/artifactId&gt;
-              &lt;version&gt;2.7.6&lt;/version&gt;
-      &lt;/dependency&gt;
-
-      &lt;dependency&gt;
-              &lt;groupId&gt;dom4j&lt;/groupId&gt;
-              &lt;artifactId&gt;dom4j&lt;/artifactId&gt;
-              &lt;version&gt;1.6.1&lt;/version&gt;
-      &lt;/dependency&gt;
-
-    &lt;!-- https://mvnrepository.com/artifact/org.hibernate.common/hibernate-commons-annotations --&gt;
-    &lt;dependency&gt;
-     &lt;groupId&gt;org.hibernate.common&lt;/groupId&gt;
-        &lt;artifactId&gt;hibernate-commons-annotations&lt;/artifactId&gt;
-        &lt;version&gt;4.0.2.Final&lt;/version&gt;
-    &lt;/dependency&gt;
-
-          &lt;dependency&gt;
-              &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
-              &lt;artifactId&gt;hibernate-core&lt;/artifactId&gt;
-              &lt;version&gt;4.2.4.Final&lt;/version&gt;
-          &lt;/dependency&gt;
-
-      &lt;dependency&gt;
-          &lt;groupId&gt;org.hibernate.javax.pers istence&lt;/groupId&gt;
-              &lt;artifactId&gt;hibernate-jpa-2.0-api&lt;/artifactId&gt;
-              &lt;version&gt;1.0.1.Final&lt;/version&gt;
-          &lt;/dependency&gt;
-
-      &lt;dependency&gt;
-              &lt;groupId&gt;javassist&lt;/groupId&gt;
-              &lt;artifactId&gt;javassist&lt;/artifactId&gt;
-              &lt;version&gt;3.11.0.GA&lt;/version&gt;
-      &lt;/dependency&gt;
-
-    &lt;!-- https://mvnrepository.com/artifact/org.jboss.logging/jboss-logging --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.jboss.logging&lt;/groupId&gt;
-        &lt;artifactId&gt;jboss-logging&lt;/artifactId&gt;
-        &lt;version&gt;3.1.0.GA&lt;/version&gt;
-    &lt;/dependency&gt;
-
-    &lt;!-- https://mvnrepository.com/artifact/org.jboss.spec.javax.transaction/jboss-transaction-api_1.1_spec --&gt;
-    &lt;dependency&gt;              &lt;groupId&gt;org.jboss.spec.javax.transaction&lt;/groupId&gt;
-        &lt;artifactId&gt;jboss-transaction-api_1.1_spec&lt;/artifactId&gt;
-        &lt;version&gt;1.0.1.Final&lt;/version&gt;
-    &lt;/dependency&gt;
-</code></pre><p>导入数据库驱动和Junit测试包：</p>
-<pre><code>    &lt;dependency&gt;
-          &lt;groupId&gt;mysql&lt;/groupId&gt;
-          &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
-          &lt;version&gt;5.1.37&lt;/version&gt;
-      &lt;/dependency&gt;
-      &lt;dependency&gt;
-          &lt;groupId&gt;junit&lt;/groupId&gt;
-          &lt;artifactId&gt;junit&lt;/artifactId&gt;
-          &lt;version&gt;4.12&lt;/version&gt;
-      &lt;/dependency&gt;
-</code></pre><h3 id="创建-Hibernate-配置文件"><a href="#创建-Hibernate-配置文件" class="headerlink" title="创建 Hibernate 配置文件"></a>创建 Hibernate 配置文件</h3><p>Hibernate 从其配置文件<strong>hibernate.cfg.xml</strong>中读取和数据库连接的有关信息, 这个文件应该位于应用的 classpath 下.</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;!DOCTYPE hibernate-configuration PUBLIC
-        &quot;-//Hibernate/Hibernate Configuration DTD 3.0//EN&quot;
-        &quot;http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd&quot;&gt;
-&lt;hibernate-configuration&gt;
-    &lt;session-factory&gt;
-    &lt;!-- 配置连接数据库的基本信息 --&gt;
-    &lt;property name=&quot;hibernate.connection.username&quot;&gt;root&lt;/property&gt;
-    &lt;property name=&quot;hibernate.connection.password&quot;&gt;zhang1997&lt;/property&gt;
-    &lt;property name=&quot;hibernate.connection.driver_class&quot;&gt;com.mysql.jdbc.Driver&lt;/property&gt;
-    &lt;property name=&quot;hibernate.connection.url&quot;&gt;jdbc:mysql://localhost:3306/hibernate&lt;/property&gt;
-
-    &lt;!-- 配置hibernate的基本信息 --&gt;
-    &lt;!--  hibernate所使用的数据库方言--&gt;
-    &lt;property name=&quot;dialect&quot;&gt;org.hibernate.dialect.MySQL5InnoDBDialect&lt;/property&gt;
-
-    &lt;!--  执行操作时是否在控制台打印SQL--&gt;
-    &lt;property name=&quot;show_sql&quot;&gt;true&lt;/property&gt;
-    &lt;!--  是否对SQL进行格式化--&gt;
-    &lt;property name=&quot;format_sql&quot;&gt;true&lt;/property&gt;
-    &lt;!--  指定自动生成数据表的策略--&gt;
-    &lt;property name=&quot;hbm2ddl.auto&quot;&gt;update&lt;/property&gt;
-    &lt;!--  指定关联的 .hbm.xml文件位置--&gt;
-    &lt;mapping resource=&quot;io/hibernate/helloworld/News.hbm.xml&quot;/&gt;
-    &lt;/session-factory&gt;
-&lt;/hibernate-configuration&gt;
-</code></pre><p>Hibernate 配置文件的两个配置项:<br><br><strong>hbm2ddl.auto</strong>：该属性可帮助程序员实现正向工程, 即由 java 代码生成数据库脚本, 进而生成具体的表结构。取值 create | update | create-drop | validate<br></p>
-<ul>
-<li>create : 会根据 .hbm.xml  文件来生成数据表, 但是每次运行都会删除上一次的表 ,重新生成表, 哪怕二次没有任何改变 <br></li>
-<li>create-drop : 会根据 .hbm.xml 文件生成表,但是SessionFactory一关闭, 表就自动删除<br> </li>
-<li>update : 最常用的属性值，也会根据 .hbm.xml 文件生成表, 但若 .hbm.xml  文件和数据库中对应的数据表的表结构不同, Hiberante  将更新数据表结构，但不会删除已有的行和列 <br></li>
-<li>validate : 会和数据库中的表进行比较, 若 .hbm.xml 文件中的列在数据表中不存在，则抛出异常<br></li>
-</ul>
-<p><strong>format_sql</strong>：是否将 SQL 转化为格式良好的 SQL . 取值 true | false<br></p>
-<h3 id="创建持久化-Java-类"><a href="#创建持久化-Java-类" class="headerlink" title="创建持久化 Java 类"></a>创建持久化 Java 类</h3><p>Hibernate 不要求持久化类继承任何父类或实现接口，这可以保证代码不被污染。这就是Hibernate被称为低侵入式设计的原因<br><strong>持久化类的几个要求：</strong></p>
-<ul>
-<li>提供一个无参的构造器:使Hibernate可以使用Constructor.newInstance() 来实例化持久化类</li>
-<li>提供一个标识属性(identifier property): 通常映射为数据库表的主键字段. 如果没有该属性，一些功能将不起作用，如：Session.saveOrUpdate()</li>
-<li>为类的持久化类字段声明访问方法(get/set): Hibernate对JavaBeans 风格的属性实行持久化。</li>
-<li>使用非 final 类: 在运行时生成代理是 Hibernate 的一个重要的功能. 如果持久化类没有实现任何接口, Hibnernate 使用 CGLIB - 生成代理. 如果使用的是 final 类, 则无法生成 CGLIB 代理.</li>
-<li>重写 eqauls 和 hashCode 方法: 如果需要把持久化类的实例放到 Set 中(当需要进行关联映射时), 则应该重写这两个方法</li>
-</ul>
-<h3 id="创建对象-关系映射文件"><a href="#创建对象-关系映射文件" class="headerlink" title="创建对象-关系映射文件"></a>创建对象-关系映射文件</h3><p>Hibernate 采用 XML 格式的文件来指定对象和关系数据之间的映射. 在运行时 Hibernate 将根据这个映射文件来生成各种 SQL 语句<br>映射文件的扩展名为 <strong>.hbm.xml</strong></p>
-<pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;!DOCTYPE hibernate-mapping PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;
-&quot;http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd&quot;&gt;
-&lt;!-- Generated 2018-7-13 21:10:20 by Hibernate Tools 3.5.0.Final --&gt;
-&lt;hibernate-mapping&gt;
-    &lt;class name=&quot;io.hibernate.helloworld.News&quot; table=&quot;NEWS&quot;&gt;
-        &lt;id name=&quot;Id&quot; type=&quot;java.lang.Integer&quot;&gt;
-            &lt;column name=&quot;ID&quot; /&gt;
-            &lt;!-- 指定主键的生成方式  native：使用数据库本地方式 --&gt;
-            &lt;generator class=&quot;native&quot; /&gt;
-        &lt;/id&gt;
-        &lt;property name=&quot;title&quot; type=&quot;java.lang.String&quot;&gt;
-            &lt;column name=&quot;TITLE&quot; /&gt;
-        &lt;/property&gt;
-        &lt;property name=&quot;author&quot; type=&quot;java.lang.String&quot;&gt;
-            &lt;column name=&quot;AUTHOR&quot; /&gt;
-        &lt;/property&gt;
-        &lt;property name=&quot;date&quot; type=&quot;java.sql.Date&quot;&gt;
-            &lt;column name=&quot;DATE&quot; /&gt;
-        &lt;/property&gt;
-    &lt;/class&gt;
-&lt;/hibernate-mapping&gt;
-</code></pre><h3 id="通过-Hibernate-API-编写访问数据库的代码"><a href="#通过-Hibernate-API-编写访问数据库的代码" class="headerlink" title="通过 Hibernate API 编写访问数据库的代码"></a>通过 Hibernate API 编写访问数据库的代码</h3><p>测试代码：</p>
-<pre><code>@Test
-        public void test(){
-            SessionFactory sessionFactory=null;
-            Configuration configuration=new Configuration().configure();
-            ServiceRegistry serviceRegistry=
-                    new             ServiceRegistryBuilder    ().applySettings    (configuration.getProperties    ()).buildServiceRegistry();
-                    sessionFactory=configuration.buil    dSessionFactory(serviceRegistry);
-            Session session=sessionFactory.openSession();
-            Transaction transaction=session.beginTransaction();
-            News news=new News(&quot;Java&quot;,&quot;haha&quot;,new Date(new java.util.Date().getTime()));
-            session.save(news);
-            transaction.commit();
-            session.close();
-            sessionFactory.close();
-        }
-</code></pre><p>下面讲解一下测试里面用到的类和接口：<br><br><strong>一、Configuration 类</strong><br><br>Configuration 类负责管理 Hibernate 的配置信息。<br><br>包括如下内容：<br></p>
-<ul>
-<li>Hibernate 运行的底层信息：数据库的URL、用户名、密码、JDBC驱动类，数据库Dialect,数据库连接池等（对应 hibernate.cfg.xml 文件）。<br></li>
-<li>持久化类与数据表的映射关系（*.hbm.xml 文件）<br></li>
-</ul>
-<p>创建 Configuration 的两种方式：<br></p>
-<p>1.属性文件（hibernate.properties）<br><br> Configuration cfg = new Configuration();<br><br><strong>2.Xml文件（hibernate.cfg.xml）(常用)</strong><br><br>Configuration cfg = new Configuration().configure();<br><br>3.Configuration 的 configure 方法还支持带参数的访问：<br><br>File file = new File(“simpleit.xml”);<br><br>Configuration cfg = new Configuration().configure(file);<br></p>
-<p><strong>二、SessionFactory 接口</strong></p>
-<ul>
-<li>针对单个数据库映射关系经过编译后的内存镜像，是线程安全的。 </li>
-<li>SessionFactory 对象一旦构造完毕，即被赋予特定的配置信息</li>
-<li>SessionFactory是生成Session的工厂</li>
-<li>构造 SessionFactory 很消耗资源，一般情况下一个应用中只初始化一个 SessionFactory 对象。</li>
-<li>Hibernate4 新增了一个 ServiceRegistry 接口，所有基于 Hibernate 的配置或者服务都必须统一向这个 ServiceRegistry  注册后才能生效</li>
-<li>Hibernate4 中创建 SessionFactory 的步骤<br>-<br>  Configuration configuration=new Configuration().configure();<br>  //        sessionFactory=configuration.buildSessionFactory();<br>  //        创建一个serviceRegistry对象 hibernate 4.x新添加的对象<pre><code>      //hibernate的任何配置和服务都需要在该对象中注册才能有效
-      ServiceRegistry serviceRegistry=
-              new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-      sessionFactory=configuration.buildSessionFactory(serviceRegistry);
-</code></pre></li>
-</ul>
-<p><strong>三、Session 接口</strong><br>Session 是应用程序与数据库之间交互操作的一个单线程对象，是 Hibernate 运作的中心，所有持久化对象必须在 session 的管理下才可以进行持久化操作。此对象的生命周期很短。Session 对象有一个一级缓存，显式执行 flush 之前，所有的持久层操作的数据都缓存在 session 对象处。相当于 JDBC 中的 Connection。<br><img src="https://i.imgur.com/58SJbmk.png" alt=""></p>
-<p><strong>持久化类与 Session 关联起来后就具有了持久化的能力</strong>。<br><br><strong>Session 类的方法：</strong></p>
-<ul>
-<li>取得持久化对象的方法： get() load()</li>
-<li>持久化对象都得保存，更新和删除：save(),update(),saveOrUpdate(),delete()</li>
-<li>开启事务: beginTransaction().</li>
-<li>管理 Session 的方法：isOpen(),flush(), clear(), evict(), close()等</li>
-</ul>
-<p><strong>四、Transaction(事务)</strong></p>
-<p>一次事务代表一次原子操作，它具有数据库事务的概念。所有持久层都应该在事务管理下进行，即使是只读操作。<br><br>   Transaction tx = session.beginTransaction();<br><br>常用方法:</p>
-<ul>
-<li>commit():提交相关联的session实例</li>
-<li>rollback():撤销事务操作</li>
-<li>wasCommitted():检查事务是否提交</li>
-</ul>
-<p><strong>注：使用 Hibernate 进行数据持久化操作，通常有如下步骤：</strong></p>
-<ul>
-<li>编写持久化类： POJO + 映射文件</li>
-<li>获取 Configuration 对象</li>
-<li>获取 SessionFactory 对象</li>
-<li>获取 Session，打开事务</li>
-<li>用面向对象的方式操作数据库</li>
-<li>关闭事务，关闭 Session</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>hibernate的helloworld很简单，很容易上手。以上就是hibernate的简单的操作和介绍，主要的问题可能会出在数据库方言和数据库的映射关系上。<br>附录：<br>方言大全</p>
-<div class="con editor-preview-side"><p>RDBMS 方言</p><table><tbody><tr style="line-height:normal;"><td><br></td><td><br></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">DB2</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.DB2Dialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">DB2 AS/400</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.DB2400Dialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">DB2 OS390</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.DB2390Dialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">PostgreSQL</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.PostgreSQLDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">MySQL</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.MySQLDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">MySQL with InnoDB</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.MySQLInnoDBDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">MySQL with MyISAM</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.MySQLMyISAMDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Oracle (any version)</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.OracleDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Oracle 9i/10g</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.Oracle9Dialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Sybase</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.SybaseDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Sybase Anywhere</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.SybaseAnywhereDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Microsoft SQL Server</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.SQLServerDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">SAP DB</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.SAPDBDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Informix</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.InformixDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">HypersonicSQL</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.HSQLDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Ingres</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.IngresDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Progress</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.ProgressDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Mckoi SQL</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.MckoiDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Interbase</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.InterbaseDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Pointbase</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.PointbaseDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">FrontBase</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.FrontbaseDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Firebird</span></td><td style="font-size:12px;line-height:normal;"><p><tt style="line-height:normal;">org.hibernate.dialect.FirebirdDialect</tt></p></td></tr></tbody></table><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;">Access数据库的方言包：<a href="http://www.hxtt.com/test/hibernate.zip" target="_blank" rel="external">http://www.hxtt.com/test/hibernate.zip</a><br>路径：com.hxtt.support.hibernate.HxttAccessDialect</p><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;">&nbsp;</p><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;"><span style="font-size:x-small;">例子：&nbsp;&nbsp;&nbsp;&nbsp;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.connection.username” value=”sa”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.connection.password” value=”sa”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.connection.url” value=”jdbc:sqlserver://localhost:1433;databaseName=test”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.connection.driver_class” value=”com.microsoft.sqlserver.jdbc.SQLServerDriver”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.cache.provider_class” value=”org.hibernate.cache.NoCacheProvider”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.dialect” value=”org.hibernate.dialect.SQLServerDialect”/&gt;</span></p><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;"><span style="font-size:x-small;color:rgb(255,0,0);line-height:normal;">&lt;property name=”hibernate.dialect” value=”org.hibernate.dialect.SQLServerDialect”/&gt;</span></p><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;"><span style="font-size:x-small;">如果是Toplink则添加：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;"><span style="font-size:x-small;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”toplink.jdbc.user” value=”sa”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”toplink.jdbc.password” value=”sa”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”toplink.jdbc.url” value=”jdbc:mysql://localhost:3306/test”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”toplink.jdbc.driver” value=”com.mysql.jdbc.Driver”/&gt;<br style="line-height:normal;"><span style="color:rgb(255,0,0);line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”toplink.plafrom.class.name” value=”oracle.toplink.essentials.platform.database.HSQLPlatform” /&gt;</span></span></p><p><br></p><p>方言转自:<a href="http://qsfwy.iteye.com/blog/471858" target="_blank">http://qsfwy.iteye.com/blog/471858</a>&nbsp;</p></div>
-
-
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/13/Hibernate入门系列（一）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/10/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/12/">Next &raquo;</a>
@@ -1527,7 +1435,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1535,7 +1443,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1543,15 +1451,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1563,11 +1471,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1575,19 +1483,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1599,11 +1507,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">solr</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
               </li>
             
             <div class="clearfix"></div>

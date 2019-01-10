@@ -171,120 +171,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-mysql命令行创建新用户" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/mysql命令行创建新用户/">Mysql命令行添加新用户</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/mysql命令行创建新用户/" class="archive-article-date">
-  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Mysql命令行添加新用户"><a href="#Mysql命令行添加新用户" class="headerlink" title="Mysql命令行添加新用户"></a>Mysql命令行添加新用户</h1><p>创建用户root ，密码为123456，@%代表登录主机通配<br>     CREATE USER ‘root’@’%’ IDENTIFIED BY ‘123456’;<br>刷新<br>    flush privileges;<br>授权<br>    GRANT ALL ON cloud_note.* TO ‘root’@’%’;</p>
-<pre><code>mysql&gt; CREATE USER &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;123456&#39;;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql&gt; flush privileges;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql&gt; select host,user from mysql.user;
-+-----------+-----------+
-| host      | user      |
-+-----------+-----------+
-| %         | root      |
-| localhost | mysql.sys |
-| localhost | mysqlxsys |
-| localhost | root      |
-+-----------+-----------+
-4 rows in set (0.00 sec)
-
-mysql&gt; GRANT ALL ON cloud_note.* TO &#39;root&#39;@&#39;%&#39;;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql&gt; flush privileges;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql&gt; select host,user from mysql.user;
-+-----------+-----------+
-| host      | user      |
-+-----------+-----------+
-| %         | root      |
-| localhost | mysql.sys |
-| localhost | mysqlxsys |
-| localhost | root      |
-+-----------+-----------+
-4 rows in set (0.00 sec)
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/mysql命令行创建新用户/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-ajax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -362,92 +248,6 @@ mysql&gt; select host,user from mysql.user;
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/13/ajax/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Mapper映射器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/Mapper映射器/">Mapper映射器</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/Mapper映射器/" class="archive-article-date">
-  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="（1）什么是Mapper映射器"><a href="#（1）什么是Mapper映射器" class="headerlink" title="（1）什么是Mapper映射器"></a>（1）什么是Mapper映射器</h1><p>符合映射文件要求的接口<br>注：mybatis会自动实现一个符合该接口要求的的对象。</p>
-<h2 id="Mapper映射器的要求："><a href="#Mapper映射器的要求：" class="headerlink" title="Mapper映射器的要求："></a>Mapper映射器的要求：</h2><p>a.接口方法的名称与映射文件中的SQL的id要一样。<br>b.方法的参数类型要与映射文件当中的parameterType一致。<br>c.方法的返回类型要与映射文件中的resultType一致<br>此外，映射文件的namespace必须等于Mapper映射器的全限定名。</p>
-<h2 id="（3）编程步骤"><a href="#（3）编程步骤" class="headerlink" title="（3）编程步骤"></a>（3）编程步骤</h2><p>step1.写一个映射器，即一个接口。<br>step2.调用SQLSession提供的getMapper方法<br>注：该方法会返回一个符合映射器要求的对象。</p>
-<h1 id="spring集成mybatis"><a href="#spring集成mybatis" class="headerlink" title="spring集成mybatis"></a>spring集成mybatis</h1><h2 id="1-编程步骤"><a href="#1-编程步骤" class="headerlink" title="1.编程步骤"></a>1.编程步骤</h2><p>step1.导包<br>spring-webmvc.mybatis<br>mybatis-spring,spring-jdbc,dbcp,jdbc,junit<br><img src="https://i.imgur.com/svgcUoZ.png" alt=""><br>step2.添加spring的配置文件<br>注：mybatis配置信息可以添加到spring的配置文件当中，只需要配置SqlSessionFactoryBean。<br><img src="https://i.imgur.com/tlM28Y2.png" alt=""><br>step3.实体类<br>step4.映射文件<br>step5.Mapper映射器<br>step6.在spring的配置文件中添加MapperScannerConfigurer.该bean负责调用SqlSession的getMapper方法，创建符合Mapper映射器要求的对象。<br>注：<br>该bean会将这个对象添加到spring容器里面。</p>
-<h2 id="（2）只扫描特定的Mapper映射器"><a href="#（2）只扫描特定的Mapper映射器" class="headerlink" title="（2）只扫描特定的Mapper映射器"></a>（2）只扫描特定的Mapper映射器</h2><p>step1.开发一个注解，比如@MybatisRepository<br>step2.将该注解添加到需要扫描的映射器<br>step3.配置MapperScannerConfigurer，设置annotationClass,指定注解类。</p>
-<h2 id="（3）另一种集成方式"><a href="#（3）另一种集成方式" class="headerlink" title="（3）另一种集成方式"></a>（3）另一种集成方式</h2><p>SqlSessionTemplate<br>JdbcTemplate<br>step1.导包。<br>step2.添加spring的配置文件<br>注：删掉MapperScannerConfigurer的配置。<br>step3.实体类<br>step4.映射文件<br>step5.dao接口。<br>step6.写一个dao接口的实现类。<br>注：注入SqlSessionTemplate，调用该对象的方法<br><img src="https://i.imgur.com/Nxpt5yk.png" alt=""><br>step7. 配置SqlSessionTemplate<br>step8.添加组件扫描<br><img src="https://i.imgur.com/AL3BzLS.png" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/Mapper映射器/">展开全文 >></a>
         </p>
       
 
@@ -581,6 +381,92 @@ public class jsonTest {
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/13/json/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Mapper映射器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/Mapper映射器/">Mapper映射器</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/Mapper映射器/" class="archive-article-date">
+  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="（1）什么是Mapper映射器"><a href="#（1）什么是Mapper映射器" class="headerlink" title="（1）什么是Mapper映射器"></a>（1）什么是Mapper映射器</h1><p>符合映射文件要求的接口<br>注：mybatis会自动实现一个符合该接口要求的的对象。</p>
+<h2 id="Mapper映射器的要求："><a href="#Mapper映射器的要求：" class="headerlink" title="Mapper映射器的要求："></a>Mapper映射器的要求：</h2><p>a.接口方法的名称与映射文件中的SQL的id要一样。<br>b.方法的参数类型要与映射文件当中的parameterType一致。<br>c.方法的返回类型要与映射文件中的resultType一致<br>此外，映射文件的namespace必须等于Mapper映射器的全限定名。</p>
+<h2 id="（3）编程步骤"><a href="#（3）编程步骤" class="headerlink" title="（3）编程步骤"></a>（3）编程步骤</h2><p>step1.写一个映射器，即一个接口。<br>step2.调用SQLSession提供的getMapper方法<br>注：该方法会返回一个符合映射器要求的对象。</p>
+<h1 id="spring集成mybatis"><a href="#spring集成mybatis" class="headerlink" title="spring集成mybatis"></a>spring集成mybatis</h1><h2 id="1-编程步骤"><a href="#1-编程步骤" class="headerlink" title="1.编程步骤"></a>1.编程步骤</h2><p>step1.导包<br>spring-webmvc.mybatis<br>mybatis-spring,spring-jdbc,dbcp,jdbc,junit<br><img src="https://i.imgur.com/svgcUoZ.png" alt=""><br>step2.添加spring的配置文件<br>注：mybatis配置信息可以添加到spring的配置文件当中，只需要配置SqlSessionFactoryBean。<br><img src="https://i.imgur.com/tlM28Y2.png" alt=""><br>step3.实体类<br>step4.映射文件<br>step5.Mapper映射器<br>step6.在spring的配置文件中添加MapperScannerConfigurer.该bean负责调用SqlSession的getMapper方法，创建符合Mapper映射器要求的对象。<br>注：<br>该bean会将这个对象添加到spring容器里面。</p>
+<h2 id="（2）只扫描特定的Mapper映射器"><a href="#（2）只扫描特定的Mapper映射器" class="headerlink" title="（2）只扫描特定的Mapper映射器"></a>（2）只扫描特定的Mapper映射器</h2><p>step1.开发一个注解，比如@MybatisRepository<br>step2.将该注解添加到需要扫描的映射器<br>step3.配置MapperScannerConfigurer，设置annotationClass,指定注解类。</p>
+<h2 id="（3）另一种集成方式"><a href="#（3）另一种集成方式" class="headerlink" title="（3）另一种集成方式"></a>（3）另一种集成方式</h2><p>SqlSessionTemplate<br>JdbcTemplate<br>step1.导包。<br>step2.添加spring的配置文件<br>注：删掉MapperScannerConfigurer的配置。<br>step3.实体类<br>step4.映射文件<br>step5.dao接口。<br>step6.写一个dao接口的实现类。<br>注：注入SqlSessionTemplate，调用该对象的方法<br><img src="https://i.imgur.com/Nxpt5yk.png" alt=""><br>step7. 配置SqlSessionTemplate<br>step8.添加组件扫描<br><img src="https://i.imgur.com/AL3BzLS.png" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/Mapper映射器/">展开全文 >></a>
         </p>
       
 
@@ -844,6 +730,190 @@ str.length();
 
 
   
+    <article id="post-mybatis关联映射" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/mybatis关联映射/">Mybatis关联映射</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/mybatis关联映射/" class="archive-article-date">
+  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Mybatis关联映射"><a href="#Mybatis关联映射" class="headerlink" title="Mybatis关联映射"></a>Mybatis关联映射</h1><p>将数据库中有关联关系的表，以实体对象引用的方式体现出来</p>
+<p>关联方式：</p>
+<ul>
+<li>关联单个对象</li>
+<li>关联多个对象</li>
+</ul>
+<p>class User{</p>
+<p> private List<book> books;<br>}</book></p>
+<p>class Book{<br>  private User user;<br>}</p>
+<p>什么时候用<br>业务需要对数据库进行关联查询的时候</p>
+<p>可以通过一条SQL语句完成关联查询。也可以通过两条SQL语句进行关联查询</p>
+<h2 id="案例：通过userId查询用户信息和关联的笔记本信息"><a href="#案例：通过userId查询用户信息和关联的笔记本信息" class="headerlink" title="案例：通过userId查询用户信息和关联的笔记本信息"></a>案例：通过userId查询用户信息和关联的笔记本信息</h2><p>1.User 实体类<br>2.定义Dao接口，配置Mapper文件<br>3.定义测试类验证查询结果</p>
+<p>2个SQL语句：语句简单，但是配置繁琐，与DB两次交互</p>
+<pre><code>&lt;!-- 使用两条SQL语句加载数据 --&gt;
+    &lt;select id=&quot;findUserAndBook&quot; parameterType=&quot;String&quot; resultMap=&quot;userMap1&quot;&gt;
+        select * from cn_user where cn_user_id=#{id}
+    &lt;/select&gt;
+
+    &lt;resultMap type=&quot;io.codegitz.cloud_note.entity.User&quot; id=&quot;userMap1&quot;&gt;
+        &lt;id property=&quot;cn_user_id&quot; column=&quot;cn_user_id&quot; /&gt;
+        &lt;result property=&quot;cn_user_name&quot; column=&quot;cn_user_name&quot; /&gt;
+        &lt;!-- 指定books属性是List集合，泛型为Book --&gt;
+        &lt;!-- javaType是返回类型 --&gt;
+        &lt;collection property=&quot;books&quot; javaType=&quot;java.util.List&quot;
+            ofType=&quot;io.codegitz.cloud_note.entity.Book&quot; select=&quot;findBooks&quot;
+            column=&quot;cn_user_id&quot;&gt;
+        &lt;/collection&gt;
+    &lt;/resultMap&gt;
+    &lt;select id=&quot;findBooks&quot; parameterType=&quot;String&quot;
+        resultType=&quot;io.codegitz.cloud_note.entity.Book&quot;&gt;
+        select * from cn_user where cn_user_id=#{userId}
+    &lt;/select&gt;
+</code></pre><p>1个SQL语句：语句复杂，配置较简单，与DB交互一次</p>
+<pre><code>&lt;!-- 一条SQL加载user --&gt;
+    &lt;select id=&quot;findUserAndBook1&quot; parameterType=&quot;String&quot; resultMap=&quot;userMap2&quot;&gt;
+        select * from cn_user u join cn_notebook b
+        on(u.cn_user_id=b.cn_user_id) where u.cn_user_id=#{userId}
+    &lt;/select&gt;
+    &lt;resultMap type=&quot;io.codegitz.cloud_note.entity.User&quot; id=&quot;userMap2&quot;&gt;
+        &lt;!-- 定义cn_user 字段装载，不能忽略 --&gt;
+        &lt;id property=&quot;cn_user_id&quot; column=&quot;cn_user_id&quot; /&gt;
+        &lt;result property=&quot;cn_user_name&quot; column=&quot;cn_user_name&quot; /&gt;
+        &lt;result property=&quot;cn_user_nick&quot; column=&quot;cn_user_nick&quot; /&gt;
+        &lt;result property=&quot;cn_user_password&quot; column=&quot;cn_user_password&quot; /&gt;
+        &lt;result property=&quot;cn_user_token&quot; column=&quot;cn_user_token&quot; /&gt;
+      &lt;collection property=&quot;books&quot; 
+      javaType=&quot;java.util.List&quot;
+      ofType=&quot;io.codegitz.cloud_note.entity.Book&quot;&gt;
+          &lt;id property=&quot;cn_notebook_id&quot; column=&quot;cn_notebook_id&quot;/&gt;
+          &lt;result property=&quot;cn_user_id&quot; column=&quot;cn_user_id&quot;/&gt;
+          &lt;result property=&quot;cn_notebook_type_id&quot; column=&quot;cn_notebook_type_id&quot;/&gt;
+          &lt;result property=&quot;cn_notebook_name&quot; column=&quot;cn_notebook_name&quot;/&gt;
+          &lt;result property=&quot;cn_notebook_desc&quot; column=&quot;cn_notebook_desc&quot;/&gt;
+          &lt;result property=&quot;cn_notebook_createtime&quot; column=&quot;cn_notebook_createtime&quot;/&gt;
+      &lt;/collection&gt;
+    &lt;/resultMap&gt;
+</code></pre><h2 id="案例：通过查询笔记信息，关联用户信息"><a href="#案例：通过查询笔记信息，关联用户信息" class="headerlink" title="案例：通过查询笔记信息，关联用户信息"></a>案例：通过查询笔记信息，关联用户信息</h2><p>用一条查询语句实现</p>
+<h1 id="主键的字段处理"><a href="#主键的字段处理" class="headerlink" title="主键的字段处理"></a>主键的字段处理</h1><p>在数据库使用自增列或序列作为主键值时，如何在insert执行后、立刻获取id值<br>属性增加<br>    useGeneratedKeys=”true” keyProperty=”id”<br>-Mysql<br>    create table t_emp(id int primary key auto_increment,name varchar(20),age int)</p>
+<pre><code>&lt;mapper namespace=&quot;io.codegitz.cloud_note.dao.EmpDao&quot;&gt;
+  &lt;!-- mysql:数据库自动生成主键值，获取主键值放入对象的id属性中 --&gt;
+       &lt;insert id=&quot;save&quot; parameterType=&quot;io.codegitz.cloud_note.entity.Emp&quot;
+        useGeneratedKeys=&quot;true&quot; keyProperty=&quot;id&quot;&gt;
+           insert into t_emp (name,age) values (#{name},#{age})
+       &lt;/insert&gt;
+&lt;/mapper&gt;
+</code></pre><h1 id="spring事务管理"><a href="#spring事务管理" class="headerlink" title="spring事务管理"></a>spring事务管理</h1><p>什么是事务？程序为了保证业务处理的完整性，执行一个或多个SQL语句<br>管理：对事务中的Sql语句进行提交或回滚，叫做事务管理<br>什么时候用？作用于Service的方法上</p>
+<p>事务回顾：<br>转账：A账户转1000到B账户<br><img src="https://i.imgur.com/GKrc1NA.png" alt=""><br>通过spring进行事务管理<br>步骤：<br>1.配置Spring-transaction.xml</p>
+<ol>
+<li>使用@Transactional标记</li>
+</ol>
+<h2 id="可读可写"><a href="#可读可写" class="headerlink" title="可读可写"></a>可读可写</h2><p>   select操作时，可采用只读事务<br>@Transaction(readOnly=true)</p>
+<h2 id="回滚特性"><a href="#回滚特性" class="headerlink" title="回滚特性"></a>回滚特性</h2><p>  默认RuntimeException回滚，其他异常不回滚<br>  @Transaction(rollbackFor=IOException.class)<br>  public void f1(){<br>      //db操作(insert)<br>      //IOException<br>  }<br>public void deleteNote(String… ids) {</p>
+<pre><code>//String... 就是String[] 数组
+</code></pre><p>}</p>
+<h2 id="传播特性"><a href="#传播特性" class="headerlink" title="传播特性"></a>传播特性</h2><p> 默认类型：REQUIRED</p>
+<p>传播行为 描述<br>PROPAGATION_REQUIRED    如果没有，就开启一个事务；如果有，就加入当前事务（方法B看到自己已经运行在 方法A的事务内部，就不再起新的事务，直接加入方法A）</p>
+<p>RROPAGATION_REQUIRES_NEW    如果没有，就开启一个事务；如果有，就将当前事务挂起。（方法A所在的事务就会挂起，方法B会起一个新的事务，等待方法B的事务完成以后，方法A才继续执行）</p>
+<p>PROPAGATION_NESTED    如果没有，就开启一个事务；如果有，就在当前事务中嵌套其他事务</p>
+<p>PROPAGATION_SUPPORTS    如果没有，就以非事务方式执行；如果有，就加入当前事务（方法B看到自己已经运行在 方法A的事务内部，就不再起新的事务，直接加入方法A）</p>
+<p>PROPAGATION_NOT_SUPPORTED    如果没有，就以非事务方式执行；如果有，就将当前事务挂起，（方法A所在的事务就会挂起，而方法B以非事务的状态运行完，再继续方法A的事务）</p>
+<p>PROPAGATION_NEVER    如果没有，就以非事务方式执行；如果有，就抛出异常。</p>
+<p>PROPAGATION_MANDATORY    如果没有，就抛出异常；如果有，就使用当前事务</p>
+<h2 id="隔离特性"><a href="#隔离特性" class="headerlink" title="隔离特性"></a>隔离特性</h2><p>默认属性：READ_COMMITED<br>针对事务并发进行处理<br>脏读/幻读</p>
+<h1 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h1><p>使用<if> <choose>等标签<br><img src="https://i.imgur.com/KmB7Rwo.png" alt=""></choose></if></p>
+<pre><code> public int updateNoteByMap(Map&lt;String,Object&gt; map);
+</code></pre><pre><code>&lt;update id=&quot;updateNoteByMap&quot; parameterType=&quot;Map&quot;&gt;
+       update cn_note set 
+       &lt;trim suffixOverrides=&quot;,&quot;&gt;
+       &lt;if test=&quot;title!=null&quot;&gt; cn_note_title=#{title},&lt;/if&gt;
+       &lt;if test=&quot;body!=null&quot;&gt;cn_note_body=#{body},&lt;/if&gt;
+       &lt;choose&gt;
+              &lt;when test=&quot;time!=null&quot;&gt;
+                 cn_note_last_modify_time=#{time}
+              &lt;/when&gt;
+
+              &lt;otherwise&gt;
+              cn_note_last_modify_time=unix_timestamp()
+              &lt;/otherwise&gt;
+       &lt;/choose&gt;
+       &lt;!-- &lt;if test=&quot;time!=null&quot;&gt;cn_note_last_modify_time=#{time}&lt;/if&gt; --&gt;
+       &lt;/trim&gt;
+       where cn_note_id=#{noteId}
+
+    &lt;/update&gt;
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/mybatis关联映射/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/9/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/11/">Next &raquo;</a>
@@ -982,7 +1052,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -990,7 +1060,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -998,15 +1068,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1018,11 +1088,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1030,19 +1100,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1054,11 +1124,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">solr</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
               </li>
             
             <div class="clearfix"></div>

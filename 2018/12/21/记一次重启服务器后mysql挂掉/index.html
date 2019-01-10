@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>记一次重启服务器后mysql挂掉 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言今天在安装FastDFS的时候，需要重启一下服务器，当重启完成后，我天真的以为这大功告成，但是万万没想到，mysql数据库挂了。我的心情就像过山车一样，人生的大起大落实在是太刺激了，接下来又开始了无尽的搜索之旅。 问题复现茫然状态在最开始的时候，docker启动镜像是可以的，但是只是在服务器本地可以连接，远程客户端是无法连接，在Google一番后，发现大多都是连接用户的权限不够，又或者是主机没">
+  <meta name="description" content="前言今天在安装FastDFS的时候，需要重启一下服务器，当重启完成后，我天真的以为这大功告成，但是万万没想到，mysql数据库挂了。我的心情就像过山车一样，人生的大起大落实在是太刺激了，接下来又开始了无尽的搜索之旅。">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记一次重启服务器后mysql挂掉">
 <meta property="og:url" content="http://yoursite.com/2018/12/21/记一次重启服务器后mysql挂掉/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="前言今天在安装FastDFS的时候，需要重启一下服务器，当重启完成后，我天真的以为这大功告成，但是万万没想到，mysql数据库挂了。我的心情就像过山车一样，人生的大起大落实在是太刺激了，接下来又开始了无尽的搜索之旅。 问题复现茫然状态在最开始的时候，docker启动镜像是可以的，但是只是在服务器本地可以连接，远程客户端是无法连接，在Google一番后，发现大多都是连接用户的权限不够，又或者是主机没">
+<meta property="og:description" content="前言今天在安装FastDFS的时候，需要重启一下服务器，当重启完成后，我天真的以为这大功告成，但是万万没想到，mysql数据库挂了。我的心情就像过山车一样，人生的大起大落实在是太刺激了，接下来又开始了无尽的搜索之旅。">
 <meta property="og:image" content="https://i.imgur.com/55YvmNq.png">
 <meta property="og:image" content="https://i.imgur.com/fHE7UF6.png">
 <meta property="og:image" content="https://i.imgur.com/rZPSmNl.png">
-<meta property="og:updated_time" content="2018-12-21T15:51:35.454Z">
+<meta property="og:updated_time" content="2019-01-10T07:00:00.336Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次重启服务器后mysql挂掉">
-<meta name="twitter:description" content="前言今天在安装FastDFS的时候，需要重启一下服务器，当重启完成后，我天真的以为这大功告成，但是万万没想到，mysql数据库挂了。我的心情就像过山车一样，人生的大起大落实在是太刺激了，接下来又开始了无尽的搜索之旅。 问题复现茫然状态在最开始的时候，docker启动镜像是可以的，但是只是在服务器本地可以连接，远程客户端是无法连接，在Google一番后，发现大多都是连接用户的权限不够，又或者是主机没">
+<meta name="twitter:description" content="前言今天在安装FastDFS的时候，需要重启一下服务器，当重启完成后，我天真的以为这大功告成，但是万万没想到，mysql数据库挂了。我的心情就像过山车一样，人生的大起大落实在是太刺激了，接下来又开始了无尽的搜索之旅。">
 <meta name="twitter:image" content="https://i.imgur.com/55YvmNq.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -213,7 +213,7 @@ gitment.render('gitment')
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天在安装FastDFS的时候，需要重启一下服务器，当重启完成后，我天真的以为这大功告成，但是万万没想到，mysql数据库挂了。我的心情就像过山车一样，人生的大起大落实在是太刺激了，接下来又开始了无尽的搜索之旅。<br></p>
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天在安装FastDFS的时候，需要重启一下服务器，当重启完成后，我天真的以为这大功告成，但是万万没想到，mysql数据库挂了。我的心情就像过山车一样，人生的大起大落实在是太刺激了，接下来又开始了无尽的搜索之旅。<br><br><a id="more"></a></p>
 <h2 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h2><h3 id="茫然状态"><a href="#茫然状态" class="headerlink" title="茫然状态"></a>茫然状态</h3><p>在最开始的时候，docker启动镜像是可以的，但是只是在服务器本地可以连接，远程客户端是无法连接，在Google一番后，发现大多都是连接用户的权限不够，又或者是主机没有匹配，但是我的原本是可以远程连接的，应该不会是这个问题，但是我还是按照这个思路去操作了一遍，进入了docker容器的伪终端，把容器的mysql.user表的root用户的host全改为了%，也就是通配了所有主机客户端，刷新权限之后退出进行连接，依然是连接失败,一筹莫展。<br><br>这里记录一下这些操作命令。<br><br>进入容器，也就是相当于是一台完整的机子了。<br></p>
 <pre><code>#5e1c2ad93664是容器的ID，这里改为自己的容器ID
 docker exec -it 5e1c2ad93664 bash
@@ -227,7 +227,7 @@ docker exec -it 5e1c2ad93664 bash
 <pre><code>[root@iZwz9c6u1iybgf3f7s8cg6Z sbin]# iptables -P INPUT ACCEPT
 [root@iZwz9c6u1iybgf3f7s8cg6Z sbin]# iptables -F
 </code></pre><p>如果还是习惯iptables，可以<a href="https://www.cnblogs.com/kreo/p/4368811.html" target="_blank" rel="external">在Centos7上把firewalld干掉</a>，改为iptables。</p>
-<a id="more"></a>
+<!--more-->
 <h3 id="初现眉目"><a href="#初现眉目" class="headerlink" title="初现眉目"></a>初现眉目</h3><p>设置完iptables后，用docker启动mysql镜像的时候出现如下报错。<br></p>
 <pre><code>docker container start 5e1c2ad93664
 Error response from daemon: error creating overlay mount to /var/lib/docker/overlay2/d7ebe99961402c62d7 21305b2d011c09b3b6ceb07dd448b6e07515794c3d178b/merged: invalid argument Error: failed to start containers: 5e1c2ad93664
@@ -622,7 +622,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -630,7 +630,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -638,15 +638,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -658,11 +658,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -670,19 +670,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -694,11 +694,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">solr</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
               </li>
             
             <div class="clearfix"></div>

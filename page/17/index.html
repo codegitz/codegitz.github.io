@@ -171,6 +171,92 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-多态、内部类、面向对象总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/09/多态、内部类、面向对象总结/">多态、内部类、面向对象总结</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/09/多态、内部类、面向对象总结/" class="archive-article-date">
+  	<time datetime="2017-09-09T05:36:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-09</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="一、多态"><a href="#一、多态" class="headerlink" title="一、多态"></a>一、多态</h1><p>多态：多种形态，同意类型的引用指向不同的对象有不同的实现<br>1.意义：<br>  1.1.同一类型的引用指向不同的对象，有不同的实现–行为多态<br>  1.2.同一对象被造型为不同的类型时，有不同的实现–对象多态<br>2.向上造型：<br>  2.1.父类型的引用指向子类的对象<br>  2.2.能造型成的类型有：父类型，实现的接口<br>  2.3.能点出来什么，看引用的类型，向上造型之后，能点出来的东西一般少于或等于，一般是少于子类<br>3.强制类型转换，成功的条件有两个：<br>  3.1.引用所指向的对象就是该类型<br>  3.2.引用所指向的对象实现了该接口<br>4.建议强转之前通过instanceof来判断引用是否是某种类型<br>   instanceof返回的类型为Boolean型，强转成功的条件就是它为true</p>
+<h1 id="二、内部类"><a href="#二、内部类" class="headerlink" title="二、内部类"></a>二、内部类</h1><p>1.成员内部类：不太常用<br>  1.1.类中套类，外面的类叫外部类，里面的类叫做内部类<br>  1.2.内部类通常只服务于外部类，对外不具备可见性<br>  1.3.内部类对象通常是在外部类中创建的<br>  1.4.内部类可是直接访问外部类的成员，包含私用的private，内部类中有个隐式的引用，指向创建它的外部类对象<br>  语法：外部类名.this.xxx(外部成员变量名)<br>2.匿名内部类：比较常用<br>  2.1.如果想创建一个类的对象，并且对象只被创建一次，此时该类不必命名，称为匿名内部类<br>  2.2.匿名内部类想访问外部数据，该数据必须是final的<br>内部类都有独立的.class文件</p>
+<h1 id="三、面向对象的三大特征"><a href="#三、面向对象的三大特征" class="headerlink" title="三、面向对象的三大特征"></a>三、面向对象的三大特征</h1><h2 id="一、封装"><a href="#一、封装" class="headerlink" title="一、封装"></a>一、封装</h2><p>1.类：封装的事对象的属性和行为<br>2.方法：封装的事具体的逻辑功能实现<br>3.访问控制修饰符：封装的是访问的权限</p>
+<h2 id="二、继承"><a href="#二、继承" class="headerlink" title="二、继承"></a>二、继承</h2><p>1.作用：避免代码的重复，有利于代码的复用<br>2.父类：所有子类所共有的属性和行为<br>3.子继承（extends）父类，子类具有：父+子<br>4.单一继承，多接口实现，传递性</p>
+<h2 id="三、多态"><a href="#三、多态" class="headerlink" title="三、多态"></a>三、多态</h2><p>1.意义：行为的多态，对象的多态<br>2.向上造型，强制类型转换，instanceof<br>3.多态的表现形式：重写+重载</p>
+<h1 id="四、调试"><a href="#四、调试" class="headerlink" title="四、调试"></a>四、调试</h1><p>F5：逐步调试（进入方法中）<br>F6：逐过程调试（不进入方法中）<br>F7：跳出当前方法<br>F8：跳到下一个断点，若没有下一个断点，则调试结束</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/09/多态、内部类、面向对象总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-抽象方法、抽象类，接口" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -571,135 +657,6 @@ public double area(){//重写抽象方法
 
 
   
-    <article id="post-深夜鸡汤" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/22/深夜鸡汤/">深夜鸡汤</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/22/深夜鸡汤/" class="archive-article-date">
-  	<time datetime="2017-07-21T16:27:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-22</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="你走，我不送你；你来，我要去接你"><a href="#你走，我不送你；你来，我要去接你" class="headerlink" title="你走，我不送你；你来，我要去接你"></a>你走，我不送你；你来，我要去接你</h1><ul>
-<li>1 -</li>
-</ul>
-<p>遥想古人送别，也是一种雅人深致。</p>
-<p>古时交通不便，一去不知多久，再见不知何年，所以南浦唱支骊歌，灞桥折条杨柳，甚至在阳关敬一杯酒，都有意味。</p>
-<p>李白的船刚要启碇，汪伦老远地在岸上踏歌而来，那幅情景真是历历如在眼前。其妙处在于纯朴真挚，出之以潇洒自然。平夙莫逆于心，临别难分难舍。</p>
-<p>如果平常我看着你面目可憎，你觉着我语言无味，一旦远离，那是最好不过，只恨世界太小，唯恐将来又要碰头，何必送行！</p>
-<p>在现代人的生活里，送行是和拜寿送殡等等一样成为应酬的礼节之一。</p>
-<p>“揪着公鸡尾巴”起个大早，迷迷糊糊地赶到车站码头，挤在乱哄哄人群里面，找到你的对象，扯几句淡话，好容易耗到汽笛一叫，然后鸟兽散，吐一口轻松气，撅着大嘴回家。这叫做周到。</p>
-<p>在被送的那一方面，觉得热闹，人缘好，没白混，而且体面，有这么多人舍不得我走，斜眼看着旁边的没人送的旅客，相形之下，尤其容易起一种优越之感，不禁精神抖擞，恨不得对每一个送行的人要握八次手，道十回谢。死人出殡，都讲究要有多少亲友执绋，表示恋恋不舍，何况活人！行色不可不壮。</p>
-<p>悄然而行似是不大舒服，如果别的旅客在你身旁耀武扬威地与送行的话别，那会增加旅中的寂寞。这种情形，中外皆然。<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170722003352.jpg" alt=""></p>
-<ul>
-<li>2 -</li>
-</ul>
-<p>Max Beerbohm写过一篇《谈送行》，他说他在车站上见一位以演剧为业的老朋友在送一位女客，始而喁喁情话，俄而泪湿双颊，终乃汽笛一声，勉强抑止哽咽，向女郎频频挥手，目送良久而别。</p>
-<p>原来这位演员是在作戏，他并不认识那位女郎，他是属于“送行会”的一个职员，凡是旅客孤身在外而愿有人到站相送的，都可以到“送行会”去雇人来送。这位演员出身的人当然是送行的高手，他能放进感情，表演逼真。</p>
-<p>客人纳费无多，在精神上受惠不浅。尤其是美国旅客，用金钱在国外可以购买一切，如果“送行会”真的普遍设立起来，送行的人也不虞缺乏了。</p>
-<p>送行既是人生中所不可少的一件事，送行的技术也便不可不注意到。</p>
-<p>如果送行只限于到车站码头报到，握手而别，那么问题就简单，但是我们中国的一切礼节都把“吃”列为最重要的一个项目。</p>
-<p>一个朋友远别，生怕他饿着走，饯行是不可少的，恨不得把若干天的营养都一次囤积在他肚里。</p>
-<p>我想任何人都有这种经验，如有远行而消息外露(多半还是自己宣扬)，他有理由期望着饯行的帖子纷至沓来，短期间家里可以不必开伙。还有些思虑更周到的人，把食物携在手上，亲自送到车上船上，好像是你在半路上会挨饿的样子。<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170722003401.jpg" alt=""></p>
-<ul>
-<li>3 -</li>
-</ul>
-<p>我永远不能忘记最悲惨的一幕送行，一个严寒的冬夜，车站上并不热闹，客人和送客的人大都在车厢里取暖，但是在长得没有止境的月台上却有一堆黑查查的送行的人，有的围着斗篷，有的脚尖在洋灰地上敲鼓似地乱动。</p>
-<p>我走近一看全是熟人，都是来送一位太太的。车快开了，不见她的踪影，原来在这一晚她还有几处饯行的宴会。</p>
-<p>在最后的一分钟，她来了。送行的人们觉得是在接一个人，不是在送一个人，一见她来到大家都表示喜欢，所有惜别之意都来不及表现了。她手上抱着一个孩子，吓得直哭，另一只手扯着一个孩子，连跑带拖。她的头发蓬松着，嘴里喷着热气，像是冬天载重的骡子。她顾不得和送行的人周旋，三步两步地就跳上了车，这时候车已在蠕动。</p>
-<p>送行的人大部分手里都提着一点东西，无法交付，可巧我站在离车门最近的地方，大家把礼物都交给了我，“请您偏劳给送上去吧！”我好像是一个圣诞老人，抱着一大堆礼物，一个箭步窜上了车。</p>
-<p>我来不及致辞，把东西往她身上一扔，回头就走。从车上跳下来的时候，打了几个转才立定脚跟。</p>
-<p>事后我接到她一封信，她说：“那些送行的都是谁?你丢给我那些东西，到底是谁送的?我在车上整理了好半天，才把那些东西聚拢起来打成一个大包袱。朋友们的盛情算是给我添了一件行李，我愿意知道哪一件东西是哪一位送的，你既是代表送上车的，你当然知道，盼速见告。计开：水果三筐，泰康罐头四个，果露两瓶，蜜饯四盒，饼干四罐，豆腐乳四盒，蛋糕四盒，西点八盒，纸烟八听，信纸信封一匣，丝袜两双，香水一瓶，烟灰碟一套，小钟一具，衣料两块，酱菜四篓，绣花拖鞋一双，大面包四个，咖啡一听，小宝剑两把……”</p>
-<p>这问题我无法答复，至今是个悬案。<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170722003412.jpg" alt=""></p>
-<ul>
-<li>4 -</li>
-</ul>
-<p>我不愿送人，亦不愿人送我。</p>
-<p>对于自己真正舍不得离开的人，离别的那一刹那像是开刀，凡是开刀的场合照例是应该先用麻醉剂，使病人在迷蒙中度过那场痛苦，所以离别的苦痛最好避免。一个朋友说，“你走，我不送你；你来，无论多大风多大雨，我要去接你。”</p>
-<p>我最赏识那种心情。<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170722003415.jpg" alt=""></p>
-<p>深更半夜，喝得烂醉 ，还不忘鸡汤，我是有多深情<br>懵懂，刻骨，一世。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">poisionous soul</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Poisionous-soul//" class="article-tag-list-link color1">Poisionous soul</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/22/深夜鸡汤/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/16/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/18/">Next &raquo;</a>
@@ -838,7 +795,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -846,7 +803,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -854,15 +811,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -874,11 +831,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -886,19 +843,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -910,11 +867,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">solr</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
               </li>
             
             <div class="clearfix"></div>
