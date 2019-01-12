@@ -8,17 +8,22 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java客户端使用FastDFS上传文件 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言">
+  <meta name="description" content="前言在搭建完成fdfs文件服务器之后，我们就可以使用这个文件服务器的功能了，fdfs提供了一个java客户端，接下来看看如何简单在java中使用fdfs上传文件。">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java客户端使用FastDFS上传文件">
 <meta property="og:url" content="http://yoursite.com/2019/01/09/Java客户端使用FastDFS上传文件/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="前言">
-<meta property="og:updated_time" content="2019-01-10T07:13:57.800Z">
+<meta property="og:description" content="前言在搭建完成fdfs文件服务器之后，我们就可以使用这个文件服务器的功能了，fdfs提供了一个java客户端，接下来看看如何简单在java中使用fdfs上传文件。">
+<meta property="og:image" content="https://i.imgur.com/nDGbbCo.png">
+<meta property="og:image" content="https://i.imgur.com/FedF77l.png">
+<meta property="og:image" content="https://i.imgur.com/RQyBq4T.png">
+<meta property="og:image" content="https://i.imgur.com/HQ9Xewe.png">
+<meta property="og:updated_time" content="2019-01-11T12:32:14.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java客户端使用FastDFS上传文件">
-<meta name="twitter:description" content="前言">
+<meta name="twitter:description" content="前言在搭建完成fdfs文件服务器之后，我们就可以使用这个文件服务器的功能了，fdfs提供了一个java客户端，接下来看看如何简单在java中使用fdfs上传文件。">
+<meta name="twitter:image" content="https://i.imgur.com/nDGbbCo.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
   
@@ -209,7 +214,190 @@ gitment.render('gitment')
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><a id="more"></a>
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在搭建完成fdfs文件服务器之后，我们就可以使用这个文件服务器的功能了，fdfs提供了一个java客户端，接下来看看如何简单在java中使用fdfs上传文件。</p>
+<a id="more"></a>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>首先我们要添加依赖：</p>
+<pre><code>    &lt;dependency&gt;
+        &lt;groupId&gt;org.csource&lt;/groupId&gt;
+        &lt;artifactId&gt;fastdfs-client-java&lt;/artifactId&gt;
+        &lt;version&gt;1.27-SNAPSHOT&lt;/version&gt;
+    &lt;/dependency&gt;
+</code></pre><p>自己定义一个<code>FastDFSFile</code>类，这个类作为要上传的文件的载体</p>
+<pre><code>public class FastDFSFile {
+    //文件名
+    private String name;
+    //内容
+    private byte[] content;
+    //扩展名
+    private String ext;
+    //md5串
+    private String md5;
+    //拥有者
+    private String author;
+
+    public FastDFSFile(String name, byte[] content, String ext, String height,
+                       String width, String author) {
+        super();
+        this.name = name;
+        this.content = content;
+        this.ext = ext;
+        this.author = author;
+    }
+
+    public FastDFSFile(String name, byte[] content, String ext) {
+        super();
+        this.name = name;
+        this.content = content;
+        this.ext = ext;
+
+    }
+ //省略get set方法
+}
+</code></pre><p>接下来需要一个客户端<code>FastDFSClient</code></p>
+<pre><code>public class FastDFSClient {
+    private static org.slf4j.Logger logger = LoggerFactory.getLogger(FastDFSClient.class);
+
+    static {
+        try {
+            //加载配置信息
+            String filePath = new ClassPathResource(&quot;fdfs_client.conf&quot;).getFile().getAbsolutePath();;
+            ClientGlobal.init(filePath);
+        } catch (Exception e) {
+            logger.error(&quot;FastDFS Client Init Fail!&quot;,e);
+        }
+    }
+
+    /**
+     * 上传文件
+     * @param file
+     * @return
+     */
+    public static String[] upload(FastDFSFile file) {
+        //打印文件信息
+        logger.info(&quot;File Name: &quot; + file.getName() + &quot;File Length:&quot; + file.getContent().length);
+
+        NameValuePair[] meta_list = new NameValuePair[1];
+        meta_list[0] = new NameValuePair(&quot;author&quot;, file.getAuthor());
+
+        long startTime = System.currentTimeMillis();
+        String[] uploadResults = null;
+        StorageClient storageClient=null;
+        try {
+            storageClient = getTrackerClient();
+            uploadResults = storageClient.upload_file(file.getContent(), file.getExt(), meta_list);
+        } catch (IOException e) {
+            logger.error(&quot;IO Exception when uploadind the file:&quot; + file.getName(), e);
+        } catch (Exception e) {
+            logger.error(&quot;Non IO Exception when uploadind the file:&quot; + file.getName(), e);
+        }
+        logger.info(&quot;upload_file time used:&quot; + (System.currentTimeMillis() - startTime) + &quot; ms&quot;);
+
+        //上传异常
+        if (uploadResults == null &amp;&amp; storageClient!=null) {
+            logger.error(&quot;upload file fail, error code:&quot; + storageClient.getErrorCode());
+        }
+        String groupName = uploadResults[0];
+        String remoteFileName = uploadResults[1];
+
+        logger.info(&quot;upload file successfully!!!&quot; + &quot;group_name:&quot; + groupName + &quot;, remoteFileName:&quot; + &quot; &quot; + remoteFileName);
+        return uploadResults;
+    }
+
+
+    public static String getTrackerUrl() throws IOException {
+        return &quot;http://&quot;+getTrackerServer().getInetSocketAddress().getHostString()+&quot;:&quot;+ClientGlobal.getG_tracker_http_port()+&quot;/&quot;;
+    }
+
+    private static StorageClient getTrackerClient() throws IOException {
+        TrackerServer trackerServer = getTrackerServer();
+        StorageClient storageClient = new StorageClient(trackerServer, null);
+        return  storageClient;
+    }
+
+    private static TrackerServer getTrackerServer() throws IOException {
+        TrackerClient trackerClient = new TrackerClient();
+        TrackerServer trackerServer = trackerClient.getConnection();
+        return  trackerServer;
+     }
+    }
+</code></pre><p>我们在<code>FastDFSClient</code>中的静态块需要加载一个配置文件<code>fdfs_client.conf</code>。<br></p>
+<p><img src="https://i.imgur.com/nDGbbCo.png" alt=""></p>
+<p>内容如下：<br></p>
+<pre><code>connect_timeout = 60
+network_timeout = 60
+charset = UTF-8
+http.tracker_http_port = 8008
+#关闭token认证
+http.anti_steal_token = no
+#token认证密钥
+http.secret_key = 123456
+
+tracker_server = 192.168.53.86:22122
+</code></pre><p>这些准备好了之后就可以写个controller来测试一下了。<br></p>
+<pre><code> @PostMapping(&quot;/upload&quot;)
+    public String singleFileUpload(@RequestParam(&quot;file&quot;) MultipartFile file,//用@RequestParam获取传递过来的文件
+                                   RedirectAttributes redirectAttributes) {
+        if (file.isEmpty()) {
+            redirectAttributes.addFlashAttribute(&quot;message&quot;, &quot;Please select a file to upload&quot;);
+            return &quot;redirect:uploadStatus&quot;;
+        }
+        try {
+            // 获取文件保存
+            String path=saveFile(file);
+            redirectAttributes.addFlashAttribute(&quot;message&quot;,
+                    &quot;You successfully uploaded &#39;&quot; + file.getOriginalFilename() + &quot;&#39;&quot;);
+            redirectAttributes.addFlashAttribute(&quot;path&quot;,
+                    &quot;file path url &#39;&quot; + path + &quot;&#39;&quot;);
+        } catch (Exception e) {
+            logger.error(&quot;upload file failed&quot;,e);
+        }
+        return &quot;redirect:/uploadStatus&quot;;
+    }
+
+    @GetMapping(&quot;/uploadStatus&quot;)
+    public String uploadStatus() {
+        return &quot;uploadStatus&quot;;
+    }
+
+    /**
+     * @param multipartFile
+     * @return
+     * @throws IOException
+     */
+    public String saveFile(MultipartFile multipartFile) throws IOException {
+        String[] fileAbsolutePath={};
+        String fileName=multipartFile.getOriginalFilename();
+        String ext = fileName.substring(fileName.lastIndexOf(&quot;.&quot;) + 1);
+        byte[] file_buff = null;
+        InputStream inputStream=multipartFile.getInputStream();
+        if(inputStream!=null){
+            int len1 = inputStream.available();
+            file_buff = new byte[len1];
+            inputStream.read(file_buff);
+        }
+        inputStream.close();
+        //构造一个FastDFSFile对象
+        FastDFSFile file = new FastDFSFile(fileName, file_buff, ext);
+        try {
+            fileAbsolutePath = FastDFSClient.upload(file);  //上传到fastdfs
+        } catch (Exception e) {
+            logger.error(&quot;upload file Exception!&quot;,e);
+        }
+        if (fileAbsolutePath==null) {
+            logger.error(&quot;upload file failed,please upload again!&quot;);
+        }
+        //上传成功返回文件path
+        String path=FastDFSClient.getTrackerUrl()+fileAbsolutePath[0]+ &quot;/&quot;+fileAbsolutePath[1];
+        return path;
+    }
+</code></pre><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>启动完成后选择文件上传。</p>
+<p><img src="https://i.imgur.com/FedF77l.png" alt=""></p>
+<p>文件上传成功会返回URL。<br></p>
+<p><img src="https://i.imgur.com/RQyBq4T.png" alt=""></p>
+<p>打开URL即可看到刚刚上传的图片。<br></p>
+<p><img src="https://i.imgur.com/HQ9Xewe.png" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>fdfs的使用比较简单明了，主要是搭建的过程稍微复杂些。<br></p>
+
       
 
       
@@ -539,19 +727,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -563,11 +747,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -575,11 +759,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -587,11 +771,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">

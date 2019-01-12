@@ -171,6 +171,253 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-PowerDesigner中DBMS设置的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/PowerDesigner中DBMS设置的问题/">PowerDesigner中DBMS设置的问题</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/PowerDesigner中DBMS设置的问题/" class="archive-article-date">
+  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="解决PowerDesigner中DBMS设置的问题"><a href="#解决PowerDesigner中DBMS设置的问题" class="headerlink" title="解决PowerDesigner中DBMS设置的问题"></a>解决PowerDesigner中DBMS设置的问题</h2><p>在Generate Physical Data Model 的时候出现DBMS选择框全为空的情况，而且上面的菜单栏没有database这个选项<br><img src="https://i.imgur.com/oBXAV3q.png" alt=""></p>
+<p>一开始以为是软件装错了，以为是下了什么盗版软件，后来才发现是DBMS的路径有问题<br><img src="https://i.imgur.com/8wbGyAN.png" alt=""><br>直接浏览到powderdesigner的安装路径下的\Resource Files\DBMS，软件自己配的路径有点诡异，并不是正确的，点击确定之后即可<br><img src="https://i.imgur.com/uQdlj4X.png" alt=""><br>出现了所有的DBMS，上面一行菜单栏也出现了database这个选项<br><img src="https://i.imgur.com/BHeWP5B.png" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">powerdesigner</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/PowerDesigner中DBMS设置的问题/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ssh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/ssh/">ssh依赖</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/ssh/" class="archive-article-date">
+  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>ssh依赖</p>
+<pre><code>&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;groupId&gt;io&lt;/groupId&gt;
+  &lt;artifactId&gt;ssh&lt;/artifactId&gt;
+  &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+  &lt;dependencies&gt;
+     &lt;!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-core --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.struts&lt;/groupId&gt;
+    &lt;artifactId&gt;struts2-core&lt;/artifactId&gt;
+    &lt;version&gt;2.3.24&lt;/version&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-spring-plugin --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.struts&lt;/groupId&gt;
+    &lt;artifactId&gt;struts2-spring-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.3.24&lt;/version&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-json-plugin --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.struts&lt;/groupId&gt;
+    &lt;artifactId&gt;struts2-json-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.3.24&lt;/version&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/org.apache.poi/poi --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;
+    &lt;artifactId&gt;poi&lt;/artifactId&gt;
+    &lt;version&gt;3.13&lt;/version&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+    &lt;artifactId&gt;hibernate-core&lt;/artifactId&gt;
+    &lt;version&gt;3.6.9.Final&lt;/version&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;mysql&lt;/groupId&gt;
+    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+    &lt;version&gt;5.1.8&lt;/version&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/junit/junit --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;junit&lt;/groupId&gt;
+    &lt;artifactId&gt;junit&lt;/artifactId&gt;
+    &lt;version&gt;4.12&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/javassist/javassist --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;javassist&lt;/groupId&gt;
+    &lt;artifactId&gt;javassist&lt;/artifactId&gt;
+    &lt;version&gt;3.11.0.GA&lt;/version&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/org.springframework/spring-orm --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-orm&lt;/artifactId&gt;
+    &lt;version&gt;3.0.5.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;commons-dbcp&lt;/groupId&gt;
+    &lt;artifactId&gt;commons-dbcp&lt;/artifactId&gt;
+    &lt;version&gt;1.4&lt;/version&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;
+    &lt;version&gt;3.0.5.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+     &lt;!-- https://mvnrepository.com/artifact/cglib/cglib --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;cglib&lt;/groupId&gt;
+    &lt;artifactId&gt;cglib&lt;/artifactId&gt;
+    &lt;version&gt;2.2.2&lt;/version&gt;
+&lt;/dependency&gt;
+
+
+  &lt;/dependencies&gt;
+
+&lt;/project&gt;
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/ssh/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-CentOS7执行yum命令出错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -251,88 +498,6 @@ Cannot find a valid baseurl for repo: base/7/x86_64
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/13/CentOS7执行yum命令出错/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-PowerDesigner中DBMS设置的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/PowerDesigner中DBMS设置的问题/">PowerDesigner中DBMS设置的问题</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/PowerDesigner中DBMS设置的问题/" class="archive-article-date">
-  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="解决PowerDesigner中DBMS设置的问题"><a href="#解决PowerDesigner中DBMS设置的问题" class="headerlink" title="解决PowerDesigner中DBMS设置的问题"></a>解决PowerDesigner中DBMS设置的问题</h2><p>在Generate Physical Data Model 的时候出现DBMS选择框全为空的情况，而且上面的菜单栏没有database这个选项<br><img src="https://i.imgur.com/oBXAV3q.png" alt=""></p>
-<p>一开始以为是软件装错了，以为是下了什么盗版软件，后来才发现是DBMS的路径有问题<br><img src="https://i.imgur.com/8wbGyAN.png" alt=""><br>直接浏览到powderdesigner的安装路径下的\Resource Files\DBMS，软件自己配的路径有点诡异，并不是正确的，点击确定之后即可<br><img src="https://i.imgur.com/uQdlj4X.png" alt=""><br>出现了所有的DBMS，上面一行菜单栏也出现了database这个选项<br><img src="https://i.imgur.com/BHeWP5B.png" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">powerdesigner</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/PowerDesigner中DBMS设置的问题/">展开全文 >></a>
         </p>
       
 
@@ -620,120 +785,6 @@ public class CorsFilter implements Filter{
 
 
   
-    <article id="post-mysql命令行创建新用户" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/mysql命令行创建新用户/">Mysql命令行添加新用户</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/mysql命令行创建新用户/" class="archive-article-date">
-  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Mysql命令行添加新用户"><a href="#Mysql命令行添加新用户" class="headerlink" title="Mysql命令行添加新用户"></a>Mysql命令行添加新用户</h1><p>创建用户root ，密码为123456，@%代表登录主机通配<br>     CREATE USER ‘root’@’%’ IDENTIFIED BY ‘123456’;<br>刷新<br>    flush privileges;<br>授权<br>    GRANT ALL ON cloud_note.* TO ‘root’@’%’;</p>
-<pre><code>mysql&gt; CREATE USER &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;123456&#39;;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql&gt; flush privileges;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql&gt; select host,user from mysql.user;
-+-----------+-----------+
-| host      | user      |
-+-----------+-----------+
-| %         | root      |
-| localhost | mysql.sys |
-| localhost | mysqlxsys |
-| localhost | root      |
-+-----------+-----------+
-4 rows in set (0.00 sec)
-
-mysql&gt; GRANT ALL ON cloud_note.* TO &#39;root&#39;@&#39;%&#39;;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql&gt; flush privileges;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql&gt; select host,user from mysql.user;
-+-----------+-----------+
-| host      | user      |
-+-----------+-----------+
-| %         | root      |
-| localhost | mysql.sys |
-| localhost | mysqlxsys |
-| localhost | root      |
-+-----------+-----------+
-4 rows in set (0.00 sec)
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/mysql命令行创建新用户/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-mysql报错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -977,19 +1028,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1001,11 +1048,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1013,11 +1060,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1025,11 +1072,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -171,6 +171,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-FTP上传文件0字节问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/17/FTP上传文件0字节问题/">FTP上传文件0字节问题</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/17/FTP上传文件0字节问题/" class="archive-article-date">
+  	<time datetime="2018-09-16T16:47:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-17</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- read more-->
+<h2 id="FTP上传文件0字节问题"><a href="#FTP上传文件0字节问题" class="headerlink" title="FTP上传文件0字节问题"></a>FTP上传文件0字节问题</h2><p>这几天在做一个ftp图片服务器，使用的是vsftp客户端，按照一套流程下来，基本搭建完毕，在Windows窗口上传文件正常，但是到了在Java程序中就出现了问题，上传图片的时候并不会报错，而是会卡住大概30秒左右，接着返回false，并不会抛出异常。一开始在想会不会是服务器没搭好，但是逐步排查下来，并没有发现问题，并且如果是服务器本身出现了问题，那么Windows命令行也应该不能上传成功，但是窗口上传成功了，说明了服务器的搭建应该是没有问题的。后来怀疑是自己的代码有问题，但是去参考了一番，发现并没有什么异样，十分懵逼。<br><br>然后Google发现这样一个问题：<br><br>VSFTP有两种模式：pasv模式与port模式，也就是我们所说的主动和被动模式<br><br>
+        
+          <a class="article-more-a" href="/2018/09/17/FTP上传文件0字节问题/#more">read more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/17/FTP上传文件0字节问题/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-A-Thousand-Years" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -611,136 +695,6 @@ Commercial support is available at
 
 
   
-    <article id="post-Linux网络测试和测试工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/08/Linux网络测试和测试工具/">Linux网络测试和测试工具</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/08/Linux网络测试和测试工具/" class="archive-article-date">
-  	<time datetime="2018-05-08T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-08</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="Linux网络测试和测试工具"><a href="#Linux网络测试和测试工具" class="headerlink" title="Linux网络测试和测试工具"></a>Linux网络测试和测试工具</h2><pre><code>ifconfig
-nslookup
-ping
-//跟踪路由
-traceroute
-netstat -r
-</code></pre><p>##系统启动引导器和单用户模式</p>
-<p><code>grub</code></p>
-<h2 id="守护进程"><a href="#守护进程" class="headerlink" title="守护进程"></a>守护进程</h2><p>运行在后台，直接开机启动，类似于Windows中的服务</p>
-<ul>
-<li>系统守护进程</li>
-<li>网络守护进程</li>
-</ul>
-<pre><code>ps -ef
-</code></pre><h3 id="查看守护进程优先级"><a href="#查看守护进程优先级" class="headerlink" title="查看守护进程优先级"></a>查看守护进程优先级</h3><pre><code>[root@iZwz95jk243fcqv90p12gpZ etc]# pstree
-systemd─┬─AliYunDun───15*[{AliYunDun}]
-        ├─AliYunDunUpdate───3*[{AliYunDunUpdate}]
-        ├─2*[agetty]
-        ├─aliyun-service───6*[{aliyun-service}]
-        ├─atd
-        ├─auditd───{auditd}
-        ├─crond
-        ├─dbus-daemon
-        ├─dhclient
-        ├─ntpd
-        ├─polkitd───5*[{polkitd}]
-        ├─rsyslogd───2*[{rsyslogd}]
-        ├─sshd───sshd───bash───pstree
-        ├─systemd-journal
-        ├─systemd-logind
-        ├─systemd-udevd
-        └─tuned───4*[{tuned}]
-</code></pre><h3 id="守护进程的操作"><a href="#守护进程的操作" class="headerlink" title="守护进程的操作"></a>守护进程的操作</h3><pre><code>service ** stop
-service ** start
-service ** restart
-service ** reload  //重新读取配置，不会重启
-</code></pre><h3 id="设置守护进程"><a href="#设置守护进程" class="headerlink" title="设置守护进程"></a>设置守护进程</h3><pre><code>ntsysv
-</code></pre><p>Centos6</p>
-<pre><code>chkconfig
-chkconfig --list
-</code></pre><p>Centos7</p>
-<pre><code>systemctl 
-systemctl list-unit-files
-</code></pre><h2 id="系统时间同步"><a href="#系统时间同步" class="headerlink" title="系统时间同步"></a>系统时间同步</h2><pre><code>date 
-hwclock
-ntpd
-</code></pre><h2 id="crond"><a href="#crond" class="headerlink" title="crond"></a>crond</h2><p><img src="https://i.imgur.com/ZI1QNZ1.png" alt=""></p>
-<p><img src="https://i.imgur.com/ch8mqZa.png" alt=""></p>
-<p><img src="https://i.imgur.com/qFYMS1n.png" alt=""></p>
-<p><img src="https://i.imgur.com/MyaBuKy.png" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/08/Linux网络测试和测试工具/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
@@ -887,19 +841,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -911,11 +861,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -923,11 +873,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -935,11 +885,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
