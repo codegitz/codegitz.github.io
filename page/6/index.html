@@ -171,6 +171,239 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Nginx安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/09/Nginx安装/">Nginx的安装及其使用</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/09/Nginx安装/" class="archive-article-date">
+  	<time datetime="2018-09-09T14:32:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-09</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><!-- read more-->
+<h1 id="Nginx的安装及其启动"><a href="#Nginx的安装及其启动" class="headerlink" title="Nginx的安装及其启动"></a>Nginx的安装及其启动</h1><h2 id="1-nginx安装环境"><a href="#1-nginx安装环境" class="headerlink" title="1 nginx安装环境"></a>1 nginx安装环境</h2><p>nginx是C语言开发，建议在linux上运行，本教程使用阿里云服务器Centos6.8作为安装环境。<br><br><strong>gcc</strong><br><br>安装nginx需要先将官网下载的源码进行编译，编译依赖gcc环境，如果没有gcc环境，需要安装gcc：<br><br><code>yum install gcc-c++</code> <br><br><strong>PCRE</strong><br><br>PCRE(Perl Compatible Regular Expressions)是一个Perl库，包括 perl 兼容的正则表达式库。nginx的http模块使用pcre来解析正则表达式，所以需要在linux上安装pcre库。<br><br><code>yum install -y pcre pcre-devel</code><br><br>注：pcre-devel是使用pcre开发的一个二次开发库。nginx也需要此库。<br><strong>zlib</strong><br><br>zlib库提供了很多种压缩和解压缩的方式，nginx使用zlib对http包的内容进行gzip，所以需要在linux上安装zlib库。<br><br><code>yum install -y zlib zlib-devel</code><br></p>
+<p><strong>openssl</strong><br><br>OpenSSL 是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及SSL协议，并提供丰富的应用程序供测试或其它目的使用。<br><br>nginx不仅支持http协议，还支持https（即在ssl协议上传输http），所以需要在linux安装openssl库。<br><br><code>yum install -y openssl openssl-devel</code><br></p>
+<h2 id="2-编译安装"><a href="#2-编译安装" class="headerlink" title="2 编译安装"></a>2 编译安装</h2><p>将nginx-1.8.0.tar.gz拷贝至linux服务器。</p>
+<p>解压：<br><br>    tar -zxvf nginx-1.8.0.tar.gz<br>解压之后目录如下：<br></p>
+<pre><code>[root@iZwz9c6u1iybgf3f7s8cg6Z ~]# ll
+total 820
+drwxr-xr-x 8 1001 1001   4096 Apr 21  2015 nginx-1.8.0
+-rw-r--r-- 1 root root 832104 Sep  9 11:52   nginx-1.8.0.tar.gz
+</code></pre><p>进入解压目录：<br><br>    cd nginx-1.8.0</p>
+<p>1、    configure<br><br>./configure –help查询详细参数<br></p>
+<p>参数设置如下：<br></p>
+<pre><code>./configure \
+--prefix=/usr/local/nginx \
+--pid-path=/var/run/nginx/nginx.pid \
+--lock-path=/var/lock/nginx.lock \
+--error-log-path=/var/log/nginx/error.log \
+--http-log-path=/var/log/nginx/access.log \
+--with-http_gzip_static_module \
+--http-client-body-temp-path=/var/temp/nginx/client \
+--http-proxy-temp-path=/var/temp/nginx/proxy \
+--http-fastcgi-temp-path=/var/temp/nginx/fastcgi \
+--http-uwsgi-temp-path=/var/temp/nginx/uwsgi \
+--http-scgi-temp-path=/var/temp/nginx/scgi
+</code></pre><p><img src="https://i.imgur.com/6imQ4kI.png" alt=""><br>执行完之后会生成Makefile文件<br><img src="https://i.imgur.com/ysJKB8Y.png" alt=""><br><br><br>注意：上边将临时文件目录指定为/var/temp/nginx，需要在/var下创建temp及nginx目录</p>
+<p>2、    编译安装<br><br>    make<br><br>    make  install<br><br>安装成功，查看Nginx<br><br><img src="https://i.imgur.com/7gWlD3g.png" alt="">    </p>
+<h2 id="3-启动nginx"><a href="#3-启动nginx" class="headerlink" title="3 启动nginx"></a>3 启动nginx</h2><p>默认安装路径为/usr/local/nginx<br></p>
+<pre><code>cd /usr/local/nginx/sbin/
+./nginx
+</code></pre><p><img src="https://i.imgur.com/sJBnCg9.png" alt=""></p>
+<p>我这里启动遇到了问题，因为上边将临时文件目录指定为/var/temp/nginx,需要新建路径/var/temp/nginx<br><br><img src="https://i.imgur.com/ZG3mweD.png" alt=""><br><strong>注意：执行./nginx启动nginx，这里可以-c指定加载的nginx配置文件，如下：<br>./nginx -c /usr/local/nginx/conf/nginx.conf<br>如果不指定-c，nginx在启动时默认加载conf/nginx.conf文件，此文件的地址也可以在编译安装nginx时指定./configure的参数（–conf-path= 指向配置文件（nginx.conf））</strong></p>
+<p>成功启动，但是在浏览器无法访问，阿里的服务器，安全组跑不了干系，主要有两个问题<br></p>
+<ol>
+<li>服务器外围：阿里云安全组设置<br></li>
+<li>服务器内部：防火墙设置<br></li>
+</ol>
+<p>首先配置安全组规则：<br><br><img src="https://i.imgur.com/FZrAskX.png" alt=""><br>然后关掉防火墙：<br></p>
+<pre><code>[root@iZwz9c6u1iybgf3f7s8cg6Z sbin]# iptables -P INPUT ACCEPT
+[root@iZwz9c6u1iybgf3f7s8cg6Z sbin]# iptables -F
+</code></pre><p>用curl命令查看，可以访问Nginx<br></p>
+<pre><code>[root@iZwz9c6u1iybgf3f7s8cg6Z nginx-1.8.0]# curl http://47.107.71.209/
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>用浏览器访问也可以访问成功<br><img src="https://i.imgur.com/vJrK0Lg.png" alt=""></p>
+<h2 id="4-停止nginx"><a href="#4-停止nginx" class="headerlink" title="4 停止nginx"></a>4 停止nginx</h2><p>方式1，快速停止：<br>cd /usr/local/nginx/sbin<br>./nginx -s stop<br>此方式相当于先查出nginx进程id再使用kill命令强制杀掉进程。</p>
+<p>方式2，完整停止(建议使用)：<br>cd /usr/local/nginx/sbin<br>./nginx -s quit<br>此方式停止步骤是待nginx进程处理任务完毕进行停止。</p>
+<h2 id="5-重启nginx"><a href="#5-重启nginx" class="headerlink" title="5 重启nginx"></a>5 重启nginx</h2><p>方式1，先停止再启动（建议使用）：<br>对nginx进行重启相当于先停止nginx再启动nginx，即先执行停止命令再执行启动命令。<br>如下：<br>./nginx -s quit<br>./nginx</p>
+<p>方式2，重新加载配置文件：<br>当nginx的配置文件nginx.conf修改后，要想让配置生效需要重启nginx，使用-s reload不用先停止nginx再启动nginx即可将配置信息在nginx中生效，如下：<br>./nginx -s reload</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里的安装都比较简单，可能遇到的问题就是外网无法访问，所以需要在控制台配置安全组规则，放行对应的端口，在防火墙也需要进行放行。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/09/Nginx安装/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-messi" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/20/messi/">Messi</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/20/messi/" class="archive-article-date">
+  	<time datetime="2018-06-20T14:32:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-20</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p><img src="https://i.imgur.com/orNX4PP.jpg" alt=""><br><img src="https://i.imgur.com/yfjb8hp.png" alt=""><br><img src="https://i.imgur.com/NnzjuXD.png" alt=""><br><img src="https://i.imgur.com/NcfqyME.png" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Messi</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/20/messi/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Linux网络测试和测试工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -476,851 +709,9 @@ ntpd
 
 
   
-    <article id="post-Linux安装软件的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/03/Linux安装软件的方法/">Linux安装软件的方法</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/03/Linux安装软件的方法/" class="archive-article-date">
-  	<time datetime="2018-05-03T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-03</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Linux安装软件的方法"><a href="#Linux安装软件的方法" class="headerlink" title="Linux安装软件的方法"></a>Linux安装软件的方法</h1><p><img src="https://i.imgur.com/8DV5gsH.png" alt=""></p>
-<p><img src="https://i.imgur.com/C7z1GhS.png" alt=""></p>
-<p><img src="https://i.imgur.com/ncVAsrv.png" alt=""></p>
-<p><img src="https://i.imgur.com/fr23sYz.png" alt=""></p>
-<p><img src="https://i.imgur.com/WPtVM8s.png" alt=""></p>
-<h2 id="yum和rpm"><a href="#yum和rpm" class="headerlink" title="yum和rpm"></a>yum和rpm</h2><p><img src="https://i.imgur.com/GcdpYHw.png" alt=""></p>
-<p><img src="https://i.imgur.com/mWDkLrc.png" alt=""></p>
-<p><img src="https://i.imgur.com/aPSynvN.png" alt=""></p>
-<p><img src="https://i.imgur.com/TDwalAv.png" alt=""></p>
-<p><img src="https://i.imgur.com/nWFbPWy.png" alt=""></p>
-<p><img src="https://i.imgur.com/IUN2QCm.png" alt=""></p>
-<p><img src="https://i.imgur.com/demT7MD.png" alt=""></p>
-<p><img src="https://i.imgur.com/9aEa82D.png" alt=""></p>
-<p><img src="https://i.imgur.com/6qLjIZA.png" alt=""></p>
-<p><img src="https://i.imgur.com/AmxD94J.png" alt=""></p>
-<p><img src="https://i.imgur.com/q9GdPkp.png" alt=""></p>
-<p><img src="https://i.imgur.com/2ssOvIa.png" alt=""></p>
-<p><img src="https://i.imgur.com/tzyh99L.png" alt=""></p>
-<p><img src="https://i.imgur.com/SANreGG.png" alt=""></p>
-<p><img src="https://i.imgur.com/sowkWrO.png" alt=""></p>
-<p><img src="https://i.imgur.com/axIcN6I.png" alt=""></p>
-<p><img src="https://i.imgur.com/qBHzUzg.png" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/03/Linux安装软件的方法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-升级Centos7" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/01/升级Centos7/">升级记录</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/01/升级Centos7/" class="archive-article-date">
-  	<time datetime="2018-05-01T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-01</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><pre><code>[root@iZwz95jk243fcqv90p12gpZ /]# 
-Last login: Tue May  1 13:29:41 2018 from 183.236.19.205
-
-Welcome to Alibaba Cloud Elastic Compute Service !
-
-[root@iZwz95jk243fcqv90p12gpZ ~]# vi /etc/yum.repos.d/upgradetool.repo
-[root@iZwz95jk243fcqv90p12gpZ ~]# cat /etc/yum.repos.d/upgradetool.repo
-[upg]
-name=CentOS-$releasever - Upgrade Tool
-baseurl=http://dev.centos.org/centos/6/upg/x86_64/
-gpgcheck=1
-enabled=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
-[root@iZwz95jk243fcqv90p12gpZ ~]# yum erase openscap
-Loaded plugins: fastestmirror
-Setting up Remove Process
-Resolving Dependencies
---&gt; Running transaction check
----&gt; Package openscap.x86_64 0:1.2.13-2.el6 will be erased
---&gt; Processing Dependency: openscap(x86-64) &gt;= 0.9.3-1 for package: preupgrade-assistant-1.0
-.2-36.0.1.el6.centos.x86_64
---&gt; Running transaction check
----&gt; Package preupgrade-assistant.x86_64 0:1.0.2-36.0.1.el6.centos will be erased
---&gt; Processing Dependency: preupgrade-assistant &gt;= 1.0.2-4 for package: 1:redhat-upgrade-too
-l-0.7.22-3.el6.centos.noarch
---&gt; Processing Dependency: preupgrade-assistant(x86-64) &gt;= 1.0.2-14 for package: preupgrade-
-assistant-contents-0.5.14-1.el6.centos.noarch
---&gt; Running transaction check
----&gt; Package preupgrade-assistant-contents.noarch 0:0.5.14-1.el6.centos will be erased
----&gt; Package redhat-upgrade-tool.noarch 1:0.7.22-3.el6.centos will be erased
---&gt; Finished Dependency Resolution
-
-Dependencies Resolved
-
-============================================================================================
- Package                          Arch      Version                       Repository   Size
-============================================================================================
-Removing:
- openscap                         x86_64    1.2.13-2.el6                  @base        56 M
-Removing for dependencies:
- preupgrade-assistant             x86_64    1.0.2-36.0.1.el6.centos       @upgrade    1.6 M
- preupgrade-assistant-contents    noarch    0.5.14-1.el6.centos           @upgrade    4.7 M
- redhat-upgrade-tool              noarch    1:0.7.22-3.el6.centos         @upgrade    251 k
-
-Transaction Summary
-============================================================================================
-Remove        4 Package(s)
-
-Installed size: 62 M
-Is this ok [y/N]: y
-Downloading Packages:
-Running rpm_check_debug
-Running Transaction Test
-Transaction Test Succeeded
-Running Transaction
-  Erasing    : 1:redhat-upgrade-tool-0.7.22-3.el6.centos.noarch                         1/4 
-  Erasing    : preupgrade-assistant-contents-0.5.14-1.el6.centos.noarch                 2/4 
-  Erasing    : preupgrade-assistant-1.0.2-36.0.1.el6.centos.x86_64                      3/4 
-  Erasing    : openscap-1.2.13-2.el6.x86_64                                             4/4 
-  Verifying  : openscap-1.2.13-2.el6.x86_64                                             1/4 
-  Verifying  : preupgrade-assistant-contents-0.5.14-1.el6.centos.noarch                 2/4 
-  Verifying  : 1:redhat-upgrade-tool-0.7.22-3.el6.centos.noarch                         3/4 
-  Verifying  : preupgrade-assistant-1.0.2-36.0.1.el6.centos.x86_64                      4/4 
-
-Removed:
-  openscap.x86_64 0:1.2.13-2.el6                                                            
-
-Dependency Removed:
-  preupgrade-assistant.x86_64 0:1.0.2-36.0.1.el6.centos                                     
-  preupgrade-assistant-contents.noarch 0:0.5.14-1.el6.centos                                
-  redhat-upgrade-tool.noarch 1:0.7.22-3.el6.centos                                          
-
-Complete!
-[root@iZwz95jk243fcqv90p12gpZ ~]# yum install http://dev.centos.org/centos/6/upg/x86_64/Pack
-ages/openscap-1.0.8-1.0.1.el6.centos.x86_64.rpm
-Loaded plugins: fastestmirror
-Setting up Install Process
-openscap-1.0.8-1.0.1.el6.centos.x86_64.rpm                           | 2.9 MB     01:54     
-Examining /var/tmp/yum-root-q6cYIG/openscap-1.0.8-1.0.1.el6.centos.x86_64.rpm: openscap-1.0.
-8-1.0.1.el6.centos.x86_64
-Marking /var/tmp/yum-root-q6cYIG/openscap-1.0.8-1.0.1.el6.centos.x86_64.rpm to be installed
-Loading mirror speeds from cached hostfile
-upg                                                                  | 1.9 kB     00:00     
-upg/primary_db                                                       |  14 kB     00:00     
-Resolving Dependencies
---&gt; Running transaction check
----&gt; Package openscap.x86_64 0:1.0.8-1.0.1.el6.centos will be installed
---&gt; Finished Dependency Resolution
-
-Dependencies Resolved
-
-============================================================================================
- Package   Arch    Version                   Repository                                Size
-============================================================================================
-Installing:
- openscap  x86_64  1.0.8-1.0.1.el6.centos    /openscap-1.0.8-1.0.1.el6.centos.x86_64   42 M
-
-Transaction Summary
-============================================================================================
-Install       1 Package(s)
-
-Total size: 42 M
-Installed size: 42 M
-Is this ok [y/N]: y
-Downloading Packages:
-Running rpm_check_debug
-Running Transaction Test
-Transaction Test Succeeded
-Running Transaction
-  Installing : openscap-1.0.8-1.0.1.el6.centos.x86_64                                   1/1 
-  Verifying  : openscap-1.0.8-1.0.1.el6.centos.x86_64                                   1/1 
-
-Installed:
-  openscap.x86_64 0:1.0.8-1.0.1.el6.centos                                                  
-
-Complete!
-[root@iZwz95jk243fcqv90p12gpZ ~]# yum install redhat-upgrade-tool preupgrade-assistant-conte
-nts
-Loaded plugins: fastestmirror
-Setting up Install Process
-Loading mirror speeds from cached hostfile
-Resolving Dependencies
---&gt; Running transaction check
----&gt; Package preupgrade-assistant-contents.noarch 0:0.5.14-1.el6.centos will be installed
---&gt; Processing Dependency: preupgrade-assistant(x86-64) &gt;= 1.0.2-14 for package: preupgrade-
-assistant-contents-0.5.14-1.el6.centos.noarch
----&gt; Package redhat-upgrade-tool.noarch 1:0.7.22-3.el6.centos will be installed
---&gt; Running transaction check
----&gt; Package preupgrade-assistant.x86_64 0:1.0.2-36.0.1.el6.centos will be installed
---&gt; Finished Dependency Resolution
-
-Dependencies Resolved
-
-============================================================================================
- Package                            Arch        Version                      Repository
-                                                                                       Size
-============================================================================================
-Installing:
- preupgrade-assistant-contents      noarch      0.5.14-1.el6.centos          upg      917 k
- redhat-upgrade-tool                noarch      1:0.7.22-3.el6.centos        upg       85 k
-Installing for dependencies:
- preupgrade-assistant               x86_64      1.0.2-36.0.1.el6.centos      upg      439 k
-
-Transaction Summary
-============================================================================================
-Install       3 Package(s)
-
-Total download size: 1.4 M
-Installed size: 6.5 M
-Is this ok [y/N]: y
-Downloading Packages:
-(1/3): preupgrade-assistant-1.0.2-36.0.1.el6.centos.x86_64.rpm       | 439 kB     00:17     
-(2/3): preupgrade-assistant-contents-0.5.14-1.el6.centos.noarch.rpm  | 917 kB     00:31     
-(3/3): redhat-upgrade-tool-0.7.22-3.el6.centos.noarch.rpm            |  85 kB     00:01     
---------------------------------------------------------------------------------------------
-Total                                                        21 kB/s | 1.4 MB     01:08     
-Running rpm_check_debug
-Running Transaction Test
-Transaction Test Succeeded
-Running Transaction
-  Installing : preupgrade-assistant-1.0.2-36.0.1.el6.centos.x86_64                      1/3 
-  Installing : 1:redhat-upgrade-tool-0.7.22-3.el6.centos.noarch                         2/3 
-  Installing : preupgrade-assistant-contents-0.5.14-1.el6.centos.noarch                 3/3 
-  Verifying  : preupgrade-assistant-1.0.2-36.0.1.el6.centos.x86_64                      1/3 
-  Verifying  : 1:redhat-upgrade-tool-0.7.22-3.el6.centos.noarch                         2/3 
-  Verifying  : preupgrade-assistant-contents-0.5.14-1.el6.centos.noarch                 3/3 
-
-Installed:
-  preupgrade-assistant-contents.noarch 0:0.5.14-1.el6.centos                                
-  redhat-upgrade-tool.noarch 1:0.7.22-3.el6.centos                                          
-
-Dependency Installed:
-  preupgrade-assistant.x86_64 0:1.0.2-36.0.1.el6.centos                                     
-
-Complete!
-[root@iZwz95jk243fcqv90p12gpZ ~]# rpm --import http://vault.centos.org/centos/7.2.1511/os/x8
-6_64/RPM-GPG-KEY-CentOS-7
-[root@iZwz95jk243fcqv90p12gpZ ~]# centos-upgrade-tool-cli --network 7 --instrepo=http://vaul
-t.centos.org/centos/7.2.1511/os/x86_64/
-setting up repos...
-cmdline-instrepo                                                     | 3.6 kB     00:00     
-cmdline-instrepo/primary_db                                          | 5.3 MB     00:03     
-epel                                                                 | 4.7 kB     00:00     
-epel/primary_db                                                      | 6.0 MB     00:00     
-upg                                                                  | 1.9 kB     00:00     
-upg/primary_db                                                       |  14 kB     00:00     
-upgrade                                                              | 1.9 kB     00:00     
-upgrade/primary_db                                                   |  14 kB     00:00     
-No upgrade available for the following repos: base extras updates
-.treeinfo                                                            | 1.1 kB     00:00     
-Preupgrade assistant risk check found risks for this upgrade.
-You can run preupg --riskcheck --verbose to view these risks.
-Addressing high risk issues is required before the in-place upgrade
-and ignoring these risks may result in a broken upgrade and unsupported upgrade.
-Please backup your data.
-
-List of issues:
-INPLACERISK: HIGH: We detected some non-CentOS signed packages, you can find the list in [li
-nk:./kickstart/noncentospkgs]. You need to handle them yourself!
-INPLACERISK: HIGH: After upgrading to CentOS 7 there are still some el6 packages left. Add -
--cleanup-post option to redhat-upgrade-tool if you want to remove them automatically.
-INPLACERISK: HIGH: There were changes in SELinux policies between CentOS 6 and CentOS 7. Ple
-ase, check solution in order to resolve this issue.
-INPLACERISK: HIGH: The service blk-availability on CentOS 7 is disabled by default. Enable t
-hem via commands: systemctl enable blk-availability &amp;&amp; systemctl start blk-availability.serv
-ice .
-INPLACERISK: HIGH: The service ip6tables on CentOS 7 is disabled by default. Enable them via
- commands: systemctl enable ip6tables &amp;&amp; systemctl start ip6tables.service .
-INPLACERISK: HIGH: The service iscsi on CentOS 7 is disabled by default. Enable them via com
-mands: systemctl enable iscsi &amp;&amp; systemctl start iscsi.service .
-INPLACERISK: HIGH: The service iscsid on CentOS 7 is disabled by default. Enable them via co
-mmands: systemctl enable iscsid &amp;&amp; systemctl start iscsid.service .
-INPLACERISK: HIGH: The service netfs on CentOS 7 is disabled by default. Enable them via com
-mands: systemctl enable netfs &amp;&amp; systemctl start netfs.service .
-INPLACERISK: HIGH: The service network on CentOS 7 is disabled by default. Enable them via c
-ommands: systemctl enable network &amp;&amp; systemctl start network.service .
-INPLACERISK: HIGH: The service ntpd on CentOS 7 is disabled by default. Enable them via comm
-ands: systemctl enable ntpd &amp;&amp; systemctl start ntpd.service .
-INPLACERISK: HIGH: The service postfix on CentOS 7 is disabled by default. Enable them via c
-ommands: systemctl enable postfix &amp;&amp; systemctl start postfix.service .
-INPLACERISK: HIGH: The service udev-post on CentOS 7 is disabled by default. Enable them via
- commands: systemctl enable udev-post &amp;&amp; systemctl start udev-post.service .
-INPLACERISK: MEDIUM: We detected some packages installed on the system were removed (obsolet
-ed) between CentOS 6 and CentOS 7. This may break the functionality of the packages dependin
-g on them.
-INPLACERISK: MEDIUM: We detected some packages installed on the system were removed between 
-CentOS 6 and CentOS 7. This may break the functionality of the packages depending on them.
-INPLACERISK: MEDIUM: Package libudev not provided by its replacement systemd-libs. In-place 
-upgrade might not work properly, will be finished by postupgrade script!
-INPLACERISK: MEDIUM: Package coreutils-libs not provided by its replacement coreutils. In-pl
-ace upgrade might not work properly, will be finished by postupgrade script!
-INPLACERISK: MEDIUM: having one of [nss kpartx device-mapper-multipath nss-tools tzdata open
-scap libdrm nspr ca-certificates mdadm audit-libs nss-sysinit device-mapper-multipath-libs a
-udit elfutils-libelf libpciaccess nss-util openldap] package installed breaks upgrade
-INPLACERISK: MEDIUM: a number of default configuation settings have changed in CentOS7. User
-s should verify that their devices are still optimally configured
-INPLACERISK: MEDIUM:  We detected some soname bumps in the libraries installed on the system
-. This may break the functionality of some of your 3rd party applications. They may need reb
-uild. Please check their requirements.
-INPLACERISK: MEDIUM:  We detected some .so libraries installed on the system were removed be
-tween CentOS 6 and CentOS 7. This may break the functionality of some of your 3rd party appl
-ications.
-INPLACERISK: MEDIUM: The service aegis is not handled by any package and will not be automat
-ically enabled after in-place upgrade.
-INPLACERISK: MEDIUM: The service agentwatch is not handled by any package and will not be au
-tomatically enabled after in-place upgrade.
-INPLACERISK: MEDIUM: The service cloud-config is not handled by any package and will not be 
-automatically enabled after in-place upgrade.
-INPLACERISK: MEDIUM: The service cloud-final is not handled by any package and will not be a
-utomatically enabled after in-place upgrade.
-INPLACERISK: MEDIUM: The service cloud-init is not handled by any package and will not be au
-tomatically enabled after in-place upgrade.
-INPLACERISK: MEDIUM: The service cloud-init-local is not handled by any package and will not
- be automatically enabled after in-place upgrade.
-INPLACERISK: MEDIUM: The service cloud-init-upgrade is not handled by any package and will n
-ot be automatically enabled after in-place upgrade.
-INPLACERISK: MEDIUM: The service ecs_mq-service is not handled by any package and will not b
-e automatically enabled after in-place upgrade.
-INPLACERISK: MEDIUM: The service eni-service is not handled by any package and will not be a
-utomatically enabled after in-place upgrade.
-INPLACERISK: SLIGHT: We detected some files where modifications are not tracked in the rpms.
- You may need to check their functionality after successful upgrade.
-INPLACERISK: SLIGHT: We detected some files untracked by rpms. Some of these may need manual
- check/migration after redhat-upgrade-tool and/or can cause conflicts or troubles during the
- installation. Try to reduce unnecessary untracked files before running redhat-upgrade-tool.
-INPLACERISK: SLIGHT: We detected some packages installed on the system changed their name be
-tween CentOS 6 and CentOS 7. Although they should be compatible, monitoring after the update
- is recommended.
-INPLACERISK: SLIGHT: export shell commands will be deleted from /etc/sysconfig/sshd
-INPLACERISK: SLIGHT: Some binaries untracked by RPM were discovered on the system and may ne
-ed rebuild after upgrade.
-INPLACERISK: SLIGHT: Some scripts untracked by RPM were discovered on the system and may not
- work properly after upgrade.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/Cheetah is not owned by any RPM packag
-e.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/Cheetah-2.4.4-py2.6.egg-info is not ow
-ned by any RPM package.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/Markdown-2.6.9-py2.6.egg-info is not o
-wned by any RPM package.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/MarkupSafe-1.0-py2.6.egg-info is not o
-wned by any RPM package.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/argparse-1.4.0.dist-info is not owned 
-by any RPM package.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/certifi is not owned by any RPM packag
-e.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/certifi-2017.7.27.1.dist-info is not o
-wned by any RPM package.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/chardet is not owned by any RPM packag
-e.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/chardet-3.0.4.dist-info is not owned b
-y any RPM package.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/cloud_init-0.7.6-py2.6.egg is not owne
-d by any RPM package.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/configobj-5.0.6-py2.6.egg-info is not 
-owned by any RPM package.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/idna is not owned by any RPM package.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/idna-2.6.dist-info is not owned by any
- RPM package.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/jsonpatch-1.16.dist-info is not owned 
-by any RPM package.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/jsonpointer-1.10.dist-info is not owne
-d by any RPM package.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/markdown is not owned by any RPM packa
-ge.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/markupsafe is not owned by any RPM pac
-kage.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/oauth is not owned by any RPM package.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/oauth-1.0.1-py2.6.egg-info is not owne
-d by any RPM package.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/pip is owned by an RPM package that wa
-s not signed by CentOS.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/pip-9.0.1.dist-info is not owned by an
-y RPM package.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/pkg_resources is not owned by any RPM 
-package.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/prettytable-0.7.2-py2.6.egg-info is no
-t owned by any RPM package.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/requests is not owned by any RPM packa
-ge.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/requests-2.18.4.dist-info is not owned
- by any RPM package.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/setuptools-36.2.7.dist-info is not own
-ed by any RPM package.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/six-1.10.0.dist-info is not owned by a
-ny RPM package.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/urllib3 is not owned by any RPM packag
-e.
-INPLACERISK: SLIGHT: /usr/lib/python2.6/site-packages/urllib3-1.22.dist-info is not owned by
- any RPM package.
-INPLACERISK: SLIGHT: /usr/lib64/python2.6/site-packages/Jinja2-2.9.6.dist-info is not owned 
-by any RPM package.
-INPLACERISK: SLIGHT: /usr/lib64/python2.6/site-packages/PyYAML-3.12-py2.6.egg-info is not ow
-ned by any RPM package.
-INPLACERISK: SLIGHT: /usr/lib64/python2.6/site-packages/jinja2 is not owned by any RPM packa
-ge.
-INPLACERISK: SLIGHT: /usr/lib64/python2.6/site-packages/yaml is not owned by any RPM package
-.
-Continue with the upgrade [Y/N]? y
-getting boot images...
-vmlinuz-redhat-upgrade-tool                                          | 4.9 MB     00:02     
-initramfs-redhat-upgrade-tool.img                                    |  42 MB     00:06     
-setting up update...
-finding updates 100% [=====================================================================]
-(1/310): acl-2.2.51-12.el7.x86_64.rpm                                |  81 kB     00:00     
-(2/310): at-3.1.13-20.el7.x86_64.rpm                                 |  50 kB     00:00     
-(3/310): attr-2.4.46-12.el7.x86_64.rpm                               |  66 kB     00:00     
-(4/310): authconfig-6.2.8-10.el7.x86_64.rpm                          | 402 kB     00:01     
-(5/310): autogen-libopts-5.18-5.el7.x86_64.rpm                       |  66 kB     00:00     
-(6/310): avahi-libs-0.6.31-15.el7.x86_64.rpm                         |  61 kB     00:00     
-(7/310): basesystem-10.0-7.el7.centos.noarch.rpm                     | 5.0 kB     00:00     
-(8/310): bash-4.2.46-19.el7.x86_64.rpm                               | 1.0 MB     00:14     
-(9/310): bc-1.06.95-13.el7.x86_64.rpm                                | 115 kB     00:01     
-(10/310): bind-libs-lite-9.9.4-29.el7.x86_64.rpm                     | 723 kB     00:18     
-(11/310): bind-license-9.9.4-29.el7.noarch.rpm                       |  81 kB     00:01     
-(12/310): binutils-2.23.52.0.1-55.el7.x86_64.rpm                     | 5.0 MB     02:13     
-(13/310): bridge-utils-1.5-9.el7.x86_64.rpm                          |  32 kB     00:01     
-(14/310): bzip2-1.0.6-13.el7.x86_64.rpm                              |  52 kB     00:00     
-(15/310): bzip2-libs-1.0.6-13.el7.x86_64.rpm                         |  40 kB     00:00     
-(16/310): centos-logos-70.0.6-3.el7.centos.noarch.rpm                |  21 MB     07:11     
-(17/310): centos-release-7-2.1511.el7.centos.2.10.x86_64.rpm         |  23 kB     00:00     
-(18/310): checkpolicy-2.1.12-6.el7.x86_64.rpm                        | 247 kB     00:00     
-(19/310): chkconfig-1.3.61-5.el7.x86_64.rpm                          | 172 kB     00:00     
-(20/310): coreutils-8.22-15.el7.x86_64.rpm                           | 3.2 MB     00:01     
-(21/310): cpio-2.11-24.el7.x86_64.rpm                                | 210 kB     00:00     
-(22/310): cpp-4.8.5-4.el7.x86_64.rpm                                 | 5.9 MB     00:00     
-(23/310): cracklib-2.9.0-11.el7.x86_64.rpm                           |  80 kB     00:00     
-(24/310): cracklib-dicts-2.9.0-11.el7.x86_64.rpm                     | 3.6 MB     00:00     
-(25/310): cronie-1.4.11-14.el7.x86_64.rpm                            |  90 kB     00:00     
-(26/310): cronie-anacron-1.4.11-14.el7.x86_64.rpm                    |  34 kB     00:00     
-(27/310): crontabs-1.11-6.20121102git.el7.noarch.rpm                 |  13 kB     00:00     
-(28/310): cryptsetup-1.6.7-1.el7.x86_64.rpm                          | 119 kB     00:00     
-(29/310): cryptsetup-libs-1.6.7-1.el7.x86_64.rpm                     | 182 kB     00:00     
-(30/310): cups-client-1.6.3-22.el7.x86_64.rpm                        | 148 kB     00:00     
-(31/310): cups-libs-1.6.3-22.el7.x86_64.rpm                          | 355 kB     00:00     
-(32/310): curl-7.29.0-25.el7.centos.x86_64.rpm                       | 263 kB     00:00     
-(33/310): cvs-1.11.23-35.el7.x86_64.rpm                              | 581 kB     00:00     
-(34/310): cyrus-sasl-2.1.26-19.2.el7.x86_64.rpm                      |  88 kB     00:00     
-(35/310): cyrus-sasl-lib-2.1.26-19.2.el7.x86_64.rpm                  | 155 kB     00:00     
-(36/310): dbus-1.6.12-13.el7.x86_64.rpm                              | 306 kB     00:00     
-(37/310): dbus-glib-0.100-7.el7.x86_64.rpm                           | 102 kB     00:00     
-(38/310): dbus-libs-1.6.12-13.el7.x86_64.rpm                         | 151 kB     00:00     
-(39/310): device-mapper-1.02.107-5.el7.x86_64.rpm                    | 251 kB     00:00     
-(40/310): device-mapper-event-1.02.107-5.el7.x86_64.rpm              | 167 kB     00:00     
-(41/310): device-mapper-event-libs-1.02.107-5.el7.x86_64.rpm         | 169 kB     00:00     
-(42/310): device-mapper-libs-1.02.107-5.el7.x86_64.rpm               | 304 kB     00:00     
-(43/310): dhclient-4.2.5-42.el7.centos.x86_64.rpm                    | 279 kB     00:00     
-(44/310): dhcp-common-4.2.5-42.el7.centos.x86_64.rpm                 | 172 kB     00:00     
-(45/310): dhcp-libs-4.2.5-42.el7.centos.x86_64.rpm                   | 128 kB     00:00     
-(46/310): diffutils-3.3-4.el7.x86_64.rpm                             | 322 kB     00:00     
-(47/310): dracut-033-359.el7.x86_64.rpm                              | 311 kB     00:00     
-(48/310): dracut-config-rescue-033-359.el7.x86_64.rpm                |  49 kB     00:00     
-(49/310): e2fsprogs-1.42.9-7.el7.x86_64.rpm                          | 697 kB     00:00     
-(50/310): e2fsprogs-libs-1.42.9-7.el7.x86_64.rpm                     | 165 kB     00:00     
-(51/310): ed-1.9-4.el7.x86_64.rpm                                    |  72 kB     00:00     
-(52/310): efibootmgr-0.8.0-7.el7.x86_64.rpm                          |  41 kB     00:00     
-(53/310): efivar-libs-0.11-1.el7.x86_64.rpm                          |  15 kB     00:00     
-(54/310): elfutils-libs-0.163-3.el7.x86_64.rpm                       | 260 kB     00:00     
-(55/310): ethtool-3.15-2.el7.x86_64.rpm                              | 113 kB     00:00     
-(56/310): expat-2.1.0-8.el7.x86_64.rpm                               |  80 kB     00:00     
-(57/310): file-5.11-31.el7.x86_64.rpm                                |  56 kB     00:00     
-(58/310): file-libs-5.11-31.el7.x86_64.rpm                           | 339 kB     00:00     
-(59/310): filesystem-3.2-20.el7.x86_64.rpm                           | 1.0 MB     00:00     
-(60/310): findutils-4.5.11-5.el7.x86_64.rpm                          | 559 kB     00:00     
-(61/310): fipscheck-1.4.1-5.el7.x86_64.rpm                           |  21 kB     00:00     
-(62/310): fipscheck-lib-1.4.1-5.el7.x86_64.rpm                       |  11 kB     00:00     
-(63/310): freetype-2.4.11-11.el7.x86_64.rpm                          | 391 kB     00:00     
-(64/310): fuse-2.9.2-6.el7.x86_64.rpm                                |  84 kB     00:00     
-(65/310): gamin-0.1.10-16.el7.x86_64.rpm                             | 128 kB     00:00     
-(66/310): gawk-4.0.2-4.el7.x86_64.rpm                                | 873 kB     00:00     
-(67/310): gcc-4.8.5-4.el7.x86_64.rpm                                 |  16 MB     00:01     
-(68/310): gdbm-1.10-8.el7.x86_64.rpm                                 |  70 kB     00:00     
-(69/310): gdbm-devel-1.10-8.el7.x86_64.rpm                           |  47 kB     00:00     
-(70/310): gettext-0.18.2.1-4.el7.x86_64.rpm                          | 959 kB     00:00     
-(71/310): gettext-libs-0.18.2.1-4.el7.x86_64.rpm                     | 435 kB     00:00     
-(72/310): glib2-2.42.2-5.el7.x86_64.rpm                              | 2.2 MB     00:00     
-(73/310): glibc-2.17-105.el7.x86_64.rpm                              | 3.6 MB     00:00     
-(74/310): glibc-common-2.17-105.el7.x86_64.rpm                       |  11 MB     00:00     
-(75/310): glibc-devel-2.17-105.el7.x86_64.rpm                        | 1.0 MB     00:00     
-(76/310): glibc-headers-2.17-105.el7.x86_64.rpm                      | 661 kB     00:00     
-(77/310): gmp-6.0.0-11.el7.x86_64.rpm                                | 280 kB     00:00     
-(78/310): gnupg2-2.0.22-3.el7.x86_64.rpm                             | 1.5 MB     00:00     
-(79/310): gpgme-1.3.2-5.el7.x86_64.rpm                               | 146 kB     00:00     
-(80/310): gpm-libs-1.20.7-5.el7.x86_64.rpm                           |  32 kB     00:00     
-(81/310): groff-1.22.2-8.el7.x86_64.rpm                              | 1.1 MB     00:00     
-(82/310): groff-base-1.22.2-8.el7.x86_64.rpm                         | 942 kB     00:00     
-(83/310): grub2-2.02-0.29.el7.centos.x86_64.rpm                      | 1.5 MB     00:00     
-(84/310): grub2-tools-2.02-0.29.el7.centos.x86_64.rpm                | 3.3 MB     00:00     
-(85/310): grubby-8.28-17.el7.x86_64.rpm                              |  65 kB     00:00     
-(86/310): gzip-1.5-8.el7.x86_64.rpm                                  | 129 kB     00:00     
-(87/310): hardlink-1.0-19.el7.x86_64.rpm                             |  14 kB     00:00     
-(88/310): hostname-3.13-3.el7.x86_64.rpm                             |  17 kB     00:00     
-(89/310): hwdata-0.252-8.1.el7.x86_64.rpm                            | 2.1 MB     00:00     
-(90/310): info-5.1-4.el7.x86_64.rpm                                  | 233 kB     00:00     
-(91/310): initscripts-9.49.30-1.el7.x86_64.rpm                       | 429 kB     00:00     
-(92/310): iproute-3.10.0-54.el7.x86_64.rpm                           | 526 kB     00:00     
-(93/310): iptables-1.4.21-16.el7.x86_64.rpm                          | 424 kB     00:00     
-(94/310): iptables-services-1.4.21-16.el7.x86_64.rpm                 |  50 kB     00:00     
-(95/310): iputils-20121221-7.el7.x86_64.rpm                          | 152 kB     00:00     
-(96/310): irqbalance-1.0.7-5.el7.x86_64.rpm                          |  44 kB     00:00     
-(97/310): iscsi-initiator-utils-6.2.0.873-32.el7.x86_64.rpm          | 418 kB     00:00     
-(98/310): iscsi-initiator-utils-iscsiuio-6.2.0.873-32.el7.x86_64.rpm |  81 kB     00:00     
-(99/310): json-c-0.11-4.el7_0.x86_64.rpm                             |  31 kB     00:00     
-(100/310): kbd-1.15.5-11.el7.x86_64.rpm                              | 345 kB     00:00     
-(101/310): kbd-legacy-1.15.5-11.el7.noarch.rpm                       | 465 kB     00:00     
-(102/310): kbd-misc-1.15.5-11.el7.noarch.rpm                         | 1.3 MB     00:00     
-(103/310): kernel-3.10.0-327.el7.x86_64.rpm                          |  33 MB     00:02     
-(104/310): kernel-headers-3.10.0-327.el7.x86_64.rpm                  | 3.2 MB     00:00     
-(105/310): keyutils-libs-1.5.8-3.el7.x86_64.rpm                      |  25 kB     00:00     
-(106/310): kmod-20-5.el7.x86_64.rpm                                  | 114 kB     00:00     
-(107/310): kmod-libs-20-5.el7.x86_64.rpm                             |  47 kB     00:00     
-(108/310): krb5-libs-1.13.2-10.el7.x86_64.rpm                        | 843 kB     00:00     
-(109/310): less-458-9.el7.x86_64.rpm                                 | 120 kB     00:00     
-(110/310): libacl-2.2.51-12.el7.x86_64.rpm                           |  27 kB     00:00     
-(111/310): libaio-0.3.109-13.el7.x86_64.rpm                          |  24 kB     00:00     
-(112/310): libassuan-2.1.0-3.el7.x86_64.rpm                          |  63 kB     00:00     
-(113/310): libattr-2.4.46-12.el7.x86_64.rpm                          |  18 kB     00:00     
-(114/310): libblkid-2.23.2-26.el7.x86_64.rpm                         | 166 kB     00:00     
-(115/310): libcap-2.22-8.el7.x86_64.rpm                              |  47 kB     00:00     
-(116/310): libcap-ng-0.7.5-4.el7.x86_64.rpm                          |  25 kB     00:00     
-(117/310): libcom_err-1.42.9-7.el7.x86_64.rpm                        |  40 kB     00:00     
-(118/310): libcroco-0.6.8-5.el7.x86_64.rpm                           | 104 kB     00:00     
-(119/310): libcurl-7.29.0-25.el7.centos.x86_64.rpm                   | 215 kB     00:00     
-(120/310): libdb-5.3.21-19.el7.x86_64.rpm                            | 718 kB     00:00     
-(121/310): libdb-cxx-5.3.21-19.el7.x86_64.rpm                        | 751 kB     00:00     
-(122/310): libdb-devel-5.3.21-19.el7.x86_64.rpm                      |  38 kB     00:00     
-(123/310): libdb-utils-5.3.21-19.el7.x86_64.rpm                      | 102 kB     00:00     
-(124/310): libedit-3.0-12.20121213cvs.el7.x86_64.rpm                 |  92 kB     00:00     
-(125/310): libestr-0.1.9-2.el7.x86_64.rpm                            |  20 kB     00:00     
-(126/310): libffi-3.0.13-16.el7.x86_64.rpm                           |  30 kB     00:00     
-(127/310): libgcc-4.8.5-4.el7.x86_64.rpm                             |  95 kB     00:00     
-(128/310): libgcrypt-1.5.3-12.el7_1.1.x86_64.rpm                     | 263 kB     00:00     
-(129/310): libgcrypt-devel-1.5.3-12.el7_1.1.x86_64.rpm               | 129 kB     00:00     
-(130/310): libgomp-4.8.5-4.el7.x86_64.rpm                            | 130 kB     00:00     
-(131/310): libgpg-error-1.12-3.el7.x86_64.rpm                        |  87 kB     00:00     
-(132/310): libgpg-error-devel-1.12-3.el7.x86_64.rpm                  |  16 kB     00:00     
-(133/310): libidn-1.28-4.el7.x86_64.rpm                              | 209 kB     00:00     
-(134/310): libmnl-1.0.3-7.el7.x86_64.rpm                             |  23 kB     00:00     
-(135/310): libmount-2.23.2-26.el7.x86_64.rpm                         | 168 kB     00:00     
-(136/310): libmpc-1.0.1-3.el7.x86_64.rpm                             |  51 kB     00:00     
-(137/310): libnetfilter_conntrack-1.0.4-2.el7.x86_64.rpm             |  53 kB     00:00     
-(138/310): libnfnetlink-1.0.1-4.el7.x86_64.rpm                       |  26 kB     00:00     
-(139/310): libpcap-1.5.3-8.el7.x86_64.rpm                            | 138 kB     00:00     
-(140/310): libpciaccess-0.13.4-2.el7.x86_64.rpm                      |  26 kB     00:00     
-(141/310): libpipeline-1.2.3-3.el7.x86_64.rpm                        |  53 kB     00:00     
-(142/310): libpwquality-1.2.3-4.el7.x86_64.rpm                       |  84 kB     00:00     
-(143/310): libselinux-2.2.2-6.el7.x86_64.rpm                         | 145 kB     00:00     
-(144/310): libselinux-utils-2.2.2-6.el7.x86_64.rpm                   | 135 kB     00:00     
-(145/310): libsemanage-2.1.10-18.el7.x86_64.rpm                      | 123 kB     00:00     
-(146/310): libsepol-2.1.9-3.el7.x86_64.rpm                           | 154 kB     00:00     
-(147/310): libss-1.42.9-7.el7.x86_64.rpm                             |  45 kB     00:00     
-(148/310): libssh2-1.4.3-10.el7.x86_64.rpm                           | 133 kB     00:00     
-(149/310): libstdc++-4.8.5-4.el7.x86_64.rpm                          | 298 kB     00:00     
-(150/310): libtasn1-3.8-2.el7.x86_64.rpm                             | 319 kB     00:00     
-(151/310): libunistring-0.9.3-9.el7.x86_64.rpm                       | 293 kB     00:00     
-(152/310): libusb-0.1.4-3.el7.x86_64.rpm                             |  19 kB     00:00     
-(153/310): libusbx-1.0.15-4.el7.x86_64.rpm                           |  50 kB     00:00     
-(154/310): libuser-0.60-7.el7_1.x86_64.rpm                           | 398 kB     00:00     
-(155/310): libutempter-1.1.6-4.el7.x86_64.rpm                        |  25 kB     00:00     
-(156/310): libuuid-2.23.2-26.el7.x86_64.rpm                          |  74 kB     00:00     
-(157/310): libverto-0.2.5-4.el7.x86_64.rpm                           |  16 kB     00:00     
-(158/310): libxml2-2.9.1-5.el7_1.2.x86_64.rpm                        | 664 kB     00:00     
-(159/310): libxml2-devel-2.9.1-5.el7_1.2.x86_64.rpm                  | 1.0 MB     00:00     
-(160/310): libxslt-1.1.28-5.el7.x86_64.rpm                           | 242 kB     00:00     
-(161/310): libxslt-devel-1.1.28-5.el7.x86_64.rpm                     | 309 kB     00:00     
-(162/310): linux-firmware-20150904-43.git6ebf5d5.el7.noarch.rpm      |  24 MB     00:02     
-(163/310): lm_sensors-libs-3.3.4-11.el7.x86_64.rpm                   |  40 kB     00:00     
-(164/310): logrotate-3.8.6-6.el7.x86_64.rpm                          |  66 kB     00:00     
-(165/310): lua-5.1.4-14.el7.x86_64.rpm                               | 201 kB     00:00     
-(166/310): lvm2-2.02.130-5.el7.x86_64.rpm                            | 1.0 MB     00:00     
-(167/310): lvm2-libs-2.02.130-5.el7.x86_64.rpm                       | 872 kB     00:00     
-(168/310): m4-1.4.16-10.el7.x86_64.rpm                               | 256 kB     00:00     
-(169/310): mailx-12.5-12.el7_0.x86_64.rpm                            | 244 kB     00:00     
-(170/310): make-3.82-21.el7.x86_64.rpm                               | 420 kB     00:00     
-(171/310): man-db-2.6.3-9.el7.x86_64.rpm                             | 559 kB     00:00     
-(172/310): mariadb-libs-5.5.44-2.el7.centos.x86_64.rpm               | 754 kB     00:00     
-(173/310): mpfr-3.1.1-4.el7.x86_64.rpm                               | 203 kB     00:00     
-(174/310): ncurses-5.9-13.20130511.el7.x86_64.rpm                    | 303 kB     00:00     
-(175/310): ncurses-base-5.9-13.20130511.el7.noarch.rpm               |  68 kB     00:00     
-(176/310): ncurses-libs-5.9-13.20130511.el7.x86_64.rpm               | 316 kB     00:00     
-(177/310): net-tools-2.0-0.17.20131004git.el7.x86_64.rpm             | 304 kB     00:00     
-(178/310): newt-0.52.15-4.el7.x86_64.rpm                             | 105 kB     00:00     
-(179/310): newt-python-0.52.15-4.el7.x86_64.rpm                      |  54 kB     00:00     
-(180/310): nscd-2.17-105.el7.x86_64.rpm                              | 260 kB     00:00     
-(181/310): nss-softokn-3.16.2.3-13.el7_1.x86_64.rpm                  | 305 kB     00:00     
-(182/310): nss-softokn-freebl-3.16.2.3-13.el7_1.x86_64.rpm           | 204 kB     00:00     
-(183/310): ntp-4.2.6p5-22.el7.centos.x86_64.rpm                      | 543 kB     00:00     
-(184/310): ntpdate-4.2.6p5-22.el7.centos.x86_64.rpm                  |  84 kB     00:00     
-(185/310): numactl-2.0.9-5.el7_1.x86_64.rpm                          |  65 kB     00:00     
-(186/310): numactl-libs-2.0.9-5.el7_1.x86_64.rpm                     |  29 kB     00:00     
-(187/310): openscap-1.2.5-3.el7.x86_64.rpm                           | 2.9 MB     00:00     
-(188/310): openssh-6.6.1p1-22.el7.x86_64.rpm                         | 434 kB     00:00     
-(189/310): openssh-clients-6.6.1p1-22.el7.x86_64.rpm                 | 639 kB     00:00     
-(190/310): openssh-server-6.6.1p1-22.el7.x86_64.rpm                  | 436 kB     00:00     
-(191/310): openssl-1.0.1e-42.el7.9.x86_64.rpm                        | 711 kB     00:00     
-(192/310): openssl-libs-1.0.1e-42.el7.9.x86_64.rpm                   | 949 kB     00:00     
-(193/310): os-prober-1.58-5.el7.x86_64.rpm                           |  41 kB     00:00     
-(194/310): p11-kit-0.20.7-3.el7.x86_64.rpm                           | 107 kB     00:00     
-(195/310): p11-kit-trust-0.20.7-3.el7.x86_64.rpm                     | 126 kB     00:00     
-(196/310): pam-1.1.8-12.el7_1.1.x86_64.rpm                           | 714 kB     00:00     
-(197/310): passwd-0.79-4.el7.x86_64.rpm                              | 105 kB     00:00     
-(198/310): patch-2.7.1-8.el7.x86_64.rpm                              | 110 kB     00:00     
-(199/310): pax-3.4-19.el7.x86_64.rpm                                 |  74 kB     00:00     
-(200/310): pciutils-libs-3.2.1-4.el7.x86_64.rpm                      |  45 kB     00:00     
-(201/310): pcre-8.32-15.el7.x86_64.rpm                               | 418 kB     00:00     
-(202/310): pcre-devel-8.32-15.el7.x86_64.rpm                         | 478 kB     00:00     
-(203/310): perl-5.16.3-286.el7.x86_64.rpm                            | 8.0 MB     00:00     
-(204/310): perl-CGI-3.63-4.el7.noarch.rpm                            | 250 kB     00:00     
-(205/310): perl-Carp-1.26-244.el7.noarch.rpm                         |  19 kB     00:00     
-(206/310): perl-Data-Dumper-2.145-3.el7.x86_64.rpm                   |  47 kB     00:00     
-(207/310): perl-Encode-2.51-7.el7.x86_64.rpm                         | 1.5 MB     00:00     
-(208/310): perl-Exporter-5.68-3.el7.noarch.rpm                       |  28 kB     00:00     
-(209/310): perl-ExtUtils-Install-1.58-286.el7.noarch.rpm             |  73 kB     00:00     
-(210/310): perl-ExtUtils-MakeMaker-6.68-3.el7.noarch.rpm             | 275 kB     00:00     
-(211/310): perl-ExtUtils-Manifest-1.61-244.el7.noarch.rpm            |  31 kB     00:00     
-(212/310): perl-ExtUtils-ParseXS-3.18-2.el7.noarch.rpm               |  77 kB     00:00     
-(213/310): perl-FCGI-0.74-8.el7.x86_64.rpm                           |  42 kB     00:00     
-(214/310): perl-File-Path-2.09-2.el7.noarch.rpm                      |  26 kB     00:00     
-(215/310): perl-File-Temp-0.23.01-3.el7.noarch.rpm                   |  56 kB     00:00     
-(216/310): perl-Filter-1.49-3.el7.x86_64.rpm                         |  76 kB     00:00     
-(217/310): perl-Getopt-Long-2.40-2.el7.noarch.rpm                    |  56 kB     00:00     
-(218/310): perl-HTTP-Tiny-0.033-3.el7.noarch.rpm                     |  38 kB     00:00     
-(219/310): perl-Module-Pluggable-4.8-3.el7.noarch.rpm                |  29 kB     00:00     
-(220/310): perl-PathTools-3.40-5.el7.x86_64.rpm                      |  82 kB     00:00     
-(221/310): perl-Pod-Escapes-1.04-286.el7.noarch.rpm                  |  50 kB     00:00     
-(222/310): perl-Pod-Perldoc-3.20-4.el7.noarch.rpm                    |  87 kB     00:00     
-(223/310): perl-Pod-Simple-3.28-4.el7.noarch.rpm                     | 216 kB     00:00     
-(224/310): perl-Pod-Usage-1.63-3.el7.noarch.rpm                      |  27 kB     00:00     
-(225/310): perl-Scalar-List-Utils-1.27-248.el7.x86_64.rpm            |  36 kB     00:00     
-(226/310): perl-Socket-2.010-3.el7.x86_64.rpm                        |  49 kB     00:00     
-(227/310): perl-Storable-2.45-3.el7.x86_64.rpm                       |  77 kB     00:00     
-(228/310): perl-Test-Harness-3.28-3.el7.noarch.rpm                   | 302 kB     00:01     
-(229/310): perl-Test-Simple-0.98-243.el7.noarch.rpm                  | 170 kB     00:00     
-(230/310): perl-Text-ParseWords-3.29-4.el7.noarch.rpm                |  14 kB     00:00     
-(231/310): perl-Time-HiRes-1.9725-3.el7.x86_64.rpm                   |  45 kB     00:00     
-(232/310): perl-Time-Local-1.2300-2.el7.noarch.rpm                   |  24 kB     00:00     
-(233/310): perl-constant-1.27-2.el7.noarch.rpm                       |  19 kB     00:00     
-(234/310): perl-devel-5.16.3-286.el7.x86_64.rpm                      | 452 kB     00:01     
-(235/310): perl-libs-5.16.3-286.el7.x86_64.rpm                       | 687 kB     00:01     
-(236/310): perl-macros-5.16.3-286.el7.x86_64.rpm                     |  43 kB     00:00     
-(237/310): perl-parent-0.225-244.el7.noarch.rpm                      |  12 kB     00:00     
-(238/310): perl-podlators-2.5.1-3.el7.noarch.rpm                     | 112 kB     00:00     
-(239/310): perl-threads-1.87-4.el7.x86_64.rpm                        |  49 kB     00:00     
-(240/310): perl-threads-shared-1.43-6.el7.x86_64.rpm                 |  39 kB     00:00     
-(241/310): perl-version-0.99.07-2.el7.x86_64.rpm                     |  84 kB     00:00     
-(242/310): pinentry-0.8.1-14.el7.x86_64.rpm                          |  72 kB     00:00     
-(243/310): pkgconfig-0.27.1-4.el7.x86_64.rpm                         |  54 kB     00:00     
-(244/310): plymouth-0.8.9-0.24.20140113.el7.centos.x86_64.rpm        | 114 kB     00:00     
-(245/310): plymouth-core-libs-0.8.9-0.24.20140113.el7.centos.x86_64. | 106 kB     00:00     
-(246/310): plymouth-scripts-0.8.9-0.24.20140113.el7.centos.x86_64.rp |  37 kB     00:00     
-(247/310): policycoreutils-2.2.5-20.el7.x86_64.rpm                   | 803 kB     00:01     
-(248/310): popt-1.13-16.el7.x86_64.rpm                               |  42 kB     00:00     
-(249/310): postfix-2.10.1-6.el7.x86_64.rpm                           | 2.4 MB     00:02     
-(250/310): procps-ng-3.3.10-3.el7.x86_64.rpm                         | 286 kB     00:01     
-(251/310): psmisc-22.20-9.el7.x86_64.rpm                             | 140 kB     00:00     
-(252/310): pth-2.0.7-23.el7.x86_64.rpm                               |  89 kB     00:00     
-(253/310): pygpgme-0.3-9.el7.x86_64.rpm                              |  63 kB     00:00     
-(254/310): pyliblzma-0.5.3-11.el7.x86_64.rpm                         |  47 kB     00:00     
-(255/310): pyparsing-1.5.6-9.el7.noarch.rpm                          |  94 kB     00:00     
-(256/310): python-2.7.5-34.el7.x86_64.rpm                            |  88 kB     00:00     
-(257/310): python-backports-1.0-8.el7.x86_64.rpm                     | 5.8 kB     00:00     
-(258/310): python-backports-ssl_match_hostname-3.4.0.2-4.el7.noarch. |  12 kB     00:00     
-(259/310): python-iniparse-0.4-9.el7.noarch.rpm                      |  39 kB     00:00     
-(260/310): python-libs-2.7.5-34.el7.x86_64.rpm                       | 5.6 MB     00:03     
-(261/310): python-pycurl-7.19.0-17.el7.x86_64.rpm                    |  80 kB     00:00     
-(262/310): python-setuptools-0.9.8-4.el7.noarch.rpm                  | 396 kB     00:01     
-(263/310): python-urlgrabber-3.10-7.el7.noarch.rpm                   | 107 kB     00:00     
-(264/310): pyxattr-0.5.1-5.el7.x86_64.rpm                            |  28 kB     00:00     
-(265/310): qrencode-libs-3.4.2-1.el6.x86_64.rpm                      |  50 kB     00:00     
-(266/310): readline-6.2-9.el7.x86_64.rpm                             | 192 kB     00:00     
-(267/310): redhat-lsb-core-4.1-27.el7.centos.1.x86_64.rpm            |  38 kB     00:00     
-(268/310): redhat-lsb-submod-security-4.1-27.el7.centos.1.x86_64.rpm |  15 kB     00:00     
-(269/310): rootfiles-8.1-11.el7.noarch.rpm                           | 7.3 kB     00:00     
-(270/310): rpm-4.11.3-17.el7.x86_64.rpm                              | 1.2 MB     00:01     
-(271/310): rpm-build-libs-4.11.3-17.el7.x86_64.rpm                   | 103 kB     00:00     
-(272/310): rpm-libs-4.11.3-17.el7.x86_64.rpm                         | 272 kB     00:00     
-(273/310): rpm-python-4.11.3-17.el7.x86_64.rpm                       |  79 kB     00:00     
-(274/310): rsyslog-7.4.7-12.el7.x86_64.rpm                           | 560 kB     00:01     
-(275/310): sed-4.2.2-5.el7.x86_64.rpm                                | 231 kB     00:00     
-(276/310): selinux-policy-3.13.1-60.el7.noarch.rpm                   | 375 kB     00:01     
-(277/310): selinux-policy-targeted-3.13.1-60.el7.noarch.rpm          | 3.9 MB     00:02     
-(278/310): setup-2.8.71-6.el7.noarch.rpm                             | 165 kB     00:00     
-(279/310): shadow-utils-4.1.5.1-18.el7.x86_64.rpm                    | 1.1 MB     00:01     
-(280/310): shared-mime-info-1.1-9.el7.x86_64.rpm                     | 371 kB     00:01     
-(281/310): slang-2.2.4-11.el7.x86_64.rpm                             | 512 kB     00:01     
-(282/310): spax-1.5.2-13.el7.x86_64.rpm                              | 260 kB     00:00     
-(283/310): sqlite-3.7.17-8.el7.x86_64.rpm                            | 393 kB     00:01     
-(284/310): strace-4.8-11.el7.x86_64.rpm                              | 265 kB     00:00     
-(285/310): sudo-1.8.6p7-16.el7.x86_64.rpm                            | 732 kB     00:01     
-(286/310): sysstat-10.1.5-7.el7.x86_64.rpm                           | 296 kB     00:01     
-(287/310): system-config-firewall-base-1.2.29-10.el7.noarch.rpm      | 414 kB     00:01     
-(288/310): systemd-219-19.el7.x86_64.rpm                             | 5.1 MB     00:06     
-(289/310): systemd-libs-219-19.el7.x86_64.rpm                        | 356 kB     00:01     
-(290/310): systemd-sysv-219-19.el7.x86_64.rpm                        |  52 kB     00:00     
-(291/310): systemtap-sdt-devel-2.8-10.el7.x86_64.rpm                 |  65 kB     00:00     
-(292/310): sysvinit-tools-2.88-14.dsf.el7.x86_64.rpm                 |  63 kB     00:00     
-(293/310): tar-1.26-29.el7.x86_64.rpm                                | 843 kB     00:02     
-(294/310): tcp_wrappers-libs-7.6-77.el7.x86_64.rpm                   |  66 kB     00:00     
-(295/310): tcpdump-4.5.1-3.el7.x86_64.rpm                            | 387 kB     00:01     
-(296/310): time-1.7-45.el7.x86_64.rpm                                |  30 kB     00:00     
-(297/310): ustr-1.0.4-16.el7.x86_64.rpm                              |  92 kB     00:00     
-(298/310): util-linux-2.23.2-26.el7.x86_64.rpm                       | 1.9 MB     00:03     
-(299/310): wget-1.14-10.el7_0.1.x86_64.rpm                           | 545 kB     00:01     
-(300/310): which-2.20-7.el7.x86_64.rpm                               |  41 kB     00:00     
-(301/310): xfsprogs-3.2.2-2.el7.x86_64.rpm                           | 863 kB     00:02     
-(302/310): xz-5.1.2-12alpha.el7.x86_64.rpm                           | 200 kB     00:00     
-(303/310): xz-devel-5.1.2-12alpha.el7.x86_64.rpm                     |  44 kB     00:00     
-(304/310): xz-libs-5.1.2-12alpha.el7.x86_64.rpm                      | 102 kB     00:00     
-(305/310): xz-lzma-compat-5.1.2-12alpha.el7.x86_64.rpm               |  18 kB     00:00     
-(306/310): yum-3.4.3-132.el7.centos.0.1.noarch.rpm                   | 1.2 MB     00:03     
-(307/310): yum-metadata-parser-1.1.4-10.el7.x86_64.rpm               |  28 kB     00:00     
-(308/310): yum-plugin-fastestmirror-1.1.31-34.el7.noarch.rpm         |  30 kB     00:00     
-(309/310): zlib-1.2.7-15.el7.x86_64.rpm                              |  89 kB     00:00     
-(310/310): zlib-devel-1.2.7-15.el7.x86_64.rpm                        |  50 kB     00:00     
-testing upgrade transaction
-rpm transaction 100% [=====================================================================]
-rpm install 100% [=========================================================================]
-setting up system for upgrade
-Finished. Reboot to start upgrade.
-[root@iZwz95jk243fcqv90p12gpZ ~]#
-</code></pre><p>记录下来纯粹是因为无聊，日后可能会用到，命令也没有分离出来，可真是够懒的。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/01/升级Centos7/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
     </nav>
   
 
@@ -1456,6 +847,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -1464,11 +863,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1476,7 +871,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1484,7 +879,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1492,15 +887,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1508,15 +895,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1528,11 +919,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">solr</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
             
             <div class="clearfix"></div>

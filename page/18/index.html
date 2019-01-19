@@ -171,6 +171,190 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-继承、方法的重写与重载" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/03/继承、方法的重写与重载/">继承、方法的重写与重载</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/03/继承、方法的重写与重载/" class="archive-article-date">
+  	<time datetime="2017-09-03T05:52:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-03</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="方法的重写Override"><a href="#方法的重写Override" class="headerlink" title="方法的重写Override"></a>方法的重写Override</h1><p>1.发生在父子类中，方法名相同，参数列表相同<br>2.重写的方法被调用时，看对象的类型<br>重写要遵循两同、两小、一大原则（一般都是一模一样的）<br>1.两同：方法名相同，参数列表相同<br>2.两小：<br> 1.子类的返回值类型小于或等于父类的<br>   1.1void和基本类型是必须相同<br>   1.2引用类型时，小于或等于<br> 2.子类抛出的异常小于或等于父类的–异常<br>3.一大：<br>子类方法的访问权限大于或等于父类的—访问修饰符</p>
+<h1 id="重写与重载的区别"><a href="#重写与重载的区别" class="headerlink" title="重写与重载的区别"></a>重写与重载的区别</h1><p>1.重写：父子类中，方法名相同，参数列表相同，方法体不同，遵循运行期绑定，根据对象的类型调用方法<br>2.重载：一个类中，方法名相同，参数列表不同，方法体不同，遵循编译期绑定，根据引用的类型调用方法<br>一句话：重写看对象，重载看引用</p>
+<h1 id="package和import"><a href="#package和import" class="headerlink" title="package和import"></a>package和import</h1><p>package:<br>1.作用：避免类名冲突<br>2.包名可以有层次结构<br>3.建议：包名所有字母都小写<br>4.类名的完全限定名：包名.类名<br>import<br>1.作用：声明类，引入类<br>2.同包中的类可以直接访问<br>不同包中的类调用：<br>1.先import声明类再调用访问类（建议）<br>2.类的全称–太繁琐（不建议）</p>
+<h1 id="封装的意义"><a href="#封装的意义" class="headerlink" title="封装的意义"></a>封装的意义</h1><p>1.对外提供可调用的，稳定的功能<br>2.封装容易变化的，具体的实现的细节，外界不可访问<br>意义在于：降低代码出错的可能性，增强维护性</p>
+<h1 id="访问控制修饰符"><a href="#访问控制修饰符" class="headerlink" title="访问控制修饰符"></a>访问控制修饰符</h1><p>1.public:公开的、任何类<br>2.private：私有的、本类<br>3.protected：受保护的、本类、子类、同包类<br>4.默认的：什么也不写，同包类<br>类的访问修饰：public和默认的<br>类成员的访问修饰：以上四种均可</p>
+<h1 id="static"><a href="#static" class="headerlink" title="static"></a>static</h1><p>static:静态的</p>
+<p>##　１.静态变量<br>1.由static来修饰<br>2.属于类，存在方法区中，只有一份<br>3.常常通过类名.来访问<br>4.何时用：所有对象的数据都一样时使用<br>成员变量：<br>1实例变量：对象.来访问<br>2静态变量：类名.来访问</p>
+<h2 id="2-静态方法"><a href="#2-静态方法" class="headerlink" title="2.静态方法"></a>2.静态方法</h2><p>1.由static修饰<br>2.属于类，存在方法区中，只有一份<br>3.常常通过类名.来访问<br>4.没有隐式this传递，没有this就没有对象，就不能访问实例变量，实例变量必须通过对象.来访问，所以静态方法中不能直接访问实例成员，静态方法里只能访问静态变量<br>实例变量比静态变量用得多，实例方法比静态方法用得多<br>5.何时用：方法的操作只与参数相关而与对象无关</p>
+<p>##　静态块<br>静态块：给静态变量赋值<br>1.由static修饰<br>2.属于类，类被加载期间自动执行，类只能被加载一次，所以静态块也只执行一次<br>3.何时用：常常用于加载静态资源（图片、音频等）</p>
+<h1 id="final"><a href="#final" class="headerlink" title="final"></a>final</h1><p>final：不能变<br>1.修饰变量：变量不能被改变<br>2.修饰方法：方法不能被重写<br>3.修饰类:类不能被继承，不能被继承，但是可以继承别的类，使一个类不被继承的意义在于：可以保护类不被继承修改，可以控制滥用继承对系统造成的危害<br>final修饰成员变量两种方式初始化：1.声明的同时初始化2.构造方法中初始化<br>final修饰局部变量，只需在使用之前初始化即可</p>
+<h1 id="static-final常量"><a href="#static-final常量" class="headerlink" title="static final常量"></a>static final常量</h1><p>1.必须在声明的同时初始化<br>2.不能改变，通过类名点来访问<br>3.建议：常量名所有的字母都大写<br>4.编译时会自动替换为具体的值，效率高</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/03/继承、方法的重写与重载/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-处理GitHub不允许上传大于100M的东西" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/26/处理GitHub不允许上传大于100M的东西/">处理GitHub不允许上传大于100M的文件</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/26/处理GitHub不允许上传大于100M的东西/" class="archive-article-date">
+  	<time datetime="2017-07-26T15:53:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-26</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>Github 修正上传时“this exceeds GitHub’s file size limit of 100 MB”错误 </p>
+<p>自己的项目的版本控制用的是Git，代码仓库在github托管。项目里用到了IJKMediaFramework 想把代码push到github上，结果出错了，被拒绝，具体信息是：<br>Total 324 (delta 78), reused 0 (delta 0)<br>remote: error: GH001: Large files detected. You may want to try Git Large File Storage - <a href="https://git-lfs.github.com" target="_blank" rel="external">https://git-lfs.github.com</a>.<br>remote: error: Trace: 812007a278d0a89c0705b8c456066938<br>remote: error: See <a href="http://git.io/iEPt8g" target="_blank" rel="external">http://git.io/iEPt8g</a> for more information.<br>remote: error: File MiaoShow/Classes/Frameworks/IJKMediaFramework.framework/IJKMediaFramework is 112.62 MB; this exceeds GitHub’s file size limit of 100.00 MB<br>To <a href="https://github.com/XXX/XXXX.git。意思是有大文件，更多信息可到http://git.io/iEPt8g查看，文件IJKMediaFramework的大小超过了GitHub限制的100M大小。想要push，必须把这个文件移除，可是要怎么移除呢？开始我是想着直接删除掉IJKMediaFramework，结果不行，还是会报上面的错，于是我又把libbaiduNaviSDK.a放到忽略文件里，结果还是不行，还是说有大文件，报同样的错。这下只能老老实实的看官方的解决办法了，于是就打开http://git.io/iEPt8g老老实实的研究了一番。大意是说为了便于管理代码库和方便合作伙伴们使用，当你push50M以上的文件时github将会警告，当push100M以上文件，就直接拒绝你的push，要想push必须把该文件从本地仓库和远程仓库全部移除掉。这个移除会永久性的从本地git和github里移除，如果这个文件很重要，要记得做一次备份。下面进入具体操作。如果这个文件是最近一次commit的，并且你还没有push到github，那么第一步输入命令" target="_blank" rel="external">https://github.com/XXX/XXXX.git。意思是有大文件，更多信息可到http://git.io/iEPt8g查看，文件IJKMediaFramework的大小超过了GitHub限制的100M大小。想要push，必须把这个文件移除，可是要怎么移除呢？开始我是想着直接删除掉IJKMediaFramework，结果不行，还是会报上面的错，于是我又把libbaiduNaviSDK.a放到忽略文件里，结果还是不行，还是说有大文件，报同样的错。这下只能老老实实的看官方的解决办法了，于是就打开http://git.io/iEPt8g老老实实的研究了一番。大意是说为了便于管理代码库和方便合作伙伴们使用，当你push50M以上的文件时github将会警告，当push100M以上文件，就直接拒绝你的push，要想push必须把该文件从本地仓库和远程仓库全部移除掉。这个移除会永久性的从本地git和github里移除，如果这个文件很重要，要记得做一次备份。下面进入具体操作。如果这个文件是最近一次commit的，并且你还没有push到github，那么第一步输入命令</a> cd /Users/Dora/Desktop/XXX（cd后面的这个路径要换成你自己项目的路径），然后第二步输入命令 git rm –cached /Users/Dora/Desktop/XXX/XXX/IJKMediaFramework（加下划线部分是你自己的要移除的文件的路径），第三步输入命令 git commit –amend -CHEAD，执行完这步后，这个大文件将会从你的commit记录里移除，并且以后commit都将不会再把它commit了，这时候就可以git push把本地代码push到github上了。<br>注意：这里可能遇到输入git rm –cached /Users/Dora/Desktop/XXX/XXX/libbaiduNaviSDK.a命令后说找不到你要删除的文件的问题，出现这个问题的原因是你要删除的文件路径名没写对，一定要仔细检查，确保要删除的文件的路径是正确的。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/git//" class="article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/26/处理GitHub不允许上传大于100M的东西/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Java小结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -500,280 +684,9 @@
 
 
   
-    <article id="post-方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/18/方法/">Java方法</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/18/方法/" class="archive-article-date">
-  	<time datetime="2017-07-18T10:01:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-18</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><p>方法总结：</p>
-<h1 id="方法的作用"><a href="#方法的作用" class="headerlink" title="方法的作用"></a>方法的作用</h1><p>1.方法实现封装特定的逻辑功能，方法之间互相独立，一个方法一般只完成一件独立的事，遵循单一职责原则。<br>2.方法可以多次调用，避免大量代码重复，有利于复用，维护，团队协作开发。</p>
-<h1 id="方法的类型"><a href="#方法的类型" class="headerlink" title="方法的类型"></a>方法的类型</h1><p>1.方法分为有参数和无参数，有返回值和无返回值两种<br>无参数的方法参数列表为空<br>无返回值的方法定义时的方法类型为void</p>
-<h1 id="方法的定义"><a href="#方法的定义" class="headerlink" title="方法的定义"></a>方法的定义</h1><p>方法的定义的一般形式为：<br>   修饰词  返回类型 方法名（参数列表）{<br>        //方法体<br>     }<br>  例如：<br>    public static void eat() {<br>    //方法体<br>    }<br>    public static char[] generate(int level){<br>    //方法体<br>    }<br>public static 为修饰词，void和char[]分别表示没有返回值和返回一个char[]型的变量，（）圆括号里面的为参数，花括号里面为方法执行的方法体。</p>
-<h1 id="方法的调用"><a href="#方法的调用" class="headerlink" title="方法的调用"></a>方法的调用</h1><p>无返回值的：方法名（有参传参）；<br>有返回值的：数据类型 变量名=方法名（有参传参）；<br>如：<br>    <code>eat（）；</code><br>    <code>char[] b=generate(4);</code></p>
-<h1 id="return关键字"><a href="#return关键字" class="headerlink" title="return关键字"></a>return关键字</h1><p>1.return 值；//结束方法，返回结果给调用方法<br>2.return；结束方法</p>
-<h1 id="猜字符小游戏"><a href="#猜字符小游戏" class="headerlink" title="猜字符小游戏"></a>猜字符小游戏</h1><p>这个小游戏定义了一个随机生成字符串的方法generate（）和判断字符对错的check（）方法</p>
-<pre><code>package day06;
-import java.util.*;
-public class Guessing {
- /*猜字符小游戏
-  * 系统随机生成数个字母，生成字母个数由玩家选择
-  * 玩家随意输入几个字母
- * 系统判断正确的个数，并统计数据，计算得分
-  * 猜字过程输入exit则退出游戏
- * 
- * */
-
-public static void main(String[] args) {
-     Scanner scan=new Scanner(System.in);
-     int level;
-     do{
-       System.out.println(&quot;请选择等级5、7、9：&quot;);
-       level=scan.nextInt();             
-     }while(level!=5&amp;&amp;level!=7&amp;&amp;level!=9);
-     char[] gen=generate(level);
-     int sroce;
-     int count=0;
-     for(int i=0;i&lt;gen.length;i++){
-         System.out.print(gen[i]);
-     }
-     System.out.println();
-     while(true){
-     System.out.println(&quot;猜吧！&quot;);
-     String str=scan.next().toUpperCase();
-     if(str.equals(&quot;EXIT&quot;)){
-         System.out.println(&quot;下次再来吧！&quot;);
-         break;
-             }
-     char[] imput=str.toCharArray();
-     int[] result=check(gen,imput);
-     if(result[1]==gen.length){
-         sroce=gen.length*100-count*10;
-         System.out.println(&quot;恭喜你，猜对了！得分为&quot;+sroce);
-         break;          
-     }else{
-         count++;
-     System.out.println(&quot;字符对了&quot;+result[0]+&quot;个，位置对了&quot;+result[1]+&quot;次&quot;);
-       }
-     }
-
-     scan.close();
-}
-public static char[] generate(int level){
-    char[] chs=new char[level];
-    char[] letters=new char[]{&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;D&#39;,&#39;E&#39;,&#39;F&#39;,&#39;G&#39;,&#39;H&#39;,&#39;I&#39;,&#39;J&#39;,&#39;K&#39;,&#39;L&#39;,&#39;M&#39;,&#39;N&#39;,&#39;O&#39;,&#39;P&#39;,&#39;Q&#39;,&#39;R&#39;,&#39;S&#39;,&#39;T&#39;,&#39;U&#39;,&#39;V&#39;,&#39;W&#39;,&#39;X&#39;,&#39;Y&#39;,&#39;Z&#39;};
-
-    boolean[] flags=new boolean[letters.length];
-    for(int i=0;i&lt;chs.length;i++){
-        int index;
-        do{
-        index=(int)(Math.random()*26);
-
-        }while(flags[index]);
-        chs[i]=letters[index];
-        flags[index]=true;
-    }
-
-    return chs;
-}
-public static int[] check(char[] chs,char[] imput){
-    int[] result=new int[2];
-
-    for(int i=0;i&lt;chs.length;i++){
-        for(int j=0;j&lt;imput.length;j++){
-            if(chs[i]==imput[j]){
-                result[0]++;
-                if(i==j){
-              result[1]++;
-              break;
-                }
-            }
-        }
-    }
-    return result;
-}
-
-}
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/18/方法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hexo相关配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/11/hexo相关配置/">hexo相关配置</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/11/hexo相关配置/" class="archive-article-date">
-  	<time datetime="2017-07-11T03:59:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-11</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><p>NexT主题的个性化设置<a href="http://www.jeyzhang.com/next-theme-personal-settings.html" target="_blank" rel="external">链接</a><br>NexT主题个性化之添加文章阅读量<a href="http://www.jeyzhang.com/hexo-next-add-post-views.html" target="_blank" rel="external">链接</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/hexo//" class="article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/11/hexo相关配置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/17/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/19/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/17/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/19/">Next &raquo;</a>
     </nav>
   
 
@@ -909,6 +822,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -917,11 +838,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -929,7 +846,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -937,7 +854,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -945,15 +862,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -961,15 +870,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -981,11 +894,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">solr</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
             
             <div class="clearfix"></div>
