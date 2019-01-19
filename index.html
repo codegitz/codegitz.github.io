@@ -204,7 +204,7 @@
 <li>是否有一个全局视角来查看系统的运行状况？<br></li>
 <li>有什么办法可以监控到容器和中间件的实时运行状态？<br></li>
 </ul>
-<h2 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h2><p>参考官网文档给出的启动方式：<br></p>
+<h2 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h2><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>参考官网文档给出的启动方式：<br></p>
 <pre><code>Use arthas-boot(Recommend)
 Downloadarthas-boot.jar，Start with java command:
 
@@ -217,10 +217,79 @@ You can install Arthas with one single line command on Linux, Unix, and Mac. Pls
 curl -L https://alibaba.github.io/arthas/install.sh | sh
 </code></pre><p>这里我采用第一种方式启动。</p>
 <p><img src="https://i.imgur.com/dMrU6d6.png" alt=""></p>
-<p>下面来简单尝试一下arthas的命令，官方给出了命令<a href="https://alibaba.github.io/arthas/en/commands.html" target="_blank" rel="external">大全</a>。</p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>下面来简单尝试一下arthas的命令，官方给出了命令<a href="https://alibaba.github.io/arthas/en/commands.html" target="_blank" rel="external">大全</a>。</p>
 <ul>
 <li>dashboard</li>
 </ul>
+<p>当前系统的实时数据面板</p>
+<ul>
+<li>thread</li>
+</ul>
+<p>查看当前 JVM 的线程堆栈信息</p>
+<ul>
+<li>jvm</li>
+</ul>
+<p>查看当前 JVM 的信息</p>
+<ul>
+<li>sc</li>
+</ul>
+<p>查看JVM已加载的类信息</p>
+<ul>
+<li>sm</li>
+</ul>
+<p>查看已加载类的方法信息</p>
+<ul>
+<li>jad</li>
+</ul>
+<p>反编译指定已加载类的源码</p>
+<ul>
+<li>classloader</li>
+</ul>
+<p>查看classloader的继承树，urls，类加载信息，使用classloader去getResource</p>
+<ul>
+<li>monitor</li>
+</ul>
+<p>方法执行监控</p>
+<ul>
+<li>watch</li>
+</ul>
+<p>方法执行数据观测</p>
+<ul>
+<li>trace</li>
+</ul>
+<p>方法内部调用路径，并输出方法路径上的每个节点上耗时</p>
+<ul>
+<li>stack</li>
+</ul>
+<p>输出当前方法被调用的调用路径</p>
+<ul>
+<li>tt</li>
+</ul>
+<p>方法执行数据的时空隧道，记录下指定方法每次调用的入参和返回信息，并能对这些不同的时间下调用进行观测</p>
+<ul>
+<li>reset</li>
+</ul>
+<p>重置增强类，将被 Arthas 增强过的类全部还原，Arthas 服务端关闭时会重置所有增强过的类</p>
+<ul>
+<li>quit</li>
+</ul>
+<p>退出当前 Arthas 客户端，其他 Arthas 客户端不受影响</p>
+<ul>
+<li>shutdown</li>
+</ul>
+<p>关闭 Arthas 服务端，所有 Arthas 客户端全部退出</p>
+<h4 id="dashboard"><a href="#dashboard" class="headerlink" title="dashboard"></a>dashboard</h4><p><img src="https://i.imgur.com/x6hBUtX.png" alt=""></p>
+<p>盗用官方的一张图来解释一下：</p>
+<p><img src="https://i.imgur.com/b4ClXS5.png" alt=""><br>ID: Java级别的线程ID，注意这个ID不能跟jstack中的nativeID一一对应</p>
+<p>NAME: 线程名</p>
+<p>GROUP: 线程组名</p>
+<p>PRIORITY: 线程优先级, 1~10之间的数字，越大表示优先级越高</p>
+<p>STATE: 线程的状态</p>
+<p>CPU%: 线程消耗的cpu占比，采样100ms，将所有线程在这100ms内的cpu使用量求和，再算出每个线程的cpu使用占比。</p>
+<p>TIME: 线程运行总时间</p>
+<p>INTERRUPTE: 线程当前的中断位状态</p>
+<p>DAEMON: 是否是daemon线程</p>
+<p>…</p>
 
       
 
