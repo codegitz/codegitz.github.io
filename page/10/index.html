@@ -171,6 +171,137 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-hexo-yilia-文章浏览量统计" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/hexo-yilia-文章浏览量统计/">hexo yilia 文章浏览量统计</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/hexo-yilia-文章浏览量统计/" class="archive-article-date">
+  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="不蒜子"><a href="#不蒜子" class="headerlink" title="不蒜子"></a>不蒜子</h2><p>不蒜子的配置很简单,先去不蒜子<a href="http://busuanzi.ibruce.info/" target="_blank" rel="external">官网</a>获取代码,修改hexo\themes\yilia\layout_partial\footer.ejs，在后,添加如下代码：<br></p>
+<pre><code>&lt;script async src=&quot;//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>然后，根据个人爱好选择下列代码:<br><br>网站的总的访问量<br></p>
+<pre><code>&lt;span id=&quot;busuanzi_container_site_pv&quot;&gt;
+    总访问量: &lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;
+&lt;/span&gt;
+网站总的访问人数:
+</code></pre><pre><code>&lt;span id=&quot;busuanzi_container_site_uv&quot;&gt;
+    总访客: &lt;span id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt;
+&lt;/span&gt;
+</code></pre><p>单页访问量:<br></p>
+<pre><code>&lt;span id=&quot;busuanzi_container_page_pv&quot;&gt;
+  本文总阅读量&lt;span id=&quot;busuanzi_value_page_pv&quot;&gt;&lt;/span&gt;次
+&lt;/span&gt;
+</code></pre><p>添加单页访问量,修改hexo\themes\yilia\layout_partial\article.ejs,在&lt;%- partial(‘post/tag’) %&gt; 后添加如下代码:<br></p>
+<pre><code>&lt;span id=&quot;busuanzi_container_page_pv&quot;&gt;
+  |阅读量(&lt;span id=&quot;busuanzi_value_page_pv&quot;&gt;&lt;/span&gt;)
+&lt;/span&gt;
+</code></pre><p>添加总的访问量跟总的访问人数,修改hexo\themes\yilia\layout_partial\footer.ejs:<br></p>
+<pre><code>&lt;div calss=&quot;count-span&quot;&gt;
+    &lt;span id=&quot;busuanzi_container_site_pv&quot;&gt;
+        总访问量: &lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;|
+    &lt;/span&gt;
+    &lt;span id=&quot;busuanzi_container_site_uv&quot;&gt;
+        总访客: &lt;span id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt;
+    &lt;/span&gt;
+&lt;/div&gt;
+</code></pre><p>我的footer.ejs配置<br></p>
+<pre><code>&lt;footer id=&quot;footer&quot;&gt;
+  &lt;div class=&quot;outer&quot;&gt;
+    &lt;div id=&quot;footer-info&quot;&gt;
+        &lt;div class=&quot;footer-left&quot;&gt;
+            &amp;copy; &lt;%= date(new Date(), &#39;YYYY&#39;) %&gt; &lt;%= config.author || config.title %&gt;
+        &lt;/div&gt;
+          &lt;div class=&quot;footer-right&quot;&gt;
+              &lt;a href=&quot;http://hexo.io/&quot; target=&quot;_blank&quot;&gt;Hexo&lt;/a&gt;  Theme &lt;a href=&quot;https://github.com/litten/hexo-theme-yilia&quot; target=&quot;_blank&quot;&gt;Yilia&lt;/a&gt; by Litten
+          &lt;/div&gt;
+    &lt;/div&gt;
+
+      &lt;div calss=&quot;count-span&quot;&gt;
+    &lt;span id=&quot;busuanzi_container_site_pv&quot;&gt;
+        总访问量: &lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;|
+    &lt;/span&gt;
+
+    &lt;span id=&quot;busuanzi_container_site_uv&quot;&gt;
+        总访客: &lt;span id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt;
+    &lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+&lt;script async src=&quot;//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/hexo-yilia-文章浏览量统计/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-记一次部署经历" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -429,6 +560,139 @@ public class CorsFilter implements Filter{
 
 
   
+    <article id="post-json" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/json/">Json</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/json/" class="archive-article-date">
+  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="编码问题"><a href="#编码问题" class="headerlink" title="编码问题"></a>编码问题</h1><h2 id="1-发送get请求"><a href="#1-发送get请求" class="headerlink" title="1.发送get请求"></a>1.发送get请求</h2><p>IE浏览器会使用gbk进行编码，而其他浏览器会使用utf-8来编码，服务器端默认使用iso-8859-1来解码，所以会产生乱码。<br>解决方法：<br>step1.服务器端统一使用utf-8来解码。<br>    URIEncoding=utf-8<br>step2.浏览器端使用encodeURI函数来编码。<br>注：encodeURI是JavaScript内置的函数。</p>
+<h2 id="2-发送post"><a href="#2-发送post" class="headerlink" title="2.发送post"></a>2.发送post</h2><p>浏览器会使用utf-8来编码。服务器端默认使用ISO-8859-1来解码，所以会产生乱码<br>解决方法：<br>request.setCharacterEncoding(“utf-8”);</p>
+<h1 id="JSON-javascript-object-notation"><a href="#JSON-javascript-object-notation" class="headerlink" title="JSON(javascript object notation)"></a>JSON(javascript object notation)</h1><h2 id="1-JSON是什么"><a href="#1-JSON是什么" class="headerlink" title="1.JSON是什么"></a>1.JSON是什么</h2><p>是一种轻量级的数据交换格式<br>注：<br>数据交换：将要转换的数据先转换为一种与平台无关的数据格式，然后交给接收方来处理。<br><br>轻量级：相对于xml，JSON文档更小，解析速度更快。</p>
+<h2 id="2-语法"><a href="#2-语法" class="headerlink" title="2.语法"></a>2.语法</h2><h3 id="表示一个对象"><a href="#表示一个对象" class="headerlink" title="表示一个对象"></a>表示一个对象</h3><p>{属性名：属性值，属性名：属性值….}<br>注意：<br>a.属性名必须使用双引号括起来。<br>b.属性值的类型可以使string,number,true/false,null,object<br>c.属性值如果是string，必须使用双括号括起来。    </p>
+<h3 id="表示一个由对象组成的数组"><a href="#表示一个由对象组成的数组" class="headerlink" title="表示一个由对象组成的数组"></a>表示一个由对象组成的数组</h3><p>[{},{},{}….]</p>
+<h2 id="3-使用json"><a href="#3-使用json" class="headerlink" title="3.使用json"></a>3.使用json</h2><h3 id="将java对象转变为json字符串"><a href="#将java对象转变为json字符串" class="headerlink" title="将java对象转变为json字符串"></a>将java对象转变为json字符串</h3><p>可以使用json官方的工具(json-lib).<br>JSONObject，JSONArray<br><img src="https://i.imgur.com/hFQgwNu.png" alt=""><br>ex：</p>
+<pre><code>package json;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import bean.stock;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+public class jsonTest {
+     /*
+      * 将java对象转换为json字符串
+      */
+    public static void test1(){
+        stock s=new stock();
+        s.setCode(&quot;345435&quot;);
+        s.setName(&quot;中国嘉陵&quot;);
+        s.setPrice(10);
+        //使用json-lib提供的工具来转换
+        JSONObject jsonobj=JSONObject.fromObject(s);
+        String jsonstr=jsonobj.toString();
+        System.out.println(jsonstr);
+    }
+    /*
+     * 多个对象组成的数组或者是集合转换成json字符串
+     */
+    public static void test2(){
+        List&lt;stock&gt; stocks=new ArrayList&lt;stock&gt;();
+          for(int i=0;i&lt;3;i++){
+              stock s=new stock();
+              s.setCode(&quot;345435&quot;+i);
+              s.setName(&quot;中国嘉陵&quot;+i);
+              s.setPrice(10+i);
+              stocks.add(s);
+          }
+          //fromObject方法的参数可以使数组或者集合
+          JSONArray jsonArr=JSONArray.fromObject(stocks);
+          String jsonStr=jsonArr.toString();
+          System.out.println(jsonStr);
+    }
+    public static void main(String[] args) {
+        test2();
+    }
+}
+</code></pre><h3 id="将JSON字符串转换成JavaScript对象"><a href="#将JSON字符串转换成JavaScript对象" class="headerlink" title="将JSON字符串转换成JavaScript对象"></a>将JSON字符串转换成JavaScript对象</h3><p>JavaScript内置对象JSON提供的parse()方法。</p>
+<h1 id="jQuery对ajax的支持"><a href="#jQuery对ajax的支持" class="headerlink" title="jQuery对ajax的支持"></a>jQuery对ajax的支持</h1><h2 id="1-ajax-方法"><a href="#1-ajax-方法" class="headerlink" title="1.$.ajax()方法"></a>1.$.ajax()方法</h2><p>用法：<br>$.ajax({});<br>说明：{}是一个用来描述请求选项参数的对象，常见的选项参数有如下几个：<br>url:请求地址<br>data:请求格式，有两种格式：<br>第一种格式：请求字符串，比如”adminCode=sally”<br>     第二组格式：对象，比如{“adminCode”:”sally”}<br>     type:请求类型(get/post)<br>dataType:服务器返回的数据类型：<br>       text：文本数据<br>       json：json字符串<br>       html:html文档<br>       xml:xml文档<br>       script:javascript脚本<br>success:事件处理函数（当服务器处理正常，用来处理服务器返回的数据）。<br>error：事件处理函数（当服务器处理异常，用来处理服务器返回的数据）。</p>
+<h2 id="2-load"><a href="#2-load" class="headerlink" title="2.load()"></a>2.load()</h2><p>作用：向服务器发送异步请求，然后将服务器返回的数据直接添加到符合要求的节点之上。<br>用法：<br>$obj.load(url,[data]);<br>注意：<br>url:请求地址。<br>data:请求参数，格式同上。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/json/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mysql命令行创建新用户" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -543,19 +807,19 @@ mysql&gt; select host,user from mysql.user;
 
 
   
-    <article id="post-mybatis关联映射" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-springAOP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/mybatis关联映射/">Mybatis关联映射</a>
+      <a class="article-title" href="/2018/04/13/springAOP/">spring AOP</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/mybatis关联映射/" class="archive-article-date">
+        <a href="/2018/04/13/springAOP/" class="archive-article-date">
   	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
@@ -567,111 +831,161 @@ mysql&gt; select host,user from mysql.user;
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Mybatis关联映射"><a href="#Mybatis关联映射" class="headerlink" title="Mybatis关联映射"></a>Mybatis关联映射</h1><p>将数据库中有关联关系的表，以实体对象引用的方式体现出来</p>
-<p>关联方式：</p>
-<ul>
-<li>关联单个对象</li>
-<li>关联多个对象</li>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="spring-AOP"><a href="#spring-AOP" class="headerlink" title="spring AOP"></a>spring AOP</h1><h2 id="AOP概念"><a href="#AOP概念" class="headerlink" title="AOP概念"></a>AOP概念</h2><p>aspect oriented programming<br>面向切面编程<br>是什么？<br>将共同业务处理从传统业务处理中抽离出来，单独封装，然后以配置的形式进行关联<br>为什么？<br>可以在不修改原有的逻辑代码的情况下，给系统追加功能</p>
+<h2 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h2><ul>
+<li>追加事务控制</li>
+<li>异常日志记录</li>
 </ul>
-<p>class User{</p>
-<p> private List<book> books;<br>}</book></p>
-<p>class Book{<br>  private User user;<br>}</p>
-<p>什么时候用<br>业务需要对数据库进行关联查询的时候</p>
-<p>可以通过一条SQL语句完成关联查询。也可以通过两条SQL语句进行关联查询</p>
-<h2 id="案例：通过userId查询用户信息和关联的笔记本信息"><a href="#案例：通过userId查询用户信息和关联的笔记本信息" class="headerlink" title="案例：通过userId查询用户信息和关联的笔记本信息"></a>案例：通过userId查询用户信息和关联的笔记本信息</h2><p>1.User 实体类<br>2.定义Dao接口，配置Mapper文件<br>3.定义测试类验证查询结果</p>
-<p>2个SQL语句：语句简单，但是配置繁琐，与DB两次交互</p>
-<pre><code>&lt;!-- 使用两条SQL语句加载数据 --&gt;
-    &lt;select id=&quot;findUserAndBook&quot; parameterType=&quot;String&quot; resultMap=&quot;userMap1&quot;&gt;
-        select * from cn_user where cn_user_id=#{id}
-    &lt;/select&gt;
+<p>案例：</p>
+<ul>
+<li>要求：在每个Controller方法执行前输出打桩信息</li>
+<li>封装一个组件</li>
+<li>通过配置将封装的组件追击到Controller方法里</li>
+</ul>
+<h1 id="AOP相关概念"><a href="#AOP相关概念" class="headerlink" title="AOP相关概念"></a>AOP相关概念</h1><ul>
+<li>oop：类，对象，封装，继承，多态</li>
+<li>AOP：切面，切入点，通知，动态代理</li>
+</ul>
+<h2 id="切面（aspect）"><a href="#切面（aspect）" class="headerlink" title="切面（aspect）"></a>切面（aspect）</h2><p>指的是封装了共同处理的组件，并且能够切入到其他的组件的方法上</p>
+<h2 id="切入点（pointcut）"><a href="#切入点（pointcut）" class="headerlink" title="切入点（pointcut）"></a>切入点（pointcut）</h2><p>用于指定目标组件的方法</p>
+<ul>
+<li>方法限定表达式<br>可以给某个组件中的部分方法追加共同功能<br>execution（修饰符？返回类型 方法名（参数） 异常抛出？）<br>//匹配到add开头的所有方法<br>execution(<em> add</em>(..))<br>//匹配UserService包下的所有方法<br>execution(<em> io.codegitz.UserService.</em>(…))<br>//匹配到service包下及其子包下的所有方法<br>execution(<em> io.codegitz.service..</em>(..))<br>//匹配到service包下所有类的方法<br>execution(<em> io.codegitz.service.</em>.*(..))</li>
+<li><p>类型限定表达式<br>可以给某个组件的所有方法追加功能<br>within（类型）<br>//匹配UserService组件下的所有方法<br>within(io.codegitz.service.UserService)<br>//匹配service包下的所有类的所有方法<br>within(io.codegitz.service.<em>)<br>//匹配service包及其子包下的所有方法<br>within(io.codegitz.service..</em>)</p>
+</li>
+<li><p>bean名称限定表达式<br>可以给某个组件中国的所有的方法追加功能<br>bean（id名）<br>//匹配id=userService的组件的所有方法<br>bean(userService)<br>//匹配以Service结尾的所有组件的所有方法<br>bean(*Service)</p>
+</li>
+</ul>
+<p>AOP配置文件</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:beans=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+    xmlns:jdbc=&quot;http://www.springframework.org/schema/jdbc&quot; xmlns:jee=&quot;http://www.springframework.org/schema/jee&quot;
+    xmlns:jms=&quot;http://www.springframework.org/schema/jms&quot; xmlns:lang=&quot;http://www.springframework.org/schema/lang&quot;
+    xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
+    xmlns:util=&quot;http://www.springframework.org/schema/util&quot; xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;
+    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+        http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd&quot;&gt;
 
-    &lt;resultMap type=&quot;io.codegitz.cloud_note.entity.User&quot; id=&quot;userMap1&quot;&gt;
-        &lt;id property=&quot;cn_user_id&quot; column=&quot;cn_user_id&quot; /&gt;
-        &lt;result property=&quot;cn_user_name&quot; column=&quot;cn_user_name&quot; /&gt;
-        &lt;!-- 指定books属性是List集合，泛型为Book --&gt;
-        &lt;!-- javaType是返回类型 --&gt;
-        &lt;collection property=&quot;books&quot; javaType=&quot;java.util.List&quot;
-            ofType=&quot;io.codegitz.cloud_note.entity.Book&quot; select=&quot;findBooks&quot;
-            column=&quot;cn_user_id&quot;&gt;
-        &lt;/collection&gt;
-    &lt;/resultMap&gt;
-    &lt;select id=&quot;findBooks&quot; parameterType=&quot;String&quot;
-        resultType=&quot;io.codegitz.cloud_note.entity.Book&quot;&gt;
-        select * from cn_user where cn_user_id=#{userId}
-    &lt;/select&gt;
-</code></pre><p>1个SQL语句：语句复杂，配置较简单，与DB交互一次</p>
-<pre><code>&lt;!-- 一条SQL加载user --&gt;
-    &lt;select id=&quot;findUserAndBook1&quot; parameterType=&quot;String&quot; resultMap=&quot;userMap2&quot;&gt;
-        select * from cn_user u join cn_notebook b
-        on(u.cn_user_id=b.cn_user_id) where u.cn_user_id=#{userId}
-    &lt;/select&gt;
-    &lt;resultMap type=&quot;io.codegitz.cloud_note.entity.User&quot; id=&quot;userMap2&quot;&gt;
-        &lt;!-- 定义cn_user 字段装载，不能忽略 --&gt;
-        &lt;id property=&quot;cn_user_id&quot; column=&quot;cn_user_id&quot; /&gt;
-        &lt;result property=&quot;cn_user_name&quot; column=&quot;cn_user_name&quot; /&gt;
-        &lt;result property=&quot;cn_user_nick&quot; column=&quot;cn_user_nick&quot; /&gt;
-        &lt;result property=&quot;cn_user_password&quot; column=&quot;cn_user_password&quot; /&gt;
-        &lt;result property=&quot;cn_user_token&quot; column=&quot;cn_user_token&quot; /&gt;
-      &lt;collection property=&quot;books&quot; 
-      javaType=&quot;java.util.List&quot;
-      ofType=&quot;io.codegitz.cloud_note.entity.Book&quot;&gt;
-          &lt;id property=&quot;cn_notebook_id&quot; column=&quot;cn_notebook_id&quot;/&gt;
-          &lt;result property=&quot;cn_user_id&quot; column=&quot;cn_user_id&quot;/&gt;
-          &lt;result property=&quot;cn_notebook_type_id&quot; column=&quot;cn_notebook_type_id&quot;/&gt;
-          &lt;result property=&quot;cn_notebook_name&quot; column=&quot;cn_notebook_name&quot;/&gt;
-          &lt;result property=&quot;cn_notebook_desc&quot; column=&quot;cn_notebook_desc&quot;/&gt;
-          &lt;result property=&quot;cn_notebook_createtime&quot; column=&quot;cn_notebook_createtime&quot;/&gt;
-      &lt;/collection&gt;
-    &lt;/resultMap&gt;
-</code></pre><h2 id="案例：通过查询笔记信息，关联用户信息"><a href="#案例：通过查询笔记信息，关联用户信息" class="headerlink" title="案例：通过查询笔记信息，关联用户信息"></a>案例：通过查询笔记信息，关联用户信息</h2><p>用一条查询语句实现</p>
-<h1 id="主键的字段处理"><a href="#主键的字段处理" class="headerlink" title="主键的字段处理"></a>主键的字段处理</h1><p>在数据库使用自增列或序列作为主键值时，如何在insert执行后、立刻获取id值<br>属性增加<br>    useGeneratedKeys=”true” keyProperty=”id”<br>-Mysql<br>    create table t_emp(id int primary key auto_increment,name varchar(20),age int)</p>
-<pre><code>&lt;mapper namespace=&quot;io.codegitz.cloud_note.dao.EmpDao&quot;&gt;
-  &lt;!-- mysql:数据库自动生成主键值，获取主键值放入对象的id属性中 --&gt;
-       &lt;insert id=&quot;save&quot; parameterType=&quot;io.codegitz.cloud_note.entity.Emp&quot;
-        useGeneratedKeys=&quot;true&quot; keyProperty=&quot;id&quot;&gt;
-           insert into t_emp (name,age) values (#{name},#{age})
-       &lt;/insert&gt;
-&lt;/mapper&gt;
-</code></pre><h1 id="spring事务管理"><a href="#spring事务管理" class="headerlink" title="spring事务管理"></a>spring事务管理</h1><p>什么是事务？程序为了保证业务处理的完整性，执行一个或多个SQL语句<br>管理：对事务中的Sql语句进行提交或回滚，叫做事务管理<br>什么时候用？作用于Service的方法上</p>
-<p>事务回顾：<br>转账：A账户转1000到B账户<br><img src="https://i.imgur.com/GKrc1NA.png" alt=""><br>通过spring进行事务管理<br>步骤：<br>1.配置Spring-transaction.xml</p>
-<ol>
-<li>使用@Transactional标记</li>
-</ol>
-<h2 id="可读可写"><a href="#可读可写" class="headerlink" title="可读可写"></a>可读可写</h2><p>   select操作时，可采用只读事务<br>@Transaction(readOnly=true)</p>
-<h2 id="回滚特性"><a href="#回滚特性" class="headerlink" title="回滚特性"></a>回滚特性</h2><p>  默认RuntimeException回滚，其他异常不回滚<br>  @Transaction(rollbackFor=IOException.class)<br>  public void f1(){<br>      //db操作(insert)<br>      //IOException<br>  }<br>public void deleteNote(String… ids) {</p>
-<pre><code>//String... 就是String[] 数组
-</code></pre><p>}</p>
-<h2 id="传播特性"><a href="#传播特性" class="headerlink" title="传播特性"></a>传播特性</h2><p> 默认类型：REQUIRED</p>
-<p>传播行为 描述<br>PROPAGATION_REQUIRED    如果没有，就开启一个事务；如果有，就加入当前事务（方法B看到自己已经运行在 方法A的事务内部，就不再起新的事务，直接加入方法A）</p>
-<p>RROPAGATION_REQUIRES_NEW    如果没有，就开启一个事务；如果有，就将当前事务挂起。（方法A所在的事务就会挂起，方法B会起一个新的事务，等待方法B的事务完成以后，方法A才继续执行）</p>
-<p>PROPAGATION_NESTED    如果没有，就开启一个事务；如果有，就在当前事务中嵌套其他事务</p>
-<p>PROPAGATION_SUPPORTS    如果没有，就以非事务方式执行；如果有，就加入当前事务（方法B看到自己已经运行在 方法A的事务内部，就不再起新的事务，直接加入方法A）</p>
-<p>PROPAGATION_NOT_SUPPORTED    如果没有，就以非事务方式执行；如果有，就将当前事务挂起，（方法A所在的事务就会挂起，而方法B以非事务的状态运行完，再继续方法A的事务）</p>
-<p>PROPAGATION_NEVER    如果没有，就以非事务方式执行；如果有，就抛出异常。</p>
-<p>PROPAGATION_MANDATORY    如果没有，就抛出异常；如果有，就使用当前事务</p>
-<h2 id="隔离特性"><a href="#隔离特性" class="headerlink" title="隔离特性"></a>隔离特性</h2><p>默认属性：READ_COMMITED<br>针对事务并发进行处理<br>脏读/幻读</p>
-<h1 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h1><p>使用<if> <choose>等标签<br><img src="https://i.imgur.com/KmB7Rwo.png" alt=""></choose></if></p>
-<pre><code> public int updateNoteByMap(Map&lt;String,Object&gt; map);
-</code></pre><pre><code>&lt;update id=&quot;updateNoteByMap&quot; parameterType=&quot;Map&quot;&gt;
-       update cn_note set 
-       &lt;trim suffixOverrides=&quot;,&quot;&gt;
-       &lt;if test=&quot;title!=null&quot;&gt; cn_note_title=#{title},&lt;/if&gt;
-       &lt;if test=&quot;body!=null&quot;&gt;cn_note_body=#{body},&lt;/if&gt;
-       &lt;choose&gt;
-              &lt;when test=&quot;time!=null&quot;&gt;
-                 cn_note_last_modify_time=#{time}
-              &lt;/when&gt;
+    &lt;bean id=&quot;loggerBean&quot; class=&quot;io.codegitz.cloud_note.aspect.LoggerBean&quot;&gt;
+    &lt;/bean&gt;
+    &lt;aop:config&gt;
+        &lt;!-- 通过REF关联组件类 --&gt;
+        &lt;aop:aspect ref=&quot;loggerBean&quot;&gt;
+            &lt;aop:before method=&quot;logController&quot; pointcut=&quot;within(io.codegitz.cloud_note.controller..*)&quot; /&gt;
+        &lt;/aop:aspect&gt;
+    &lt;/aop:config&gt;
 
-              &lt;otherwise&gt;
-              cn_note_last_modify_time=unix_timestamp()
-              &lt;/otherwise&gt;
-       &lt;/choose&gt;
-       &lt;!-- &lt;if test=&quot;time!=null&quot;&gt;cn_note_last_modify_time=#{time}&lt;/if&gt; --&gt;
-       &lt;/trim&gt;
-       where cn_note_id=#{noteId}
+&lt;/beans&gt;
+</code></pre><p>遇到错误：</p>
+<pre><code>cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element &#39;aop:config&#39;.
+</code></pre><p>有点狗的是引用和xsd文件都有了，后来把后面的版本号去掉了，然后就暂时不报错了，过了一会再次报错，然后把版本号又加了回去，然后就行了….</p>
+<h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><p>用于指定切入的时机<br>spring提供了五种通知类型<br>try{<br>   使用前置通知<aop:before><br>   //执行的目标方法<br>   后置通知<aop:after-returning><br>}catch{<br>   异常通知<aop:after-throwing><br>}finally{<br>   最终通知：<aop:after><br>}<br>@around=前置+后置通知</aop:after></aop:after-throwing></aop:after-returning></aop:before></p>
+<p>切面：追加啥功能？单独封装的代码<br>切入点：切谁？所有Controller<br>通知：啥时候切？前置，后置，环绕</p>
+<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>AOP原理：使用动态代理技术<br>可以创建一个新的类型，重写目标接口或目标类的方法<br>在重写方法中，追加了要切入的功能代码和方法代码<br><img src="https://i.imgur.com/QZyOfVf.png" alt=""></p>
+<h3 id="AOP的配置使用形式"><a href="#AOP的配置使用形式" class="headerlink" title="AOP的配置使用形式"></a>AOP的配置使用形式</h3><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:beans=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+    xmlns:jdbc=&quot;http://www.springframework.org/schema/jdbc&quot; xmlns:jee=&quot;http://www.springframework.org/schema/jee&quot;
+    xmlns:jms=&quot;http://www.springframework.org/schema/jms&quot; xmlns:lang=&quot;http://www.springframework.org/schema/lang&quot;
+    xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
+    xmlns:util=&quot;http://www.springframework.org/schema/util&quot;
+    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+        http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd&quot;&gt;
+      &lt;!-- Spring事务管理 --&gt;
+       &lt;!-- 定义事务管理bean --&gt;
+       &lt;bean id=&quot;txManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;
+       &lt;property name=&quot;dataSource&quot; ref=&quot;dbcp&quot;&gt;&lt;/property&gt;
+       &lt;/bean&gt;
+       &lt;!-- 开启transaction注解扫描，将标记作用在具体的方法上 --&gt;
+       &lt;tx:annotation-driven transaction-manager=&quot;txManager&quot;/&gt;
+&lt;/beans&gt;
+</code></pre><p>然后在实现类前面加一个@Transactional注解<br>执行此测试方法：</p>
+<pre><code>@Test
+    public void testUserService1(){
+        System.out.println(service.getClass().getName());
+    }
+</code></pre><p>未使用动态代理则会输出原来的类名：io.codegitz.cloud_note.service.UserServiceImpl<br>使用动态代理输出动态代理名：com.sun.proxy.$Proxy22</p>
+<p>spring有两种动态技术</p>
+<ul>
+<li>基于目标接口的</li>
+<li>基于目标类的</li>
+</ul>
+<p>public class $Proxy22 implements UserService{<br>     public void checkLogin(){<br>        //追加事务处理<br>        //重写了UserServiceImpl.checkLogin<br>}  </p>
+<p>}</p>
+<p>public class $Proxy22 extends 目标类{</p>
+<p>}</p>
+<h1 id="AOP注解配置"><a href="#AOP注解配置" class="headerlink" title="AOP注解配置"></a>AOP注解配置</h1><h2 id="注解标记"><a href="#注解标记" class="headerlink" title="注解标记"></a>注解标记</h2><p>@Component 起到应以<bean>的作用<br>@Aspect <aop:aspect ref="loggerBean"><br>@Before <aop:before pointcut="within()"></aop:before></aop:aspect></bean></p>
+<p>案例：</p>
+<ul>
+<li>要求：当系统发生service异常，将异常信息写入到日志文件</li>
+<li>切面：将异常写入文件</li>
+<li>切入点：after-throwing(“within(service..*    )”)</li>
+</ul>
+<p>记录异常类：</p>
+<pre><code>package io.codegitz.cloud_note.aspect;
 
-    &lt;/update&gt;
-</code></pre>
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
+
+@Component  //扫描spring容器
+@Aspect     //将该类作为切面组件
+public class ExceptionBean {
+
+    //e是目标组件抛出的异常对象
+    @AfterThrowing(throwing=&quot;e&quot;,pointcut=&quot;within(io.codegitz.cloud_note.service..*)&quot;)
+    public void execute(Exception e){
+        //将异常信息输入文件
+        try {
+            FileWriter fw=new FileWriter(&quot;F:\\note_error\\record.log&quot;,true);
+            PrintWriter pw=new PrintWriter(fw);
+            //利用pw对象写入异常信息
+            Date time=new Date();
+            SimpleDateFormat sdf=new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);
+            String strTime=sdf.format(time);
+            pw.println(&quot;************************&quot;);
+            pw.println(&quot;异常类型：&quot;+e);
+            pw.println(&quot;异常事件：&quot;+strTime);
+            pw.println(&quot;*****异常的详细信息******&quot;);
+            e.printStackTrace(pw);
+            pw.close();
+            fw.close();
+        } catch (Exception ex) {
+            System.out.println(&quot;记录异常失败&quot;);
+        }
+    }
+}
+</code></pre><p>模拟异常：</p>
+<pre><code>String str=null;
+str.length();
+</code></pre><p>后台报错：<br><img src="https://i.imgur.com/mpEiu1h.png" alt=""></p>
+<p>日志文件记录：<br><img src="https://i.imgur.com/vmxMLpi.png" alt=""></p>
+<p>记录异常成功。</p>
+
       
 
       
@@ -697,489 +1011,7 @@ mysql&gt; select host,user from mysql.user;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/mybatis关联映射/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mysql报错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/mysql报错/">Mysql报错</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/mysql报错/" class="archive-article-date">
-  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Mysql报错：Unable-to-connect-to-remote-host-Catalog-download-has-failed"><a href="#Mysql报错：Unable-to-connect-to-remote-host-Catalog-download-has-failed" class="headerlink" title="Mysql报错：Unable to connect to remote host. Catalog download has failed."></a>Mysql报错：Unable to connect to remote host. Catalog download has failed.</h1><pre><code>=================== Start Initialization ===================
-MySQL Installer is running in Community mode
-
-Initializing product requirements
-Loading product catalog
-Checking for product catalog snippets
-Checking for product packages in the bundle
-Categorizing product catalog
-Finding all installed packages.
-Your product catalog was last updated at 4/9/2018 9:54:11 PM
-=================== End Initialization ===================
-
-
-
-Unable to connect to remote host.  Catalog download has failed.
-</code></pre><p>问题分析<br>该问题是由于新版本的 Mysql 在安装的时候会自动在 Windows 的“任务计划程序”中安装一个定时任务，任务的触发时间为每天上午十点。</p>
-<p>解决方式<br>找到相应的定时任务，并禁用该任务。 </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/mysql报错/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-note" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/note/">云笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/note/" class="archive-article-date">
-  	<time datetime="2018-04-13T02:55:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h2><ul>
-<li>用户模块：登录注册修改密码，退出</li>
-<li>笔记本模块:创建 删除 更新 查看</li>
-<li>笔记模块：创建 删除 更新 查看 转移</li>
-<li>分享、收藏模块：分享 收藏 查看 搜索</li>
-<li>回收模块：先看 彻底删除 恢复</li>
-<li>活动模块：查看活动 参加活动<h2 id="设计思想"><a href="#设计思想" class="headerlink" title="设计思想"></a>设计思想</h2>MVC设计思想<br>表现层：HTML+CSS+JQuery+ajax<br>控制层：springmvc<br>业务层：service组件<br>持久层：Dao组件<h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2>1.开发环境：WindowsXP+Tomcat+mysql<br>2.采用技术：java+jQuery+ajax+springmvc+IOC+AOP+mybatis<br>java:开发核心技术<br>jQuery：简化前端JavaScript（$对象和API）<br>ajax：局部处理页面，提升用户体验度<br>spring(IOC/AOP):管理相关组件<br>IOC：负责管理Controller/service/dao,维护他们之间的关系<br>AOP：面向切面编程，不改变原有的代码，给系统增加新的功能<br>mybatis：对数据库进行操作<h2 id="整体规范"><a href="#整体规范" class="headerlink" title="整体规范"></a>整体规范</h2></li>
-<li>所有的请求ajax方式访问</li>
-<li>前端页面采用HTML</li>
-<li>对所有的请求结果进行json响应{status: ,”msg”: ,”data”:}<h2 id="数据库构建"><a href="#数据库构建" class="headerlink" title="数据库构建"></a>数据库构建</h2>mysql<br>mysql -uroot -t //启动数据库命令行<br>show databases;//查看有哪些数据库<br>create database cloud_note; //创建数据库<br>drop database cloud_note; //删除数据库<br>use 数据库名; //连接数据库<br>show tables; //查看有哪些表<br>source /…/../**.sql//导入SQL文件</li>
-</ul>
-<h2 id="E-R-实体–关系模型图"><a href="#E-R-实体–关系模型图" class="headerlink" title="E-R 实体–关系模型图"></a>E-R 实体–关系模型图</h2><p>由业务分析产生，作为实体类和数据库设计的依据。<br><img src="https://i.imgur.com/XupPkl0.png" alt=""></p>
-<h3 id="关联关系"><a href="#关联关系" class="headerlink" title="关联关系"></a>关联关系</h3><p>一对多关系<br><img src="https://i.imgur.com/OCLROca.png" alt=""><br>多对多关系<br><img src="https://i.imgur.com/w9BVSob.png" alt=""></p>
-<h3 id="绘图工具"><a href="#绘图工具" class="headerlink" title="绘图工具"></a>绘图工具</h3><p>Microsoft Office vision<br>Mysql workbench</p>
-<h1 id="项目流程"><a href="#项目流程" class="headerlink" title="项目流程"></a>项目流程</h1><h2 id="cmmi"><a href="#cmmi" class="headerlink" title="cmmi"></a>cmmi</h2><ul>
-<li>前身是CMM，软件成熟度模型，认证</li>
-<li>过程域：指软件开发的某一方面</li>
-<li>分级：五个等级<br>初始级-可管理级-已定义级-量化管理及-优先管理级<br>QA–评审<h2 id="项目开发流程："><a href="#项目开发流程：" class="headerlink" title="项目开发流程："></a>项目开发流程：</h2><img src="https://i.imgur.com/f1JFOUT.png" alt=""><h3 id="项目模型："><a href="#项目模型：" class="headerlink" title="项目模型："></a>项目模型：</h3>  瀑布模型<br><img src="https://i.imgur.com/GZIZpuB.png" alt=""></li>
-</ul>
-<h3 id="阶段产品"><a href="#阶段产品" class="headerlink" title="阶段产品"></a>阶段产品</h3><p>项目总计划</p>
-<h4 id="需求阶段"><a href="#需求阶段" class="headerlink" title="需求阶段"></a>需求阶段</h4><p>需求规格说明书  用户需求</p>
-<h4 id="设计阶段"><a href="#设计阶段" class="headerlink" title="设计阶段"></a>设计阶段</h4><p>概要设计说明书<br>详细设计说明书</p>
-<h4 id="编码阶段"><a href="#编码阶段" class="headerlink" title="编码阶段"></a>编码阶段</h4><p>需求源码<br>单元测试文档</p>
-<h4 id="测试阶段"><a href="#测试阶段" class="headerlink" title="测试阶段"></a>测试阶段</h4><p>测试案例<br>测试报告</p>
-<h2 id="人员结构"><a href="#人员结构" class="headerlink" title="人员结构"></a>人员结构</h2><p>项目经理<br>QA CM dev test 测试经理</p>
-<p>SSM框架 springMVC+spring+Mybatis</p>
-<p>spring-mybatis</p>
-<h1 id="创建云笔记的环境"><a href="#创建云笔记的环境" class="headerlink" title="创建云笔记的环境"></a>创建云笔记的环境</h1><h2 id="导包"><a href="#导包" class="headerlink" title="导包"></a>导包</h2><h2 id="添加配置文件"><a href="#添加配置文件" class="headerlink" title="添加配置文件"></a>添加配置文件</h2><ul>
-<li>conf/spring-mvc.xml</li>
-<li>conf/spring-mybatis.xml</li>
-<li>mapper/SQL文件</li>
-<li>web.xml<h2 id="划分包结构"><a href="#划分包结构" class="headerlink" title="划分包结构"></a>划分包结构</h2></li>
-<li>io.codegit.cloud_note.dao</li>
-<li>io.codegit.cloud_note.service</li>
-<li>io.codegit.cloud_note.controller</li>
-<li>io.codegit.cloud_note.entity</li>
-<li>io.codegit.cloud_note.util <h2 id="将html目录下的内容拷贝到webApp下"><a href="#将html目录下的内容拷贝到webApp下" class="headerlink" title="将html目录下的内容拷贝到webApp下"></a>将html目录下的内容拷贝到webApp下</h2></li>
-</ul>
-<h1 id="登录功能"><a href="#登录功能" class="headerlink" title="登录功能"></a>登录功能</h1><h2 id="发送ajax请求"><a href="#发送ajax请求" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>事件绑定</li>
-<li>获取参数</li>
-<li>$.ajax发送请求<h2 id="服务器处理"><a href="#服务器处理" class="headerlink" title="服务器处理"></a>服务器处理</h2>请求–&gt;DispatcherServlet<br>–&gt;HandlerMapping<br>–&gt;Controller.execute()<br>–&gt;Service–&gt;Dao–&gt;cn_user<br>–&gt;返回数据</li>
-</ul>
-<h2 id="ajax回调处理"><a href="#ajax回调处理" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><ul>
-<li>成功：edit.html</li>
-<li>失败：提示信息，重新操作</li>
-</ul>
-<h1 id="注册功能"><a href="#注册功能" class="headerlink" title="注册功能"></a>注册功能</h1><h2 id="发送ajax请求-1"><a href="#发送ajax请求-1" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>发送事件：注册按钮的单击</li>
-<li>获取参数：用户名 昵称 密码</li>
-<li>请求地址：/user/add.do<h2 id="服务器处理-1"><a href="#服务器处理-1" class="headerlink" title="服务器处理"></a>服务器处理</h2>请求-&gt;DispatchServlet<br>–&gt;HandlerMapping<br>–&gt;Controller.execute</li>
-</ul>
-<p>–&gt;Service(addUser)</p>
-<pre><code>//检查用户
-findByName(name)
-user!=null
-result
-//添加用户
-createId()
-//处理password
-user.set()
-save(user)
-//设置result
-</code></pre><p>–&gt;Dao–cn_user(insert)<br>1.UserDao(save(User))<br>2.UserMapper.xml(insert)<br>–&gt;json响应</p>
-<h2 id="ajax回调处理-1"><a href="#ajax回调处理-1" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><p>success：<br>注册成功<br>注册失败<br>error（异常）：<br>提示：注册失败</p>
-<ul>
-<li>成功：edit.html</li>
-<li>失败：提示信息，重新登录</li>
-</ul>
-<p>UUID<br>是一个生成字符串的算法<br>用于生成数据库的主键</p>
-<p>生成主键有两种方式：<br>在应用服务器端生成主键<br>在数据库端生成主键</p>
-<h2 id="MD5：摘要算法，加密处理"><a href="#MD5：摘要算法，加密处理" class="headerlink" title="MD5：摘要算法，加密处理"></a>MD5：摘要算法，加密处理</h2><ul>
-<li>最初用于文本比较</li>
-<li>将任意长度的字节处理成等长的结果</li>
-<li>不可逆</li>
-</ul>
-<h2 id="Base64"><a href="#Base64" class="headerlink" title="Base64"></a>Base64</h2><p>将自己转换成字符串输出<br>构成</p>
-<ul>
-<li>(a-z A-Z)</li>
-<li>(0-9)</li>
-<li>(+ =)<br>更新数据库密码：<br>update cn_user set cn_user_password=’4QrcOUm6Wau+VuBX8g+IPg==’</li>
-</ul>
-<h1 id="笔记本显示功能"><a href="#笔记本显示功能" class="headerlink" title="笔记本显示功能"></a>笔记本显示功能</h1><h2 id="发送ajax请求-2"><a href="#发送ajax请求-2" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>发送事件：进入到edit.html发送请求</li>
-<li>请求参数：userId</li>
-<li>请求地址：/book/loadBooks.do<h2 id="服务器处理-2"><a href="#服务器处理-2" class="headerlink" title="服务器处理"></a>服务器处理</h2>/book/loadBookds.do<br>–&gt;LoadBooksController.execute<br>测试：<br>http:localhost:8080/cloud_note/book/loadBooks.do?userId=ecd976d53a88484eaf911049241073ad<br>–&gt;BookService.LoadUserBooks<br>ecd976d53a88484eaf911049241073ad</li>
-<li>1.BookService接口loadUserBooks<pre><code>  NoteResult&lt;List&lt;Book&gt;&gt; loadUserBooks
-  (userId)
-</code></pre></li>
-<li>2.实现类中调用dao.findByUserId<pre><code>  调用dao.findByUserId(userId)
-</code></pre></li>
-<li><p>3.实现类中构建Result结果</p>
-<pre><code>  构建Result结果
-</code></pre><p>–&gt;BookDao.findByUserId</p>
-</li>
-<li><p>BookDao接口定义findByUserId</p>
-</li>
-<li>配置BookMapper.xml<br>–&gt;cn_userbook(查询)<br>–&gt;JSON响应<h2 id="ajax回调处理-2"><a href="#ajax回调处理-2" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2>success:<br>解析JSON数据，循环生成笔记本列表项<pre><code>（li）
-&lt;ul&gt;
-&lt;li class=&quot;online&quot;&gt;
-&lt;a  class=&#39;checked&#39;&gt;
-&lt;i class=&quot;fa fa-book&quot; title=&quot;online&quot; rel=&quot;tooltip-bottom&quot;&gt;
-&lt;/i&gt; bookName&lt;/a&gt;&lt;/li&gt; 
-error:
-alter(&quot;笔记本加载失败&quot;);
-</code></pre><h2 id="标记互斥"><a href="#标记互斥" class="headerlink" title="标记互斥"></a><script>标记互斥</h2></li>
-<li>要么使用SRC属性引用外部js文件</li>
-<li>要么在标记内自己写JavaScript代码</li>
-</ul>
-<h1 id="笔记本列表显示"><a href="#笔记本列表显示" class="headerlink" title="笔记本列表显示"></a>笔记本列表显示</h1><h2 id="发送ajax请求-3"><a href="#发送ajax请求-3" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>发送事件：笔记本li的点击</li>
-<li>请求的参数：笔记本的id</li>
-<li>请求地址：/note/loadnotes.do<h2 id="服务器的处理"><a href="#服务器的处理" class="headerlink" title="服务器的处理"></a>服务器的处理</h2>/note/loadnotes.do<br>–&gt;loadNoteController.execute<br>–&gt;NoteService.loadBookNotes</li>
-</ul>
-<p>1.定义接口文件NoteService-loadBookNotes(bookId)<br>2.实现类中重写方法<br>noteDao.findByBookId()<br>构建Result–set方法<br>setData=List<Map></p>
-<p>–&gt;NoteDao.findByBookId(bookId)</p>
-<p>1 接口文件定义方法<br>2.配置mapper文件<br>3 TestNoteDao<br>–&gt;cn_note(select_bookId &amp;cn_note_status_id=’1’)</p>
-<h2 id="ajax回调处理-3"><a href="#ajax回调处理-3" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><p>success:<br>成功：解析json数据，生成笔记li,添加到笔记本列表中 </p>
-<p><li class="online"><br>                                        <a  class='checked'><br>                                            <i class="fa fa-file-text-o" title="online" rel="tooltip-bottom"></i> 使用Java操作符<button type="button" class="btn btn-default btn-xs btn_position btn_slide_down"><i class="fa fa-chevron-down"></i></button><br>                                        </a><br>                                        <div class="note_menu" tabindex='-1'><br>                                            <dl><br>                                                <dt><button type="button" class="btn btn-default btn-xs btn_move" title='移动至...'><i class="fa fa-random"></i></button></dt><br>                                                <dt><button type="button" class="btn btn-default btn-xs btn_share" title='分享'><i class="fa fa-sitemap"></i></button></dt><br>                                                <dt><button type="button" class="btn btn-default btn-xs btn_delete" title='删除'><i class="fa fa-times"></i></button></dt><br>                                            </dl><br>                                        </div><br>                                    </li><br>error：<br>提示alert(“笔记加载失败”);</p>
-<p> 事件绑定<br>静态绑定：元素.click(function(){})<br>动态绑定：<br>父元素.on(“click”,”li”,fn)<br>元素.click(); </p>
-<p>Dao接口的传值特点<br> public interface Dao{<br>        public void fn();<br>        public void fn(String str);<br>        public void fn(Map map);<br>        public void fn(User user);</p>
-<p>}<br>总结：mybatis中Dao方法要么没有参数，要么只有一个参数</p>
-<p>设置选中效果<br>    $(“#book_ul a”).removeClass(“checked”);<br>      $(this).find(“a”).addClass(“checked”);</p>
-<p>清空原列表<br>$(“#note_ul”).empty();</p>
-<p>UEdit<br>用js开发的开源组件</p>
-<p>为什么使用？<br>通过JS代码实现表单功能的增强</p>
-<p>如何用？<br>1.引用脚本<br>2.实例化<br>3.通过<script>指定位置<br>4.</p>
-<ul>
-<li>um.setContent(“str”);</li>
-<li>um.getContent(“str”);</li>
-</ul>
-<h1 id="显示笔记信息"><a href="#显示笔记信息" class="headerlink" title="显示笔记信息"></a>显示笔记信息</h1><h2 id="发送ajax请求-4"><a href="#发送ajax请求-4" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>发送事件：笔记列表li元素的单击事件（动态绑定）</li>
-<li>请求参数：笔记ID（noteId）</li>
-<li>请求地址：</li>
-</ul>
-<h2 id="服务器处理-3"><a href="#服务器处理-3" class="headerlink" title="服务器处理"></a>服务器处理</h2><ul>
-<li>Controller:</li>
-<li>LoadNoteController.execute(String noteId)</li>
-<li>Service</li>
-<li>NoteService.loadNote(String noteId)</li>
-<li>Dao</li>
-<li>NoteDao.findByNoteId(String noteId)</li>
-<li>cn_note(查询 )</li>
-<li>json响应<h2 id="ajax回调处理-4"><a href="#ajax回调处理-4" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2>success:<br>-设置笔记标题</li>
-<li>设计笔记内容（body）</li>
-<li>um.setContent(“str”);</li>
-<li>um.getContent(“str”);<br>error:<br>alert(“笔记信息加载失败”);</li>
-</ul>
-<h1 id="更新笔记信息"><a href="#更新笔记信息" class="headerlink" title="更新笔记信息"></a>更新笔记信息</h1><p>##发送ajax请求</p>
-<ul>
-<li>发送事件：保存笔记 按钮单击事件（静态）</li>
-<li>请求参数：笔记ID（id） 标题（title）内容(body)</li>
-<li>请求地址： /note/update.do<br>##服务器处理</li>
-<li>UpdateNoteController(id,title,body)</li>
-<li>NoteService.updateNote(Note)</li>
-<li>NoteDao.updateNote(Note)</li>
-<li>cn_note(更新处理–最后修改时间)<br>##ajax回调处理<br>success：对被更新的笔记名称进行更新<br><li><a class="check"></a></li><br>var $li=$(“#note_ul a.checked”).parent();</li>
-</ul>
-<h1 id="使用alert"><a href="#使用alert" class="headerlink" title="使用alert"></a>使用alert</h1><h2 id="如何显示"><a href="#如何显示" class="headerlink" title="如何显示"></a>如何显示</h2><ul>
-<li>通过load，加载HTML</li>
-<li>通过show(),显示背景</li>
-<li></li>
-</ul>
-<h1 id="创建笔记本"><a href="#创建笔记本" class="headerlink" title="创建笔记本"></a>创建笔记本</h1><h2 id="发送ajax请求-5"><a href="#发送ajax请求-5" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>发送事件：对话框中的创建按钮的单击（动态）</li>
-<li>请求参数：笔记本名称、笔记本ID和用户id</li>
-<li>请求地址：/book/add.do<h2 id="服务器处理-4"><a href="#服务器处理-4" class="headerlink" title="服务器处理"></a>服务器处理</h2></li>
-<li>AddBookController.execute</li>
-<li>BookService.addBook(book)</li>
-<li>BookDao.save(book)</li>
-<li>cn_notebook(insert)</li>
-</ul>
-<p>insert 遇到的错误<br>原因是因为插入语句要遵循严格语法，所有的属性都必须有值</p>
-<pre><code>org.springframework.dao.DataIntegrityViolationException: 
-### Error updating database.  Cause: java.sql.SQLException: Field &#39;cn_notebook_id&#39; doesn&#39;t have a default value
-### The error may involve io.codegitz.cloud_note.dao.BookDao.save-Inline
-### The error occurred while setting parameters
-### SQL: insert into cn_notebook (cn_user_id,cn_notebook_name,cn_notebook_type_id,cn_notebook_desc,cn_notebook_createtime) values (?,?,?,?,?)
-### Cause: java.sql.SQLException: Field &#39;cn_notebook_id&#39; doesn&#39;t have a default value
-; SQL []; Field &#39;cn_notebook_id&#39; doesn&#39;t have a default value; nested exception is java.sql.SQLException: Field &#39;cn_notebook_id&#39; doesn&#39;t have a default value
-    at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:249)
-    at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:72)
-    at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:74)
-    at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:399)
-    at com.sun.proxy.$Proxy11.insert(Unknown Source)
-    at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:253)
-    at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:52)
-    at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:53)
-    at com.sun.proxy.$Proxy12.save(Unknown Source)
-    at test.dao.TestBookDao.testAddBook(TestBookDao.java:49)
-    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-    at java.lang.reflect.Method.invoke(Method.java:606)
-    at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-    at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-    at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-    at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-    at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-    at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-    at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-    at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-    at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-    at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-    at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-    at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-    at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-    at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
-    at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
-    at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
-    at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
-    at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
-    at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
-Caused by: java.sql.SQLException: Field &#39;cn_notebook_id&#39; doesn&#39;t have a default value
-    at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:959)
-    at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3870)
-    at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3806)
-    at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2470)
-    at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2617)
-    at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2550)
-    at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
-    at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:1192)
-    at org.apache.commons.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
-    at org.apache.commons.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
-    at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:45)
-    at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:73)
-    at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:49)
-    at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:115)
-    at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:75)
-    at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:170)
-    at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:157)
-    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-    at java.lang.reflect.Method.invoke(Method.java:606)
-    at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:386)
-    ... 29 more
-</code></pre><ul>
-<li>json响应<h2 id="ajax回调处理-5"><a href="#ajax回调处理-5" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2>success:</li>
-<li>关闭对话框</li>
-<li>添加笔记本li</li>
-<li>提示创建笔记本成功、失败</li>
-</ul>
-<p>error:<br>提示创建失败</p>
-<h1 id="创建笔记功能"><a href="#创建笔记功能" class="headerlink" title="创建笔记功能"></a>创建笔记功能</h1><h2 id="发送请求"><a href="#发送请求" class="headerlink" title="发送请求"></a>发送请求</h2><ul>
-<li>发送事件：对话框中 创建 按钮的单击</li>
-<li>请求参数：笔记名称 笔记本ID 用户ID</li>
-<li>请求地址：/note/add.do<h2 id="服务器处理-5"><a href="#服务器处理-5" class="headerlink" title="服务器处理"></a>服务器处理</h2></li>
-<li>Controller.execute</li>
-<li>NoteService.addNote</li>
-<li>NoteDao.save</li>
-<li>cn_note(insert)<h2 id="ajax回调处理-6"><a href="#ajax回调处理-6" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2></li>
-<li>关闭对话框</li>
-<li>解析json数据，生成一个li元素添加到笔记本列表</li>
-<li>1 获取noteTitle</li>
-<li>2.获取noteId</li>
-<li>提示创建笔记成功</li>
-</ul>
-<p>error:提示创建失败</p>
-<h1 id="显示笔记下拉菜单"><a href="#显示笔记下拉菜单" class="headerlink" title="显示笔记下拉菜单"></a>显示笔记下拉菜单</h1><p>1.通过点击’箭头’按钮显示三个菜单项</p>
-<ul>
-<li>获取div对象 slideDown(1000);</li>
-</ul>
-<h1 id="笔记分享"><a href="#笔记分享" class="headerlink" title="笔记分享"></a>笔记分享</h1><h2 id="发送请求-1"><a href="#发送请求-1" class="headerlink" title="发送请求"></a>发送请求</h2><ul>
-<li>发送事件：点击分享按钮</li>
-<li>请求参数：noteId</li>
-<li>请求地址：/share/add.do<h2 id="服务器处理-6"><a href="#服务器处理-6" class="headerlink" title="服务器处理"></a>服务器处理</h2></li>
-<li>创建share类</li>
-<li>Controller</li>
-<li>Service</li>
-<li>Dao-insert</li>
-<li>cn_share<br>先在cn_note里面查找，然后再插入cn_share<br>##回调处理<br>success：</li>
-<li>提示分享成功</li>
-<li>增加图标处理<i class="fa fa-sitemap"></li>
-</ul>
-<h1 id="分享笔记搜索功能"><a href="#分享笔记搜索功能" class="headerlink" title="分享笔记搜索功能"></a>分享笔记搜索功能</h1><h2 id="功能描述：用户输入搜索关键词，然后回车，触发查询"><a href="#功能描述：用户输入搜索关键词，然后回车，触发查询" class="headerlink" title="功能描述：用户输入搜索关键词，然后回车，触发查询"></a>功能描述：用户输入搜索关键词，然后回车，触发查询</h2><h2 id="发送ajax请求-6"><a href="#发送ajax请求-6" class="headerlink" title="发送ajax请求"></a>发送ajax请求</h2><ul>
-<li>发送请求：输入关键词后，点回车</li>
-<li>请求参数：输入的关键词</li>
-<li>请求地址：/share/search.do</li>
-</ul>
-<h2 id="服务器处理-7"><a href="#服务器处理-7" class="headerlink" title="服务器处理"></a>服务器处理</h2><ul>
-<li>Controller</li>
-<li>Service</li>
-<li>Dao(select)</li>
-<li>cn_share</li>
-</ul>
-<p>select * from cn_share like %关键字%</p>
-<p>select <em> from cn_share limit m,n<br>select </em> from cn_share like #{title} limit #{begin},3<br>1    0<br>2    3<br>3    6<br>n    (n-1)*3<br>m:记录的位置<br>n:每页显示的最大记录数</p>
-<h2 id="ajax回调处理-7"><a href="#ajax回调处理-7" class="headerlink" title="ajax回调处理"></a>ajax回调处理</h2><p>List<br>success:</p>
-<ul>
-<li>显示搜索笔记结果列表（pc_part_6）</li>
-<li>将解析后的搜索结果，添加到列表中</li>
-</ul>
-<p>error</p>
-<ul>
-<li>提示搜索失败</li>
-</ul>
-<p>$(“#id”).keydown(function(event){<br>      var code=event.keyCode;<br>      if(code==13){<br>         //发送ajax请求<br>}<br>})    </p>
-<pre><code>报错：
-Uncaught TypeError: Cannot read property &#39;cn_share_id&#39; of undefined
-原因是循环越界：
-var i = 0; i &lt;=shares.length; i++
-改为：
-var i = 0; i &lt;shares.length; i++
-</code></pre></script></h2></li></ul>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/note/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/springAOP/">展开全文 >></a>
         </p>
       
 
@@ -1355,11 +1187,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1375,15 +1207,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1395,11 +1231,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1411,19 +1247,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hello world</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">solr</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
             
             <div class="clearfix"></div>
