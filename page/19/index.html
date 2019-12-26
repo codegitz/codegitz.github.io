@@ -171,20 +171,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="w-类和对象" class="article article-type-w  article-index" itemscope itemprop="blogPost">
+    <article id="post-抽象方法、抽象类，接口" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/20/类和对象/">类和对象</a>
+      <a class="article-title" href="/2017/09/07/抽象方法、抽象类，接口/">抽象方法、抽象类，接口</a>
     </h1>
   
 
         
-        <a href="/2017/07/20/类和对象/" class="archive-article-date">
-  	<time datetime="2017-07-20T10:53:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-20</time>
+        <a href="/2017/09/07/抽象方法、抽象类，接口/" class="archive-article-date">
+  	<time datetime="2017-09-07T02:39:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
 </a>
         
       </header>
@@ -195,208 +195,56 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="什么是类？什么是对象？"><a href="#什么是类？什么是对象？" class="headerlink" title="什么是类？什么是对象？"></a>什么是类？什么是对象？</h1><h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>1.现实世界是由很多对象组成的<br>2.对象时真实存在的单个个体</p>
-<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>类是由对象抽象出来的类别，类具有对象的统一的特征，包含一类个体<br>类中包括：<br>1.所由对象共有的特征（属性：静）———即变量（成员变量）<br>2.所有的共同行为（属性：动）————-即方法</p>
-<h1 id="如何创建类？如何创建对象？"><a href="#如何创建类？如何创建对象？" class="headerlink" title="如何创建类？如何创建对象？"></a>如何创建类？如何创建对象？</h1><p>一个类可以创建多个对象，对象的结构相同，数据不同<br>类是对象的模板，对象是类的具体实例<br>对象存于堆，引用存于栈<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192654.png" alt=""><br>类用关键词class创建，如：<br>     class Student {<br>      String name;<br>      int age;<br>      String address;<br>      void study(){<br>        System.out.println(name+”在学习”);<br>      }<br>      void sayHi(){<br>          System.out.println(“大家好！我叫”+name+”家住”+address);<br>      }<br>    }<br>这就创建了一个简单的类，创建了类，可以用关键词new来创建对象,如：<br>    Student    zs           =    new Student();<br>     类      引用类型变量    指向   对象<br>Student 为类，zs为引用类型变量，简称引用，=为指向的意思，new Student()为心创建的对象</p>
-<h1 id="引用类型之间画等号的意义"><a href="#引用类型之间画等号的意义" class="headerlink" title="引用类型之间画等号的意义"></a>引用类型之间画等号的意义</h1><p>引用类型之间画等号：指向了同一个对象<br>   1.对其中一个引用的修改会影响另一个引用<br>   2.eg:房门钥匙<br>基本类型之间画等号：赋值<br>   1.对其中一个值的修改不会影响另外一个值<br>   2.eg:身份证复印件<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192755.png" alt=""></p>
-<h1 id="null-和-NullPointerException"><a href="#null-和-NullPointerException" class="headerlink" title="null 和 NullPointerException"></a>null 和 NullPointerException</h1><p>null:空，没有指向任何对象<br>不能对null进行任何操作，若操作则会报NullPointerException空指针异常，出现此异常，大部分跟构造方法有关，但不绝对<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192756.png" alt=""></p>
-<hr>
-<h1 id="方法的重载"><a href="#方法的重载" class="headerlink" title="方法的重载"></a>方法的重载</h1><p>首先有一个概念叫方法的签名<br>方法的签名：方法名和参数列表<br>一个类中，不可能有两个方法的方法签名完全相同<br>方法的重载：<br>1.同一个类中，方法名相同，参数列表不同<br>2.编译器在编译时会自动根据方法的签名绑定调用的方法<br>方法的重载及其意义：(⊙o⊙)…这个，大概是在调用的时候会十分方便吧</p>
-<h1 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h1><p>构造方法（构造器，构建器，构造函数）<br>1.常常由于给成员变量赋初值<br>2.与类同名，没有返回类型，不能写void<br>3.在创建（new）对象时被自动调用<br>4.若自己不构造方法，系统默认提供无参构造方法，若已构造，则系统不再提供默认的无参构造方法<br>5.构造方法可以重载<br>    public class Cell {<br>     int row;<br>     int clo;</p>
-<pre><code> Cell(){
-     this(0);
- }
- Cell(int n){
-     this(n,n);
- }
- Cell(int row,int clo){
-     this.row=row;
-     this.clo=clo;
- }
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="抽象方法"><a href="#抽象方法" class="headerlink" title="抽象方法"></a>抽象方法</h1><p>1.由abstract修饰<br>2.只有方法的定义，没有方法的实现，没有大括号</p>
+<h1 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h1><p>1.由abstract修饰<br>2.包含抽象方法的类都必须是抽象类，不包含抽象方法也可以声明为抽象类（不建议）<br>3.抽象类不能被实例化，不能new<br>4.抽象类是需要被继承的<br>  子类：<br>   1.重写所有的抽象方法–常用<br>   2.子类也为抽象类—不常用<br>5.抽象类的意义：<br>1.包含公共的属性和行为，被子类所共享–代码的复用性<br>2.为所有子类提供一种公共的类型—向上造型<br>3.包含抽象方法，为子类提供一个统一的入口，子类有不同的实现<br>abstract和final不能同时修饰一个类，abstract必须被继承，final不能被继承，矛盾冲突<br>    public class ShapeTest {</p>
+<pre><code>public static void main(String[] args) {
+
+   Shape[] shape =new Shape[6];
+   shape[0]= new Sqaure(1);//向上造型
+   shape[1]= new Sqaure(2);
+   shape[2]= new Sqaure(3);
+   shape[3]= new Circle(1);
+   shape[4]= new Circle(2);
+   shape[5]= new Circle(3);
+   maxArea(shape);
+   System.exit(0);
 }
-</code></pre><h1 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h1><p>this：指代当前的对象，哪个对象调用指的就是哪个对象，方法中访问成员变量之前默认有个this，this关键字用于方法体中，指代当前调用的对象<br>this用法：<br>1.this.成员变量名——–访问成员变量<br>2.this.方法名———–调用方法<br>3.this();————–调用构造方法（注意是构造方法）</p>
-<h1 id="引用类型数组"><a href="#引用类型数组" class="headerlink" title="引用类型数组"></a>引用类型数组</h1><p>数组是对象，数组是引用类型，数组的元素可以为任意类型</p>
-<p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192857.png" alt=""><br>         Cell[] cells=new Cell[4];<br>        cells[0]=new Cell(2,5);<br>        cells[1]=new Cell(3,6);<br>        cells[2]=new Cell(4,7);<br>        cells[3]=new Cell(5,8);<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192858.png" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/20/类和对象/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/18/方法/">Java方法</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/18/方法/" class="archive-article-date">
-  	<time datetime="2017-07-18T10:01:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-18</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><p>方法总结：</p>
-<h1 id="方法的作用"><a href="#方法的作用" class="headerlink" title="方法的作用"></a>方法的作用</h1><p>1.方法实现封装特定的逻辑功能，方法之间互相独立，一个方法一般只完成一件独立的事，遵循单一职责原则。<br>2.方法可以多次调用，避免大量代码重复，有利于复用，维护，团队协作开发。</p>
-<h1 id="方法的类型"><a href="#方法的类型" class="headerlink" title="方法的类型"></a>方法的类型</h1><p>1.方法分为有参数和无参数，有返回值和无返回值两种<br>无参数的方法参数列表为空<br>无返回值的方法定义时的方法类型为void</p>
-<h1 id="方法的定义"><a href="#方法的定义" class="headerlink" title="方法的定义"></a>方法的定义</h1><p>方法的定义的一般形式为：<br>   修饰词  返回类型 方法名（参数列表）{<br>        //方法体<br>     }<br>  例如：<br>    public static void eat() {<br>    //方法体<br>    }<br>    public static char[] generate(int level){<br>    //方法体<br>    }<br>public static 为修饰词，void和char[]分别表示没有返回值和返回一个char[]型的变量，（）圆括号里面的为参数，花括号里面为方法执行的方法体。</p>
-<h1 id="方法的调用"><a href="#方法的调用" class="headerlink" title="方法的调用"></a>方法的调用</h1><p>无返回值的：方法名（有参传参）；<br>有返回值的：数据类型 变量名=方法名（有参传参）；<br>如：<br>    <code>eat（）；</code><br>    <code>char[] b=generate(4);</code></p>
-<h1 id="return关键字"><a href="#return关键字" class="headerlink" title="return关键字"></a>return关键字</h1><p>1.return 值；//结束方法，返回结果给调用方法<br>2.return；结束方法</p>
-<h1 id="猜字符小游戏"><a href="#猜字符小游戏" class="headerlink" title="猜字符小游戏"></a>猜字符小游戏</h1><p>这个小游戏定义了一个随机生成字符串的方法generate（）和判断字符对错的check（）方法</p>
-<pre><code>package day06;
-import java.util.*;
-public class Guessing {
- /*猜字符小游戏
-  * 系统随机生成数个字母，生成字母个数由玩家选择
-  * 玩家随意输入几个字母
- * 系统判断正确的个数，并统计数据，计算得分
-  * 猜字过程输入exit则退出游戏
- * 
- * */
-
-public static void main(String[] args) {
-     Scanner scan=new Scanner(System.in);
-     int level;
-     do{
-       System.out.println(&quot;请选择等级5、7、9：&quot;);
-       level=scan.nextInt();             
-     }while(level!=5&amp;&amp;level!=7&amp;&amp;level!=9);
-     char[] gen=generate(level);
-     int sroce;
-     int count=0;
-     for(int i=0;i&lt;gen.length;i++){
-         System.out.print(gen[i]);
-     }
-     System.out.println();
-     while(true){
-     System.out.println(&quot;猜吧！&quot;);
-     String str=scan.next().toUpperCase();
-     if(str.equals(&quot;EXIT&quot;)){
-         System.out.println(&quot;下次再来吧！&quot;);
-         break;
-             }
-     char[] imput=str.toCharArray();
-     int[] result=check(gen,imput);
-     if(result[1]==gen.length){
-         sroce=gen.length*100-count*10;
-         System.out.println(&quot;恭喜你，猜对了！得分为&quot;+sroce);
-         break;          
-     }else{
-         count++;
-     System.out.println(&quot;字符对了&quot;+result[0]+&quot;个，位置对了&quot;+result[1]+&quot;次&quot;);
-       }
-     }
-
-     scan.close();
-}
-public static char[] generate(int level){
-    char[] chs=new char[level];
-    char[] letters=new char[]{&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;D&#39;,&#39;E&#39;,&#39;F&#39;,&#39;G&#39;,&#39;H&#39;,&#39;I&#39;,&#39;J&#39;,&#39;K&#39;,&#39;L&#39;,&#39;M&#39;,&#39;N&#39;,&#39;O&#39;,&#39;P&#39;,&#39;Q&#39;,&#39;R&#39;,&#39;S&#39;,&#39;T&#39;,&#39;U&#39;,&#39;V&#39;,&#39;W&#39;,&#39;X&#39;,&#39;Y&#39;,&#39;Z&#39;};
-
-    boolean[] flags=new boolean[letters.length];
-    for(int i=0;i&lt;chs.length;i++){
-        int index;
-        do{
-        index=(int)(Math.random()*26);
-
-        }while(flags[index]);
-        chs[i]=letters[index];
-        flags[index]=true;
-    }
-
-    return chs;
-}
-public static int[] check(char[] chs,char[] imput){
-    int[] result=new int[2];
-
-    for(int i=0;i&lt;chs.length;i++){
-        for(int j=0;j&lt;imput.length;j++){
-            if(chs[i]==imput[j]){
-                result[0]++;
-                if(i==j){
-              result[1]++;
-              break;
-                }
-            }
+public static void maxArea(Shape[] shape){
+    double maxArea=shape[0].area();
+    int index=0;
+    for(int i=0;i&lt;shape.length;i++){
+        double area=shape[i].area();
+        if(area&gt;maxArea){
+            maxArea=area;
+            index=i+1;
         }
     }
-    return result;
+    System.out.println(&quot;第&quot;+index+&quot;面积最大，&quot;+&quot;最大面积为&quot;+maxArea);
+}
 }
 
+abstract class Shape{//抽象类
+protected double c;
+abstract double area();//抽象方法
+} 
+class Sqaure extends Shape{
+public Sqaure(double c){
+    this.c=c;
 }
-</code></pre>
+public double area(){//重写抽象方法
+    return 0.0625*c*c;//抽象方法在子类中不同的实现
+    }
+}
+ class Circle extends Shape{
+public Circle (double c){
+    this.c=c;
+}
+public double area(){//重写抽象方法
+    return 0.0796*c*c;//抽象方法在子类中不同的实现
+}
+}
+</code></pre><h1 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h1><p>1.是一个标准，规范<br>2.由interface定义<br>3.只能包含常量和抽象方法，不能有变量和普通方法<br>4.接口不能被实例化<br>5.接口是需要被实现的/继承的，实现类/子类，必须重写接口中的所有抽象方法，方法前加public<br>6.一个类可以实现多个接口，用逗号分割，若又继承又实现时，应先继承后实现implements<br>7.接口可以继承接口<br>类对类——继承<br>接口对接口—继承<br>类对接口—-实现<br>接口可以看成是特殊的抽象类，既只包含抽象方法的抽象类，接口是完全抽象的抽象类</p>
+
       
 
       
@@ -409,7 +257,7 @@ public static int[] check(char[] chs,char[] imput){
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
@@ -419,21 +267,10 @@ public static int[] check(char[] chs,char[] imput){
               |阅读量(<span id="busuanzi_value_page_pv"></span>)
         </span>
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/18/方法/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/09/07/抽象方法、抽象类，接口/">展开全文 >></a>
         </p>
       
 
@@ -463,20 +300,20 @@ public static int[] check(char[] chs,char[] imput){
 
 
   
-    <article id="post-hexo相关配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-继承、方法的重写与重载" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/11/hexo相关配置/">hexo相关配置</a>
+      <a class="article-title" href="/2017/09/03/继承、方法的重写与重载/">继承、方法的重写与重载</a>
     </h1>
   
 
         
-        <a href="/2017/07/11/hexo相关配置/" class="archive-article-date">
-  	<time datetime="2017-07-11T03:59:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-11</time>
+        <a href="/2017/09/03/继承、方法的重写与重载/" class="archive-article-date">
+  	<time datetime="2017-09-03T05:52:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-03</time>
 </a>
         
       </header>
@@ -487,7 +324,17 @@ public static int[] check(char[] chs,char[] imput){
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><p>NexT主题的个性化设置<a href="http://www.jeyzhang.com/next-theme-personal-settings.html" target="_blank" rel="external">链接</a><br>NexT主题个性化之添加文章阅读量<a href="http://www.jeyzhang.com/hexo-next-add-post-views.html" target="_blank" rel="external">链接</a></p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="方法的重写Override"><a href="#方法的重写Override" class="headerlink" title="方法的重写Override"></a>方法的重写Override</h1><p>1.发生在父子类中，方法名相同，参数列表相同<br>2.重写的方法被调用时，看对象的类型<br>重写要遵循两同、两小、一大原则（一般都是一模一样的）<br>1.两同：方法名相同，参数列表相同<br>2.两小：<br> 1.子类的返回值类型小于或等于父类的<br>   1.1void和基本类型是必须相同<br>   1.2引用类型时，小于或等于<br> 2.子类抛出的异常小于或等于父类的–异常<br>3.一大：<br>子类方法的访问权限大于或等于父类的—访问修饰符</p>
+<h1 id="重写与重载的区别"><a href="#重写与重载的区别" class="headerlink" title="重写与重载的区别"></a>重写与重载的区别</h1><p>1.重写：父子类中，方法名相同，参数列表相同，方法体不同，遵循运行期绑定，根据对象的类型调用方法<br>2.重载：一个类中，方法名相同，参数列表不同，方法体不同，遵循编译期绑定，根据引用的类型调用方法<br>一句话：重写看对象，重载看引用</p>
+<h1 id="package和import"><a href="#package和import" class="headerlink" title="package和import"></a>package和import</h1><p>package:<br>1.作用：避免类名冲突<br>2.包名可以有层次结构<br>3.建议：包名所有字母都小写<br>4.类名的完全限定名：包名.类名<br>import<br>1.作用：声明类，引入类<br>2.同包中的类可以直接访问<br>不同包中的类调用：<br>1.先import声明类再调用访问类（建议）<br>2.类的全称–太繁琐（不建议）</p>
+<h1 id="封装的意义"><a href="#封装的意义" class="headerlink" title="封装的意义"></a>封装的意义</h1><p>1.对外提供可调用的，稳定的功能<br>2.封装容易变化的，具体的实现的细节，外界不可访问<br>意义在于：降低代码出错的可能性，增强维护性</p>
+<h1 id="访问控制修饰符"><a href="#访问控制修饰符" class="headerlink" title="访问控制修饰符"></a>访问控制修饰符</h1><p>1.public:公开的、任何类<br>2.private：私有的、本类<br>3.protected：受保护的、本类、子类、同包类<br>4.默认的：什么也不写，同包类<br>类的访问修饰：public和默认的<br>类成员的访问修饰：以上四种均可</p>
+<h1 id="static"><a href="#static" class="headerlink" title="static"></a>static</h1><p>static:静态的</p>
+<p>##　１.静态变量<br>1.由static来修饰<br>2.属于类，存在方法区中，只有一份<br>3.常常通过类名.来访问<br>4.何时用：所有对象的数据都一样时使用<br>成员变量：<br>1实例变量：对象.来访问<br>2静态变量：类名.来访问</p>
+<h2 id="2-静态方法"><a href="#2-静态方法" class="headerlink" title="2.静态方法"></a>2.静态方法</h2><p>1.由static修饰<br>2.属于类，存在方法区中，只有一份<br>3.常常通过类名.来访问<br>4.没有隐式this传递，没有this就没有对象，就不能访问实例变量，实例变量必须通过对象.来访问，所以静态方法中不能直接访问实例成员，静态方法里只能访问静态变量<br>实例变量比静态变量用得多，实例方法比静态方法用得多<br>5.何时用：方法的操作只与参数相关而与对象无关</p>
+<p>##　静态块<br>静态块：给静态变量赋值<br>1.由static修饰<br>2.属于类，类被加载期间自动执行，类只能被加载一次，所以静态块也只执行一次<br>3.何时用：常常用于加载静态资源（图片、音频等）</p>
+<h1 id="final"><a href="#final" class="headerlink" title="final"></a>final</h1><p>final：不能变<br>1.修饰变量：变量不能被改变<br>2.修饰方法：方法不能被重写<br>3.修饰类:类不能被继承，不能被继承，但是可以继承别的类，使一个类不被继承的意义在于：可以保护类不被继承修改，可以控制滥用继承对系统造成的危害<br>final修饰成员变量两种方式初始化：1.声明的同时初始化2.构造方法中初始化<br>final修饰局部变量，只需在使用之前初始化即可</p>
+<h1 id="static-final常量"><a href="#static-final常量" class="headerlink" title="static final常量"></a>static final常量</h1><p>1.必须在声明的同时初始化<br>2.不能改变，通过类名点来访问<br>3.建议：常量名所有的字母都大写<br>4.编译时会自动替换为具体的值，效率高</p>
 
       
 
@@ -501,7 +348,7 @@ public static int[] check(char[] chs,char[] imput){
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
@@ -511,21 +358,10 @@ public static int[] check(char[] chs,char[] imput){
               |阅读量(<span id="busuanzi_value_page_pv"></span>)
         </span>
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/hexo//" class="article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/11/hexo相关配置/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/09/03/继承、方法的重写与重载/">展开全文 >></a>
         </p>
       
 
@@ -555,20 +391,20 @@ public static int[] check(char[] chs,char[] imput){
 
 
   
-    <article id="post-利用GitHub在Markdown中插入图片" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-处理GitHub不允许上传大于100M的东西" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/10/利用GitHub在Markdown中插入图片/">利用GitHub在Markdown中插入图片</a>
+      <a class="article-title" href="/2017/07/26/处理GitHub不允许上传大于100M的东西/">处理GitHub不允许上传大于100M的文件</a>
     </h1>
   
 
         
-        <a href="/2017/07/10/利用GitHub在Markdown中插入图片/" class="archive-article-date">
-  	<time datetime="2017-07-10T08:05:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-10</time>
+        <a href="/2017/07/26/处理GitHub不允许上传大于100M的东西/" class="archive-article-date">
+  	<time datetime="2017-07-26T15:53:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-26</time>
 </a>
         
       </header>
@@ -579,14 +415,8 @@ public static int[] check(char[] chs,char[] imput){
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="1-新建一个git仓库"><a href="#1-新建一个git仓库" class="headerlink" title="1.新建一个git仓库"></a>1.新建一个git仓库</h1><p>在github中新建一个repo，不要勾选Initalize this repository with a README选项，如建立一个MarkdownPhotos的仓库<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Inked%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170710161230_LI.jpg" alt=""></p>
-<h1 id="2-新建本地储存图片的文件夹"><a href="#2-新建本地储存图片的文件夹" class="headerlink" title="2.新建本地储存图片的文件夹"></a>2.新建本地储存图片的文件夹</h1><p>在本地电脑新建文件夹将图片放入文件夹中，如新建ImageGithubToMarkdown文件夹 </p>
-<h1 id="3-在对应文件夹建立本地仓库"><a href="#3-在对应文件夹建立本地仓库" class="headerlink" title="3.在对应文件夹建立本地仓库"></a>3.在对应文件夹建立本地仓库</h1><p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162541.png" alt=""></p>
-<h1 id="4-Push到github保存"><a href="#4-Push到github保存" class="headerlink" title="4.Push到github保存"></a>4.Push到github保存</h1><p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162608.png" alt=""><br>完成后的图片为<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162719.png" alt=""></p>
-<h1 id="5-复制图片地址"><a href="#5-复制图片地址" class="headerlink" title="5.复制图片地址"></a>5.复制图片地址</h1><p>在Google浏览器打开GitHub<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162316.png" alt=""><br>右键点击图片，选择在“新标签页中打开图片”<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162400.png" alt=""><br>复制地址栏图片地址<br>或者直接右击图片，“复制图片地址”，两种操作得到的图片地址均可</p>
-<p>两个地址，指向同一个图片</p>
-<h1 id="6-在markdown中引用需要的图片地址"><a href="#6-在markdown中引用需要的图片地址" class="headerlink" title="6.在markdown中引用需要的图片地址"></a>6.在markdown中引用需要的图片地址</h1><p>按照markdown语法格式引用图片地址即可显示图片</p>
-<p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710165719.png" alt=""><br><a href="http://blog.csdn.net/monkey_lzl/article/details/60870891" target="_blank" rel="external">更多</a></p>
+        <script src="/assets/js/APlayer.min.js"> </script><p>Github 修正上传时“this exceeds GitHub’s file size limit of 100 MB”错误 </p>
+<p>自己的项目的版本控制用的是Git，代码仓库在github托管。项目里用到了IJKMediaFramework 想把代码push到github上，结果出错了，被拒绝，具体信息是：<br>Total 324 (delta 78), reused 0 (delta 0)<br>remote: error: GH001: Large files detected. You may want to try Git Large File Storage - <a href="https://git-lfs.github.com" target="_blank" rel="external">https://git-lfs.github.com</a>.<br>remote: error: Trace: 812007a278d0a89c0705b8c456066938<br>remote: error: See <a href="http://git.io/iEPt8g" target="_blank" rel="external">http://git.io/iEPt8g</a> for more information.<br>remote: error: File MiaoShow/Classes/Frameworks/IJKMediaFramework.framework/IJKMediaFramework is 112.62 MB; this exceeds GitHub’s file size limit of 100.00 MB<br>To <a href="https://github.com/XXX/XXXX.git。意思是有大文件，更多信息可到http://git.io/iEPt8g查看，文件IJKMediaFramework的大小超过了GitHub限制的100M大小。想要push，必须把这个文件移除，可是要怎么移除呢？开始我是想着直接删除掉IJKMediaFramework，结果不行，还是会报上面的错，于是我又把libbaiduNaviSDK.a放到忽略文件里，结果还是不行，还是说有大文件，报同样的错。这下只能老老实实的看官方的解决办法了，于是就打开http://git.io/iEPt8g老老实实的研究了一番。大意是说为了便于管理代码库和方便合作伙伴们使用，当你push50M以上的文件时github将会警告，当push100M以上文件，就直接拒绝你的push，要想push必须把该文件从本地仓库和远程仓库全部移除掉。这个移除会永久性的从本地git和github里移除，如果这个文件很重要，要记得做一次备份。下面进入具体操作。如果这个文件是最近一次commit的，并且你还没有push到github，那么第一步输入命令" target="_blank" rel="external">https://github.com/XXX/XXXX.git。意思是有大文件，更多信息可到http://git.io/iEPt8g查看，文件IJKMediaFramework的大小超过了GitHub限制的100M大小。想要push，必须把这个文件移除，可是要怎么移除呢？开始我是想着直接删除掉IJKMediaFramework，结果不行，还是会报上面的错，于是我又把libbaiduNaviSDK.a放到忽略文件里，结果还是不行，还是说有大文件，报同样的错。这下只能老老实实的看官方的解决办法了，于是就打开http://git.io/iEPt8g老老实实的研究了一番。大意是说为了便于管理代码库和方便合作伙伴们使用，当你push50M以上的文件时github将会警告，当push100M以上文件，就直接拒绝你的push，要想push必须把该文件从本地仓库和远程仓库全部移除掉。这个移除会永久性的从本地git和github里移除，如果这个文件很重要，要记得做一次备份。下面进入具体操作。如果这个文件是最近一次commit的，并且你还没有push到github，那么第一步输入命令</a> cd /Users/Dora/Desktop/XXX（cd后面的这个路径要换成你自己项目的路径），然后第二步输入命令 git rm –cached /Users/Dora/Desktop/XXX/XXX/IJKMediaFramework（加下划线部分是你自己的要移除的文件的路径），第三步输入命令 git commit –amend -CHEAD，执行完这步后，这个大文件将会从你的commit记录里移除，并且以后commit都将不会再把它commit了，这时候就可以git push把本地代码push到github上了。<br>注意：这里可能遇到输入git rm –cached /Users/Dora/Desktop/XXX/XXX/libbaiduNaviSDK.a命令后说找不到你要删除的文件的问题，出现这个问题的原因是你要删除的文件路径名没写对，一定要仔细检查，确保要删除的文件的路径是正确的。</p>
 
       
 
@@ -624,7 +454,7 @@ public static int[] check(char[] chs,char[] imput){
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/10/利用GitHub在Markdown中插入图片/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/07/26/处理GitHub不允许上传大于100M的东西/">展开全文 >></a>
         </p>
       
 
@@ -654,20 +484,20 @@ public static int[] check(char[] chs,char[] imput){
 
 
   
-    <article id="post-first-java" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Java小结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/01/first-java/">first java</a>
+      <a class="article-title" href="/2017/07/23/Java小结/">内存继承总结</a>
     </h1>
   
 
         
-        <a href="/2017/07/01/first-java/" class="archive-article-date">
-  	<time datetime="2017-07-01T04:16:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-01</time>
+        <a href="/2017/07/23/Java小结/" class="archive-article-date">
+  	<time datetime="2017-07-23T09:36:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-23</time>
 </a>
         
       </header>
@@ -678,16 +508,13 @@ public static int[] check(char[] chs,char[] imput){
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><pre><code>package database;
-</code></pre><p>public class Database {</p>
-<pre><code>public static void main(String[] args) {
-    // TODO Auto-generated method stub
-
-System.out.println(&quot;hello world&quot;);
-
-
-}
-</code></pre><p>}</p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h1><p>Java中内存由JVM来管理</p>
+<h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><p>1.用于存储所有new出来的对象（包括成员变量）<br>2.成员变量的生命周期：创建对象（new）时存于堆中，对象被GC回收是一并消失<br>3.垃圾回收器（GC）不定时到堆中查看，看到垃圾则自动回收，回收过程是透明的，并不是看到垃圾就马上回收，若想回收过程迅速些，可以调用System.(gc)<br>垃圾指没有任何引用所指向的对象<br>4.内存泄漏：不再使用的对象还没有被及时回收<br>建议：当对象不再使用时，及时将引用的值设置为null<br>垃圾回收器(Garbage Collection)是JVM自带的一个线程（自动运行着的程序），用于回收没有任何引用指向的对象<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170723180759.png" alt=""></p>
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>1.用于存储正在调用中的方法的所有局部变量<br>2.调用方法时在栈中为该方法分配一块对应的栈桢，栈桢中包含所有的局部变量（包括所有参数）<br>方法调用结束时，栈桢消失，局部变量一并消失<br>3.局部变量的生命周期：<br>调用方法时存在栈桢中，方法调用结束时消失</p>
+<h2 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h2><p>1.用于存储.class字节码文件（包括方法）<br>2.方法只有一份<br>每个对象都有自己的row和col<br>所有对象共享一个drop()方法，用this关键字区分drop()方法中到底是哪个对象<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170723180807.png" alt=""></p>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p>1.目的：避免代码的重复，有利于代码的重用<br>2.通过extends关键字实现继承<br>3.父类（基类）：所有子类所共有的属性和行为<br>4.子类（派生类）：子类所特有的属性和行为<br>4.子类继承父类后，子类具有子类+父类的属性和行为<br>5.一个父类可以有多个子类，但是一个子类，只能有一个父类<br>6.继承具有传递性<br>7.Java规定：构造子类之前必先构造父类，子类构造中若没有调用父类的构造，则默认super();若已调用了，则不再默认提供super();调用父类构造方法，必须位于子类第一句</p>
+<h1 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h1><p>super：指代当前对象的父类对象<br>用法：<br>1.super.成员变量名———-访问父类成员变量<br>2.super.方法名（）———-调用父类方法<br>3.super（）—————-调用父类构造方法<br>注意系统默认的调用super();方法</p>
+<h1 id="向上造型"><a href="#向上造型" class="headerlink" title="向上造型"></a>向上造型</h1><p>1.父类型的引用指向子类的对象<br>2.能调出来什么，看引用的类型<br>父类的引用可以指向子类的对象，但是通过父类的引用只能访问父类所定义的成员，不能访问子类的扩展部分<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170721211830.jpg" alt=""></p>
 
       
 
@@ -696,6 +523,17 @@ System.out.println(&quot;hello world&quot;);
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
          <span id="busuanzi_container_page_pv">
               |阅读量(<span id="busuanzi_value_page_pv"></span>)
         </span>
@@ -703,7 +541,136 @@ System.out.println(&quot;hello world&quot;);
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/01/first-java/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/07/23/Java小结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-深夜鸡汤" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/22/深夜鸡汤/">深夜鸡汤</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/22/深夜鸡汤/" class="archive-article-date">
+  	<time datetime="2017-07-21T16:27:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-22</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="你走，我不送你；你来，我要去接你"><a href="#你走，我不送你；你来，我要去接你" class="headerlink" title="你走，我不送你；你来，我要去接你"></a>你走，我不送你；你来，我要去接你</h1><ul>
+<li>1 -</li>
+</ul>
+<p>遥想古人送别，也是一种雅人深致。</p>
+<p>古时交通不便，一去不知多久，再见不知何年，所以南浦唱支骊歌，灞桥折条杨柳，甚至在阳关敬一杯酒，都有意味。</p>
+<p>李白的船刚要启碇，汪伦老远地在岸上踏歌而来，那幅情景真是历历如在眼前。其妙处在于纯朴真挚，出之以潇洒自然。平夙莫逆于心，临别难分难舍。</p>
+<p>如果平常我看着你面目可憎，你觉着我语言无味，一旦远离，那是最好不过，只恨世界太小，唯恐将来又要碰头，何必送行！</p>
+<p>在现代人的生活里，送行是和拜寿送殡等等一样成为应酬的礼节之一。</p>
+<p>“揪着公鸡尾巴”起个大早，迷迷糊糊地赶到车站码头，挤在乱哄哄人群里面，找到你的对象，扯几句淡话，好容易耗到汽笛一叫，然后鸟兽散，吐一口轻松气，撅着大嘴回家。这叫做周到。</p>
+<p>在被送的那一方面，觉得热闹，人缘好，没白混，而且体面，有这么多人舍不得我走，斜眼看着旁边的没人送的旅客，相形之下，尤其容易起一种优越之感，不禁精神抖擞，恨不得对每一个送行的人要握八次手，道十回谢。死人出殡，都讲究要有多少亲友执绋，表示恋恋不舍，何况活人！行色不可不壮。</p>
+<p>悄然而行似是不大舒服，如果别的旅客在你身旁耀武扬威地与送行的话别，那会增加旅中的寂寞。这种情形，中外皆然。<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170722003352.jpg" alt=""></p>
+<ul>
+<li>2 -</li>
+</ul>
+<p>Max Beerbohm写过一篇《谈送行》，他说他在车站上见一位以演剧为业的老朋友在送一位女客，始而喁喁情话，俄而泪湿双颊，终乃汽笛一声，勉强抑止哽咽，向女郎频频挥手，目送良久而别。</p>
+<p>原来这位演员是在作戏，他并不认识那位女郎，他是属于“送行会”的一个职员，凡是旅客孤身在外而愿有人到站相送的，都可以到“送行会”去雇人来送。这位演员出身的人当然是送行的高手，他能放进感情，表演逼真。</p>
+<p>客人纳费无多，在精神上受惠不浅。尤其是美国旅客，用金钱在国外可以购买一切，如果“送行会”真的普遍设立起来，送行的人也不虞缺乏了。</p>
+<p>送行既是人生中所不可少的一件事，送行的技术也便不可不注意到。</p>
+<p>如果送行只限于到车站码头报到，握手而别，那么问题就简单，但是我们中国的一切礼节都把“吃”列为最重要的一个项目。</p>
+<p>一个朋友远别，生怕他饿着走，饯行是不可少的，恨不得把若干天的营养都一次囤积在他肚里。</p>
+<p>我想任何人都有这种经验，如有远行而消息外露(多半还是自己宣扬)，他有理由期望着饯行的帖子纷至沓来，短期间家里可以不必开伙。还有些思虑更周到的人，把食物携在手上，亲自送到车上船上，好像是你在半路上会挨饿的样子。<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170722003401.jpg" alt=""></p>
+<ul>
+<li>3 -</li>
+</ul>
+<p>我永远不能忘记最悲惨的一幕送行，一个严寒的冬夜，车站上并不热闹，客人和送客的人大都在车厢里取暖，但是在长得没有止境的月台上却有一堆黑查查的送行的人，有的围着斗篷，有的脚尖在洋灰地上敲鼓似地乱动。</p>
+<p>我走近一看全是熟人，都是来送一位太太的。车快开了，不见她的踪影，原来在这一晚她还有几处饯行的宴会。</p>
+<p>在最后的一分钟，她来了。送行的人们觉得是在接一个人，不是在送一个人，一见她来到大家都表示喜欢，所有惜别之意都来不及表现了。她手上抱着一个孩子，吓得直哭，另一只手扯着一个孩子，连跑带拖。她的头发蓬松着，嘴里喷着热气，像是冬天载重的骡子。她顾不得和送行的人周旋，三步两步地就跳上了车，这时候车已在蠕动。</p>
+<p>送行的人大部分手里都提着一点东西，无法交付，可巧我站在离车门最近的地方，大家把礼物都交给了我，“请您偏劳给送上去吧！”我好像是一个圣诞老人，抱着一大堆礼物，一个箭步窜上了车。</p>
+<p>我来不及致辞，把东西往她身上一扔，回头就走。从车上跳下来的时候，打了几个转才立定脚跟。</p>
+<p>事后我接到她一封信，她说：“那些送行的都是谁?你丢给我那些东西，到底是谁送的?我在车上整理了好半天，才把那些东西聚拢起来打成一个大包袱。朋友们的盛情算是给我添了一件行李，我愿意知道哪一件东西是哪一位送的，你既是代表送上车的，你当然知道，盼速见告。计开：水果三筐，泰康罐头四个，果露两瓶，蜜饯四盒，饼干四罐，豆腐乳四盒，蛋糕四盒，西点八盒，纸烟八听，信纸信封一匣，丝袜两双，香水一瓶，烟灰碟一套，小钟一具，衣料两块，酱菜四篓，绣花拖鞋一双，大面包四个，咖啡一听，小宝剑两把……”</p>
+<p>这问题我无法答复，至今是个悬案。<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170722003412.jpg" alt=""></p>
+<ul>
+<li>4 -</li>
+</ul>
+<p>我不愿送人，亦不愿人送我。</p>
+<p>对于自己真正舍不得离开的人，离别的那一刹那像是开刀，凡是开刀的场合照例是应该先用麻醉剂，使病人在迷蒙中度过那场痛苦，所以离别的苦痛最好避免。一个朋友说，“你走，我不送你；你来，无论多大风多大雨，我要去接你。”</p>
+<p>我最赏识那种心情。<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170722003415.jpg" alt=""></p>
+<p>深更半夜，喝得烂醉 ，还不忘鸡汤，我是有多深情<br>懵懂，刻骨，一世。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">poisionous soul</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Poisionous-soul//" class="article-tag-list-link color1">Poisionous soul</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/22/深夜鸡汤/">展开全文 >></a>
         </p>
       
 
@@ -735,7 +702,7 @@ System.out.println(&quot;hello world&quot;);
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/18/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/20/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/18/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/20/">Next &raquo;</a>
     </nav>
   
 
@@ -875,15 +842,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -891,15 +854,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -907,11 +866,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -919,15 +882,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -939,7 +898,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hello world</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
