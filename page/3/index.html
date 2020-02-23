@@ -171,6 +171,472 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ARTHAS的简单使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/19/ARTHAS的简单使用/">ARTHAS的简单使用</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/19/ARTHAS的简单使用/" class="archive-article-date">
+  	<time datetime="2019-01-19T03:10:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-19</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Arthas是什么？<a href="https://github.com/alibaba/arthas" target="_blank" rel="external">Arthas</a>是阿里开源的在线诊断工具。Arthas 是基于 Greys 进行二次开发的全新在线诊断工具，利用Java6的Instrumentation特性，动态增强你所指定的类，获取你想要到的信息, 采用命令行交互模式，同时提供丰富的 Tab 自动补全功能，让你在定位、分析诊断问题时看每一个操作都看起来是那么的简明。<br><br>Arthas解决的痛点：<br></p>
+<ul>
+<li>这个类从哪个 jar 包加载的？为什么会报各种类相关的 Exception？<br></li>
+<li>我改的代码为什么没有执行到？难道是我没 commit？分支搞错了？<br></li>
+<li>遇到问题无法在预发 debug 一下，难道只能通过加日志再重新预发布吗？<br></li>
+<li>线上遇到某个用户的数据处理有问题，但线上同样无法 debug，线下无法重现,怎么办?<br></li>
+<li>是否有一个全局视角来查看系统的运行状况？<br></li>
+<li>有什么办法可以监控到容器和中间件的实时运行状态？<br></li>
+</ul>
+<h2 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h2><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>参考官网文档给出的启动方式：<br></p>
+<pre><code>Use arthas-boot(Recommend)
+Downloadarthas-boot.jar，Start with java command:
+
+wget https://alibaba.github.io/arthas/arthas-boot.jar
+java -jar arthas-boot.jar
+</code></pre><p>还可用.sh脚本运行：<br></p>
+<pre><code>Use as.sh
+You can install Arthas with one single line command on Linux, Unix, and Mac. Pls. copy the following command and paste it into the command line, then press Enter to run:
+
+curl -L https://alibaba.github.io/arthas/install.sh | sh
+</code></pre><p>这里我采用第一种方式启动。</p>
+<p><img src="https://i.imgur.com/dMrU6d6.png" alt=""></p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>下面来简单尝试一下arthas的命令，官方给出了命令<a href="https://alibaba.github.io/arthas/en/commands.html" target="_blank" rel="external">大全</a>。</p>
+<ul>
+<li>dashboard</li>
+</ul>
+<p>当前系统的实时数据面板</p>
+<ul>
+<li>thread</li>
+</ul>
+<p>查看当前 JVM 的线程堆栈信息</p>
+<ul>
+<li>jvm</li>
+</ul>
+<p>查看当前 JVM 的信息</p>
+<ul>
+<li>sc</li>
+</ul>
+<p>查看JVM已加载的类信息</p>
+<ul>
+<li>sm</li>
+</ul>
+<p>查看已加载类的方法信息</p>
+<ul>
+<li>jad</li>
+</ul>
+<p>反编译指定已加载类的源码</p>
+<ul>
+<li>classloader</li>
+</ul>
+<p>查看classloader的继承树，urls，类加载信息，使用classloader去getResource</p>
+<ul>
+<li>monitor</li>
+</ul>
+<p>方法执行监控</p>
+<ul>
+<li>watch</li>
+</ul>
+<p>方法执行数据观测</p>
+<ul>
+<li>trace</li>
+</ul>
+<p>方法内部调用路径，并输出方法路径上的每个节点上耗时</p>
+<ul>
+<li>stack</li>
+</ul>
+<p>输出当前方法被调用的调用路径</p>
+<ul>
+<li>tt</li>
+</ul>
+<p>方法执行数据的时空隧道，记录下指定方法每次调用的入参和返回信息，并能对这些不同的时间下调用进行观测</p>
+<ul>
+<li>reset</li>
+</ul>
+<p>重置增强类，将被 Arthas 增强过的类全部还原，Arthas 服务端关闭时会重置所有增强过的类</p>
+<ul>
+<li>quit</li>
+</ul>
+<p>退出当前 Arthas 客户端，其他 Arthas 客户端不受影响</p>
+<ul>
+<li>shutdown</li>
+</ul>
+<p>关闭 Arthas 服务端，所有 Arthas 客户端全部退出</p>
+<h4 id="dashboard"><a href="#dashboard" class="headerlink" title="dashboard"></a>dashboard</h4><p><img src="https://i.imgur.com/x6hBUtX.png" alt=""></p>
+<p>盗用官方的一张图来解释一下：</p>
+<p><img src="https://i.imgur.com/b4ClXS5.png" alt=""><br>ID: Java级别的线程ID，注意这个ID不能跟jstack中的nativeID一一对应</p>
+<p>NAME: 线程名</p>
+<p>GROUP: 线程组名</p>
+<p>PRIORITY: 线程优先级, 1~10之间的数字，越大表示优先级越高</p>
+<p>STATE: 线程的状态</p>
+<p>CPU%: 线程消耗的cpu占比，采样100ms，将所有线程在这100ms内的cpu使用量求和，再算出每个线程的cpu使用占比。</p>
+<p>TIME: 线程运行总时间</p>
+<p>INTERRUPTE: 线程当前的中断位状态</p>
+<p>DAEMON: 是否是daemon线程</p>
+<p>…</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/19/ARTHAS的简单使用/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-maven安装jar包到本地仓库" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/15/maven安装jar包到本地仓库/">maven安装jar包到本地仓库</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/15/maven安装jar包到本地仓库/" class="archive-article-date">
+  	<time datetime="2019-01-15T02:22:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-15</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本地类路径下的jar包在使用maven打包放到服务器运行的时候，会报找不到的错。我们需要把jar包安装到本地仓库里面。<br></p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>运行一下命令安装：<br></p>
+<pre><code>$  mvn install:install-file -Dfile=xstream-1.3.1.jar -DgroupId=com.thoughtworks -DartifactId=xstream -Dversion=1.3.1 -Dpackaging=jar
+</code></pre><p><br><br><img src="https://i.imgur.com/WS3csGR.png" alt=""></p>
+<pre><code>$  mvn install:install-file -Dfile=xstream-1.3.1.jar -DgroupId=com.thoughtworks -DartifactId=xstream -Dversion=1.3.1 -Dpackaging=jar
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Maven Stub Project (No POM) 1
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- maven-install-plugin:2.4:install-file (default-cli) @ standalone-pom ---
+[INFO] Installing E:\▒ٶ▒▒▒▒▒Դ\FileManage\manageplatform\src\main\resources\lib\xstream-1.3.1.jar to F:\maven\apache-maven-3.5.2-bin\repo\com\thoughtworks\xstream\1.3.1\xstream-1.3.1.jar
+[INFO] Installing C:\Users\ZHANGG~1\AppData\Local\Temp\mvninstall7596578701340346296.pom to F:\maven\apache-maven-3.5.2-bin\repo\com\thoughtworks\xstream\1.3.1\xstream-1.3.1.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1.281 s
+[INFO] Finished at: 2019-01-15T09:56:23+08:00
+[INFO] Final Memory: 6M/114M
+[INFO] ------------------------------------------------------------------------
+
+
+
+-Dfile：jar包路径
+-DgroupId:groupId
+-DartifactId:artifactId
+</code></pre><p>在pom.xml中添加如下依赖：<br></p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;com.thoughtworks&lt;/groupId&gt;
+    &lt;artifactId&gt;xstream&lt;/artifactId&gt;
+    &lt;version&gt;1.3.1&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><p>这时候再运行<code>mvn package</code>命令就不会报错了。<br></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本地运行的很欢快的程序，打包到服务器就会出现很多问题，我们依赖IDE的程度太深，自己都没有察觉了。离开了IDE提供的环境才发现很多需要手动解决的问题。<br></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/15/maven安装jar包到本地仓库/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-几个常用的Linux性能查看工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/12/几个常用的Linux性能查看工具/">几个常用的Linux性能查看工具</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/12/几个常用的Linux性能查看工具/" class="archive-article-date">
+  	<time datetime="2019-01-12T14:53:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-12</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在Linux的使用中，经常需要查看服务器的内存使用状况，这里记录几个好用的工具。<br></p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><h3 id="iftop"><a href="#iftop" class="headerlink" title="iftop"></a>iftop</h3><p>iftop可测量通过每一个套接字连接传输的数据。iftop使用pcap库来捕获进出网络适配器的数据包，然后汇总数据包大小和数量，搞清楚总的带宽使用情况。<br></p>
+<p>虽然iftop报告每个连接所使用的带宽，但它无法报告参与某个套按字连接的进程名称/编号（ID）。不过由于基于pcap库，iftop能够过滤流量，并报告由过滤器指定的所选定主机连接的带宽使用情况。<br></p>
+<pre><code>$ sudo iftop -n 
+</code></pre><p>n选项可以防止iftop将IP地址解析成主机名，解析本身就会带来额外的网络流量。<br></p>
+<p><img src="https://i.imgur.com/osagmXw.png" alt=""><br>
+        
+          <a class="article-more-a" href="/2019/01/12/几个常用的Linux性能查看工具/#more">read more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/12/几个常用的Linux性能查看工具/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-深入理解Git系列（五）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/10/深入理解Git系列（五）/">深入理解Git系列（五）</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/10/深入理解Git系列（五）/" class="archive-article-date">
+  	<time datetime="2019-01-10T04:08:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-10</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>众所周知，Git的强大之处在于十分方便与团队合作中的代码管理，那么在一个团队中，什么样的工作流是合适的？需要维护多少个分支以及怎样去维护才是合适的？带着这些问题，让我们来看一下Git的工作流。最近项目需要迁移，之前的分支管理比较混乱，所以趁着迁移，规范分支的管理。<br><br></p>
+<h2 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h2><p>目前Git主要有三种使用广泛的工作流<br></p>
+<ul>
+<li>Git flow</li>
+<li>Github flow</li>
+<li>Gitlab flow
+        
+          <a class="article-more-a" href="/2019/01/10/深入理解Git系列（五）/#more">read more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/10/深入理解Git系列（五）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Java客户端使用FastDFS上传文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -254,348 +720,9 @@
 
 
   
-    <article id="post-2018总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/09/2018总结/">2018总结</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/09/2018总结/" class="archive-article-date">
-  	<time datetime="2019-01-09T12:03:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-09</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><span>  一眨眼一年的时间又过去了，而我似乎还没有感觉到2018的离开，可能是我还没准备好迎接2019吧。<br><br><br></span></p>
-<div align="center"><br><img src="https://i.imgur.com/lHgP616.jpg" alt="" height="80%" width="60%"><br></div><br><br><br>
-        
-          <a class="article-more-a" href="/2019/01/09/2018总结/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/09/2018总结/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-fdfs安装Nginx模块出现问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/09/fdfs安装Nginx模块出现问题/">fdfs安装Nginx模块出现问题</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/09/fdfs安装Nginx模块出现问题/" class="archive-article-date">
-  	<time datetime="2019-01-09T06:27:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-09</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为项目需要搭建自己的图片服务器，之前用的ftp，但是在了解了fdfs之后，想尝试一下这个分布式文件服务器，所以这就是起因了，废话少说，进入问题。<br><br>我使用的版本：<br></p>
-<pre><code>Centos 7.6
-nginx-1.8.1
-fastdfs-5.05
-libfastcommon-1.0.7
-fastdfs-nginx-module-1.20
-</code></pre><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>我这里<a href="https://blog.csdn.net/wlwlwlwl015/article/details/52619851" target="_blank" rel="external">安装fdfs</a>和nginx都没有问题，单独测试都可以成功，在进行添加nginx模块的时候就出现了报错，具体报错如下：<br><br>
-        
-          <a class="article-more-a" href="/2019/01/09/fdfs安装Nginx模块出现问题/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/09/fdfs安装Nginx模块出现问题/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Centos7让hexo后台运行" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/22/Centos7让hexo后台运行/">Centos7.6让hexo后台运行</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/22/Centos7让hexo后台运行/" class="archive-article-date">
-  	<time datetime="2018-12-21T17:01:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-22</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今晚心血来潮在Centos7服务器上搭了个hexo博客，一顿操作下来，成了。但是问题来了，关掉了ssh连接之后，hexo server 就凉了，挂掉，然后无法访问。Google一番后，有一个很简单的解决方法，就是让pm2去接管hexo的进程。<br><br>
-        
-          <a class="article-more-a" href="/2018/12/22/Centos7让hexo后台运行/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/22/Centos7让hexo后台运行/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-记一次重启服务器后mysql挂掉" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/21/记一次重启服务器后mysql挂掉/">记一次重启服务器后mysql挂掉</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/21/记一次重启服务器后mysql挂掉/" class="archive-article-date">
-  	<time datetime="2018-12-21T14:19:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-21</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天在安装FastDFS的时候，需要重启一下服务器，当重启完成后，我天真的以为这大功告成，但是万万没想到，mysql数据库挂了。我的心情就像过山车一样，人生的大起大落实在是太刺激了，接下来又开始了无尽的搜索之旅。<br><br>
-        
-          <a class="article-more-a" href="/2018/12/21/记一次重启服务器后mysql挂掉/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/21/记一次重启服务器后mysql挂掉/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -619,7 +746,7 @@ $(document).ready(function(){
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 Codegitz
+    		&copy; 2020 Codegitz
     	</div>
       	<!--<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -727,6 +854,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">music</a>
               </li>
              
@@ -735,11 +866,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -751,6 +878,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
               </li>
              
@@ -759,7 +894,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -775,15 +914,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -795,11 +930,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hello world</a>
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color2">hello world</a>
               </li>
              
               <li class="article-tag-list-item">

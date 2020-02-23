@@ -171,6 +171,674 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-spring配置文件找不到标签错误" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/24/spring配置文件找不到标签错误/">spring配置文件找不到标签错误</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/24/spring配置文件找不到标签错误/" class="archive-article-date">
+  	<time datetime="2018-01-24T12:01:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-24</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><a id="more"></a>
+<h3 id="spring配置文件出错：cvc-complex-type-2-4-c-The-matching-wildcard-is-strict-but-no-declaration-can-be-found-for-element-‘mvc-annotation-driven’"><a href="#spring配置文件出错：cvc-complex-type-2-4-c-The-matching-wildcard-is-strict-but-no-declaration-can-be-found-for-element-‘mvc-annotation-driven’" class="headerlink" title="spring配置文件出错：cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element   ‘mvc:annotation-driven’."></a>spring配置文件出错：cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element   ‘mvc:annotation-driven’.</h3><pre><code>Multiple annotations found at this line:
+    - schema_reference.4: Failed to read schema document &#39;http://www.springframework.org/schema/m/
+     spring-mvc-3.2.xsd&#39;, because 1) could not find the document; 2) the document could not be read; 3) the root 
+     element of the document is not &lt;xsd:schema&gt;.
+    - cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element 
+     &#39;mvc:annotation-driven&#39;.
+</code></pre><p>出现这个错误万万没想到是复制过来的spring配置文件有问题，刚刚出现这个问题的时候，去网上搜解决办法，大多数都是说xsd文件与jar包版本不对，或者是网络问题导致无法访问xsd文件，但是折腾好久，确认jar包版本没毛病而且网络是通畅的，但是问题依然出现了，今晚偶然对比了每个标签的路径，发现了复制过来的配置文件很多路径都有/tx,就想会不会是这个小玩意在作祟，于是就改成了对应的标签名，结果就行了。<br>原来的配置文件<br></p>
+<pre><code>    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+        http://www.springframework.org/schema/jms http://www.springframework.org/schema/tx/spring-jms-3.2.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/tx/spring-lang-3.2.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/tx/spring-util-3.2.xsd&quot;&gt;
+</code></pre><p>修改后的配置文件<br></p>
+<pre><code>    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+        http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd&quot;&gt;
+</code></pre><p>我也不清楚为什么中间会有几个夹杂着/tx,导致了出现了莫名其妙的错误，解决了心情很是舒畅<br></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/24/spring配置文件找不到标签错误/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-tomcat启动报错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/13/tomcat启动报错/">tomcat启动报错</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/13/tomcat启动报错/" class="archive-article-date">
+  	<time datetime="2018-01-13T06:58:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="启动错误"><a href="#启动错误" class="headerlink" title="启动错误"></a>启动错误</h1><p>tomcat启动报错：Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/tab]]<br>Tomcat日志如下：</p>
+<pre><code>严重: ContainerBase.addChild: start: 
+org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/tab]]
+    at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:154)
+    at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:866)
+    at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:842)
+    at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:615)
+    at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1095)
+    at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1617)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.tomcat.util.bcel.classfile.ClassFormatException: Invalid byte tag in constant pool: 15
+    at org.apache.tomcat.util.bcel.classfile.Constant.readConstant(Constant.java:131)
+    at org.apache.tomcat.util.bcel.classfile.ConstantPool.&lt;init&gt;(ConstantPool.java:60)
+    at org.apache.tomcat.util.bcel.classfile.ClassParser.readConstantPool(ClassParser.java:209)
+    at org.apache.tomcat.util.bcel.classfile.ClassParser.parse(ClassParser.java:119)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsStream(ContextConfig.java:1949)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsJar(ContextConfig.java:1840)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsUrl(ContextConfig.java:1808)
+    at org.apache.catalina.startup.ContextConfig.processAnnotations(ContextConfig.java:1794)
+    at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1214)
+    at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:828)
+    at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:302)
+    at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+    at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+    at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5148)
+    at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+    ... 10 more
+
+一月 13, 2018 2:57:45 下午 org.apache.catalina.startup.HostConfig deployDirectory
+严重: Error deploying web application directory E:\devtool\tomcat-7.0.23\webapps\tab
+java.lang.IllegalStateException: ContainerBase.addChild: start: org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/tab]]
+    at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:869)
+    at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:842)
+    at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:615)
+    at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1095)
+    at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1617)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:748)
+
+一月 13, 2018 2:57:45 下午 org.apache.catalina.startup.HostConfig deployDirectory
+信息: Deploying web application directory E:\devtool\tomcat-7.0.23\webapps\theme
+一月 13, 2018 2:57:46 下午 org.apache.catalina.core.ContainerBase addChildInternal
+严重: ContainerBase.addChild: start: 
+org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/theme]]
+    at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:154)
+    at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:866)
+    at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:842)
+    at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:615)
+    at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1095)
+    at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1617)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.tomcat.util.bcel.classfile.ClassFormatException: Invalid byte tag in constant pool: 15
+    at org.apache.tomcat.util.bcel.classfile.Constant.readConstant(Constant.java:131)
+    at org.apache.tomcat.util.bcel.classfile.ConstantPool.&lt;init&gt;(ConstantPool.java:60)
+    at org.apache.tomcat.util.bcel.classfile.ClassParser.readConstantPool(ClassParser.java:209)
+    at org.apache.tomcat.util.bcel.classfile.ClassParser.parse(ClassParser.java:119)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsStream(ContextConfig.java:1949)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsJar(ContextConfig.java:1840)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsUrl(ContextConfig.java:1808)
+    at org.apache.catalina.startup.ContextConfig.processAnnotations(ContextConfig.java:1794)
+    at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1214)
+    at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:828)
+    at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:302)
+    at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+    at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+    at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5148)
+    at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+    ... 10 more
+
+一月 13, 2018 2:57:46 下午 org.apache.catalina.startup.HostConfig deployDirectory
+严重: Error deploying web application directory E:\devtool\tomcat-7.0.23\webapps\theme
+java.lang.IllegalStateException: ContainerBase.addChild: start: org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/theme]]
+    at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:869)
+    at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:842)
+    at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:615)
+    at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1095)
+    at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1617)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:748)
+</code></pre><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>修改catalina.properties配置文件<br>在tomcat.util.scan.DefaultJarScanner.jarsToSkip=\ 值后面加”*”<br><img src="https://i.imgur.com/w9avEGT.png" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/13/tomcat启动报错/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-致过去的2017" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/01/致过去的2017/">致过去的2017</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/01/致过去的2017/" class="archive-article-date">
+  	<time datetime="2017-12-31T16:16:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-01</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>时间就这样不紧不慢地走着，眨眼间，就从17走到了18，自己也应该成熟了，应该有自己的目标了，过去的2017，发生了很多，感情上的，生活上的烦恼，遇到的各种的事情，有快乐也有忧伤，希望在到了的2018，能够不忘初心，珍惜眼前人，踏踏实实的走下去，不埋怨，不气馁，希望能在2018的开头，实现自己的目标</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/01/致过去的2017/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-平衡二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/15/平衡二叉树/">平衡二叉树</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/15/平衡二叉树/" class="archive-article-date">
+  	<time datetime="2017-12-15T12:43:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-15</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+#include &lt;iostream&gt;
+using namespace std;
+typedef int RcdType;
+typedef int Status;
+
+
+#define OVERFLOW 0
+#define OK 1
+#define ERROR 0
+#define TRUE 1
+#define FALSE 0
+#define LH +1
+#define EH 0
+#define RH -1
+typedef struct BBSTNode {            //平衡二叉树结构
+    RcdType data;
+    int bf;                          //节点平衡因子
+    struct BBSTNode *lchild, *rchild;
+}*BBSTree;                           //平衡二叉树 
+void R_Rotate(BBSTree &amp;p);        //右旋
+void L_Rotate(BBSTree &amp;p);        //左旋
+void LeftBalance(BBSTree &amp;T);
+void RightBalance(BBSTree &amp;T);
+bool InsertAVL(BBSTree &amp;T,RcdType e,bool &amp;taller);
+void InOrderTraverse(BBSTree T);
+BBSTree SearchBBST(BBSTree &amp;T,RcdType e);
+void DeleteNode(BBSTree &amp;p);
+int main() {
+    BBSTree T=NULL;
+    bool taller;
+    int DeletePoint;
+    srand((unsigned)time(NULL));
+    cout &lt;&lt; &quot;生成一组随机数&quot; &lt;&lt; endl;
+    for (int i = 0; i &lt;10; i++) {
+        int temp = rand()%100;
+        InsertAVL(T, temp, taller);
+        printf(&quot;%5d&quot;, temp);
+    }
+    cout &lt;&lt; endl;
+    printf(&quot;生成一颗平衡二叉树，遍历平衡二叉树\n&quot;);
+    InOrderTraverse(T);
+    printf(&quot;\n&quot;);
+    printf(&quot;请输入要删除的节点\n&quot;);
+    scanf_s(&quot;%d&quot;,&amp;DeletePoint);
+    BBSTree BT=SearchBBST(T, DeletePoint);
+    DeleteNode(BT);
+    printf(&quot;删除%d后遍历二叉树为\n&quot;,DeletePoint);
+    InOrderTraverse(T);
+    cout &lt;&lt; endl;
+    cout &lt;&lt; &quot;请输入要插入的节点&quot; &lt;&lt; endl;
+    int InsertPoint;
+    cin &gt;&gt; InsertPoint;
+    InsertAVL(T,InsertPoint,taller);
+    cout &lt;&lt; &quot;添加节点&quot;&lt;&lt;InsertPoint&lt;&lt; &quot;后遍历顺序为&quot;;
+    cout &lt;&lt; endl;
+    InOrderTraverse(T);
+    cout &lt;&lt; endl;
+}
+void R_Rotate(BBSTree &amp;p) {        //对最小失衡树进行右旋调整
+    BBSTree lc = p-&gt;lchild;        //lc指向p节点的的左孩子
+    p-&gt;lchild = lc-&gt;rchild;        //lc节点的右子树作为p节点的左子树 
+    lc-&gt;rchild = p;                //p节点（原来的根节点）作为lc节点的右孩子
+    p = lc;                        //p指向新的根节点
+}
+void L_Rotate(BBSTree &amp;p) {        //对最小失衡树进行左旋调整
+     BBSTree rc = p-&gt;rchild;        //rc指向p节点的右孩子
+    p-&gt;rchild = rc-&gt;lchild;        //rc节点的左子树作为p节点的右子树
+    rc-&gt;lchild = p;                //p节点（原根节点）作为rc节点的左孩子
+    p = rc;                        //p指向新的根节点    
+}
+void LeftBalance(BBSTree &amp;T) {     //左平衡处理操作
+    BBSTree lc, rd;
+    lc = T-&gt;lchild;
+    switch (lc-&gt;bf)
+    {
+    case LH:                      //LL型
+        T-&gt;bf = lc-&gt;bf = EH;
+        R_Rotate(T);
+        break;
+    case RH:                      //LR型
+        rd = lc-&gt;rchild;
+        switch (rd-&gt;bf)           //修改T及其左孩子的平衡因子
+        {
+        case LH:
+            T-&gt;bf = RH;
+            lc-&gt;bf = EH;
+            break;
+        case EH:
+            T-&gt;bf = lc-&gt;bf = EH;
+            break;
+        case RH:
+            T-&gt;bf = EH;
+            lc-&gt;bf = LH;
+            break;
+        }
+        rd-&gt;bf = EH;
+        L_Rotate(T-&gt;lchild);
+        R_Rotate(T);
+        break;
+    }
+}
+void RightBalance(BBSTree &amp;T) {      //右平衡调整
+    BBSTree rc, ld;
+    rc = T-&gt;rchild;
+    switch (rc-&gt;bf)
+    {
+    case RH:
+        T-&gt;bf = rc-&gt;bf = EH;
+        L_Rotate(T);
+        break;
+    case LH:
+        ld = rc-&gt;lchild;
+        switch (ld-&gt;bf)
+        {
+        case LH:
+            T-&gt;bf = EH;
+            rc-&gt;bf = RH;
+            break;
+        case EH:
+            T-&gt;bf = rc-&gt;bf = EH;
+            break;
+        case RH:
+            T-&gt;bf = LH;
+            rc-&gt;bf = EH;
+            break;
+        }
+        ld-&gt;bf = EH;
+        R_Rotate(T-&gt;rchild);
+        L_Rotate(T);
+        break;
+    }
+}
+void InOrderTraverse(BBSTree T) { //中序遍历
+    if (T) {
+        InOrderTraverse(T-&gt;lchild);
+        printf(&quot;%5d&quot;,T-&gt;data);
+        InOrderTraverse(T-&gt;rchild);
+    }
+}
+bool InsertAVL(BBSTree &amp;T, RcdType e, bool &amp;taller) {   //插入e到二叉树中
+    if (T == NULL) {  //T为空，树长高
+        T = (BBSTree)malloc(sizeof(BBSTNode));
+        T-&gt;data = e;
+        T-&gt;bf = EH;
+        T-&gt;lchild = NULL;
+        T-&gt;rchild = NULL;
+        taller = TRUE;
+    }
+    else if (e == T-&gt;data) {           //树中已经存在和e相同的节点
+        taller = FALSE;
+        return FALSE;      //未插入
+
+    }
+    else if (e&lt;T-&gt;data) { //插入到左子树
+        if (FALSE == InsertAVL(T-&gt;lchild, e, taller)) return FALSE;
+        if (TRUE==taller) {
+            switch (T-&gt;bf) //检查T的平衡因子
+            {
+            case LH:
+                LeftBalance(T);//原左高，左平衡处理
+                taller = FALSE;
+                break;
+            case EH:
+                T-&gt;bf = LH;
+                taller = TRUE;
+                break;
+            case RH:
+                T-&gt;bf = EH;
+                taller = FALSE;
+                break;
+            }
+        }
+
+    }
+    else{  //插入到右子树
+        if (FALSE == InsertAVL(T-&gt;rchild, e, taller)) return FALSE;
+        if (TRUE==taller) {
+            switch (T-&gt;bf)
+            {
+            case LH:
+                T-&gt;bf = EH;
+                taller = false;
+                break;
+            case EH:
+                T-&gt;bf=RH;
+                taller = FALSE;
+                break;
+            case RH:
+                RightBalance(T);
+                taller = FALSE;
+                break;
+            }
+
+        }
+    }
+    return TRUE;
+}
+void DeleteNode(BBSTree &amp;p) {
+
+    //删除二叉树中的p节点，引用的形参p是实参要删除的p节点的双亲指向其的指针域
+    BBSTNode *q, *s;
+    q = p;
+    if (p-&gt;rchild == NULL) {
+        p = p-&gt;lchild;
+        free(q);
+    }
+    else if (p-&gt;lchild == NULL) {
+        p = p-&gt;rchild;
+        free(q);
+    }
+    else {
+        s = p-&gt;lchild;
+        while (s-&gt;rchild!=NULL) //寻找直接前驱
+        {
+            q = s;
+            s = s-&gt;rchild;
+        }
+        p-&gt;data = s-&gt;data;
+        if (q == p)
+            q-&gt;lchild = s-&gt;lchild;
+        else q-&gt;rchild = s-&gt;lchild;
+        free(s);
+    }
+}
+BBSTree SearchBBST(BBSTree &amp;T, RcdType e) {    //查找节点
+    if (T == NULL) return NULL;
+    if (T-&gt;data == e) return T;
+    if (T-&gt;data &gt; e)
+        return SearchBBST(T-&gt;lchild,e);
+    return SearchBBST(T-&gt;rchild,e);
+}
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/15/平衡二叉树/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Dplayer的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -203,7 +871,7 @@ npm install hexo-tag-dplayer
 </code></pre><pre><code>插入视频代码内容大致如下
 {% dplayer "视频链接"  "封面图片链接" "循环播放loop=yes" "theme=#FADFA3" "自动播放autoplay=false" "token=tokendemo" %}
 </code></pre><p>效果如下：</p>
-<p><center>MSN 最后的三重奏_ 绝唱2017</center><br><div id="dplayer1" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer1"),"theme":"#FADFA3","loop":true,"video":{"url":"http://p0e6ktyto.bkt.clouddn.com/MSN%20%E6%9C%80%E5%90%8E%E7%9A%84%E4%B8%89%E9%87%8D%E5%A5%8F_%20%E7%BB%9D%E5%94%B12017_%E9%AB%98%E6%B8%85.mp4","pic":"https://i.imgur.com/n3YAGhq.jpg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script><br><img src="https://i.imgur.com/n3YAGhq.jpg" alt=""></p>
+<p><center>MSN 最后的三重奏_ 绝唱2017</center><br><div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","loop":true,"video":{"url":"http://p0e6ktyto.bkt.clouddn.com/MSN%20%E6%9C%80%E5%90%8E%E7%9A%84%E4%B8%89%E9%87%8D%E5%A5%8F_%20%E7%BB%9D%E5%94%B12017_%E9%AB%98%E6%B8%85.mp4","pic":"https://i.imgur.com/n3YAGhq.jpg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script><br><img src="https://i.imgur.com/n3YAGhq.jpg" alt=""></p>
 <h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>以上就是关于Dplayer的简单使用，详细配置见作者<a href="http://dplayer.js.org/docs/" target="_blank" rel="external">Doc</a></p>
 
       
@@ -261,395 +929,9 @@ npm install hexo-tag-dplayer
 
 
   
-    <article id="w-情有所感，情难" class="article article-type-w  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/05/情有所感，情难/">情有所感，情难</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/05/情有所感，情难/" class="archive-article-date">
-  	<time datetime="2017-12-05T14:22:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><div id="dplayer2" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer2"),"theme":"#FADFA3","loop":true,"video":{"url":"http://p0e6ktyto.bkt.clouddn.com/18c226772a4dc01c920a3562916d6fbb.mp4","pic":"https://i.imgur.com/MnADAP8.jpg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/05/情有所感，情难/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hexo进阶配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/04/hexo进阶配置/">hexo进阶配置</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/04/hexo进阶配置/" class="archive-article-date">
-  	<time datetime="2017-12-04T05:08:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-04</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <div id="aplayer2" class="aplayer" style="margin-bottom: 20px;"></div>
-		<script>
-			new APlayer({
-				element: document.getElementById("aplayer2"),
-				narrow: false,
-				autoplay: true,
-				showlrc: 0,
-				music: {
-					title: "River Flows In You",
-					author: "Capox",
-					url: "http://p0e6ktyto.bkt.clouddn.com/Capox.mp3",
-					pic: "https://i.imgur.com/jbfIiGM.jpg",
-				}
-			});
-		</script>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1>
-        
-          <a class="article-more-a" href="/2017/12/04/hexo进阶配置/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/04/hexo进阶配置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-鸡汤" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/03/鸡汤/">心灵鸡汤</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/03/鸡汤/" class="archive-article-date">
-  	<time datetime="2017-12-03T06:46:28.660Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-03</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="你也是那种把难过藏在心里的人吧"><a href="#你也是那种把难过藏在心里的人吧" class="headerlink" title="你也是那种把难过藏在心里的人吧"></a>你也是那种把难过藏在心里的人吧</h1><h3 id="却道故人心易变"><a href="#却道故人心易变" class="headerlink" title="却道故人心易变"></a>却道故人心易变</h3><p>　　你一定听过这句话，悲伤的时候别听慢歌。</p>
-<p>　　好死不死，我前一段时间心情不好，结果听了陈升的《把悲伤留给自己》。歌里唱：把我的悲伤留给自己，你的美丽让你带走，从此以后我再没有，快乐起来的理由。</p>
-<p>　　那时就有些自怜自艾，觉得无人在身边的日子实在有些苦。</p>
-<p>　　然后，我去找朋友聊天。我对他说，最近心情不好，许多事情都很焦虑，有些迷茫，还有点懒。</p>
-<p>　　朋友意兴阑珊，哦，是吗？</p>
-<p>　　我装作生气的样子，你怎么也不劝我两句？</p>
-<p>　　朋友说，如果劝你能解决这些事情的话，那活着也太容易了吧。你不就是想发泄吗，你说我听，你说出来就好些了。</p>
-<p>　　一时间，我有些泄气，算了，我去洗澡了。狠狠心咬着牙，洗了个冷水澡。</p>
-<p>　　被冷水劈头盖脸浇着的时候，我脑子里逐渐开始清醒。其实，不能埋怨朋友看似不通人情，实际上，我的气急败坏恰恰证明了他是对的。</p>
-<h3 id="人生若只如初见"><a href="#人生若只如初见" class="headerlink" title="人生若只如初见"></a>人生若只如初见</h3><p>　　你可能也会有这样的感觉，有时候，就因为一句话、一首歌，或者一些平时根本不会注意的细节，就能够引发一系列的情绪反应。随后，突如其来的，就是诸多的回忆。各种各样的感受和片段会挤进脑子里，来不及分辨，来不及细细梳理，轰你个措手不及。</p>
-<p>　　而在这些片段里，最容易被看到的，就是那些不被人察觉的难过。</p>
-<p>　　有一句话是这样说的：幸福总是短暂，且让人容易忘记，而痛苦往往刻骨铭心。</p>
-<p>　　它之所以难忘，不仅是因为感受深刻，更重要的是，你在这些难过里经历过许多，这些经历让你无法释然。</p>
-<p>　　我一同事，之前和男朋友分手，拉着身边所有人倒苦水。一开始，大家还耐心地安慰她，让她想开点，别为了一个男人毁了自己的生活。</p>
-<p>　　但你是否察觉过，有些人在难过时，会因为别人的几句劝慰，变得有恃无恐，愈加愿意把自己扮演成一个弱者的形象，渴望从别人那里得到更多的安慰。</p>
-<p>　　我这位同事就是如此。眼看她就要走向另外一个极端，有人提醒她不要钻牛角尖。结果，她讶异地说，你不是我的朋友吗？怎么向着那个臭男人说话？</p>
-<p>　　后来，大家都有些烦了，安慰的话说了一箩筐，一点作用都没有，反而加剧了她的偏激。于是，很多朋友和她渐行渐远，见面都躲着走。</p>
-<p>　　过了一段时日，她疑惑地问我，是不是大家都很讨厌她？自己究竟做错了什么？</p>
-<p>　　我说，你没有做错，只是有些事情，真的需要你自己度过，不要在别人身上寻找慰藉。</p>
-<h3 id="何事秋风悲画扇"><a href="#何事秋风悲画扇" class="headerlink" title="何事秋风悲画扇"></a>何事秋风悲画扇</h3><p>　　每个人都无可避免地在成长，无论你是否愿意，生活总会给你一些压力和挫折，让你不得不面对。</p>
-<p>　　在青春年少的时候，我们想要刺激的生活，渴望有新鲜感。而渐渐长大后，就开始期待稳定和踏实，最后一定会归于平淡。</p>
-<p>　　平淡是什么概念？它不仅仅是要你接受生活中的一些无趣，更要你把时时刻刻侵扰你的那些不快，当做习以为常的事情。</p>
-<p>　　我曾经和一个朋友聊天，她说，之所以不愿意将自己的心情和别人分享，就是知道它不过是暂时的、无用的，甚至是卑微的，没有必要让所有人都知道。</p>
-<p>　　或许你也是这样的人吧，把所有悲伤的话，都留给了自己。</p>
-<p>　　无论你是否愿意，都无可避免地，会面对这些旧伤发作的时刻。有些事情，要来来回回地想；有些痛苦，要坦坦荡荡地面对。</p>
-<h3 id="等闲变却故人心"><a href="#等闲变却故人心" class="headerlink" title="等闲变却故人心"></a>等闲变却故人心</h3><p>　　你肯定也有很多时刻觉得当下无法度过吧？</p>
-<p>　　失恋的时候，觉得全世界都背弃了你；失业的时候，苦恼以后的日子可怎么过；失眠的时候，辗转反侧内心无法安静。</p>
-<p>　　任何不顺心的当下，都觉得可能这一次，是没办法安然度过了。</p>
-<p>　　但是，我们就是这么一天天过来的。无论你是开心还是难过，无论你内心满足还是失意，时间都不会停下来等你。然后，你就慢慢学会了独自承受，习惯了一个人生活，习惯了独自面对诸多的难，习惯了忍受那些糟糕的情绪，甚至把它当做了人生的必修课。</p>
-<p>　　有人说，人不是主动接受着长大的，而是在一次次生命的重压之下，被迫历练成今天的样子。</p>
-<p>　　我深以为然。如果可以，我宁愿活得任性一点、矫情一点，宁愿把所有内心的边边角角都敞开来告诉身边的人。但我们不能，唯有自己学会勇敢，才能承受生活给予的一次次挑战。</p>
-<p>　　生活永远都是一个蹬鼻子上脸的角色，它欺软怕硬，你若软弱，它就越强硬；你若是坚强，它反倒会退避三尺。</p>
-<p>　　就是因为明白了这些，我逐渐学着自己处理很多事情，学着让自己不要陷入情绪当中无法自拔。别人的安慰只能解一时苦闷，但却不能实质性地替你解决问题。最终要面对的，还是你自己。</p>
-<p>　　你也是那种把难过藏在心里的人吧，对自己说句辛苦了，但是，千万别怂。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">poisionous soul</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Poisionous-soul//" class="article-tag-list-link color1">Poisionous soul</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/03/鸡汤/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/03/hello-world/">hello</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/03/hello-world/" class="archive-article-date">
-  	<time datetime="2017-12-03T06:46:28.560Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-03</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/03/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/14/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/16/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/14/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/16/">Next &raquo;</a>
     </nav>
   
 
@@ -673,7 +955,7 @@ $(document).ready(function(){
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 Codegitz
+    		&copy; 2020 Codegitz
     	</div>
       	<!--<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -781,6 +1063,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">music</a>
               </li>
              
@@ -789,11 +1075,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -805,6 +1087,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
               </li>
              
@@ -813,7 +1103,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -829,15 +1123,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -849,11 +1139,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hello world</a>
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color2">hello world</a>
               </li>
              
               <li class="article-tag-list-item">
