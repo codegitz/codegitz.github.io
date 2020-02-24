@@ -8,18 +8,25 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Netty源码分析系列（三） | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Netty新连接接入在本文开始之前，可以带着这两个问题来看  Netty是在哪里检测有新连接接入的？ 新连接是怎么样注册到NioEventLoop线程的？  首先来看新连接接入的四个处理逻辑步骤，接下来分析这四个步骤。  ​        新连接通过服务端channel绑定的selector轮询出accept事件，检测出新连接之后，基于JDKNIO的channel创建一个netty的NioSock">
+  <meta name="description" content="Netty新连接接入引言在本文开始之前，可以带着这两个问题来看  Netty是在哪里检测有新连接接入的？ 新连接是怎么样注册到NioEventLoop线程的？  首先来看新连接接入的四个处理逻辑步骤，接下来分析这四个步骤。  ​        新连接通过服务端channel绑定的selector轮询出accept事件，检测出新连接之后，基于JDKNIO的channel创建一个netty的NioSo">
 <meta name="keywords" content="Netty">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Netty源码分析系列（三）">
 <meta property="og:url" content="http://yoursite.com/2020/02/22/Netty源码分析系列（三）/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="Netty新连接接入在本文开始之前，可以带着这两个问题来看  Netty是在哪里检测有新连接接入的？ 新连接是怎么样注册到NioEventLoop线程的？  首先来看新连接接入的四个处理逻辑步骤，接下来分析这四个步骤。  ​        新连接通过服务端channel绑定的selector轮询出accept事件，检测出新连接之后，基于JDKNIO的channel创建一个netty的NioSock">
+<meta property="og:description" content="Netty新连接接入引言在本文开始之前，可以带着这两个问题来看  Netty是在哪里检测有新连接接入的？ 新连接是怎么样注册到NioEventLoop线程的？  首先来看新连接接入的四个处理逻辑步骤，接下来分析这四个步骤。  ​        新连接通过服务端channel绑定的selector轮询出accept事件，检测出新连接之后，基于JDKNIO的channel创建一个netty的NioSo">
 <meta property="og:image" content="https://i.imgur.com/MDfdxQq.png">
-<meta property="og:updated_time" content="2020-02-23T16:05:27.404Z">
+<meta property="og:image" content="https://i.imgur.com/nwLS32m.png">
+<meta property="og:image" content="https://i.imgur.com/8RcpbRh.png">
+<meta property="og:image" content="https://i.imgur.com/OWEkq0g.png">
+<meta property="og:image" content="https://i.imgur.com/vRxWbUk.png">
+<meta property="og:image" content="https://i.imgur.com/Qmsilmy.png">
+<meta property="og:image" content="https://i.imgur.com/3i7PByT.png">
+<meta property="og:image" content="https://i.imgur.com/LZjDRk3.png">
+<meta property="og:updated_time" content="2020-02-24T07:27:33.907Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Netty源码分析系列（三）">
-<meta name="twitter:description" content="Netty新连接接入在本文开始之前，可以带着这两个问题来看  Netty是在哪里检测有新连接接入的？ 新连接是怎么样注册到NioEventLoop线程的？  首先来看新连接接入的四个处理逻辑步骤，接下来分析这四个步骤。  ​        新连接通过服务端channel绑定的selector轮询出accept事件，检测出新连接之后，基于JDKNIO的channel创建一个netty的NioSock">
+<meta name="twitter:description" content="Netty新连接接入引言在本文开始之前，可以带着这两个问题来看  Netty是在哪里检测有新连接接入的？ 新连接是怎么样注册到NioEventLoop线程的？  首先来看新连接接入的四个处理逻辑步骤，接下来分析这四个步骤。  ​        新连接通过服务端channel绑定的selector轮询出accept事件，检测出新连接之后，基于JDKNIO的channel创建一个netty的NioSo">
 <meta name="twitter:image" content="https://i.imgur.com/MDfdxQq.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -211,7 +218,7 @@ gitment.render('gitment')
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Netty新连接接入"><a href="#Netty新连接接入" class="headerlink" title="Netty新连接接入"></a>Netty新连接接入</h1><p>在本文开始之前，可以带着这两个问题来看</p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Netty新连接接入"><a href="#Netty新连接接入" class="headerlink" title="Netty新连接接入"></a>Netty新连接接入</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>在本文开始之前，可以带着这两个问题来看</p>
 <ul>
 <li>Netty是在哪里检测有新连接接入的？</li>
 <li>新连接是怎么样注册到NioEventLoop线程的？</li>
@@ -220,7 +227,88 @@ gitment.render('gitment')
 <p><img src="https://i.imgur.com/MDfdxQq.png" style="zoom:50%;"></p>
 <p>​        新连接通过服务端channel绑定的selector轮询出accept事件，检测出新连接之后，基于JDKNIO的channel创建一个netty的NioSocketChannel，也就是客户端channel，接着netty给客户端channel分配一个NioEventLoop，并且把该channel注册到此NioEventLoop对应的selector上，至此，这条channel后续相关的读写都由此NioEventLoop进行管理，最后向这个channel对应的selector注册读事件，注册的过程和服务端启动注册accept事件复用同一段逻辑，下面来详细分析这四个处理逻辑。</p>
 <a id="more"></a>
-<h2 id="检测新连接"><a href="#检测新连接" class="headerlink" title="检测新连接"></a>检测新连接</h2>
+<h2 id="检测新连接"><a href="#检测新连接" class="headerlink" title="检测新连接"></a>检测新连接</h2><h3 id="原理流程"><a href="#原理流程" class="headerlink" title="原理流程"></a>原理流程</h3><p>​        开始之前，我们先回顾上两章内容，netty服务端启动之后会绑定一个boss线程，这个boss线程就是<code>NioEventLoop</code>，<code>bossNioEventLoop</code>在调用bind方法之后启动，它的run方法会干两件事情，<strong>第一</strong>，select IO事件，那么这里对应的IO事件就是accept事件，也就是新连接接入的一个事件，在拿到accept事件之后，<strong>第二</strong>个过程就是处理这个accept事件，也就是本小节要分析的内容。新连接检测从服务端<code>NioEventLoop.run</code>方法第二个过程，也就是processSelectedKey开始，接下来调用<code>NioMessageUnsafe.read()</code>方法，然后通过一个while循环,循环调用<code>doReadMessages()</code>来创建新连接对象，而创建新连接对象最核心的方法就是调用<code>javaChannel().accept()</code>方法创建jdkchannel，与服务端启动的思路一样，netty会把jdk的channel封装成netty自定义的一个channel，下面我们按照这个流程来看一遍源码。</p>
+<p><img src="https://i.imgur.com/nwLS32m.png" style="zoom:50%;"></p>
+<h3 id="代码执行"><a href="#代码执行" class="headerlink" title="代码执行"></a>代码执行</h3><p>首先启动服务端，然后在NioEventLoop的<code>processSelectedKey()</code>方法打一个断点，用telnet 建立一个新连接</p>
+<pre><code class="shell">telnet 127.0.0.1 8888
+</code></pre>
+<p>代码执行进入<code>processSelectedKey()</code>方法</p>
+<p><img src="https://i.imgur.com/8RcpbRh.png" alt=""></p>
+<p>接下来往下走，获取readyOps</p>
+<p><img src="https://i.imgur.com/OWEkq0g.png" alt=""></p>
+<p>会运行到判断这是一个accept事件，调用unsafe.read()方法，可以看到这个unsafe是NioMessageUnsafe</p>
+<p><img src="https://i.imgur.com/vRxWbUk.png" alt=""></p>
+<p><img src="https://i.imgur.com/Qmsilmy.png" alt=""></p>
+<p>进入到这个read方法</p>
+<pre><code class="java">    @Override
+    public void read() {
+        assert eventLoop().inEventLoop();//首先确定是在NioEventLoop线程里面执行，如果是外部线程调用，则下面的逻辑就不进行了
+        final ChannelConfig config = config();//服务端channel的config
+        final ChannelPipeline pipeline = pipeline();//服务端pipeline
+        final RecvByteBufAllocator.Handle allocHandle = unsafe().recvBufAllocHandle();//这个handle主要是处理服务端接收的速率
+        allocHandle.reset(config);//重置配置
+
+        boolean closed = false;
+        Throwable exception = null;
+        try {
+            try {
+                do {//do while循环
+                    int localRead = doReadMessages(readBuf);
+                    if (localRead == 0) {
+                        break;
+                    }
+                    if (localRead &lt; 0) {
+                        closed = true;
+                        break;
+                    }
+
+                    allocHandle.incMessagesRead(localRead);
+                } while (allocHandle.continueReading());
+            } catch (Throwable t) {
+                exception = t;
+            }
+
+            int size = readBuf.size();
+            for (int i = 0; i &lt; size; i ++) {
+                readPending = false;
+                pipeline.fireChannelRead(readBuf.get(i));
+            }
+            readBuf.clear();
+            allocHandle.readComplete();
+            pipeline.fireChannelReadComplete();
+
+            if (exception != null) {
+                closed = closeOnReadError(exception);
+
+                pipeline.fireExceptionCaught(exception);
+            }
+
+            if (closed) {
+                inputShutdown = true;
+                if (isOpen()) {
+                    close(voidPromise());
+                }
+            }
+        } finally {
+            // Check if there is a readPending which was not processed yet.
+            // This could be for two reasons:
+            // * The user called Channel.read() or ChannelHandlerContext.read() in channelRead(...) method
+            // * The user called Channel.read() or ChannelHandlerContext.read() in channelReadComplete(...) method
+            //
+            // See https://github.com/netty/netty/issues/2254
+            if (!readPending &amp;&amp; !config.isAutoRead()) {
+                removeReadOp();
+            }
+        }
+    }
+}
+</code></pre>
+<p>代码执行过程</p>
+<p><img src="https://i.imgur.com/3i7PByT.png" style="zoom:50%;"></p>
+<p>进入doReadMessages()方法，通过拿到服务端channel对应的一个底层的jdk channel，也就是调用javaChannel().accept()拿到，调用accept方法去创建一个jdk底层的channel。</p>
+<p><img src="https://i.imgur.com/LZjDRk3.png" alt=""></p>
+<p>拿到这个channel，可以看到是java.nio.channels.SocketChannel的channel,接下来把这个channel封装成    NioSocketChannel，放到buf里面，这个buf是上一层方法传进来的一个容器的对象</p>
+
       
 
       
