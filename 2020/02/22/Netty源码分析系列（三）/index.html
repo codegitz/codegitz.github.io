@@ -19,11 +19,11 @@
 <meta property="og:image" content="https://i.imgur.com/nwLS32m.png">
 <meta property="og:image" content="https://i.imgur.com/8RcpbRh.png">
 <meta property="og:image" content="https://i.imgur.com/OWEkq0g.png">
-<meta property="og:image" content="https://i.imgur.com/vRxWbUk.png">
-<meta property="og:image" content="https://i.imgur.com/Qmsilmy.png">
+<meta property="og:image" content="https://i.imgur.com/gvJzdRg.png">
 <meta property="og:image" content="https://i.imgur.com/3i7PByT.png">
-<meta property="og:image" content="https://i.imgur.com/LZjDRk3.png">
-<meta property="og:updated_time" content="2020-02-24T07:27:33.907Z">
+<meta property="og:image" content="https://i.imgur.com/XnYCdbc.png">
+<meta property="og:image" content="https://i.imgur.com/0u3ZvSB.png">
+<meta property="og:updated_time" content="2020-02-24T07:55:32.420Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Netty源码分析系列（三）">
 <meta name="twitter:description" content="Netty新连接接入引言在本文开始之前，可以带着这两个问题来看  Netty是在哪里检测有新连接接入的？ 新连接是怎么样注册到NioEventLoop线程的？  首先来看新连接接入的四个处理逻辑步骤，接下来分析这四个步骤。  ​        新连接通过服务端channel绑定的selector轮询出accept事件，检测出新连接之后，基于JDKNIO的channel创建一个netty的NioSo">
@@ -233,12 +233,11 @@ gitment.render('gitment')
 <pre><code class="shell">telnet 127.0.0.1 8888
 </code></pre>
 <p>代码执行进入<code>processSelectedKey()</code>方法</p>
-<p><img src="https://i.imgur.com/8RcpbRh.png" alt=""></p>
+<p><img src="https://i.imgur.com/8RcpbRh.png" style="zoom:50%;"></p>
 <p>接下来往下走，获取readyOps</p>
-<p><img src="https://i.imgur.com/OWEkq0g.png" alt=""></p>
+<p><img src="https://i.imgur.com/OWEkq0g.png" style="zoom:50%;"></p>
 <p>会运行到判断这是一个accept事件，调用unsafe.read()方法，可以看到这个unsafe是NioMessageUnsafe</p>
-<p><img src="https://i.imgur.com/vRxWbUk.png" alt=""></p>
-<p><img src="https://i.imgur.com/Qmsilmy.png" alt=""></p>
+<p><img src="https://i.imgur.com/gvJzdRg.png" style="zoom:50%;"></p>
 <p>进入到这个read方法</p>
 <pre><code class="java">    @Override
     public void read() {
@@ -306,8 +305,10 @@ gitment.render('gitment')
 <p>代码执行过程</p>
 <p><img src="https://i.imgur.com/3i7PByT.png" style="zoom:50%;"></p>
 <p>进入doReadMessages()方法，通过拿到服务端channel对应的一个底层的jdk channel，也就是调用javaChannel().accept()拿到，调用accept方法去创建一个jdk底层的channel。</p>
-<p><img src="https://i.imgur.com/LZjDRk3.png" alt=""></p>
-<p>拿到这个channel，可以看到是java.nio.channels.SocketChannel的channel,接下来把这个channel封装成    NioSocketChannel，放到buf里面，这个buf是上一层方法传进来的一个容器的对象</p>
+<p><img src="https://i.imgur.com/XnYCdbc.png" style="zoom:50%;"></p>
+<p>拿到这个channel，可以看到是java.nio.channels.SocketChannel的channel,接下来把这个channel封装成    NioSocketChannel，放到buf里面，这个buf是上一层方法传进来的一个容器的对象。</p>
+<p>创建channel完成，return 1</p>
+<p><img src="https://i.imgur.com/0u3ZvSB.png" style="zoom:50%;"></p>
 
       
 
