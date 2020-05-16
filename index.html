@@ -272,6 +272,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
          <span id="busuanzi_container_page_pv">
               |阅读量(<span id="busuanzi_value_page_pv"></span>)
         </span>
@@ -309,24 +320,41 @@
 
 
   
-    <article id="post-SpringBoot核心特性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Netty源码分析系列（三）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/22/Netty源码分析系列（三）/">Netty源码分析系列（三）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/22/Netty源码分析系列（三）/" class="archive-article-date">
+  	<time datetime="2020-02-22T14:20:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-22</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="SpringBoot核心特性"><a href="#SpringBoot核心特性" class="headerlink" title="SpringBoot核心特性"></a>SpringBoot核心特性</h2><h3 id="自动装配"><a href="#自动装配" class="headerlink" title="自动装配"></a>自动装配</h3><ul>
-<li>激活：@EnableAutoConfiguration</li>
-<li>配置: META-INF/spring.factories</li>
-<li>实现: XXXAutoConfiguration</li>
+        <h1 id="Netty新连接接入"><a href="#Netty新连接接入" class="headerlink" title="Netty新连接接入"></a>Netty新连接接入</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>在本文开始之前，可以带着这两个问题来看</p>
+<ul>
+<li>Netty是在哪里检测有新连接接入的？</li>
+<li>新连接是怎么样注册到NioEventLoop线程的？</li>
 </ul>
-<h3 id="嵌入式web容器"><a href="#嵌入式web容器" class="headerlink" title="嵌入式web容器"></a>嵌入式web容器</h3><p>web servlet :tomcat jetty undertow</p>
-<p>web reactive: netty web server </p>
-<h3 id="生产准备特性-production-ready"><a href="#生产准备特性-production-ready" class="headerlink" title="生产准备特性 production ready"></a>生产准备特性 production ready</h3><ul>
-<li>指标：/actuator/metrics</li>
-<li>健康检查：/actuator/health</li>
-<li>外部化配置 : /actuator/configprops</li>
-</ul>
-
+<p>首先来看新连接接入的四个处理逻辑步骤，接下来分析这四个步骤。</p>
+<p><img src="https://i.imgur.com/MDfdxQq.png" style="zoom:50%;"></p>
+<p>​        新连接通过服务端channel绑定的selector轮询出accept事件，检测出新连接之后，基于JDKNIO的channel创建一个netty的NioSocketChannel，也就是客户端channel，接着netty给客户端channel分配一个NioEventLoop，并且把该channel注册到此NioEventLoop对应的selector上，至此，这条channel后续相关的读写都由此NioEventLoop进行管理，最后向这个channel对应的selector注册读事件，注册的过程和服务端启动注册accept事件复用同一段逻辑，下面来详细分析这四个处理逻辑。</p>
+        
+          <a class="article-more-a" href="/2020/02/22/Netty源码分析系列（三）/#more">read more >></a>
+        
       
 
       
@@ -334,6 +362,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Netty</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
          <span id="busuanzi_container_page_pv">
               |阅读量(<span id="busuanzi_value_page_pv"></span>)
         </span>
@@ -341,7 +380,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/15/SpringBoot核心特性/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/02/22/Netty源码分析系列（三）/">展开全文 >></a>
         </p>
       
 
@@ -371,282 +410,66 @@
 
 
   
-    <article id="post-并发编程与线程安全" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Netty源码分析系列（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/10/Netty源码分析系列（二）/">Netty源码分析系列（二）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/10/Netty源码分析系列（二）/" class="archive-article-date">
+  	<time datetime="2020-01-10T14:20:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-10</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="并发编程与线程安全"><a href="#并发编程与线程安全" class="headerlink" title="并发编程与线程安全"></a>并发编程与线程安全</h2><h2 id="线程安全性"><a href="#线程安全性" class="headerlink" title="线程安全性"></a>线程安全性</h2><p><img src="https://live.staticflickr.com/65535/49749999876_8efe992da7_o.png" style="zoom:67%;"></p>
-<p><img src="https://live.staticflickr.com/65535/49750013091_0a7332f5fc_o.png" style="zoom:67%;"></p>
-<h3 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h3><p><img src="https://live.staticflickr.com/65535/49752555602_9817634e0d_o.png" style="zoom:67%;"></p>
-<p><img src="https://live.staticflickr.com/65535/49752229891_32ab4d63a5_o.png" style="zoom:67%;"></p>
-<p><img src="https://live.staticflickr.com/65535/49752259621_a1d299b954_o.png" style="zoom:67%;"></p>
-<h3 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h3><p><img src="https://live.staticflickr.com/65535/49751750473_194dceff1f_o.png" style="zoom:67%;"></p>
-<p><img src="https://live.staticflickr.com/65535/49752615867_10a48eac76_o.png" style="zoom:67%;"></p>
-<p><img src="https://live.staticflickr.com/65535/49752618142_a3c321cced_o.png" style="zoom:67%;"></p>
-<p><img src="https://live.staticflickr.com/65535/49752619202_cd3f8ecf09_o.png" style="zoom:67%;"></p>
-<p><img src="https://live.staticflickr.com/65535/49752620952_d699e1f180_o.png" style="zoom:67%;"></p>
-<p><img src="https://live.staticflickr.com/65535/49752656392_c81ba9b11b_o.png" style="zoom:67%;"></p>
-<h3 id="有序性"><a href="#有序性" class="headerlink" title="有序性"></a>有序性</h3><p><img src="https://live.staticflickr.com/65535/49752339521_7cf5fea7f7_o.png" style="zoom:67%;"></p>
-<p><img src="https://live.staticflickr.com/65535/49751812333_7b04b63200_o.png" style="zoom:67%;"></p>
-<p><img src="https://live.staticflickr.com/65535/49752346646_01f7c4f2b3_o.png" style="zoom:67%;"></p>
-<p><img src="https://live.staticflickr.com/65535/49752678892_4436226254_o.png" style="zoom:67%;"></p>
-<p><img src="https://live.staticflickr.com/65535/49752680057_98227f95b5_o.png" style="zoom:67%;"></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="https://live.staticflickr.com/65535/49751817048_ffdc672e80_o.png" style="zoom:67%;"></p>
-<h2 id="安全发布对象"><a href="#安全发布对象" class="headerlink" title="安全发布对象"></a>安全发布对象</h2><p><img src="https://live.staticflickr.com/65535/49751881043_2fed5a412a_o.png" style="zoom:67%;"></p>
-<p><img src="https://live.staticflickr.com/65535/49752748947_35c334dc8b_o.png" style="zoom:67%;"></p>
-<p>代码演示，懒汉模式、饿汉模式、枚举</p>
-<pre><code class="java">/**
- * 懒汉模式
- * 单例实例在第一次使用时进行创建
- */
-@NotThreadSafe
-public class SingletonExample1 {
-
-    // 私有构造函数
-    private SingletonExample1() {
-
-    }
-
-    // 单例对象
-    private static SingletonExample1 instance = null;
-
-    // 静态的工厂方法
-    public static SingletonExample1 getInstance() {
-        if (instance == null) {
-            instance = new SingletonExample1();
-        }
-        return instance;
-    }
-}
+        <h1 id="NioEventLoop"><a href="#NioEventLoop" class="headerlink" title="NioEventLoop"></a>NioEventLoop</h1><blockquote>
+<p><u>netty版本为<code>4.1.6.Final</code></u></p>
+</blockquote>
+<p>在上一节服务端的启动中，我们了解到一个重要的组件NioEventLoop，本章来分析一下这个组件。</p>
+<p>本文可以带着三个问题来看<br>1.默认情况下，Netty服务端起多少线程？何时启动？</p>
+<p>2.Netty是如何解决jdk空轮询的bug的？</p>
+<p>3.Netty是如何保证异步串行无锁化？</p>
+<h2 id="NioEventLoop分析三步走"><a href="#NioEventLoop分析三步走" class="headerlink" title="NioEventLoop分析三步走"></a>NioEventLoop分析三步走</h2><p>1.NioEventLoop创建</p>
+<ul>
+<li>如何创建的，在创建过程中做了哪些事情</li>
+</ul>
+<p>2.NioEventLoop启动</p>
+<ul>
+<li>学习NioEventLoop启动流程</li>
+</ul>
+<p>3.NioEventLoop执行逻辑</p>
+<ul>
+<li>学习NioEventLoop底层做了什么，并且是如何保持高效运转的</li>
+</ul>
+<h2 id="NioEventLoop创建"><a href="#NioEventLoop创建" class="headerlink" title="NioEventLoop创建"></a>NioEventLoop创建</h2><h3 id="代码调用过程"><a href="#代码调用过程" class="headerlink" title="代码调用过程"></a>代码调用过程</h3><p><img src="https://i.imgur.com/esTHOys.png" style="zoom: 50%;"></p>
+<p>从用户的代码入口开始<code>new NioEventLoopGroup()</code>.</p>
+<pre><code class="java">        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
 </code></pre>
-<pre><code class="java">/**
- * 懒汉模式
- * 单例实例在第一次使用时进行创建
- */
-@ThreadSafe
-@NotRecommend
-public class SingletonExample3 {
-
-    // 私有构造函数
-    private SingletonExample3() {
-
+<p>进入到<code>NioEventLoopGroup.NioEventLoopGroup()</code>,然后一路调用构造方法</p>
+<pre><code class="java">    /**
+     * Create a new instance using the specified number of threads, {@link ThreadFactory} and the
+     * {@link SelectorProvider} which is returned by {@link SelectorProvider#provider()}.
+     */
+    public NioEventLoopGroup(int nThreads) {
+        this(nThreads, (Executor) null);
     }
-
-    // 单例对象
-    private static SingletonExample3 instance = null;
-
-    // 静态的工厂方法，加synchronized
-    public static synchronized SingletonExample3 getInstance() {
-        if (instance == null) {
-            instance = new SingletonExample3();
-        }
-        return instance;
-    }
-}
 </code></pre>
-<pre><code class="java">/**
- * 懒汉模式 -》 双重同步锁单例模式
- * 单例实例在第一次使用时进行创建
- */
-@NotThreadSafe
-public class SingletonExample4 {
-
-    // 私有构造函数
-    private SingletonExample4() {
-
-    }
-
-    // 1、memory = allocate() 分配对象的内存空间
-    // 2、ctorInstance() 初始化对象
-    // 3、instance = memory 设置instance指向刚分配的内存
-
-    // JVM和cpu优化，发生了指令重排
-
-    // 1、memory = allocate() 分配对象的内存空间
-    // 3、instance = memory 设置instance指向刚分配的内存
-    // 2、ctorInstance() 初始化对象
-
-    // 单例对象
-    private static SingletonExample4 instance = null;
-
-    // 静态的工厂方法
-    public static SingletonExample4 getInstance() {
-        if (instance == null) { // 双重检测机制        // B
-            synchronized (SingletonExample4.class) { // 同步锁
-                if (instance == null) {
-                    instance = new SingletonExample4(); // A - 3
-                }
-            }
-        }
-        return instance;
-    }
-}
-</code></pre>
-<p>禁止指令重排</p>
-<pre><code class="java">/**
- * 懒汉模式 -》 双重同步锁单例模式
- * 单例实例在第一次使用时进行创建
- */
-@ThreadSafe
-public class SingletonExample5 {
-
-    // 私有构造函数
-    private SingletonExample5() {
-
-    }
-
-    // 1、memory = allocate() 分配对象的内存空间
-    // 2、ctorInstance() 初始化对象
-    // 3、instance = memory 设置instance指向刚分配的内存
-
-    // 单例对象 volatile + 双重检测机制 -&gt; 禁止指令重排
-    private volatile static SingletonExample5 instance = null;
-
-    // 静态的工厂方法
-    public static SingletonExample5 getInstance() {
-        if (instance == null) { // 双重检测机制        // B
-            synchronized (SingletonExample5.class) { // 同步锁
-                if (instance == null) {
-                    instance = new SingletonExample5(); // A - 3
-                }
-            }
-        }
-        return instance;
-    }
-}
-</code></pre>
-<pre><code class="java">/**
- * 饿汉模式
- * 单例实例在类装载时进行创建
- */
-@ThreadSafe
-public class SingletonExample2 {
-
-    // 私有构造函数
-    private SingletonExample2() {
-
-    }
-
-    // 单例对象
-    private static SingletonExample2 instance = new SingletonExample2();
-
-    // 静态的工厂方法
-    public static SingletonExample2 getInstance() {
-        return instance;
-    }
-}
-</code></pre>
-<pre><code class="java">
-/**
- * 饿汉模式
- * 单例实例在类装载时进行创建
- */
-@ThreadSafe
-public class SingletonExample6 {
-
-    // 私有构造函数
-    private SingletonExample6() {
-
-    }
-
-    // 单例对象
-    private static SingletonExample6 instance = null;
-
-    static {
-        instance = new SingletonExample6();
-    }
-
-    // 静态的工厂方法
-    public static SingletonExample6 getInstance() {
-        return instance;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(getInstance().hashCode());
-        System.out.println(getInstance().hashCode());
-    }
-}
-</code></pre>
-<p>枚举</p>
-<pre><code class="java">
-/**
- * 枚举模式：最安全
- */
-@ThreadSafe
-@Recommend
-public class SingletonExample7 {
-
-    // 私有构造函数
-    private SingletonExample7() {
-
-    }
-
-    public static SingletonExample7 getInstance() {
-        return Singleton.INSTANCE.getInstance();
-    }
-
-    private enum Singleton {
-        INSTANCE;
-
-        private SingletonExample7 singleton;
-
-        // JVM保证这个方法绝对只调用一次
-        Singleton() {
-            singleton = new SingletonExample7();
-        }
-
-        public SingletonExample7 getInstance() {
-            return singleton;
-        }
-    }
-}
-</code></pre>
-<h2 id="不可变对象"><a href="#不可变对象" class="headerlink" title="不可变对象"></a>不可变对象</h2><p><img src="https://live.staticflickr.com/65535/49752844118_c45693ca06_o.png" style="zoom:67%;"></p>
-<h2 id="线程封闭"><a href="#线程封闭" class="headerlink" title="线程封闭"></a>线程封闭</h2><p><img src="https://live.staticflickr.com/65535/49753758762_12a3ffc93a_o.png" style="zoom:67%;"></p>
-<h2 id="线程不安全类和写法"><a href="#线程不安全类和写法" class="headerlink" title="线程不安全类和写法"></a>线程不安全类和写法</h2><p><img src="https://live.staticflickr.com/65535/49753891962_c4c4b6f901_o.png" style="zoom:67%;"></p>
-<h2 id="线程安全-同步容器"><a href="#线程安全-同步容器" class="headerlink" title="线程安全-同步容器"></a>线程安全-同步容器</h2><p>同步容器影响性能，可以用并发容器代替</p>
-<p><img src="https://live.staticflickr.com/65535/49753905837_d9e4cef50f_o.png" style="zoom:67%;"></p>
-<p>这个写法是线程不安全的</p>
-<pre><code class="java">
-@NotThreadSafe
-public class VectorExample2 {
-
-    private static Vector&lt;Integer&gt; vector = new Vector&lt;&gt;();
-
-    public static void main(String[] args) {
-
-        while (true) {
-
-            for (int i = 0; i &lt; 10; i++) {
-                vector.add(i);
-            }
-
-            Thread thread1 = new Thread() {
-                public void run() {
-                    for (int i = 0; i &lt; vector.size(); i++) {
-                        vector.remove(i);
-                    }
-                }
-            };
-
-            Thread thread2 = new Thread() {
-                public void run() {
-                    for (int i = 0; i &lt; vector.size(); i++) {
-                        vector.get(i);
-                    }
-                }
-            };
-            thread1.start();
-            thread2.start();
-        }
-    }
-}
-</code></pre>
-<h2 id="线程安全-并发容器"><a href="#线程安全-并发容器" class="headerlink" title="线程安全-并发容器"></a>线程安全-并发容器</h2><p><img src="https://live.staticflickr.com/65535/49753653056_e0bc614d40_o.png" style="zoom:67%;"></p>
-<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p><img src="https://live.staticflickr.com/65535/49753136343_9f07201b54_o.png" style="zoom:67%;"></p>
-<p><img src="https://live.staticflickr.com/65535/49753132708_95af7c7fef_o.png" style="zoom:67%;"></p>
-
+        
+          <a class="article-more-a" href="/2020/01/10/Netty源码分析系列（二）/#more">read more >></a>
+        
       
 
       
@@ -654,6 +477,17 @@ public class VectorExample2 {
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Netty</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
          <span id="busuanzi_container_page_pv">
               |阅读量(<span id="busuanzi_value_page_pv"></span>)
         </span>
@@ -661,7 +495,7 @@ public class VectorExample2 {
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/08/并发编程与线程安全/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/01/10/Netty源码分析系列（二）/">展开全文 >></a>
         </p>
       
 
@@ -691,61 +525,59 @@ public class VectorExample2 {
 
 
   
-    <article id="post-Linux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Netty源码分析系列（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/02/Netty源码分析系列（一）/">Netty源码分析系列（一）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/02/Netty源码分析系列（一）/" class="archive-article-date">
+  	<time datetime="2020-01-02T14:20:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-02</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h3 id="Linux的体系结构"><a href="#Linux的体系结构" class="headerlink" title="Linux的体系结构"></a>Linux的体系结构</h3><p><img src="https://i.imgur.com/fRAmxJW.png" style="zoom: 67%;"></p>
-<h3 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h3><p><img src="https://i.imgur.com/Hcltmqe.png" style="zoom:80%;"></p>
-<p><img src="https://i.imgur.com/paSAONL.png" style="zoom:80%;"></p>
-<p><img src="https://i.imgur.com/Fqj3vAa.png" style="zoom:80%;"></p>
-<p><img src="https://i.imgur.com/lB1oFCH.png" style="zoom:80%;"></p>
-<p><img src="https://i.imgur.com/OD1jKSM.png" style="zoom:80%;"></p>
-<p><img src="https://i.imgur.com/24woD9l.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/6UiKnpP.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/YWzlfsJ.png" style="zoom:80%;"></p>
-<p>-i 参数表示对原文件生效，否则只是将修改输出到屏幕</p>
-<p><img src="https://i.imgur.com/5z6do3f.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/12C0jzs.png" style="zoom:67%;"></p>
-<h3 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h3><p><img src="https://i.imgur.com/9l8Mg3S.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/8kMUmWL.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/w2k5e5A.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/Je2tavu.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/canD8KV.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/dZAyErM.png" style="zoom:67%;"></p>
-<h3 id="TCP四次挥手"><a href="#TCP四次挥手" class="headerlink" title="TCP四次挥手"></a>TCP四次挥手</h3><p><img src="https://i.imgur.com/7jwgBI9.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/3Z9KXiw.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/cX1DSdD.png" style="zoom:67%;"></p>
-<pre><code class="SHELL">#查看链接状态连接数
-netstat -n | awk &#39;/^tcp/{++S[$NF]}END{for(a in S) print a,S[a]}&#39;
-</code></pre>
-<h3 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h3><p><img src="https://i.imgur.com/35bbYHa.png" style="zoom: 67%;"></p>
-<p><img src="https://i.imgur.com/MS4sxJT.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/IEO4wRs.png" style="zoom: 67%;"></p>
-<p>i<img src="https://i.imgur.com/VEhRpFu.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/bQfusn1.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/OxcyuAB.png" style="zoom:67%;"></p>
-<p><img src="C:\Users\codegitz\AppData\Roaming\Typora\typora-user-images\image-20200316215911160.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/rWkVs9p.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/9qRRAKG.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/1vvowin.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/LtRIcf9.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/nSjPoWo.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/zRRROct.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/U1DTeDd.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/a4t5okn.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/wqhC9jf.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/Tavl3Lj.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/DYHbZdK.png" style="zoom: 67%;"></p>
-<p><img src="https://i.imgur.com/qfVi0wU.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/AljpUgs.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/tVmzkPz.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/Cud5unR.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/ndRODJ7.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/TjXVk7r.png" style="zoom:67%;"></p>
-<p><img src="https://i.imgur.com/gQBdvDY.png" style="zoom:67%;"></p>
+        <h2 id="Netty服务端启动"><a href="#Netty服务端启动" class="headerlink" title="Netty服务端启动"></a><u>Netty</u>服务端启动</h2><blockquote>
+<p><u>netty版本为<code>4.1.6.Final</code></u></p>
+</blockquote>
+<p>本文可以带着两个问题来看<br>1.服务端的socket在哪里初始化？<br>2.在哪里accept连接？</p>
+<h2 id="启动过程"><a href="#启动过程" class="headerlink" title="启动过程"></a>启动过程</h2><p>1.创建服务端channel<br>2.初始化服务端channel<br>3.注册selector<br>4.端口绑定</p>
+<h3 id="创建服务端channel"><a href="#创建服务端channel" class="headerlink" title="创建服务端channel"></a>创建服务端channel</h3><p><strong>调用过程</strong></p>
+<p><img src="https://i.imgur.com/jwvLY74.png" style="zoom:50%;"><br>代码调用过程</p>
+<p>用户代码入口<strong>bind()</strong></p>
+<pre><code class="java">try {
+            ServerBootstrap b = new ServerBootstrap();
+            b.group(bossGroup, workerGroup)
+                    .channel(NioServerSocketChannel.class)
+                    .childOption(ChannelOption.TCP_NODELAY, true)
+                    .childAttr(AttributeKey.newInstance(&quot;childAttr&quot;), &quot;childAttrValue&quot;)
+                    .handler(new ServerHandler())
+                    .childHandler(new ChannelInitializer&lt;SocketChannel&gt;() {
+                        @Override
+                        public void initChannel(SocketChannel ch) {
+                            ch.pipeline().addLast(new AuthHandler());
+                            //..
 
+                        }
+                    });
+
+            ChannelFuture f = b.bind(8888).sync();//入口
+</code></pre>
+        
+          <a class="article-more-a" href="/2020/01/02/Netty源码分析系列（一）/#more">read more >></a>
+        
       
 
       
@@ -753,6 +585,17 @@ netstat -n | awk &#39;/^tcp/{++S[$NF]}END{for(a in S) print a,S[a]}&#39;
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Netty</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
          <span id="busuanzi_container_page_pv">
               |阅读量(<span id="busuanzi_value_page_pv"></span>)
         </span>
@@ -760,7 +603,7 @@ netstat -n | awk &#39;/^tcp/{++S[$NF]}END{for(a in S) print a,S[a]}&#39;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/16/Linux/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/01/02/Netty源码分析系列（一）/">展开全文 >></a>
         </p>
       
 
@@ -792,7 +635,7 @@ netstat -n | awk &#39;/^tcp/{++S[$NF]}END{for(a in S) print a,S[a]}&#39;
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1009,6 +852,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">solr</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
             
             <div class="clearfix"></div>
