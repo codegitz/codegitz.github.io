@@ -39,7 +39,7 @@
 <!-- ����gitment��css��js�ļ� -->
 <link rel="stylesheet" href="/gitment.css"> 
 <script src="/gitment.js"></script> 
-</head>
+<link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"></script></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -171,20 +171,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-2018总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Docker19-03-新特性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/09/2018总结/">2018总结</a>
+      <a class="article-title" href="/2019/09/26/Docker19-03-新特性/">Docker19.03 新特性</a>
     </h1>
   
 
         
-        <a href="/2019/01/09/2018总结/" class="archive-article-date">
-  	<time datetime="2019-01-09T12:03:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-09</time>
+        <a href="/2019/09/26/Docker19-03-新特性/" class="archive-article-date">
+  	<time datetime="2019-09-26T01:46:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
 </a>
         
       </header>
@@ -195,11 +195,264 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><span>  一眨眼一年的时间又过去了，而我似乎还没有感觉到2018的离开，可能是我还没准备好迎接2019吧。<br><br><br></span></p>
-<div align="center"><br><img src="https://i.imgur.com/lHgP616.jpg" alt="" height="80%" width="60%"><br></div><br><br><br>
-        
-          <a class="article-more-a" href="/2019/01/09/2018总结/#more">read more >></a>
-        
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="docker19-03新特性"><a href="#docker19-03新特性" class="headerlink" title="docker19.03新特性"></a>docker19.03新特性</h1><h2 id="Automatically-use-TLS"><a href="#Automatically-use-TLS" class="headerlink" title="Automatically use TLS"></a>Automatically use TLS</h2><p><img src="https://i.imgur.com/TwAZqnv.png" alt=""></p>
+<p><a href="https://about.gitlab.com/2019/07/31/docker-in-docker-with-docker-19-dot-03/" target="_blank" rel="external">Update: Changes to GitLab CI/CD and Docker in Docker with Docker 19.03</a></p>
+<p>安装使用都需明确指明版本，建议禁用latest或者stable</p>
+<p><img src="https://i.imgur.com/YniGN5z.png" alt=""></p>
+<blockquote>
+<p><strong>This is to help prevent users’ jobs randomly failing when a new update comes out.</strong></p>
+</blockquote>
+<p>如果出现</p>
+<pre><code class="shell">Client:
+ Debug Mode: false
+
+Server:
+ERROR: error during connect: Get http://docker:2375/v1.40/info: dial tcp: lookup docker on 114.114.114.114:53: no such host
+errors pretty printing info
+</code></pre>
+<p>在gitlab-runner里的volumes挂载上本地daemon.json</p>
+<pre><code class="shell">volumes = [&quot;/certs/client&quot;, &quot;/cache&quot;, &quot;/etc/default/docker:/etc/default/docker&quot;, &quot;/etc/docker/daemon.json:/etc/docker/daemon.json&quot;]
+</code></pre>
+<p>给出两种解决方法：</p>
+<p>To fix the problem above you have two options:</p>
+<ol>
+<li>Configure <a href="https://docs.gitlab.com/runner/" target="_blank" rel="external">GitLab Runner</a> to use TLS.</li>
+<li>Explicitly turn off TLS.</li>
+</ol>
+<h2 id="Configure-TLS"><a href="#Configure-TLS" class="headerlink" title="Configure TLS"></a>Configure TLS</h2><p>Since the service <code>docker:dind</code> will create the certificates, we need to have the certificate shared between the service and the job container. To do this we have to add a mount inside of the <a href="https://docs.gitlab.com/runner/configuration/advanced-configuration.html#the-runnersdocker-section" target="_blank" rel="external">volumes</a> under the <code>[runners.docker]</code> section.</p>
+<p>For example:</p>
+<pre><code class="shell">[[runners]]
+  name = &quot;My Docker Runner&quot;
+  url = &quot;http://gitlab.com&quot;
+  token = &quot;&quot;
+  executor = &quot;docker&quot;
+  [runners.custom_build_dir]
+  [runners.docker]
+    privileged = true
+    volumes = [&quot;/certs/client&quot;, &quot;/cache&quot;]
+    shm_size = 0
+</code></pre>
+<p>If you’re a GitLab.com user, we’ve already done the config change above for you on the Shared Runners.</p>
+<p>Also, update <code>.gitlab-ci.yml</code> accordingly to specify the <code>DOCKER_TLS_CERTDIR</code></p>
+<pre><code class="shell">image: docker:19.03.0
+
+variables:
+  DOCKER_DRIVER: overlay2
+  # Create the certificates inside this directory for both the server
+  # and client. The certificates used by the client will be created in
+  # /certs/client so we only need to share this directory with the
+  # volume mount in `config.toml`.
+  DOCKER_TLS_CERTDIR: &quot;/certs&quot;
+
+services:
+  - docker:19.03.0-dind
+
+before_script:
+  - docker info
+
+build:
+  stage: build
+  script:
+    - docker build -t my-docker-image .
+    - docker run my-docker-image /script/to/run/tests
+</code></pre>
+<h2 id="Disable-TLS"><a href="#Disable-TLS" class="headerlink" title="Disable TLS"></a>Disable TLS</h2><p>You might not have access to update the volume mounting inside of the <code>config.toml</code>, so the only option is to disable TLS. You can do this by setting the environment variable <code>DOCKER_TLS_CERTDIR</code> to an empty value.</p>
+<p>For GitLab.com Shared Runners users this is done already using the <a href="https://docs.gitlab.com/runner/configuration/advanced-configuration.html#the-runners-section" target="_blank" rel="external">environment settings</a>, which works the same way.</p>
+<pre><code class="shell">image: docker:19.03.0
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: &quot;&quot;
+
+services:
+  - docker:19.03.0-dind
+
+before_script:
+  - docker info
+
+build:
+  stage: build
+  script:
+    - docker build -t my-docker-image .
+    - docker run my-docker-image /script/to/run/tests
+</code></pre>
+<p>We would like to thank the rest of the community with all the feedback and help throughout <a href="https://gitlab.com/gitlab-org/gitlab-runner/issues/4501" target="_blank" rel="external">#4501</a>.</p>
+<h1 id="SSH-keys-when-using-the-Docker-executor"><a href="#SSH-keys-when-using-the-Docker-executor" class="headerlink" title="SSH keys when using the Docker executor"></a>SSH keys when using the Docker executor</h1><p>GitLab currently doesn’t have built-in support for managing SSH keys in a build environment (where the GitLab Runner runs).</p>
+<p>The SSH keys can be useful when:</p>
+<ol>
+<li>You want to checkout internal submodules</li>
+<li>You want to download private packages using your package manager (e.g., Bundler)</li>
+<li><strong>You want to deploy your application to your own server, or, for example, Heroku</strong>（<strong>重点</strong>）</li>
+<li><strong>You want to execute SSH commands from the build environment to a remote server</strong>（<strong>重点</strong>）</li>
+<li>You want to rsync files from the build environment to a remote server</li>
+</ol>
+<p>If anything of the above rings a bell, then you most likely need an SSH key.</p>
+<p>The most widely supported method is to inject an SSH key into your build environment by extending your <code>.gitlab-ci.yml</code>, and it’s a solution which works with any type of <a href="https://docs.gitlab.com/runner/executors/" target="_blank" rel="external">executor</a> (Docker, shell, etc.)</p>
+<h2 id="How-it-works"><a href="#How-it-works" class="headerlink" title="How it works"></a>How it works</h2><ol>
+<li>Create a new SSH key pair locally with <a href="http://linux.die.net/man/1/ssh-keygen" target="_blank" rel="external"><code>ssh-keygen</code></a></li>
+<li>Add the private key as a <a href="https://docs.gitlab.com/ee/ci/variables/README.html" target="_blank" rel="external">variable</a> to your project</li>
+<li>Run the <a href="http://linux.die.net/man/1/ssh-agent" target="_blank" rel="external"><code>ssh-agent</code></a> during job to load the private key.</li>
+<li>Copy the public key to the servers you want to have access to (usually in <code>~/.ssh/authorized_keys</code>) or add it as a <a href="https://docs.gitlab.com/ee/ssh/README.html#deploy-keys" target="_blank" rel="external">deploy key</a> if you are accessing a private GitLab repository.</li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> The private key will not be displayed in the job trace, unless you enable <a href="https://docs.gitlab.com/ee/ci/variables/README.html#debug-tracing" target="_blank" rel="external">debug tracing</a>. You might also want to check the <a href="https://docs.gitlab.com/ee/user/project/pipelines/settings.html#visibility-of-pipelines" target="_blank" rel="external">visibility of your pipelines</a>.</p>
+</blockquote>
+<h2 id="SSH-keys-when-using-the-Docker-executor-1"><a href="#SSH-keys-when-using-the-Docker-executor-1" class="headerlink" title="SSH keys when using the Docker executor"></a>SSH keys when using the Docker executor</h2><p><strong>When your CI/CD jobs run inside Docker containers (meaning the environment is contained) and you want to deploy your code in a private server, you need a way to access it. This is where an SSH key pair comes in handy.</strong>【理解】</p>
+<ol>
+<li>You will first need to create an SSH key pair. For more information, follow the instructions to <a href="https://docs.gitlab.com/ee/ssh/README.html#generating-a-new-ssh-key-pair" target="_blank" rel="external">generate an SSH key</a>.<strong>Do not</strong> add a passphrase to the SSH key, or the <code>before_script</code> will prompt for it.</li>
+<li>Create a new <a href="https://docs.gitlab.com/ee/ci/variables/README.html#gitlab-cicd-environment-variables" target="_blank" rel="external">variable</a>. As <strong>Key</strong> enter the name <code>SSH_PRIVATE_KEY</code> and in the <strong>Value</strong> field paste the content of your <em>private</em> key that you created earlier.</li>
+<li>Modify your <code>.gitlab-ci.yml</code> with a <code>before_script</code> action. In the following example, a Debian based image is assumed. Edit to your needs:</li>
+</ol>
+<pre><code class="shell">before_script:
+  ##
+  ## Install ssh-agent if not already installed, it is required by Docker.
+  ## (change apt-get to yum if you use an RPM-based image)
+  ##
+  - &#39;which ssh-agent || ( apt-get update -y &amp;&amp; apt-get install openssh-client -y )&#39;
+
+  ##
+  ## Run ssh-agent (inside the build environment)
+  ##
+  - eval $(ssh-agent -s)
+
+  ##
+  ## Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
+  ## We&#39;re using tr to fix line endings which makes ed25519 keys work
+  ## without extra base64 encoding.
+  ## https://gitlab.com/gitlab-examples/ssh-private-key/issues/1#note_48526556
+  ##
+  - echo &quot;$SSH_PRIVATE_KEY&quot; | tr -d &#39;\r&#39; | ssh-add -
+
+  ##
+  ## Create the SSH directory and give it the right permissions
+  ##
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+
+  ##
+  ## Optionally, if you will be using any Git commands, set the user name and
+  ## and email.
+  ##
+  #- git config --global user.email &quot;user@example.com&quot;
+  #- git config --global user.name &quot;User name&quot;
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> The <a href="https://docs.gitlab.com/ee/ci/yaml/README.html#before_script-and-after_script" target="_blank" rel="external"><code>before_script</code></a> can be set globally or per-job</p>
+</blockquote>
+<ol>
+<li><p>Make sure the private server’s <a href="https://docs.gitlab.com/ee/ci/ssh_keys/#verifying-the-ssh-host-keys" target="_blank" rel="external">SSH host keys are verified</a>.</p>
+</li>
+<li><p>As a final step, add the <em>public</em> key from the one you created in the first step to the services that you want to have an access to from within the build environment. If you are accessing a private GitLab repository you need to add it as a <a href="https://docs.gitlab.com/ee/ssh/README.html#deploy-keys" target="_blank" rel="external">deploy key</a>.</p>
+</li>
+</ol>
+<h2 id="Verifying-the-SSH-host-keys"><a href="#Verifying-the-SSH-host-keys" class="headerlink" title="Verifying the SSH host keys"></a>Verifying the SSH host keys</h2><p>GG在了这里</p>
+<p>It is a good practice to check the private server’s own public key to make sure you are not being targeted by a man-in-the-middle attack. In case anything suspicious happens, you will notice it since the job would fail (the SSH connection would fail if the public keys would not match).</p>
+<p>To find out the host keys of your server, run the <code>ssh-keyscan</code> command from a trusted network (ideally, from the private server itself):</p>
+<pre><code>## Use the domain name
+ssh-keyscan example.com
+
+## Or use an IP
+ssh-keyscan 1.2.3.4
+</code></pre><p>Create a new <a href="https://docs.gitlab.com/ee/ci/variables/README.html#gitlab-cicd-environment-variables" target="_blank" rel="external">variable</a> with <code>SSH_KNOWN_HOSTS</code> as “Key”, and as a “Value” add the output of <code>ssh-keyscan</code>.</p>
+<blockquote>
+<p><strong>Note:</strong> If you need to connect to multiple servers, all the server host keys need to be collected in the <strong>Value</strong> of the variable, one key per line.</p>
+</blockquote>
+<p><strong>Tip:</strong> By using a variable instead of <code>ssh-keyscan</code> directly inside <code>.gitlab-ci.yml</code>, <strong>it has the benefit that you don’t have to change <code>.gitlab-ci.yml</code> if the host domain name changes for some reason</strong>. Also, the values are predefined by you, meaning that if the host keys suddenly change, the CI/CD job will fail, and you’ll know there’s something wrong with the server or the network.</p>
+<p>Now that the <code>SSH_KNOWN_HOSTS</code> variable is created, in addition to the <a href="https://docs.gitlab.com/ee/ci/ssh_keys/#ssh-keys-when-using-the-docker-executor" target="_blank" rel="external">content of <code>.gitlab-ci.yml</code></a> above, here’s what more you need to add:</p>
+<pre><code class="shell">before_script:
+  ##
+  ## Assuming you created the SSH_KNOWN_HOSTS variable, uncomment the
+  ## following two lines.
+  ##
+  - echo &quot;$SSH_KNOWN_HOSTS&quot; &gt; ~/.ssh/known_hosts
+  - chmod 644 ~/.ssh/known_hosts
+
+  ##
+  ## Alternatively, use ssh-keyscan to scan the keys of your private server.
+  ## Replace example.com with your private server&#39;s domain name. Repeat that
+  ## command if you have more than one server to connect to.
+  ##
+  #- ssh-keyscan example.com &gt;&gt; ~/.ssh/known_hosts
+  #- chmod 644 ~/.ssh/known_hosts
+
+  ##
+  ## You can optionally disable host key checking. Be aware that by adding that
+  ## you are susceptible to man-in-the-middle attacks.
+  ## WARNING: Use this only with the Docker executor, if you use it with shell
+  ## you will overwrite your user&#39;s SSH config.
+  ##
+  #- &#39;[[ -f /.dockerenv ]] &amp;&amp; echo -e &quot;Host *\n\tStrictHostKeyChecking no\n\n&quot; &gt; ~/.ssh/config&#39;
+</code></pre>
+<p>gitlab-examples/ssh-private-key/blob/master/.gitlab-ci.yml</p>
+<p><a href="https://gitlab.com/gitlab-examples/ssh-private-key/blob/master/.gitlab-ci.yml" target="_blank" rel="external">https://gitlab.com/gitlab-examples/ssh-private-key/blob/master/.gitlab-ci.yml</a></p>
+<pre><code class="shell">image: ubuntu
+
+before_script:
+  ##
+  ## Install ssh-agent if not already installed, it is required by Docker.
+  ## (change apt-get to yum if you use an RPM-based image)
+  ##
+  - &#39;which ssh-agent || ( apt-get update -y &amp;&amp; apt-get install openssh-client git -y )&#39;
+
+  ##
+  ## Run ssh-agent (inside the build environment)
+  ##
+  - eval $(ssh-agent -s)
+
+  ##
+  ## Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
+  ## We&#39;re using tr to fix line endings which makes ed25519 keys work
+  ## without extra base64 encoding.
+  ## https://gitlab.com/gitlab-examples/ssh-private-key/issues/1#note_48526556
+  ##
+  - echo &quot;$SSH_PRIVATE_KEY&quot; | tr -d &#39;\r&#39; | ssh-add - &gt; /dev/null
+
+  ##
+  ## Create the SSH directory and give it the right permissions
+  ##
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+
+  ##
+  ## Use ssh-keyscan to scan the keys of your private server. Replace gitlab.com
+  ## with your own domain name. You can copy and repeat that command if you have
+  ## more than one server to connect to.
+  ##
+  - ssh-keyscan gitlab.com &gt;&gt; ~/.ssh/known_hosts
+  - chmod 644 ~/.ssh/known_hosts
+
+  ##
+  ## Alternatively, assuming you created the SSH_SERVER_HOSTKEYS variable
+  ## previously, uncomment the following two lines instead.
+  ##
+  #- echo &quot;$SSH_SERVER_HOSTKEYS&quot; &gt; ~/.ssh/known_hosts&#39;
+  #- chmod 644 ~/.ssh/known_hosts
+
+  ##
+  ## You can optionally disable host key checking. Be aware that by adding that
+  ## you are suspectible to man-in-the-middle attacks.
+  ## WARNING: Use this only with the Docker executor, if you use it with shell
+  ## you will overwrite your user&#39;s SSH config.
+  ##
+  #- &#39;[[ -f /.dockerenv ]] &amp;&amp; echo -e &quot;Host *\n\tStrictHostKeyChecking no\n\n&quot; &gt; ~/.ssh/config&#39;
+
+  ##
+  ## Optionally, if you will be using any Git commands, set the user name and
+  ## email.
+  ##
+  - git config --global user.email &quot;darth@empire.com&quot;
+  - git config --global user.name &quot;Darth Vader&quot;
+
+
+Test SSH:
+  script:
+  # try to connect to GitLab.com
+  - ssh git@gitlab.com
+
+  # try to clone yourself. A *PUBLIC* key paired to the SSH_PRIVATE_KEY was added as deploy key to this repository
+  - git clone git@gitlab.com:gitlab-examples/ssh-private-key.git
+</code></pre>
+
       
 
       
@@ -212,7 +465,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
         		</li>
       		
 		</ul>
@@ -225,7 +478,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/09/2018总结/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/26/Docker19-03-新特性/">展开全文 >></a>
         </p>
       
 
@@ -255,20 +508,20 @@
 
 
   
-    <article id="post-fdfs安装Nginx模块出现问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="w-Lionel-Messi-From-little-to-Legend" class="article article-type-w  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/09/fdfs安装Nginx模块出现问题/">fdfs安装Nginx模块出现问题</a>
+      <a class="article-title" href="/2019/04/05/Lionel-Messi-From-little-to-Legend/">Lionel Messi - From little to Legend</a>
     </h1>
   
 
         
-        <a href="/2019/01/09/fdfs安装Nginx模块出现问题/" class="archive-article-date">
-  	<time datetime="2019-01-09T06:27:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-09</time>
+        <a href="/2019/04/05/Lionel-Messi-From-little-to-Legend/" class="archive-article-date">
+  	<time datetime="2019-04-04T16:11:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-05</time>
 </a>
         
       </header>
@@ -279,15 +532,446 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为项目需要搭建自己的图片服务器，之前用的ftp，但是在了解了fdfs之后，想尝试一下这个分布式文件服务器，所以这就是起因了，废话少说，进入问题。<br><br>我使用的版本：<br></p>
-<pre><code>Centos 7.6
-nginx-1.8.1
-fastdfs-5.05
-libfastcommon-1.0.7
-fastdfs-nginx-module-1.20
-</code></pre><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>我这里<a href="https://blog.csdn.net/wlwlwlwl015/article/details/52619851" target="_blank" rel="external">安装fdfs</a>和nginx都没有问题，单独测试都可以成功，在进行添加nginx模块的时候就出现了报错，具体报错如下：<br><br>
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="Messi-The-Boss"><a href="#Messi-The-Boss" class="headerlink" title="Messi The Boss"></a>Messi The Boss</h2><p>Whether which club you support, you can’t deny Lionel Messi is one the greatest soccer player ever.</p>
+<p>In two months time, Lionel Messi will turn 31 and every football fan will suddenly realise that we only have a few more years left before the Barcelona superstar retires.</p>
+<p>Hopefully he’ll never lose his love for the game and will continue playing into his 40s because the thought of Messi retiring from football in his early-to-mid 30s should fill every lover of the beautiful game with dread and sadness.</p>
+<p><div align="center"><br><img src="https://i.imgur.com/xcBeGo9.jpg" alt="" height="60%" width="80%"><br></div><br>It’s genuinely possible that we’ll never see a player like Messi again in our lifetimes. In the opinion of many football fans, he has surpassed the likes of Pele and Diego Maradona as the greatest footballer of all time.</p>
+<p>Of course, there are some people who maintain that Messi must win a World Cup before he can be considered the best ever.</p>
+<p>But even if he fails to land his hands on that particular trophy, nobody can take away his extraordinary achievements. More importantly, no football fan will forget the joy he gave them every time he crossed the white line.</p>
+<p>Messi, famously humble off the pitch, is hugely respected by his teammates - current and former - as well as his peers.</p>
+<p>There have been some brilliant quotes from the great and good of football about the Argentina international - and we’ve decided to collate the best here in one article.﻿</p>
+<div id="dplayer1" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer1"),"theme":"#FADFA3","loop":true,"video":{"url":"http://47.107.71.209:8080/root/M00/00/00/rBIyn1ymJfmAS3kPHNWtWgkpGsY046.mp4","pic":"https://i.imgur.com/n3YAGhq.jpg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
+<p><br><br><br></p>
+<h2 id="梅吹语录"><a href="#梅吹语录" class="headerlink" title="梅吹语录"></a>梅吹语录</h2><h2 id="THE-50-GREATEST-EVER-QUOTES-ABOUT-LIONEL-MESSI-—-THE-‘MIRACLE-FROM-GOD’"><a href="#THE-50-GREATEST-EVER-QUOTES-ABOUT-LIONEL-MESSI-—-THE-‘MIRACLE-FROM-GOD’" class="headerlink" title="THE 50 GREATEST EVER QUOTES ABOUT LIONEL MESSI — THE ‘MIRACLE FROM GOD’"></a>THE 50 GREATEST EVER QUOTES ABOUT LIONEL MESSI — THE ‘MIRACLE FROM GOD’</h2><p>1) “They tell me that all men are equal in God’s eyes, this player makes you seriously think about those words.” - soccer commentator <strong>Ray Hudson</strong></p>
+<p>2) “I have never seen anyone like Leo Messi. He is a miracle from God! I like it when he does his things on the field. It’s not jealousy - I feel good, for instance, when he nutmegs someone.” - <strong>Arda Turan</strong></p>
+<p>3) “Is Messi a real player or a PlayStation character?” - <strong>Radamel Falcao</strong></p>
+<p>4) “I like Messi a lot, he’s a great player. Technically, we’re practically at the same level.” - <strong>Pele</strong></p>
+<p>5) “Once they said they can only stop me with a pistol. Today you need a machine gun to stop Messi.” -<strong> Hristo Stoichkov</strong></p>
+<p>6) “Messi is the Mozart of soccer.” - <strong>Radomir Antic</strong></p>
+<p>7) “It is clear that Messi is on a level above all others. Those who do not see that are blind.” - <strong>Xavi</strong></p>
+<p>8) “For me, to watch Messi play is a pleasure – it’s like having an orgasm – it’s an incredible pleasure.” - <strong>Luis Figo</strong></p>
+<p>9) “Barca will never have a player like Messi again. Messi’s greatness is present on and off the field of play.” - <strong>ex-Barcelona president Sandro Rosell</strong></p>
+<p>10) “This Barca will be remembered as Messi’s Barca. He’s well above anything else I’ve ever seen. He’s an alien.” - <strong>Carles Puyol</strong></p>
+<p>11) “Messi is the best in the world without any doubt and for me the history of soccer.” <strong>Luis Enrique</strong></p>
+<p>12) “Messi is God, as a person and even more as a player. I knew him when he was a boy and I’ve watched him grow. He deserves it all.” - <strong>Samuel Eto’o</strong></p>
+<p>13) “Although he may not be human, it’s good that Messi still thinks he is.” - <strong>Javier Mascherano</strong></p>
+<p>14) “Newton and Einstein had a certain level of autism - I hope that, like them, Messi surpasses himself every day and continues to give us his beautiful brand of soccer.” - <strong>Romario</strong></p>
+<p>15) “Life with Leo is prettier, of another colour.” - <strong>Barcelona president Josep Maria Bartomeu</strong></p>
+<p>16) “There are three or four important things in life: books, friends, women… and Messi.” - <strong>Portuguese writer Antonio Lobo Antunes</strong></p>
+<p>17) “Seeing Messi play is like watching a video game… What Messi does on a soccer field is simply unthinkable… The way he walks from side to side, and once he sees an opportunity, he simply creates magic.” - <strong>tennis superstar Victoria Azarenka</strong></p>
+<p>18) “He is an anomaly. The rest will have to wait until he falls off a little bit.” - <strong>Edgar Davids</strong></p>
+<p>19) “At this point I’m starting to believe that Messi is tightly related to Clark Kent.” - <strong>Bar Rafaeli</strong></p>
+<p>20) “Messi is class. There is him, and then there is the rest. What he does is extraordinary.” - <strong>Franck Ribery</strong></p>
+<p>21) “We give him the ball and stand back and watch. People often say to me they saw Pele and Maradona play. In the future, I will be able to say I saw Messi play.” - <strong>Thiago Alcantara</strong></p>
+<p>22) “He is always going forwards. He never passes the ball backwards or sideways. He has only one idea, to run towards the goal. So as a soccer fan, just enjoy the show.” - <strong>Zinedine Zidane</strong></p>
+<p>23) “He sees passes that most people can only see whilst watching the game on TV, not ones that you can normally see on the pitch.” - <strong>Tata Martino</strong></p>
+<p>24) “He does not really seem human to me.” - Luis Enrique</p>
+<p>25) “For the world of soccer, Messi is a treasure because he is a role model for children around the world… Messi will be the player to win the most Ballons d’Or in history. He will win five, six, seven. He is incomparable. He’s in a different league.” - <strong>Johan Cruyff</strong></p>
+<p>26) “I have played against Platini, Maradona, Cruyff and played with George Best — a lot of big names, but none of them has been able to do what Messi does. Two years ago I said that the best player I played against was Maradona and the best player I have played with was Bestie. But I can now say I have never seen a player as good as Messi. He’s in a league of his own.” - <strong>Former Tottenham star Gerry Armstrong</strong></p>
+<p>27) “Who’s better, Messi or Cristiano Ronaldo? Messi. Ronaldo is good, but Messi is 10 times better.” - Klaas-Jan Huntelaar</p>
+<p>28) “Diego [Maradona] filled us with emotions. But between the cracks, without doubt, Messi is better than Maradona.” - <strong>Diego Simeone</strong></p>
+<p>29) “There is no doubt, you’re from another galaxy. Thanks Leo.” - <strong>Maxi Rodriguez</strong></p>
+<p>30) “Who is the Best Player in the World? Leo Messi. Who is the Best Player Ever? Leo Messi.” - <strong>Arsene Wenger</strong></p>
+<p>31) “I have seen the player who will inherit my place in Argentine soccer and his name is Messi. Messi is a genius.” - <strong>Diego Maradona</strong></p>
+<p>32) “Messi does not need his right foot. He only uses the left and he’s still the best in the world. Imagine if he also used his right foot, Then we would have serious problems.” - <strong>Zlatan Ibrahimovic</strong></p>
+<p>33) “Fella’s a genius. Best ever by a distance in my life time. Never really saw Pele… Souness, Gullit, Venables and now Rooney agree Messi is the best they have seen. He plays a game with which we are not familiar.” - <strong>Gary Lineker</strong></p>
+<p>34) “I played with Romario, Rivaldo, Ronaldo, Laudrup and Stoichkov but Messi is the best I’ve seen.” - <strong>Albert Ferrer</strong></p>
+<p>35) “It feels good to be in the same generation as him. I believe he’s the best player in the history of the sport.” - <strong>Gerard Pique</strong></p>
+<p>36) “Messi defies the laws of anatomy, he must have an extra bone in his ankle.” - <strong>Carlos Bilardo</strong></p>
+<p>37) “Lionel Messi is quite clearly the best player ever. It’s a pleasure to pit myself against him and when I finish my career it’s something I can look back on and know I’ve tested myself against the very best.” - <strong>John Terry</strong></p>
+<p>38) “In my entire life I have never seen a player of such quality and personality at such a young age, particularly wearing the ‘heavy’ shirt of one of the world’s great clubs… Before a game, you can plan for everything. But Messi can produce a move that no-one expects and change the game in an instant.” - <strong>Fabio Capello</strong></p>
+<p>39) “Messi is better than Maradona; he is more complete, more consistent, more spectacular. He is reinventing the game – a mix of the real and the virtual.” - <strong>Tostão</strong></p>
+<p>40) “I am not crazy enough to compare myself with Messi because he is the best there ever was and the best there will ever be.” - <strong>Mario Gomez</strong></p>
+<p>41) “I was a big fan of Maradona growing up and of the current crop Ronaldo is good but Messi is the best I’ve ever seen. I don’t dish out praise lightly but Messi deserves it. I look for weaknesses in his game and I can’t find them.” - <strong>Roy Keane</strong></p>
+<p>42) “Messi is the best player ever. And this is said by someone who has seen Maradona and Pele play.” - <strong>AC Milan chief Adriano Galliani</strong></p>
+<p>43) “He is the best in the world. soccer seems easy when he plays it.” - <strong>Bacary Sagna</strong></p>
+<p>44) “I wear the number 10 Jersey for the US National Team in honour of the Greatest athlete I have ever seen: Messi.” - <strong>Kobe Bryant</strong></p>
+<p>45) “The only bad thing about Ronaldo’s life is Messi. If it was not for him, Ronaldo would be the best player in the world for five years in a row.” - <strong>Felipe Scolari</strong></p>
+<p>46) “I can’t believe anyone can have played the game of soccer as well as Messi.” - <strong>Michael Owen</strong></p>
+<p>47) “Messi is a genius. He has everything. When I watch him, I see a player who is very, very, skilful, very clever and his left foot is like Diego Maradona’s.” - <strong>Franz Beckenbauer</strong></p>
+<p>48) “Messi or Cristiano? Cristiano Ronaldo is very good, but I prefer Messi. He’s incredible.” -<strong> Gheorghe Hagi</strong></p>
+<p>49) “Comparing CR7 to Messi is an exercise of ignorance in soccer. Messi is Messi and others, soccerers.” - <strong>Spanish manager Miguel Angel Lotina</strong></p>
+<p>50) “The other day I saw one of his games. He was running with the ball at a hundred per cent full speed, I don’t know how many touches he took, maybe five or six, but the ball was glued to his foot. It’s practically impossible.” - <strong>Real Madrid legend Raul</strong></p>
+<p>Bonus: “Don’t write about him, don’t try to describe him. Just watch him.” - <strong>Pep Guardiola</strong></p>
+<p>Without a World Cup,Messi still the God of football.<br><strong>THE ‘MIRACLE FROM GOD’.</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Messi</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/05/Lionel-Messi-From-little-to-Legend/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
         
-          <a class="article-more-a" href="/2019/01/09/fdfs安装Nginx模块出现问题/#more">read more >></a>
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ARTHAS的简单使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/19/ARTHAS的简单使用/">ARTHAS的简单使用</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/19/ARTHAS的简单使用/" class="archive-article-date">
+  	<time datetime="2019-01-19T03:10:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-19</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Arthas是什么？<a href="https://github.com/alibaba/arthas" target="_blank" rel="external">Arthas</a>是阿里开源的在线诊断工具。Arthas 是基于 Greys 进行二次开发的全新在线诊断工具，利用Java6的Instrumentation特性，动态增强你所指定的类，获取你想要到的信息, 采用命令行交互模式，同时提供丰富的 Tab 自动补全功能，让你在定位、分析诊断问题时看每一个操作都看起来是那么的简明。<br><br>Arthas解决的痛点：<br></p>
+<ul>
+<li>这个类从哪个 jar 包加载的？为什么会报各种类相关的 Exception？<br></li>
+<li>我改的代码为什么没有执行到？难道是我没 commit？分支搞错了？<br></li>
+<li>遇到问题无法在预发 debug 一下，难道只能通过加日志再重新预发布吗？<br></li>
+<li>线上遇到某个用户的数据处理有问题，但线上同样无法 debug，线下无法重现,怎么办?<br></li>
+<li>是否有一个全局视角来查看系统的运行状况？<br></li>
+<li>有什么办法可以监控到容器和中间件的实时运行状态？<br></li>
+</ul>
+<h2 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h2><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>参考官网文档给出的启动方式：<br></p>
+<pre><code>Use arthas-boot(Recommend)
+Downloadarthas-boot.jar，Start with java command:
+
+wget https://alibaba.github.io/arthas/arthas-boot.jar
+java -jar arthas-boot.jar
+</code></pre><p>还可用.sh脚本运行：<br></p>
+<pre><code>Use as.sh
+You can install Arthas with one single line command on Linux, Unix, and Mac. Pls. copy the following command and paste it into the command line, then press Enter to run:
+
+curl -L https://alibaba.github.io/arthas/install.sh | sh
+</code></pre><p>这里我采用第一种方式启动。</p>
+<p><img src="https://i.imgur.com/dMrU6d6.png" alt=""></p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>下面来简单尝试一下arthas的命令，官方给出了命令<a href="https://alibaba.github.io/arthas/en/commands.html" target="_blank" rel="external">大全</a>。</p>
+<ul>
+<li>dashboard</li>
+</ul>
+<p>当前系统的实时数据面板</p>
+<ul>
+<li>thread</li>
+</ul>
+<p>查看当前 JVM 的线程堆栈信息</p>
+<ul>
+<li>jvm</li>
+</ul>
+<p>查看当前 JVM 的信息</p>
+<ul>
+<li>sc</li>
+</ul>
+<p>查看JVM已加载的类信息</p>
+<ul>
+<li>sm</li>
+</ul>
+<p>查看已加载类的方法信息</p>
+<ul>
+<li>jad</li>
+</ul>
+<p>反编译指定已加载类的源码</p>
+<ul>
+<li>classloader</li>
+</ul>
+<p>查看classloader的继承树，urls，类加载信息，使用classloader去getResource</p>
+<ul>
+<li>monitor</li>
+</ul>
+<p>方法执行监控</p>
+<ul>
+<li>watch</li>
+</ul>
+<p>方法执行数据观测</p>
+<ul>
+<li>trace</li>
+</ul>
+<p>方法内部调用路径，并输出方法路径上的每个节点上耗时</p>
+<ul>
+<li>stack</li>
+</ul>
+<p>输出当前方法被调用的调用路径</p>
+<ul>
+<li>tt</li>
+</ul>
+<p>方法执行数据的时空隧道，记录下指定方法每次调用的入参和返回信息，并能对这些不同的时间下调用进行观测</p>
+<ul>
+<li>reset</li>
+</ul>
+<p>重置增强类，将被 Arthas 增强过的类全部还原，Arthas 服务端关闭时会重置所有增强过的类</p>
+<ul>
+<li>quit</li>
+</ul>
+<p>退出当前 Arthas 客户端，其他 Arthas 客户端不受影响</p>
+<ul>
+<li>shutdown</li>
+</ul>
+<p>关闭 Arthas 服务端，所有 Arthas 客户端全部退出</p>
+<h4 id="dashboard"><a href="#dashboard" class="headerlink" title="dashboard"></a>dashboard</h4><p><img src="https://i.imgur.com/x6hBUtX.png" alt=""></p>
+<p>盗用官方的一张图来解释一下：</p>
+<p><img src="https://i.imgur.com/b4ClXS5.png" alt=""><br>ID: Java级别的线程ID，注意这个ID不能跟jstack中的nativeID一一对应</p>
+<p>NAME: 线程名</p>
+<p>GROUP: 线程组名</p>
+<p>PRIORITY: 线程优先级, 1~10之间的数字，越大表示优先级越高</p>
+<p>STATE: 线程的状态</p>
+<p>CPU%: 线程消耗的cpu占比，采样100ms，将所有线程在这100ms内的cpu使用量求和，再算出每个线程的cpu使用占比。</p>
+<p>TIME: 线程运行总时间</p>
+<p>INTERRUPTE: 线程当前的中断位状态</p>
+<p>DAEMON: 是否是daemon线程</p>
+<p>…</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/19/ARTHAS的简单使用/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-maven安装jar包到本地仓库" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/15/maven安装jar包到本地仓库/">maven安装jar包到本地仓库</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/15/maven安装jar包到本地仓库/" class="archive-article-date">
+  	<time datetime="2019-01-15T02:22:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-15</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本地类路径下的jar包在使用maven打包放到服务器运行的时候，会报找不到的错。我们需要把jar包安装到本地仓库里面。<br></p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>运行一下命令安装：<br></p>
+<pre><code>$  mvn install:install-file -Dfile=xstream-1.3.1.jar -DgroupId=com.thoughtworks -DartifactId=xstream -Dversion=1.3.1 -Dpackaging=jar
+</code></pre><p><br><br><img src="https://i.imgur.com/WS3csGR.png" alt=""></p>
+<pre><code>$  mvn install:install-file -Dfile=xstream-1.3.1.jar -DgroupId=com.thoughtworks -DartifactId=xstream -Dversion=1.3.1 -Dpackaging=jar
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Maven Stub Project (No POM) 1
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- maven-install-plugin:2.4:install-file (default-cli) @ standalone-pom ---
+[INFO] Installing E:\▒ٶ▒▒▒▒▒Դ\FileManage\manageplatform\src\main\resources\lib\xstream-1.3.1.jar to F:\maven\apache-maven-3.5.2-bin\repo\com\thoughtworks\xstream\1.3.1\xstream-1.3.1.jar
+[INFO] Installing C:\Users\ZHANGG~1\AppData\Local\Temp\mvninstall7596578701340346296.pom to F:\maven\apache-maven-3.5.2-bin\repo\com\thoughtworks\xstream\1.3.1\xstream-1.3.1.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1.281 s
+[INFO] Finished at: 2019-01-15T09:56:23+08:00
+[INFO] Final Memory: 6M/114M
+[INFO] ------------------------------------------------------------------------
+
+
+
+-Dfile：jar包路径
+-DgroupId:groupId
+-DartifactId:artifactId
+</code></pre><p>在pom.xml中添加如下依赖：<br></p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;com.thoughtworks&lt;/groupId&gt;
+    &lt;artifactId&gt;xstream&lt;/artifactId&gt;
+    &lt;version&gt;1.3.1&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><p>这时候再运行<code>mvn package</code>命令就不会报错了。<br></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本地运行的很欢快的程序，打包到服务器就会出现很多问题，我们依赖IDE的程度太深，自己都没有察觉了。离开了IDE提供的环境才发现很多需要手动解决的问题。<br></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/15/maven安装jar包到本地仓库/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-几个常用的Linux性能查看工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/12/几个常用的Linux性能查看工具/">几个常用的Linux性能查看工具</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/12/几个常用的Linux性能查看工具/" class="archive-article-date">
+  	<time datetime="2019-01-12T14:53:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-12</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在Linux的使用中，经常需要查看服务器的内存使用状况，这里记录几个好用的工具。<br></p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><h3 id="iftop"><a href="#iftop" class="headerlink" title="iftop"></a>iftop</h3><p>iftop可测量通过每一个套接字连接传输的数据。iftop使用pcap库来捕获进出网络适配器的数据包，然后汇总数据包大小和数量，搞清楚总的带宽使用情况。<br></p>
+<p>虽然iftop报告每个连接所使用的带宽，但它无法报告参与某个套按字连接的进程名称/编号（ID）。不过由于基于pcap库，iftop能够过滤流量，并报告由过滤器指定的所选定主机连接的带宽使用情况。<br></p>
+<pre><code>$ sudo iftop -n 
+</code></pre><p>n选项可以防止iftop将IP地址解析成主机名，解析本身就会带来额外的网络流量。<br></p>
+<p><img src="https://i.imgur.com/osagmXw.png" alt=""><br>
+        
+          <a class="article-more-a" href="/2019/01/12/几个常用的Linux性能查看工具/#more">read more >></a>
         
       
 
@@ -314,256 +998,7 @@ fastdfs-nginx-module-1.20
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/09/fdfs安装Nginx模块出现问题/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Centos7让hexo后台运行" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/22/Centos7让hexo后台运行/">Centos7.6让hexo后台运行</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/22/Centos7让hexo后台运行/" class="archive-article-date">
-  	<time datetime="2018-12-21T17:01:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-22</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今晚心血来潮在Centos7服务器上搭了个hexo博客，一顿操作下来，成了。但是问题来了，关掉了ssh连接之后，hexo server 就凉了，挂掉，然后无法访问。Google一番后，有一个很简单的解决方法，就是让pm2去接管hexo的进程。<br><br>
-        
-          <a class="article-more-a" href="/2018/12/22/Centos7让hexo后台运行/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/22/Centos7让hexo后台运行/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-记一次重启服务器后mysql挂掉" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/21/记一次重启服务器后mysql挂掉/">记一次重启服务器后mysql挂掉</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/21/记一次重启服务器后mysql挂掉/" class="archive-article-date">
-  	<time datetime="2018-12-21T14:19:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-21</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天在安装FastDFS的时候，需要重启一下服务器，当重启完成后，我天真的以为这大功告成，但是万万没想到，mysql数据库挂了。我的心情就像过山车一样，人生的大起大落实在是太刺激了，接下来又开始了无尽的搜索之旅。<br><br>
-        
-          <a class="article-more-a" href="/2018/12/21/记一次重启服务器后mysql挂掉/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/21/记一次重启服务器后mysql挂掉/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-深入理解Git系列（四）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/16/深入理解Git系列（四）/">深入理解Git系列（四）</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/16/深入理解Git系列（四）/" class="archive-article-date">
-  	<time datetime="2018-12-16T03:24:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-16</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇我们大概讲解了一下分支，如何创建分支以及分支的检出，那么在我们工作的时候，每个人很大概率拥有自己的分支，当我们在自己的分支愉快地完成了开发工作的时候，我们提交到了自己的分支上，一切都相安无事，但是很不幸，当有时候我们进行分支合并的时候，可能会出现意料之外的情况，例如自己分支与主分支合并的时候产生了冲突。冲突虽然能通过预先的计划尽量减少，但是是不可避免的，在一些情况下，还是会出现恼人的冲突。那么对于出现的冲突，我们该如何解决呢？<br><br>
-        
-          <a class="article-more-a" href="/2018/12/16/深入理解Git系列（四）/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/16/深入理解Git系列（四）/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/01/12/几个常用的Linux性能查看工具/">展开全文 >></a>
         </p>
       
 
@@ -595,7 +1030,7 @@ fastdfs-nginx-module-1.20
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
     </nav>
   
 
@@ -747,11 +1182,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -771,10 +1206,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Messi</a>
               </li>
              
@@ -783,7 +1214,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -795,15 +1226,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
