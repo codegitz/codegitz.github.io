@@ -171,6 +171,321 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-研磨设计模式系列-工厂模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/17/研磨设计模式系列-工厂模式/">研磨设计模式系列--工厂模式</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/17/研磨设计模式系列-工厂模式/" class="archive-article-date">
+  	<time datetime="2020-05-17T04:57:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-17</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="1-什么是工厂模式"><a href="#1-什么是工厂模式" class="headerlink" title="1.什么是工厂模式"></a>1.什么是工厂模式</h2><p>​        实现了创建者和调用者分离，工厂模式分为简单工厂、工厂方法、抽象工厂模式</p>
+<h2 id="2-工厂模式好处"><a href="#2-工厂模式好处" class="headerlink" title="2.工厂模式好处"></a>2.工厂模式好处</h2><p>​        工厂模式是我们最常用的实例化对象模式了，是用工厂方法代替new操作的一种模式。利用工厂模式可以降低程序的耦合性，为后期的维护修改提供了很大的便利。工厂模式对选择实现类、创建对象进行统一管理和控制。从而将调用者跟我们的实现类解耦。</p>
+<h2 id="3-工厂模式分类"><a href="#3-工厂模式分类" class="headerlink" title="3.工厂模式分类"></a>3.工厂模式分类</h2><h3 id="1-简单工厂模式"><a href="#1-简单工厂模式" class="headerlink" title="1.简单工厂模式"></a>1.简单工厂模式</h3><p>​        简单工厂模式相当于是一个工厂中有各种产品，创建在一个类中，客户无需知道具体产品的名称，只需要知道产品类所对应的参数即可。<strong>但是工厂的职责过重，而且当类型过多时不利于系统的扩展维护。</strong>简单工厂的关系模式如下，ConcreteProduct实现AbstractProduct接口，在ConcreteProduct实现不同的产品生产，SimpleFactory根据不同的需要，调用创建不同的ConcreteProduct，FactoryClient传递参数给SimpleFactory获取需要的返回结果。</p>
+<p><img src="https://live.staticflickr.com/65535/49904075417_7b952e85ec_o.png"></p>
+<h4 id="1、代码实现"><a href="#1、代码实现" class="headerlink" title="1、代码实现"></a>1、代码实现</h4><p>先定义一个抽象的产品接口。</p>
+<pre><code class="Java">package com.designpattern.simplefactory;
+/**
+ * @description: 抽象产品
+ * @author: Codegitz
+ * @create: 2020-05-17 13:08
+ **/
+public interface AbstractProduct {
+    public void product();
+}
+</code></pre>
+<p>为了简单演示，这里只进行了两个实现。</p>
+<pre><code class="Java">package com.designpattern.simplefactory;
+
+/**
+ * @description: 产品1 ConcreteProduct1
+ * @author: Codegitz
+ * @create: 2020-05-17 13:08
+ **/
+public class ConcreteProduct1 implements AbstractProduct {
+    @Override
+    public void product() {
+        System.out.println(&quot; ConcreteProduct1 in production....&quot;);
+    }
+}
+</code></pre>
+<pre><code class="Java">package com.designpattern.simplefactory;
+
+/**
+ * @description: 产品2 ConcreteProduct2
+ * @author: Codegitz
+ * @create: 2020-05-17 13:08
+ **/
+public class ConcreteProduct2 implements AbstractProduct {
+    @Override
+    public void product() {
+        System.out.println(&quot; ConcreteProduct2 in production....&quot;);
+    }
+}
+</code></pre>
+<pre><code class="Java">package com.designpattern.simplefactory;
+
+import io.netty.util.internal.StringUtil;
+
+/**
+ * @description: 简单工厂
+ * @author: Codegitz
+ * @create: 2020-05-17 13:10
+ **/
+public class SimpleFactory {
+
+    public static AbstractProduct creatProdution(String name){
+        if (StringUtil.isNullOrEmpty(name)){
+            return null;
+        }
+        //根据传入的参数获取不同的产品
+        if (name.equals(&quot;product1&quot;)){
+            return new ConcreteProduct1();
+        }else if (name.equals(&quot;product2&quot;)){
+            return new ConcreteProduct2();
+        }else {
+            throw new RuntimeException(&quot;么有这个产品&quot;);
+        }
+
+    }
+}
+</code></pre>
+<p>建立FactoryClient进行测试。</p>
+<pre><code class="Java">package com.designpattern.simplefactory;
+
+/**
+ * @description: 工厂客户端，使用简单工厂{@Link SimpleFactory}去创建产品
+ * @author: Codegitz
+ * @create: 2020-05-17 13:16
+ **/
+public class FactoryClient {
+    public static void main(String[] args) {
+        //创建产品
+        AbstractProduct production1 = SimpleFactory.creatProdution(&quot;product1&quot;);
+        AbstractProduct production2 = SimpleFactory.creatProdution(&quot;product2&quot;);
+        production1.product();
+        production2.product();
+    }
+}
+</code></pre>
+<p>运行结果如下，符合预期</p>
+<pre><code class="cmd"> ConcreteProduct1 in production....
+ ConcreteProduct2 in production....
+</code></pre>
+<h4 id="2、简单工厂的优点-缺点"><a href="#2、简单工厂的优点-缺点" class="headerlink" title="2、简单工厂的优点/缺点"></a>2、简单工厂的优点/缺点</h4><p>优点：简单工厂模式能够根据外界给定的信息，决定究竟应该创建哪个具体类的对象。明确区分了各自的职责和权力，有利于整个软件体系结构的优化。</p>
+<p>缺点：很明显工厂类集中了所有实例的创建逻辑，容易违反GRASPR的高内聚的责任分配原则</p>
+<h3 id="2-工厂方法模式"><a href="#2-工厂方法模式" class="headerlink" title="2.工厂方法模式"></a>2.工厂方法模式</h3><p>​        工厂方法模式Factory Method，又称多态性工厂模式。在工厂方法模式中，核心的工厂类不再负责所有的产品的创建，而是将具体创建的工作交给子类去做。该核心类成为一个抽象工厂角色，仅负责给出具体工厂子类必须实现的接口，而不接触哪一个产品类应当被实例化这种细节。</p>
+<p>​        工厂方法模式继承关系如图，相对于简单工厂，工厂方法模式多了一个具体实现的工厂，分担了核心工厂类的功能和职责。</p>
+<p><img src="https://live.staticflickr.com/65535/49903823771_151667c329_o.png" alt=""></p>
+<p>为了不重复过多的代码，这里只贴出与简单工厂模式不同部分的代码。区别为两个具体工厂的实现</p>
+<p>产品1的工厂实现<code>ConcreteProduct1Factory</code></p>
+<pre><code class="Java">package com.designpattern.factorymethod;
+
+/**
+ * @description: ConcreteProduct1Factory 生产产品1的具体工厂
+ * @author: Codegitz
+ * @create: 2020-05-17 13:41
+ **/
+public class ConcreteProduct1Factory implements AbstractFactory {
+    @Override
+    public AbstractProduct createProduct() {
+        //返回产品1
+        return new ConcreteProduct1();
+    }
+}
+</code></pre>
+<p>产品2的工厂实现<code>ConcreteProduct2Factory</code></p>
+<pre><code class="Java">package com.designpattern.factorymethod;
+
+/**
+ * @description: ConcreteProduct2Factory 生产产品2的具体工厂
+ * @author: Codegitz
+ * @create: 2020-05-17 13:41
+ **/
+public class ConcreteProduct2Factory implements AbstractFactory {
+    @Override
+    public AbstractProduct createProduct() {
+        //返回产品2
+        return new ConcreteProduct2();
+    }
+}
+</code></pre>
+<p>测试代码</p>
+<pre><code class="Java">package com.designpattern.factorymethod;
+
+/**
+ * @description: 测试工厂方法模式
+ * @author: Codegitz
+ * @create: 2020-05-17 13:49
+ **/
+public class TestClient {
+    public static void main(String[] args) {
+        //调用不同的工厂生产
+        AbstractProduct product1 = new ConcreteProduct1Factory().createProduct();
+        AbstractProduct product2 = new ConcreteProduct2Factory().createProduct();
+        product1.product();
+        product2.product();
+    }
+}
+</code></pre>
+<p>结果与简单工厂模式一致。</p>
+<h3 id="3-抽象工厂模式"><a href="#3-抽象工厂模式" class="headerlink" title="3.抽象工厂模式"></a>3.抽象工厂模式</h3><p>​        <strong>抽象工厂简单地说是工厂的工厂，抽象工厂可以创建具体工厂，由具体工厂来产生具体产品。具体可以理解为如下图所示的结构。</strong></p>
+<p><img src="https://live.staticflickr.com/65535/49904182747_c95e25687b_o.png" alt=""></p>
+<p><strong>类之间的继承关系图如下</strong></p>
+<p><img src="https://live.staticflickr.com/65535/49904180747_dbfac65cc2_o.png" alt=""></p>
+<p>抽象工厂相对复杂，代码较多，为了不重复过多代码，每个抽象的实现只贴一段实现代码。</p>
+<p>先定义一个两个抽象产品<code>AbstractProductA</code>和<code>AbstractProductB</code>.<code>AbstractProductB</code>代码类似这里不进行粘贴。</p>
+<pre><code class="Java">package com.designpattern.abstractfactory;
+
+/**
+ * @description: 抽象产品A，需要交由具体产品{@link ConcreteProductA1}{@link ConcreteProductA2}实现
+ * @author: Codegitz
+ * @create: 2020-05-17 14:12
+ **/
+public interface AbstractProductA {
+
+    //随便定义两个方法，让具体产品实现
+    void run();
+
+    void start();
+
+}
+</code></pre>
+<p>使用<code>ConcreteProductA1</code>和<code>ConcreteProductA2</code>实现抽象产品接口，<code>ConcreteProductB1</code>和<code>ConcreteProductB2</code>也类似，这里不进行重复粘贴。</p>
+<pre><code class="Java">package com.designpattern.abstractfactory;
+
+/**
+ * @description: 产品A1实现
+ * @author: Codegitz
+ * @create: 2020-05-17 14:18
+ **/
+public class ConcreteProductA1 implements AbstractProductA {
+    @Override
+    public void run() {
+        System.out.println(&quot;ConcreteProductA1 run....&quot;);
+    }
+
+    @Override
+    public void start() {
+        System.out.println(&quot;ConcreteProductA1 start...&quot;);
+    }
+}
+</code></pre>
+<p>建立抽象工厂<code>AbstractFactory</code>.</p>
+<pre><code class="Java">package com.designpattern.abstractfactory;
+
+/**
+ * @description: 抽象工厂，需要由具体工厂{@link ConcreteFactory1} {@link ConcreteFactory2}实现
+ * @author: Codegitz
+ * @create: 2020-05-17 14:12
+ **/
+public interface AbstractFactory {
+    //定义生产产品的方法，交由具体工厂去实现
+    AbstractProductA createProductA();
+    AbstractProductB createProductB();
+}
+</code></pre>
+<p>定义<code>ConcreteFactory1</code>实现<code>AbstractFactory</code>，具体工厂<code>ConcreteFactory1</code>负责创建相应的产品。同理<code>ConcreteFactory2</code>代码类似，不进行重复粘贴。</p>
+<pre><code class="java">package com.designpattern.abstractfactory;
+
+/**
+ * @description: 具体工厂1
+ * @author: Codegitz
+ * @create: 2020-05-17 14:16
+ **/
+public class ConcreteFactory1 implements AbstractFactory {
+
+    @Override
+    public AbstractProductA createProductA() {
+        //生产具体产品
+        return new ConcreteProductA1();
+    }
+
+    @Override
+    public AbstractProductB createProductB() {
+        return new ConcreteProductB1();
+    }
+}
+</code></pre>
+<p>抽象工厂相对复杂，即对产品也进行了一层抽象，相对工厂方法多了产品的抽象，关于工厂模式之间的<a href="https://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/abstract_factory.html" target="_blank" rel="external">详细比较在此</a>。</p>
+<h2 id="4-简单工厂、工厂方法、抽象工厂之小结、区别"><a href="#4-简单工厂、工厂方法、抽象工厂之小结、区别" class="headerlink" title="4.简单工厂、工厂方法、抽象工厂之小结、区别"></a>4.简单工厂、工厂方法、抽象工厂之小结、区别</h2><p>简单工厂 ： 用来生产同一等级结构中的任意产品。（不支持拓展增加产品）</p>
+<p>工厂方法 ：用来生产同一等级结构中的固定产品。（支持拓展增加产品）  </p>
+<p>抽象工厂 ：用来生产不同产品族的全部产品。（不支持拓展增加产品；支持增加产品族）</p>
+<blockquote>
+<p>注：产品以及产品族等级关系同样见上面比较链接。</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/17/研磨设计模式系列-工厂模式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-研磨设计模式系列-单例模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -552,114 +867,6 @@
 
 
   
-    <article id="post-Netty源码分析系列（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/02/Netty源码分析系列（一）/">Netty源码分析系列（一）</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/02/Netty源码分析系列（一）/" class="archive-article-date">
-  	<time datetime="2020-01-02T14:20:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-02</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Netty服务端启动"><a href="#Netty服务端启动" class="headerlink" title="Netty服务端启动"></a><u>Netty</u>服务端启动</h2><blockquote>
-<p><u>netty版本为<code>4.1.6.Final</code></u></p>
-</blockquote>
-<p>本文可以带着两个问题来看<br>1.服务端的socket在哪里初始化？<br>2.在哪里accept连接？</p>
-<h2 id="启动过程"><a href="#启动过程" class="headerlink" title="启动过程"></a>启动过程</h2><p>1.创建服务端channel<br>2.初始化服务端channel<br>3.注册selector<br>4.端口绑定</p>
-<h3 id="创建服务端channel"><a href="#创建服务端channel" class="headerlink" title="创建服务端channel"></a>创建服务端channel</h3><p><strong>调用过程</strong></p>
-<p><img src="https://i.imgur.com/jwvLY74.png" style="zoom:50%;"><br>代码调用过程</p>
-<p>用户代码入口<strong>bind()</strong></p>
-<pre><code class="java">try {
-            ServerBootstrap b = new ServerBootstrap();
-            b.group(bossGroup, workerGroup)
-                    .channel(NioServerSocketChannel.class)
-                    .childOption(ChannelOption.TCP_NODELAY, true)
-                    .childAttr(AttributeKey.newInstance(&quot;childAttr&quot;), &quot;childAttrValue&quot;)
-                    .handler(new ServerHandler())
-                    .childHandler(new ChannelInitializer&lt;SocketChannel&gt;() {
-                        @Override
-                        public void initChannel(SocketChannel ch) {
-                            ch.pipeline().addLast(new AuthHandler());
-                            //..
-
-                        }
-                    });
-
-            ChannelFuture f = b.bind(8888).sync();//入口
-</code></pre>
-        
-          <a class="article-more-a" href="/2020/01/02/Netty源码分析系列（一）/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Netty</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/02/Netty源码分析系列（一）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -794,10 +1001,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">music</a>
               </li>
              
@@ -810,6 +1013,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -818,11 +1025,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -842,19 +1049,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
