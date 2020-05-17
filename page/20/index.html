@@ -171,6 +171,135 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-抽象方法、抽象类，接口" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/07/抽象方法、抽象类，接口/">抽象方法、抽象类，接口</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/07/抽象方法、抽象类，接口/" class="archive-article-date">
+  	<time datetime="2017-09-07T02:39:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="抽象方法"><a href="#抽象方法" class="headerlink" title="抽象方法"></a>抽象方法</h1><p>1.由abstract修饰<br>2.只有方法的定义，没有方法的实现，没有大括号</p>
+<h1 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h1><p>1.由abstract修饰<br>2.包含抽象方法的类都必须是抽象类，不包含抽象方法也可以声明为抽象类（不建议）<br>3.抽象类不能被实例化，不能new<br>4.抽象类是需要被继承的<br>  子类：<br>   1.重写所有的抽象方法–常用<br>   2.子类也为抽象类—不常用<br>5.抽象类的意义：<br>1.包含公共的属性和行为，被子类所共享–代码的复用性<br>2.为所有子类提供一种公共的类型—向上造型<br>3.包含抽象方法，为子类提供一个统一的入口，子类有不同的实现<br>abstract和final不能同时修饰一个类，abstract必须被继承，final不能被继承，矛盾冲突<br>    public class ShapeTest {</p>
+<pre><code>public static void main(String[] args) {
+
+   Shape[] shape =new Shape[6];
+   shape[0]= new Sqaure(1);//向上造型
+   shape[1]= new Sqaure(2);
+   shape[2]= new Sqaure(3);
+   shape[3]= new Circle(1);
+   shape[4]= new Circle(2);
+   shape[5]= new Circle(3);
+   maxArea(shape);
+   System.exit(0);
+}
+public static void maxArea(Shape[] shape){
+    double maxArea=shape[0].area();
+    int index=0;
+    for(int i=0;i&lt;shape.length;i++){
+        double area=shape[i].area();
+        if(area&gt;maxArea){
+            maxArea=area;
+            index=i+1;
+        }
+    }
+    System.out.println(&quot;第&quot;+index+&quot;面积最大，&quot;+&quot;最大面积为&quot;+maxArea);
+}
+}
+
+abstract class Shape{//抽象类
+protected double c;
+abstract double area();//抽象方法
+} 
+class Sqaure extends Shape{
+public Sqaure(double c){
+    this.c=c;
+}
+public double area(){//重写抽象方法
+    return 0.0625*c*c;//抽象方法在子类中不同的实现
+    }
+}
+ class Circle extends Shape{
+public Circle (double c){
+    this.c=c;
+}
+public double area(){//重写抽象方法
+    return 0.0796*c*c;//抽象方法在子类中不同的实现
+}
+}
+</code></pre><h1 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h1><p>1.是一个标准，规范<br>2.由interface定义<br>3.只能包含常量和抽象方法，不能有变量和普通方法<br>4.接口不能被实例化<br>5.接口是需要被实现的/继承的，实现类/子类，必须重写接口中的所有抽象方法，方法前加public<br>6.一个类可以实现多个接口，用逗号分割，若又继承又实现时，应先继承后实现implements<br>7.接口可以继承接口<br>类对类——继承<br>接口对接口—继承<br>类对接口—-实现<br>接口可以看成是特殊的抽象类，既只包含抽象方法的抽象类，接口是完全抽象的抽象类</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/07/抽象方法、抽象类，接口/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-继承、方法的重写与重载" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -571,119 +700,6 @@
 
 
   
-    <article id="w-类和对象" class="article article-type-w  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/20/类和对象/">类和对象</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/20/类和对象/" class="archive-article-date">
-  	<time datetime="2017-07-20T10:53:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-20</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="什么是类？什么是对象？"><a href="#什么是类？什么是对象？" class="headerlink" title="什么是类？什么是对象？"></a>什么是类？什么是对象？</h1><h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>1.现实世界是由很多对象组成的<br>2.对象时真实存在的单个个体</p>
-<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>类是由对象抽象出来的类别，类具有对象的统一的特征，包含一类个体<br>类中包括：<br>1.所由对象共有的特征（属性：静）———即变量（成员变量）<br>2.所有的共同行为（属性：动）————-即方法</p>
-<h1 id="如何创建类？如何创建对象？"><a href="#如何创建类？如何创建对象？" class="headerlink" title="如何创建类？如何创建对象？"></a>如何创建类？如何创建对象？</h1><p>一个类可以创建多个对象，对象的结构相同，数据不同<br>类是对象的模板，对象是类的具体实例<br>对象存于堆，引用存于栈<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192654.png" alt=""><br>类用关键词class创建，如：<br>     class Student {<br>      String name;<br>      int age;<br>      String address;<br>      void study(){<br>        System.out.println(name+”在学习”);<br>      }<br>      void sayHi(){<br>          System.out.println(“大家好！我叫”+name+”家住”+address);<br>      }<br>    }<br>这就创建了一个简单的类，创建了类，可以用关键词new来创建对象,如：<br>    Student    zs           =    new Student();<br>     类      引用类型变量    指向   对象<br>Student 为类，zs为引用类型变量，简称引用，=为指向的意思，new Student()为心创建的对象</p>
-<h1 id="引用类型之间画等号的意义"><a href="#引用类型之间画等号的意义" class="headerlink" title="引用类型之间画等号的意义"></a>引用类型之间画等号的意义</h1><p>引用类型之间画等号：指向了同一个对象<br>   1.对其中一个引用的修改会影响另一个引用<br>   2.eg:房门钥匙<br>基本类型之间画等号：赋值<br>   1.对其中一个值的修改不会影响另外一个值<br>   2.eg:身份证复印件<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192755.png" alt=""></p>
-<h1 id="null-和-NullPointerException"><a href="#null-和-NullPointerException" class="headerlink" title="null 和 NullPointerException"></a>null 和 NullPointerException</h1><p>null:空，没有指向任何对象<br>不能对null进行任何操作，若操作则会报NullPointerException空指针异常，出现此异常，大部分跟构造方法有关，但不绝对<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192756.png" alt=""></p>
-<hr>
-<h1 id="方法的重载"><a href="#方法的重载" class="headerlink" title="方法的重载"></a>方法的重载</h1><p>首先有一个概念叫方法的签名<br>方法的签名：方法名和参数列表<br>一个类中，不可能有两个方法的方法签名完全相同<br>方法的重载：<br>1.同一个类中，方法名相同，参数列表不同<br>2.编译器在编译时会自动根据方法的签名绑定调用的方法<br>方法的重载及其意义：(⊙o⊙)…这个，大概是在调用的时候会十分方便吧</p>
-<h1 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h1><p>构造方法（构造器，构建器，构造函数）<br>1.常常由于给成员变量赋初值<br>2.与类同名，没有返回类型，不能写void<br>3.在创建（new）对象时被自动调用<br>4.若自己不构造方法，系统默认提供无参构造方法，若已构造，则系统不再提供默认的无参构造方法<br>5.构造方法可以重载<br>    public class Cell {<br>     int row;<br>     int clo;</p>
-<pre><code> Cell(){
-     this(0);
- }
- Cell(int n){
-     this(n,n);
- }
- Cell(int row,int clo){
-     this.row=row;
-     this.clo=clo;
- }
-}
-</code></pre><h1 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h1><p>this：指代当前的对象，哪个对象调用指的就是哪个对象，方法中访问成员变量之前默认有个this，this关键字用于方法体中，指代当前调用的对象<br>this用法：<br>1.this.成员变量名——–访问成员变量<br>2.this.方法名———–调用方法<br>3.this();————–调用构造方法（注意是构造方法）</p>
-<h1 id="引用类型数组"><a href="#引用类型数组" class="headerlink" title="引用类型数组"></a>引用类型数组</h1><p>数组是对象，数组是引用类型，数组的元素可以为任意类型</p>
-<p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192857.png" alt=""><br>         Cell[] cells=new Cell[4];<br>        cells[0]=new Cell(2,5);<br>        cells[1]=new Cell(3,6);<br>        cells[2]=new Cell(4,7);<br>        cells[3]=new Cell(5,8);<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192858.png" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/20/类和对象/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/19/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/21/">Next &raquo;</a>
@@ -729,7 +745,7 @@ $(document).ready(function(){
       
   </div>
 </footer>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
           
     </div>
     
@@ -818,6 +834,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">music</a>
               </li>
              
@@ -830,10 +850,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -842,19 +858,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -866,6 +878,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
@@ -874,19 +890,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -894,15 +902,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hello world</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">solr</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
               </li>
              
               <li class="article-tag-list-item">

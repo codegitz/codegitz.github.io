@@ -171,6 +171,118 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Nginx-ftp搭建图片服务器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/12/Nginx-ftp搭建图片服务器/">Nginx+ftp搭建图片服务器</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/12/Nginx-ftp搭建图片服务器/" class="archive-article-date">
+  	<time datetime="2018-09-12T14:32:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-12</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><!-- read more-->
+<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx<br></h2><p>这里就不说了<br></p>
+<h2 id="安装vsftp"><a href="#安装vsftp" class="headerlink" title="安装vsftp"></a>安装vsftp</h2><p>这里也不说了<br></p>
+<p>主要是Nginx代理路径的配置和图片上传的根目录，一定要设置对应的读写权限，不然在上传文件是会报错：<br></p>
+<pre><code>500 OOPS: cannot change directory:/var/www/images
+500 OOPS: priv_sock_get_cmd
+//Windows 命令行报错 
+ftp&gt; put E:\1491756492.jpg
+200 PORT command successful. Consider using PASV.
+553 Could not create file.
+</code></pre><h2 id="更改路径"><a href="#更改路径" class="headerlink" title="更改路径"></a>更改路径<br></h2><p>更改路径需要更改vsftp的vsftpd.conf文件<br><br>文件默认在/etc/vsftpd目录下</p>
+<pre><code># new defaut root create by Quan 2018/9/12
+local_root=/var/www/images  //针对系统用户
+chroot_local_user=NO     //是不是锁定在当前目录
+anon_root=/var/www/images  //针对匿名用户
+</code></pre><p>配置Nginx的nginx.conf配置文件<br><br>文件默认在 /usr/local/nginx/conf/目录下<br></p>
+<pre><code>    server {
+        listen       80;
+        server_name  localhost;
+
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+
+        location / {
+#  default root
+#  root   /home/ftpuser;
+#  new root
+             root   /var/www/images;
+            index  index.html index.htm;
+        }
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里新建的路径www/images一定要设置读写权限，否则会出现<code>553 Could not create file.</code>错误<br><br><strong>关于配置：</strong>这里面的配置还有很多，这里只是列举了一两个，下面附上完整配置<a href="https://blog.csdn.net/jianhong1990/article/details/52001785" target="_blank" rel="external">vsftp链接</a>、<a href="https://blog.csdn.net/chenweijiSun/article/details/70823482" target="_blank" rel="external">nginx.conf链接</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/12/Nginx-ftp搭建图片服务器/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Nginx安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -404,94 +516,6 @@ Commercial support is available at
 
 
   
-    <article id="post-iptables" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/08/iptables/">iptables</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/08/iptables/" class="archive-article-date">
-  	<time datetime="2018-05-08T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-08</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="iptables基础及应用"><a href="#iptables基础及应用" class="headerlink" title="iptables基础及应用"></a>iptables基础及应用</h2><h3 id="防火墙的作用及分类"><a href="#防火墙的作用及分类" class="headerlink" title="防火墙的作用及分类"></a>防火墙的作用及分类</h3><p><img src="https://i.imgur.com/3AOIU6q.png" alt=""></p>
-<p><img src="https://i.imgur.com/LdnCjud.png" alt=""></p>
-<h3 id="iptables概述"><a href="#iptables概述" class="headerlink" title="iptables概述"></a>iptables概述</h3><h3 id="iptables流程图"><a href="#iptables流程图" class="headerlink" title="iptables流程图"></a>iptables流程图</h3><h3 id="iptables语法"><a href="#iptables语法" class="headerlink" title="iptables语法"></a>iptables语法</h3><p><img src="https://i.imgur.com/P7FaQYj.png" alt=""></p>
-<p><img src="https://i.imgur.com/Pq2KDNP.png" alt=""></p>
-<p><img src="https://i.imgur.com/ySZxsYo.png" alt=""></p>
-<p><img src="https://i.imgur.com/O5LOQMz.png" alt=""></p>
-<p><img src="https://i.imgur.com/ALRzAs9.png" alt=""></p>
-<p><img src="https://i.imgur.com/6Kd8NRD.png" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/08/iptables/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Linux网络测试和测试工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -622,20 +646,20 @@ ntpd
 
 
   
-    <article id="post-Linux用户和组的管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-iptables" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/05/Linux用户和组的管理/">inux用户和组的管理</a>
+      <a class="article-title" href="/2018/05/08/iptables/">iptables</a>
     </h1>
   
 
         
-        <a href="/2018/05/05/Linux用户和组的管理/" class="archive-article-date">
-  	<time datetime="2018-05-05T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-05</time>
+        <a href="/2018/05/08/iptables/" class="archive-article-date">
+  	<time datetime="2018-05-08T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-08</time>
 </a>
         
       </header>
@@ -646,13 +670,14 @@ ntpd
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="Linux用户和组的管理"><a href="#Linux用户和组的管理" class="headerlink" title="Linux用户和组的管理"></a>Linux用户和组的管理</h2><p><img src="https://i.imgur.com/XeUpNfI.png" alt=""></p>
-<p><img src="https://i.imgur.com/DT537OV.png" alt=""></p>
-<p>Linux账户系统文件</p>
-<p>用户的增删改命令</p>
-<p><img src="https://i.imgur.com/m9ftLhi.png" alt=""></p>
-<p><img src="https://i.imgur.com/kWou4c5.png" alt=""></p>
-<p>设置账号密码<br><img src="https://i.imgur.com/KXnBs2P.png" alt=""></p>
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="iptables基础及应用"><a href="#iptables基础及应用" class="headerlink" title="iptables基础及应用"></a>iptables基础及应用</h2><h3 id="防火墙的作用及分类"><a href="#防火墙的作用及分类" class="headerlink" title="防火墙的作用及分类"></a>防火墙的作用及分类</h3><p><img src="https://i.imgur.com/3AOIU6q.png" alt=""></p>
+<p><img src="https://i.imgur.com/LdnCjud.png" alt=""></p>
+<h3 id="iptables概述"><a href="#iptables概述" class="headerlink" title="iptables概述"></a>iptables概述</h3><h3 id="iptables流程图"><a href="#iptables流程图" class="headerlink" title="iptables流程图"></a>iptables流程图</h3><h3 id="iptables语法"><a href="#iptables语法" class="headerlink" title="iptables语法"></a>iptables语法</h3><p><img src="https://i.imgur.com/P7FaQYj.png" alt=""></p>
+<p><img src="https://i.imgur.com/Pq2KDNP.png" alt=""></p>
+<p><img src="https://i.imgur.com/ySZxsYo.png" alt=""></p>
+<p><img src="https://i.imgur.com/O5LOQMz.png" alt=""></p>
+<p><img src="https://i.imgur.com/ALRzAs9.png" alt=""></p>
+<p><img src="https://i.imgur.com/6Kd8NRD.png" alt=""></p>
 
       
 
@@ -679,7 +704,7 @@ ntpd
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/05/Linux用户和组的管理/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/05/08/iptables/">展开全文 >></a>
         </p>
       
 
@@ -754,7 +779,7 @@ $(document).ready(function(){
       
   </div>
 </footer>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
           
     </div>
     
@@ -843,6 +868,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">music</a>
               </li>
              
@@ -855,10 +884,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -867,19 +892,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -891,6 +912,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
@@ -899,19 +924,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -919,15 +936,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hello world</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">solr</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
               </li>
              
               <li class="article-tag-list-item">
