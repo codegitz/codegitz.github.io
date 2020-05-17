@@ -284,185 +284,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前本人照葫芦画瓢做了个大概的云笔记，后来巧合之下租了个阿里云的服务器，于是就开始了部署项目的折腾之路</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前本人照葫芦画瓢做了个大概的云笔记，后来巧合之下租了个阿里云的服务器，于是就开始了部署项目的折腾之路</p>
 <h2 id="服务器环境准备"><a href="#服务器环境准备" class="headerlink" title="服务器环境准备"></a>服务器环境准备</h2><p>cloud_note是一个基于javaweb的项目，所以需要配置java环境，还有需要Tomcat启动服务，jdk我选择的是1.7.79，Tomcat7.0.23，然后就是安装，配置路径，这里就不多说了。</p>
-<h2 id="项目导出与部署"><a href="#项目导出与部署" class="headerlink" title="项目导出与部署"></a>项目导出与部署</h2><p>我使用的是eclipse，右击项目，export，导出war file<br><img src="https://i.imgur.com/jukkZsN.png" alt=""><br>destination 选择你要导出的路径<br><img src="https://i.imgur.com/ayBnrat.png" alt=""><br>然后将war文件上传到服务器上，放到webapps目录下，Tomcat启动运行之后会自动生成一个与你war文件名对应的文件夹，里面就包含了你项目的所有东西，如图<br><img src="https://i.imgur.com/mf0OXOA.png" alt=""><br>然后通过bin目录下的startup.bat启动Tomcat，可以在本地访问项目了。<br>值得一提的是，阿里云服务器需要在安全组开放对应的端口才可以访问，不然是无法访问的，例如启动Tomcat需要开放8080端口，还有数据库的3306端口也要开放<br>安全组–&gt;配置规则–&gt;添加安全组规则<br><img src="https://i.imgur.com/IKTF8jb.png" alt=""><br>至此项目服务器部署已经完毕</p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>部署完毕后我发现用服务器的公网ip加项目名无法访问项目，而且控制台也没有报错，后来在浏览器发现是无法加载资源，经老三提醒后发现是js跨域的问题，找到了方向之后成功解决了这个问题。第一次部署，没有留意到跨域的问题，莫名了很久，终于解决了。</p>
-<h2 id="js跨域"><a href="#js跨域" class="headerlink" title="js跨域"></a>js跨域</h2><p>跨域访问，或者说 JavaScript 的跨域访问问题，是浏览器出于安全考虑而设置的一个限制，即同源策略。举例说明，当 A，B 两个网站属于不同的域时，如果来自于 A 网站的页面中的 JavaScript 代码希望访问 B 网站的时候，浏览器会拒绝该访问。</p>
-<p>解决跨域方式有很多种，其中有jsonp,但是只能处理get请求。<br>所以我采用了CORS。</p>
-<h2 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h2><p>CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。</p>
-<p>它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。</p>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。</p>
-<p>整个CORS通信过程，都是浏览器自动完成，不需要用户参与。对于开发者来说，CORS通信与同源的AJAX通信没有差别，代码完全一样。浏览器一旦发现AJAX请求跨源，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，但用户不会有感觉。</p>
-<p>因此，实现CORS通信的关键是服务器。只要服务器实现了CORS接口，就可以跨源通信。</p>
-<h3 id="两种请求方式"><a href="#两种请求方式" class="headerlink" title="两种请求方式"></a>两种请求方式</h3><p>浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request），浏览器对于两种请求的处理方式不一样。<br>满足以下两大条件就是简单请求</p>
-<pre><code>(1) 请求方法是以下三种方法之一：
-HEAD
-GET
-POST
-2）HTTP的头信息不超出以下几种字段：
-Accept
-Accept-Language
-Content-Language
-Last-Event-ID
-Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain
-</code></pre><p>java后台解决方法有两个：</p>
-<h4 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h4><p>1.自己建一个corsfilter类</p>
-<pre><code>package io.codegitz.cloud_note.filter;
-
-import java.io.IOException;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.stereotype.Component;
-
-@Component
-public class CorsFilter implements Filter{
-
-    //@Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
-    }
-
-    //@Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
-            throws IOException, ServletException {
-        HttpServletResponse response = (HttpServletResponse)servletResponse;  
-        response.setHeader(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);  
-        response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;POST, GET, OPTIONS, DELETE&quot;);  
-        response.setHeader(&quot;Access-Control-Max-Age&quot;, &quot;3600&quot;);  
-        response.setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;x-requested-with,Authorization&quot;);  
-        response.setHeader(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;);  
-        filterChain.doFilter(servletRequest, servletResponse); 
-
-    }
-
-    //@Override
-    public void destroy() {
-
-    }
-
-}
-</code></pre><p>预检请求会附带一些关于接下来的请求的信息给服务器，主要有以下几种：</p>
-<p>Origin：请求的源域信息<br>Access-Control-Request-Method：接下来的请求类型，如POST、GET等<br>Access-Control-Request-Headers：接下来的请求中包含的用户显式设置的Header列表<br>服务器端收到请求之后，会根据附带的信息来判断是否允许该跨域请求，信息返回同样是通过Header完成的：</p>
-<p>Access-Control-Allow-Origin：允许跨域的Origin列表<br>Access-Control-Allow-Methods：允许跨域的方法列表<br>Access-Control-Allow-Headers：允许跨域的Header列表<br>Access-Control-Expose-Headers：允许暴露给JavaScript代码的Header列表<br>Access-Control-Max-Age：最大的浏览器缓存时间，单位s<br>以上行为都是浏览器自动完成的，用户无需关注这些细节。如果服务器配置正确，那么和正常非跨域请求是一样的。</p>
-<p>2.在web.xml文件中配置</p>
-<pre><code>&lt;filter&gt;  
-    &lt;filter-name&gt;cors&lt;/filter-name&gt;  
-    &lt;filter-class&gt;io.codegitz.cloud_note.filter.CorsFilter&lt;/filter-class&gt;  
-&lt;/filter&gt;  
-&lt;filter-mapping&gt;  
-    &lt;filter-name&gt;cors&lt;/filter-name&gt;  
-    &lt;url-pattern&gt;*.do&lt;/url-pattern&gt;  
-&lt;/filter-mapping&gt;
-</code></pre><h4 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h4><p>这种方式似乎要spring4.2以上才支持，利用提供的jar包，下载 cors-filter-1.7.jar, java-property-utils-1.9.jar 这两个库文件放到lib目录下。(放到对应项目的webcontent/WEB-INF/lib/下)，如果是maven项目，可以简单添加如下依赖到pom.xml中即可</p>
-<pre><code>&lt;dependency&gt;
-    &lt;groupId&gt;com.thetransactioncompany&lt;/groupId&gt;
-    &lt;artifactId&gt;cors-filter&lt;/artifactId&gt;
-    &lt;version&gt;[ version ]&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre><p>接着添加CORS配置到web.xml文件中</p>
-<pre><code>&lt;!-- 跨域配置，此filter应该放在所有filter之前--&gt;    
-&lt;filter&gt;
-        &lt;!-- The CORS filter with parameters --&gt;
-        &lt;filter-name&gt;CORS&lt;/filter-name&gt;
-        &lt;filter-class&gt;com.thetransactioncompany.cors.CORSFilter&lt;/filter-class&gt;
-
-        &lt;!-- Note: All parameters are options, if omitted the CORS 
-             Filter will fall back to the respective default values.
-          --&gt;
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.allowGenericHttpRequests&lt;/param-name&gt;
-            &lt;param-value&gt;true&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.allowOrigin&lt;/param-name&gt;
-            &lt;param-value&gt;*&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.allowSubdomains&lt;/param-name&gt;
-            &lt;param-value&gt;false&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.supportedMethods&lt;/param-name&gt;
-            &lt;param-value&gt;GET, HEAD, POST, OPTIONS&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.supportedHeaders&lt;/param-name&gt;
-            &lt;param-value&gt;Accept, Origin, X-Requested-With, Content-Type, Last-Modified&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.exposedHeaders&lt;/param-name&gt;
-            &lt;!--这里可以添加一些自己的暴露Headers   --&gt;
-            &lt;param-value&gt;X-Test-1, X-Test-2&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.supportsCredentials&lt;/param-name&gt;
-            &lt;param-value&gt;true&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-        &lt;init-param&gt;
-            &lt;param-name&gt;cors.maxAge&lt;/param-name&gt;
-            &lt;param-value&gt;3600&lt;/param-value&gt;
-        &lt;/init-param&gt;
-
-    &lt;/filter&gt;
-
-    &lt;filter-mapping&gt;
-        &lt;!-- CORS Filter mapping --&gt;
-        &lt;filter-name&gt;CORS&lt;/filter-name&gt;
-        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
-    &lt;/filter-mapping&gt;
-</code></pre><p>配置完成之后可以发送另起一个项目或者页面来测试配置是否成功</p>
-<pre><code>&lt;!DOCTYPE HTML&gt;  
-&lt;html&gt;  
-&lt;head&gt;  
-&lt;meta charset=&quot;utf-8&quot;&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;scripts/jquery.min.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;scripts/basevalue.js&quot;&gt;&lt;/script&gt;  
-&lt;script type=&quot;text/javascript&quot;&gt;  
-    $(function(){  
-        //按钮单击时执行  
-        $(&quot;#testAjax&quot;).click(function(){  
-              //取Ajax返回结果  
-              $.ajax({
-                  url:path+&quot;/test/ajax.do&quot;,
-                  data:{},
-                  dataType:&quot;json&quot;,
-                  type:&quot;post&quot;,
-                  success:function(result){ 
-                      $(&quot;#myDiv&quot;).empty; 
-                 $(&quot;#myDiv&quot;).html(result.msg);
-                  //显示Ajax返回结果  
-                  alert(result.msg);
-                  },
-                  error:function(){
-                      alert(&quot;错误&quot;);
-                  }});  
-         });  
-    });  
-&lt;/script&gt;      
-&lt;/head&gt;  
-    &lt;body&gt;  
-        &lt;div id=&quot;myDiv&quot;&gt;&lt;h2&gt;返回跨域的文本&lt;/h2&gt;&lt;/div&gt;  
-        &lt;button id=&quot;testAjax&quot; type=&quot;button&quot;&gt;点击获取Ajax跨域返回内容&lt;/button&gt;  
-    &lt;/body&gt;  
-&lt;/html&gt;
-</code></pre><p>浏览器输入<a href="http://47.106.120.224/cloud_note/Filter.html" target="_blank" rel="external">http://47.106.120.224/cloud_note/Filter.html</a><br>成功返回文本跨域请求成功<br><img src="https://i.imgur.com/fhWTkym.png" alt=""></p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>本次遇到的问题不大，都是没留意的小问题，倒是项目本身还有许多不完整的地方，bug多多，有时间再修改，源码稍后传到GitHub上，欢迎<a href="https://github.com/codegitz/cloud_note" target="_blank" rel="external">star</a>。</p>
-
+        
+          <a class="article-more-a" href="/2018/04/13/记一次部署经历/#more">read more >></a>
+        
       
 
       
@@ -542,161 +368,10 @@ public class CorsFilter implements Filter{
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="spring-AOP"><a href="#spring-AOP" class="headerlink" title="spring AOP"></a>spring AOP</h1><h2 id="AOP概念"><a href="#AOP概念" class="headerlink" title="AOP概念"></a>AOP概念</h2><p>aspect oriented programming<br>面向切面编程<br>是什么？<br>将共同业务处理从传统业务处理中抽离出来，单独封装，然后以配置的形式进行关联<br>为什么？<br>可以在不修改原有的逻辑代码的情况下，给系统追加功能</p>
-<h2 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h2><ul>
-<li>追加事务控制</li>
-<li>异常日志记录</li>
-</ul>
-<p>案例：</p>
-<ul>
-<li>要求：在每个Controller方法执行前输出打桩信息</li>
-<li>封装一个组件</li>
-<li>通过配置将封装的组件追击到Controller方法里</li>
-</ul>
-<h1 id="AOP相关概念"><a href="#AOP相关概念" class="headerlink" title="AOP相关概念"></a>AOP相关概念</h1><ul>
-<li>oop：类，对象，封装，继承，多态</li>
-<li>AOP：切面，切入点，通知，动态代理</li>
-</ul>
-<h2 id="切面（aspect）"><a href="#切面（aspect）" class="headerlink" title="切面（aspect）"></a>切面（aspect）</h2><p>指的是封装了共同处理的组件，并且能够切入到其他的组件的方法上</p>
-<h2 id="切入点（pointcut）"><a href="#切入点（pointcut）" class="headerlink" title="切入点（pointcut）"></a>切入点（pointcut）</h2><p>用于指定目标组件的方法</p>
-<ul>
-<li>方法限定表达式<br>可以给某个组件中的部分方法追加共同功能<br>execution（修饰符？返回类型 方法名（参数） 异常抛出？）<br>//匹配到add开头的所有方法<br>execution(<em> add</em>(..))<br>//匹配UserService包下的所有方法<br>execution(<em> io.codegitz.UserService.</em>(…))<br>//匹配到service包下及其子包下的所有方法<br>execution(<em> io.codegitz.service..</em>(..))<br>//匹配到service包下所有类的方法<br>execution(<em> io.codegitz.service.</em>.*(..))</li>
-<li><p>类型限定表达式<br>可以给某个组件的所有方法追加功能<br>within（类型）<br>//匹配UserService组件下的所有方法<br>within(io.codegitz.service.UserService)<br>//匹配service包下的所有类的所有方法<br>within(io.codegitz.service.<em>)<br>//匹配service包及其子包下的所有方法<br>within(io.codegitz.service..</em>)</p>
-</li>
-<li><p>bean名称限定表达式<br>可以给某个组件中国的所有的方法追加功能<br>bean（id名）<br>//匹配id=userService的组件的所有方法<br>bean(userService)<br>//匹配以Service结尾的所有组件的所有方法<br>bean(*Service)</p>
-</li>
-</ul>
-<p>AOP配置文件</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:beans=&quot;http://www.springframework.org/schema/beans&quot;
-    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
-    xmlns:jdbc=&quot;http://www.springframework.org/schema/jdbc&quot; xmlns:jee=&quot;http://www.springframework.org/schema/jee&quot;
-    xmlns:jms=&quot;http://www.springframework.org/schema/jms&quot; xmlns:lang=&quot;http://www.springframework.org/schema/lang&quot;
-    xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
-    xmlns:util=&quot;http://www.springframework.org/schema/util&quot; xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;
-    xsi:schemaLocation=&quot;
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
-        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
-        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
-        http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd
-        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd
-        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
-        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
-        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
-        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd&quot;&gt;
-
-    &lt;bean id=&quot;loggerBean&quot; class=&quot;io.codegitz.cloud_note.aspect.LoggerBean&quot;&gt;
-    &lt;/bean&gt;
-    &lt;aop:config&gt;
-        &lt;!-- 通过REF关联组件类 --&gt;
-        &lt;aop:aspect ref=&quot;loggerBean&quot;&gt;
-            &lt;aop:before method=&quot;logController&quot; pointcut=&quot;within(io.codegitz.cloud_note.controller..*)&quot; /&gt;
-        &lt;/aop:aspect&gt;
-    &lt;/aop:config&gt;
-
-&lt;/beans&gt;
-</code></pre><p>遇到错误：</p>
-<pre><code>cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element &#39;aop:config&#39;.
-</code></pre><p>有点狗的是引用和xsd文件都有了，后来把后面的版本号去掉了，然后就暂时不报错了，过了一会再次报错，然后把版本号又加了回去，然后就行了….</p>
-<h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><p>用于指定切入的时机<br>spring提供了五种通知类型<br>try{<br>   使用前置通知<aop:before><br>   //执行的目标方法<br>   后置通知<aop:after-returning><br>}catch{<br>   异常通知<aop:after-throwing><br>}finally{<br>   最终通知：<aop:after><br>}<br>@around=前置+后置通知</aop:after></aop:after-throwing></aop:after-returning></aop:before></p>
-<p>切面：追加啥功能？单独封装的代码<br>切入点：切谁？所有Controller<br>通知：啥时候切？前置，后置，环绕</p>
-<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>AOP原理：使用动态代理技术<br>可以创建一个新的类型，重写目标接口或目标类的方法<br>在重写方法中，追加了要切入的功能代码和方法代码<br><img src="https://i.imgur.com/QZyOfVf.png" alt=""></p>
-<h3 id="AOP的配置使用形式"><a href="#AOP的配置使用形式" class="headerlink" title="AOP的配置使用形式"></a>AOP的配置使用形式</h3><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:beans=&quot;http://www.springframework.org/schema/beans&quot;
-    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
-    xmlns:jdbc=&quot;http://www.springframework.org/schema/jdbc&quot; xmlns:jee=&quot;http://www.springframework.org/schema/jee&quot;
-    xmlns:jms=&quot;http://www.springframework.org/schema/jms&quot; xmlns:lang=&quot;http://www.springframework.org/schema/lang&quot;
-    xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
-    xmlns:util=&quot;http://www.springframework.org/schema/util&quot;
-    xsi:schemaLocation=&quot;
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
-        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
-        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
-        http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd
-        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd
-        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
-        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
-        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd&quot;&gt;
-      &lt;!-- Spring事务管理 --&gt;
-       &lt;!-- 定义事务管理bean --&gt;
-       &lt;bean id=&quot;txManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;
-       &lt;property name=&quot;dataSource&quot; ref=&quot;dbcp&quot;&gt;&lt;/property&gt;
-       &lt;/bean&gt;
-       &lt;!-- 开启transaction注解扫描，将标记作用在具体的方法上 --&gt;
-       &lt;tx:annotation-driven transaction-manager=&quot;txManager&quot;/&gt;
-&lt;/beans&gt;
-</code></pre><p>然后在实现类前面加一个@Transactional注解<br>执行此测试方法：</p>
-<pre><code>@Test
-    public void testUserService1(){
-        System.out.println(service.getClass().getName());
-    }
-</code></pre><p>未使用动态代理则会输出原来的类名：io.codegitz.cloud_note.service.UserServiceImpl<br>使用动态代理输出动态代理名：com.sun.proxy.$Proxy22</p>
-<p>spring有两种动态技术</p>
-<ul>
-<li>基于目标接口的</li>
-<li>基于目标类的</li>
-</ul>
-<p>public class $Proxy22 implements UserService{<br>     public void checkLogin(){<br>        //追加事务处理<br>        //重写了UserServiceImpl.checkLogin<br>}  </p>
-<p>}</p>
-<p>public class $Proxy22 extends 目标类{</p>
-<p>}</p>
-<h1 id="AOP注解配置"><a href="#AOP注解配置" class="headerlink" title="AOP注解配置"></a>AOP注解配置</h1><h2 id="注解标记"><a href="#注解标记" class="headerlink" title="注解标记"></a>注解标记</h2><p>@Component 起到应以<bean>的作用<br>@Aspect <aop:aspect ref="loggerBean"><br>@Before <aop:before pointcut="within()"></aop:before></aop:aspect></bean></p>
-<p>案例：</p>
-<ul>
-<li>要求：当系统发生service异常，将异常信息写入到日志文件</li>
-<li>切面：将异常写入文件</li>
-<li>切入点：after-throwing(“within(service..*    )”)</li>
-</ul>
-<p>记录异常类：</p>
-<pre><code>package io.codegitz.cloud_note.aspect;
-
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.springframework.stereotype.Component;
-
-@Component  //扫描spring容器
-@Aspect     //将该类作为切面组件
-public class ExceptionBean {
-
-    //e是目标组件抛出的异常对象
-    @AfterThrowing(throwing=&quot;e&quot;,pointcut=&quot;within(io.codegitz.cloud_note.service..*)&quot;)
-    public void execute(Exception e){
-        //将异常信息输入文件
-        try {
-            FileWriter fw=new FileWriter(&quot;F:\\note_error\\record.log&quot;,true);
-            PrintWriter pw=new PrintWriter(fw);
-            //利用pw对象写入异常信息
-            Date time=new Date();
-            SimpleDateFormat sdf=new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);
-            String strTime=sdf.format(time);
-            pw.println(&quot;************************&quot;);
-            pw.println(&quot;异常类型：&quot;+e);
-            pw.println(&quot;异常事件：&quot;+strTime);
-            pw.println(&quot;*****异常的详细信息******&quot;);
-            e.printStackTrace(pw);
-            pw.close();
-            fw.close();
-        } catch (Exception ex) {
-            System.out.println(&quot;记录异常失败&quot;);
-        }
-    }
-}
-</code></pre><p>模拟异常：</p>
-<pre><code>String str=null;
-str.length();
-</code></pre><p>后台报错：<br><img src="https://i.imgur.com/mpEiu1h.png" alt=""></p>
-<p>日志文件记录：<br><img src="https://i.imgur.com/vmxMLpi.png" alt=""></p>
-<p>记录异常成功。</p>
-
+        <h1 id="spring-AOP"><a href="#spring-AOP" class="headerlink" title="spring AOP"></a>spring AOP</h1><h2 id="AOP概念"><a href="#AOP概念" class="headerlink" title="AOP概念"></a>AOP概念</h2><p>aspect oriented programming<br>面向切面编程<br>是什么？<br>将共同业务处理从传统业务处理中抽离出来，单独封装，然后以配置的形式进行关联<br>为什么？</p>
+        
+          <a class="article-more-a" href="/2018/04/13/springAOP/#more">read more >></a>
+        
       
 
       
@@ -776,13 +451,11 @@ str.length();
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="（1）什么是Mapper映射器"><a href="#（1）什么是Mapper映射器" class="headerlink" title="（1）什么是Mapper映射器"></a>（1）什么是Mapper映射器</h1><p>符合映射文件要求的接口<br>注：mybatis会自动实现一个符合该接口要求的的对象。</p>
-<h2 id="Mapper映射器的要求："><a href="#Mapper映射器的要求：" class="headerlink" title="Mapper映射器的要求："></a>Mapper映射器的要求：</h2><p>a.接口方法的名称与映射文件中的SQL的id要一样。<br>b.方法的参数类型要与映射文件当中的parameterType一致。<br>c.方法的返回类型要与映射文件中的resultType一致<br>此外，映射文件的namespace必须等于Mapper映射器的全限定名。</p>
-<h2 id="（3）编程步骤"><a href="#（3）编程步骤" class="headerlink" title="（3）编程步骤"></a>（3）编程步骤</h2><p>step1.写一个映射器，即一个接口。<br>step2.调用SQLSession提供的getMapper方法<br>注：该方法会返回一个符合映射器要求的对象。</p>
-<h1 id="spring集成mybatis"><a href="#spring集成mybatis" class="headerlink" title="spring集成mybatis"></a>spring集成mybatis</h1><h2 id="1-编程步骤"><a href="#1-编程步骤" class="headerlink" title="1.编程步骤"></a>1.编程步骤</h2><p>step1.导包<br>spring-webmvc.mybatis<br>mybatis-spring,spring-jdbc,dbcp,jdbc,junit<br><img src="https://i.imgur.com/svgcUoZ.png" alt=""><br>step2.添加spring的配置文件<br>注：mybatis配置信息可以添加到spring的配置文件当中，只需要配置SqlSessionFactoryBean。<br><img src="https://i.imgur.com/tlM28Y2.png" alt=""><br>step3.实体类<br>step4.映射文件<br>step5.Mapper映射器<br>step6.在spring的配置文件中添加MapperScannerConfigurer.该bean负责调用SqlSession的getMapper方法，创建符合Mapper映射器要求的对象。<br>注：<br>该bean会将这个对象添加到spring容器里面。</p>
-<h2 id="（2）只扫描特定的Mapper映射器"><a href="#（2）只扫描特定的Mapper映射器" class="headerlink" title="（2）只扫描特定的Mapper映射器"></a>（2）只扫描特定的Mapper映射器</h2><p>step1.开发一个注解，比如@MybatisRepository<br>step2.将该注解添加到需要扫描的映射器<br>step3.配置MapperScannerConfigurer，设置annotationClass,指定注解类。</p>
-<h2 id="（3）另一种集成方式"><a href="#（3）另一种集成方式" class="headerlink" title="（3）另一种集成方式"></a>（3）另一种集成方式</h2><p>SqlSessionTemplate<br>JdbcTemplate<br>step1.导包。<br>step2.添加spring的配置文件<br>注：删掉MapperScannerConfigurer的配置。<br>step3.实体类<br>step4.映射文件<br>step5.dao接口。<br>step6.写一个dao接口的实现类。<br>注：注入SqlSessionTemplate，调用该对象的方法<br><img src="https://i.imgur.com/Nxpt5yk.png" alt=""><br>step7. 配置SqlSessionTemplate<br>step8.添加组件扫描<br><img src="https://i.imgur.com/AL3BzLS.png" alt=""></p>
-
+        <h1 id="（1）什么是Mapper映射器"><a href="#（1）什么是Mapper映射器" class="headerlink" title="（1）什么是Mapper映射器"></a>（1）什么是Mapper映射器</h1><p>符合映射文件要求的接口<br>注：mybatis会自动实现一个符合该接口要求的的对象。</p>
+<h2 id="Mapper映射器的要求："><a href="#Mapper映射器的要求：" class="headerlink" title="Mapper映射器的要求："></a>Mapper映射器的要求：</h2>
+        
+          <a class="article-more-a" href="/2018/04/13/Mapper映射器/#more">read more >></a>
+        
       
 
       
@@ -862,41 +535,10 @@ str.length();
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Mysql命令行添加新用户"><a href="#Mysql命令行添加新用户" class="headerlink" title="Mysql命令行添加新用户"></a>Mysql命令行添加新用户</h1><p>创建用户root ，密码为123456，@%代表登录主机通配<br>     CREATE USER ‘root’@’%’ IDENTIFIED BY ‘123456’;<br>刷新<br>    flush privileges;<br>授权<br>    GRANT ALL ON cloud_note.* TO ‘root’@’%’;</p>
-<pre><code>mysql&gt; CREATE USER &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;123456&#39;;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql&gt; flush privileges;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql&gt; select host,user from mysql.user;
-+-----------+-----------+
-| host      | user      |
-+-----------+-----------+
-| %         | root      |
-| localhost | mysql.sys |
-| localhost | mysqlxsys |
-| localhost | root      |
-+-----------+-----------+
-4 rows in set (0.00 sec)
-
-mysql&gt; GRANT ALL ON cloud_note.* TO &#39;root&#39;@&#39;%&#39;;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql&gt; flush privileges;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql&gt; select host,user from mysql.user;
-+-----------+-----------+
-| host      | user      |
-+-----------+-----------+
-| %         | root      |
-| localhost | mysql.sys |
-| localhost | mysqlxsys |
-| localhost | root      |
-+-----------+-----------+
-4 rows in set (0.00 sec)
-</code></pre>
+        <h1 id="Mysql命令行添加新用户"><a href="#Mysql命令行添加新用户" class="headerlink" title="Mysql命令行添加新用户"></a>Mysql命令行添加新用户</h1><p>创建用户root ，密码为123456，@%代表登录主机通配<br>     <code>CREATE USER &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;123456&#39;;</code><br>刷新<br>    <code>flush privileges;</code><br>授权<br>    <code>GRANT ALL ON cloud_note.* TO &#39;root&#39;@&#39;%&#39;;</code></p>
+        
+          <a class="article-more-a" href="/2018/04/13/mysql命令行创建新用户/#more">read more >></a>
+        
       
 
       

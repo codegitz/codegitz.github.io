@@ -195,29 +195,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="什么是类？什么是对象？"><a href="#什么是类？什么是对象？" class="headerlink" title="什么是类？什么是对象？"></a>什么是类？什么是对象？</h1><h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>1.现实世界是由很多对象组成的<br>2.对象时真实存在的单个个体</p>
-<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>类是由对象抽象出来的类别，类具有对象的统一的特征，包含一类个体<br>类中包括：<br>1.所由对象共有的特征（属性：静）———即变量（成员变量）<br>2.所有的共同行为（属性：动）————-即方法</p>
-<h1 id="如何创建类？如何创建对象？"><a href="#如何创建类？如何创建对象？" class="headerlink" title="如何创建类？如何创建对象？"></a>如何创建类？如何创建对象？</h1><p>一个类可以创建多个对象，对象的结构相同，数据不同<br>类是对象的模板，对象是类的具体实例<br>对象存于堆，引用存于栈<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192654.png" alt=""><br>类用关键词class创建，如：<br>     class Student {<br>      String name;<br>      int age;<br>      String address;<br>      void study(){<br>        System.out.println(name+”在学习”);<br>      }<br>      void sayHi(){<br>          System.out.println(“大家好！我叫”+name+”家住”+address);<br>      }<br>    }<br>这就创建了一个简单的类，创建了类，可以用关键词new来创建对象,如：<br>    Student    zs           =    new Student();<br>     类      引用类型变量    指向   对象<br>Student 为类，zs为引用类型变量，简称引用，=为指向的意思，new Student()为心创建的对象</p>
-<h1 id="引用类型之间画等号的意义"><a href="#引用类型之间画等号的意义" class="headerlink" title="引用类型之间画等号的意义"></a>引用类型之间画等号的意义</h1><p>引用类型之间画等号：指向了同一个对象<br>   1.对其中一个引用的修改会影响另一个引用<br>   2.eg:房门钥匙<br>基本类型之间画等号：赋值<br>   1.对其中一个值的修改不会影响另外一个值<br>   2.eg:身份证复印件<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192755.png" alt=""></p>
-<h1 id="null-和-NullPointerException"><a href="#null-和-NullPointerException" class="headerlink" title="null 和 NullPointerException"></a>null 和 NullPointerException</h1><p>null:空，没有指向任何对象<br>不能对null进行任何操作，若操作则会报NullPointerException空指针异常，出现此异常，大部分跟构造方法有关，但不绝对<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192756.png" alt=""></p>
-<hr>
-<h1 id="方法的重载"><a href="#方法的重载" class="headerlink" title="方法的重载"></a>方法的重载</h1><p>首先有一个概念叫方法的签名<br>方法的签名：方法名和参数列表<br>一个类中，不可能有两个方法的方法签名完全相同<br>方法的重载：<br>1.同一个类中，方法名相同，参数列表不同<br>2.编译器在编译时会自动根据方法的签名绑定调用的方法<br>方法的重载及其意义：(⊙o⊙)…这个，大概是在调用的时候会十分方便吧</p>
-<h1 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h1><p>构造方法（构造器，构建器，构造函数）<br>1.常常由于给成员变量赋初值<br>2.与类同名，没有返回类型，不能写void<br>3.在创建（new）对象时被自动调用<br>4.若自己不构造方法，系统默认提供无参构造方法，若已构造，则系统不再提供默认的无参构造方法<br>5.构造方法可以重载<br>    public class Cell {<br>     int row;<br>     int clo;</p>
-<pre><code> Cell(){
-     this(0);
- }
- Cell(int n){
-     this(n,n);
- }
- Cell(int row,int clo){
-     this.row=row;
-     this.clo=clo;
- }
-}
-</code></pre><h1 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h1><p>this：指代当前的对象，哪个对象调用指的就是哪个对象，方法中访问成员变量之前默认有个this，this关键字用于方法体中，指代当前调用的对象<br>this用法：<br>1.this.成员变量名——–访问成员变量<br>2.this.方法名———–调用方法<br>3.this();————–调用构造方法（注意是构造方法）</p>
-<h1 id="引用类型数组"><a href="#引用类型数组" class="headerlink" title="引用类型数组"></a>引用类型数组</h1><p>数组是对象，数组是引用类型，数组的元素可以为任意类型</p>
-<p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192857.png" alt=""><br>         Cell[] cells=new Cell[4];<br>        cells[0]=new Cell(2,5);<br>        cells[1]=new Cell(3,6);<br>        cells[2]=new Cell(4,7);<br>        cells[3]=new Cell(5,8);<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192858.png" alt=""></p>
-
+        <h1 id="什么是类？什么是对象？"><a href="#什么是类？什么是对象？" class="headerlink" title="什么是类？什么是对象？"></a>什么是类？什么是对象？</h1><h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>1.现实世界是由很多对象组成的<br>2.对象时真实存在的单个个体</p>
+        
+          <a class="article-more-a" href="/2017/07/20/类和对象/#more">read more >></a>
+        
       
 
       
@@ -308,95 +289,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><p>方法总结：</p>
+        <p>方法总结：</p>
 <h1 id="方法的作用"><a href="#方法的作用" class="headerlink" title="方法的作用"></a>方法的作用</h1><p>1.方法实现封装特定的逻辑功能，方法之间互相独立，一个方法一般只完成一件独立的事，遵循单一职责原则。<br>2.方法可以多次调用，避免大量代码重复，有利于复用，维护，团队协作开发。</p>
-<h1 id="方法的类型"><a href="#方法的类型" class="headerlink" title="方法的类型"></a>方法的类型</h1><p>1.方法分为有参数和无参数，有返回值和无返回值两种<br>无参数的方法参数列表为空<br>无返回值的方法定义时的方法类型为void</p>
-<h1 id="方法的定义"><a href="#方法的定义" class="headerlink" title="方法的定义"></a>方法的定义</h1><p>方法的定义的一般形式为：<br>   修饰词  返回类型 方法名（参数列表）{<br>        //方法体<br>     }<br>  例如：<br>    public static void eat() {<br>    //方法体<br>    }<br>    public static char[] generate(int level){<br>    //方法体<br>    }<br>public static 为修饰词，void和char[]分别表示没有返回值和返回一个char[]型的变量，（）圆括号里面的为参数，花括号里面为方法执行的方法体。</p>
-<h1 id="方法的调用"><a href="#方法的调用" class="headerlink" title="方法的调用"></a>方法的调用</h1><p>无返回值的：方法名（有参传参）；<br>有返回值的：数据类型 变量名=方法名（有参传参）；<br>如：<br>    <code>eat（）；</code><br>    <code>char[] b=generate(4);</code></p>
-<h1 id="return关键字"><a href="#return关键字" class="headerlink" title="return关键字"></a>return关键字</h1><p>1.return 值；//结束方法，返回结果给调用方法<br>2.return；结束方法</p>
-<h1 id="猜字符小游戏"><a href="#猜字符小游戏" class="headerlink" title="猜字符小游戏"></a>猜字符小游戏</h1><p>这个小游戏定义了一个随机生成字符串的方法generate（）和判断字符对错的check（）方法</p>
-<pre><code>package day06;
-import java.util.*;
-public class Guessing {
- /*猜字符小游戏
-  * 系统随机生成数个字母，生成字母个数由玩家选择
-  * 玩家随意输入几个字母
- * 系统判断正确的个数，并统计数据，计算得分
-  * 猜字过程输入exit则退出游戏
- * 
- * */
-
-public static void main(String[] args) {
-     Scanner scan=new Scanner(System.in);
-     int level;
-     do{
-       System.out.println(&quot;请选择等级5、7、9：&quot;);
-       level=scan.nextInt();             
-     }while(level!=5&amp;&amp;level!=7&amp;&amp;level!=9);
-     char[] gen=generate(level);
-     int sroce;
-     int count=0;
-     for(int i=0;i&lt;gen.length;i++){
-         System.out.print(gen[i]);
-     }
-     System.out.println();
-     while(true){
-     System.out.println(&quot;猜吧！&quot;);
-     String str=scan.next().toUpperCase();
-     if(str.equals(&quot;EXIT&quot;)){
-         System.out.println(&quot;下次再来吧！&quot;);
-         break;
-             }
-     char[] imput=str.toCharArray();
-     int[] result=check(gen,imput);
-     if(result[1]==gen.length){
-         sroce=gen.length*100-count*10;
-         System.out.println(&quot;恭喜你，猜对了！得分为&quot;+sroce);
-         break;          
-     }else{
-         count++;
-     System.out.println(&quot;字符对了&quot;+result[0]+&quot;个，位置对了&quot;+result[1]+&quot;次&quot;);
-       }
-     }
-
-     scan.close();
-}
-public static char[] generate(int level){
-    char[] chs=new char[level];
-    char[] letters=new char[]{&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;D&#39;,&#39;E&#39;,&#39;F&#39;,&#39;G&#39;,&#39;H&#39;,&#39;I&#39;,&#39;J&#39;,&#39;K&#39;,&#39;L&#39;,&#39;M&#39;,&#39;N&#39;,&#39;O&#39;,&#39;P&#39;,&#39;Q&#39;,&#39;R&#39;,&#39;S&#39;,&#39;T&#39;,&#39;U&#39;,&#39;V&#39;,&#39;W&#39;,&#39;X&#39;,&#39;Y&#39;,&#39;Z&#39;};
-
-    boolean[] flags=new boolean[letters.length];
-    for(int i=0;i&lt;chs.length;i++){
-        int index;
-        do{
-        index=(int)(Math.random()*26);
-
-        }while(flags[index]);
-        chs[i]=letters[index];
-        flags[index]=true;
-    }
-
-    return chs;
-}
-public static int[] check(char[] chs,char[] imput){
-    int[] result=new int[2];
-
-    for(int i=0;i&lt;chs.length;i++){
-        for(int j=0;j&lt;imput.length;j++){
-            if(chs[i]==imput[j]){
-                result[0]++;
-                if(i==j){
-              result[1]++;
-              break;
-                }
-            }
-        }
-    }
-    return result;
-}
-
-}
-</code></pre>
+        
+          <a class="article-more-a" href="/2017/07/18/方法/#more">read more >></a>
+        
       
 
       
@@ -487,8 +384,10 @@ public static int[] check(char[] chs,char[] imput){
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><p>NexT主题的个性化设置<a href="http://www.jeyzhang.com/next-theme-personal-settings.html" target="_blank" rel="external">链接</a><br>NexT主题个性化之添加文章阅读量<a href="http://www.jeyzhang.com/hexo-next-add-post-views.html" target="_blank" rel="external">链接</a></p>
-
+        <p>NexT主题的个性化设置<a href="http://www.jeyzhang.com/next-theme-personal-settings.html" target="_blank" rel="external">链接</a><br>NexT主题个性化之添加文章阅读量<a href="http://www.jeyzhang.com/hexo-next-add-post-views.html" target="_blank" rel="external">链接</a></p>
+        
+          <a class="article-more-a" href="/2017/07/11/hexo相关配置/#more">read more >></a>
+        
       
 
       
@@ -579,15 +478,10 @@ public static int[] check(char[] chs,char[] imput){
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="1-新建一个git仓库"><a href="#1-新建一个git仓库" class="headerlink" title="1.新建一个git仓库"></a>1.新建一个git仓库</h1><p>在github中新建一个repo，不要勾选Initalize this repository with a README选项，如建立一个MarkdownPhotos的仓库<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/Inked%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170710161230_LI.jpg" alt=""></p>
-<h1 id="2-新建本地储存图片的文件夹"><a href="#2-新建本地储存图片的文件夹" class="headerlink" title="2.新建本地储存图片的文件夹"></a>2.新建本地储存图片的文件夹</h1><p>在本地电脑新建文件夹将图片放入文件夹中，如新建ImageGithubToMarkdown文件夹 </p>
-<h1 id="3-在对应文件夹建立本地仓库"><a href="#3-在对应文件夹建立本地仓库" class="headerlink" title="3.在对应文件夹建立本地仓库"></a>3.在对应文件夹建立本地仓库</h1><p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162541.png" alt=""></p>
-<h1 id="4-Push到github保存"><a href="#4-Push到github保存" class="headerlink" title="4.Push到github保存"></a>4.Push到github保存</h1><p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162608.png" alt=""><br>完成后的图片为<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162719.png" alt=""></p>
-<h1 id="5-复制图片地址"><a href="#5-复制图片地址" class="headerlink" title="5.复制图片地址"></a>5.复制图片地址</h1><p>在Google浏览器打开GitHub<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162316.png" alt=""><br>右键点击图片，选择在“新标签页中打开图片”<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710162400.png" alt=""><br>复制地址栏图片地址<br>或者直接右击图片，“复制图片地址”，两种操作得到的图片地址均可</p>
-<p>两个地址，指向同一个图片</p>
-<h1 id="6-在markdown中引用需要的图片地址"><a href="#6-在markdown中引用需要的图片地址" class="headerlink" title="6.在markdown中引用需要的图片地址"></a>6.在markdown中引用需要的图片地址</h1><p>按照markdown语法格式引用图片地址即可显示图片</p>
-<p><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/TIM%E6%88%AA%E5%9B%BE20170710165719.png" alt=""><br><a href="http://blog.csdn.net/monkey_lzl/article/details/60870891" target="_blank" rel="external">更多</a></p>
-
+        <h1 id="1-新建一个git仓库"><a href="#1-新建一个git仓库" class="headerlink" title="1.新建一个git仓库"></a>1.新建一个git仓库</h1><p>在github中新建一个repo，不要勾选Initalize this repository with a README选项，如建立一个MarkdownPhotos的仓库</p>
+        
+          <a class="article-more-a" href="/2017/07/10/利用GitHub在Markdown中插入图片/#more">read more >></a>
+        
       
 
       
@@ -678,17 +572,18 @@ public static int[] check(char[] chs,char[] imput){
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><pre><code>package database;
-</code></pre><p>public class Database {</p>
-<pre><code>public static void main(String[] args) {
+        <pre><code>package database;
+public class Database {
+public static void main(String[] args) {
     // TODO Auto-generated method stub
 
 System.out.println(&quot;hello world&quot;);
-
-
 }
-</code></pre><p>}</p>
-
+}
+</code></pre><p>​
+        
+          <a class="article-more-a" href="/2017/07/01/first-java/#more">read more >></a>
+        
       
 
       

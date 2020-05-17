@@ -8,22 +8,22 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>springboot Web开发 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.Web开发使用springboot1.创建springboot应用，选中我们需要的模块2.springboot已经默认将这些场景配置好了，只需要在配置文件中指定少量配置就可以运行起来3.自己编写业务代码 需要熟悉了解自动配置原理：这个场景springboot帮我们配置了什么，能不呢修改，能修改哪些配置，能不能扩展 xxxxAutoConfiguration:帮我们给容器中自动配置组件 xxx">
+  <meta name="description" content="1.Web开发使用springboot1.创建springboot应用，选中我们需要的模块2.springboot已经默认将这些场景配置好了，只需要在配置文件中指定少量配置就可以运行起来3.自己编写业务代码">
 <meta name="keywords" content="Java,Springboot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="springboot Web开发">
 <meta property="og:url" content="http://yoursite.com/2018/04/20/Springboot Web开发/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="1.Web开发使用springboot1.创建springboot应用，选中我们需要的模块2.springboot已经默认将这些场景配置好了，只需要在配置文件中指定少量配置就可以运行起来3.自己编写业务代码 需要熟悉了解自动配置原理：这个场景springboot帮我们配置了什么，能不呢修改，能修改哪些配置，能不能扩展 xxxxAutoConfiguration:帮我们给容器中自动配置组件 xxx">
+<meta property="og:description" content="1.Web开发使用springboot1.创建springboot应用，选中我们需要的模块2.springboot已经默认将这些场景配置好了，只需要在配置文件中指定少量配置就可以运行起来3.自己编写业务代码">
 <meta property="og:image" content="https://i.imgur.com/vwNb3S2.png">
 <meta property="og:image" content="https://i.imgur.com/SGHeNen.png">
 <meta property="og:image" content="https://i.imgur.com/qdKbvJb.png">
 <meta property="og:image" content="https://i.imgur.com/dTKdl9A.png">
 <meta property="og:image" content="https://i.imgur.com/xeiTidp.png">
-<meta property="og:updated_time" content="2018-09-27T14:45:28.525Z">
+<meta property="og:updated_time" content="2020-05-17T09:49:20.614Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="springboot Web开发">
-<meta name="twitter:description" content="1.Web开发使用springboot1.创建springboot应用，选中我们需要的模块2.springboot已经默认将这些场景配置好了，只需要在配置文件中指定少量配置就可以运行起来3.自己编写业务代码 需要熟悉了解自动配置原理：这个场景springboot帮我们配置了什么，能不呢修改，能修改哪些配置，能不能扩展 xxxxAutoConfiguration:帮我们给容器中自动配置组件 xxx">
+<meta name="twitter:description" content="1.Web开发使用springboot1.创建springboot应用，选中我们需要的模块2.springboot已经默认将这些场景配置好了，只需要在配置文件中指定少量配置就可以运行起来3.自己编写业务代码">
 <meta name="twitter:image" content="https://i.imgur.com/vwNb3S2.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -216,6 +216,7 @@ gitment.render('gitment')
     <div class="article-entry" itemprop="articleBody">
       
         <script src="/assets/js/APlayer.min.js"> </script><h2 id="1-Web开发"><a href="#1-Web开发" class="headerlink" title="1.Web开发"></a>1.Web开发</h2><p>使用springboot<br>1.创建springboot应用，选中我们需要的模块<br>2.springboot已经默认将这些场景配置好了，只需要在配置文件中指定少量配置就可以运行起来<br>3.自己编写业务代码</p>
+<a id="more"></a>
 <p>需要熟悉了解自动配置原理：<br>这个场景springboot帮我们配置了什么，能不呢修改，能修改哪些配置，能不能扩展</p>
 <pre><code>xxxxAutoConfiguration:帮我们给容器中自动配置组件
 xxxxProperties:配置类来封装这些配置文件的内容
@@ -433,8 +434,9 @@ Special tokens:
 <li><p>Static <code>index.html</code> support. 静态首页访问</p>
 </li>
 <li><p>Custom <code>Favicon</code> support (see below).  favicon.ico</p>
-<p>​</p>
 </li>
+</ul>
+<ul>
 <li><p>自动注册了 of <code>Converter</code>, <code>GenericConverter</code>, <code>Formatter</code> beans.</p>
 <ul>
 <li>Converter：转换器；  public String hello(User user)：类型转换使用Converter</li>
@@ -456,10 +458,11 @@ Special tokens:
 </li>
 <li><p><code>HttpMessageConverters</code> 是从容器中确定；获取所有的HttpMessageConverter；</p>
 <p>==自己给容器中添加HttpMessageConverter，只需要将自己的组件注册容器中（@Bean,@Component）==</p>
-<p>​</p>
 </li>
 </ul>
 </li>
+</ul>
+<ul>
 <li><p>Automatic registration of <code>MessageCodesResolver</code> (see below).定义错误代码生成规则</p>
 </li>
 <li><p>Automatic use of a <code>ConfigurableWebBindingInitializer</code> bean (see below).</p>

@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Json | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="编码问题1.发送get请求IE浏览器会使用gbk进行编码，而其他浏览器会使用utf-8来编码，服务器端默认使用iso-8859-1来解码，所以会产生乱码。解决方法：step1.服务器端统一使用utf-8来解码。    URIEncoding=utf-8step2.浏览器端使用encodeURI函数来编码。注：encodeURI是JavaScript内置的函数。 2.发送post浏览器会使用utf">
+  <meta name="description" content="编码问题1.发送get请求IE浏览器会使用gbk进行编码，而其他浏览器会使用utf-8来编码，服务器端默认使用iso-8859-1来解码，所以会产生乱码。解决方法：step1.服务器端统一使用utf-8来解码。    URIEncoding=utf-8">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Json">
 <meta property="og:url" content="http://yoursite.com/2018/04/13/json/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="编码问题1.发送get请求IE浏览器会使用gbk进行编码，而其他浏览器会使用utf-8来编码，服务器端默认使用iso-8859-1来解码，所以会产生乱码。解决方法：step1.服务器端统一使用utf-8来解码。    URIEncoding=utf-8step2.浏览器端使用encodeURI函数来编码。注：encodeURI是JavaScript内置的函数。 2.发送post浏览器会使用utf">
+<meta property="og:description" content="编码问题1.发送get请求IE浏览器会使用gbk进行编码，而其他浏览器会使用utf-8来编码，服务器端默认使用iso-8859-1来解码，所以会产生乱码。解决方法：step1.服务器端统一使用utf-8来解码。    URIEncoding=utf-8">
 <meta property="og:image" content="https://i.imgur.com/hFQgwNu.png">
-<meta property="og:updated_time" content="2018-04-13T03:21:43.311Z">
+<meta property="og:updated_time" content="2020-05-17T09:45:33.706Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Json">
-<meta name="twitter:description" content="编码问题1.发送get请求IE浏览器会使用gbk进行编码，而其他浏览器会使用utf-8来编码，服务器端默认使用iso-8859-1来解码，所以会产生乱码。解决方法：step1.服务器端统一使用utf-8来解码。    URIEncoding=utf-8step2.浏览器端使用encodeURI函数来编码。注：encodeURI是JavaScript内置的函数。 2.发送post浏览器会使用utf">
+<meta name="twitter:description" content="编码问题1.发送get请求IE浏览器会使用gbk进行编码，而其他浏览器会使用utf-8来编码，服务器端默认使用iso-8859-1来解码，所以会产生乱码。解决方法：step1.服务器端统一使用utf-8来解码。    URIEncoding=utf-8">
 <meta name="twitter:image" content="https://i.imgur.com/hFQgwNu.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -211,7 +211,12 @@ gitment.render('gitment')
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="编码问题"><a href="#编码问题" class="headerlink" title="编码问题"></a>编码问题</h1><h2 id="1-发送get请求"><a href="#1-发送get请求" class="headerlink" title="1.发送get请求"></a>1.发送get请求</h2><p>IE浏览器会使用gbk进行编码，而其他浏览器会使用utf-8来编码，服务器端默认使用iso-8859-1来解码，所以会产生乱码。<br>解决方法：<br>step1.服务器端统一使用utf-8来解码。<br>    URIEncoding=utf-8<br>step2.浏览器端使用encodeURI函数来编码。<br>注：encodeURI是JavaScript内置的函数。</p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="编码问题"><a href="#编码问题" class="headerlink" title="编码问题"></a>编码问题</h1><h2 id="1-发送get请求"><a href="#1-发送get请求" class="headerlink" title="1.发送get请求"></a>1.发送get请求</h2><p>IE浏览器会使用gbk进行编码，而其他浏览器会使用utf-8来编码，服务器端默认使用iso-8859-1来解码，所以会产生乱码。<br>解决方法：<br>step1.服务器端统一使用utf-8来解码。<br>    URIEncoding=utf-8</p>
+<a id="more"></a>
+<p>step2.浏览器端使用encodeURI函数来编码。</p>
+<blockquote>
+<p>注：encodeURI是JavaScript内置的函数。</p>
+</blockquote>
 <h2 id="2-发送post"><a href="#2-发送post" class="headerlink" title="2.发送post"></a>2.发送post</h2><p>浏览器会使用utf-8来编码。服务器端默认使用ISO-8859-1来解码，所以会产生乱码<br>解决方法：<br>request.setCharacterEncoding(“utf-8”);</p>
 <h1 id="JSON-javascript-object-notation"><a href="#JSON-javascript-object-notation" class="headerlink" title="JSON(javascript object notation)"></a>JSON(javascript object notation)</h1><h2 id="1-JSON是什么"><a href="#1-JSON是什么" class="headerlink" title="1.JSON是什么"></a>1.JSON是什么</h2><p>是一种轻量级的数据交换格式<br>注：<br>数据交换：将要转换的数据先转换为一种与平台无关的数据格式，然后交给接收方来处理。<br><br>轻量级：相对于xml，JSON文档更小，解析速度更快。</p>
 <h2 id="2-语法"><a href="#2-语法" class="headerlink" title="2.语法"></a>2.语法</h2><h3 id="表示一个对象"><a href="#表示一个对象" class="headerlink" title="表示一个对象"></a>表示一个对象</h3><p>{属性名：属性值，属性名：属性值….}<br>注意：<br>a.属性名必须使用双引号括起来。<br>b.属性值的类型可以使string,number,true/false,null,object<br>c.属性值如果是string，必须使用双括号括起来。    </p>

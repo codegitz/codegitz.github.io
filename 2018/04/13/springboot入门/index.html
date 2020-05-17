@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Springboot入门 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.springboot简介简化spring应用的一个框架整个spring技术的一个大整合“spring全家桶”J2EE的一站式解决方案 优点：  快速创建独立运行的Spring项目以及与主流框架集成 使用嵌入式的Servlet容器，应用无需打包成war包 starters自动依赖与版本控制 大量的自动配置，简化开发，也可以修改默认值 无需配置XML，无代码生成，开箱即用 准生产环境的运行时应用">
+  <meta name="description" content="1.springboot简介简化spring应用的一个框架整个spring技术的一个大整合“spring全家桶”J2EE的一站式解决方案">
 <meta name="keywords" content="Java,Springboot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Springboot入门">
 <meta property="og:url" content="http://yoursite.com/2018/04/13/springboot入门/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="1.springboot简介简化spring应用的一个框架整个spring技术的一个大整合“spring全家桶”J2EE的一站式解决方案 优点：  快速创建独立运行的Spring项目以及与主流框架集成 使用嵌入式的Servlet容器，应用无需打包成war包 starters自动依赖与版本控制 大量的自动配置，简化开发，也可以修改默认值 无需配置XML，无代码生成，开箱即用 准生产环境的运行时应用">
+<meta property="og:description" content="1.springboot简介简化spring应用的一个框架整个spring技术的一个大整合“spring全家桶”J2EE的一站式解决方案">
 <meta property="og:image" content="https://i.imgur.com/713ylux.png">
 <meta property="og:image" content="https://i.imgur.com/cVYlEyt.png">
 <meta property="og:image" content="https://i.imgur.com/o5wuRcG.png">
@@ -30,10 +30,10 @@
 <meta property="og:image" content="https://i.imgur.com/gdkQM8w.png">
 <meta property="og:image" content="https://i.imgur.com/Y2l7KGL.png">
 <meta property="og:image" content="https://i.imgur.com/mjiYZ1Y.png">
-<meta property="og:updated_time" content="2018-09-11T16:19:43.361Z">
+<meta property="og:updated_time" content="2020-05-17T09:49:37.503Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Springboot入门">
-<meta name="twitter:description" content="1.springboot简介简化spring应用的一个框架整个spring技术的一个大整合“spring全家桶”J2EE的一站式解决方案 优点：  快速创建独立运行的Spring项目以及与主流框架集成 使用嵌入式的Servlet容器，应用无需打包成war包 starters自动依赖与版本控制 大量的自动配置，简化开发，也可以修改默认值 无需配置XML，无代码生成，开箱即用 准生产环境的运行时应用">
+<meta name="twitter:description" content="1.springboot简介简化spring应用的一个框架整个spring技术的一个大整合“spring全家桶”J2EE的一站式解决方案">
 <meta name="twitter:image" content="https://i.imgur.com/713ylux.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -226,6 +226,7 @@ gitment.render('gitment')
     <div class="article-entry" itemprop="articleBody">
       
         <script src="/assets/js/APlayer.min.js"> </script><h2 id="1-springboot简介"><a href="#1-springboot简介" class="headerlink" title="1.springboot简介"></a>1.springboot简介</h2><p>简化spring应用的一个框架<br>整个spring技术的一个大整合“spring全家桶”<br>J2EE的一站式解决方案</p>
+<a id="more"></a>
 <p>优点：</p>
 <ul>
 <li>快速创建独立运行的Spring项目以及与主流框架集成</li>
@@ -406,7 +407,7 @@ public @interface EnableAutoConfiguration {
     path: /hello
 </code></pre>
 <p>属性和值也是大小写敏感；</p>
-<h3 id="2、值的写法"><a href="#2、值的写法" class="headerlink" title="2、值的写法"></a>2、值的写法</h3><h4 id="字面量：普通的值（数字，字符串，布尔）"><a href="#字面量：普通的值（数字，字符串，布尔）" class="headerlink" title="字面量：普通的值（数字，字符串，布尔）"></a>字面量：普通的值（数字，字符串，布尔）</h4><pre><code>​    k: v：字面直接来写；
+<h3 id="2、值的写法"><a href="#2、值的写法" class="headerlink" title="2、值的写法"></a>2、值的写法</h3><h4 id="字面量：普通的值（数字，字符串，布尔）"><a href="#字面量：普通的值（数字，字符串，布尔）" class="headerlink" title="字面量：普通的值（数字，字符串，布尔）"></a>字面量：普通的值（数字，字符串，布尔）</h4><pre><code>    k: v：字面直接来写；
 
 ​        字符串默认不用加上单引号或者双引号；
 
@@ -710,7 +711,6 @@ spring:
 把扫描到的这些文件的内容包装成properties对象
 从properties中获取到EnableAutoConfiguration.class类（类名）对应的值，然后把他们添加在容器中
 </code></pre>
-<p>​</p>
 </li>
 </ul>
 </li>

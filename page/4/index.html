@@ -195,42 +195,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本地类路径下的jar包在使用maven打包放到服务器运行的时候，会报找不到的错。我们需要把jar包安装到本地仓库里面。<br></p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本地类路径下的jar包在使用maven打包放到服务器运行的时候，会报找不到的错。我们需要把jar包安装到本地仓库里面。<br></p>
 <h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>运行一下命令安装：<br></p>
-<pre><code>$  mvn install:install-file -Dfile=xstream-1.3.1.jar -DgroupId=com.thoughtworks -DartifactId=xstream -Dversion=1.3.1 -Dpackaging=jar
-</code></pre><p><br><br><img src="https://i.imgur.com/WS3csGR.png" alt=""></p>
-<pre><code>$  mvn install:install-file -Dfile=xstream-1.3.1.jar -DgroupId=com.thoughtworks -DartifactId=xstream -Dversion=1.3.1 -Dpackaging=jar
-[INFO] Scanning for projects...
-[INFO]
-[INFO] ------------------------------------------------------------------------
-[INFO] Building Maven Stub Project (No POM) 1
-[INFO] ------------------------------------------------------------------------
-[INFO]
-[INFO] --- maven-install-plugin:2.4:install-file (default-cli) @ standalone-pom ---
-[INFO] Installing E:\▒ٶ▒▒▒▒▒Դ\FileManage\manageplatform\src\main\resources\lib\xstream-1.3.1.jar to F:\maven\apache-maven-3.5.2-bin\repo\com\thoughtworks\xstream\1.3.1\xstream-1.3.1.jar
-[INFO] Installing C:\Users\ZHANGG~1\AppData\Local\Temp\mvninstall7596578701340346296.pom to F:\maven\apache-maven-3.5.2-bin\repo\com\thoughtworks\xstream\1.3.1\xstream-1.3.1.pom
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 1.281 s
-[INFO] Finished at: 2019-01-15T09:56:23+08:00
-[INFO] Final Memory: 6M/114M
-[INFO] ------------------------------------------------------------------------
-
-
-
--Dfile：jar包路径
--DgroupId:groupId
--DartifactId:artifactId
-</code></pre><p>在pom.xml中添加如下依赖：<br></p>
-<pre><code>&lt;dependency&gt;
-    &lt;groupId&gt;com.thoughtworks&lt;/groupId&gt;
-    &lt;artifactId&gt;xstream&lt;/artifactId&gt;
-    &lt;version&gt;1.3.1&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre><p>这时候再运行<code>mvn package</code>命令就不会报错了。<br></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本地运行的很欢快的程序，打包到服务器就会出现很多问题，我们依赖IDE的程度太深，自己都没有察觉了。离开了IDE提供的环境才发现很多需要手动解决的问题。<br></p>
-
+        
+          <a class="article-more-a" href="/2019/01/15/maven安装jar包到本地仓库/#more">read more >></a>
+        
       
 
       
@@ -312,10 +281,6 @@
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在Linux的使用中，经常需要查看服务器的内存使用状况，这里记录几个好用的工具。<br></p>
 <h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><h3 id="iftop"><a href="#iftop" class="headerlink" title="iftop"></a>iftop</h3><p>iftop可测量通过每一个套接字连接传输的数据。iftop使用pcap库来捕获进出网络适配器的数据包，然后汇总数据包大小和数量，搞清楚总的带宽使用情况。<br></p>
-<p>虽然iftop报告每个连接所使用的带宽，但它无法报告参与某个套按字连接的进程名称/编号（ID）。不过由于基于pcap库，iftop能够过滤流量，并报告由过滤器指定的所选定主机连接的带宽使用情况。<br></p>
-<pre><code>$ sudo iftop -n 
-</code></pre><p>n选项可以防止iftop将IP地址解析成主机名，解析本身就会带来额外的网络流量。<br></p>
-<p><img src="https://i.imgur.com/osagmXw.png" alt=""><br>
         
           <a class="article-more-a" href="/2019/01/12/几个常用的Linux性能查看工具/#more">read more >></a>
         
@@ -399,11 +364,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>众所周知，Git的强大之处在于十分方便与团队合作中的代码管理，那么在一个团队中，什么样的工作流是合适的？需要维护多少个分支以及怎样去维护才是合适的？带着这些问题，让我们来看一下Git的工作流。最近项目需要迁移，之前的分支管理比较混乱，所以趁着迁移，规范分支的管理。<br><br></p>
-<h2 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h2><p>目前Git主要有三种使用广泛的工作流<br></p>
-<ul>
-<li>Git flow</li>
-<li>Github flow</li>
-<li>Gitlab flow
         
           <a class="article-more-a" href="/2019/01/10/深入理解Git系列（五）/#more">read more >></a>
         
@@ -569,7 +529,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><span>  一眨眼一年的时间又过去了，而我似乎还没有感觉到2018的离开，可能是我还没准备好迎接2019吧。<br><br><br></span></p>
+        <p><span>  一眨眼一年的时间又过去了，而我似乎还没有感觉到2018的离开，可能是我还没准备好迎接2019吧。<br></span></p>
+<p><br></p>
 <div align="center"><br><img src="https://i.imgur.com/lHgP616.jpg" alt="" height="80%" width="60%"><br></div><br><br><br>
         
           <a class="article-more-a" href="/2019/01/09/2018总结/#more">read more >></a>

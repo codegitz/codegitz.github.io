@@ -8,22 +8,22 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>类和对象 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="什么是类？什么是对象？对象1.现实世界是由很多对象组成的2.对象时真实存在的单个个体 类类是由对象抽象出来的类别，类具有对象的统一的特征，包含一类个体类中包括：1.所由对象共有的特征（属性：静）———即变量（成员变量）2.所有的共同行为（属性：动）————-即方法 如何创建类？如何创建对象？一个类可以创建多个对象，对象的结构相同，数据不同类是对象的模板，对象是类的具体实例对象存于堆，引用存于栈类">
+  <meta name="description" content="什么是类？什么是对象？对象1.现实世界是由很多对象组成的2.对象时真实存在的单个个体">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="类和对象">
 <meta property="og:url" content="http://yoursite.com/2017/07/20/类和对象/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="什么是类？什么是对象？对象1.现实世界是由很多对象组成的2.对象时真实存在的单个个体 类类是由对象抽象出来的类别，类具有对象的统一的特征，包含一类个体类中包括：1.所由对象共有的特征（属性：静）———即变量（成员变量）2.所有的共同行为（属性：动）————-即方法 如何创建类？如何创建对象？一个类可以创建多个对象，对象的结构相同，数据不同类是对象的模板，对象是类的具体实例对象存于堆，引用存于栈类">
+<meta property="og:description" content="什么是类？什么是对象？对象1.现实世界是由很多对象组成的2.对象时真实存在的单个个体">
 <meta property="og:image" content="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192654.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192755.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192756.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192857.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192858.png">
-<meta property="og:updated_time" content="2017-07-20T12:12:49.289Z">
+<meta property="og:updated_time" content="2020-05-17T09:29:17.481Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类和对象">
-<meta name="twitter:description" content="什么是类？什么是对象？对象1.现实世界是由很多对象组成的2.对象时真实存在的单个个体 类类是由对象抽象出来的类别，类具有对象的统一的特征，包含一类个体类中包括：1.所由对象共有的特征（属性：静）———即变量（成员变量）2.所有的共同行为（属性：动）————-即方法 如何创建类？如何创建对象？一个类可以创建多个对象，对象的结构相同，数据不同类是对象的模板，对象是类的具体实例对象存于堆，引用存于栈类">
+<meta name="twitter:description" content="什么是类？什么是对象？对象1.现实世界是由很多对象组成的2.对象时真实存在的单个个体">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192654.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -216,6 +216,7 @@ gitment.render('gitment')
     <div class="article-entry" itemprop="articleBody">
       
         <script src="/assets/js/APlayer.min.js"> </script><h1 id="什么是类？什么是对象？"><a href="#什么是类？什么是对象？" class="headerlink" title="什么是类？什么是对象？"></a>什么是类？什么是对象？</h1><h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>1.现实世界是由很多对象组成的<br>2.对象时真实存在的单个个体</p>
+<a id="more"></a>
 <h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>类是由对象抽象出来的类别，类具有对象的统一的特征，包含一类个体<br>类中包括：<br>1.所由对象共有的特征（属性：静）———即变量（成员变量）<br>2.所有的共同行为（属性：动）————-即方法</p>
 <h1 id="如何创建类？如何创建对象？"><a href="#如何创建类？如何创建对象？" class="headerlink" title="如何创建类？如何创建对象？"></a>如何创建类？如何创建对象？</h1><p>一个类可以创建多个对象，对象的结构相同，数据不同<br>类是对象的模板，对象是类的具体实例<br>对象存于堆，引用存于栈<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192654.png" alt=""><br>类用关键词class创建，如：<br>     class Student {<br>      String name;<br>      int age;<br>      String address;<br>      void study(){<br>        System.out.println(name+”在学习”);<br>      }<br>      void sayHi(){<br>          System.out.println(“大家好！我叫”+name+”家住”+address);<br>      }<br>    }<br>这就创建了一个简单的类，创建了类，可以用关键词new来创建对象,如：<br>    Student    zs           =    new Student();<br>     类      引用类型变量    指向   对象<br>Student 为类，zs为引用类型变量，简称引用，=为指向的意思，new Student()为心创建的对象</p>
 <h1 id="引用类型之间画等号的意义"><a href="#引用类型之间画等号的意义" class="headerlink" title="引用类型之间画等号的意义"></a>引用类型之间画等号的意义</h1><p>引用类型之间画等号：指向了同一个对象<br>   1.对其中一个引用的修改会影响另一个引用<br>   2.eg:房门钥匙<br>基本类型之间画等号：赋值<br>   1.对其中一个值的修改不会影响另外一个值<br>   2.eg:身份证复印件<br><img src="https://raw.githubusercontent.com/codegitz/MarkdownPhotos/master/QQ%E5%9B%BE%E7%89%8720170720192755.png" alt=""></p>

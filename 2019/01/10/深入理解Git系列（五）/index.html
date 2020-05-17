@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>深入理解Git系列（五） | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言众所周知，Git的强大之处在于十分方便与团队合作中的代码管理，那么在一个团队中，什么样的工作流是合适的？需要维护多少个分支以及怎样去维护才是合适的？带着这些问题，让我们来看一下Git的工作流。最近项目需要迁移，之前的分支管理比较混乱，所以趁着迁移，规范分支的管理。 概况目前Git主要有三种使用广泛的工作流  Git flow Github flow Gitlab flow">
+  <meta name="description" content="前言众所周知，Git的强大之处在于十分方便与团队合作中的代码管理，那么在一个团队中，什么样的工作流是合适的？需要维护多少个分支以及怎样去维护才是合适的？带着这些问题，让我们来看一下Git的工作流。最近项目需要迁移，之前的分支管理比较混乱，所以趁着迁移，规范分支的管理。">
 <meta name="keywords" content="Git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入理解Git系列（五）">
 <meta property="og:url" content="http://yoursite.com/2019/01/10/深入理解Git系列（五）/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="前言众所周知，Git的强大之处在于十分方便与团队合作中的代码管理，那么在一个团队中，什么样的工作流是合适的？需要维护多少个分支以及怎样去维护才是合适的？带着这些问题，让我们来看一下Git的工作流。最近项目需要迁移，之前的分支管理比较混乱，所以趁着迁移，规范分支的管理。 概况目前Git主要有三种使用广泛的工作流  Git flow Github flow Gitlab flow">
+<meta property="og:description" content="前言众所周知，Git的强大之处在于十分方便与团队合作中的代码管理，那么在一个团队中，什么样的工作流是合适的？需要维护多少个分支以及怎样去维护才是合适的？带着这些问题，让我们来看一下Git的工作流。最近项目需要迁移，之前的分支管理比较混乱，所以趁着迁移，规范分支的管理。">
 <meta property="og:image" content="https://i.imgur.com/Z5RQsqu.png">
 <meta property="og:image" content="https://i.imgur.com/ZXtNFlk.png">
 <meta property="og:image" content="https://i.imgur.com/aJoH1MZ.png">
-<meta property="og:updated_time" content="2019-01-10T12:16:58.632Z">
+<meta property="og:updated_time" content="2020-05-17T09:34:17.334Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解Git系列（五）">
-<meta name="twitter:description" content="前言众所周知，Git的强大之处在于十分方便与团队合作中的代码管理，那么在一个团队中，什么样的工作流是合适的？需要维护多少个分支以及怎样去维护才是合适的？带着这些问题，让我们来看一下Git的工作流。最近项目需要迁移，之前的分支管理比较混乱，所以趁着迁移，规范分支的管理。 概况目前Git主要有三种使用广泛的工作流  Git flow Github flow Gitlab flow">
+<meta name="twitter:description" content="前言众所周知，Git的强大之处在于十分方便与团队合作中的代码管理，那么在一个团队中，什么样的工作流是合适的？需要维护多少个分支以及怎样去维护才是合适的？带着这些问题，让我们来看一下Git的工作流。最近项目需要迁移，之前的分支管理比较混乱，所以趁着迁移，规范分支的管理。">
 <meta name="twitter:image" content="https://i.imgur.com/Z5RQsqu.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -214,11 +214,12 @@ gitment.render('gitment')
     <div class="article-entry" itemprop="articleBody">
       
         <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>众所周知，Git的强大之处在于十分方便与团队合作中的代码管理，那么在一个团队中，什么样的工作流是合适的？需要维护多少个分支以及怎样去维护才是合适的？带着这些问题，让我们来看一下Git的工作流。最近项目需要迁移，之前的分支管理比较混乱，所以趁着迁移，规范分支的管理。<br><br></p>
+<a id="more"></a>
 <h2 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h2><p>目前Git主要有三种使用广泛的工作流<br></p>
 <ul>
 <li>Git flow</li>
 <li>Github flow</li>
-<li>Gitlab flow<a id="more"></a>
+<li>Gitlab flow<!--more-->
 这里就不一一介绍了，参考<a href="http://www.ruanyifeng.com/blog/2015/12/git-workflow.html" target="_blank" rel="external">阮一峰的博客</a>。</li>
 </ul>
 <p>接下来看一篇我觉得比较好的Git分支模型的文章，<a href="https://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="external">传送门</a>。</p>

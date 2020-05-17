@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java方法 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="方法总结： 方法的作用1.方法实现封装特定的逻辑功能，方法之间互相独立，一个方法一般只完成一件独立的事，遵循单一职责原则。2.方法可以多次调用，避免大量代码重复，有利于复用，维护，团队协作开发。 方法的类型1.方法分为有参数和无参数，有返回值和无返回值两种无参数的方法参数列表为空无返回值的方法定义时的方法类型为void 方法的定义方法的定义的一般形式为：   修饰词  返回类型 方法名（参数列表">
+  <meta name="description" content="方法总结： 方法的作用1.方法实现封装特定的逻辑功能，方法之间互相独立，一个方法一般只完成一件独立的事，遵循单一职责原则。2.方法可以多次调用，避免大量代码重复，有利于复用，维护，团队协作开发。">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java方法">
 <meta property="og:url" content="http://yoursite.com/2017/07/18/方法/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="方法总结： 方法的作用1.方法实现封装特定的逻辑功能，方法之间互相独立，一个方法一般只完成一件独立的事，遵循单一职责原则。2.方法可以多次调用，避免大量代码重复，有利于复用，维护，团队协作开发。 方法的类型1.方法分为有参数和无参数，有返回值和无返回值两种无参数的方法参数列表为空无返回值的方法定义时的方法类型为void 方法的定义方法的定义的一般形式为：   修饰词  返回类型 方法名（参数列表">
-<meta property="og:updated_time" content="2017-07-20T12:12:47.880Z">
+<meta property="og:description" content="方法总结： 方法的作用1.方法实现封装特定的逻辑功能，方法之间互相独立，一个方法一般只完成一件独立的事，遵循单一职责原则。2.方法可以多次调用，避免大量代码重复，有利于复用，维护，团队协作开发。">
+<meta property="og:updated_time" content="2020-05-17T09:23:15.192Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java方法">
-<meta name="twitter:description" content="方法总结： 方法的作用1.方法实现封装特定的逻辑功能，方法之间互相独立，一个方法一般只完成一件独立的事，遵循单一职责原则。2.方法可以多次调用，避免大量代码重复，有利于复用，维护，团队协作开发。 方法的类型1.方法分为有参数和无参数，有返回值和无返回值两种无参数的方法参数列表为空无返回值的方法定义时的方法类型为void 方法的定义方法的定义的一般形式为：   修饰词  返回类型 方法名（参数列表">
+<meta name="twitter:description" content="方法总结： 方法的作用1.方法实现封装特定的逻辑功能，方法之间互相独立，一个方法一般只完成一件独立的事，遵循单一职责原则。2.方法可以多次调用，避免大量代码重复，有利于复用，维护，团队协作开发。">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
   
@@ -211,6 +211,7 @@ gitment.render('gitment')
       
         <script src="/assets/js/APlayer.min.js"> </script><p>方法总结：</p>
 <h1 id="方法的作用"><a href="#方法的作用" class="headerlink" title="方法的作用"></a>方法的作用</h1><p>1.方法实现封装特定的逻辑功能，方法之间互相独立，一个方法一般只完成一件独立的事，遵循单一职责原则。<br>2.方法可以多次调用，避免大量代码重复，有利于复用，维护，团队协作开发。</p>
+<a id="more"></a>
 <h1 id="方法的类型"><a href="#方法的类型" class="headerlink" title="方法的类型"></a>方法的类型</h1><p>1.方法分为有参数和无参数，有返回值和无返回值两种<br>无参数的方法参数列表为空<br>无返回值的方法定义时的方法类型为void</p>
 <h1 id="方法的定义"><a href="#方法的定义" class="headerlink" title="方法的定义"></a>方法的定义</h1><p>方法的定义的一般形式为：<br>   修饰词  返回类型 方法名（参数列表）{<br>        //方法体<br>     }<br>  例如：<br>    public static void eat() {<br>    //方法体<br>    }<br>    public static char[] generate(int level){<br>    //方法体<br>    }<br>public static 为修饰词，void和char[]分别表示没有返回值和返回一个char[]型的变量，（）圆括号里面的为参数，花括号里面为方法执行的方法体。</p>
 <h1 id="方法的调用"><a href="#方法的调用" class="headerlink" title="方法的调用"></a>方法的调用</h1><p>无返回值的：方法名（有参传参）；<br>有返回值的：数据类型 变量名=方法名（有参传参）；<br>如：<br>    <code>eat（）；</code><br>    <code>char[] b=generate(4);</code></p>
@@ -222,6 +223,7 @@ public class Guessing {
  /*猜字符小游戏
   * 系统随机生成数个字母，生成字母个数由玩家选择
   * 玩家随意输入几个字母
+
  * 系统判断正确的个数，并统计数据，计算得分
   * 猜字过程输入exit则退出游戏
  * 

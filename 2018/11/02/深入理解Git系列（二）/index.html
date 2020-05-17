@@ -17,7 +17,7 @@
 <meta property="og:description" content="前言上一篇介绍了Git的一些典型的使用方法，并且留下了很多疑问。这一篇来讨论一下Git的冠军架构组成和一些重要的概念来探讨Git的不同之处和原因。下面开始吧。">
 <meta property="og:image" content="https://i.imgur.com/TsdRXcR.png">
 <meta property="og:image" content="https://i.imgur.com/ZJbcUMq.png">
-<meta property="og:updated_time" content="2018-11-03T08:46:11.405Z">
+<meta property="og:updated_time" content="2020-05-17T09:33:59.037Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解Git系列（二）">
 <meta name="twitter:description" content="前言上一篇介绍了Git的一些典型的使用方法，并且留下了很多疑问。这一篇来讨论一下Git的冠军架构组成和一些重要的概念来探讨Git的不同之处和原因。下面开始吧。">
@@ -212,8 +212,7 @@ gitment.render('gitment')
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><!--read more-->
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇介绍了Git的一些典型的使用方法，并且留下了很多疑问。这一篇来讨论一下Git的冠军架构组成和一些重要的概念来探讨Git的不同之处和原因。下面开始吧。<br><br><a id="more"></a></p>
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇介绍了Git的一些典型的使用方法，并且留下了很多疑问。这一篇来讨论一下Git的冠军架构组成和一些重要的概念来探讨Git的不同之处和原因。下面开始吧。<br><br><a id="more"></a></p>
 <h2 id="Git基本概念"><a href="#Git基本概念" class="headerlink" title="Git基本概念"></a>Git基本概念</h2><h3 id="版本库"><a href="#版本库" class="headerlink" title="版本库"></a>版本库</h3><p>Git版本库(repository)只是一个简单的数据库，其中包含所有用来维护与管理项目的修订版本和历史信息。在Git中，跟大多数版本控制系统一样，一个版本库维护项目整个生命周期的完整副本。Git版本库不仅仅提供版本库中所有文件的完整副本，还提供版本库本身的副本。<br><br>Git在每个版本库里维护一组配置值。例如用户名和email地址，不想文件数据和他版本库的元数据，在把一个版本库克隆（clone）或者复制到另一个版本库的时候配置设置是不跟着转移的。相反，Git对每个网站，每个用户和每个版本库的配置和设置信息都进行管理与检查。<br><br>在版本库中，Git维护两个主要的数据结构：对象库(object store) 和索引(index)。所有这些版本库数据存放在工作目录根目录下一个名为<code>.git</code>的子目录中。<br><br>对象库在复制操作的时候能进行有效复制，这也是用来支持完全分布式VCS的一种技术。索引是暂时的信息，对版本库来说是私有的，并且可以在需要的时候按需求进行创建和修改。<br></p>
 <h3 id="Git对象类型"><a href="#Git对象类型" class="headerlink" title="Git对象类型"></a>Git对象类型</h3><p>对象库是Git版本库实现的心脏。它包含你的原始数据文件和所有的日志消息，锁着信息，日期，以及其他用来重建项目任意版本或分支的信息。<br><br>Git放在对象库里的对象只有4种类型：块(blob)、目录树(tree)、提交(commit)和标签(tag)。这4种原子对象构成Git高层数据结构的基础。<br></p>
 <ul>

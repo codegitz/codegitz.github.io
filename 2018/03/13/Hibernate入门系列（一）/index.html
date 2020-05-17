@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Hibernate入门系列（一） | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Hibernate入门系列（一）hibernate是什么 一个框架 一个 Java 领域的持久化框架 一个 ORM 框架  对象的持久化狭义的理解，“持久化”仅仅指把对象永久保存到数据库中广义的理解，“持久化”包括和数据库相关的各种操作：  保存：把对象永久保存到数据库中。 更新：更新数据库中对象(记录)的状态。 删除：从数据库中删除一个对象。 查询：根据特定的查询条件，把符合查询条件的一个或多">
+  <meta name="description" content="Hibernate入门系列（一）hibernate是什么 一个框架 一个 Java 领域的持久化框架 一个 ORM 框架">
 <meta name="keywords" content="Hibernate">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hibernate入门系列（一）">
 <meta property="og:url" content="http://yoursite.com/2018/03/13/Hibernate入门系列（一）/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="Hibernate入门系列（一）hibernate是什么 一个框架 一个 Java 领域的持久化框架 一个 ORM 框架  对象的持久化狭义的理解，“持久化”仅仅指把对象永久保存到数据库中广义的理解，“持久化”包括和数据库相关的各种操作：  保存：把对象永久保存到数据库中。 更新：更新数据库中对象(记录)的状态。 删除：从数据库中删除一个对象。 查询：根据特定的查询条件，把符合查询条件的一个或多">
+<meta property="og:description" content="Hibernate入门系列（一）hibernate是什么 一个框架 一个 Java 领域的持久化框架 一个 ORM 框架">
 <meta property="og:image" content="https://i.imgur.com/qq9Ji03.png">
 <meta property="og:image" content="https://i.imgur.com/TRA9dZh.png">
 <meta property="og:image" content="https://i.imgur.com/lKGl7HC.png">
 <meta property="og:image" content="https://i.imgur.com/58SJbmk.png">
-<meta property="og:updated_time" content="2018-09-27T14:37:23.484Z">
+<meta property="og:updated_time" content="2020-05-17T09:44:34.828Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hibernate入门系列（一）">
-<meta name="twitter:description" content="Hibernate入门系列（一）hibernate是什么 一个框架 一个 Java 领域的持久化框架 一个 ORM 框架  对象的持久化狭义的理解，“持久化”仅仅指把对象永久保存到数据库中广义的理解，“持久化”包括和数据库相关的各种操作：  保存：把对象永久保存到数据库中。 更新：更新数据库中对象(记录)的状态。 删除：从数据库中删除一个对象。 查询：根据特定的查询条件，把符合查询条件的一个或多">
+<meta name="twitter:description" content="Hibernate入门系列（一）hibernate是什么 一个框架 一个 Java 领域的持久化框架 一个 ORM 框架">
 <meta name="twitter:image" content="https://i.imgur.com/qq9Ji03.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -219,6 +219,7 @@ gitment.render('gitment')
 <li>一个 Java 领域的持久化框架</li>
 <li>一个 ORM 框架</li>
 </ul>
+<a id="more"></a>
 <h3 id="对象的持久化"><a href="#对象的持久化" class="headerlink" title="对象的持久化"></a>对象的持久化</h3><p>狭义的理解，“持久化”仅仅指把对象永久保存到数据库中<br>广义的理解，“持久化”包括和数据库相关的各种操作：</p>
 <ul>
 <li>保存：把对象永久保存到数据库中。</li>
@@ -324,10 +325,8 @@ public class News {
     public String toString() {
         return &quot;News [Id=&quot; + Id + &quot;, title=&quot; + title + &quot;, author=&quot; + author + &quot;, date=&quot; + date + &quot;]&quot;;
     }
-
-
-}
-</code></pre><h3 id="生成对应的对象关系映射-hbm-xml文件"><a href="#生成对应的对象关系映射-hbm-xml文件" class="headerlink" title="生成对应的对象关系映射.hbm.xml文件"></a>生成对应的对象关系映射.hbm.xml文件</h3><pre><code>&lt; ?xml version=&quot;1.0&quot;?&gt;
+</code></pre><p>​<br>    }</p>
+<h3 id="生成对应的对象关系映射-hbm-xml文件"><a href="#生成对应的对象关系映射-hbm-xml文件" class="headerlink" title="生成对应的对象关系映射.hbm.xml文件"></a>生成对应的对象关系映射.hbm.xml文件</h3><pre><code>&lt; ?xml version=&quot;1.0&quot;?&gt;
 &lt;!DOCTYPE hibernate-mapping PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;
 &quot;http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd&quot;&gt;
 &lt;!-- Generated 2018-7-13 21:10:20 by Hibernate Tools 3.5.0.Final --&gt;
@@ -408,17 +407,8 @@ mysql&gt; desc news;
 | DATE   | date         | YES  |     | NULL    |                |
 +--------+--------------+------+-----+---------+----------------+
 4 rows in set (0.00 sec)
-
-
-mysql&gt; select * from news;
-+----+-------+--------+------------+
-| ID | TITLE | AUTHOR | DATE       |
-+----+-------+--------+------------+
-|  1 | Java  | haha   | 2018-07-13 |
-+----+-------+--------+------------+
-1 row in set (0.00 sec)
-
-mysql&gt;
+</code></pre><p>​<br>    mysql&gt; select * from news;<br>    +—-+——-+——–+————+<br>    | ID | TITLE | AUTHOR | DATE       |<br>    +—-+——-+——–+————+<br>    |  1 | Java  | haha   | 2018-07-13 |<br>    +—-+——-+——–+————+<br>    1 row in set (0.00 sec)</p>
+<pre><code>mysql&gt;
 </code></pre><h2 id="hibernate的helloworld配置简介"><a href="#hibernate的helloworld配置简介" class="headerlink" title="hibernate的helloworld配置简介"></a>hibernate的helloworld配置简介</h2><h3 id="hibernate环境的准备"><a href="#hibernate环境的准备" class="headerlink" title="hibernate环境的准备"></a>hibernate环境的准备</h3><p>导入 Hibernate 必须的 jar 包:</p>
 <pre><code>      &lt;dependency&gt;
               &lt;groupId&gt;antlr&lt;/groupId&gt;
@@ -608,7 +598,6 @@ mysql&gt;
 </ul>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>hibernate的helloworld很简单，很容易上手。以上就是hibernate的简单的操作和介绍，主要的问题可能会出在数据库方言和数据库的映射关系上。<br>附录：<br>方言大全</p>
 <div class="con editor-preview-side"><p>RDBMS 方言</p><table><tbody><tr style="line-height:normal;"><td><br></td><td><br></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">DB2</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.DB2Dialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">DB2 AS/400</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.DB2400Dialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">DB2 OS390</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.DB2390Dialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">PostgreSQL</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.PostgreSQLDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">MySQL</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.MySQLDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">MySQL with InnoDB</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.MySQLInnoDBDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">MySQL with MyISAM</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.MySQLMyISAMDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Oracle (any version)</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.OracleDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Oracle 9i/10g</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.Oracle9Dialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Sybase</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.SybaseDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Sybase Anywhere</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.SybaseAnywhereDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Microsoft SQL Server</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.SQLServerDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">SAP DB</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.SAPDBDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Informix</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.InformixDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">HypersonicSQL</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.HSQLDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Ingres</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.IngresDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Progress</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.ProgressDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Mckoi SQL</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.MckoiDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Interbase</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.InterbaseDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Pointbase</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.PointbaseDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">FrontBase</span></td><td style="font-size:12px;line-height:normal;"><tt style="line-height:normal;">org.hibernate.dialect.FrontbaseDialect</tt></td></tr><tr style="line-height:normal;"><td style="font-size:12px;line-height:normal;"><span style="font-size:small;">Firebird</span></td><td style="font-size:12px;line-height:normal;"><p><tt style="line-height:normal;">org.hibernate.dialect.FirebirdDialect</tt></p></td></tr></tbody></table><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;">Access数据库的方言包：<a href="http://www.hxtt.com/test/hibernate.zip" target="_blank" rel="external">http://www.hxtt.com/test/hibernate.zip</a><br>路径：com.hxtt.support.hibernate.HxttAccessDialect</p><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;">&nbsp;</p><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;"><span style="font-size:x-small;">例子：&nbsp;&nbsp;&nbsp;&nbsp;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.connection.username” value=”sa”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.connection.password” value=”sa”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.connection.url” value=”jdbc:sqlserver://localhost:1433;databaseName=test”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.connection.driver_class” value=”com.microsoft.sqlserver.jdbc.SQLServerDriver”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.cache.provider_class” value=”org.hibernate.cache.NoCacheProvider”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”hibernate.dialect” value=”org.hibernate.dialect.SQLServerDialect”/&gt;</span></p><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;"><span style="font-size:x-small;color:rgb(255,0,0);line-height:normal;">&lt;property name=”hibernate.dialect” value=”org.hibernate.dialect.SQLServerDialect”/&gt;</span></p><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;"><span style="font-size:x-small;">如果是Toplink则添加：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p><p style="margin-top:0px;margin-bottom:0px;padding:0px;line-height:normal;"><span style="font-size:x-small;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”toplink.jdbc.user” value=”sa”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”toplink.jdbc.password” value=”sa”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”toplink.jdbc.url” value=”jdbc:mysql://localhost:3306/test”/&gt;<br style="line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”toplink.jdbc.driver” value=”com.mysql.jdbc.Driver”/&gt;<br style="line-height:normal;"><span style="color:rgb(255,0,0);line-height:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=”toplink.plafrom.class.name” value=”oracle.toplink.essentials.platform.database.HSQLPlatform” /&gt;</span></span></p><p><br></p><p>方言转自:<a href="http://qsfwy.iteye.com/blog/471858" target="_blank">http://qsfwy.iteye.com/blog/471858</a>&nbsp;</p></div>
-
 
 
 

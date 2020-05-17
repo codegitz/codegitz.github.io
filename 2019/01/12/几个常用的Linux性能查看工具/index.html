@@ -8,22 +8,22 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>几个常用的Linux性能查看工具 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言在Linux的使用中，经常需要查看服务器的内存使用状况，这里记录几个好用的工具。 工具iftopiftop可测量通过每一个套接字连接传输的数据。iftop使用pcap库来捕获进出网络适配器的数据包，然后汇总数据包大小和数量，搞清楚总的带宽使用情况。 虽然iftop报告每个连接所使用的带宽，但它无法报告参与某个套按字连接的进程名称/编号（ID）。不过由于基于pcap库，iftop能够过滤流量，并">
+  <meta name="description" content="前言在Linux的使用中，经常需要查看服务器的内存使用状况，这里记录几个好用的工具。 工具iftopiftop可测量通过每一个套接字连接传输的数据。iftop使用pcap库来捕获进出网络适配器的数据包，然后汇总数据包大小和数量，搞清楚总的带宽使用情况。">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="几个常用的Linux性能查看工具">
 <meta property="og:url" content="http://yoursite.com/2019/01/12/几个常用的Linux性能查看工具/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="前言在Linux的使用中，经常需要查看服务器的内存使用状况，这里记录几个好用的工具。 工具iftopiftop可测量通过每一个套接字连接传输的数据。iftop使用pcap库来捕获进出网络适配器的数据包，然后汇总数据包大小和数量，搞清楚总的带宽使用情况。 虽然iftop报告每个连接所使用的带宽，但它无法报告参与某个套按字连接的进程名称/编号（ID）。不过由于基于pcap库，iftop能够过滤流量，并">
+<meta property="og:description" content="前言在Linux的使用中，经常需要查看服务器的内存使用状况，这里记录几个好用的工具。 工具iftopiftop可测量通过每一个套接字连接传输的数据。iftop使用pcap库来捕获进出网络适配器的数据包，然后汇总数据包大小和数量，搞清楚总的带宽使用情况。">
 <meta property="og:image" content="https://i.imgur.com/osagmXw.png">
 <meta property="og:image" content="https://i.imgur.com/ivujT2t.png">
 <meta property="og:image" content="https://i.imgur.com/w9xslhL.png">
 <meta property="og:image" content="https://i.imgur.com/kU1p52M.png">
 <meta property="og:image" content="https://i.imgur.com/rleZNZj.png">
-<meta property="og:updated_time" content="2019-01-12T15:11:56.495Z">
+<meta property="og:updated_time" content="2020-05-17T09:27:34.615Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="几个常用的Linux性能查看工具">
-<meta name="twitter:description" content="前言在Linux的使用中，经常需要查看服务器的内存使用状况，这里记录几个好用的工具。 工具iftopiftop可测量通过每一个套接字连接传输的数据。iftop使用pcap库来捕获进出网络适配器的数据包，然后汇总数据包大小和数量，搞清楚总的带宽使用情况。 虽然iftop报告每个连接所使用的带宽，但它无法报告参与某个套按字连接的进程名称/编号（ID）。不过由于基于pcap库，iftop能够过滤流量，并">
+<meta name="twitter:description" content="前言在Linux的使用中，经常需要查看服务器的内存使用状况，这里记录几个好用的工具。 工具iftopiftop可测量通过每一个套接字连接传输的数据。iftop使用pcap库来捕获进出网络适配器的数据包，然后汇总数据包大小和数量，搞清楚总的带宽使用情况。">
 <meta name="twitter:image" content="https://i.imgur.com/osagmXw.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -217,10 +217,11 @@ gitment.render('gitment')
       
         <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在Linux的使用中，经常需要查看服务器的内存使用状况，这里记录几个好用的工具。<br></p>
 <h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><h3 id="iftop"><a href="#iftop" class="headerlink" title="iftop"></a>iftop</h3><p>iftop可测量通过每一个套接字连接传输的数据。iftop使用pcap库来捕获进出网络适配器的数据包，然后汇总数据包大小和数量，搞清楚总的带宽使用情况。<br></p>
+<a id="more"></a>
 <p>虽然iftop报告每个连接所使用的带宽，但它无法报告参与某个套按字连接的进程名称/编号（ID）。不过由于基于pcap库，iftop能够过滤流量，并报告由过滤器指定的所选定主机连接的带宽使用情况。<br></p>
 <pre><code>$ sudo iftop -n 
 </code></pre><p>n选项可以防止iftop将IP地址解析成主机名，解析本身就会带来额外的网络流量。<br></p>
-<p><img src="https://i.imgur.com/osagmXw.png" alt=""><br><a id="more"></a></p>
+<p><img src="https://i.imgur.com/osagmXw.png" alt=""><br><!--more--></p>
 <h2 id="nload"><a href="#nload" class="headerlink" title="nload"></a>nload</h2><p>nload是一个命令行工具，让用户可以分开来监控入站流量和出站流量。它还可以绘制图表以显示入站流量和出站流量，视图比例可以调整。用起来很简单，不支持许多选项。<br></p>
 <pre><code>#安装
 $ yum install nload

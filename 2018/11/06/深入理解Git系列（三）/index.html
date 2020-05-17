@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>深入理解Git系列（三） | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言前面的一些概念的东西写的好像过于详细，下面的介绍将从简出发。这篇文章来说一下重要的分支。 分支分支是软件项目中启动一条单独的开发线的基本方法。分支是从一种统一的、原始的状态分离出来的，使开发功能在多个方向上同时进行，并可能产生项目的不同版本。通常情况下分支会被调解与其它分支合并，来重聚不同的力量。 Git允许很多分支，因此同一个版本库中可以有许多不同的开发现。这也是处于不同地方的工作者可以对">
+  <meta name="description" content="前言前面的一些概念的东西写的好像过于详细，下面的介绍将从简出发。这篇文章来说一下重要的分支。 分支分支是软件项目中启动一条单独的开发线的基本方法。分支是从一种统一的、原始的状态分离出来的，使开发功能在多个方向上同时进行，并可能产生项目的不同版本。通常情况下分支会被调解与其它分支合并，来重聚不同的力量。">
 <meta name="keywords" content="Git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入理解Git系列（三）">
 <meta property="og:url" content="http://yoursite.com/2018/11/06/深入理解Git系列（三）/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="前言前面的一些概念的东西写的好像过于详细，下面的介绍将从简出发。这篇文章来说一下重要的分支。 分支分支是软件项目中启动一条单独的开发线的基本方法。分支是从一种统一的、原始的状态分离出来的，使开发功能在多个方向上同时进行，并可能产生项目的不同版本。通常情况下分支会被调解与其它分支合并，来重聚不同的力量。 Git允许很多分支，因此同一个版本库中可以有许多不同的开发现。这也是处于不同地方的工作者可以对">
-<meta property="og:updated_time" content="2018-11-06T12:46:07.465Z">
+<meta property="og:description" content="前言前面的一些概念的东西写的好像过于详细，下面的介绍将从简出发。这篇文章来说一下重要的分支。 分支分支是软件项目中启动一条单独的开发线的基本方法。分支是从一种统一的、原始的状态分离出来的，使开发功能在多个方向上同时进行，并可能产生项目的不同版本。通常情况下分支会被调解与其它分支合并，来重聚不同的力量。">
+<meta property="og:updated_time" content="2020-05-17T09:34:09.611Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解Git系列（三）">
-<meta name="twitter:description" content="前言前面的一些概念的东西写的好像过于详细，下面的介绍将从简出发。这篇文章来说一下重要的分支。 分支分支是软件项目中启动一条单独的开发线的基本方法。分支是从一种统一的、原始的状态分离出来的，使开发功能在多个方向上同时进行，并可能产生项目的不同版本。通常情况下分支会被调解与其它分支合并，来重聚不同的力量。 Git允许很多分支，因此同一个版本库中可以有许多不同的开发现。这也是处于不同地方的工作者可以对">
+<meta name="twitter:description" content="前言前面的一些概念的东西写的好像过于详细，下面的介绍将从简出发。这篇文章来说一下重要的分支。 分支分支是软件项目中启动一条单独的开发线的基本方法。分支是从一种统一的、原始的状态分离出来的，使开发功能在多个方向上同时进行，并可能产生项目的不同版本。通常情况下分支会被调解与其它分支合并，来重聚不同的力量。">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
   
@@ -211,6 +211,7 @@ gitment.render('gitment')
       
         <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前面的一些概念的东西写的好像过于详细，下面的介绍将从简出发。这篇文章来说一下重要的分支。</p>
 <h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><p>分支是软件项目中启动一条单独的开发线的基本方法。分支是从一种统一的、原始的状态分离出来的，使开发功能在多个方向上同时进行，并可能产生项目的不同版本。通常情况下分支会被调解与其它分支合并，来重聚不同的力量。<br></p>
+<a id="more"></a>
 <p>Git允许很多分支，因此同一个版本库中可以有许多不同的开发现。这也是处于不同地方的工作者可以对同一个项目进行开发的方法，每个单独修复的bug或者功能都可以是一个新的分支，这样的处理可以让庞大的项目显得更加清晰，回溯历史版本的时候也可以更容易找出问题的所在。<br></p>
 <h3 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h3><p>新的分支基于版本库中现有的提交，由你来决定哪次提交作为分支的开始。Git支持任意复杂的分支结构，包括分支的分支和从同一个提交分叉出的多个给定的分支名可以在其版本库的整个生命周期里多次添加或删除。<br></p>
 <p>一旦确定了从哪个提交开始分支，只需要使用<code>git branch</code>命令，例如为了解决报告问题#1，要从当前分支的HEAD创建一个新的分支点，可以使用</p>
@@ -238,12 +239,8 @@ gitment.render('gitment')
 * master
   prs/prs-1
   prs/prs-2
-
-
-$ git checkout prs/prs-1
-Switched to branch &#39;prs/prs-1&#39;
-
-$ git branch
+</code></pre><p>​<br>    $ git checkout prs/prs-1<br>    Switched to branch ‘prs/prs-1’</p>
+<pre><code>$ git branch
   master
 * prs/prs-1
   prs/prs-2

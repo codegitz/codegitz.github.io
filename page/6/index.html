@@ -195,8 +195,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!--read more-->
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇介绍了Git的一些典型的使用方法，并且留下了很多疑问。这一篇来讨论一下Git的冠军架构组成和一些重要的概念来探讨Git的不同之处和原因。下面开始吧。<br><br>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇介绍了Git的一些典型的使用方法，并且留下了很多疑问。这一篇来讨论一下Git的冠军架构组成和一些重要的概念来探讨Git的不同之处和原因。下面开始吧。<br><br>
         
           <a class="article-more-a" href="/2018/11/02/深入理解Git系列（二）/#more">read more >></a>
         
@@ -363,8 +362,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Gitlab简介"><a href="#Gitlab简介" class="headerlink" title="Gitlab简介"></a>Gitlab简介</h2><!-- read more-->
-<p><a href="https://about.gitlab.com/" target="_blank" rel="external">GitLab</a> 是一个开源的版本管理系统，提供了类似于 GitHub 的源代码浏览，管理缺陷和注释等功能，你可以将代码免费托管到 GitLab.com，而且不限项目数量和成员数。最吸引人的一点是，可以在自己的服务器上搭建 GitLab CE （社区免费版）版本，方便内部团队协作开发和代码管理。<br><br>最近需要用到Gitlab管理项目，所以手动搭建了一个Gitlab平台。<br><br>环境和资源准备：<br></p>
+        <h2 id="Gitlab简介"><a href="#Gitlab简介" class="headerlink" title="Gitlab简介"></a>Gitlab简介</h2><p><a href="https://about.gitlab.com/" target="_blank" rel="external">GitLab</a> 是一个开源的版本管理系统，提供了类似于 GitHub 的源代码浏览，管理缺陷和注释等功能，你可以将代码免费托管到 GitLab.com，而且不限项目数量和成员数。最吸引人的一点是，可以在自己的服务器上搭建 GitLab CE （社区免费版）版本，方便内部团队协作开发和代码管理。<br><br>最近需要用到Gitlab管理项目，所以手动搭建了一个Gitlab平台。<br><br>环境和资源准备：<br></p>
 <ul>
 <li>阿里云CentOS 6.4服务器<br></li>
 <li>gitlab-ce-10.2.3-ce.0.el6.x86_64.rpm<br>
@@ -450,8 +448,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="什么是solr"><a href="#什么是solr" class="headerlink" title="什么是solr"></a>什么是solr</h2><!-- read more-->
-<p>Solr 是Apache下的一个顶级开源项目，采用Java开发，它是基于Lucene的全文搜索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化。其主要功能包括全文检索、命中标示、分面搜索、动态聚类、数据库集成，以及富文本（如Word、PDF）的处理。Solr是高度可扩展的，并提供了分布式搜索和索引复制。Solr是最流行的企业级搜索引擎，Solr 4还增加了NoSQL支持。 <br><br>Solr可以独立运行，运行在Jetty、Tomcat等这些Servlet容器中，Solr 索引的实现方法很简单，用 POST 方法向 Solr 服务器发送一个描述 Field 及其内容的 XML 文档，Solr根据xml文档添加、删除、更新索引 。Solr 搜索只需要发送 HTTP GET 请求，然后对 Solr 返回Xml、json等格式的查询结果进行解析，组织页面布局。Solr不提供构建UI的功能，Solr提供了一个管理界面，通过管理界面可以查询Solr的配置和运行情况。<br><br>
+        <h2 id="什么是solr"><a href="#什么是solr" class="headerlink" title="什么是solr"></a>什么是solr</h2><p>Solr 是Apache下的一个顶级开源项目，采用Java开发，它是基于Lucene的全文搜索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化。其主要功能包括全文检索、命中标示、分面搜索、动态聚类、数据库集成，以及富文本（如Word、PDF）的处理。Solr是高度可扩展的，并提供了分布式搜索和索引复制。Solr是最流行的企业级搜索引擎，Solr 4还增加了NoSQL支持。 <br></p>
         
           <a class="article-more-a" href="/2018/10/13/搭建solr服务器/#more">read more >></a>
         
@@ -534,13 +531,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- read more-->
-<h2 id="redis集群"><a href="#redis集群" class="headerlink" title="redis集群"></a>redis集群</h2><h3 id="redis集群简介"><a href="#redis集群简介" class="headerlink" title="redis集群简介"></a>redis集群简介</h3><p>Redis 集群是一个提供在多个Redis间节点间共享数据的程序集。<br><br>Redis集群并不支持处理多个keys的命令,因为这需要在不同的节点间移动数据,从而达不到像Redis那样的性能,在高负载的情况下可能会导致不可预料的错误.<br><br>Redis 集群通过分区来提供一定程度的可用性,在实际环境中当某个节点宕机或者不可达的情况下继续处理命令. Redis 集群的优势:<br></p>
-<ul>
-<li>自动分割数据到不同的节点上。<br></li>
-<li>整个集群的部分节点失败或者不可达的情况下能够继续处理命令。<br></li>
-</ul>
-<p><img src="https://i.imgur.com/1ysbV8v.png" alt="集群架构模型"><br>
+        <h2 id="redis集群"><a href="#redis集群" class="headerlink" title="redis集群"></a>redis集群</h2><h3 id="redis集群简介"><a href="#redis集群简介" class="headerlink" title="redis集群简介"></a>redis集群简介</h3><p>Redis 集群是一个提供在多个Redis间节点间共享数据的程序集。<br><br>Redis集群并不支持处理多个keys的命令,因为这需要在不同的节点间移动数据,从而达不到像Redis那样的性能,在高负载的情况下可能会导致不可预料的错误.<br></p>
         
           <a class="article-more-a" href="/2018/10/11/搭建redis集群/#more">read more >></a>
         

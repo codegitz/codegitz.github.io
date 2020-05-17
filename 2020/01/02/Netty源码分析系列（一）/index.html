@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Netty源码分析系列（一） | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Netty服务端启动 netty版本为4.1.6.Final  本文可以带着两个问题来看1.服务端的socket在哪里初始化？2.在哪里accept连接？ 启动过程1.创建服务端channel2.初始化服务端channel3.注册selector4.端口绑定 创建服务端channel调用过程 代码调用过程 用户代码入口bind() try {             ServerBootstrap">
+  <meta name="description" content="Netty服务端启动 netty版本为4.1.6.Final  本文可以带着两个问题来看1.服务端的socket在哪里初始化？2.在哪里accept连接？">
 <meta name="keywords" content="Netty">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Netty源码分析系列（一）">
 <meta property="og:url" content="http://yoursite.com/2020/01/02/Netty源码分析系列（一）/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="Netty服务端启动 netty版本为4.1.6.Final  本文可以带着两个问题来看1.服务端的socket在哪里初始化？2.在哪里accept连接？ 启动过程1.创建服务端channel2.初始化服务端channel3.注册selector4.端口绑定 创建服务端channel调用过程 代码调用过程 用户代码入口bind() try {             ServerBootstrap">
+<meta property="og:description" content="Netty服务端启动 netty版本为4.1.6.Final  本文可以带着两个问题来看1.服务端的socket在哪里初始化？2.在哪里accept连接？">
 <meta property="og:image" content="https://i.imgur.com/jwvLY74.png">
 <meta property="og:image" content="https://i.imgur.com/NqSHudK.png">
 <meta property="og:image" content="https://i.imgur.com/5sxQArS.png">
@@ -22,10 +22,10 @@
 <meta property="og:image" content="c:/Users/codegitz/Documents/ShareX/Screenshots/2019-12/idea64_Ac0IdDGB3D.png">
 <meta property="og:image" content="https://i.imgur.com/rb5Kg6N.png">
 <meta property="og:image" content="https://i.imgur.com/pS0P4bl.png">
-<meta property="og:updated_time" content="2020-02-23T15:14:15.801Z">
+<meta property="og:updated_time" content="2020-05-17T09:21:27.702Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Netty源码分析系列（一）">
-<meta name="twitter:description" content="Netty服务端启动 netty版本为4.1.6.Final  本文可以带着两个问题来看1.服务端的socket在哪里初始化？2.在哪里accept连接？ 启动过程1.创建服务端channel2.初始化服务端channel3.注册selector4.端口绑定 创建服务端channel调用过程 代码调用过程 用户代码入口bind() try {             ServerBootstrap">
+<meta name="twitter:description" content="Netty服务端启动 netty版本为4.1.6.Final  本文可以带着两个问题来看1.服务端的socket在哪里初始化？2.在哪里accept连接？">
 <meta name="twitter:image" content="https://i.imgur.com/jwvLY74.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -221,6 +221,7 @@ gitment.render('gitment')
 <p><u>netty版本为<code>4.1.6.Final</code></u></p>
 </blockquote>
 <p>本文可以带着两个问题来看<br>1.服务端的socket在哪里初始化？<br>2.在哪里accept连接？</p>
+<a id="more"></a>
 <h2 id="启动过程"><a href="#启动过程" class="headerlink" title="启动过程"></a>启动过程</h2><p>1.创建服务端channel<br>2.初始化服务端channel<br>3.注册selector<br>4.端口绑定</p>
 <h3 id="创建服务端channel"><a href="#创建服务端channel" class="headerlink" title="创建服务端channel"></a>创建服务端channel</h3><p><strong>调用过程</strong></p>
 <p><img src="https://i.imgur.com/jwvLY74.png" style="zoom:50%;"><br>代码调用过程</p>
@@ -243,7 +244,6 @@ gitment.render('gitment')
 
             ChannelFuture f = b.bind(8888).sync();//入口
 </code></pre>
-<a id="more"></a>
 <p>bind()方法</p>
 <pre><code class="java">    /**
      * Create a new {@link Channel} and bind it.

@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>数据结构总览 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、二叉树1、二叉树的存储结构1.1 二叉链表存储结构typedef struct BTNode{     char data;         struct BTNode *lchild;     struct BTNode *rchild; }  2、 二叉树的遍历算法2.1 先序遍历void preorder(BTNode *P) {     if(p!==NULL)     {">
+  <meta name="description" content="一、二叉树1、二叉树的存储结构1.1 二叉链表存储结构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构总览">
 <meta property="og:url" content="http://yoursite.com/2019/10/23/数据结构总览/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="一、二叉树1、二叉树的存储结构1.1 二叉链表存储结构typedef struct BTNode{     char data;         struct BTNode *lchild;     struct BTNode *rchild; }  2、 二叉树的遍历算法2.1 先序遍历void preorder(BTNode *P) {     if(p!==NULL)     {">
-<meta property="og:updated_time" content="2020-02-23T15:15:54.758Z">
+<meta property="og:description" content="一、二叉树1、二叉树的存储结构1.1 二叉链表存储结构">
+<meta property="og:updated_time" content="2020-05-17T09:36:17.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构总览">
-<meta name="twitter:description" content="一、二叉树1、二叉树的存储结构1.1 二叉链表存储结构typedef struct BTNode{     char data;         struct BTNode *lchild;     struct BTNode *rchild; }  2、 二叉树的遍历算法2.1 先序遍历void preorder(BTNode *P) {     if(p!==NULL)     {">
+<meta name="twitter:description" content="一、二叉树1、二叉树的存储结构1.1 二叉链表存储结构">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
   
@@ -208,7 +208,8 @@ gitment.render('gitment')
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="一、二叉树"><a href="#一、二叉树" class="headerlink" title="一、二叉树"></a>一、二叉树</h2><h3 id="1、二叉树的存储结构"><a href="#1、二叉树的存储结构" class="headerlink" title="1、二叉树的存储结构"></a>1、二叉树的存储结构</h3><h4 id="1-1-二叉链表存储结构"><a href="#1-1-二叉链表存储结构" class="headerlink" title="1.1 二叉链表存储结构"></a>1.1 二叉链表存储结构</h4><pre><code class="c++">typedef struct BTNode{
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="一、二叉树"><a href="#一、二叉树" class="headerlink" title="一、二叉树"></a>一、二叉树</h2><h3 id="1、二叉树的存储结构"><a href="#1、二叉树的存储结构" class="headerlink" title="1、二叉树的存储结构"></a>1、二叉树的存储结构</h3><h4 id="1-1-二叉链表存储结构"><a href="#1-1-二叉链表存储结构" class="headerlink" title="1.1 二叉链表存储结构"></a>1.1 二叉链表存储结构</h4><a id="more"></a>
+<pre><code class="c++">typedef struct BTNode{
     char data;    
     struct BTNode *lchild;
     struct BTNode *rchild;
@@ -234,7 +235,7 @@ gitment.render('gitment')
     }
 }
 </code></pre>
-<a id="more"></a>
+<!-- more -->
 <h4 id="2-3-应用"><a href="#2-3-应用" class="headerlink" title="2.3 应用"></a>2.3 应用</h4><p><strong>1、计算 A*B的表达式，该表达式存储在二叉树中</strong></p>
 <pre><code class="c++">int comp(BTNode *p)
 {

@@ -8,23 +8,23 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Netty源码分析系列（二） | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="NioEventLoop netty版本为4.1.6.Final  在上一节服务端的启动中，我们了解到一个重要的组件NioEventLoop，本章来分析一下这个组件。 本文可以带着三个问题来看1.默认情况下，Netty服务端起多少线程？何时启动？ 2.Netty是如何解决jdk空轮询的bug的？ 3.Netty是如何保证异步串行无锁化？ NioEventLoop分析三步走1.NioEventLoo">
+  <meta name="description" content="NioEventLoop netty版本为4.1.6.Final  在上一节服务端的启动中，我们了解到一个重要的组件NioEventLoop，本章来分析一下这个组件。 本文可以带着三个问题来看1.默认情况下，Netty服务端起多少线程？何时启动？ 2.Netty是如何解决jdk空轮询的bug的？ 3.Netty是如何保证异步串行无锁化？">
 <meta name="keywords" content="Netty">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Netty源码分析系列（二）">
 <meta property="og:url" content="http://yoursite.com/2020/01/10/Netty源码分析系列（二）/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="NioEventLoop netty版本为4.1.6.Final  在上一节服务端的启动中，我们了解到一个重要的组件NioEventLoop，本章来分析一下这个组件。 本文可以带着三个问题来看1.默认情况下，Netty服务端起多少线程？何时启动？ 2.Netty是如何解决jdk空轮询的bug的？ 3.Netty是如何保证异步串行无锁化？ NioEventLoop分析三步走1.NioEventLoo">
+<meta property="og:description" content="NioEventLoop netty版本为4.1.6.Final  在上一节服务端的启动中，我们了解到一个重要的组件NioEventLoop，本章来分析一下这个组件。 本文可以带着三个问题来看1.默认情况下，Netty服务端起多少线程？何时启动？ 2.Netty是如何解决jdk空轮询的bug的？ 3.Netty是如何保证异步串行无锁化？">
 <meta property="og:image" content="https://i.imgur.com/esTHOys.png">
 <meta property="og:image" content="https://i.imgur.com/KFldMBM.png">
 <meta property="og:image" content="https://i.imgur.com/IYXpp1e.png">
 <meta property="og:image" content="https://i.imgur.com/ESuVFY2.png">
 <meta property="og:image" content="https://i.imgur.com/WPQYHld.png">
 <meta property="og:image" content="https://i.imgur.com/7Pf3a76.png">
-<meta property="og:updated_time" content="2020-02-23T15:14:01.322Z">
+<meta property="og:updated_time" content="2020-05-17T09:20:58.600Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Netty源码分析系列（二）">
-<meta name="twitter:description" content="NioEventLoop netty版本为4.1.6.Final  在上一节服务端的启动中，我们了解到一个重要的组件NioEventLoop，本章来分析一下这个组件。 本文可以带着三个问题来看1.默认情况下，Netty服务端起多少线程？何时启动？ 2.Netty是如何解决jdk空轮询的bug的？ 3.Netty是如何保证异步串行无锁化？ NioEventLoop分析三步走1.NioEventLoo">
+<meta name="twitter:description" content="NioEventLoop netty版本为4.1.6.Final  在上一节服务端的启动中，我们了解到一个重要的组件NioEventLoop，本章来分析一下这个组件。 本文可以带着三个问题来看1.默认情况下，Netty服务端起多少线程？何时启动？ 2.Netty是如何解决jdk空轮询的bug的？ 3.Netty是如何保证异步串行无锁化？">
 <meta name="twitter:image" content="https://i.imgur.com/esTHOys.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -223,6 +223,7 @@ gitment.render('gitment')
 <p>本文可以带着三个问题来看<br>1.默认情况下，Netty服务端起多少线程？何时启动？</p>
 <p>2.Netty是如何解决jdk空轮询的bug的？</p>
 <p>3.Netty是如何保证异步串行无锁化？</p>
+<a id="more"></a>
 <h2 id="NioEventLoop分析三步走"><a href="#NioEventLoop分析三步走" class="headerlink" title="NioEventLoop分析三步走"></a>NioEventLoop分析三步走</h2><p>1.NioEventLoop创建</p>
 <ul>
 <li>如何创建的，在创建过程中做了哪些事情</li>
@@ -249,7 +250,6 @@ gitment.render('gitment')
         this(nThreads, (Executor) null);
     }
 </code></pre>
-<a id="more"></a>
 <pre><code class="java">    public NioEventLoopGroup(int nThreads, Executor executor) {
         this(nThreads, executor, SelectorProvider.provider());
     }

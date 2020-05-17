@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>ARTHAS的简单使用 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言Arthas是什么？Arthas是阿里开源的在线诊断工具。Arthas 是基于 Greys 进行二次开发的全新在线诊断工具，利用Java6的Instrumentation特性，动态增强你所指定的类，获取你想要到的信息, 采用命令行交互模式，同时提供丰富的 Tab 自动补全功能，让你在定位、分析诊断问题时看每一个操作都看起来是那么的简明。Arthas解决的痛点：  这个类从哪个 jar 包加载">
+  <meta name="description" content="前言Arthas是什么？Arthas是阿里开源的在线诊断工具。Arthas 是基于 Greys 进行二次开发的全新在线诊断工具，利用Java6的Instrumentation特性，动态增强你所指定的类，获取你想要到的信息, 采用命令行交互模式，同时提供丰富的 Tab 自动补全功能，让你在定位、分析诊断问题时看每一个操作都看起来是那么的简明。Arthas解决的痛点：">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ARTHAS的简单使用">
 <meta property="og:url" content="http://yoursite.com/2019/01/19/ARTHAS的简单使用/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="前言Arthas是什么？Arthas是阿里开源的在线诊断工具。Arthas 是基于 Greys 进行二次开发的全新在线诊断工具，利用Java6的Instrumentation特性，动态增强你所指定的类，获取你想要到的信息, 采用命令行交互模式，同时提供丰富的 Tab 自动补全功能，让你在定位、分析诊断问题时看每一个操作都看起来是那么的简明。Arthas解决的痛点：  这个类从哪个 jar 包加载">
+<meta property="og:description" content="前言Arthas是什么？Arthas是阿里开源的在线诊断工具。Arthas 是基于 Greys 进行二次开发的全新在线诊断工具，利用Java6的Instrumentation特性，动态增强你所指定的类，获取你想要到的信息, 采用命令行交互模式，同时提供丰富的 Tab 自动补全功能，让你在定位、分析诊断问题时看每一个操作都看起来是那么的简明。Arthas解决的痛点：">
 <meta property="og:image" content="https://i.imgur.com/dMrU6d6.png">
 <meta property="og:image" content="https://i.imgur.com/x6hBUtX.png">
 <meta property="og:image" content="https://i.imgur.com/b4ClXS5.png">
-<meta property="og:updated_time" content="2019-01-19T11:14:07.136Z">
+<meta property="og:updated_time" content="2020-05-17T09:40:17.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ARTHAS的简单使用">
-<meta name="twitter:description" content="前言Arthas是什么？Arthas是阿里开源的在线诊断工具。Arthas 是基于 Greys 进行二次开发的全新在线诊断工具，利用Java6的Instrumentation特性，动态增强你所指定的类，获取你想要到的信息, 采用命令行交互模式，同时提供丰富的 Tab 自动补全功能，让你在定位、分析诊断问题时看每一个操作都看起来是那么的简明。Arthas解决的痛点：  这个类从哪个 jar 包加载">
+<meta name="twitter:description" content="前言Arthas是什么？Arthas是阿里开源的在线诊断工具。Arthas 是基于 Greys 进行二次开发的全新在线诊断工具，利用Java6的Instrumentation特性，动态增强你所指定的类，获取你想要到的信息, 采用命令行交互模式，同时提供丰富的 Tab 自动补全功能，让你在定位、分析诊断问题时看每一个操作都看起来是那么的简明。Arthas解决的痛点：">
 <meta name="twitter:image" content="https://i.imgur.com/dMrU6d6.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -214,6 +214,7 @@ gitment.render('gitment')
     <div class="article-entry" itemprop="articleBody">
       
         <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Arthas是什么？<a href="https://github.com/alibaba/arthas" target="_blank" rel="external">Arthas</a>是阿里开源的在线诊断工具。Arthas 是基于 Greys 进行二次开发的全新在线诊断工具，利用Java6的Instrumentation特性，动态增强你所指定的类，获取你想要到的信息, 采用命令行交互模式，同时提供丰富的 Tab 自动补全功能，让你在定位、分析诊断问题时看每一个操作都看起来是那么的简明。<br><br>Arthas解决的痛点：<br></p>
+<a id="more"></a>
 <ul>
 <li>这个类从哪个 jar 包加载的？为什么会报各种类相关的 Exception？<br></li>
 <li>我改的代码为什么没有执行到？难道是我没 commit？分支搞错了？<br></li>

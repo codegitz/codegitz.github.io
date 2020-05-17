@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>循环队列 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今晚做的一道题，出队有点奇怪/**【题目】假设以带头结点的循环链表表示队列，并且只设一个指针指向队尾元素结点(注意不设头指针)，试编写相应的队列初始化、入队列和出队列的算法。带头结点循环链队列CLQueue的类型定义为：typedef struct LQNode {  ElemType data;  struct LQNode next;} LQNode, CLQueue;**/ Status">
+  <meta name="description" content="今晚做的一道题，出队有点奇怪/**【题目】假设以带头结点的循环链表表示队列，并且只设一个指针指向队尾元素结点(注意不设头指针)，试编写相应的队列初始化、入队列和出队列的算法。">
 <meta name="keywords" content="数据结构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="循环队列">
 <meta property="og:url" content="http://yoursite.com/2017/11/22/循环队列/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="今晚做的一道题，出队有点奇怪/**【题目】假设以带头结点的循环链表表示队列，并且只设一个指针指向队尾元素结点(注意不设头指针)，试编写相应的队列初始化、入队列和出队列的算法。带头结点循环链队列CLQueue的类型定义为：typedef struct LQNode {  ElemType data;  struct LQNode next;} LQNode, CLQueue;**/ Status">
+<meta property="og:description" content="今晚做的一道题，出队有点奇怪/**【题目】假设以带头结点的循环链表表示队列，并且只设一个指针指向队尾元素结点(注意不设头指针)，试编写相应的队列初始化、入队列和出队列的算法。">
 <meta property="og:image" content="https://i.imgur.com/FLtQKV5.png">
 <meta property="og:image" content="https://i.imgur.com/cLXT31d.png">
 <meta property="og:image" content="https://i.imgur.com/2S8Egnc.png">
 <meta property="og:image" content="https://i.imgur.com/hbnarVI.png">
-<meta property="og:updated_time" content="2017-11-22T15:38:51.749Z">
+<meta property="og:updated_time" content="2020-05-17T09:38:45.462Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="循环队列">
-<meta name="twitter:description" content="今晚做的一道题，出队有点奇怪/**【题目】假设以带头结点的循环链表表示队列，并且只设一个指针指向队尾元素结点(注意不设头指针)，试编写相应的队列初始化、入队列和出队列的算法。带头结点循环链队列CLQueue的类型定义为：typedef struct LQNode {  ElemType data;  struct LQNode next;} LQNode, CLQueue;**/ Status">
+<meta name="twitter:description" content="今晚做的一道题，出队有点奇怪/**【题目】假设以带头结点的循环链表表示队列，并且只设一个指针指向队尾元素结点(注意不设头指针)，试编写相应的队列初始化、入队列和出队列的算法。">
 <meta name="twitter:image" content="https://i.imgur.com/FLtQKV5.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -214,7 +214,9 @@ gitment.render('gitment')
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><p>今晚做的一道题，出队有点奇怪<br>/<strong><strong>**</strong></strong><br>【题目】假设以带头结点的循环链表表示队列，并且<br>只设一个指针指向队尾元素结点(注意不设头指针)，<br>试编写相应的队列初始化、入队列和出队列的算法。<br>带头结点循环链队列CLQueue的类型定义为：<br>typedef struct LQNode {<br>  ElemType data;<br>  struct LQNode <em>next;<br>} LQNode, </em>CLQueue;<br><strong><strong>**</strong></strong>/</p>
+        <script src="/assets/js/APlayer.min.js"> </script><p>今晚做的一道题，出队有点奇怪<br>/<strong>**</strong><br>【题目】假设以带头结点的循环链表表示队列，并且<br>只设一个指针指向队尾元素结点(注意不设头指针)，<br>试编写相应的队列初始化、入队列和出队列的算法。</p>
+<a id="more"></a>
+<p>带头结点循环链队列CLQueue的类型定义为：<br>typedef struct LQNode {<br>  ElemType data;<br>  struct LQNode <em>next;<br>} LQNode, </em>CLQueue;<br><strong>**</strong>/</p>
 <pre><code>Status InitCLQueue(CLQueue &amp;rear) // 初始化空队列
  { 
 LQNode *p;

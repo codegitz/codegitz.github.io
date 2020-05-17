@@ -8,18 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>关键字各不相同的序列排序[C | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="/**【题目】已知记录序列L.rcd[1..L.length]中的关键字各不相同，可按如下所述实现计数排序：另设数组c[1..n]，对每个记录a[i]， 统计序列中关键字比它小的记录个数存于c[i]，则c[i]=0的记录必为关键字最小的记录，然后依c[i]值的大小对序列中记录进行重新排列。试编写算法实现上述排序方法。顺序表的类型RcdSqList定义如下：typedef struct {   K">
-<meta name="keywords" content="数据结构">
+  <meta name="keywords" content="数据结构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关键字各不相同的序列排序[C">
 <meta property="og:url" content="http://yoursite.com/2017/11/26/关键字各不相同的序列排序-C/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="/**【题目】已知记录序列L.rcd[1..L.length]中的关键字各不相同，可按如下所述实现计数排序：另设数组c[1..n]，对每个记录a[i]， 统计序列中关键字比它小的记录个数存于c[i]，则c[i]=0的记录必为关键字最小的记录，然后依c[i]值的大小对序列中记录进行重新排列。试编写算法实现上述排序方法。顺序表的类型RcdSqList定义如下：typedef struct {   K">
 <meta property="og:image" content="https://i.imgur.com/aisoF1S.jpg">
-<meta property="og:updated_time" content="2017-11-28T15:44:32.350Z">
+<meta property="og:updated_time" content="2020-05-17T09:23:27.654Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关键字各不相同的序列排序[C">
-<meta name="twitter:description" content="/**【题目】已知记录序列L.rcd[1..L.length]中的关键字各不相同，可按如下所述实现计数排序：另设数组c[1..n]，对每个记录a[i]， 统计序列中关键字比它小的记录个数存于c[i]，则c[i]=0的记录必为关键字最小的记录，然后依c[i]值的大小对序列中记录进行重新排列。试编写算法实现上述排序方法。顺序表的类型RcdSqList定义如下：typedef struct {   K">
 <meta name="twitter:image" content="https://i.imgur.com/aisoF1S.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -211,7 +208,9 @@ gitment.render('gitment')
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><p><img src="https://i.imgur.com/aisoF1S.jpg" alt=""><br>/<strong><strong>**</strong></strong><br>【题目】已知记录序列L.rcd[1..L.length]中的关键<br>字各不相同，可按如下所述实现计数排序：另设数组<br>c[1..n]，对每个记录a[i]， 统计序列中关键字比它<br>小的记录个数存于c[i]，则c[i]=0的记录必为关键字<br>最小的记录，然后依c[i]值的大小对序列中记录进行<br>重新排列。试编写算法实现上述排序方法。<br>顺序表的类型RcdSqList定义如下：<br>typedef struct {<br>   KeyType key;<br>   …<br>} RcdType;<br>typedef struct {<br>   RcdType rcd[MAXSIZE+1]; // rcd[0]闲置<br>   int     length;<br>} RcdSqList;<br><strong><strong>**</strong></strong>/<br>      void CountSort(RcdSqList &amp;L)<br>       /  <em> 采用顺序表存储结构，在函数内自行定义计数数组c </em>/<br>       {<br>     int i,j;<br>     RcdSqList L1;<br>     int c[27];<br>     for(i=1;i&lt;=L.length;i++){<br>        for(j=1;j&lt;=L.length;j++){<br>        if(L.rcd[i].key&lt;L.rcd[j].key){<br>           c[i]++;<br>              }<br>        }<br>     }<br>     for(i=1;i&lt;=L.length;i++){<br>     L1.rcd[c[i]+1].key=L.rcd[i].key;<br>     }<br>     for(i=1;i&lt;=L.length;i++){<br>     L.rcd[L.length-i+1].key=L1.rcd[i].key;<br>     }<br>     }</p>
+        <script src="/assets/js/APlayer.min.js"> </script><p><img src="https://i.imgur.com/aisoF1S.jpg" alt=""></p>
+<a id="more"></a>
+<p>/<strong>**</strong><br>【题目】已知记录序列L.rcd[1..L.length]中的关键<br>字各不相同，可按如下所述实现计数排序：另设数组<br>c[1..n]，对每个记录a[i]， 统计序列中关键字比它<br>小的记录个数存于c[i]，则c[i]=0的记录必为关键字<br>最小的记录，然后依c[i]值的大小对序列中记录进行<br>重新排列。试编写算法实现上述排序方法。<br>顺序表的类型RcdSqList定义如下：<br>typedef struct {<br>   KeyType key;<br>   …<br>} RcdType;<br>typedef struct {<br>   RcdType rcd[MAXSIZE+1]; // rcd[0]闲置<br>   int     length;<br>} RcdSqList;<br><strong>**</strong>/<br>      void CountSort(RcdSqList &amp;L)<br>       /  <em> 采用顺序表存储结构，在函数内自行定义计数数组c </em>/<br>       {<br>     int i,j;<br>     RcdSqList L1;<br>     int c[27];<br>     for(i=1;i&lt;=L.length;i++){<br>        for(j=1;j&lt;=L.length;j++){<br>        if(L.rcd[i].key&lt;L.rcd[j].key){<br>           c[i]++;<br>              }<br>        }<br>     }<br>     for(i=1;i&lt;=L.length;i++){<br>     L1.rcd[c[i]+1].key=L.rcd[i].key;<br>     }<br>     for(i=1;i&lt;=L.length;i++){<br>     L.rcd[L.length-i+1].key=L1.rcd[i].key;<br>     }<br>     }</p>
 
       
 

@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Netty源码分析系列（三） | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Netty新连接接入引言在本文开始之前，可以带着这两个问题来看  Netty是在哪里检测有新连接接入的？ 新连接是怎么样注册到NioEventLoop线程的？  首先来看新连接接入的四个处理逻辑步骤，接下来分析这四个步骤。  ​        新连接通过服务端channel绑定的selector轮询出accept事件，检测出新连接之后，基于JDKNIO的channel创建一个netty的NioSo">
+  <meta name="description" content="Netty新连接接入引言在本文开始之前，可以带着这两个问题来看  Netty是在哪里检测有新连接接入的？ 新连接是怎么样注册到NioEventLoop线程的？">
 <meta name="keywords" content="Netty">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Netty源码分析系列（三）">
 <meta property="og:url" content="http://yoursite.com/2020/02/22/Netty源码分析系列（三）/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="Netty新连接接入引言在本文开始之前，可以带着这两个问题来看  Netty是在哪里检测有新连接接入的？ 新连接是怎么样注册到NioEventLoop线程的？  首先来看新连接接入的四个处理逻辑步骤，接下来分析这四个步骤。  ​        新连接通过服务端channel绑定的selector轮询出accept事件，检测出新连接之后，基于JDKNIO的channel创建一个netty的NioSo">
+<meta property="og:description" content="Netty新连接接入引言在本文开始之前，可以带着这两个问题来看  Netty是在哪里检测有新连接接入的？ 新连接是怎么样注册到NioEventLoop线程的？">
 <meta property="og:image" content="https://i.imgur.com/MDfdxQq.png">
 <meta property="og:image" content="https://i.imgur.com/nwLS32m.png">
 <meta property="og:image" content="https://i.imgur.com/8RcpbRh.png">
@@ -24,10 +24,10 @@
 <meta property="og:image" content="https://i.imgur.com/XnYCdbc.png">
 <meta property="og:image" content="https://i.imgur.com/0u3ZvSB.png">
 <meta property="og:image" content="https://i.imgur.com/v6PtqWT.png">
-<meta property="og:updated_time" content="2020-02-24T12:04:50.906Z">
+<meta property="og:updated_time" content="2020-05-17T09:21:08.150Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Netty源码分析系列（三）">
-<meta name="twitter:description" content="Netty新连接接入引言在本文开始之前，可以带着这两个问题来看  Netty是在哪里检测有新连接接入的？ 新连接是怎么样注册到NioEventLoop线程的？  首先来看新连接接入的四个处理逻辑步骤，接下来分析这四个步骤。  ​        新连接通过服务端channel绑定的selector轮询出accept事件，检测出新连接之后，基于JDKNIO的channel创建一个netty的NioSo">
+<meta name="twitter:description" content="Netty新连接接入引言在本文开始之前，可以带着这两个问题来看  Netty是在哪里检测有新连接接入的？ 新连接是怎么样注册到NioEventLoop线程的？">
 <meta name="twitter:image" content="https://i.imgur.com/MDfdxQq.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -224,10 +224,11 @@ gitment.render('gitment')
 <li>Netty是在哪里检测有新连接接入的？</li>
 <li>新连接是怎么样注册到NioEventLoop线程的？</li>
 </ul>
+<a id="more"></a>
 <p>首先来看新连接接入的四个处理逻辑步骤，接下来分析这四个步骤。</p>
 <p><img src="https://i.imgur.com/MDfdxQq.png" style="zoom:50%;"></p>
 <p>​        新连接通过服务端channel绑定的selector轮询出accept事件，检测出新连接之后，基于JDKNIO的channel创建一个netty的NioSocketChannel，也就是客户端channel，接着netty给客户端channel分配一个NioEventLoop，并且把该channel注册到此NioEventLoop对应的selector上，至此，这条channel后续相关的读写都由此NioEventLoop进行管理，最后向这个channel对应的selector注册读事件，注册的过程和服务端启动注册accept事件复用同一段逻辑，下面来详细分析这四个处理逻辑。</p>
-<a id="more"></a>
+<!-- more -->
 <h2 id="1-检测新连接"><a href="#1-检测新连接" class="headerlink" title="1.检测新连接"></a>1.检测新连接</h2><h3 id="原理流程"><a href="#原理流程" class="headerlink" title="原理流程"></a>原理流程</h3><p>​        开始之前，我们先回顾上两章内容，netty服务端启动之后会绑定一个boss线程，这个boss线程就是<code>NioEventLoop</code>，<code>bossNioEventLoop</code>在调用bind方法之后启动，它的run方法会干两件事情，<strong>第一</strong>，select IO事件，那么这里对应的IO事件就是accept事件，也就是新连接接入的一个事件，在拿到accept事件之后，<strong>第二</strong>个过程就是处理这个accept事件，也就是本小节要分析的内容。新连接检测从服务端<code>NioEventLoop.run</code>方法第二个过程，也就是processSelectedKey开始，接下来调用<code>NioMessageUnsafe.read()</code>方法，然后通过一个while循环,循环调用<code>doReadMessages()</code>来创建新连接对象，而创建新连接对象最核心的方法就是调用<code>javaChannel().accept()</code>方法创建jdkchannel，与服务端启动的思路一样，netty会把jdk的channel封装成netty自定义的一个channel，下面我们按照这个流程来看一遍源码。</p>
 <p><img src="https://i.imgur.com/nwLS32m.png" style="zoom:50%;"></p>
 <h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>首先启动服务端，然后在NioEventLoop的<code>processSelectedKey()</code>方法打一个断点，用telnet 建立一个新连接</p>

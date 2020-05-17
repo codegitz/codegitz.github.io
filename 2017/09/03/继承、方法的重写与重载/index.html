@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>继承、方法的重写与重载 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="方法的重写Override1.发生在父子类中，方法名相同，参数列表相同2.重写的方法被调用时，看对象的类型重写要遵循两同、两小、一大原则（一般都是一模一样的）1.两同：方法名相同，参数列表相同2.两小： 1.子类的返回值类型小于或等于父类的   1.1void和基本类型是必须相同   1.2引用类型时，小于或等于 2.子类抛出的异常小于或等于父类的–异常3.一大：子类方法的访问权限大于或等于父类">
+  <meta name="description" content="方法的重写Override1.发生在父子类中，方法名相同，参数列表相同2.重写的方法被调用时，看对象的类型重写要遵循两同、两小、一大原则（一般都是一模一样的）">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="继承、方法的重写与重载">
 <meta property="og:url" content="http://yoursite.com/2017/09/03/继承、方法的重写与重载/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="方法的重写Override1.发生在父子类中，方法名相同，参数列表相同2.重写的方法被调用时，看对象的类型重写要遵循两同、两小、一大原则（一般都是一模一样的）1.两同：方法名相同，参数列表相同2.两小： 1.子类的返回值类型小于或等于父类的   1.1void和基本类型是必须相同   1.2引用类型时，小于或等于 2.子类抛出的异常小于或等于父类的–异常3.一大：子类方法的访问权限大于或等于父类">
-<meta property="og:updated_time" content="2017-09-07T02:42:56.264Z">
+<meta property="og:description" content="方法的重写Override1.发生在父子类中，方法名相同，参数列表相同2.重写的方法被调用时，看对象的类型重写要遵循两同、两小、一大原则（一般都是一模一样的）">
+<meta property="og:updated_time" content="2020-05-17T09:28:58.864Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="继承、方法的重写与重载">
-<meta name="twitter:description" content="方法的重写Override1.发生在父子类中，方法名相同，参数列表相同2.重写的方法被调用时，看对象的类型重写要遵循两同、两小、一大原则（一般都是一模一样的）1.两同：方法名相同，参数列表相同2.两小： 1.子类的返回值类型小于或等于父类的   1.1void和基本类型是必须相同   1.2引用类型时，小于或等于 2.子类抛出的异常小于或等于父类的–异常3.一大：子类方法的访问权限大于或等于父类">
+<meta name="twitter:description" content="方法的重写Override1.发生在父子类中，方法名相同，参数列表相同2.重写的方法被调用时，看对象的类型重写要遵循两同、两小、一大原则（一般都是一模一样的）">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
   
@@ -209,7 +209,9 @@ gitment.render('gitment')
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="方法的重写Override"><a href="#方法的重写Override" class="headerlink" title="方法的重写Override"></a>方法的重写Override</h1><p>1.发生在父子类中，方法名相同，参数列表相同<br>2.重写的方法被调用时，看对象的类型<br>重写要遵循两同、两小、一大原则（一般都是一模一样的）<br>1.两同：方法名相同，参数列表相同<br>2.两小：<br> 1.子类的返回值类型小于或等于父类的<br>   1.1void和基本类型是必须相同<br>   1.2引用类型时，小于或等于<br> 2.子类抛出的异常小于或等于父类的–异常<br>3.一大：<br>子类方法的访问权限大于或等于父类的—访问修饰符</p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="方法的重写Override"><a href="#方法的重写Override" class="headerlink" title="方法的重写Override"></a>方法的重写Override</h1><p>1.发生在父子类中，方法名相同，参数列表相同<br>2.重写的方法被调用时，看对象的类型<br>重写要遵循两同、两小、一大原则（一般都是一模一样的）</p>
+<a id="more"></a>
+<p>1.两同：方法名相同，参数列表相同<br>2.两小：<br> 1.子类的返回值类型小于或等于父类的<br>   1.1void和基本类型是必须相同<br>   1.2引用类型时，小于或等于<br> 2.子类抛出的异常小于或等于父类的–异常<br>3.一大：<br>子类方法的访问权限大于或等于父类的—访问修饰符</p>
 <h1 id="重写与重载的区别"><a href="#重写与重载的区别" class="headerlink" title="重写与重载的区别"></a>重写与重载的区别</h1><p>1.重写：父子类中，方法名相同，参数列表相同，方法体不同，遵循运行期绑定，根据对象的类型调用方法<br>2.重载：一个类中，方法名相同，参数列表不同，方法体不同，遵循编译期绑定，根据引用的类型调用方法<br>一句话：重写看对象，重载看引用</p>
 <h1 id="package和import"><a href="#package和import" class="headerlink" title="package和import"></a>package和import</h1><p>package:<br>1.作用：避免类名冲突<br>2.包名可以有层次结构<br>3.建议：包名所有字母都小写<br>4.类名的完全限定名：包名.类名<br>import<br>1.作用：声明类，引入类<br>2.同包中的类可以直接访问<br>不同包中的类调用：<br>1.先import声明类再调用访问类（建议）<br>2.类的全称–太繁琐（不建议）</p>
 <h1 id="封装的意义"><a href="#封装的意义" class="headerlink" title="封装的意义"></a>封装的意义</h1><p>1.对外提供可调用的，稳定的功能<br>2.封装容易变化的，具体的实现的细节，外界不可访问<br>意义在于：降低代码出错的可能性，增强维护性</p>

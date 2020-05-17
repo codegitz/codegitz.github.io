@@ -8,22 +8,22 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>记一次部署经历 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言之前本人照葫芦画瓢做了个大概的云笔记，后来巧合之下租了个阿里云的服务器，于是就开始了部署项目的折腾之路 服务器环境准备cloud_note是一个基于javaweb的项目，所以需要配置java环境，还有需要Tomcat启动服务，jdk我选择的是1.7.79，Tomcat7.0.23，然后就是安装，配置路径，这里就不多说了。 项目导出与部署我使用的是eclipse，右击项目，export，导出w">
+  <meta name="description" content="前言之前本人照葫芦画瓢做了个大概的云笔记，后来巧合之下租了个阿里云的服务器，于是就开始了部署项目的折腾之路 服务器环境准备cloud_note是一个基于javaweb的项目，所以需要配置java环境，还有需要Tomcat启动服务，jdk我选择的是1.7.79，Tomcat7.0.23，然后就是安装，配置路径，这里就不多说了。">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记一次部署经历">
 <meta property="og:url" content="http://yoursite.com/2018/04/13/记一次部署经历/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="前言之前本人照葫芦画瓢做了个大概的云笔记，后来巧合之下租了个阿里云的服务器，于是就开始了部署项目的折腾之路 服务器环境准备cloud_note是一个基于javaweb的项目，所以需要配置java环境，还有需要Tomcat启动服务，jdk我选择的是1.7.79，Tomcat7.0.23，然后就是安装，配置路径，这里就不多说了。 项目导出与部署我使用的是eclipse，右击项目，export，导出w">
+<meta property="og:description" content="前言之前本人照葫芦画瓢做了个大概的云笔记，后来巧合之下租了个阿里云的服务器，于是就开始了部署项目的折腾之路 服务器环境准备cloud_note是一个基于javaweb的项目，所以需要配置java环境，还有需要Tomcat启动服务，jdk我选择的是1.7.79，Tomcat7.0.23，然后就是安装，配置路径，这里就不多说了。">
 <meta property="og:image" content="https://i.imgur.com/jukkZsN.png">
 <meta property="og:image" content="https://i.imgur.com/ayBnrat.png">
 <meta property="og:image" content="https://i.imgur.com/mf0OXOA.png">
 <meta property="og:image" content="https://i.imgur.com/IKTF8jb.png">
 <meta property="og:image" content="https://i.imgur.com/fhWTkym.png">
-<meta property="og:updated_time" content="2018-04-13T12:03:44.285Z">
+<meta property="og:updated_time" content="2020-05-17T09:28:47.686Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次部署经历">
-<meta name="twitter:description" content="前言之前本人照葫芦画瓢做了个大概的云笔记，后来巧合之下租了个阿里云的服务器，于是就开始了部署项目的折腾之路 服务器环境准备cloud_note是一个基于javaweb的项目，所以需要配置java环境，还有需要Tomcat启动服务，jdk我选择的是1.7.79，Tomcat7.0.23，然后就是安装，配置路径，这里就不多说了。 项目导出与部署我使用的是eclipse，右击项目，export，导出w">
+<meta name="twitter:description" content="前言之前本人照葫芦画瓢做了个大概的云笔记，后来巧合之下租了个阿里云的服务器，于是就开始了部署项目的折腾之路 服务器环境准备cloud_note是一个基于javaweb的项目，所以需要配置java环境，还有需要Tomcat启动服务，jdk我选择的是1.7.79，Tomcat7.0.23，然后就是安装，配置路径，这里就不多说了。">
 <meta name="twitter:image" content="https://i.imgur.com/jukkZsN.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -217,6 +217,7 @@ gitment.render('gitment')
       
         <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前本人照葫芦画瓢做了个大概的云笔记，后来巧合之下租了个阿里云的服务器，于是就开始了部署项目的折腾之路</p>
 <h2 id="服务器环境准备"><a href="#服务器环境准备" class="headerlink" title="服务器环境准备"></a>服务器环境准备</h2><p>cloud_note是一个基于javaweb的项目，所以需要配置java环境，还有需要Tomcat启动服务，jdk我选择的是1.7.79，Tomcat7.0.23，然后就是安装，配置路径，这里就不多说了。</p>
+<a id="more"></a>
 <h2 id="项目导出与部署"><a href="#项目导出与部署" class="headerlink" title="项目导出与部署"></a>项目导出与部署</h2><p>我使用的是eclipse，右击项目，export，导出war file<br><img src="https://i.imgur.com/jukkZsN.png" alt=""><br>destination 选择你要导出的路径<br><img src="https://i.imgur.com/ayBnrat.png" alt=""><br>然后将war文件上传到服务器上，放到webapps目录下，Tomcat启动运行之后会自动生成一个与你war文件名对应的文件夹，里面就包含了你项目的所有东西，如图<br><img src="https://i.imgur.com/mf0OXOA.png" alt=""><br>然后通过bin目录下的startup.bat启动Tomcat，可以在本地访问项目了。<br>值得一提的是，阿里云服务器需要在安全组开放对应的端口才可以访问，不然是无法访问的，例如启动Tomcat需要开放8080端口，还有数据库的3306端口也要开放<br>安全组–&gt;配置规则–&gt;添加安全组规则<br><img src="https://i.imgur.com/IKTF8jb.png" alt=""><br>至此项目服务器部署已经完毕</p>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>部署完毕后我发现用服务器的公网ip加项目名无法访问项目，而且控制台也没有报错，后来在浏览器发现是无法加载资源，经老三提醒后发现是js跨域的问题，找到了方向之后成功解决了这个问题。第一次部署，没有留意到跨域的问题，莫名了很久，终于解决了。</p>
 <h2 id="js跨域"><a href="#js跨域" class="headerlink" title="js跨域"></a>js跨域</h2><p>跨域访问，或者说 JavaScript 的跨域访问问题，是浏览器出于安全考虑而设置的一个限制，即同源策略。举例说明，当 A，B 两个网站属于不同的域时，如果来自于 A 网站的页面中的 JavaScript 代码希望访问 B 网站的时候，浏览器会拒绝该访问。</p>
