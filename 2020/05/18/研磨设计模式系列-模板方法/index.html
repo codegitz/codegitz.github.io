@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Codegitz&#39;s Blog</title>
+  <title>研磨设计模式系列--模板方法 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="VENI VIDI VICI">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Codegitz&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/page/7/index.html">
+  <meta name="description" content="１.什么是模板方法　　模板方法模式：定义一个操作中的算法骨架，而将一些步骤延迟到子类中。模板方法使得子类可以不改变一个算法的结构即可重定义该算法的重复代码全部在父类里面，不同业务的，使用抽象方法，抽取给子类进行实现。抽取过程—抽象方法。 　　核心：处理某个流程的代码已经都具备，但是其中某个节点的代码暂时不能确定。因此，我们采用模板方法模式，将这个节点的代码实现转移给子类完成。即：处理步骤在父类中">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="研磨设计模式系列--模板方法">
+<meta property="og:url" content="http://yoursite.com/2020/05/18/研磨设计模式系列-模板方法/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="VENI VIDI VICI">
+<meta property="og:description" content="１.什么是模板方法　　模板方法模式：定义一个操作中的算法骨架，而将一些步骤延迟到子类中。模板方法使得子类可以不改变一个算法的结构即可重定义该算法的重复代码全部在父类里面，不同业务的，使用抽象方法，抽取给子类进行实现。抽取过程—抽象方法。 　　核心：处理某个流程的代码已经都具备，但是其中某个节点的代码暂时不能确定。因此，我们采用模板方法模式，将这个节点的代码实现转移给子类完成。即：处理步骤在父类中">
+<meta property="og:updated_time" content="2020-05-18T08:48:09.058Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Codegitz&#39;s Blog">
-<meta name="twitter:description" content="VENI VIDI VICI">
+<meta name="twitter:title" content="研磨设计模式系列--模板方法">
+<meta name="twitter:description" content="１.什么是模板方法　　模板方法模式：定义一个操作中的算法骨架，而将一些步骤延迟到子类中。模板方法使得子类可以不改变一个算法的结构即可重定义该算法的重复代码全部在父类里面，不同业务的，使用抽象方法，抽取给子类进行实现。抽取过程—抽象方法。 　　核心：处理某个流程的代码已经都具备，但是其中某个节点的代码暂时不能确定。因此，我们采用模板方法模式，将这个节点的代码实现转移给子类完成。即：处理步骤在父类中">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
   
@@ -169,22 +171,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-搭建solr服务器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-研磨设计模式系列-模板方法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/13/搭建solr服务器/">搭建solr服务器</a>
+    <h1 class="article-title" itemprop="name">
+      研磨设计模式系列--模板方法
     </h1>
   
 
         
-        <a href="/2018/10/13/搭建solr服务器/" class="archive-article-date">
-  	<time datetime="2018-10-13T14:33:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-13</time>
+        <a href="/2020/05/18/研磨设计模式系列-模板方法/" class="archive-article-date">
+  	<time datetime="2020-05-18T07:47:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-18</time>
 </a>
         
       </header>
@@ -192,15 +192,145 @@
 
 <!-- ��ҳ��Ҫ����gitment -->
 
+
+<script>
+var gitment = new Gitment({
+  owner: 'codegitz',
+  repo: 'codegitz.github.io ',
+  oauth: {
+    client_id: ''3111abe777f17a978418   ',
+    client_secret: 'a793e7d23aa376586e7493cf997ae4b7f3cf5cd7 ',
+  },
+})
+gitment.render('gitment')
+</script>
+
+
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="什么是solr"><a href="#什么是solr" class="headerlink" title="什么是solr"></a>什么是solr</h2><p>Solr 是Apache下的一个顶级开源项目，采用Java开发，它是基于Lucene的全文搜索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化。其主要功能包括全文检索、命中标示、分面搜索、动态聚类、数据库集成，以及富文本（如Word、PDF）的处理。Solr是高度可扩展的，并提供了分布式搜索和索引复制。Solr是最流行的企业级搜索引擎，Solr 4还增加了NoSQL支持。 <br></p>
-        
-          <a class="article-more-a" href="/2018/10/13/搭建solr服务器/#more">read more >></a>
-        
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="１-什么是模板方法"><a href="#１-什么是模板方法" class="headerlink" title="１.什么是模板方法"></a>１.什么是模板方法</h2><p>　　模板方法模式：定义一个操作中的算法骨架，而将一些步骤延迟到子类中。模板方法使得子类可以不改变一个算法的结构即可重定义该算法的重复代码全部在父类里面，不同业务的，使用抽象方法，抽取给子类进行实现。抽取过程—抽象方法。</p>
+<p>　　核心：处理某个流程的代码已经都具备，但是其中某个节点的代码暂时不能确定。因此，我们采用模板方法模式，将这个节点的代码实现转移给子类完成。即：处理步骤在父类中定义好，具体的实现延迟到子类中定义。说白了，就是将一些相同操作的代码，封装成一个算法的骨架。核心的部分留在子类中操作，在父类中只把那些骨架做好。</p>
+<p>　　例如：</p>
+<p>　　　1.去银行办业务，银行给我们提供了一个模板就是：先取号，排队，办理业务（核心部分我们子类完成），给客服人员评分，完毕。这里办理业务是属于子类来完成的，其他的取号，排队，评分则是一个模板。</p>
+<p>　　　2.去餐厅吃饭，餐厅给提供的一套模板就是：先点餐，等待，吃饭（核心部分我们子类完成），买单。这里吃饭是属于子类来完成的，其他的点餐，买单则是餐厅提供给我们客户的一个模板。</p>
+<h2 id="模板方法具体实现"><a href="#模板方法具体实现" class="headerlink" title="模板方法具体实现"></a>模板方法具体实现</h2><p>这里使用银行办理业务为例。</p>
+<p>首先，定义一个模板。模板中把办理业务用作核心部分，让子类来实现。</p>
+<pre><code class="Java">package com.designpattern.templatemethod;
+
+/**
+ * @description: {@link BankTemplateMethod} 模板方法,模板中把办理业务用作核心部分
+ * 让子类来实现{@link BankTemplateMethod#transact()}方法，
+ * 所以这是一个抽象类,需要{@link DrawMoney#transact()}具体实现
+ * @author: Codegitz
+ * @create: 2020-05-18 15:52
+ **/
+public abstract class BankTemplateMethod {
+
+    public void takeNum(){
+        System.out.println(&quot;takeNumber...&quot;);
+    }
+
+    public abstract void transact();
+
+    public void feedBack(){
+        System.out.println(&quot;feedBack....&quot;);
+    }
+
+    public void process(){
+        takeNum();
+        transact();
+        feedBack();
+    }
+
+}
+</code></pre>
+<h2 id="２-模板方法具体实现"><a href="#２-模板方法具体实现" class="headerlink" title="２.模板方法具体实现"></a>２.模板方法具体实现</h2><p>这里使用银行办理业务为例。</p>
+<p>首先，定义一个模板。模板中把办理业务用作核心部分，让子类来实现。</p>
+<p>实现一<code>DrawMoney</code>：</p>
+<pre><code class="Java">package com.designpattern.templatemethod;
+
+/**
+ * @description: {@link BankTemplateMethod}模板方法实现类
+ * @author: Codegitz
+ * @create: 2020-05-18 15:57
+ **/
+public class DrawMoney extends BankTemplateMethod{
+    @Override
+    public void transact() {
+        System.out.println(&quot;DrawMonry....&quot;);
+    }
+
+}
+</code></pre>
+<p>实现二<code>WithdrawMoney</code>：</p>
+<pre><code class="java">package com.designpattern.templatemethod;
+
+/**
+ * @description: {@link BankTemplateMethod}模板方法实现类
+ * @author: Codegitz
+ * @create: 2020-05-18 15:57
+ **/
+public class WithdrawMoney extends BankTemplateMethod{
+    @Override
+    public void transact() {
+        System.out.println(&quot;WithdrawMoney....&quot;);
+    }
+}
+</code></pre>
+<pre><code class="java">package com.designpattern.templatemethod;
+
+public class Test {
+    public static void main(String[] args) {
+        BankTemplateMethod drawMoney = new DrawMoney();
+        BankTemplateMethod withdrawMoney = new WithdrawMoney();
+        System.out.println(&quot;===========drawMoney.process()===========&quot;);
+        drawMoney.process();
+        System.out.println(&quot;==========withdrawMoney.process===========&quot;);
+        withdrawMoney.process();
+    }
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="cmd">===========drawMoney.process()===========
+takeNumber...
+DrawMonry....
+feedBack....
+==========withdrawMoney.process===========
+takeNumber...
+WithdrawMoney....
+feedBack....
+</code></pre>
+<h2 id="3-什么时候使用模板方法"><a href="#3-什么时候使用模板方法" class="headerlink" title="3.什么时候使用模板方法"></a>3.什么时候使用模板方法</h2><p>　　实现一些操作时，整体步骤很固定，只是其中一小部分容易变，这时候可以使用模板方法模式，将容易变的部分抽象出来，供子类实现。各个框架中，都有模板方法模式的影子。数据库访问的封装、Junit单元测试、<strong>servlet</strong> <strong>中关于doGet/doPost</strong>方法的调用。Hibernate中模板程序、spring中JDBCTemplate，HibernateTemplate等。</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励，是使我前进的力量<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://i.imgur.com/0n8b4DD.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -211,7 +341,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">solr</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
         		</li>
       		
 		</ul>
@@ -223,16 +353,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/13/搭建solr服务器/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/18/研磨设计模式系列-模板方法/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/17/研磨设计模式系列-建造者模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">研磨设计模式系列--建造者模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -252,346 +441,46 @@
 
 
 
-
-  
-    <article id="post-搭建redis集群" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/11/搭建redis集群/">搭建redis集群</a>
-    </h1>
-  
-
-        
-        <a href="/2018/10/11/搭建redis集群/" class="archive-article-date">
-  	<time datetime="2018-10-11T09:29:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-11</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="redis集群"><a href="#redis集群" class="headerlink" title="redis集群"></a>redis集群</h2><h3 id="redis集群简介"><a href="#redis集群简介" class="headerlink" title="redis集群简介"></a>redis集群简介</h3><p>Redis 集群是一个提供在多个Redis间节点间共享数据的程序集。<br><br>Redis集群并不支持处理多个keys的命令,因为这需要在不同的节点间移动数据,从而达不到像Redis那样的性能,在高负载的情况下可能会导致不可预料的错误.<br></p>
-        
-          <a class="article-more-a" href="/2018/10/11/搭建redis集群/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Java,linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/11/搭建redis集群/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-httpclient的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/08/httpclient的使用/">httpclient的使用</a>
-    </h1>
-  
-
-        
-        <a href="/2018/10/08/httpclient的使用/" class="archive-article-date">
-  	<time datetime="2018-10-08T07:46:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-08</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- read more-->
-<h2 id="什么是httpclient"><a href="#什么是httpclient" class="headerlink" title="什么是httpclient"></a>什么是httpclient</h2><p>HttpClient 是 Apache <a href="https://hc.apache.org/" target="_blank" rel="external">Jakarta Common </a>下的子项目，用来提供高效的、最新的、功能丰富的支持 HTTP 协议的客户端编程工具包，并且它支持 HTTP 协议最新的版本和建议。<br><br>HttpClient相比传统JDK自带的URLConnection，增加了易用性和灵活性（具体区别，日后我们再讨论），它不仅是客户端发送Http请求变得容易，而且也方便了开发人员测试接口（基于Http协议的），即提高了开发的效率，也方便提高代码的健壮性。<br>在项目中，内部服务的调用需要使用httpclient要获取想要的内容，然后返回的是json格式数据，调用方再做处理。<br>
-        
-          <a class="article-more-a" href="/2018/10/08/httpclient的使用/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/08/httpclient的使用/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-maven找不到父工程依赖问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/01/maven找不到父工程依赖问题/">maven找不到父工程依赖问题</a>
-    </h1>
-  
-
-        
-        <a href="/2018/10/01/maven找不到父工程依赖问题/" class="archive-article-date">
-  	<time datetime="2018-10-01T12:19:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-01</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- read more-->
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这两天maven新建工程的时候遇到一个很奇怪的问题，要依赖的父工程找不到，并且新建的工程目录有缺失，如下：<br><br><img src="https://i.imgur.com/X8lyU2E.jpg" alt=""><br>Google了一番都没有找到到问题所在，很多说是project-&gt;properties-&gt;java build path的问题，但是我的并不是。最后看到一个说是父工程命名的问题，所以顺着这个思路去检查了一番，果然发现了父工程<code>artifactId</code>有问题。原因是之前曾经重命名了这个父工程，但是pom.xml文件的artifactId并没有别改变，所以这个工程里面模块依赖下来都是重命名之前的artifactId。<br><br>
-        
-          <a class="article-more-a" href="/2018/10/01/maven找不到父工程依赖问题/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/01/maven找不到父工程依赖问题/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-花谢了" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/27/花谢了/">花谢了</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/27/花谢了/" class="archive-article-date">
-  	<time datetime="2018-09-27T15:36:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-27</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>　　似乎很久都没有动过这一块了呢，今晚整理了一下自己乱如狗窝的博客，回看了曾经写过的一些文字，也想起了过往所经历的一切，开心的、不开心的，兴奋的，压抑的都有。想想这一切也是人生的一部分，经历过才能让人愈发的感触于心。<br><br>
-        
-          <a class="article-more-a" href="/2018/09/27/花谢了/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/27/花谢了/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'codegitz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2020/05/18/研磨设计模式系列-模板方法/",
+  owner: 'codegitz',
+  repo: 'codegitz.github.io',
+  oauth: {
+    client_id: '3111abe777f17a978418',
+    client_secret: 'a793e7d23aa376586e7493cf997ae4b7f3cf5cd7',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -640,8 +529,8 @@ $(document).ready(function(){
 <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
