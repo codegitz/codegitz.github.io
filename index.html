@@ -195,11 +195,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="1-什么是原型模式"><a href="#1-什么是原型模式" class="headerlink" title="1.什么是原型模式"></a>1.什么是原型模式</h2><p>原型模式是一个创建型的模式。原型二字表明了改模式应该有一个样板实例，用户从这个样板对象中复制一个内部属性一致的对象，这个过程也就是我们称的“克隆”。被复制的实例就是我们所称的“原型”，这个原型是可定制的。原型模式多用于创建复杂的或者构造耗时的实例，因为这种情况下，复制一个已经存在的实例可使程序运行更高效。</p>
-<h2 id="2-原型模式应用场景"><a href="#2-原型模式应用场景" class="headerlink" title="2.原型模式应用场景"></a>2.原型模式应用场景</h2><p> （1）  类初始化需要消化非常多的资源，这个资源包括数据、硬件资源等，通过原型拷贝避免这些消耗。<br> （2）通过new产生的一个对象需要非常繁琐的数据准备或者权限，这时可以使用原型模式。<br> （3）一个对象需要提供给其他对象访问，而且各个调用者可能都需要修改其值时，可以考虑使用原型模式拷贝多个对象供调用者使用，即保护性拷贝。</p>
-<p>Spring框架中的多例就是使用原型。</p>
-<h2 id="3-原型模式实现方式"><a href="#3-原型模式实现方式" class="headerlink" title="3.原型模式实现方式"></a>3.原型模式实现方式</h2><p>原型模式主要用于对象的复制，它的核心是就是类图中的原型类Prototype。Prototype类需要具备以下两个条件：<br> 　（1）实现Cloneable接口。在java语言有一个Cloneable接口，它的作用只有一个，就是在运行时通知虚拟机可以安全地在实现了此接口的类上使用clone方法。在java虚拟机中，只有实现了这个接口的类才可以被拷贝，否则在运行时会抛出CloneNotSupportedException异常。<br> 　（2）重写Object类中的clone方法。Java中，所有类的父类都是Object类，Object类中有一个clone方法，作用是返回对象的一个拷贝，但是其作用域protected类型的，一般的类无法调用，因此Prototype类需要将clone方法的作用域修改为public类型。</p>
-
+        <h2 id="1-什么是原型模式"><a href="#1-什么是原型模式" class="headerlink" title="1.什么是原型模式"></a>1.什么是原型模式</h2><p>原型模式是一个创建型的模式。原型二字表明了改模式应该有一个样板实例，用户从这个样板对象中复制一个内部属性一致的对象，这个过程也就是我们称的“克隆”。被复制的实例就是我们所称的“原型”，这个原型是可定制的。原型模式多用于创建复杂的或者构造耗时的实例，因为这种情况下，复制一个已经存在的实例可使程序运行更高效。</p>
+        
+          <a class="article-more-a" href="/2020/05/19/研磨设计模式系列-原型模式/#more">read more >></a>
+        
       
 
       
@@ -279,78 +278,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="1-什么是外观模式"><a href="#1-什么是外观模式" class="headerlink" title="1.什么是外观模式"></a>1.什么是外观模式</h2><p>　　外观模式（Facade Pattern）门面模式，隐藏系统的复杂性，并向客户端提供了一个客户端可以访问系统的接口。这种类型的设计模式属于结构型模式，它向现有的系统添加一个接口，来隐藏系统的复杂性。</p>
+        <h2 id="1-什么是外观模式"><a href="#1-什么是外观模式" class="headerlink" title="1.什么是外观模式"></a>1.什么是外观模式</h2><p>　　外观模式（Facade Pattern）门面模式，隐藏系统的复杂性，并向客户端提供了一个客户端可以访问系统的接口。这种类型的设计模式属于结构型模式，它向现有的系统添加一个接口，来隐藏系统的复杂性。</p>
 <p>　　这种模式涉及到一个单一的类，该类提供了客户端请求的简化方法和对现有系统类方法的委托调用。</p>
 <p><img src="https://live.staticflickr.com/65535/49908267548_88d8ebeb6b_o.png" alt=""></p>
-<h2 id="2-代码实现"><a href="#2-代码实现" class="headerlink" title="2.代码实现"></a>2.代码实现</h2><p>假设用户注册完之后，需要调用阿里短信接口、邮件接口、微信推送接口。</p>
-<p>我们定义<code>EmailSmsService</code>,<code>AliSmsService</code>,<code>WechatSmsService</code>的接口和实现，这里为了不重复粘贴代码，只粘贴<code>EmailSmsService</code>代码。</p>
-<pre><code class="Java">package com.designpattern.facade;
-
-/**
- * @description: 邮件消息服务接口
- * @author: Codegitz
- * @create: 2020-05-18 22:10
- **/
-public interface EmailSmsService {
-    void send();
-}
-</code></pre>
-<pre><code class="Java">package com.designpattern.facade;
-
-/**
- * @description: 邮件消息服务接口实现
- * @author: Codegitz
- * @create: 2020-05-18 22:10
- **/
-public class EmailSmsServiceImpl implements EmailSmsService {
-    @Override
-    public void send() {
-        System.out.println(&quot;EmailSmsServiceImpl send....&quot;);
-    }
-}
-</code></pre>
-<p>定义一个门面类，屏蔽复杂的操作。</p>
-<blockquote>
-<p>为了简洁些，直接在main方法进行演示，不新建演示类</p>
-</blockquote>
-<pre><code class="Java">package com.imooc.netty.designpattern.facade;
-
-/**
- * @description: 门面类，提供一个隐藏系统复杂性的接口
- * @author: Codegitz
- * @create: 2020-05-18 22:15
- **/
-public class Facade {
-    private AliSmsService aliSmsService;
-    private EmailSmsService emailSmsService;
-    private WechatSmsService wechatSmsService;
-
-    public Facade(){
-        aliSmsService = new AliSmsServiceImpl();
-        emailSmsService = new EmailSmsServiceImpl();
-        wechatSmsService  = new WeChatSmsServiceImpl();
-    }
-
-    //提供一个接口，屏蔽系统操作复杂性
-    public void sendMsg(){
-        aliSmsService.send();
-        emailSmsService.send();
-        wechatSmsService.send();
-    }
-
-    public static void main(String[] args) {
-        //测试方法
-        new Facade().sendMsg();
-    }
-}
-</code></pre>
-<p>运行结果如下:</p>
-<pre><code class="cmd">AliSmsServiceImpl send....
-EmailSmsServiceImpl send....
-WeChatSmsServiceImpl send....
-</code></pre>
-<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h2><p>　　依据我个人的理解，其实外观模式我们开发中有意无意的都已经用到了，我们封装的方法提供给上一层调用就是外观模式，只不过没有留意到这是一种设计模式罢了。</p>
-
+        
+          <a class="article-more-a" href="/2020/05/18/研磨设计模式系列-外观模式/#more">read more >></a>
+        
       
 
       
@@ -430,136 +363,10 @@ WeChatSmsServiceImpl send....
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="1-什么是适配器"><a href="#1-什么是适配器" class="headerlink" title="1.什么是适配器"></a>1.什么是适配器</h2><p>　　在设计模式中，适配器模式（英语：adapter pattern）有时候也称包装样式或者包装(wrapper)。将一个类的接口转接成用户所期待的。一个适配使得因接口不兼容而不能在一起工作的类工作在一起，做法是将类自己的接口包裹在一个已存在的类中。顾名思义，适配器就是适配相同功能产品的不同规格，使之能够正常使用。在日常生活中，电源适配器就是一个很好的例子，有时候产品需要的电压与我们提供的电压不同，所以我们需要一个电源适配器去转换一下电压，使得产品能够正常使用。</p>
-<h2 id="2-适配器分类"><a href="#2-适配器分类" class="headerlink" title="2.适配器分类"></a>2.适配器分类</h2><p>　　适配器分为，类适配器、对象适配、接口适配方式。类适配器方式采用继承方式，对象适配方式使用构造函数传递。</p>
-<h2 id="3-适配器代码实现"><a href="#3-适配器代码实现" class="headerlink" title="3.适配器代码实现"></a>3.适配器代码实现</h2><p>　　我们就拿日本电饭煲的例子进行说明，日本电饭煲电源接口标准是110V电压，而中国标准电压接口是220V，所以要想在中国用日本电饭煲，需要一个电源转换器。</p>
-<p>　　首先定义110v和220v的接口和实现。</p>
-<pre><code class="Java">package com.designpattern.adapter;
-
-/**
- * @description: 220V接口
- * @author: Codegitz
- * @create: 2020-05-18 17:03
- **/
-public interface CN220Interface {
-    void connect();
-}
-</code></pre>
-<pre><code class="Java">package com.designpattern.adapter;
-
-/**
- * @description: {@link CN220InterfaceImpl}实现220V{@link CN220Interface}接口
- * @author: Codegitz
- * @create: 2020-05-18 17:03
- **/
-public class CN220InterfaceImpl implements CN220Interface {
-    @Override
-    public void connect() {
-        System.out.println(&quot;CN220Interface start to work....&quot;);
-    }
-}
-</code></pre>
-<pre><code class="java">package com.designpattern.adapter;
-
-/**
- * @description: 110V接口
- * @author: Codegitz
- * @create: 2020-05-18 17:03
- **/
-public interface JP110Interface {
-    void connect();
-}
-</code></pre>
-<pre><code class="Java">package com.designpattern.adapter;
-
-/**
- * @description: {@link JP110InterfaceImpl}实现110V{@link JP110Interface}接口
- * @author: Codegitz
- * @create: 2020-05-18 17:03
- **/
-public class JP110InterfaceImpl implements JP110Interface {
-    @Override
-    public void connect() {
-        System.out.println(&quot;JP110Interface start to work....&quot;);
-    }
-}
-</code></pre>
-<p>定义一个110v规格的<code>ElectricCooker</code>。</p>
-<pre><code class="Java">package com.designpattern.adapter;
-
-/**
- * @description: {@link}适配110v{@link JP110Interface}的电饭煲
- * @author: Codegitz
- * @create: 2020-05-18 17:03
- **/
-public class ElectricCooker {
-    private JP110Interface jp110Interface;
-
-    public ElectricCooker(JP110Interface jp110Interface){
-        this.jp110Interface = jp110Interface;
-    }
-
-    public void cook(){
-        jp110Interface.connect();
-        System.out.println(&quot;start to cook....&quot;);
-    }
-}
-</code></pre>
-<p>定义一个电压适配器<code>PowerAdapter</code>。</p>
-<pre><code class="java">package com.designpattern.adapter;
-
-/**
- * @description: {@link PowerAdapter}定义一个电源适配器，适配器实现{@link JP110Interface},同时内部维护一个{@link CN220Interface}
- * 在实现{@link JP110Interface#connect()}的方法时，用{@link CN220Interface#connect()}方法代替
- * @author: Codegitz
- * @create: 2020-05-18 17:03
- **/
-public class PowerAdapter implements JP110Interface {
-
-    private CN220Interface cn220Interface;
-
-    public PowerAdapter(CN220Interface cn220Interface){
-        this.cn220Interface = cn220Interface;
-    }
-    @Override
-    public void connect() {
-        cn220Interface.connect();
-    }
-}
-</code></pre>
-<p>测试代码</p>
-<pre><code class="Java">package com.designpattern.adapter;
-
-/**
- * @description: 测试电源适配器
- * @author: Codegitz
- * @create: 2020-05-18 17:03
- **/
-public class TestAdapter {
-    public static void main(String[] args) {
-
-        //220v的实现
-        CN220Interface cn220Interface = new CN220InterfaceImpl();
-        //通过构造函数传入，进行规格转换
-        PowerAdapter powerAdapter = new PowerAdapter(cn220Interface);
-        //可把移花接木过的powerAdapter传入110v规格的电饭煲中，此时可以正常工作
-        ElectricCooker electricCooker = new ElectricCooker(powerAdapter);
-        electricCooker.cook();
-    }
-}
-</code></pre>
-<p>运行结果：</p>
-<pre><code class="cmd">CN220Interface start to work....
-start to cook....
-</code></pre>
-<h2 id="4-适配器应用场景"><a href="#4-适配器应用场景" class="headerlink" title="4.适配器应用场景"></a>4.适配器应用场景</h2><p>我们根据上面的适配器的特点的介绍中，我们来分析下适配器模式的几类比较适用的使用场景：</p>
-<p>1、我们在使用第三方的类库，或者说第三方的API的时候，我们通过适配器转换来满足现有系统的使用需求。</p>
-<p> 2、我们的旧系统与新系统进行集成的时候，我们发现旧系统的数据无法满足新系统的需求，那么这个时候，我们可能需要适配器，完成调用需求。</p>
-<p> 3、我们在使用不同数据库之间进行数据同步。(我这里只是分析的是通过程序来说实现的时候的情况。还有其他的很多种方式[数据库同步])。</p>
-<p>OutputStreamWriter：是Writer的子类，将输出的字符流变为字节流，即：将一个字符流的输出对象变为字节流的输出对象。</p>
-<p>InputStreamReader：是Reader的子类，将输入的字节流变为字符流，即：将一个字节流的输入对象变为字符流的输入对象。</p>
-<p>SpringMVC 适配器等。</p>
-
+        <h2 id="1-什么是适配器"><a href="#1-什么是适配器" class="headerlink" title="1.什么是适配器"></a>1.什么是适配器</h2><p>　　在设计模式中，适配器模式（英语：adapter pattern）有时候也称包装样式或者包装(wrapper)。将一个类的接口转接成用户所期待的。一个适配使得因接口不兼容而不能在一起工作的类工作在一起，做法是将类自己的接口包裹在一个已存在的类中。顾名思义，适配器就是适配相同功能产品的不同规格，使之能够正常使用。在日常生活中，电源适配器就是一个很好的例子，有时候产品需要的电压与我们提供的电压不同，所以我们需要一个电源适配器去转换一下电压，使得产品能够正常使用。</p>
+        
+          <a class="article-more-a" href="/2020/05/18/研磨设计模式系列-适配器模式/#more">read more >></a>
+        
       
 
       

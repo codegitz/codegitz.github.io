@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>研磨设计模式系列--外观模式 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.什么是外观模式　　外观模式（Facade Pattern）门面模式，隐藏系统的复杂性，并向客户端提供了一个客户端可以访问系统的接口。这种类型的设计模式属于结构型模式，它向现有的系统添加一个接口，来隐藏系统的复杂性。 　　这种模式涉及到一个单一的类，该类提供了客户端请求的简化方法和对现有系统类方法的委托调用。  2.代码实现假设用户注册完之后，需要调用阿里短信接口、邮件接口、微信推送接口。 我">
+  <meta name="description" content="1.什么是外观模式　　外观模式（Facade Pattern）门面模式，隐藏系统的复杂性，并向客户端提供了一个客户端可以访问系统的接口。这种类型的设计模式属于结构型模式，它向现有的系统添加一个接口，来隐藏系统的复杂性。 　　这种模式涉及到一个单一的类，该类提供了客户端请求的简化方法和对现有系统类方法的委托调用。">
 <meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="研磨设计模式系列--外观模式">
 <meta property="og:url" content="http://yoursite.com/2020/05/18/研磨设计模式系列-外观模式/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="1.什么是外观模式　　外观模式（Facade Pattern）门面模式，隐藏系统的复杂性，并向客户端提供了一个客户端可以访问系统的接口。这种类型的设计模式属于结构型模式，它向现有的系统添加一个接口，来隐藏系统的复杂性。 　　这种模式涉及到一个单一的类，该类提供了客户端请求的简化方法和对现有系统类方法的委托调用。  2.代码实现假设用户注册完之后，需要调用阿里短信接口、邮件接口、微信推送接口。 我">
+<meta property="og:description" content="1.什么是外观模式　　外观模式（Facade Pattern）门面模式，隐藏系统的复杂性，并向客户端提供了一个客户端可以访问系统的接口。这种类型的设计模式属于结构型模式，它向现有的系统添加一个接口，来隐藏系统的复杂性。 　　这种模式涉及到一个单一的类，该类提供了客户端请求的简化方法和对现有系统类方法的委托调用。">
 <meta property="og:image" content="https://live.staticflickr.com/65535/49908267548_88d8ebeb6b_o.png">
-<meta property="og:updated_time" content="2020-05-18T16:16:29.397Z">
+<meta property="og:updated_time" content="2020-05-18T16:30:52.649Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="研磨设计模式系列--外观模式">
-<meta name="twitter:description" content="1.什么是外观模式　　外观模式（Facade Pattern）门面模式，隐藏系统的复杂性，并向客户端提供了一个客户端可以访问系统的接口。这种类型的设计模式属于结构型模式，它向现有的系统添加一个接口，来隐藏系统的复杂性。 　　这种模式涉及到一个单一的类，该类提供了客户端请求的简化方法和对现有系统类方法的委托调用。  2.代码实现假设用户注册完之后，需要调用阿里短信接口、邮件接口、微信推送接口。 我">
+<meta name="twitter:description" content="1.什么是外观模式　　外观模式（Facade Pattern）门面模式，隐藏系统的复杂性，并向客户端提供了一个客户端可以访问系统的接口。这种类型的设计模式属于结构型模式，它向现有的系统添加一个接口，来隐藏系统的复杂性。 　　这种模式涉及到一个单一的类，该类提供了客户端请求的简化方法和对现有系统类方法的委托调用。">
 <meta name="twitter:image" content="https://live.staticflickr.com/65535/49908267548_88d8ebeb6b_o.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -214,6 +214,7 @@ gitment.render('gitment')
         <script src="/assets/js/APlayer.min.js"> </script><h2 id="1-什么是外观模式"><a href="#1-什么是外观模式" class="headerlink" title="1.什么是外观模式"></a>1.什么是外观模式</h2><p>　　外观模式（Facade Pattern）门面模式，隐藏系统的复杂性，并向客户端提供了一个客户端可以访问系统的接口。这种类型的设计模式属于结构型模式，它向现有的系统添加一个接口，来隐藏系统的复杂性。</p>
 <p>　　这种模式涉及到一个单一的类，该类提供了客户端请求的简化方法和对现有系统类方法的委托调用。</p>
 <p><img src="https://live.staticflickr.com/65535/49908267548_88d8ebeb6b_o.png" alt=""></p>
+<a id="more"></a>
 <h2 id="2-代码实现"><a href="#2-代码实现" class="headerlink" title="2.代码实现"></a>2.代码实现</h2><p>假设用户注册完之后，需要调用阿里短信接口、邮件接口、微信推送接口。</p>
 <p>我们定义<code>EmailSmsService</code>,<code>AliSmsService</code>,<code>WechatSmsService</code>的接口和实现，这里为了不重复粘贴代码，只粘贴<code>EmailSmsService</code>代码。</p>
 <pre><code class="Java">package com.designpattern.facade;
