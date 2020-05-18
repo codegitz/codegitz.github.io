@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2020/05/16/研磨设计模式系列-单例模式/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
 <meta property="og:description" content="1.什么是单例     保证一个类只有一个实例，并且提供一个访问该全局访问点。 2.单例应用场景1、Windows的Task Manager（任务管理器）就是很典型的单例模式（这个很熟悉吧），想想看，是不是呢，你能打开两个windows task manager吗？ 不信你自己试试看哦~  2、windows的Recycle Bin（回收站）也是典型的单例应用。在整个系统运行过程中，回收站一直维护">
-<meta property="og:updated_time" content="2020-05-17T09:20:02.974Z">
+<meta property="og:updated_time" content="2020-05-18T08:33:35.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="研磨设计模式系列--单例模式">
 <meta name="twitter:description" content="1.什么是单例     保证一个类只有一个实例，并且提供一个访问该全局访问点。 2.单例应用场景1、Windows的Task Manager（任务管理器）就是很典型的单例模式（这个很熟悉吧），想想看，是不是呢，你能打开两个windows task manager吗？ 不信你自己试试看哦~  2、windows的Recycle Bin（回收站）也是典型的单例应用。在整个系统运行过程中，回收站一直维护">
@@ -336,7 +336,7 @@ public class InnerClass {
 </code></pre>
 <p> 优势：兼顾了懒汉模式的内存优化（使用时才初始化）以及饿汉模式的安全性（不会被反射入侵）。</p>
 <p> 劣势：需要两个类去做到这一点，虽然不会创建静态内部类的对象，但是其 Class 对象还是会被创建，而且是属于永久代的对象。<a href="https://www.jianshu.com/p/3b2311a11c9b" target="_blank" rel="external">附上内部类的好处和缺点文章分析</a>。</p>
-<h3 id="4、枚举方式"><a href="#4、枚举方式" class="headerlink" title="4、枚举方式"></a>4、枚举方式</h3><p>使用枚举实现单例模式 </p>
+<h3 id="4、枚举方式"><a href="#4、枚举方式" class="headerlink" title="4、枚举方式"></a>4、枚举方式</h3><p>使用枚举实现单例模式。</p>
 <p>优点: 实现简单、枚举本身就是单例，由jvm从根本上提供保障!避免通过反射和反序列化的漏洞。</p>
 <p>缺点: 没有延迟加载。</p>
 <pre><code class="Java">package com.designpattern.singleton;
