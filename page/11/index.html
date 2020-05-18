@@ -171,1225 +171,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-u_post/springboot入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><!DOCTYPE html>
-<html>
-<head>
-<title>springboot入门</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<style type="text/css">
-/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
-/* Author: Nicolas Hery - http://nicolashery.com */
-/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
-/* Source: https://github.com/nicolahery/markdownpad-github */
-
-/* RESET
-=============================================================================*/
-
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-/* BODY
-=============================================================================*/
-
-body {
-  font-family: Helvetica, arial, freesans, clean, sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
-  color: #333;
-  background-color: #fff;
-  padding: 20px;
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-body>*:first-child {
-  margin-top: 0 !important;
-}
-
-body>*:last-child {
-  margin-bottom: 0 !important;
-}
-
-/* BLOCKS
-=============================================================================*/
-
-p, blockquote, ul, ol, dl, table, pre {
-  margin: 15px 0;
-}
-
-/* HEADERS
-=============================================================================*/
-
-h1, h2, h3, h4, h5, h6 {
-  margin: 20px 0 10px;
-  padding: 0;
-  font-weight: bold;
-  -webkit-font-smoothing: antialiased;
-}
-
-h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
-  font-size: inherit;
-}
-
-h1 {
-  font-size: 28px;
-  color: #000;
-}
-
-h2 {
-  font-size: 24px;
-  border-bottom: 1px solid #ccc;
-  color: #000;
-}
-
-h3 {
-  font-size: 18px;
-}
-
-h4 {
-  font-size: 16px;
-}
-
-h5 {
-  font-size: 14px;
-}
-
-h6 {
-  color: #777;
-  font-size: 14px;
-}
-
-body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
-  margin-top: 0;
-  padding-top: 0;
-}
-
-a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
-  margin-top: 0;
-  padding-top: 0;
-}
-
-h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
-  margin-top: 10px;
-}
-
-/* LINKS
-=============================================================================*/
-
-a {
-  color: #4183C4;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* LISTS
-=============================================================================*/
-
-ul, ol {
-  padding-left: 30px;
-}
-
-ul li > :first-child, 
-ol li > :first-child, 
-ul li ul:first-of-type, 
-ol li ol:first-of-type, 
-ul li ol:first-of-type, 
-ol li ul:first-of-type {
-  margin-top: 0px;
-}
-
-ul ul, ul ol, ol ol, ol ul {
-  margin-bottom: 0;
-}
-
-dl {
-  padding: 0;
-}
-
-dl dt {
-  font-size: 14px;
-  font-weight: bold;
-  font-style: italic;
-  padding: 0;
-  margin: 15px 0 5px;
-}
-
-dl dt:first-child {
-  padding: 0;
-}
-
-dl dt>:first-child {
-  margin-top: 0px;
-}
-
-dl dt>:last-child {
-  margin-bottom: 0px;
-}
-
-dl dd {
-  margin: 0 0 15px;
-  padding: 0 15px;
-}
-
-dl dd>:first-child {
-  margin-top: 0px;
-}
-
-dl dd>:last-child {
-  margin-bottom: 0px;
-}
-
-/* CODE
-=============================================================================*/
-
-pre, code, tt {
-  font-size: 12px;
-  font-family: Consolas, "Liberation Mono", Courier, monospace;
-}
-
-code, tt {
-  margin: 0 0px;
-  padding: 0px 0px;
-  white-space: nowrap;
-  border: 1px solid #eaeaea;
-  background-color: #f8f8f8;
-  border-radius: 3px;
-}
-
-pre>code {
-  margin: 0;
-  padding: 0;
-  white-space: pre;
-  border: none;
-  background: transparent;
-}
-
-pre {
-  background-color: #f8f8f8;
-  border: 1px solid #ccc;
-  font-size: 13px;
-  line-height: 19px;
-  overflow: auto;
-  padding: 6px 10px;
-  border-radius: 3px;
-}
-
-pre code, pre tt {
-  background-color: transparent;
-  border: none;
-}
-
-kbd {
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background-color: #DDDDDD;
-    background-image: linear-gradient(#F1F1F1, #DDDDDD);
-    background-repeat: repeat-x;
-    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
-    border-image: none;
-    border-radius: 2px 2px 2px 2px;
-    border-style: solid;
-    border-width: 1px;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    line-height: 10px;
-    padding: 1px 4px;
-}
-
-/* QUOTES
-=============================================================================*/
-
-blockquote {
-  border-left: 4px solid #DDD;
-  padding: 0 15px;
-  color: #777;
-}
-
-blockquote>:first-child {
-  margin-top: 0px;
-}
-
-blockquote>:last-child {
-  margin-bottom: 0px;
-}
-
-/* HORIZONTAL RULES
-=============================================================================*/
-
-hr {
-  clear: both;
-  margin: 15px 0;
-  height: 0px;
-  overflow: hidden;
-  border: none;
-  background: transparent;
-  border-bottom: 4px solid #ddd;
-  padding: 0;
-}
-
-/* TABLES
-=============================================================================*/
-
-table th {
-  font-weight: bold;
-}
-
-table th, table td {
-  border: 1px solid #ccc;
-  padding: 6px 13px;
-}
-
-table tr {
-  border-top: 1px solid #ccc;
-  background-color: #fff;
-}
-
-table tr:nth-child(2n) {
-  background-color: #f8f8f8;
-}
-
-/* IMAGES
-=============================================================================*/
-
-img {
-  max-width: 100%
-}
-</style>
-</head>
-<body>
-<h1>springboot 入门</h1>
-<h1>1.springboot简介</h1>
-<p>简化spring应用的一个框架
-整个spring技术的一个大整合“spring全家桶”
-J2EE的一站式解决方案</p>
-<p>优点：
-- 快速创建独立运行的Spring项目以及与主流框架集成
-- 使用嵌入式的Servlet容器，应用无需打包成war包
-- starters自动依赖与版本控制
-- 大量的自动配置，简化开发，也可以修改默认值
-- 无需配置XML，无代码生成，开箱即用
-- 准生产环境的运行时应用监控
-- 与云计算的天然集成</p>
-<p>缺点：
-- 入门容易深入难，需要十分了解spring底层API才能深入</p>
-<h1>2.微服务</h1>
-<p>2014，Martin Fowler
-微服务：架构风格
-一个应用应该是一组小型服务，可以通过HTTP的方式进行互通
-单体应用：ALL IN ONE
-<img src="https://i.imgur.com/713ylux.png">
-微服务：每一个功能元素最终都是一个可独立替换和独立升级的软件单元
-详细参照微服务文档
-<img src="https://i.imgur.com/cVYlEyt.png"></p>
-<p>环境约束
-- jdk1.8 :Spring Boot 1.7及以上，java -version&quot;1.8.0-112&quot;
-- maven3.x :maven3.3以上版本，ApacheMaven3.3.9
-- IntellijIDEA2017：intellijIDEA2017.2.2x64、STS
-- SpringBoot 1.5.9RELEASE：1.5.9</p>
-<p>我的版本：
-<code>F:\maven\apache-maven-3.5.2-bin\apache-maven-3.5.2\bin&gt; mvn -v
-Apache Maven 3.5.2 (138edd61fd100ec658bfa2d307c43b76940a5d7d; 2017-10-18T15:58:13+08:00)
-Maven home: F:\maven\apache-maven-3.5.2-bin\apache-maven-3.5.2\bin\..
-Java version: 1.8.0_131, vendor: Oracle Corporation
-Java home: C:\Program Files\Java\jdk1.8.0_131\jre
-Default locale: zh_CN, platform encoding: GBK
-OS name: &quot;windows 10&quot;, version: &quot;10.0&quot;, arch: &quot;amd64&quot;, family: &quot;windows&quot;</code>
-maven设置：
-给mavensettings.xml配置文件的profile标签添加
-```
-<profiles>
-  <profile>
-      <id>jdk-1.8</id></profile></profiles></p>
-<pre><code>  &lt;activation&gt;
-    &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
-    &lt;jdk&gt;1.8&lt;/jdk&gt;
-  &lt;/activation&gt;
-
-  &lt;properties&gt;
-      &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
-      &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
-      &lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;
-  &lt;/properties&gt;
-</code></pre>
-
-<p>
-
-```</p>
-<h2>SpringBoot Helloworld</h2>
-<p>一个功能，浏览器发送hello请求，服务器接受请求，响应并且返回hello world字符串</p>
-<h3>1.创建一个maven工程(jar)</h3>
-<h3>2.导入Sringboot相关依赖</h3>
-<p><code>&lt;parent&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
-    &lt;version&gt;1.5.9.RELEASE&lt;/version&gt;
-&lt;/parent&gt;
-&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-&lt;/dependencies&gt;</code></p>
-<h3>3.编写一个主程序：启动Springboot应用</h3>
-<p>```
-@SpringBootApplication
-public class HelloWorldMainApplication {</p>
-<pre><code>public static void main(String[] args) {
-
-    //spring应用程序启动起来
-    SpringApplication.run(HelloWorldMainApplication.class,args);
-
-}
-</code></pre>
-
-<p>}
-```</p>
-<h3>4.编写相关的controller，service</h3>
-<p>```
-@Controller
-public class HelloController {</p>
-<pre><code>@ResponseBody
-@RequestMapping(&quot;/hello&quot;)
-public String hello(){
-    return &quot;helloworld&quot;;
-}
-</code></pre>
-
-<p>}
-```</p>
-<h3>5.运行主程序测试</h3>
-<p><img src="https://i.imgur.com/o5wuRcG.png"></p>
-<h3>6.简化配置</h3>
-<p>```</p>
-<!-- 这个插件，可以将应用打包成一个可执行的jar包-->
-<pre><code>&lt;build&gt;
-    &lt;plugins&gt;
-        &lt;plugin&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
-        &lt;/plugin&gt;
-    &lt;/plugins&gt;
-&lt;/build&gt;
-</code></pre>
-
-<p>```
-将这个应用打包成jar包，使用spring -jar命令来执行</p>
-<h3>5.HelloWorld探究</h3>
-<h4>1.POM文件</h4>
-<p>1.父项目
-```
-parent&gt;
-        <groupid>org.springframework.boot</groupid>
-        <artifactid>spring-boot-starter-parent</artifactid>
-        <version>1.5.9.RELEASE</version>
-    </p>
-<p>它的父项目是
-	<parent>
-		<groupid>org.springframework.boot</groupid>
-		<artifactid>spring-boot-dependencies</artifactid>
-		<version>1.5.9.RELEASE</version>
-		<relativepath>../../spring-boot-dependencies</relativepath>
-	</parent>
-它是真正管理Spring Boot应用里的所有依赖版本
-```
-SpringBoot的版本仲裁中心
-以后我们导入依赖默认是不需要写版本（没有在dependencies里面管理的依赖自然需要声明版本号）</p>
-<p>2.导入的依赖
-<code>&lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-        &lt;/dependency&gt;</code></p>
-<p>spring-boot-starter:spring-boot场景启动器,帮我们导入了web模块正常运行所依赖的组件</p>
-<p>Spring boot将所有的功能场景都抽取出来，做成一个个starter启动器，只需要在项目里引入这个starter相关场景，所有的依赖都会导入进来，要用什么功能就导哪个场景</p>
-<h4>2.主程序类，主入口类</h4>
-<p>```
-@SpringBootApplication
-public class HelloWorldMainApplication {</p>
-<pre><code>public static void main(String[] args) {
-
-    //spring应用程序启动起来
-    SpringApplication.run(HelloWorldMainApplication.class,args);
-
-}
-</code></pre>
-
-<p>}
-<code>@SpringBootApplication: Spring Boot 应用标注在某个类上说明这个类是Springboot的主配置类
-springboot就应该运行这个类的main方法来启动springboot应用</code>
-@Target({ElementType.TYPE})
-@Retention(RetentionPolicy.RUNTIME)
-@Documented
-@Inherited
-@SpringBootConfiguration
-@EnableAutoConfiguration
-@ComponentScan(
-    excludeFilters = {@Filter(
-    type = FilterType.CUSTOM,
-    classes = {TypeExcludeFilter.class}
-), @Filter(
-    type = FilterType.CUSTOM,
-    classes = {AutoConfigurationExcludeFilter.class}
-)}
-)
-public @interface SpringBootApplication {
-```
-@<strong><em>SpringBootConfiguration</em></strong>: Springboot配置类
-   标注在某个类上，表示这个一个springboot的配置类
-   @<strong><em>Configuration</em></strong>：配置类上来标注这个注解</p>
-<p>配置类---配置文件：配置类也是容器的一个组件@Component</p>
-<p>@<strong><em>EnableAutoConfiguration</em></strong>：开启自动配置功能
-   以前我们需要配置的东西，springboot帮我们自动配置，@EnableAutoConfiguration告诉我们springboot开启自动配置功能，这样自动配置才能生效
-<code>@AutoConfigurationPackage
-@Import({EnableAutoConfigurationImportSelector.class})
-public @interface EnableAutoConfiguration {</code>
-@<strong><em>AutoConfigurationPackage<strong><em>：自动配置包
-   @Import({Registrar.class})
-   spring的底层注解@import，给容器倒入一个组件，导入的组件由AutoConfigurationPackage.Registrar.class
-将主配置类（@</em></strong>SpringBootConfiguration</em></strong>标注的类）的所在包及其下面所有子包里面的所有组件都扫描到Spring容器里
-@Import({EnableAutoConfigurationImportSelector.class})
-给容器中导入组件
-EnableAutoConfigurationImportSelector：导入哪些组件选择器
-将所有需要导入的组件以全类名的方式返回，这些组件就会被添加到容器中
-会给容器中导入非常多的自动配置类(xxAutoConfiguration),就是给容器导入这个场景所需要的组件，并配置好这些组件
-<img src="https://i.imgur.com/SpKPWkA.png" alt="自动配置类">
-有了自动配置类，免去了我们手动编写配置注入功能等工作
-SpringFactoriesLoader.loadFactoryNames(EnableAutoConfiguration.class,classLoader);
-SpringBoot在启动的时候从类路径下的META-INF/spring.factories获取EnableAutoConfiguration指定的值，将这些值作为自动配置类导入到容器中，自动配置就生效，帮我们进行自动配置工作，以前须要我们自己进行配置的东西，自动配置类都帮我们配置好了
-<img src="https://i.imgur.com/7nVkMZC.png">
-J2EE的整体整合解决方案和自动配置都在F:\maven\apache-maven-3.5.2-bin\repo\org\springframework\boot\spring-boot-autoconfigure\1.5.9.RELEASE\spring-boot-autoconfigure-1.5.9.RELEASE.jar!\org\springframework\boot\autoconfigure
-<img src="https://i.imgur.com/xWXQhai.png"></p>
-<h3>6.使用Spring Initializer 快速创建Springboot项目</h3>
-<p>IDE都支持使用Spring的项目创建向导快速创建一个Spring Boot项目
-选择我们需要的模板，向导会联网创建Springboot项目
-默认生成的Springboot项目
-- 主程序已经生成好了，我们只需要我们编写自己的逻辑
-- resources 文件夹中目录结构
-  1.static：保存所有的静态资源：js,css,images
-  2.templates:保存所有的模板页面，（springboot默认jar包使用嵌入式的Tomcat，默认不支持jsp页面），可以使用模板引擎(freemaker,thymeleaf)
-   3.application.properties:springboot应用的配置文件，可以修改一些默认配置</p>
-<h1>配置文件</h1>
-<h2>1、配置文件</h2>
-<p>SpringBoot使用一个全局的配置文件，配置文件名是固定的；</p>
-<p>•application.properties</p>
-<p>•application.yml</p>
-<p>配置文件的作用：修改SpringBoot自动配置的默认值；SpringBoot在底层都给我们自动配置好；</p>
-<p>YAML（YAML Ain't Markup Language）</p>
-<p>​	YAML  A Markup Language：是一个标记语言</p>
-<p>​	YAML   isn't Markup Language：不是一个标记语言；</p>
-<p>标记语言：</p>
-<p>​	以前的配置文件；大多都使用的是  <strong>xxxx.xml</strong>文件；</p>
-<p>​	YAML：<strong>以数据为中心</strong>，比json、xml等更适合做配置文件；</p>
-<p>​	YAML：配置例子</p>
-<p><code>yaml
-server:
-  port: 8081</code></p>
-<p>​	XML：</p>
-<p><code>xml
-&lt;server&gt;
-	&lt;port&gt;8081&lt;/port&gt;
-&lt;/server&gt;</code></p>
-<h2>2、YAML语法：</h2>
-<h3>1、基本语法</h3>
-<p>k:(空格)v：表示一对键值对（空格必须有）；</p>
-<p>以<strong>空格</strong>的缩进来控制层级关系；只要是左对齐的一列数据，都是同一个层级的</p>
-<p><code>yaml
-server:
-    port: 8081
-    path: /hello</code></p>
-<p>属性和值也是大小写敏感；</p>
-<h3>2、值的写法</h3>
-<h4>字面量：普通的值（数字，字符串，布尔）</h4>
-<p>```
-​	k: v：字面直接来写；</p>
-<p>​		字符串默认不用加上单引号或者双引号；</p>
-<p>​		&quot;&quot;：双引号；不会转义字符串里面的特殊字符；特殊字符会作为本身想表示的意思</p>
-<p>​				name:   &quot;zhangsan \n lisi&quot;：输出；zhangsan 换行  lisi</p>
-<p>​		''：单引号；会转义特殊字符，特殊字符最终只是一个普通的字符串数据</p>
-<p>​				name:   ‘zhangsan \n lisi’：输出；zhangsan \n  lisi</p>
-<p>```</p>
-<h4>对象、Map（属性和值）（键值对）：</h4>
-<p>​	k: v：在下一行来写对象的属性和值的关系；注意缩进</p>
-<p>​		对象还是k: v的方式</p>
-<p><code>yaml
-friends:
-		lastName: zhangsan
-		age: 20</code></p>
-<p>行内写法：</p>
-<p><code>yaml
-friends: {lastName: zhangsan,age: 18}</code></p>
-<h4>数组（List、Set）：</h4>
-<p>用- 值表示数组中的一个元素</p>
-<p><code>yaml
-pets:
- - cat
- - dog
- - pig</code></p>
-<p>行内写法</p>
-<p><code>yaml
-pets: [cat,dog,pig]</code></p>
-<h2>3、配置文件值注入</h2>
-<p>配置文件</p>
-<p><code>yaml
-person:
-    lastName: hello
-    age: 18
-    boss: false
-    birth: 2017/12/12
-    maps: {k1: v1,k2: 12}
-    lists:
-      - lisi
-      - zhaoliu
-    dog:
-      name: 小狗
-      age: 12</code></p>
-<p>javaBean：</p>
-<p>```java
-/**
- * 将配置文件中配置的每一个属性的值，映射到这个组件中
- * @ConfigurationProperties：告诉SpringBoot将本类中的所有属性和配置文件中相关的配置进行绑定；
- *      prefix = &quot;person&quot;：配置文件中哪个下面的所有属性进行一一映射
- *
- * 只有这个组件是容器中的组件，才能容器提供的@ConfigurationProperties功能；
- *
- */
-@Component
-@ConfigurationProperties(prefix = &quot;person&quot;)
-public class Person {</p>
-<pre><code>private String lastName;
-private Integer age;
-private Boolean boss;
-private Date birth;
-
-private Map&lt;String,Object&gt; maps;
-private List&lt;Object&gt; lists;
-private Dog dog;
-</code></pre>
-
-<p>```</p>
-<p>我们可以导入配置文件处理器，以后编写配置就有提示了</p>
-<p>```xml</p>
-<!--导入配置文件处理器，配置文件进行绑定就会有提示-->
-<pre><code>    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-configuration-processor&lt;/artifactId&gt;
-        &lt;optional&gt;true&lt;/optional&gt;
-    &lt;/dependency&gt;
-</code></pre>
-
-<p>```</p>
-<h4>1、properties配置文件在idea中默认utf-8可能会乱码</h4>
-<p>更改配置文件编码方式</p>
-<p><img src="https://i.imgur.com/JK7oG8u.png" alt="idea配置乱码"></p>
-<h4>2、@Value获取值和@ConfigurationProperties获取值比较</h4>
-<p>|            | @ConfigurationProperties | @Value |
-| ---------- | ------------------------ | ------ |
-| 功能         | 批量注入配置文件中的属性             | 一个个指定  |
-| 松散绑定（松散语法） | 支持                       | 不支持    |
-| SpEL       | 不支持                      | 支持     |
-| JSR303数据校验 | 支持                       | 不支持    |
-| 复杂类型封装     | 支持                       | 不支持    |</p>
-<p>配置文件yml还是properties他们都能获取到值；</p>
-<p>如果说，我们只是在某个业务逻辑中需要获取一下配置文件中的某项值，使用@Value；</p>
-<p>如果说，我们专门编写了一个javaBean来和配置文件进行映射，我们就直接使用@ConfigurationProperties；</p>
-<h4>3.配置文件注入数据校验值</h4>
-<p>```
-/*
-* j将配置文件中的每一个属性的值，映射到这个组件中
-*@ConfigurationProperties :告诉springboot将本类中的属性和配置文件中的对应属性进行绑定
-* prefix = &quot;person&quot; 配置属性中哪一个下面的所有属性进行一一映射
-* 只有这个组件是容器中的组件，才能有容器提供的@ConfigurationProperties功能
- *  */
-@Component
-@ConfigurationProperties(prefix = &quot;person&quot;)
-@Validated
-public class Person {</p>
-<pre><code>/*
-* &lt;bean class=&quot;Person&quot;&gt;
-*     &lt;property name=&quot;lastName&quot; value=&quot;字面量/${key}从环境变量、配置文件中获取，#{SpEL}&quot;/&gt;
-*  &lt;bean&gt;
-*
-* */
-//@Email//last-name必须是一个邮箱格式
-</code></pre>
-
-<p>// @Value(&quot;${person.last-name}&quot;)
-    private String lastName;
-    //@Value(&quot;#{11*2}&quot;)
-    private Integer age;
-    //@Value(&quot;true&quot;)
-    private boolean boss;
-    private Date birth;
-    private Map&lt;String,Object&gt; maps;
-    private List<object> list;
-    private Dog dog;
-```</object></p>
-<h4>4.@PropertySource&amp;@ImportResource</h4>
-<p>@PropertySource:加载指定的配置文件
-```
-@PropertySource(value = {&quot;classpath:person.properties&quot;})
-@Component
-@ConfigurationProperties(prefix = &quot;person&quot;)
-//@Validated
-public class Person {</p>
-<pre><code>/*
-* &lt;bean class=&quot;Person&quot;&gt;
-*     &lt;property name=&quot;lastName&quot; value=&quot;字面量/${key}从环境变量、配置文件中获取，#{SpEL}&quot;/&gt;
-*  &lt;bean&gt;
-*
-* */
-//@Email//last-name必须是一个邮箱格式
-</code></pre>
-
-<p>// @Value(&quot;${person.last-name}&quot;)
-    private String lastName;
-    //@Value(&quot;#{11*2}&quot;)
-    private Integer age;
-    //@Value(&quot;true&quot;)
-    private boolean boss;
-    private Date birth;
-    private Map&lt;String,Object&gt; maps;
-    private List<object> list;
-    private Dog dog;</object></p>
-<pre><code>@Override
-public String toString() {
-    return &quot;Person{&quot; +
-            &quot;lastName='&quot; + lastName + '\'' +
-            &quot;, age=&quot; + age +
-            &quot;, boss=&quot; + boss +
-            &quot;, birth=&quot; + birth +
-            &quot;, maps=&quot; + maps +
-            &quot;, list=&quot; + list +
-            &quot;, dog=&quot; + dog +
-            '}';
-}
-</code></pre>
-
-<p>```</p>
-<p>@ImportResource:导入Spring的配置文件，让配置文件里面的内容生效
-Springboot里面并没有spring配置文件，我们自己编写的配置文件也不能自动识别
-想让Spring的配置文件生效，加载进来用@ImportResource标注在配置类上</p>
-<p><code>//导入spring的配置文件让其生效
-@ImportResource(locations=&quot;classpath:beans.xml&quot;)</code></p>
-<p>编写spring配置文件,现在不推荐这方式，推荐使用全注解方式
-```
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt; beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;</p>
-<pre><code>&lt;bean id=&quot;helloService&quot; class=&quot;io.springboot.service.HelloService&quot;&gt;&lt;/bean&gt;
-</code></pre>
-
-<p>
-```
-Springboot推荐给容器添加组件的方式：推荐使用全注解的方式</p>
-<p>1.配置类====spring配置文件</p>
-<p>2.使用@Bean给容器添加组件
-```
-/*
-* @Configuration:指明当前类是一个配置类，就是用来替代之前的spring配置文件
-*
-* 在配置文件中用<bean><bean>标签添加组件
-* */</bean></bean></p>
-<p>@Configuration
-public class MyAppConfig {</p>
-<pre><code>//将方法的返回值添加到容器中，容器中这个组件的默认id就是方法的名字
-@Bean
-public HelloService helloService02(){
-    System.out.println(&quot;配置类@Bean给容器中添加组件了&quot;);
-    return new HelloService();
-}
-</code></pre>
-
-<p>}
-``` </p>
-<h4>4.配置文件占位符</h4>
-<p><img src="https://i.imgur.com/Kl9NjEw.png"></p>
-<p>1、随机数</p>
-<p>```java
-${random.value}、${random.int}、${random.long}
-${random.int(10)}、${random.int[1024,65536]}</p>
-<p>```</p>
-<p>2、占位符获取之前配置的值，如果没有可以是用:指定默认值</p>
-<p><code>properties
-person.last-name=张三${random.uuid}
-person.age=${random.int}
-person.birth=2017/12/15
-person.boss=false
-person.maps.k1=v1
-person.maps.k2=14
-person.lists=a,b,c
-person.dog.name=${person.hello:hello}_dog
-person.dog.age=15</code></p>
-<h4>5.Profile</h4>
-<p>1.多Profile文件
-我们再主配置文件编写的时候，文件名可以使 application-(profile).properties/yml</p>
-<p>可以配置多个application-(***).properties的文件，默认使用application.properties</p>
-<p>2.yml支持多文档块方式</p>
-<p>```yml</p>
-<p>server:
-  port: 8081
-spring:
-  profiles:
-    active: prod</p>
-<hr>
-<p>server:
-  port: 8083
-spring:
-  profiles: dev</p>
-<hr>
-<p>server:
-  port: 8084
-spring:
-  profiles: prod  #指定属于哪个环境</p>
-<p>```
-3.激活指定profile
-- 在配置文件中指定spring.profiles.active=dev
-- 命令行：--spring.profiles.active=dev
-  java -jar spring-boot-02-config-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev；
-可以直接在测试的时候，配置传入命令行参数</p>
-<ul>
-<li>
-虚拟机参数：
--Dspring.profiles.active=dev
-</li>
-</ul>
-<h4>6.配置文件的加载位置</h4>
-<p><img src="https://i.imgur.com/IvQRfgf.png"> 
-springboot 启动会扫描以下位置的application.properties或者application.yml文件作为Spring boot的默认配置文件</p>
-<p>–file:./config/</p>
-<p>–file:./</p>
-<p>–classpath:/config/</p>
-<p>–classpath:/
-优先级由高到低，高优先级的配置会覆盖低优先级的配置
-springboot会从这四个位置全部加载配置文件，会形成互补配置
-<strong>我们还可以通过spring.config.location来改变默认的配置文件位置，项目打包好以后，我们可以使用命令行参数的形式，启动项目的时候来指定配置文件的新路径，指定配置文件和这些默认的文件共同起作用形成互补配置</strong></p>
-<h4>7.外部配置的加载顺序</h4>
-<p><img src="https://i.imgur.com/qfEeU5F.png"></p>
-<p>springboot也可以从以下位置加载配置，优先级从高到低，高优先级的配置覆盖配置低优先级的配置，若有不同配置，会形成互补配置</p>
-<p><strong>1.命令行参数</strong></p>
-<p>所有的配置都可以在命令行上进行指定</p>
-<p>java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar --server.port=8087  --server.context-path=/abc</p>
-<p>多个配置用空格分开； --配置项=值</p>
-<p>2.来自java:comp/env的JNDI属性</p>
-<p>3.Java系统属性（System.getProperties()）</p>
-<p>4.操作系统环境变量</p>
-<p>5.RandomValuePropertySource配置的random.*属性值</p>
-<p>==<strong>由jar包外向jar包内进行寻找；</strong>==</p>
-<p>==<strong>优先加载带profile</strong>==</p>
-<p><strong>6.jar包外部的application-{profile}.properties或application.yml(带spring.profile)配置文件</strong></p>
-<p><strong>7.jar包内部的application-{profile}.properties或application.yml(带spring.profile)配置文件</strong></p>
-<p>==<strong>再来加载不带profile</strong>==</p>
-<p><strong>8.jar包外部的application.properties或application.yml(不带spring.profile)配置文件</strong></p>
-<p><strong>9.jar包内部的application.properties或application.yml(不带spring.profile)配置文件</strong></p>
-<p>10.@Configuration注解类上的@PropertySource</p>
-<p>11.通过SpringApplication.setDefaultProperties指定的默认属性</p>
-<p>所有支持的配置加载来源；</p>
-<p><a href="https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#boot-features-external-config" target="_blank" rel="external">参考官方文档</a></p>
-<h4>8.自动配置原理</h4>
-<p><img src="https://i.imgur.com/ZajWhqK.png"></p>
-<p>配置文件到底能写什么？怎么写？自动配置原理；</p>
-<p><a href="https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#common-application-properties" target="_blank" rel="external">配置文件能配置的属性参照</a></p>
-<h3>1、<strong>自动配置原理：</strong></h3>
-<p>1）、SpringBoot启动的时候加载主配置类，开启了自动配置功能 ==@EnableAutoConfiguration==</p>
-<p><strong>2）、@EnableAutoConfiguration 作用：</strong></p>
-<ul>
-<li>
-<p>利用EnableAutoConfigurationImportSelector给容器中导入一些组件？</p>
-</li>
-<li>
-<p>可以查看selectImports()方法的内容；</p>
-</li>
-<li>
-<p>List<string> configurations = getCandidateConfigurations(annotationMetadata,      attributes);获取候选的配置</string></p>
-<ul>
-<li>```java
-SpringFactoriesLoader.loadFactoryNames()
-扫描所有jar包类路径下  META-INF/spring.factories
-把扫描到的这些文件的内容包装成properties对象
-从properties中获取到EnableAutoConfiguration.class类（类名）对应的值，然后把他们添加在容器中</li>
-</ul>
-<p>```</p>
-<p>​</p>
-</li>
-</ul>
-<p><strong>==将 类路径下  META-INF/spring.factories 里面配置的所有EnableAutoConfiguration的值加入到了容器中；==</strong></p>
-<p>```properties</p>
-<h1>Auto Configure</h1>
-<p>org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration,\
-org.springframework.boot.autoconfigure.aop.AopAutoConfiguration,\
-org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration,\
-org.springframework.boot.autoconfigure.batch.BatchAutoConfiguration,\
-org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration,\
-org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfiguration,\
-org.springframework.boot.autoconfigure.cloud.CloudAutoConfiguration,\
-org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration,\
-org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration,\
-org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration,\
-org.springframework.boot.autoconfigure.couchbase.CouchbaseAutoConfiguration,\
-org.springframework.boot.autoconfigure.dao.PersistenceExceptionTranslationAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.cassandra.CassandraDataAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.cassandra.CassandraRepositoriesAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.couchbase.CouchbaseDataAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.couchbase.CouchbaseRepositoriesAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.ldap.LdapDataAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.ldap.LdapRepositoriesAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.neo4j.Neo4jDataAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.neo4j.Neo4jRepositoriesAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.solr.SolrRepositoriesAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.rest.RepositoryRestMvcAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration,\
-org.springframework.boot.autoconfigure.elasticsearch.jest.JestAutoConfiguration,\
-org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration,\
-org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration,\
-org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration,\
-org.springframework.boot.autoconfigure.hateoas.HypermediaAutoConfiguration,\
-org.springframework.boot.autoconfigure.hazelcast.HazelcastAutoConfiguration,\
-org.springframework.boot.autoconfigure.hazelcast.HazelcastJpaDependencyAutoConfiguration,\
-org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration,\
-org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration,\
-org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration,\
-org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,\
-org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration,\
-org.springframework.boot.autoconfigure.jdbc.JndiDataSourceAutoConfiguration,\
-org.springframework.boot.autoconfigure.jdbc.XADataSourceAutoConfiguration,\
-org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration,\
-org.springframework.boot.autoconfigure.jms.JmsAutoConfiguration,\
-org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration,\
-org.springframework.boot.autoconfigure.jms.JndiConnectionFactoryAutoConfiguration,\
-org.springframework.boot.autoconfigure.jms.activemq.ActiveMQAutoConfiguration,\
-org.springframework.boot.autoconfigure.jms.artemis.ArtemisAutoConfiguration,\
-org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration,\
-org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration,\
-org.springframework.boot.autoconfigure.jersey.JerseyAutoConfiguration,\
-org.springframework.boot.autoconfigure.jooq.JooqAutoConfiguration,\
-org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration,\
-org.springframework.boot.autoconfigure.ldap.embedded.EmbeddedLdapAutoConfiguration,\
-org.springframework.boot.autoconfigure.ldap.LdapAutoConfiguration,\
-org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration,\
-org.springframework.boot.autoconfigure.mail.MailSenderAutoConfiguration,\
-org.springframework.boot.autoconfigure.mail.MailSenderValidatorAutoConfiguration,\
-org.springframework.boot.autoconfigure.mobile.DeviceResolverAutoConfiguration,\
-org.springframework.boot.autoconfigure.mobile.DeviceDelegatingViewResolverAutoConfiguration,\
-org.springframework.boot.autoconfigure.mobile.SitePreferenceAutoConfiguration,\
-org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration,\
-org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration,\
-org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration,\
-org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration,\
-org.springframework.boot.autoconfigure.reactor.ReactorAutoConfiguration,\
-org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration,\
-org.springframework.boot.autoconfigure.security.SecurityFilterAutoConfiguration,\
-org.springframework.boot.autoconfigure.security.FallbackWebSecurityAutoConfiguration,\
-org.springframework.boot.autoconfigure.security.oauth2.OAuth2AutoConfiguration,\
-org.springframework.boot.autoconfigure.sendgrid.SendGridAutoConfiguration,\
-org.springframework.boot.autoconfigure.session.SessionAutoConfiguration,\
-org.springframework.boot.autoconfigure.social.SocialWebAutoConfiguration,\
-org.springframework.boot.autoconfigure.social.FacebookAutoConfiguration,\
-org.springframework.boot.autoconfigure.social.LinkedInAutoConfiguration,\
-org.springframework.boot.autoconfigure.social.TwitterAutoConfiguration,\
-org.springframework.boot.autoconfigure.solr.SolrAutoConfiguration,\
-org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration,\
-org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration,\
-org.springframework.boot.autoconfigure.transaction.jta.JtaAutoConfiguration,\
-org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration,\
-org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration,\
-org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration,\
-org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration,\
-org.springframework.boot.autoconfigure.web.HttpEncodingAutoConfiguration,\
-org.springframework.boot.autoconfigure.web.HttpMessageConvertersAutoConfiguration,\
-org.springframework.boot.autoconfigure.web.MultipartAutoConfiguration,\
-org.springframework.boot.autoconfigure.web.ServerPropertiesAutoConfiguration,\
-org.springframework.boot.autoconfigure.web.WebClientAutoConfiguration,\
-org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration,\
-org.springframework.boot.autoconfigure.websocket.WebSocketAutoConfiguration,\
-org.springframework.boot.autoconfigure.websocket.WebSocketMessagingAutoConfiguration,\
-org.springframework.boot.autoconfigure.webservices.WebServicesAutoConfiguration
-```</p>
-<p>每一个这样的  xxxAutoConfiguration类都是容器中的一个组件，都加入到容器中；用他们来做自动配置；</p>
-<p>3）、每一个自动配置类进行自动配置功能；</p>
-<p>4）、以<strong>HttpEncodingAutoConfiguration（Http编码自动配置）</strong>为例解释自动配置原理；</p>
-<p>```java
-@Configuration   //表示这是一个配置类，以前编写的配置文件一样，也可以给容器中添加组件
-@EnableConfigurationProperties(HttpEncodingProperties.class)  //启动指定类的ConfigurationProperties功能；将配置文件中对应的值和HttpEncodingProperties绑定起来；并把HttpEncodingProperties加入到ioc容器中</p>
-<p>@ConditionalOnWebApplication //Spring底层@Conditional注解（Spring注解版），根据不同的条件，如果满足指定的条件，整个配置类里面的配置就会生效；    判断当前应用是否是web应用，如果是，当前配置类生效</p>
-<p>@ConditionalOnClass(CharacterEncodingFilter.class)  //判断当前项目有没有这个类CharacterEncodingFilter；SpringMVC中进行乱码解决的过滤器；</p>
-<p>@ConditionalOnProperty(prefix = &quot;spring.http.encoding&quot;, value = &quot;enabled&quot;, matchIfMissing = true)  //判断配置文件中是否存在某个配置  spring.http.encoding.enabled；如果不存在，判断也是成立的
-//即使我们配置文件中不配置pring.http.encoding.enabled=true，也是默认生效的；
-public class HttpEncodingAutoConfiguration {</p>
-<pre><code>//他已经和SpringBoot的配置文件映射了
-private final HttpEncodingProperties properties;
-</code></pre>
-
-<p>//只有一个有参构造器的情况下，参数的值就会从容器中拿
-  	public HttpEncodingAutoConfiguration(HttpEncodingProperties properties) {
-		this.properties = properties;
-	}</p>
-<pre><code>@Bean   //给容器中添加一个组件，这个组件的某些值需要从properties中获取
-@ConditionalOnMissingBean(CharacterEncodingFilter.class) //判断容器没有这个组件？
-public CharacterEncodingFilter characterEncodingFilter() {
-    CharacterEncodingFilter filter = new OrderedCharacterEncodingFilter();
-    filter.setEncoding(this.properties.getCharset().name());
-    filter.setForceRequestEncoding(this.properties.shouldForce(Type.REQUEST));
-    filter.setForceResponseEncoding(this.properties.shouldForce(Type.RESPONSE));
-    return filter;
-}
-</code></pre>
-
-<p>```</p>
-<p>根据当前不同的条件判断，决定这个配置类是否生效？</p>
-<p>一但这个配置类生效；这个配置类就会给容器中添加各种组件；这些组件的属性是从对应的properties类中获取的，这些类里面的每一个属性又是和配置文件绑定的；</p>
-<p>5）、所有在配置文件中能配置的属性都是在xxxxProperties类中封装者‘；配置文件能配置什么就可以参照某个功能对应的这个属性类</p>
-<p>```java
-@ConfigurationProperties(prefix = &quot;spring.http.encoding&quot;)  //从配置文件中获取指定的值和bean的属性进行绑定
-public class HttpEncodingProperties {</p>
-<p>public static final Charset DEFAULT_CHARSET = Charset.forName(&quot;UTF-8&quot;);
-```</p>
-<p><strong>精髓：</strong></p>
-<p>​	<strong>1）、SpringBoot启动会加载大量的自动配置类</strong></p>
-<p>​	<strong>2）、我们看我们需要的功能有没有SpringBoot默认写好的自动配置类；</strong></p>
-<p>​	<strong>3）、我们再来看这个自动配置类中到底配置了哪些组件；（只要我们要用的组件有，我们就不需要再来配置了）</strong></p>
-<p>​	<strong>4）、给容器中自动配置类添加组件的时候，会从properties类中获取某些属性。我们就可以在配置文件中指定这些属性的值；</strong></p>
-<p>xxxxAutoConfigurartion：自动配置类；</p>
-<p>给容器中添加组件</p>
-<p>xxxxProperties:封装配置文件中相关属性；</p>
-<h3>2、细节</h3>
-<h4>1、@Conditional派生注解（Spring注解版原生的@Conditional作用）</h4>
-<p>作用：必须是@Conditional指定的条件成立，才给容器中添加组件，配置配里面的所有内容才生效；</p>
-<p>| @Conditional扩展注解                | 作用（判断是否满足当前指定条件）               |
-| ------------------------------- | ------------------------------ |
-| @ConditionalOnJava              | 系统的java版本是否符合要求                |
-| @ConditionalOnBean              | 容器中存在指定Bean；                   |
-| @ConditionalOnMissingBean       | 容器中不存在指定Bean；                  |
-| @ConditionalOnExpression        | 满足SpEL表达式指定                    |
-| @ConditionalOnClass             | 系统中有指定的类                       |
-| @ConditionalOnMissingClass      | 系统中没有指定的类                      |
-| @ConditionalOnSingleCandidate   | 容器中只有一个指定的Bean，或者这个Bean是首选Bean |
-| @ConditionalOnProperty          | 系统中指定的属性是否有指定的值                |
-| @ConditionalOnResource          | 类路径下是否存在指定资源文件                 |
-| @ConditionalOnWebApplication    | 当前是web环境                       |
-| @ConditionalOnNotWebApplication | 当前不是web环境                      |
-| @ConditionalOnJndi              | JNDI存在指定项                      |</p>
-<p><strong>自动配置类必须在一定的条件下才能生效；</strong></p>
-<p>我们怎么知道哪些自动配置类生效；</p>
-<p><strong>==我们可以通过启用  debug=true属性；来让控制台打印自动配置报告==</strong>，这样我们就可以很方便的知道哪些自动配置类生效；</p>
-<h1>```java</h1>
-<h1>AUTO-CONFIGURATION REPORT</h1>
-<h2>Positive matches:（自动配置类启用的）</h2>
-<p>DispatcherServletAutoConfiguration matched:
-      - @ConditionalOnClass found required class 'org.springframework.web.servlet.DispatcherServlet'; @ConditionalOnMissingClass did not find unwanted class (OnClassCondition)
-      - @ConditionalOnWebApplication (required) found StandardServletEnvironment (OnWebApplicationCondition)</p>
-<h2>Negative matches:（没有启动，没有匹配成功的自动配置类）</h2>
-<p>ActiveMQAutoConfiguration:
-      Did not match:
-         - @ConditionalOnClass did not find required classes 'javax.jms.ConnectionFactory', 'org.apache.activemq.ActiveMQConnectionFactory' (OnClassCondition)</p>
-<p>AopAutoConfiguration:
-      Did not match:
-         - @ConditionalOnClass did not find required classes 'org.aspectj.lang.annotation.Aspect', 'org.aspectj.lang.reflect.Advice' (OnClassCondition)</p>
-<p>```</p>
-<h1>三、日志</h1>
-<h2>1、日志框架</h2>
-<p>小张；开发一个大型系统；</p>
-<p>​		1、System.out.println(&quot;&quot;)；将关键数据打印在控制台；去掉？写在一个文件？</p>
-<p>​		2、框架来记录系统的一些运行时信息；日志框架 ；  zhanglogging.jar；</p>
-<p>​		3、高大上的几个功能？异步模式？自动归档？xxxx？  zhanglogging-good.jar？</p>
-<p>​		4、将以前框架卸下来？换上新的框架，重新修改之前相关的API；zhanglogging-prefect.jar；</p>
-<p>​		5、JDBC---数据库驱动；</p>
-<p>​			写了一个统一的接口层；日志门面（日志的一个抽象层）；logging-abstract.jar；</p>
-<p>​			给项目中导入具体的日志实现就行了；我们之前的日志框架都是实现的抽象层；</p>
-<p><strong>市面上的日志框架；</strong></p>
-<p>JUL、JCL、Jboss-logging、logback、log4j、log4j2、slf4j....</p>
-<p>| 日志门面  （日志的抽象层）                           | 日志实现                                     |
-| ---------------------------------------- | ---------------------------------------- |
-| ~~JCL（Jakarta  Commons Logging）~~    SLF4j（Simple  Logging Facade for Java）    <strong>~~jboss-logging~~</strong> | Log4j  JUL（java.util.logging）  Log4j2  <strong>Logback</strong> |</p>
-<p>左边选一个门面（抽象层）、右边来选一个实现；</p>
-<p>日志门面：  SLF4J；</p>
-<p>日志实现：Logback；</p>
-<p>SpringBoot：底层是Spring框架，Spring框架默认是用JCL；‘</p>
-<p>​	<strong>==SpringBoot选用 SLF4j和logback；==</strong></p>
-<h2>2、SLF4j使用</h2>
-<h3>1、如何在系统中使用SLF4j   https://www.slf4j.org</h3>
-<p>以后开发的时候，日志记录方法的调用，不应该来直接调用日志的实现类，而是调用日志抽象层里面的方法
-给系统里面导入slf4j的jar和logback的实现jar
-```java
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;</p>
-<p>public class HelloWorld {
-  public static void main(String[] args) {
-    Logger logger = LoggerFactory.getLogger(HelloWorld.class);
-    logger.info(&quot;Hello World&quot;);
-  }
-}
-```</p>
-<p>图示：<img src="https://i.imgur.com/wzanHz3.png"></p>
-<p>每一个日志的实现框架都有自己的配置文件，使用slf4j以后，<strong>配置文件还是做成日志实现框架自己本身的配置文件</strong></p>
-<h3>2.遗留问题</h3>
-<p>a(slf4j+logback),Spring(commons-logging),hibernate(jboss-logging),myBatis(xxx)
-统一日志记录，即使是别的框架和我一起统一使用slf4j进行输出？
-<img src="https://i.imgur.com/gdkQM8w.png">	
-<strong>如何让系统中所有的日志都统一到slf4j</strong>
-1.将系统中其他日志框架先排除出去
-2.用中间包来替换原有的日志框架
-3.我们导入slf4j其他的实现</p>
-<p><strong>3.springboot日志关系</strong>
-<code>xml
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-			&lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
-		&lt;/dependency&gt;</code>
-SpringBoot使用它来做日志功能
-<code>xml
-	&lt;dependency&gt;
-			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-			&lt;artifactId&gt;spring-boot-starter-logging&lt;/artifactId&gt;
-		&lt;/dependency&gt;</code>
-底层依赖关系
-<img src="https://i.imgur.com/Y2l7KGL.png"></p>
-<p>总结：
-   1.springboot底层也是使用slf4j+logback的方式进行日志记录
-   2.springboot也把其他的日志都替换成了slf4j
-   3.中间替换包，偷梁换柱
-```java
-@SuppressWarnings(&quot;rawtypes&quot;)
-public abstract class LogFactory {</p>
-<pre><code>static String UNSUPPORTED_OPERATION_IN_JCL_OVER_SLF4J = &quot;http://www.slf4j.org/codes.html#unsupported_operation_in_jcl_over_slf4j&quot;;
-
-static LogFactory logFactory = new SLF4JLogFactory();
-</code></pre>
-
-<p>```
-<img src="https://i.imgur.com/mjiYZ1Y.png"></p>
-<p>4.如果我们要引入其他的框架，一定要把这个框架的默认依赖日志移除掉
-spring框架用的是commons-logging
-<code>xml
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.springframework&lt;/groupId&gt;
-			&lt;artifactId&gt;spring-core&lt;/artifactId&gt;
-			&lt;exclusions&gt;
-				&lt;exclusion&gt;
-					&lt;groupId&gt;commons-logging&lt;/groupId&gt;
-					&lt;artifactId&gt;commons-logging&lt;/artifactId&gt;
-				&lt;/exclusion&gt;
-			&lt;/exclusions&gt;
-		&lt;/dependency&gt;</code>
-<strong>SpringBoot能自动适配所有日志，而且底层使用slf4j+logback的方式记录日志，引入其他框架的时候，只需要把这个框架依赖的日志框架排除</strong></p>
-<h2>4.日志使用</h2>
-<h3>1.默认配置</h3>
-<p>springboot默认帮我们配置好了日志
-```
-//记录器
-		Logger logger=LoggerFactory.getLogger(getClass());
-	@Test
-	public void contextLoads() {</p>
-<pre><code>    //日志级别，由低到高 trace&lt;debug&lt;info&lt;warn&lt;error
-    //可以调整输出日志的级别，日志就只会在这个级别及以后的高级别生效
-    logger.trace(&quot;这是trace日志信息....&quot;);
-    logger.debug(&quot;这是debug信息.....&quot;);
-    //springboot默认给我们提示info级别,没有指定级别的就使用springboot默认级别，root级别
-    logger.info(&quot;这是info信息...&quot;);
-    logger.warn(&quot;这是warn信息/...&quot;);
-    logger.error(&quot;这是error信息....&quot;);
-}
-</code></pre>
-
-<p><code></code>
-        日志输出格式：
-    		%d表示日期时间，
-    		%thread表示线程名，
-    		%-5level：级别从左显示5个字符宽度
-    		%logger{50} 表示logger名字最长50个字符，否则按照句点分割。 
-    		%msg：日志消息，
-    		%n是换行符
-        --&gt;
-        %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
-```
-<strong>SpringBoot修改日志的默认配置</strong></p>
-<p>```properties
-logging.level.com.atguigu=trace</p>
-<h1>logging.path=</h1>
-<h1>不指定路径在当前项目下生成springboot.log日志</h1>
-<h1>可以指定完整的路径；</h1>
-<h1>logging.file=G:/springboot.log</h1>
-<h1>在当前磁盘的根路径下创建spring文件夹和里面的log文件夹；使用 spring.log 作为默认文件</h1>
-<p>logging.path=/spring/log</p>
-<h1>在控制台输出的日志的格式</h1>
-<p>logging.pattern.console=%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n</p>
-<h1>指定文件中日志输出的格式</h1>
-<p>logging.pattern.file=%d{yyyy-MM-dd} === [%thread] === %-5level === %logger{50} ==== %msg%n
-```</p>
-<p>| logging.file | logging.path | Example  | Description             |
-| ------------ | ------------ | -------- | ----------------------- |
-| (none)       | (none)       |          | 只在控制台输出                 |
-| 指定文件名        | (none)       | my.log   | 输出日志到my.log文件           |
-| (none)       | 指定目录         | /var/log | 输出到指定目录的 spring.log 文件中 |</p>
-
-</body>
-</html>
-<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/17/u_post/springboot入门/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-springboot入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1473,19 +254,19 @@ logging.level.com.atguigu=trace</p>
 
 
   
-    <article id="post-CentOS7执行yum命令出错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-markdown无法显示" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/CentOS7执行yum命令出错/">CentOS7执行yum命令出错</a>
+      <a class="article-title" href="/2018/04/13/markdown无法显示/">markdown注入错误</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/CentOS7执行yum命令出错/" class="archive-article-date">
+        <a href="/2018/04/13/markdown无法显示/" class="archive-article-date">
   	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
@@ -1497,10 +278,16 @@ logging.level.com.atguigu=trace</p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="CentOS7执行yum命令出错"><a href="#CentOS7执行yum命令出错" class="headerlink" title="CentOS7执行yum命令出错"></a>CentOS7执行yum命令出错</h2>
-        
-          <a class="article-more-a" href="/2018/04/13/CentOS7执行yum命令出错/#more">read more >></a>
-        
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="神奇的markdown"><a href="#神奇的markdown" class="headerlink" title="神奇的markdown"></a>神奇的markdown</h2><pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+       &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot; &gt;
+
+    &lt;bean id=&quot;helloService&quot; class=&quot;io.springboot.service.HelloService&quot;&gt;&lt;/bean&gt;
+
+&lt;/beans&gt;
+</code></pre>
+
       
 
       
@@ -1513,7 +300,7 @@ logging.level.com.atguigu=trace</p>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
         		</li>
       		
 		</ul>
@@ -1526,7 +313,7 @@ logging.level.com.atguigu=trace</p>
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/CentOS7执行yum命令出错/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/markdown无法显示/">展开全文 >></a>
         </p>
       
 
@@ -1610,6 +397,89 @@ logging.level.com.atguigu=trace</p>
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/13/ssh/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-CentOS7执行yum命令出错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/CentOS7执行yum命令出错/">CentOS7执行yum命令出错</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/CentOS7执行yum命令出错/" class="archive-article-date">
+  	<time datetime="2018-04-13T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="CentOS7执行yum命令出错"><a href="#CentOS7执行yum命令出错" class="headerlink" title="CentOS7执行yum命令出错"></a>CentOS7执行yum命令出错</h2>
+        
+          <a class="article-more-a" href="/2018/04/13/CentOS7执行yum命令出错/#more">read more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/CentOS7执行yum命令出错/">展开全文 >></a>
         </p>
       
 
@@ -1856,15 +726,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">music</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1880,11 +746,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1896,11 +762,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Netty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1912,11 +782,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1928,19 +802,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hello world</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">solr</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,linux</a>
               </li>
              
               <li class="article-tag-list-item">
