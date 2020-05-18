@@ -171,6 +171,257 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-httpclient的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/08/httpclient的使用/">httpclient的使用</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/08/httpclient的使用/" class="archive-article-date">
+  	<time datetime="2018-10-08T07:46:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-08</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- read more-->
+<h2 id="什么是httpclient"><a href="#什么是httpclient" class="headerlink" title="什么是httpclient"></a>什么是httpclient</h2><p>HttpClient 是 Apache <a href="https://hc.apache.org/" target="_blank" rel="external">Jakarta Common </a>下的子项目，用来提供高效的、最新的、功能丰富的支持 HTTP 协议的客户端编程工具包，并且它支持 HTTP 协议最新的版本和建议。<br><br>HttpClient相比传统JDK自带的URLConnection，增加了易用性和灵活性（具体区别，日后我们再讨论），它不仅是客户端发送Http请求变得容易，而且也方便了开发人员测试接口（基于Http协议的），即提高了开发的效率，也方便提高代码的健壮性。<br>在项目中，内部服务的调用需要使用httpclient要获取想要的内容，然后返回的是json格式数据，调用方再做处理。<br>
+        
+          <a class="article-more-a" href="/2018/10/08/httpclient的使用/#more">read more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/08/httpclient的使用/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-maven找不到父工程依赖问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/01/maven找不到父工程依赖问题/">maven找不到父工程依赖问题</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/01/maven找不到父工程依赖问题/" class="archive-article-date">
+  	<time datetime="2018-10-01T12:19:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-01</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- read more-->
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这两天maven新建工程的时候遇到一个很奇怪的问题，要依赖的父工程找不到，并且新建的工程目录有缺失，如下：<br><br><img src="https://i.imgur.com/X8lyU2E.jpg" alt=""><br>Google了一番都没有找到到问题所在，很多说是project-&gt;properties-&gt;java build path的问题，但是我的并不是。最后看到一个说是父工程命名的问题，所以顺着这个思路去检查了一番，果然发现了父工程<code>artifactId</code>有问题。原因是之前曾经重命名了这个父工程，但是pom.xml文件的artifactId并没有别改变，所以这个工程里面模块依赖下来都是重命名之前的artifactId。<br><br>
+        
+          <a class="article-more-a" href="/2018/10/01/maven找不到父工程依赖问题/#more">read more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/01/maven找不到父工程依赖问题/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-花谢了" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/27/花谢了/">花谢了</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/27/花谢了/" class="archive-article-date">
+  	<time datetime="2018-09-27T15:36:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-27</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>　　似乎很久都没有动过这一块了呢，今晚整理了一下自己乱如狗窝的博客，回看了曾经写过的一些文字，也想起了过往所经历的一切，开心的、不开心的，兴奋的，压抑的都有。想想这一切也是人生的一部分，经历过才能让人愈发的感触于心。<br><br>
+        
+          <a class="article-more-a" href="/2018/09/27/花谢了/#more">read more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/27/花谢了/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-FTP上传文件0字节问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -353,261 +604,9 @@
 
 
   
-    <article id="post-Nginx-ftp搭建图片服务器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/12/Nginx-ftp搭建图片服务器/">Nginx+ftp搭建图片服务器</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/12/Nginx-ftp搭建图片服务器/" class="archive-article-date">
-  	<time datetime="2018-09-12T14:32:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-12</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- read more-->
-<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx<br></h2><p>这里就不说了<br></p>
-<h2 id="安装vsftp"><a href="#安装vsftp" class="headerlink" title="安装vsftp"></a>安装vsftp</h2>
-        
-          <a class="article-more-a" href="/2018/09/12/Nginx-ftp搭建图片服务器/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/12/Nginx-ftp搭建图片服务器/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Nginx安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/09/Nginx安装/">Nginx的安装及其使用</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/09/Nginx安装/" class="archive-article-date">
-  	<time datetime="2018-09-09T14:32:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-09</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- read more-->
-<h1 id="Nginx的安装及其启动"><a href="#Nginx的安装及其启动" class="headerlink" title="Nginx的安装及其启动"></a>Nginx的安装及其启动</h1><h2 id="1-nginx安装环境"><a href="#1-nginx安装环境" class="headerlink" title="1 nginx安装环境"></a>1 nginx安装环境</h2><p>nginx是C语言开发，建议在linux上运行，本教程使用阿里云服务器Centos6.8作为安装环境。<br><br><strong>gcc</strong><br></p>
-        
-          <a class="article-more-a" href="/2018/09/09/Nginx安装/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/09/Nginx安装/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-messi" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/20/messi/">Messi</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/20/messi/" class="archive-article-date">
-  	<time datetime="2018-06-20T14:32:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-20</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://i.imgur.com/orNX4PP.jpg" alt=""></p>
-        
-          <a class="article-more-a" href="/2018/06/20/messi/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Messi</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/20/messi/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
     </nav>
   
 
@@ -739,11 +738,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">music</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -763,6 +762,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">music</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
@@ -775,15 +778,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Netty</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -791,15 +786,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
              
               <li class="article-tag-list-item">
