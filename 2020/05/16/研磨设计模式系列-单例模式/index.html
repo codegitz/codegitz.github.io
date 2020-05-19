@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2020/05/16/研磨设计模式系列-单例模式/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
 <meta property="og:description" content="1.什么是单例     保证一个类只有一个实例，并且提供一个访问该全局访问点。 2.单例应用场景1、Windows的Task Manager（任务管理器）就是很典型的单例模式（这个很熟悉吧），想想看，是不是呢，你能打开两个windows task manager吗？ 不信你自己试试看哦~  2、windows的Recycle Bin（回收站）也是典型的单例应用。在整个系统运行过程中，回收站一直维护">
-<meta property="og:updated_time" content="2020-05-18T08:44:23.235Z">
+<meta property="og:updated_time" content="2020-05-19T16:00:49.834Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="研磨设计模式系列--单例模式">
 <meta name="twitter:description" content="1.什么是单例     保证一个类只有一个实例，并且提供一个访问该全局访问点。 2.单例应用场景1、Windows的Task Manager（任务管理器）就是很典型的单例模式（这个很熟悉吧），想想看，是不是呢，你能打开两个windows task manager吗？ 不信你自己试试看哦~  2、windows的Recycle Bin（回收站）也是典型的单例应用。在整个系统运行过程中，回收站一直维护">
@@ -456,6 +456,7 @@ Exception in thread &quot;main&quot; java.lang.RuntimeException: 二次创建，
 
 Process finished with exit code 1
 </code></pre>
+<p><a href="https://github.com/codegitz/designPattern" target="_blank" rel="external">附完整代码</a>，需要自取，顺便点个star。</p>
 <h2 id="6-如何选择单例创建方式"><a href="#6-如何选择单例创建方式" class="headerlink" title="6.如何选择单例创建方式"></a>6.如何选择单例创建方式</h2><p>1.如果不需要延迟加载单例，可以使用枚举或者饿汉式，相对来说枚举性能好于饿汉式。</p>
 <p>2.如果需要延迟加载，可以使用静态内部类或者懒汉式，相对来说静态内部类好于懒汉式。</p>
 

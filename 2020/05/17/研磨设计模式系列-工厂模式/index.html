@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://live.staticflickr.com/65535/49903823771_151667c329_o.png">
 <meta property="og:image" content="https://live.staticflickr.com/65535/49904182747_c95e25687b_o.png">
 <meta property="og:image" content="https://live.staticflickr.com/65535/49904180747_dbfac65cc2_o.png">
-<meta property="og:updated_time" content="2020-05-18T08:33:08.509Z">
+<meta property="og:updated_time" content="2020-05-19T16:01:01.804Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="研磨设计模式系列--工厂模式">
 <meta name="twitter:description" content="1.什么是工厂模式​        实现了创建者和调用者分离，工厂模式分为简单工厂、工厂方法、抽象工厂模式 2.工厂模式好处​        工厂模式是我们最常用的实例化对象模式了，是用工厂方法代替new操作的一种模式。利用工厂模式可以降低程序的耦合性，为后期的维护修改提供了很大的便利。工厂模式对选择实现类、创建对象进行统一管理和控制。从而将调用者跟我们的实现类解耦。">
@@ -443,6 +443,7 @@ public class ConcreteFactory1 implements AbstractFactory {
     }
 }
 </code></pre>
+<p><a href="https://github.com/codegitz/designPattern" target="_blank" rel="external">附完整代码</a>，需要自取，顺便点个star。</p>
 <p>抽象工厂相对复杂，即对产品也进行了一层抽象，相对工厂方法多了产品的抽象，关于工厂模式之间的<a href="https://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/abstract_factory.html" target="_blank" rel="external">详细比较在此</a>。</p>
 <h2 id="4-简单工厂、工厂方法、抽象工厂之小结、区别"><a href="#4-简单工厂、工厂方法、抽象工厂之小结、区别" class="headerlink" title="4.简单工厂、工厂方法、抽象工厂之小结、区别"></a>4.简单工厂、工厂方法、抽象工厂之小结、区别</h2><p>简单工厂 ： 用来生产同一等级结构中的任意产品。（不支持拓展增加产品）</p>
 <p>工厂方法 ：用来生产同一等级结构中的固定产品。（支持拓展增加产品）  </p>

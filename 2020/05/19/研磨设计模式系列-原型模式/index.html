@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2020/05/19/研磨设计模式系列-原型模式/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
 <meta property="og:description" content="1.什么是原型模式原型模式是一个创建型的模式。原型二字表明了改模式应该有一个样板实例，用户从这个样板对象中复制一个内部属性一致的对象，这个过程也就是我们称的“克隆”。被复制的实例就是我们所称的“原型”，这个原型是可定制的。原型模式多用于创建复杂的或者构造耗时的实例，因为这种情况下，复制一个已经存在的实例可使程序运行更高效。">
-<meta property="og:updated_time" content="2020-05-19T06:44:45.521Z">
+<meta property="og:updated_time" content="2020-05-19T16:01:51.897Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="研磨设计模式系列--原型模式">
 <meta name="twitter:description" content="1.什么是原型模式原型模式是一个创建型的模式。原型二字表明了改模式应该有一个样板实例，用户从这个样板对象中复制一个内部属性一致的对象，这个过程也就是我们称的“克隆”。被复制的实例就是我们所称的“原型”，这个原型是可定制的。原型模式多用于创建复杂的或者构造耗时的实例，因为这种情况下，复制一个已经存在的实例可使程序运行更高效。">
@@ -338,6 +338,7 @@ title: book1
 img: name1
 ==============end=================
 </code></pre>
+<p><a href="https://github.com/codegitz/designPattern" target="_blank" rel="external">附完整代码</a>，需要自取，顺便点个star。</p>
 <h2 id="5-原型模式的浅拷贝和深拷贝的区别"><a href="#5-原型模式的浅拷贝和深拷贝的区别" class="headerlink" title="5.原型模式的浅拷贝和深拷贝的区别"></a>5.原型模式的浅拷贝和深拷贝的区别</h2><p>　　从上面的结果我们可以看到区别，浅拷贝出来的对象，如果是引用类型，如果进行了修改，那么原本的类型也会发生改变，如果是深拷贝，则不会出现这种情况。</p>
 <p>　　浅拷贝–只是拷贝了基本类型的数据，而引用类型数据，拷贝后也是会发生引用，我们把这种拷贝叫做“浅拷贝”，换句话说，浅拷贝仅仅是指向被拷贝的内存地址，如果原地址中对象被改变了，那么浅拷贝出来的对象也会相应改变。</p>
 <p>　　深拷贝–在计算机中开辟了一块新的内存地址用于存放拷贝的对象。</p>
