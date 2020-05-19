@@ -171,6 +171,227 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-研磨设计模式系列-观察者模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/19/研磨设计模式系列-观察者模式/">研磨设计模式系列--观察者模式</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/19/研磨设计模式系列-观察者模式/" class="archive-article-date">
+  	<time datetime="2020-05-19T13:00:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
+</a>
+        
+      </header>
+     <div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="1-什么是观察者模式"><a href="#1-什么是观察者模式" class="headerlink" title="1.什么是观察者模式"></a>1.什么是观察者模式</h2><p>观察者模式（Observer），是一种行为性模型，行为型模式关注的是系统中对象之间的相互交互，解决系统在运行时对象之间的相互通信和协作，进一步明确对象的职责。相比来说，创建型模式关注对象的创建过程，结构型模式关注对象和类的组合关系。</p>
+<h2 id="2-模式的职责"><a href="#2-模式的职责" class="headerlink" title="2.模式的职责"></a>2.模式的职责</h2><p>观察者模式主要用于1对N的通知。当一个对象的状态变化时，他需要及时告知一系列对象，令他们做出相应。</p>
+<p>实现有两种方式：</p>
+<p>推：每次都会把通知以广播的方式发送给所有观察者，所有的观察者只能被动接收。</p>
+<p>拉：观察者只要知道有情况即可，至于什么时候获取内容，获取什么内容，都可以自主决定。</p>
+<h2 id="3-模式的实现"><a href="#3-模式的实现" class="headerlink" title="3.模式的实现"></a>3.模式的实现</h2><p>创建Observer接口</p>
+<pre><code class="Java">package com.designpattern.observer;
+
+/**
+ * @description: {@link Observer}观察者接口，用来存放观察者共有方法,由{@link ObserverA},{@link ObserverB}等实现
+ * @author: Codegitz
+ * @create: 2020-05-19 22:16
+ **/
+public interface Observer {
+    void update(Subject subject);
+}
+</code></pre>
+<p>创建被观察者Subject类</p>
+<pre><code class="Java">package com.designpattern.observer;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @description: {@link Subject}被观察对象,可注册唤醒{@link Observer}观察者
+ * @author: Codegitz
+ * @create: 2020-05-19 22:17
+ **/
+public class Subject {
+
+    //被观察者的状态
+    private int state;
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+        this.notifyAllObserver();
+    }
+
+    //维护一个观察者列表
+    private List&lt;Observer&gt; observers = new ArrayList&lt;&gt;();
+
+    //注册
+    public void registerObserver(Observer observer){
+        observers.add(observer);
+    }
+
+    //移出
+    public void removeObserver(Observer observer){
+        observers.remove(observer);
+        this.notifyAllObserver();
+    }
+
+    //更新列表里的观察者
+    public void notifyAllObserver(){
+        for (Observer observer: observers){
+            observer.update(this);
+        }
+    }
+}
+</code></pre>
+<p>实现<code>Observer</code>接口，有<code>ObserverA</code>, <code>ObserverB</code>, <code>ObserverC</code>三种观察者，这里只贴一份代码，其他的差不多。</p>
+<pre><code class="Java">package com.designpattern.observer;
+
+/**
+ * @description: 观察者A，实现{@link Observer}
+ * @author: Codegitz
+ * @create: 2020-05-19 22:30
+ **/
+public class ObserverA implements Observer {
+
+    private Subject subject;
+    @Override
+    public void update(Subject subject) {
+        this.subject = subject;
+        getMyState();
+    }
+
+    //拼接一下当前观察者类名和更新后的state值
+    public void getMyState(){
+        System.out.println(&quot;[Observer name: &quot;+this.getClass().getName()+&quot;]--subject.getState(): &quot;+subject.getState());
+    }
+}
+</code></pre>
+<p>测试类</p>
+<pre><code class="Java">package com.designpattern.observer;
+
+/**
+ * @description: 测试类
+ * @author: Codegitz
+ * @create: 2020-05-19 22:40
+ **/
+public class TestObserver {
+    public static void main(String[] args) {
+        //新建一个被观察对象
+        Subject subject = new Subject();
+        //三个不同的观察者
+        Observer observer1 = new ObserverA();
+        Observer observer2 = new ObserverB();
+        Observer observer3 = new ObserverC();
+
+        //注册三个观察者
+        subject.registerObserver(observer1);
+        subject.registerObserver(observer2);
+        subject.registerObserver(observer3);
+
+        //改变state的值
+        System.out.println(&quot;=======change state value,set state = 100==========&quot;);
+        subject.setState(100);
+        //移除一个观察者
+        System.out.println(&quot;============remove observer3============&quot;);
+        subject.removeObserver(observer3);
+        System.out.println(&quot;=======change state value,set state = 200==========&quot;);
+        subject.setState(200);
+    }
+}
+</code></pre>
+<p>运行结果如下：</p>
+<pre><code class="cmd">=======change state value,set state = 100==========
+[Observer name: com.designpattern.observer.ObserverA]--subject.getState(): 100
+[Observer name: com.designpattern.observer.ObserverB]--subject.getState(): 100
+[Observer name: com.designpattern.observer.ObserverC]--subject.getState(): 100
+============remove observer3============
+[Observer name: com.designpattern.observer.ObserverA]--subject.getState(): 100
+[Observer name: com.designpattern.observer.ObserverB]--subject.getState(): 100
+=======change state value,set state = 200==========
+[Observer name: com.designpattern.observer.ObserverA]--subject.getState(): 200
+[Observer name: com.designpattern.observer.ObserverB]--subject.getState(): 200
+</code></pre>
+<p>　　从结果可以看到，在更新被观察者的state值后，被观察者会通知所有的观察对象，把当前的被观察者对象this更新到观察者中，观察者可以进行相应的处理，我这里是直接打印了state的值，这是一种基于’’推’’模式的实现。在观察者被移除后，也会把当前状态更新一次，如果不需要这一步，只需要把<code>removeObserver</code>方法里的<code>this.notifyAllObserver()</code>方法去掉。</p>
+<h2 id="4-观察者模式应用场景"><a href="#4-观察者模式应用场景" class="headerlink" title="4.观察者模式应用场景"></a>4.观察者模式应用场景</h2><ul>
+<li><p>关联行为场景，需要注意的是，关联行为是可拆分的，而不是“组合”关系。</p>
+</li>
+<li><p>事件多级触发场景。</p>
+</li>
+<li><p>跨系统的消息交换场景，如<strong>消息队列</strong>、事件总线的处理机制。消息队列应该是很经典的一种实践了。</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+         <span id="busuanzi_container_page_pv">
+              |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/19/研磨设计模式系列-观察者模式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-研磨设计模式系列-策略模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -719,92 +940,9 @@ HouseDecorateImpl2 do something...
 
 
   
-    <article id="post-研磨设计模式系列-适配器模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/18/研磨设计模式系列-适配器模式/">研磨设计模式系列--适配器模式</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/18/研磨设计模式系列-适配器模式/" class="archive-article-date">
-  	<time datetime="2020-05-18T08:56:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-18</time>
-</a>
-        
-      </header>
-     <div id="gitment"></div>
-
-<!-- ��ҳ��Ҫ����gitment -->
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-什么是适配器"><a href="#1-什么是适配器" class="headerlink" title="1.什么是适配器"></a>1.什么是适配器</h2><p>　　在设计模式中，适配器模式（英语：adapter pattern）有时候也称包装样式或者包装(wrapper)。将一个类的接口转接成用户所期待的。一个适配使得因接口不兼容而不能在一起工作的类工作在一起，做法是将类自己的接口包裹在一个已存在的类中。顾名思义，适配器就是适配相同功能产品的不同规格，使之能够正常使用。在日常生活中，电源适配器就是一个很好的例子，有时候产品需要的电压与我们提供的电压不同，所以我们需要一个电源适配器去转换一下电压，使得产品能够正常使用。</p>
-        
-          <a class="article-more-a" href="/2020/05/18/研磨设计模式系列-适配器模式/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-         <span id="busuanzi_container_page_pv">
-              |阅读量(<span id="busuanzi_value_page_pv"></span>)
-        </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/18/研磨设计模式系列-适配器模式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -952,15 +1090,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -976,11 +1110,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
+                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+                <a href="javascript:void(0)" class="js-tag color1">Messi</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -988,7 +1122,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
+                <a href="javascript:void(0)" class="js-tag color4">powerdesigner</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Java,docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1000,11 +1138,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color1">poisionous soul</a>
               </li>
              
               <li class="article-tag-list-item">
