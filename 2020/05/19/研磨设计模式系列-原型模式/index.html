@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2020/05/19/研磨设计模式系列-原型模式/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
 <meta property="og:description" content="1.什么是原型模式原型模式是一个创建型的模式。原型二字表明了改模式应该有一个样板实例，用户从这个样板对象中复制一个内部属性一致的对象，这个过程也就是我们称的“克隆”。被复制的实例就是我们所称的“原型”，这个原型是可定制的。原型模式多用于创建复杂的或者构造耗时的实例，因为这种情况下，复制一个已经存在的实例可使程序运行更高效。">
-<meta property="og:updated_time" content="2020-05-18T16:30:37.731Z">
+<meta property="og:updated_time" content="2020-05-19T06:44:45.521Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="研磨设计模式系列--原型模式">
 <meta name="twitter:description" content="1.什么是原型模式原型模式是一个创建型的模式。原型二字表明了改模式应该有一个样板实例，用户从这个样板对象中复制一个内部属性一致的对象，这个过程也就是我们称的“克隆”。被复制的实例就是我们所称的“原型”，这个原型是可定制的。原型模式多用于创建复杂的或者构造耗时的实例，因为这种情况下，复制一个已经存在的实例可使程序运行更高效。">
@@ -212,8 +212,135 @@ gitment.render('gitment')
         <script src="/assets/js/APlayer.min.js"> </script><h2 id="1-什么是原型模式"><a href="#1-什么是原型模式" class="headerlink" title="1.什么是原型模式"></a>1.什么是原型模式</h2><p>原型模式是一个创建型的模式。原型二字表明了改模式应该有一个样板实例，用户从这个样板对象中复制一个内部属性一致的对象，这个过程也就是我们称的“克隆”。被复制的实例就是我们所称的“原型”，这个原型是可定制的。原型模式多用于创建复杂的或者构造耗时的实例，因为这种情况下，复制一个已经存在的实例可使程序运行更高效。</p>
 <a id="more"></a>
 <h2 id="2-原型模式应用场景"><a href="#2-原型模式应用场景" class="headerlink" title="2.原型模式应用场景"></a>2.原型模式应用场景</h2><p> （1）  类初始化需要消化非常多的资源，这个资源包括数据、硬件资源等，通过原型拷贝避免这些消耗。<br> （2）通过new产生的一个对象需要非常繁琐的数据准备或者权限，这时可以使用原型模式。<br> （3）一个对象需要提供给其他对象访问，而且各个调用者可能都需要修改其值时，可以考虑使用原型模式拷贝多个对象供调用者使用，即保护性拷贝。</p>
-<p>Spring框架中的多例就是使用原型。</p>
+<p>Spring框架中的多例Prototype就是使用原型。</p>
 <h2 id="3-原型模式实现方式"><a href="#3-原型模式实现方式" class="headerlink" title="3.原型模式实现方式"></a>3.原型模式实现方式</h2><p>原型模式主要用于对象的复制，它的核心是就是类图中的原型类Prototype。Prototype类需要具备以下两个条件：<br> 　（1）实现Cloneable接口。在java语言有一个Cloneable接口，它的作用只有一个，就是在运行时通知虚拟机可以安全地在实现了此接口的类上使用clone方法。在java虚拟机中，只有实现了这个接口的类才可以被拷贝，否则在运行时会抛出CloneNotSupportedException异常。<br> 　（2）重写Object类中的clone方法。Java中，所有类的父类都是Object类，Object类中有一个clone方法，作用是返回对象的一个拷贝，但是其作用域protected类型的，一般的类无法调用，因此Prototype类需要将clone方法的作用域修改为public类型。</p>
+<h2 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4.代码实现"></a>4.代码实现</h2><pre><code class="Java">package com.designpattern.prototype;
+
+import java.util.ArrayList;
+
+
+/**
+ * @description: 原型类，书本类型，扮演的是ConcretePrototype角色，而Cloneable扮演Prototype角色
+ * @author: Codegitz
+ * @create: 2020-05-19 13:43
+ **/
+public class Book extends Object implements Cloneable {
+
+    private String title;
+
+    private ArrayList&lt;String&gt; imgList = new ArrayList&lt;&gt;();
+
+    public Book(){
+        super();
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public ArrayList&lt;String&gt; getImgList() {
+        return imgList;
+    }
+
+    public void setImgList(ArrayList&lt;String&gt; imgList) {
+        this.imgList = imgList;
+    }
+
+    public void add(String name){
+        imgList.add(name);
+    }
+
+    /**
+     * 重写拷贝方法
+     * @return
+     * @throws CloneNotSupportedException
+     */
+    @Override
+    protected Book clone() throws CloneNotSupportedException {
+
+        try{
+            Book book = (Book) super.clone();
+            //深拷贝，开辟新的内存
+//            book.imgList = (ArrayList&lt;String&gt;) this.imgList.clone();
+            return book;
+        }catch (CloneNotSupportedException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public void showBook(){
+        System.out.println(&quot;=============start=================&quot;);
+        System.out.println(&quot;title: &quot;+title);
+        for (String img : imgList){
+            System.out.println(&quot;img: &quot;+img);
+        }
+        System.out.println(&quot;==============end=================&quot;);
+    }
+}
+</code></pre>
+<p>测试代码：</p>
+<pre><code class="Java">package com.designpattern.prototype;
+
+public class TestPrototype {
+    public static void main(String[] args) throws CloneNotSupportedException {
+        Book book1 = new Book();
+        book1.setTitle(&quot;book1&quot;);
+        book1.add(&quot;name1&quot;);
+        //先展示一下book1
+        book1.showBook();
+
+        //克隆book1的属性给book2
+        Book book2 = (Book)book1.clone();
+        book2.setTitle(&quot;book2&quot;);
+        //给book2增加属性
+        book2.add(&quot;name2&quot;);
+        //展示book2
+        book2.showBook();
+        //再展示book1
+        book1.showBook();
+    }
+}
+</code></pre>
+<p>采用浅拷贝方式的运行结果：</p>
+<pre><code class="cmd">=============start=================
+title: book1
+img: name1
+==============end=================
+=============start=================
+title: book2
+img: name1
+img: name2
+==============end=================
+=============start=================
+title: book1
+img: name1
+img: name2
+==============end=================
+</code></pre>
+<p>采用深拷贝的运行结果：</p>
+<pre><code class="cmd">=============start=================
+title: book1
+img: name1
+==============end=================
+=============start=================
+title: book2
+img: name1
+img: name2
+==============end=================
+=============start=================
+title: book1
+img: name1
+==============end=================
+</code></pre>
+<h2 id="5-原型模式的浅拷贝和深拷贝的区别"><a href="#5-原型模式的浅拷贝和深拷贝的区别" class="headerlink" title="5.原型模式的浅拷贝和深拷贝的区别"></a>5.原型模式的浅拷贝和深拷贝的区别</h2><p>　　从上面的结果我们可以看到区别，浅拷贝出来的对象，如果是引用类型，如果进行了修改，那么原本的类型也会发生改变，如果是深拷贝，则不会出现这种情况。</p>
+<p>　　浅拷贝–只是拷贝了基本类型的数据，而引用类型数据，拷贝后也是会发生引用，我们把这种拷贝叫做“浅拷贝”，换句话说，浅拷贝仅仅是指向被拷贝的内存地址，如果原地址中对象被改变了，那么浅拷贝出来的对象也会相应改变。</p>
+<p>　　深拷贝–在计算机中开辟了一块新的内存地址用于存放拷贝的对象。</p>
 
       
 
@@ -325,6 +452,15 @@ gitment.render('gitment')
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/05/19/研磨设计模式系列-装饰模式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          研磨设计模式系列--装饰模式
+        
+      </div>
+    </a>
   
   
     <a href="/2020/05/18/研磨设计模式系列-外观模式/" id="article-nav-older" class="article-nav-link-wrap">
@@ -523,11 +659,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color1">music</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -543,15 +679,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">music</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -563,14 +699,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Messi</a>
               </li>
              
@@ -579,11 +707,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">Java,Springboot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
