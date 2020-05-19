@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>研磨设计模式系列--观察者模式 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.什么是观察者模式观察者模式（Observer），是一种行为性模型，行为型模式关注的是系统中对象之间的相互交互，解决系统在运行时对象之间的相互通信和协作，进一步明确对象的职责。相比来说，创建型模式关注对象的创建过程，结构型模式关注对象和类的组合关系。 2.模式的职责观察者模式主要用于1对N的通知。当一个对象的状态变化时，他需要及时告知一系列对象，令他们做出相应。 实现有两种方式： 推：每次都会">
+  <meta name="description" content="1.什么是观察者模式观察者模式（Observer），是一种行为性模型，行为型模式关注的是系统中对象之间的相互交互，解决系统在运行时对象之间的相互通信和协作，进一步明确对象的职责。相比来说，创建型模式关注对象的创建过程，结构型模式关注对象和类的组合关系。 2.模式的职责观察者模式主要用于1对N的通知。当一个对象的状态变化时，他需要及时告知一系列对象，令他们做出相应。 实现有两种方式：">
 <meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="研磨设计模式系列--观察者模式">
 <meta property="og:url" content="http://yoursite.com/2020/05/19/研磨设计模式系列-观察者模式/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="1.什么是观察者模式观察者模式（Observer），是一种行为性模型，行为型模式关注的是系统中对象之间的相互交互，解决系统在运行时对象之间的相互通信和协作，进一步明确对象的职责。相比来说，创建型模式关注对象的创建过程，结构型模式关注对象和类的组合关系。 2.模式的职责观察者模式主要用于1对N的通知。当一个对象的状态变化时，他需要及时告知一系列对象，令他们做出相应。 实现有两种方式： 推：每次都会">
-<meta property="og:updated_time" content="2020-05-19T15:18:39.415Z">
+<meta property="og:description" content="1.什么是观察者模式观察者模式（Observer），是一种行为性模型，行为型模式关注的是系统中对象之间的相互交互，解决系统在运行时对象之间的相互通信和协作，进一步明确对象的职责。相比来说，创建型模式关注对象的创建过程，结构型模式关注对象和类的组合关系。 2.模式的职责观察者模式主要用于1对N的通知。当一个对象的状态变化时，他需要及时告知一系列对象，令他们做出相应。 实现有两种方式：">
+<meta property="og:updated_time" content="2020-05-19T15:30:49.912Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="研磨设计模式系列--观察者模式">
-<meta name="twitter:description" content="1.什么是观察者模式观察者模式（Observer），是一种行为性模型，行为型模式关注的是系统中对象之间的相互交互，解决系统在运行时对象之间的相互通信和协作，进一步明确对象的职责。相比来说，创建型模式关注对象的创建过程，结构型模式关注对象和类的组合关系。 2.模式的职责观察者模式主要用于1对N的通知。当一个对象的状态变化时，他需要及时告知一系列对象，令他们做出相应。 实现有两种方式： 推：每次都会">
+<meta name="twitter:description" content="1.什么是观察者模式观察者模式（Observer），是一种行为性模型，行为型模式关注的是系统中对象之间的相互交互，解决系统在运行时对象之间的相互通信和协作，进一步明确对象的职责。相比来说，创建型模式关注对象的创建过程，结构型模式关注对象和类的组合关系。 2.模式的职责观察者模式主要用于1对N的通知。当一个对象的状态变化时，他需要及时告知一系列对象，令他们做出相应。 实现有两种方式：">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
   
@@ -212,6 +212,7 @@ gitment.render('gitment')
         <script src="/assets/js/APlayer.min.js"> </script><h2 id="1-什么是观察者模式"><a href="#1-什么是观察者模式" class="headerlink" title="1.什么是观察者模式"></a>1.什么是观察者模式</h2><p>观察者模式（Observer），是一种行为性模型，行为型模式关注的是系统中对象之间的相互交互，解决系统在运行时对象之间的相互通信和协作，进一步明确对象的职责。相比来说，创建型模式关注对象的创建过程，结构型模式关注对象和类的组合关系。</p>
 <h2 id="2-模式的职责"><a href="#2-模式的职责" class="headerlink" title="2.模式的职责"></a>2.模式的职责</h2><p>观察者模式主要用于1对N的通知。当一个对象的状态变化时，他需要及时告知一系列对象，令他们做出相应。</p>
 <p>实现有两种方式：</p>
+<a id="more"></a>
 <p>推：每次都会把通知以广播的方式发送给所有观察者，所有的观察者只能被动接收。</p>
 <p>拉：观察者只要知道有情况即可，至于什么时候获取内容，获取什么内容，都可以自主决定。</p>
 <h2 id="3-模式的实现"><a href="#3-模式的实现" class="headerlink" title="3.模式的实现"></a>3.模式的实现</h2><p>创建Observer接口</p>

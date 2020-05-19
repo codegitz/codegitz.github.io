@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>研磨设计模式系列--装饰模式 | Codegitz&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.什么是装饰模式　装饰器模式，也称为包装模式，顾名思义，就是对已经存在的某些类进行装饰，以此来扩展一些功能。其结构图如下：  Component为统一接口，也是装饰类和被装饰类的基本类型。 ConcreteComponent为具体实现类，也是被装饰类，他本身是个具有一些功能的完整的类。 Decorator是装饰类，实现了Component接口的同时还在内部维护了一个ConcreteCompon">
+  <meta name="description" content="1.什么是装饰模式　装饰器模式，也称为包装模式，顾名思义，就是对已经存在的某些类进行装饰，以此来扩展一些功能。其结构图如下：  Component为统一接口，也是装饰类和被装饰类的基本类型。">
 <meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="研磨设计模式系列--装饰模式">
 <meta property="og:url" content="http://yoursite.com/2020/05/19/研磨设计模式系列-装饰模式/index.html">
 <meta property="og:site_name" content="Codegitz&#39;s Blog">
-<meta property="og:description" content="1.什么是装饰模式　装饰器模式，也称为包装模式，顾名思义，就是对已经存在的某些类进行装饰，以此来扩展一些功能。其结构图如下：  Component为统一接口，也是装饰类和被装饰类的基本类型。 ConcreteComponent为具体实现类，也是被装饰类，他本身是个具有一些功能的完整的类。 Decorator是装饰类，实现了Component接口的同时还在内部维护了一个ConcreteCompon">
+<meta property="og:description" content="1.什么是装饰模式　装饰器模式，也称为包装模式，顾名思义，就是对已经存在的某些类进行装饰，以此来扩展一些功能。其结构图如下：  Component为统一接口，也是装饰类和被装饰类的基本类型。">
 <meta property="og:image" content="https://live.staticflickr.com/65535/49911258438_bceddc31ca_o.png">
-<meta property="og:updated_time" content="2020-05-19T08:05:54.140Z">
+<meta property="og:updated_time" content="2020-05-19T15:31:07.115Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="研磨设计模式系列--装饰模式">
-<meta name="twitter:description" content="1.什么是装饰模式　装饰器模式，也称为包装模式，顾名思义，就是对已经存在的某些类进行装饰，以此来扩展一些功能。其结构图如下：  Component为统一接口，也是装饰类和被装饰类的基本类型。 ConcreteComponent为具体实现类，也是被装饰类，他本身是个具有一些功能的完整的类。 Decorator是装饰类，实现了Component接口的同时还在内部维护了一个ConcreteCompon">
+<meta name="twitter:description" content="1.什么是装饰模式　装饰器模式，也称为包装模式，顾名思义，就是对已经存在的某些类进行装饰，以此来扩展一些功能。其结构图如下：  Component为统一接口，也是装饰类和被装饰类的基本类型。">
 <meta name="twitter:image" content="https://live.staticflickr.com/65535/49911258438_bceddc31ca_o.png">
   
     <link rel="alternative" href="/atom.xml" title="Codegitz&#39;s Blog" type="application/atom+xml">
@@ -214,6 +214,7 @@ gitment.render('gitment')
         <script src="/assets/js/APlayer.min.js"> </script><h2 id="1-什么是装饰模式"><a href="#1-什么是装饰模式" class="headerlink" title="1.什么是装饰模式"></a>1.什么是装饰模式</h2><p>　装饰器模式，也称为包装模式，顾名思义，就是对已经存在的某些类进行装饰，以此来扩展一些功能。其结构图如下：</p>
 <p><img src="https://live.staticflickr.com/65535/49911258438_bceddc31ca_o.png" alt=""></p>
 <p>Component为统一接口，也是装饰类和被装饰类的基本类型。</p>
+<a id="more"></a>
 <p>ConcreteComponent为具体实现类，也是被装饰类，他本身是个具有一些功能的完整的类。</p>
 <p>Decorator是装饰类，实现了Component接口的同时还在内部维护了一个ConcreteComponent的实例，并可以通过构造函数初始化。而Decorator本身，通常采用默认实现，他的存在仅仅是一个声明：我要生产出一些用于装饰的子类了。而其子类才是赋有具体装饰效果的装饰产品类。</p>
 <p>ConcreteDecorator是具体的装饰产品类，每一种装饰产品都具有特定的装饰效果。可以通过构造器声明装饰哪种类型的ConcreteComponent，从而对其进行装饰。</p>
