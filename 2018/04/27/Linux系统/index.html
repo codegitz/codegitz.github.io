@@ -233,7 +233,366 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Linux系统" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux入门
+    </h1>
+  
+
+        
+        <a href="/2018/04/27/Linux系统/" class="archive-article-date">
+  	<time datetime="2018-04-27T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="linux系统入门命令"><a href="#linux系统入门命令" class="headerlink" title="linux系统入门命令"></a>linux系统入门命令</h2><a id="more"></a>
+<p><img src="https://i.imgur.com/7eh6TGc.png" alt=""></p>
+<p><img src="https://i.imgur.com/Ejlq4bE.png" alt=""></p>
+<p><img src="https://i.imgur.com/LKa1LxD.png" alt=""></p>
+<p><img src="https://i.imgur.com/ybKZ0AB.png" alt=""></p>
+<p><img src="https://i.imgur.com/qEhoB5P.png" alt=""></p>
+<p><img src="https://i.imgur.com/dCMXbUi.png" alt=""></p>
+<p><img src="https://i.imgur.com/F1vxE36.png" alt=""></p>
+<p><img src="https://i.imgur.com/V4P7utD.png" alt=""></p>
+<p><img src="https://i.imgur.com/zon6eSu.png" alt=""></p>
+<p><img src="https://i.imgur.com/aAvT3D6.png" alt=""></p>
+<p><img src="https://i.imgur.com/ZlXKCAz.png" alt=""></p>
+<p><img src="https://i.imgur.com/dKCa5oK.png" alt=""></p>
+<p><img src="https://i.imgur.com/W90zIPA.png" alt=""></p>
+<p><img src="https://i.imgur.com/EiR8wab.png" alt=""></p>
+<p><img src="https://i.imgur.com/TcySP4V.png" alt=""></p>
+<p><img src="https://i.imgur.com/XC9GLWo.png" alt=""></p>
+<p><img src="https://i.imgur.com/bWwQPhX.png" alt=""></p>
+<p><img src="https://i.imgur.com/xIbYOth.png" alt=""></p>
+<p><img src="https://i.imgur.com/OxYVNcZ.png" alt=""></p>
+<p><img src="https://i.imgur.com/yFlF45B.png" alt=""></p>
+<h2 id="Linux命令操作技巧"><a href="#Linux命令操作技巧" class="headerlink" title="Linux命令操作技巧"></a>Linux命令操作技巧</h2><p><img src="https://i.imgur.com/xVjIft3.png" alt=""></p>
+<p><img src="https://i.imgur.com/Rq1RG5p.png" alt=""></p>
+<p><img src="https://i.imgur.com/P6uTIbb.png" alt=""></p>
+<p><img src="https://i.imgur.com/teJEjNL.png" alt=""></p>
+<pre><code>[root@localhost /]# cat test1
+this is a test file
+[root@localhost /]# cat test2
+cat: test2: No such file or directory
+[root@localhost /]# cat &lt;test1&gt;test2
+[root@localhost /]# cat test2
+this is a test file
+[root@localhost /]#
+</code></pre><p><img src="https://i.imgur.com/kVIDC9u.png" alt=""></p>
+<p><img src="https://i.imgur.com/2hK8u4M.png" alt=""></p>
+<p>查看网卡</p>
+<pre><code>[root@localhost /]# dmesg | grep eth0
+[    1.551363] e1000 0000:00:03.0 eth0: (PCI:33MHz:32-bit) 08:00:27:80:9c:a0
+[    1.551368] e1000 0000:00:03.0 eth0: Intel(R) PRO/1000 Network Connection
+</code></pre><h2 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h2><p><img src="https://i.imgur.com/w5aEPci.png" alt=""></p>
+<p><img src="https://i.imgur.com/4WlXn3u.png" alt=""></p>
+<p><img src="https://i.imgur.com/ejyw9Cc.png" alt=""></p>
+<p><img src="https://i.imgur.com/PqqPSVL.png" alt=""></p>
+<h2 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h2><p><img src="https://i.imgur.com/hDbkP48.png" alt=""></p>
+<p>which：查找某些可执行程序<br>whereis:查找可执行程序，相关配置文件，帮助信息<br>locate：模糊搜索，列出相应的文件<br>find:<br><img src="https://i.imgur.com/YBwaNr9.png" alt=""></p>
+<h2 id="文本编辑器"><a href="#文本编辑器" class="headerlink" title="文本编辑器"></a>文本编辑器</h2><p><img src="https://i.imgur.com/EC0qKNH.png" alt=""></p>
+<p><img src="https://i.imgur.com/aNxsocU.png" alt=""></p>
+<p><img src="https://i.imgur.com/UCC8FYM.png" alt=""></p>
+<p><img src="https://i.imgur.com/FaoTGDA.png" alt=""></p>
+<p><img src="https://i.imgur.com/9xO4Sfo.png" alt=""></p>
+<p><img src="https://i.imgur.com/lN2zz5W.png" alt=""></p>
+<p><img src="https://i.imgur.com/5edVuiD.png" alt=""></p>
+<p><img src="https://i.imgur.com/RMBADOb.png" alt=""></p>
+<p><img src="https://i.imgur.com/kbDcmqc.png" alt=""></p>
+<p><img src="https://i.imgur.com/wP0uN0u.png" alt=""></p>
+<p><img src="https://i.imgur.com/TbOBT2X.png" alt=""></p>
+<p><img src="https://i.imgur.com/3WYH460.png" alt=""></p>
+<p><img src="https://i.imgur.com/isNRh81.png" alt=""></p>
+<p><img src="https://i.imgur.com/qnrP6uT.png" alt=""></p>
+<p><img src="https://i.imgur.com/Fid9CiY.png" alt=""></p>
+<p><img src="https://i.imgur.com/XSCkMTo.png" alt=""></p>
+<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>##shell</p>
+<h3 id="shell简介"><a href="#shell简介" class="headerlink" title="shell简介"></a>shell简介</h3><p><img src="https://i.imgur.com/x3t8HMZ.png" alt=""></p>
+<p><img src="https://i.imgur.com/k9OCQvY.png" alt=""></p>
+<p><img src="https://i.imgur.com/7yhiANw.png" alt=""></p>
+<p><img src="https://i.imgur.com/aNqw31v.png" alt=""></p>
+<p><img src="https://i.imgur.com/9oJFdOl.png" alt=""></p>
+<p><img src="https://i.imgur.com/APzRkKh.png" alt=""></p>
+<p><img src="https://i.imgur.com/ZU9AYbk.png" alt=""></p>
+<p><img src="https://i.imgur.com/kRHitAl.png" alt=""></p>
+<pre><code>
+[root@localhost /]# vi shelltest
+[root@localhost /]# cat shelltest
+ #!/bin/bash
+ # program
+ # This program shows &quot;Helloworld!&quot;
+</code></pre><pre><code>echo -e &quot;Hello world.\n&quot;
+exit 0
+[root@localhost /]#
+
+[root@localhost /]# sh shelltest
+Hello world.
+
+[root@localhost /]# ./shelltest
+-bash: ./shelltest: Permission denied
+</code></pre><pre><code>[root@localhost /]# chmod 744 shelltest 
+[root@localhost /]# ./shelltest
+Hello world.
+</code></pre><h3 id="shell变量"><a href="#shell变量" class="headerlink" title="shell变量"></a>shell变量</h3><p><img src="https://i.imgur.com/wFwYM2X.png" alt=""></p>
+<p><img src="https://i.imgur.com/mVvy0c5.png" alt=""></p>
+<p><img src="https://i.imgur.com/c1kQkjT.png" alt=""></p>
+<p><img src="https://i.imgur.com/v17XzC4.png" alt=""></p>
+<p><img src="https://i.imgur.com/HecJ5Ap.png" alt=""></p>
+<p>shell脚本</p>
+<pre><code> #!/bin/bash
+ # program
+ # This program shows &quot;Helloworld!&quot;
+
+ #echo -e &quot;Hello world.\n&quot;
+ #exit 0
+v1=centos
+v2=&quot;this is a test filed&quot;
+a=10
+b=20
+echo $a
+echo $b
+echo $v2
+ # mathmatical
+echo $(($a+$b))
+echo $(($a*$b))
+ # String length
+echo ${#v2}
+echo $v2
+echo ${v2:5}
+echo ${v2:5:5}
+echo ${v2#this is}
+</code></pre><p>运行结果</p>
+<pre><code>[root@localhost /]# ./shelltest
+10
+20
+this is a test filed
+30
+200
+20
+this is a test filed
+is a test filed
+is a
+a test filed
+</code></pre><h3 id="shell中的判断"><a href="#shell中的判断" class="headerlink" title="shell中的判断"></a>shell中的判断</h3><p><img src="https://i.imgur.com/aT7HiPM.png" alt=""></p>
+<p><img src="https://i.imgur.com/xwLuI55.png" alt=""></p>
+<p><img src="https://i.imgur.com/OUurS4y.png" alt=""></p>
+<p><strong>分支结束，关键字反写</strong><br><img src="https://i.imgur.com/z1KgT58.png" alt=""></p>
+<p><img src="https://i.imgur.com/6No07Gi.png" alt=""></p>
+<p>for循环</p>
+<pre><code> #! /bin/bash
+for((i=1;i&lt;=10;i++));do
+echo $i;
+done;
+~
+</code></pre><pre><code>[root@localhost /]# vi for
+[root@localhost /]# sh for
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</code></pre>
+      
+
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励，是使我前进的力量<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://i.imgur.com/0n8b4DD.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/27/Linux系统/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/04/30/SpringBoot与数据访问/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          SpringBoot与数据访问
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/25/Docker/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">docker容器</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'codegitz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2018/04/27/Linux系统/",
+  owner: 'codegitz',
+  repo: 'codegitz.github.io',
+  oauth: {
+    client_id: '3111abe777f17a978418',
+    client_secret: 'a793e7d23aa376586e7493cf997ae4b7f3cf5cd7',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
+
+
           </div>
         </div>
       </div>

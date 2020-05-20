@@ -172,7 +172,239 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-fdfs安装Nginx模块出现问题" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      fdfs安装Nginx模块出现问题
+    </h1>
+  
+
+        
+        <a href="/2019/01/09/fdfs安装Nginx模块出现问题/" class="archive-article-date">
+  	<time datetime="2019-01-09T06:27:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为项目需要搭建自己的图片服务器，之前用的ftp，但是在了解了fdfs之后，想尝试一下这个分布式文件服务器，所以这就是起因了，废话少说，进入问题。<br><br>我使用的版本：<br></p>
+<a id="more"></a>
+<pre><code>Centos 7.6
+nginx-1.8.1
+fastdfs-5.05
+libfastcommon-1.0.7
+fastdfs-nginx-module-1.20
+</code></pre><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>我这里<a href="https://blog.csdn.net/wlwlwlwl015/article/details/52619851" target="_blank" rel="external">安装fdfs</a>和nginx都没有问题，单独测试都可以成功，在进行添加nginx模块的时候就出现了报错，具体报错如下：<br><br><!--more--><br>    /usr/local/FastDFS/fastdfs-nginx-module-master/src//common.c:597:16: error: implicit dec<br>    laration of function ‘get_current_time_us’ [-Werror=implicit-function-declaration]<br>                    “%”PRIx64, get_current_time_us());<br>                    ^<br>    /usr/local/FastDFS/fastdfs-nginx-module-master/src//common.c:597:16: error: format ‘%lx’<br>     expects argument of type ‘long unsigned int’, but argument 3 has type ‘int’ [-Werror=fo<br>    rmat=]<br>    /usr/local/FastDFS/fastdfs-nginx-module-master/src//common.c: In function ‘fdfs_http_req<br>    uest_handler’:<br>    /usr/local/FastDFS/fastdfs-nginx-module-master/src//common.c:1245:61: error: ‘FDFSHTTPPa<br>    rams’ has no member named ‘support_multi_range’<br>                     (pContext-&gt;range_count &gt; 1 &amp;&amp; !g_http_params.support_multi_range))<br>                                                                 ^<br>    cc1: all warnings being treated as errors<br>    make[1]: <strong><em> [objs/addon/src/ngx_http_fastdfs_module.o] Error 1<br>    make[1]: Leaving directory `/usr/local/FastDFS/nginx-1.8.1’<br>    make: </em></strong> [build] Error 2</p>
+<p>按照提示的信息意思是，在<code>common.c</code>里面出现了变量类型不匹配，还有方法名找不到的错误，一番Google之后找不到类似的问题，一般出现的问题是<code>common.c</code>的依赖文件找不到，但是我的已经安装完成，可以进行依赖，但是出现了变量类型不匹配的问题，所以有点坑。我觉得应该是版本的问题，版本没有对应好，所以不同的版本出现了更改不一致的情况。这个问题也是众多GitHub上的朋友吐槽的。<br></p>
+<p><img src="https://i.imgur.com/UiqLDt6.png" alt=""><br><!--readmore--><br>大家都希望作者鱼大可以给出对应的版本。按照发布版本的时间对应来看，我的nginx模块1.20是对应fdfs5.05的版本，应该是没有问题的，但是我依然尝试了别的版本，也出现了类似报错。我接着搜索关于fdfs nginx模块安装的问题，看到一篇<a href="https://www.cnblogs.com/chiangchou/p/fastdfs.html" target="_blank" rel="external">文章</a>,里面有一个模块的修复版本使用。<br></p>
+<pre><code># 这里为啥这么长一串呢，因为最新版的master与当前nginx有些版本问题。
+# wget https://github.com/happyfish100/fastdfs-nginx-module/archive/5e5f3566bbfa57418b5506aaefbe107a42c9fcb1.zip
+</code></pre><p>我下载了这个版本改了后缀为test<br></p>
+<pre><code># 添加模块
+# ./configure --add-module=../fastdfs-nginx-module-test/src
+</code></pre><p><code>make</code>编译之后没有报错，用命令查看显示模块添加成功。<br></p>
+<p><img src="https://i.imgur.com/QFIP5AR.png" alt=""></p>
+<p>我去GitHub上找到了这次<a href="https://github.com/happyfish100/fastdfs-nginx-module/commit/5e5f3566bbfa57418b5506aaefbe107a42c9fcb1" target="_blank" rel="external">提交</a>，想看看fix了哪些bug<br></p>
+<p><img src="https://i.imgur.com/OoH9FEW.png" alt=""></p>
+<p>可以看到是修复文件ID无效时的HTTP状态，代码添加了一个if判断<br></p>
+<p><img src="https://i.imgur.com/Uemgzud.png" alt=""></p>
+<p>这个修改了的是http的响应状态，但是为什么安装的时候<code>common.c</code>就没有报错了，还是有点不太明白，这里面的依赖关系我也不清楚。<br></p>
+<p>最终部署结构图(盗的图)：可以按照下面的结构搭建环境。<br><br><img src="https://i.imgur.com/5rH1XRM.png" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次安装出现的问题前前后后拖了不少时间，尝试了很多版本都以失败告终，虽然这个问题解决了，但是问题被解决的原因还不是十分清晰。持续关注一下，希望能深入了解使用fdfs。<br></p>
+
+      
+
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励，是使我前进的力量<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://i.imgur.com/0n8b4DD.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/01/09/fdfs安装Nginx模块出现问题/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/01/09/2018总结/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          2018总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/22/Centos7让hexo后台运行/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Centos7.6让hexo后台运行</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'codegitz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2019/01/09/fdfs安装Nginx模块出现问题/",
+  owner: 'codegitz',
+  repo: 'codegitz.github.io',
+  oauth: {
+    client_id: '3111abe777f17a978418',
+    client_secret: 'a793e7d23aa376586e7493cf997ae4b7f3cf5cd7',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
+
+
           </div>
         </div>
       </div>

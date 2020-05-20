@@ -168,7 +168,326 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-研磨设计模式系列-装饰模式" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      研磨设计模式系列--装饰模式
+    </h1>
+  
+
+        
+        <a href="/2020/05/19/研磨设计模式系列-装饰模式/" class="archive-article-date">
+  	<time datetime="2020-05-19T06:45:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="1-什么是装饰模式"><a href="#1-什么是装饰模式" class="headerlink" title="1.什么是装饰模式"></a>1.什么是装饰模式</h2><p>　装饰器模式，也称为包装模式，顾名思义，就是对已经存在的某些类进行装饰，以此来扩展一些功能。其结构图如下：</p>
+<p><img src="https://live.staticflickr.com/65535/49911258438_bceddc31ca_o.png" alt=""></p>
+<p>Component为统一接口，也是装饰类和被装饰类的基本类型。</p>
+<a id="more"></a>
+<p>ConcreteComponent为具体实现类，也是被装饰类，他本身是个具有一些功能的完整的类。</p>
+<p>Decorator是装饰类，实现了Component接口的同时还在内部维护了一个ConcreteComponent的实例，并可以通过构造函数初始化。而Decorator本身，通常采用默认实现，他的存在仅仅是一个声明：我要生产出一些用于装饰的子类了。而其子类才是赋有具体装饰效果的装饰产品类。</p>
+<p>ConcreteDecorator是具体的装饰产品类，每一种装饰产品都具有特定的装饰效果。可以通过构造器声明装饰哪种类型的ConcreteComponent，从而对其进行装饰。</p>
+<h2 id="2-代码实现"><a href="#2-代码实现" class="headerlink" title="2.代码实现"></a>2.代码实现</h2><p>首先定义一个统一的接口<code>House</code>。</p>
+<pre><code class="Java">package com.designpattern.decorate;
+
+/**
+ * @description: 房屋基础接口
+ * @author: Codegitz
+ * @create: 2020-05-19 15:07
+ **/
+public interface House {
+    void build();
+}
+</code></pre>
+<p><code>HouseImpl</code>实现统一接口，<code>HouseImpl</code>是一个完整的类。</p>
+<pre><code class="java">package com.designpattern.decorate;
+
+/**
+ * @description: 房屋基类实现类
+ * @author: Codegitz
+ * @create: 2020-05-19 15:37
+ **/
+public class HouseImpl implements House {
+    @Override
+    public void build() {
+        System.out.println(&quot;start build....&quot;);
+    }
+}
+</code></pre>
+<pre><code class="Java">package com.designpattern.decorate;
+
+/**
+ * @description: 房屋装饰类
+ * @author: Codegitz
+ * @create: 2020-05-19 15:18
+ **/
+public class HouseDecorate implements House{
+
+    private House house;
+
+    public HouseDecorate(House house){
+        this.house = house;
+    }
+    @Override
+    public void build() {
+        house.build();
+    }
+}
+</code></pre>
+<pre><code class="java">package com.designpattern.decorate;
+
+/**
+ * @description: 房屋装饰类具体实现类
+ * @author: Codegitz
+ * @create: 2020-05-19 15:36
+ **/
+public class HouseDecorateImpl1 extends HouseDecorate {
+    public HouseDecorateImpl1(House house) {
+        super(house);
+    }
+
+    @Override
+    public void build() {
+        super.build();
+        System.out.println(&quot;HouseDecorateImpl1 do something...&quot;);
+    }
+}
+</code></pre>
+<pre><code class="Java">package com.designpattern.decorate;
+
+/**
+ * @description: 测试类
+ * @author: Codegitz
+ * @create: 2020-05-19 15:38
+ **/
+public class Test {
+    public static void main(String[] args) {
+        House house = new HouseImpl();
+        System.out.println(&quot;======without decorate======&quot;);
+        house.build();
+        HouseDecorate houseDecorate1 = new HouseDecorateImpl1(house);
+        HouseDecorate houseDecorate2 = new HouseDecorateImpl2(house);
+        System.out.println(&quot;=====HouseDecorateImpl1 decorate====&quot;);
+        houseDecorate1.build();
+        System.out.println(&quot;=====HouseDecorateImpl2 decorate====&quot;);
+        houseDecorate2.build();
+    }
+}
+</code></pre>
+<p>运行结果如下：</p>
+<pre><code class="cmd">======without decorate======
+start build....
+=====HouseDecorateImpl1 decorate====
+start build....
+HouseDecorateImpl1 do something...
+=====HouseDecorateImpl2 decorate====
+start build....
+HouseDecorateImpl2 do something...
+</code></pre>
+<p><a href="https://github.com/codegitz/designPattern" target="_blank" rel="external">附完整代码</a>，需要自取，顺便点个star。</p>
+<h2 id="3-装饰与代理区别"><a href="#3-装饰与代理区别" class="headerlink" title="3.装饰与代理区别"></a>3.装饰与代理区别</h2><p>　　装饰模式和代理模式思路和实现都非常相似，那么两者真正的区别是什么。装饰器模式关注于在一个对象上动态的添加方法，然而代理模式关注于控制对对象的访问。换句话说，用代理模式，代理类（proxy class）可以对它的客户隐藏一个对象的具体信息。因此，当使用代理模式的时候，我们常常在一个代理类中创建一个对象的实例。当我们使用装饰器模式的时候，我们通常的做法是将原始对象作为一个参数传给装饰者的构造器。</p>
+<h2 id="4-装饰模式应用场景"><a href="#4-装饰模式应用场景" class="headerlink" title="4.装饰模式应用场景"></a>4.装饰模式应用场景</h2><p>在IO中，具体构件角色是节点流，装饰角色是过滤流。</p>
+<p><code>FilterInputStream</code>和<code>FilterOutputStream</code>是装饰角色，而其他派生自它们的类则是具体装饰角色。</p>
+<p><code>DataOutputStream out=new DataOutputStream(new FileOutputStream());</code></p>
+<p>这就是装饰者模式，<code>DataOutputStream</code>是装饰者子类，<code>FileOutputStream</code>是实现接口的子类。</p>
+<p>这里不会调用到装饰者类<code>--FilterOutputStream</code>,只是作为继承的另一种方案，对客户端来说是透明的，是为了功能的扩展。</p>
+
+      
+
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励，是使我前进的力量<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://i.imgur.com/0n8b4DD.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/19/研磨设计模式系列-装饰模式/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/05/19/研磨设计模式系列-策略模式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          研磨设计模式系列--策略模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/19/研磨设计模式系列-原型模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">研磨设计模式系列--原型模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'codegitz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2020/05/19/研磨设计模式系列-装饰模式/",
+  owner: 'codegitz',
+  repo: 'codegitz.github.io',
+  oauth: {
+    client_id: '3111abe777f17a978418',
+    client_secret: 'a793e7d23aa376586e7493cf997ae4b7f3cf5cd7',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
+
+
           </div>
         </div>
       </div>

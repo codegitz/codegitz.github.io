@@ -172,7 +172,373 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-springboot处理错误机制" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      springboot错误处理机制
+    </h1>
+  
+
+        
+        <a href="/2018/04/24/springboot处理错误机制/" class="archive-article-date">
+  	<time datetime="2018-04-24T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="错误处理机制"><a href="#错误处理机制" class="headerlink" title="错误处理机制"></a>错误处理机制</h2><h3 id="1-SpringBoot默认的错误处理机制"><a href="#1-SpringBoot默认的错误处理机制" class="headerlink" title="1.SpringBoot默认的错误处理机制"></a>1.SpringBoot默认的错误处理机制</h3><p>默认效果：</p>
+<p>​        1.浏览器，返回一个默认的错误页面</p>
+<a id="more"></a>
+<p><img src="https://i.imgur.com/f0vuIsE.png" alt=""></p>
+<p>  浏览器发送请求的请求头：</p>
+<p><img src="https://i.imgur.com/LApvKKG.png" alt=""></p>
+<p>​        2.如果是其他客户端，默认响应一个json数据</p>
+<p><img src="https://i.imgur.com/ji2kpAJ.png" alt=""></p>
+<p><img src="https://i.imgur.com/gnvr1Uh.png" alt=""></p>
+<p>原理：</p>
+<p>​    可以参照ErrorMvcAutoConfiguration，错误处理的自动配置</p>
+<pre><code>  给容器中添加了以下组件
+</code></pre><p>​    1、DefaultErrorAttributes：</p>
+<pre><code class="java">帮我们在页面共享信息；
+@Override
+    public Map&lt;String, Object&gt; getErrorAttributes(RequestAttributes requestAttributes,
+            boolean includeStackTrace) {
+        Map&lt;String, Object&gt; errorAttributes = new LinkedHashMap&lt;String, Object&gt;();
+        errorAttributes.put(&quot;timestamp&quot;, new Date());
+        addStatus(errorAttributes, requestAttributes);
+        addErrorDetails(errorAttributes, requestAttributes, includeStackTrace);
+        addPath(errorAttributes, requestAttributes);
+        return errorAttributes;
+    }
+</code></pre>
+<p>​    2、BasicErrorController：处理默认/error请求</p>
+<pre><code class="java">@Controller
+@RequestMapping(&quot;${server.error.path:${error.path:/error}}&quot;)
+public class BasicErrorController extends AbstractErrorController {
+
+    @RequestMapping(produces = &quot;text/html&quot;)//产生html类型的数据；浏览器发送的请求来到这个方法处理
+    public ModelAndView errorHtml(HttpServletRequest request,
+            HttpServletResponse response) {
+        HttpStatus status = getStatus(request);
+        Map&lt;String, Object&gt; model = Collections.unmodifiableMap(getErrorAttributes(
+                request, isIncludeStackTrace(request, MediaType.TEXT_HTML)));
+        response.setStatus(status.value());
+
+        //去哪个页面作为错误页面；包含页面地址和页面内容
+        ModelAndView modelAndView = resolveErrorView(request, response, status, model);
+        return (modelAndView == null ? new ModelAndView(&quot;error&quot;, model) : modelAndView);
+    }
+
+    @RequestMapping
+    @ResponseBody    //产生json数据，其他客户端来到这个方法处理；
+    public ResponseEntity&lt;Map&lt;String, Object&gt;&gt; error(HttpServletRequest request) {
+        Map&lt;String, Object&gt; body = getErrorAttributes(request,
+                isIncludeStackTrace(request, MediaType.ALL));
+        HttpStatus status = getStatus(request);
+        return new ResponseEntity&lt;Map&lt;String, Object&gt;&gt;(body, status);
+    }
+</code></pre>
+<p>​    3、ErrorPageCustomizer：</p>
+<pre><code class="java">    @Value(&quot;${error.path:/error}&quot;)
+    private String path = &quot;/error&quot;;  系统出现错误以后来到error请求进行处理；（web.xml注册的错误页面规则）
+</code></pre>
+<p>​    4、DefaultErrorViewResolver：</p>
+<pre><code class="java">@Override
+    public ModelAndView resolveErrorView(HttpServletRequest request, HttpStatus status,
+            Map&lt;String, Object&gt; model) {
+        ModelAndView modelAndView = resolve(String.valueOf(status), model);
+        if (modelAndView == null &amp;&amp; SERIES_VIEWS.containsKey(status.series())) {
+            modelAndView = resolve(SERIES_VIEWS.get(status.series()), model);
+        }
+        return modelAndView;
+    }
+
+    private ModelAndView resolve(String viewName, Map&lt;String, Object&gt; model) {
+        //默认SpringBoot可以去找到一个页面？  error/404
+        String errorViewName = &quot;error/&quot; + viewName;
+
+        //模板引擎可以解析这个页面地址就用模板引擎解析
+        TemplateAvailabilityProvider provider = this.templateAvailabilityProviders
+                .getProvider(errorViewName, this.applicationContext);
+        if (provider != null) {
+            //模板引擎可用的情况下返回到errorViewName指定的视图地址
+            return new ModelAndView(errorViewName, model);
+        }
+        //模板引擎不可用，就在静态资源文件夹下找errorViewName对应的页面   error/404.html
+        return resolveResource(errorViewName, model);
+    }
+</code></pre>
+<p>​    步骤：</p>
+<p>​        一但系统出现4xx或者5xx之类的错误；ErrorPageCustomizer就会生效（定制错误的响应规则）；就会来到/error请求；就会被<strong>BasicErrorController</strong>处理；</p>
+<p>​        1）响应页面；去哪个页面是由<strong>DefaultErrorViewResolver</strong>解析得到的；</p>
+<pre><code class="java">protected ModelAndView resolveErrorView(HttpServletRequest request,
+      HttpServletResponse response, HttpStatus status, Map&lt;String, Object&gt; model) {
+    //所有的ErrorViewResolver得到ModelAndView
+   for (ErrorViewResolver resolver : this.errorViewResolvers) {
+      ModelAndView modelAndView = resolver.resolveErrorView(request, status, model);
+      if (modelAndView != null) {
+         return modelAndView;
+      }
+   }
+   return null;
+}
+</code></pre>
+<h3 id="2-如果定制错误响应"><a href="#2-如果定制错误响应" class="headerlink" title="2.如果定制错误响应"></a>2.如果定制错误响应</h3><h4 id="1-如何定制错误的页面；"><a href="#1-如何定制错误的页面；" class="headerlink" title="1.如何定制错误的页面；"></a><strong>1.如何定制错误的页面；</strong></h4><p>​            <strong>1.有模板引擎的情况下；error/状态码;</strong> 【将错误页面命名为  错误状态码.html 放在模板引擎文件夹里面的 error文件夹下】，发生此状态码的错误就会来到  对应的页面</p>
+<p>​            我们可以使用4xx和5xx作为错误页面的文件名来匹配这种类型的所有错误，精确优先（优先寻找精确的状态码.html）    </p>
+<p>​            页面能获取的信息；</p>
+<p>​                timestamp：时间戳</p>
+<p>​                status：状态码</p>
+<p>​                error：错误提示</p>
+<p>​                exception：异常对象</p>
+<p>​                message：异常消息</p>
+<p>​                errors：JSR303数据校验的错误都在这里</p>
+<p>​            2.没有模板引擎（模板引擎找不到这个错误页面），静态资源文件夹下找</p>
+<p>​            3.以上都没有错误页面，就是默认来到SpringBoot默认的错误提示页面</p>
+<h4 id="2-如何定制错误的json数据"><a href="#2-如何定制错误的json数据" class="headerlink" title="2.如何定制错误的json数据"></a>2.如何定制错误的json数据</h4><p>​        1.自定义异常处理&amp;返回定制json数据；</p>
+<pre><code class="java">@ControllerAdvice
+public class MyExceptionHandler {
+
+    @ResponseBody
+    @ExceptionHandler(UserNotExistException.class)
+    public Map&lt;String,Object&gt; handleException(Exception e){
+        Map&lt;String,Object&gt; map = new HashMap&lt;&gt;();
+        map.put(&quot;code&quot;,&quot;user.notexist&quot;);
+        map.put(&quot;message&quot;,e.getMessage());
+        return map;
+    }
+}
+//没有自适应效果...
+</code></pre>
+<p>​        2.转发到/error进行自适应响应效果处理</p>
+<pre><code class="java"> @ExceptionHandler(UserNotExistException.class)
+    public String handleException(Exception e, HttpServletRequest request){
+        Map&lt;String,Object&gt; map = new HashMap&lt;&gt;();
+        //传入我们自己的错误状态码  4xx 5xx，否则就不会进入定制错误页面的解析流程
+        /**
+         * Integer statusCode = (Integer) request
+         .getAttribute(&quot;javax.servlet.error.status_code&quot;);
+         */
+        request.setAttribute(&quot;javax.servlet.error.status_code&quot;,500);
+        map.put(&quot;code&quot;,&quot;user.notexist&quot;);
+        map.put(&quot;message&quot;,e.getMessage());
+        //转发到/error
+        return &quot;forward:/error&quot;;
+    }
+</code></pre>
+<h4 id="3-将我们的定制数据携带出去"><a href="#3-将我们的定制数据携带出去" class="headerlink" title="3.将我们的定制数据携带出去"></a>3.将我们的定制数据携带出去</h4><p>出现错误以后，会来到/error请求，会被BasicErrorController处理，响应出去可以获取的数据是由getErrorAttributes得到的（是AbstractErrorController（ErrorController）规定的方法）</p>
+<p>​    1、完全来编写一个ErrorController的实现类【或者是编写AbstractErrorController的子类】，放在容器中</p>
+<p>​    2、页面上能用的数据，或者是json返回能用的数据都是通过errorAttributes.getErrorAttributes得到</p>
+<p>​            容器中DefaultErrorAttributes.getErrorAttributes()；默认进行数据处理的</p>
+<p>自定义ErrorAttributes</p>
+<pre><code class="java">//给容器中加入我们自己定义的ErrorAttributes
+@Component
+public class MyErrorAttributes extends DefaultErrorAttributes {
+
+    @Override
+    public Map&lt;String, Object&gt; getErrorAttributes(RequestAttributes requestAttributes, boolean includeStackTrace) {
+        Map&lt;String, Object&gt; map = super.getErrorAttributes(requestAttributes, includeStackTrace);
+        map.put(&quot;company&quot;,&quot;atguigu&quot;);
+        return map;
+    }
+}
+</code></pre>
+<p>最终的效果：响应是自适应的，可以通过定制ErrorAttributes改变需要返回的内容，</p>
+<p><img src="https://i.imgur.com/hnWy78H.png" alt=""></p>
+
+      
+
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励，是使我前进的力量<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://i.imgur.com/0n8b4DD.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Java,Springboot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/24/springboot处理错误机制/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/04/25/配置嵌入式servlet容器/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          springboot配置容器
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/20/Springboot Web开发/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">springboot Web开发</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'codegitz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2018/04/24/springboot处理错误机制/",
+  owner: 'codegitz',
+  repo: 'codegitz.github.io',
+  oauth: {
+    client_id: '3111abe777f17a978418',
+    client_secret: 'a793e7d23aa376586e7493cf997ae4b7f3cf5cd7',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
+
+
           </div>
         </div>
       </div>

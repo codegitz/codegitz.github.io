@@ -165,7 +165,218 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-关键字各不相同的序列排序-C" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      关键字各不相同的序列排序[C
+    </h1>
+  
+
+        
+        <a href="/2017/11/26/关键字各不相同的序列排序-C/" class="archive-article-date">
+  	<time datetime="2017-11-25T16:43:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p><img src="https://i.imgur.com/aisoF1S.jpg" alt=""></p>
+<a id="more"></a>
+<p>/<strong>**</strong><br>【题目】已知记录序列L.rcd[1..L.length]中的关键<br>字各不相同，可按如下所述实现计数排序：另设数组<br>c[1..n]，对每个记录a[i]， 统计序列中关键字比它<br>小的记录个数存于c[i]，则c[i]=0的记录必为关键字<br>最小的记录，然后依c[i]值的大小对序列中记录进行<br>重新排列。试编写算法实现上述排序方法。<br>顺序表的类型RcdSqList定义如下：<br>typedef struct {<br>   KeyType key;<br>   …<br>} RcdType;<br>typedef struct {<br>   RcdType rcd[MAXSIZE+1]; // rcd[0]闲置<br>   int     length;<br>} RcdSqList;<br><strong>**</strong>/<br>      void CountSort(RcdSqList &amp;L)<br>       /  <em> 采用顺序表存储结构，在函数内自行定义计数数组c </em>/<br>       {<br>     int i,j;<br>     RcdSqList L1;<br>     int c[27];<br>     for(i=1;i&lt;=L.length;i++){<br>        for(j=1;j&lt;=L.length;j++){<br>        if(L.rcd[i].key&lt;L.rcd[j].key){<br>           c[i]++;<br>              }<br>        }<br>     }<br>     for(i=1;i&lt;=L.length;i++){<br>     L1.rcd[c[i]+1].key=L.rcd[i].key;<br>     }<br>     for(i=1;i&lt;=L.length;i++){<br>     L.rcd[L.length-i+1].key=L1.rcd[i].key;<br>     }<br>     }</p>
+
+      
+
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励，是使我前进的力量<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://i.imgur.com/0n8b4DD.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/11/26/关键字各不相同的序列排序-C/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/11/26/林间新绿一重重，小蕾深藏数点红/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          林间新绿一重重，小蕾深藏数点红
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/22/循环队列/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">循环队列</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'codegitz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2017/11/26/关键字各不相同的序列排序-C/",
+  owner: 'codegitz',
+  repo: 'codegitz.github.io',
+  oauth: {
+    client_id: '3111abe777f17a978418',
+    client_secret: 'a793e7d23aa376586e7493cf997ae4b7f3cf5cd7',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
+
+
           </div>
         </div>
       </div>

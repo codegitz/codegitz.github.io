@@ -169,7 +169,253 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Hibernate入门系列（三）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Hibernate入门系列（三）
+    </h1>
+  
+
+        
+        <a href="/2018/03/17/Hibernate入门系列（三）/" class="archive-article-date">
+  	<time datetime="2018-03-16T16:48:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Hibernate入门系列（三）"><a href="#Hibernate入门系列（三）" class="headerlink" title="Hibernate入门系列（三）"></a>Hibernate入门系列（三）</h1><h2 id="Hibernate-的配置文件"><a href="#Hibernate-的配置文件" class="headerlink" title="Hibernate 的配置文件"></a>Hibernate 的配置文件</h2><p>1.Hibernate 配置文件主要用于配置数据库连接和 Hibernate 运行时所需的各种属性<br><br>2.每个 Hibernate 配置文件对应一个 Configuration 对象<br><br>3.Hibernate配置文件可以有两种格式:</p>
+<ul>
+<li>hibernate.properties</li>
+<li>hibernate.cfg.xml </li>
+</ul>
+<a id="more"></a>
+<h2 id="hibernate-cfg-xml的常用属性"><a href="#hibernate-cfg-xml的常用属性" class="headerlink" title="hibernate.cfg.xml的常用属性"></a>hibernate.cfg.xml的常用属性</h2><h3 id="JDBC-连接属性"><a href="#JDBC-连接属性" class="headerlink" title="JDBC 连接属性"></a>JDBC 连接属性<br></h3><p>connection.url：数据库URL <br><br>connection.username：数据库用户名<br><br>connection.password：数据库用户密码 <br><br>connection.driver_class：数据库JDBC驱动 <br><br>dialect：配置数据库的方言，根据底层的数据库不同产生不同的 sql 语句，Hibernate 会针对数据库的特性在访问时进行优化<br></p>
+<h3 id="C3P0-数据库连接池属性"><a href="#C3P0-数据库连接池属性" class="headerlink" title="C3P0 数据库连接池属性"></a>C3P0 数据库连接池属性<br></h3><p>hibernate.c3p0.max_size: 数据库连接池的最大连接数<br><br>hibernate.c3p0.min_size: 数据库连接池的最小连接数<br><br>hibernate.c3p0.timeout:   数据库连接池中连接对象在多长时间没有使用过后，就应该被销毁<br><br>hibernate.c3p0.max_statements:  缓存 Statement 对象的数量<br><br>hibernate.c3p0.idle_test_period:  表示连接池检测线程多长时间检测一次池内的所有链接对象是否超时. 连接池本身不会把自己从连接池中移除，而是专门有一个线程按照一定的时间间隔来做这件事，这个线程通过比较连接对象最后一次被使用时间和当前时间的时间差来和 timeout 做对比，进而决定是否销毁这个连接对象。 <br><br>hibernate.c3p0.acquire_increment: 当数据库连接池中的连接耗尽时, 同一时刻获取多少个数据库连接<br><br>通过C3P0获取的连接</p>
+<pre><code>七月 17, 2018 9:22:24 上午 org.hibernate.tool.hbm2ddl.SchemaUpdate execute
+INFO: HHH000232: Schema update complete
+com.mchange.v2.c3p0.impl.NewProxyConnection@5824a83d
+</code></pre><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>show_sql：是否将运行期生成的SQL输出到日志以供调试。取值 true | false <br><br>format_sql：是否将 SQL 转化为格式良好的 SQL . 取值 true | false<br><br>hbm2ddl.auto：在启动和停止时自动地创建，更新或删除数据库模式。取值 create | update | create-drop | validate<br><br>hibernate.jdbc.fetch_size<br><br>hibernate.jdbc.fetch_size：实质是调用 Statement.setFetchSize() 方法设定 JDBC 的 Statement 读取数据的时候每次从数据库中取出的记录条数。<br><br>例如一次查询1万条记录，对于Oracle的JDBC驱动来说，是不会 1 次性把1万条取出来的，而只会取出 fetchSize 条数，当结果集遍历完了这些记录以后，再去数据库取 fetchSize 条数据。因此大大节省了无谓的内存消耗。Fetch Size设的越大，读数据库的次数越少，速度越快；Fetch Size越小，读数据库的次数越多，速度越慢。Oracle数据库的JDBC驱动默认的Fetch Size = 10，是一个保守的设定，根据测试，当Fetch Size=50时，性能会提升1倍之多，当 fetchSize=100，性能还能继续提升20%，Fetch Size继续增大，性能提升的就不显著了。并不是所有的数据库都支持Fetch Size特性，<strong>例如MySQL就不支持</strong></p>
+<p>hibernate.jdbc.batch_size<br><br>hibernate.jdbc.batch_size：设定对数据库进行批量删除，批量更新和批量插入的时候的批次大小，类似于设置缓冲区大小的意思。batchSize 越大，批量操作时向数据库发送sql的次数越少，速度就越快。<br>测试结果是当Batch Size=0的时候，使用Hibernate对Oracle数据库删除1万条记录需要25秒，Batch Size = 50的时候，删除仅仅需要5秒！Oracle数据库 batchSize=30 的时候比较合适</p>
+<h2 id="对象关系映射文件"><a href="#对象关系映射文件" class="headerlink" title="对象关系映射文件"></a>对象关系映射文件</h2><h3 id="POJO-类和数据库的映射文件-hbm-xml"><a href="#POJO-类和数据库的映射文件-hbm-xml" class="headerlink" title="POJO 类和数据库的映射文件*.hbm.xml"></a>POJO 类和数据库的映射文件*.hbm.xml</h3><ul>
+<li>POJO 类和关系数据库之间的映射可以用一个XML文档来定义。</li>
+<li>通过 POJO 类的数据库映射文件，Hibernate可以理解持久化类和数据表之间的对应关系，也可以理解持久化类属性与数据库表列之间的对应关系</li>
+<li>在运行时 Hibernate 将根据这个映射文件来生成各种 SQL 语句</li>
+<li>映射文件的扩展名为 .hbm.xml</li>
+</ul>
+<h3 id="映射文件说明"><a href="#映射文件说明" class="headerlink" title="映射文件说明"></a>映射文件说明</h3><p>hibernate-mapping<br><br>类层次：class<br><br>主键：id<br><br>基本类型:property<br><br>实体引用类: many-to-one  |  one-to-one<br><br>集合:set | list | map | array<br><br>one-to-many<br><br>many-to-many<br><br>子类:subclass | joined-subclass<br><br>其它:component | any 等<br><br>查询语句:query（用来放置查询语句，便于对数据库查询的统一管理和优化）<br><br>每个Hibernate-mapping中可以同时定义多个类. 但更推荐为每个类都创建一个单独的映射文件<br></p>
+<h4 id="hibernate-mapping"><a href="#hibernate-mapping" class="headerlink" title="hibernate-mapping"></a>hibernate-mapping</h4><p>hibernate-mapping 是 hibernate 映射文件的根元素<br><br>schema: 指定所映射的数据库schema的名称。若指定该属性, 则表明会自动添加该 schema 前缀<br><br>catalog:指定所映射的数据库catalog的名称。  <br><br>default-cascade(默认为 none): 设置hibernate默认的级联风格. 若配置 Java 属性, 集合映射时没有指定 cascade 属性, 则 Hibernate 将采用此处指定的级联风格.   <br><br>default-access (默认为 property): 指定 Hibernate 的默认的属性访问策略。默认值为 property, 即使用 getter, setter 方法来访问属性. 若指定 access, 则 Hibernate 会忽略 getter/setter 方法, 而通过反射访问成员变量.<br><br>default-lazy(默认为 true): 设置 Hibernat morning的延迟加载策略. 该属性的默认值为 true, 即启用延迟加载策略. 若配置 Java 属性映射, 集合映射时没有指定 lazy 属性, 则 Hibernate 将采用此处指定的延迟加载策略 <br><br>auto-import (默认为 true): 指定是否可以在查询语言中使用非全限定的类名（仅限于本映射文件中的类）。 <br><br>package (可选): 指定一个包前缀，如果在映射文档中没有指定全限定的类名， 就使用这个作为包名。<br></p>
+<h4 id="class"><a href="#class" class="headerlink" title="class"></a>class</h4><p>class 元素用于指定类和表的映射<br><br>name:指定该持久化类映射的持久化类的类名<br><br>table:指定该持久化类映射的表名, Hibernate 默认以持久化类的类名作为表名<br><br>dynamic-insert: 若设置为 true, 表示当保存一个对象时, 会动态生成 insert 语句, insert 语句中仅包含所有取值不为 null 的字段. 默认值为 false<br><br>dynamic-update: 若设置为 true, 表示当更新一个对象时, 会动态生成 update 语句, update 语句中仅包含所有取值需要更新的字段. 默认值为 false<br><br>select-before-update:设置 Hibernate 在更新某个持久化对象之前是否需要先执行一次查询. 默认值为 false<br><br>batch-size:指定根据 OID 来抓取实例时每批抓取的实例数.<br><br>lazy: 指定是否使用延迟加载.  <br><br>mutable: 若设置为 true, 等价于所有的<code>&lt;property&gt;</code>元素的 update 属性为 false, 表示整个实例不能被更新. 默认为 true.<br><br>discriminator-value: 指定区分不同子类的值. 当使用 <code>&lt;subclass/&gt;</code> 元素来定义持久化类的继承关系时需要使用该属性</p>
+<h3 id="映射对象标识符"><a href="#映射对象标识符" class="headerlink" title="映射对象标识符"></a>映射对象标识符</h3><p>Hibernate 使用对象标识符(OID) 来建立内存中的对象和数据库表中记录的对应关系. 对象的 OID 和数据表的主键对应. Hibernate 通过标识符生成器来为主键赋值<br><br>Hibernate 推荐在数据表中使用代理主键, 即不具备业务含义的字段. 代理主键通常为整数类型, 因为整数类型比字符串类型要节省更多的数据库空间.<br><br>在对象-关系映射文件中, <code>&lt;id&gt;</code> 元素用来设置对象标识符. <code>&lt;generator&gt;</code> 子元素用来设定标识符生成器.<br><br>Hibernate 提供了标识符生成器接口: IdentifierGenerator, 并提供了各种内置实现<br> </p>
+<h4 id="id"><a href="#id" class="headerlink" title="id"></a>id</h4><p>id：设定持久化类的 OID 和表的主键的映射<br><br>name: 标识持久化类 OID 的属性名  <br><br>column: 设置标识属性所映射的数据表的列名(主键字段的名字). <br><br>unsaved-value:若设定了该属性, Hibernate 会通过比较持久化类的 OID 值和该属性值来区分当前持久化类的对象是否为临时对象<br><br>type:指定 Hibernate 映射类型. Hibernate 映射类型是 Java 类型与 SQL 类型的桥梁. 如果没有为某个属性显式设定映射类型, Hibernate 会运用反射机制先识别出持久化类的特定属性的 Java 类型, 然后自动使用与之对应的默认的 Hibernate 映射类型<br><br>Java 的基本数据类型和包装类型对应相同的 Hibernate 映射类型. 基本数据类型无法表达 null, 所以对于持久化类的 OID 推荐使用包装类型<br> </p>
+<h4 id="generator"><a href="#generator" class="headerlink" title="generator"></a>generator</h4><p>generator：设定持久化类设定标识符生成器<br><br>class: 指定使用的标识符生成器全限定类名或其缩写名<br></p>
+<p><strong>主键生成策略generator</strong><br>Hibernate提供的内置标识符生成器</p>
+<h5 id="increment-标识符生成器"><a href="#increment-标识符生成器" class="headerlink" title="increment 标识符生成器"></a>increment 标识符生成器</h5><p>increment 标识符生成器由 Hibernate 以递增的方式为代理主键赋值<br><br>Hibernate 会先读取 NEWS 表中的主键的最大值, 而接下来向 NEWS 表中插入记录时, 就在 max(id) 的基础上递增, 增量为 1.<br><br>适用范围:<br><br>由于 increment 生存标识符机制不依赖于底层数据库系统, 因此它适合所有的数据库系统<br><br>适用于只有单个 Hibernate 应用进程访问同一个数据库的场合, 在集群环境下不推荐使用它<br><br>OID 必须为 long, int 或 short 类型, 如果把 OID 定义为 byte 类型, 在运行时会抛出异常<br></p>
+<h5 id="identity-标识符生成器"><a href="#identity-标识符生成器" class="headerlink" title="identity 标识符生成器"></a>identity 标识符生成器</h5><p>identity 标识符生成器由底层数据库来负责生成标识符, 它要求底层数据库把主键定义为自动增长字段类型<br><br>适用范围:<br><br>由于 identity 生成标识符的机制依赖于底层数据库系统, 因此, 要求底层数据库系统必须支持自动增长字段类型. 支持自动增长字段类型的数据库包括: DB2, Mysql, MSSQLServer, Sybase 等<br><br>OID 必须为 long, int 或 short 类型, 如果把 OID 定义为 byte 类型, 在运行时会抛出异常<br></p>
+<h5 id="sequence-标识符生成器"><a href="#sequence-标识符生成器" class="headerlink" title="sequence 标识符生成器"></a>sequence 标识符生成器</h5><p>sequence  标识符生成器利用底层数据库提供的序列来生成标识符. <br><br>Hibernate 在持久化一个 News 对象时, 先从底层数据库的 news_seq 序列中获得一个唯一的标识号, 再把它作为主键值<br><br>适用范围:<br><br><strong>由于 sequence 生成标识符的机制依赖于底层数据库系统的序列, 因此, 要求底层数据库系统必须支持序列. 支持序列的数据库包括: DB2, Oracle 等</strong><br><br>OID 必须为 long, int 或 short 类型, 如果把 OID 定义为 byte 类型, 在运行时会抛出异常<br></p>
+<h5 id="hilo-标识符生成器"><a href="#hilo-标识符生成器" class="headerlink" title="hilo 标识符生成器"></a>hilo 标识符生成器</h5><p>hilo 标识符生成器由 Hibernate 按照一种 high/low 算法*生成标识符, 它从数据库的特定表的字段中获取 high 值.<br><br>Hibernate 在持久化一个 News 对象时, 由 Hibernate 负责生成主键值. hilo 标识符生成器在生成标识符时, 需要读取并修改 HI_TABLE 表中的 NEXT_VALUE 值.<br><br>适用范围:<br><br>由于 hilo 生存标识符机制不依赖于底层数据库系统, 因此它适合所有的数据库系统<br><br>OID 必须为 long, int 或 short 类型, 如果把 OID 定义为 byte 类型, 在运行时会抛出异常<br></p>
+<h5 id="native-标识符生成器"><a href="#native-标识符生成器" class="headerlink" title="native 标识符生成器"></a>native 标识符生成器</h5><p>native 标识符生成器依据底层数据库对自动生成标识符的支持能力, 来选择使用 identity, sequence 或 hilo 标识符生成器. <br><br>适用范围:<br><br>由于 native 能根据底层数据库系统的类型, 自动选择合适的标识符生成器, 因此很适合于跨数据库平台开发<br><br>OID 必须为 long, int 或 short 类型, 如果把 OID 定义为 byte 类型, 在运行时会抛出异常<br></p>
+<h4 id="Property"><a href="#Property" class="headerlink" title="Property"></a>Property</h4><p><strong>property 元素用于指定类的属性和表的字段的映射</strong><br><br>name:指定该持久化类的属性的名字<br><br>column:指定与类的属性映射的表的字段名. 如果没有设置该属性, Hibernate 将直接使用类的属性名作为字段名. <br><br>type:指定 Hibernate 映射类型. Hibernate 映射类型是 Java 类型与 SQL 类型的桥梁. 如果没有为某个属性显式设定映射类型, Hibernate 会运用反射机制先识别出持久化类的特定属性的 Java 类型, 然后自动使用与之对应的默认的 Hibernate 映射类型.<br><br>not-null:若该属性值为 true, 表明不允许为 null, 默认为 false<br><br>access:指定 Hibernate 的默认的属性访问策略。默认值为 property, 即使用 getter, setter 方法来访问属性. 若指定 field, 则 Hibernate 会忽略 getter/setter 方法, 而通过反射访问成员变量<br><br>unique: 设置是否为该属性所映射的数据列添加唯一约束. <br><br><strong>property 元素用于指定类的属性和表的字段的映射</strong><br><br>index: 指定一个字符串的索引名称. 当系统需要 Hibernate 自动建表时, 用于为该属性所映射的数据列创建索引, 从而加快该数据列的查询.<br><br>length: 指定该属性所映射数据列的字段的长度<br><br>scale: 指定该属性所映射数据列的小数位数, 对 double, float, decimal 等类型的数据列有效.<br><br>formula：设置一个 SQL 表达式, Hibernate 将根据它来计算出派生属性的值. <br><br>派生属性: 并不是持久化类的所有属性都直接和表的字段匹配, 持久化类的有些属性的值必须在运行时通过计算才能得出来, 这种属性称为派生属性<br><br><strong>使用 formula 属性时</strong><br><br>formula=“(sql)” 的英文括号不能少<br><br>Sql 表达式中的列名和表名都应该和数据库对应, 而不是和持久化对象的属性对应<br><br>如果需要在 formula 属性中使用参数, 这直接使用 where cur.id=id 形式, 其中 id 就是参数, 和当前持久化对象的 id 属性对应的列的 id 值将作为参数传入. <br></p>
+<h3 id="Java-类型-Hibernate-映射类型及-SQL-类型之间的对应关系"><a href="#Java-类型-Hibernate-映射类型及-SQL-类型之间的对应关系" class="headerlink" title="Java 类型, Hibernate 映射类型及 SQL 类型之间的对应关系"></a>Java 类型, Hibernate 映射类型及 SQL 类型之间的对应关系</h3><p>详细对应略。</p>
+<p>Java 时间和日期类型的 Hibernate 映射<br><br>在 Java 中, 代表时间和日期的类型包括: java.util.Date 和 java.util.Calendar. 此外, 在 JDBC API 中还提供了 3 个扩展了 java.util.Date 类的子类: java.sql.Date, java.sql.Time 和 java.sql.Timestamp, 这三个类分别和标准 SQL 类型中的 DATE, TIME 和 TIMESTAMP 类型对应<br><br>在标准 SQL 中, DATE 类型表示日期, TIME 类型表示时间, TIMESTAMP 类型表示时间戳, 同时包含日期和时间信息. <br><br><strong>使用 Hibernate 内置映射类型</strong><br>以下情况下必须显式指定 Hibernate 映射类型<br><br>一个 Java 类型可能对应多个 Hibernate 映射类型. 例如: 如果持久化类的属性为 java.util.Date 类型, 对应的 Hibernate 映射类型可以是 date, time 或 timestamp. 此时必须根据对应的数据表的字段的 SQL 类型, 来确定 Hibernate 映射类型. 如果字段为 DATE 类型, 那么 Hibernate 映射类型为 date; 如果字段为 TIME 类型, 那么 Hibernate 映射类型为 time; 如果字段为 TIMESTATMP 类型, 那么 Hibernate 映射类型为 timestamp.<br></p>
+<h3 id="Java-大对象类型的-Hiberante-映射"><a href="#Java-大对象类型的-Hiberante-映射" class="headerlink" title="Java 大对象类型的 Hiberante 映射"></a>Java 大对象类型的 Hiberante 映射</h3><p>在 Java 中, java.lang.String 可用于表示长字符串(长度超过 255), 字节数组 byte[] 可用于存放图片或文件的二进制数据. 此外, 在 JDBC API 中还提供了 java.sql.Clob 和 java.sql.Blob 类型, 它们分别和标准 SQL 中的 CLOB 和 BLOB 类型对应. CLOB 表示字符串大对象(Character Large Object), BLOB表示二进制对象(Binary Large Object)<br><br><img src="https://i.imgur.com/VjdXRf3.png" alt=""><br>Mysql 不支持标准 SQL 的 CLOB 类型, 在 Mysql 中, 用 TEXT, MEDIUMTEXT 及 LONGTEXT 类型来表示长度操作 255 的长文本数据<br><br>在持久化类中, 二进制大对象可以声明为 byte[] 或 java.sql.Blob 类型; 字符串可以声明为 java.lang.String 或 java.sql.Clob<br><br>实际上在 Java 应用程序中处理长度超过 255 的字符串, 使用 java.lang.String 比 java.sql.Clob 更方便<br></p>
+<h3 id="映射组成关系"><a href="#映射组成关系" class="headerlink" title="映射组成关系"></a>映射组成关系</h3><p>建立域模型和关系数据模型有着不同的出发点:<br><br>域模型: 由程序代码组成, 通过细化持久化类的的粒度可提高代码的可重用性, 简化编程<br><br>在没有数据冗余的情况下, 应该尽可能减少表的数目, 简化表之间的参照关系, 以便提高数据的访问速度<br><br>Hibernate 把持久化类的属性分为两种:<br>值(value)类型: 没有 OID, 不能被单独持久化, 生命周期依赖于所属的持久化类的对象的生命周期<br>实体(entity)类型: 有 OID, 可以被单独持久化, 有独立的生命周期<br>显然无法直接用 property 映射 pay 属性<br>Hibernate 使用 <component> 元素来映射组成关系, 该元素表名 pay 属性是 Worker 类一个组成部分, 在 Hibernate 中称之为组件<br><img src="https://i.imgur.com/2NSgxFZ.png" alt=""><br><strong>component</strong></component></p>
+<p><component> 元素来映射组成关系<br>class:设定组成关系属性的类型, 此处表明 pay 属性为 Pay 类型</component></p>
+<p><parent> 元素指定组件属性所属的整体类<br>name: 整体类在组件类中的属性名</parent></p>
+
+      
+
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励，是使我前进的力量<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://i.imgur.com/0n8b4DD.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/03/17/Hibernate入门系列（三）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/03/18/Hibernate入门系列（四）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Hibernate入门系列（四）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/14/Hibernate入门系列（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hibernate入门系列（二）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'codegitz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2018/03/17/Hibernate入门系列（三）/",
+  owner: 'codegitz',
+  repo: 'codegitz.github.io',
+  oauth: {
+    client_id: '3111abe777f17a978418',
+    client_secret: 'a793e7d23aa376586e7493cf997ae4b7f3cf5cd7',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
+
+
           </div>
         </div>
       </div>

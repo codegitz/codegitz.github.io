@@ -174,7 +174,748 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Netty源码分析系列（一）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Netty源码分析系列（一）
+    </h1>
+  
+
+        
+        <a href="/2020/01/02/Netty源码分析系列（一）/" class="archive-article-date">
+  	<time datetime="2020-01-02T14:20:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="Netty服务端启动"><a href="#Netty服务端启动" class="headerlink" title="Netty服务端启动"></a><u>Netty</u>服务端启动</h2><blockquote>
+<p><u>netty版本为<code>4.1.6.Final</code></u></p>
+</blockquote>
+<p>本文可以带着两个问题来看<br>1.服务端的socket在哪里初始化？<br>2.在哪里accept连接？</p>
+<a id="more"></a>
+<h2 id="启动过程"><a href="#启动过程" class="headerlink" title="启动过程"></a>启动过程</h2><p>1.创建服务端channel<br>2.初始化服务端channel<br>3.注册selector<br>4.端口绑定</p>
+<h3 id="创建服务端channel"><a href="#创建服务端channel" class="headerlink" title="创建服务端channel"></a>创建服务端channel</h3><p><strong>调用过程</strong></p>
+<p><img src="https://i.imgur.com/jwvLY74.png" style="zoom:50%;"><br>代码调用过程</p>
+<p>用户代码入口<strong>bind()</strong></p>
+<pre><code class="java">try {
+            ServerBootstrap b = new ServerBootstrap();
+            b.group(bossGroup, workerGroup)
+                    .channel(NioServerSocketChannel.class)
+                    .childOption(ChannelOption.TCP_NODELAY, true)
+                    .childAttr(AttributeKey.newInstance(&quot;childAttr&quot;), &quot;childAttrValue&quot;)
+                    .handler(new ServerHandler())
+                    .childHandler(new ChannelInitializer&lt;SocketChannel&gt;() {
+                        @Override
+                        public void initChannel(SocketChannel ch) {
+                            ch.pipeline().addLast(new AuthHandler());
+                            //..
+
+                        }
+                    });
+
+            ChannelFuture f = b.bind(8888).sync();//入口
+</code></pre>
+<p>bind()方法</p>
+<pre><code class="java">    /**
+     * Create a new {@link Channel} and bind it.
+     */
+    public ChannelFuture bind(int inetPort) {
+        return bind(new InetSocketAddress(inetPort));
+    }
+
+    /**
+     * Create a new {@link Channel} and bind it.
+     */
+    public ChannelFuture bind(SocketAddress localAddress) {
+        validate();
+        if (localAddress == null) {
+            throw new NullPointerException(&quot;localAddress&quot;);
+        }
+        return doBind(localAddress);//调用doBind方法
+    }
+
+    private ChannelFuture doBind(final SocketAddress localAddress) { //doBind
+        final ChannelFuture regFuture = initAndRegister();
+        final Channel channel = regFuture.channel();
+        if (regFuture.cause() != null) {
+            return regFuture;
+        }
+</code></pre>
+<p><strong>channelFactory.newChannel()</strong></p>
+<pre><code class="java">
+    final ChannelFuture initAndRegister() {
+        Channel channel = null;
+        try {
+            channel = channelFactory.newChannel();
+            init(channel);
+        } catch (Throwable t) {
+               ... 
+        }
+        }
+</code></pre>
+<p><strong>ReflectiveChannelFactory.java里面的channelFactory</strong></p>
+<pre><code class="java">public class ReflectiveChannelFactory&lt;T extends Channel&gt; implements ChannelFactory&lt;T&gt; {
+
+    private final Class&lt;? extends T&gt; clazz;
+
+    public ReflectiveChannelFactory(Class&lt;? extends T&gt; clazz) {
+        if (clazz == null) {
+            throw new NullPointerException(&quot;clazz&quot;);
+        }
+        this.clazz = clazz;
+    }
+     @Override
+    public T newChannel() {
+        try {
+            return clazz.newInstance();
+        } catch (Throwable t) {
+            throw new ChannelException(&quot;Unable to create Channel from class &quot; + clazz, t);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return StringUtil.simpleClassName(clazz) + &quot;.class&quot;;
+    }
+}
+</code></pre>
+<p><strong>通过反射创建服务端channel</strong></p>
+<p><img src="https://i.imgur.com/NqSHudK.png" style="zoom:50%;"></p>
+<p>newSocket（）</p>
+<p>newSocket（）通过底层jdk创建jdk channel</p>
+<pre><code>public class NioServerSocketChannel extends AbstractNioMessageChannel
+                             implements io.netty.channel.socket.ServerSocketChannel {
+     ....                        
+
+     /**
+     * Create a new instance
+     */
+    public NioServerSocketChannel() {
+        this(newSocket(DEFAULT_SELECTOR_PROVIDER));//newSocket方法
+    }
+
+    .....
+    }
+</code></pre><p>newSocket方法直接调用provider</p>
+<pre><code>private static ServerSocketChannel newSocket(SelectorProvider provider) {
+        try {
+            /**
+             *  Use the {@link SelectorProvider} to open {@link SocketChannel} and so remove condition in
+             *  {@link SelectorProvider#provider()} which is called by each ServerSocketChannel.open() otherwise.
+             *
+             *  See &lt;a href=&quot;https://github.com/netty/netty/issues/2308&quot;&gt;#2308&lt;/a&gt;.
+             */
+            return provider.openServerSocketChannel();//这里直接创建一个channel
+        } catch (IOException e) {
+            throw new ChannelException(
+                    &quot;Failed to open a server socket.&quot;, e);
+        }
+    }
+</code></pre><p>进入到<code>openServerSocketChannel</code>,发现其所属的包已经为jdk的包</p>
+<pre><code> package java.nio.channels.spi;
+      ....
+    /**
+     * Opens a server-socket channel.
+     *
+     * @return  The new channel
+     *
+     * @throws  IOException
+     *          If an I/O error occurs
+     */
+    public abstract ServerSocketChannel openServerSocketChannel()
+        throws IOException;
+      ....
+</code></pre><p>NioServerSocketChannelConfig</p>
+<p>通过<code>NioServerSocketChannelConfig</code>创建tcp参数配置类</p>
+<pre><code>    /**
+     * Create a new instance using the given {@link ServerSocketChannel}.
+     */
+    public NioServerSocketChannel(ServerSocketChannel channel) {
+        super(null, channel, SelectionKey.OP_ACCEPT);
+        config = new NioServerSocketChannelConfig(this, javaChannel().socket());
+    }
+</code></pre><p><code>AbstractNioChannel</code></p>
+<p>调用父类构造函数<code>AbstractNioChannel</code></p>
+<pre><code class="java">    /**
+     * Create a new instance using the given {@link ServerSocketChannel}.
+     */
+    public NioServerSocketChannel(ServerSocketChannel channel) {
+        super(null, channel, SelectionKey.OP_ACCEPT); //super调用父类
+        config = new NioServerSocketChannelConfig(this, javaChannel().socket());
+    }
+</code></pre>
+<p>跟进去，可以看到<code>AbstractNioMessageChannel</code>继续调用</p>
+<pre><code class="java">    /**
+     * @see {@link AbstractNioChannel#AbstractNioChannel(Channel, SelectableChannel, int)}
+     */
+    protected AbstractNioMessageChannel(Channel parent, SelectableChannel ch, int readInterestOp) {
+        super(parent, ch, readInterestOp);//super调用父类
+    }
+</code></pre>
+<p>跟进去，可以看到<code>AbstractNioChannel</code></p>
+<pre><code class="java">
+    /**
+     * Create a new instance
+     *
+     * @param parent            the parent {@link Channel} by which this instance was created. May be {@code null}
+     * @param ch                the underlying {@link SelectableChannel} on which it operates
+     * @param readInterestOp    the ops to set to receive data from the {@link SelectableChannel}
+     */
+    protected AbstractNioChannel(Channel parent, SelectableChannel ch, int readInterestOp) {
+        super(parent); //再往上还有一个客户端，服务端共同父类AbstractChannel
+        this.ch = ch;
+        this.readInterestOp = readInterestOp;
+        try {
+            ch.configureBlocking(false); //这是的ch,就是刚刚通过newsocket创建出来的一个底层的jdkchannel，这里是设置服务端的channel为非阻塞
+        } catch (IOException e) {
+            try {
+                ch.close();
+            } catch (IOException e2) {
+                if (logger.isWarnEnabled()) {
+                    logger.warn(
+                            &quot;Failed to close a partially initialized socket.&quot;, e2);
+                }
+            }
+
+            throw new ChannelException(&quot;Failed to enter non-blocking mode.&quot;, e);
+        }
+    }
+</code></pre>
+<p>AbstractChannel</p>
+<p>这里为什么是AbstractChannel，因为除了服务端的channel还有客户端的channel。AbstractChannel就是对channel的一个抽象。AbstractChannel有三个重要的属性<code>id，unsafe，pipeline</code>.</p>
+<p>​        id :对应每一个channel的唯一标识<br>​        unsafe ：跟tcp相关的一些操作，读写<br>​        pipeline ：服务端和客户端相关的一个逻辑链</p>
+<pre><code class="java">    /**
+     * Creates a new instance.
+     *
+     * @param parent
+     *        the parent of this channel. {@code null} if there&#39;s no parent.
+     */
+    protected AbstractChannel(Channel parent) {
+        this.parent = parent;
+        id = newId();
+        unsafe = newUnsafe();
+        pipeline = newChannelPipeline();
+    }
+</code></pre>
+<h3 id="初始化服务端channel"><a href="#初始化服务端channel" class="headerlink" title="初始化服务端channel"></a>初始化服务端channel</h3><p><strong>过程</strong>,初始化服务端channel的过程用一句话概括就是保存用户的自定义属性，然后通过这些属性创建一个连接接入器，连接接入器每次accept一个连接后，会使用这些属性对新的连接进行一些配置。</p>
+<p><img src="https://i.imgur.com/5sxQArS.png" style="zoom:50%;"></p>
+<p>下面来看一下代码调用过程，首先来到用户代码入口<code>bind()</code>方法，可以看到<code>initAndRegister</code>方法。</p>
+<pre><code class="java">    private ChannelFuture doBind(final SocketAddress localAddress) {
+        final ChannelFuture regFuture = initAndRegister();
+        final Channel channel = regFuture.channel();
+        if (regFuture.cause() != null) {
+            return regFuture;
+        }
+</code></pre>
+<p>initAndRegister()</p>
+<pre><code class="java">final ChannelFuture initAndRegister() {
+        Channel channel = null;
+        try {
+            channel = channelFactory.newChannel();
+            init(channel);     //这里用init初始化channel
+        } catch (Throwable t) {
+          ...
+        }
+</code></pre>
+<p>init()方法，总的来说就是获取用户的配置，并</p>
+<pre><code class="java">package io.netty.bootstrap;
+    ...
+    @Override
+    void init(Channel channel) throws Exception {
+        final Map&lt;ChannelOption&lt;?&gt;, Object&gt; options = options0();//拿到配置的options
+        synchronized (options) {
+            channel.config().setOptions(options);//通过config将options配置进去，这里的config是上一节创建服务端channel时也会创建的config
+        }
+
+        final Map&lt;AttributeKey&lt;?&gt;, Object&gt; attrs = attrs0();//拿到用户自定义的属性
+        synchronized (attrs) {
+            for (Entry&lt;AttributeKey&lt;?&gt;, Object&gt; e: attrs.entrySet()) {
+                @SuppressWarnings(&quot;unchecked&quot;)
+                AttributeKey&lt;Object&gt; key = (AttributeKey&lt;Object&gt;) e.getKey();
+                channel.attr(key).set(e.getValue()); //绑定
+            }
+        }
+
+        ChannelPipeline p = channel.pipeline();
+
+        final EventLoopGroup currentChildGroup = childGroup;
+        final ChannelHandler currentChildHandler = childHandler;
+        final Entry&lt;ChannelOption&lt;?&gt;, Object&gt;[] currentChildOptions;
+        final Entry&lt;AttributeKey&lt;?&gt;, Object&gt;[] currentChildAttrs;
+        synchronized (childOptions) { //保存childOptions
+            currentChildOptions = childOptions.entrySet().toArray(newOptionArray(childOptions.size()));
+        }
+        synchronized (childAttrs) {   //保存childAttrs
+            currentChildAttrs = childAttrs.entrySet().toArray(newAttrArray(childAttrs.size()));
+        }
+
+        p.addLast(new ChannelInitializer&lt;Channel&gt;() { //配置服务端pipeline
+            @Override
+            public void initChannel(Channel ch) throws Exception {
+                final ChannelPipeline pipeline = ch.pipeline();
+                ChannelHandler handler = config.handler();//拿到用户自定义的pipeline
+                if (handler != null) {
+                    pipeline.addLast(handler);//把用户自定义的处理链添加进去
+                }
+
+                // We add this handler via the EventLoop as the user may have used a ChannelInitializer as handler.
+                // In this case the initChannel(...) method will only be called after this method returns. Because
+                // of this we need to ensure we add our handler in a delayed fashion so all the users handler are
+                // placed in front of the ServerBootstrapAcceptor.
+                ch.eventLoop().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        pipeline.addLast(new ServerBootstrapAcceptor(//添加一个ServerBootstrapAcceptor，把前面配置的几个参数都传进去
+                                currentChildGroup, currentChildHandler, currentChildOptions, currentChildAttrs));
+                    }
+                });
+            }
+        });
+    }
+</code></pre>
+<h3 id="注册selector"><a href="#注册selector" class="headerlink" title="注册selector"></a>注册selector</h3><p><img src="https://i.imgur.com/eWUxLpl.png" style="zoom:50%;"></p>
+<p>在<code>initAndRegister()</code>方法中有调用<code>register</code>方法注册channel。</p>
+<pre><code class="java">    final ChannelFuture initAndRegister() {
+        Channel channel = null;
+        ....
+
+        ChannelFuture regFuture = config().group().register(channel);
+        if (regFuture.cause() != null) {
+            if (channel.isRegistered()) {
+                channel.close();
+            } else {
+                channel.unsafe().closeForcibly();
+            }
+        }
+</code></pre>
+<p><code>AbstractChannel.register()</code>方法</p>
+<pre><code class="java">
+        @Override
+        public final void register(EventLoop eventLoop, final ChannelPromise promise) {
+            ...
+
+            AbstractChannel.this.eventLoop = eventLoop;//简单的赋值操作，后续一些io操作都交由eventloop来执行
+
+            if (eventLoop.inEventLoop()) {
+                register0(promise); //调用register0实际注册
+            } else {
+                try {
+                    eventLoop.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            register0(promise); //
+                        }
+                    });
+                } catch (Throwable t) {
+                   ....
+                }
+            }
+        }
+</code></pre>
+<p><code>register0()</code>方法</p>
+<pre><code class="java">        private void register0(ChannelPromise promise) {
+            try {
+                ...
+                boolean firstRegistration = neverRegistered;
+                doRegister();  //调用底层jdk注册channel
+                neverRegistered = false;
+                registered = true;
+
+                // Ensure we call handlerAdded(...) before we actually notify the promise. This is needed as the
+                // user may already fire events through the pipeline in the ChannelFutureListener.
+                pipeline.invokeHandlerAddedIfNeeded(); //HandlerAdded对应着用户代码的执行顺序
+                ...
+                pipeline.fireChannelRegistered();//这对应着用户代码的执行顺序
+                ...
+        }
+</code></pre>
+<p>用户的<code>ServerHandler</code></p>
+<pre><code class="java">public class ServerHandler extends ChannelInboundHandlerAdapter {
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) {
+        System.out.println(&quot;channelActive&quot;);
+    }
+
+    @Override
+    public void channelRegistered(ChannelHandlerContext ctx) {
+        System.out.println(&quot;channelRegistered&quot;);
+    }
+
+    @Override
+    public void handlerAdded(ChannelHandlerContext ctx) {
+        System.out.println(&quot;handlerAdded&quot;);
+    }
+    ...
+}
+</code></pre>
+<p>先输出handlerAdded，然后是channelRegistered</p>
+<p><img src="C:\Users\codegitz\Documents\ShareX\Screenshots\2019-12\idea64_Ac0IdDGB3D.png" alt=""></p>
+<p><code>doRegister()</code>方法</p>
+<pre><code class="java">
+    @Override
+    protected void doRegister() throws Exception {
+        boolean selected = false;
+        for (;;) {
+            try {
+                //调用jdk api register注册方法,这个javaChannel是在创建服务端channel的时候会创建一个jdk底层的channel，然后把这个channel进行保存，保存到成员变量ch里面
+                //register需要三个参数`selector，ops,att`
+                selectionKey = javaChannel().register(eventLoop().selector, 0, this);
+
+                return;
+            } catch (CancelledKeyException e) {
+               ...
+                }
+            }
+        }
+    }
+</code></pre>
+<h3 id="端口绑定"><a href="#端口绑定" class="headerlink" title="端口绑定"></a>端口绑定</h3><p>端口绑定过程</p>
+<p><img src="https://i.imgur.com/rb5Kg6N.png" style="zoom: 50%;"></p>
+<p>还是来看<code>AbstractBootstrap.doBind()</code>方法</p>
+<pre><code class="java">
+    private ChannelFuture doBind(final SocketAddress localAddress) {
+        //初始化，注册...
+
+        if (regFuture.isDone()) {
+            // At this point we know that the registration was complete and successful.
+            ChannelPromise promise = channel.newPromise();
+            doBind0(regFuture, channel, localAddress, promise);//绑定端口，调用`AbstractChannel.bind()`方法
+            return promise;
+        } else {
+           ...
+                }
+            });
+            return promise;
+        }
+    }
+</code></pre>
+<p><code>AbstractChannel.bind()</code>方法</p>
+<pre><code class="java">        @Override
+        public final void bind(final SocketAddress localAddress, final ChannelPromise promise) {
+            ...
+
+            boolean wasActive = isActive();
+            try {
+                doBind(localAddress);//jdk底层的绑定
+            } catch (Throwable t) {
+                safeSetFailure(promise, t);
+                closeIfClosed();
+                return;
+            }
+
+            if (!wasActive &amp;&amp; isActive()) { //在端口绑定之前不是active，在绑定之后为active状态
+                invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        pipeline.fireChannelActive();//触发ChannelActive事件传播
+                    }
+                });
+            }
+
+            safeSetSuccess(promise);
+        }
+</code></pre>
+<p><code>AbstractChannel.bind()</code>方法里面的<code>doBind(localAddress)</code>会调用<code>NioServerSocketChannel.doBind()</code>方法，直接调用了底层jdk的bind()方法</p>
+<pre><code class="java">    @Override
+    protected void doBind(SocketAddress localAddress) throws Exception {
+        if (PlatformDependent.javaVersion() &gt;= 7) {
+            javaChannel().bind(localAddress, config.getBacklog());//底层绑定
+        } else {
+            javaChannel().socket().bind(localAddress, config.getBacklog());
+        }
+    }
+</code></pre>
+<p>端口绑定完成后，调用<code>pipeline.fireChannelActive()</code>,触发ChannelActive事件<code>pipeline.fireChannelActive()</code>传播</p>
+<p>传播链为</p>
+<p><code>pipeline.fireChannelActive()</code>–&gt;<code>DefaultChannelPipeline.ChannelActive()</code>–&gt;<code>DefaultChannelPipeline.readIfIsAutoRead()</code>–&gt;<code>AbstractChannel.read()</code>–&gt;<code>DefaultChannelPipeline.read()</code>–&gt;<code>AbstractChannelHandlerContext.read()</code>–&gt;<code>AbstractChannel.beginRead()</code>–&gt;<code>AbstractNioChannel.doBeginRead()</code></p>
+<p><code>DefaultChannelPipeline.ChannelActive()</code></p>
+<pre><code class="java">        @Override
+        public void channelActive(ChannelHandlerContext ctx) throws Exception {
+            ctx.fireChannelActive(); //传播从HeadContext.readIfIsAutoRead出发
+            readIfIsAutoRead();
+        }
+</code></pre>
+<p><code>DefaultChannelPipeline.readIfIsAutoRead()</code></p>
+<pre><code class="java">        private void readIfIsAutoRead() {
+            if (channel.config().isAutoRead()) {
+                channel.read();
+            }
+        }
+</code></pre>
+<p><code>AbstractChannel.read()</code></p>
+<pre><code class="java">        @Override
+        public Channel read() {
+            pipeline.read(); //从pipeline开始传播
+            return this;
+        }
+</code></pre>
+<p><code>DefaultChannelPipeline.read()</code></p>
+<pre><code class="java">    @Override
+    public final ChannelPipeline read() {
+        tail.read(); //tail为pipeline最尾部的一个节点    ·
+        return this;
+    }
+</code></pre>
+<p><code>AbstractChannelHandlerContext.read()</code></p>
+<pre><code class="java">    @Override
+    public ChannelHandlerContext read() {
+        final AbstractChannelHandlerContext next = findContextOutbound();
+        EventExecutor executor = next.executor();
+        if (executor.inEventLoop()) {
+            next.invokeRead();
+        } else {
+            Runnable task = next.invokeReadTask;
+            if (task == null) {
+                next.invokeReadTask = task = new Runnable() {
+                    @Override
+                    public void run() {
+                        next.invokeRead();
+                    }
+                };
+            }
+            executor.execute(task);
+        }
+
+        return this;
+    }
+</code></pre>
+<p><code>AbstractChannel.beginRead()</code></p>
+<pre><code class="java">        @Override
+        public final void beginRead() {
+            assertEventLoop();
+
+            if (!isActive()) {
+                return;
+            }
+
+            try {
+                doBeginRead();
+            } catch (final Exception e) {
+                invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        pipeline.fireExceptionCaught(e);
+                    }
+                });
+                close(voidPromise());
+            }
+        }
+</code></pre>
+<p><code>AbstractNioChannel.doBeginRead()</code></p>
+<pre><code class="java">    @Override
+    protected void doBeginRead() throws Exception {
+        // Channel.read() or ChannelHandlerContext.read() was called
+        final SelectionKey selectionKey = this.selectionKey; //这个selectionKey就是前面注册服务端的channel到selector上时返回的selectionKey
+        if (!selectionKey.isValid()) {
+            return;
+        }
+
+        readPending = true;
+
+        final int interestOps = selectionKey.interestOps();//前面注册的时候ops绑定了一个0上去
+        if ((interestOps &amp; readInterestOp) == 0) {
+            selectionKey.interestOps(interestOps | readInterestOp);
+        }
+    }
+</code></pre>
+<p>总结端口绑定：当端口绑定完成后，会触发一个active事件，这个active事件最终会调用到channel的一个read事件，read事件对于服务端来说就是可以读了，可以读新的连接。</p>
+<h2 id="启动核心路径总结"><a href="#启动核心路径总结" class="headerlink" title="启动核心路径总结"></a>启动核心路径总结</h2><p><img src="https://i.imgur.com/pS0P4bl.png" style="zoom: 50%;"></p>
+<p>​        首先调用<code>newChannel()</code>创建服务端的channel，这个过程实际上就是调用jdk底层的api来创建一个jdk channel，然后netty将其包装成一个自己服务端的channel，同时会创建一些基本的组件绑定在此channel上，比如pipeline，然后调用<code>init()</code>方法初始化服务端channel，这个过程最重要的是为服务端的channel添加一个连接处理器，随后调用<code>register()</code>方法注册selector，这个过程中netty将jdk底层的channel注册到事件轮询器selector上面，并把netty的服务端channel作为一个attachment绑定到对应的jdk底层的channel，最后调用<code>doBind()</code>方法调用jdk底层的api来实现对本地端口的监听，然后netty会重新向selector注册一个ops accept事件，这样netty就可以接受新的连接了。</p>
+
+      
+
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励，是使我前进的力量<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://i.imgur.com/0n8b4DD.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Netty</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/02/Netty源码分析系列（一）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/01/10/Netty源码分析系列（二）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Netty源码分析系列（二）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/26/2019总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2019总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'codegitz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2020/01/02/Netty源码分析系列（一）/",
+  owner: 'codegitz',
+  repo: 'codegitz.github.io',
+  oauth: {
+    client_id: '3111abe777f17a978418',
+    client_secret: 'a793e7d23aa376586e7493cf997ae4b7f3cf5cd7',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
+
+
           </div>
         </div>
       </div>

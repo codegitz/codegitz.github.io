@@ -166,7 +166,310 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-深入理解Git系列（三）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      深入理解Git系列（三）
+    </h1>
+  
+
+        
+        <a href="/2018/11/06/深入理解Git系列（三）/" class="archive-article-date">
+  	<time datetime="2018-11-06T10:34:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前面的一些概念的东西写的好像过于详细，下面的介绍将从简出发。这篇文章来说一下重要的分支。</p>
+<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><p>分支是软件项目中启动一条单独的开发线的基本方法。分支是从一种统一的、原始的状态分离出来的，使开发功能在多个方向上同时进行，并可能产生项目的不同版本。通常情况下分支会被调解与其它分支合并，来重聚不同的力量。<br></p>
+<a id="more"></a>
+<p>Git允许很多分支，因此同一个版本库中可以有许多不同的开发现。这也是处于不同地方的工作者可以对同一个项目进行开发的方法，每个单独修复的bug或者功能都可以是一个新的分支，这样的处理可以让庞大的项目显得更加清晰，回溯历史版本的时候也可以更容易找出问题的所在。<br></p>
+<h3 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h3><p>新的分支基于版本库中现有的提交，由你来决定哪次提交作为分支的开始。Git支持任意复杂的分支结构，包括分支的分支和从同一个提交分叉出的多个给定的分支名可以在其版本库的整个生命周期里多次添加或删除。<br></p>
+<p>一旦确定了从哪个提交开始分支，只需要使用<code>git branch</code>命令，例如为了解决报告问题#1，要从当前分支的HEAD创建一个新的分支点，可以使用</p>
+<pre><code>$ git branch prs/prs-1
+</code></pre><p>这条命令的基本形式是：<br>    $ git branch branch [starting-commit]</p>
+<p>如果没有指定的starting-commit，就默认在当前分支上的最近提交。也就是说，默认是在你现在的工作的地方启动一个新的分支。<br><br>需要注意的是，git branch命令指示把分支名引进版本库，并没有去改变工作目录去使用新的分支，没有工作目录文件发生变化。直到你切换到它。<br></p>
+<h3 id="列出分支名"><a href="#列出分支名" class="headerlink" title="列出分支名"></a>列出分支名</h3><p>git branch命令列出版本库中的分支名。</p>
+<pre><code>$ git branch
+* master
+  prs/prs-1
+  prs/prs-2
+</code></pre><p>这里显示了三个分支，当前已检出到你的工作目录的分支用星号标记。如果没有额外的参数，则只列出版本库中的特性分支，可以用-r选项列出那些远程追踪分支，也可以用-a选项把特性分支和远程分支都列出来。<br></p>
+<h3 id="查看分支"><a href="#查看分支" class="headerlink" title="查看分支"></a>查看分支</h3><p>git show-branch命令提供比git branch 更详细的删除，按时间以递序的形式列出对一个或多个分支的有贡献的提交。<br></p>
+<pre><code>$ git show-branch
+* [master] add line4 and line5
+ ! [prs/prs-1] fixed prs-1
+  ! [prs/prs-2] add line2 and line3
+-----
+*  ++ [master] add line4 and line5
+  +   [prs/prs-2] add line2 and line3
+*++++ [prs/prs-1] fixed prs-1
+</code></pre><p>git show-branch的输出被一排破折号分为两部分。分隔符上方的部分列出分支名，并且用方括号括起来，每行一个。<br><br>输出的下半部分是一个表示每个分支中提交的矩阵。每个提交后面跟着该提交中日志消息的第一行。如果有一个加号(+)、星号(*)或减号(-)在分支的列中，对应的田炯就会在该分支中显示。加号表示提交在一个分支中，星号突出显示存在于活动分支的提交，减号表示合并一个分支。<br></p>
+<h3 id="检出分支"><a href="#检出分支" class="headerlink" title="检出分支"></a>检出分支</h3><p>工作目录一次只能反映一个分支。要在不同的分支上开始工作，要发出git checkout命令。给定一个分支名，git checkout会使该分支成为当前工作分支。它改变了工作树文件和目录结构来匹配给定的分支状态。但是Git会采取措施来使你避免丢失未提交的工作数据。<br><br>Git会让你访问版本库的所有状态，从分支的最前端到项目的最开始。这是因为每次提交会捕获在一个给定时刻版本库完整状态的快照。<br></p>
+<pre><code>$ git branch
+* master
+  prs/prs-1
+  prs/prs-2
+</code></pre><p>​<br>    $ git checkout prs/prs-1<br>    Switched to branch ‘prs/prs-1’</p>
+<pre><code>$ git branch
+  master
+* prs/prs-1
+  prs/prs-2
+</code></pre><p>工作树中的文件和目录结构已更新来反应新的分支的状态和内容。工作目录中的文件已经发生了变化以符合该分支顶端的状态。<br><br>选择一个新的当前分支可能会对工作树文件和目录结构产生巨大影响，改变的程度取决于当前分支和你检出分支之间的差异。改变分支的影响有：<br></p>
+<ul>
+<li>在要被检出的分支哄但不在当前分支中的文件和目录，会从树对象库中检<br>出并放置到工作树上。<br></li>
+<li>在当前分支中但不在要被检出的分之中的文件和目录，会从工作树中删除</li>
+<li>这两个分支都有的文件会被修改为要被检出的分支的内容。<br></li>
+</ul>
+<h3 id="有未提交的更改是进行检出"><a href="#有未提交的更改是进行检出" class="headerlink" title="有未提交的更改是进行检出"></a>有未提交的更改是进行检出</h3><p>毫无疑问，这样是不能检出成功的，如果数据没有被提交，一但检出覆盖，那么未提交的数据会丢失。Git会发出如下错误消息，并拒绝检出目标分支。<br></p>
+<pre><code>$ git checkout master
+error: Your local changes to the following files would be overwritten by checkout:
+        hello.txt
+Please commit your changes or stash them before you switch branches.
+Aborting
+</code></pre><p>此时你需要提交然后才可以检出为新的分支，或者合并变更到不同分支。<br><br>工作目录的当前状态与你想切换到的分支相冲突，我们需要的是一个合并：工作目录中的改变必须要被检出的文件合并。<br><br>检出时使用-m参数，git通过在你的本地修改和对目录分支之间进行一个合并操作，尝试将你的本地修改加入到新的工作目录中。<br></p>
+<pre><code>$ git checkout -m master
+Switched to branch &#39;master&#39;
+M       hello.txt
+</code></pre><p>在这里，Git已经修改了hello.txt文件，并成功检出master分支。<br></p>
+<pre><code>$ cat hello.txt
+hello world
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; master
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+add line4
+add line5
+=======
+add line2
+add line3
+add line2
+add line3
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; prs/prs-2
+=======
+test uncommit checkout
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; local
+</code></pre><p>进行这种合并时一定要小心，虽然它看起来合并的很干净并且一切都没有问题。这个命令有时候也十分有用，当你在一个分支上耗费了大量的时间之后，发现这不是你想要提交的分支，可能你会陷入抓狂，这个命令可以替你解决问题，不过工作的时候一定要注意分支。<br></p>
+<h3 id="创建并检出新的分支"><a href="#创建并检出新的分支" class="headerlink" title="创建并检出新的分支"></a>创建并检出新的分支</h3><p>另一种比较常见的情况是当你想创建一个分支并同时切换到它，Git提供了一个快捷方式-b new-branch来处理这种情况。<br></p>
+<pre><code>$ git checkout -b prs/prs-4
+Switched to a new branch &#39;prs/prs-4&#39;
+
+$ git show-branch
+! [master] fixed commit
+ ! [prs/prs-1] fixed prs-1
+  ! [prs/prs-2] add line2 and line3
+   ! [prs/prs-3] add line4 and line5
+    * [prs/prs-4] fixed commit
+     ! [rel-2.3] add line4 and line5
+------
++   *  [master] fixed commit
+-   -  [master^] fixed conflit
++ + *  [prs/prs-2] add line2 and line3
++  +*+ [prs/prs-3] add line4 and line5
+++++*+ [prs/prs-1] fixed prs-1
+</code></pre><p>以下这个命令<br></p>
+<pre><code>$ git checkout -b new-branch start-point
+</code></pre><p>与两个命令序列是等价的：<br></p>
+<pre><code>$ git branch new-branch start-point
+$ git checkout new-branch
+</code></pre><h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><p>Git阻止你删除当前工作分支，删除当前分支将导致Git无法确定工作目录树应该是什么样的。必须始终选择一个非当前分支。还有一个问题，Git不会让你删除一个包含不存在于当前分之中的提交的分支。也就是说，如果分支被删除则开发的提交部分就会丢失，Git会阻止你意外删除提交中的开发。</p>
+<pre><code>$ git branch -d prs/prs-3
+Deleted branch prs/prs-3 (was 03b66ff).
+</code></pre><p>Git不会保持任何形式的关于分支名创建，移动，操纵，合并或者删除的历史记录，一旦某个分支删除了，它就没了。但是，该分支的提交历史记录是一个独立的问题。Git最终会删除那些不再被引用的提交和不能从某些命名（如分支和标签名）的引用的可达的提交。如果你想保留那些提交，必须将它们合并到不同的分支，为它们创建一个分支，或者用标签指向它们，否则，如果没有对他们的引用或者提交，blob是不可以达的，最终将被 git gc工具当成垃圾回收。<br><br>注：意外删除分支或其他引用后，可以使用git reflog命令恢复。<br></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这篇大概讲解了分支的使用方法和切换，理解分支的工作原理很重要，下一篇是关于分支之间的合并问题，产生冲突时的解决方法。Git鼓励的就是小规模频繁的提交，这就有利于将问题细致化，一个分支解决一个问题，虽然有点杀鸡用牛刀的意思。所以这个模式有时候会不可避免地产生一些冲突，怎么正确的解决冲突也相当重要。</p>
+
+      
+
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励，是使我前进的力量<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://i.imgur.com/0n8b4DD.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/11/06/深入理解Git系列（三）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/12/16/深入理解Git系列（四）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          深入理解Git系列（四）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/02/深入理解Git系列（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">深入理解Git系列（二）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'codegitz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2018/11/06/深入理解Git系列（三）/",
+  owner: 'codegitz',
+  repo: 'codegitz.github.io',
+  oauth: {
+    client_id: '3111abe777f17a978418',
+    client_secret: 'a793e7d23aa376586e7493cf997ae4b7f3cf5cd7',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
+
+
           </div>
         </div>
       </div>

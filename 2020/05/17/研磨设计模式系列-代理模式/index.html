@@ -168,7 +168,427 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-研磨设计模式系列-代理模式" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      研磨设计模式系列--代理模式
+    </h1>
+  
+
+        
+        <a href="/2020/05/17/研磨设计模式系列-代理模式/" class="archive-article-date">
+  	<time datetime="2020-05-17T08:03:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="1-代理模式简介"><a href="#1-代理模式简介" class="headerlink" title="1.代理模式简介"></a>1.代理模式简介</h2><p>​        通过代理控制对象的访问,可以详细访问某个对象的方法，在这个方法调用处理，或调用后处理。既(AOP微实现) ,AOP核心技术面向切面编程。</p>
+<p><div align="center"><br><img src="https://live.staticflickr.com/65535/49904436807_d0894e3bd7_o.png" style="zoom:80%;"></div></p>
+<a id="more"></a>
+<h2 id="2-应用场景"><a href="#2-应用场景" class="headerlink" title="2.应用场景"></a>2.应用场景</h2><p>SpringAOP、事物原理、日志打印、权限控制、远程调用、安全代理 可以隐蔽真实角色。</p>
+<h2 id="3-代理的分类"><a href="#3-代理的分类" class="headerlink" title="3.代理的分类"></a>3.代理的分类</h2><p>1、静态代理(静态定义代理类)</p>
+<p>2、动态代理(动态生成代理类)</p>
+<p>3、Jdk自带动态代理</p>
+<p>4、Cglib 、javaassist（字节码操作库）</p>
+<h2 id="4-静态代理"><a href="#4-静态代理" class="headerlink" title="4.静态代理"></a>4.静态代理</h2><p>1.什么是静态代理</p>
+<p>​        由程序员创建或工具生成代理类的源码，再编译代理类。所谓静态也就是在程序运行前就已经存在代理类的字节码文件，代理类和委托类的关系在运行前就确定了。</p>
+<p>优点：可以在不修改目标对象的前提下扩展目标对象的功能。</p>
+<p>缺点：</p>
+<ol>
+<li>冗余。由于代理对象要实现与目标对象一致的接口，会产生过多的代理类。</li>
+<li>不易维护。一旦接口增加方法，目标对象与代理对象都要进行修改。</li>
+</ol>
+<p>2.代码实现</p>
+<p>　　由上图的调用关系可以实现为，建立一个接口<code>IUserDao</code>，一个实现类<code>UserDaoImpl</code>，和一个代理类<code>UserDaoProxy</code>，实现类和代理类都实现了接口，代理类通过调用实现类从而获取实现类的功能。</p>
+<p>　　简单代码如下：</p>
+<pre><code class="java">package com.designpattern.proxy.staticproxy;
+
+/**
+ * @description: IUserDao接口
+ * @author: Codegitz
+ * @create: 2020-05-18 12:04
+ **/
+public interface IUserDao {
+    void save();
+}
+</code></pre>
+<pre><code class="java">package com.designpattern.proxy.staticproxy;
+
+/**
+ * @description: IUserDao实现类
+ * @author: Codegitz
+ * @create: 2020-05-18 12:05
+ **/
+public class UserDaoImpl implements IUserDao {
+    @Override
+    public void save() {
+        System.out.println(&quot;UserDaoImpl.save execute ....&quot;);
+    }
+}
+</code></pre>
+<pre><code class="java">package com.designpattern.proxy.staticproxy;
+
+/**
+ * @description: 代理类
+ * @author: Codegitz
+ * @create: 2020-05-18 12:06
+ **/
+public class UserDaoProxy implements IUserDao {
+    private IUserDao target;
+
+    public UserDaoProxy(IUserDao target){
+        this.target = target;
+    }
+    @Override
+    public void save() {
+        System.out.println(&quot;UserDaoProxy.save execute before IUserDao.save....&quot;);
+        //通过在调用实现类之前，代理类先执行一些处理，可以实现静态代理，此部分为写死功能，不好修改
+        target.save();
+        //同理，执行后续操作
+        System.out.println(&quot;UserDaoProxy.save execute after IUserDao.save....&quot;);
+    }
+
+    public static void main(String[] args) {
+        IUserDao iUserDao = new UserDaoImpl();
+        UserDaoProxy userDaoProxy = new UserDaoProxy(iUserDao);
+        //测试
+        userDaoProxy.save();
+    }
+}
+</code></pre>
+<p>运行结果如下：</p>
+<pre><code class="cmd">UserDaoProxy.save execute before IUserDao.save....
+UserDaoImpl.save execute ....
+UserDaoProxy.save execute after IUserDao.save....
+</code></pre>
+<h2 id="5-动态代理"><a href="#5-动态代理" class="headerlink" title="5.动态代理"></a>5.动态代理</h2><h3 id="1、什么是动态代理"><a href="#1、什么是动态代理" class="headerlink" title="1、什么是动态代理"></a>1、什么是动态代理</h3><p>1.代理对象,不需要实现接口</p>
+<p>2.代理对象的生成,是利用JDK的API,动态的在内存中构建代理对象(需要我们指定创建代理对象/目标对象实现的接口的类型)</p>
+<p>3.动态代理也叫做:JDK代理,接口代理</p>
+<h3 id="2、JDK动态代理"><a href="#2、JDK动态代理" class="headerlink" title="2、JDK动态代理"></a>2、JDK动态代理</h3><p>1、原理：是根据类加载器和接口创建代理类（此代理类是<code>InvocationHandler</code>接口的实现类，所以必须使用接口，面向接口生成代理，位于java.lang.reflect包下） </p>
+<p>2、实现方式： </p>
+<ol>
+<li><p>通过实现<code>InvocationHandler</code>接口创建自己的调用处理器<code>IvocationHandler handler = new InvocationHandlerImpl(…);</code></p>
+</li>
+<li><p>通过为<code>Proxy</code>类指定<code>ClassLoader</code>对象和一组<code>interface</code>创建动态代理类<code>IUserDao newProxyInstance = (IUserDao) Proxy.newProxyInstance(classLoader, interfaces, invocationHandler);</code></p>
+</li>
+</ol>
+<p><strong>缺点：jdk动态代理，必须是面向接口，目标业务类必须实现接口</strong></p>
+<p>3、代码实现</p>
+<p>　　首先建立一个接口<code>IUserDao</code>，一个实现类<code>UserDaoImpl</code>，这一步与静态代理相同，这里不重复黏贴代码。然后建立<code>InvocationHandler</code>的实现类，代码如下。</p>
+<pre><code class="Java">package com.designpattern.proxy.dynamicproxy;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+
+/**
+ * @description: {@link InvocationHandler}实现类，每次生成动态代理类对象时，实现了InvocationHandler接口的调用处理器对象
+ * @author: Codegitz
+ * @create: 2020-05-18 12:28
+ **/
+public class InvocationHandlerImpl implements InvocationHandler {
+
+    //这是业务实现类对象，用来调用具体的业务方法
+    private Object target;
+
+    //通过构造方法传入
+    public InvocationHandlerImpl(Object target){
+        this.target = target;
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        System.out.println(&quot;start invoke....&quot;);
+        //调用目标对象方法，返回结果
+        Object invoke = method.invoke(target, args);
+        System.out.println(&quot;finish invoke....&quot;);
+        return invoke;
+    }
+
+    public static void main(String[] args) {
+        //被代理的对象
+        IUserDao iUserDao = new UserDaoImpl();
+        InvocationHandlerImpl invocationHandler = new InvocationHandlerImpl(iUserDao);
+        ClassLoader classLoader = iUserDao.getClass().getClassLoader();
+        Class&lt;?&gt;[] interfaces = iUserDao.getClass().getInterfaces();
+        //主要装载器、一组接口及调用处理动态代理实例
+        IUserDao newProxyInstance = (IUserDao) Proxy.newProxyInstance(classLoader, interfaces, invocationHandler);
+        System.out.println(newProxyInstance.getClass());
+        newProxyInstance.save();
+    }
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="cmd">class com.sun.proxy.$Proxy0
+start invoke....
+UserDaoImpl.save execute....
+finish invoke....
+</code></pre>
+<h3 id="3、CGLIB动态代理"><a href="#3、CGLIB动态代理" class="headerlink" title="3、CGLIB动态代理"></a>3、CGLIB动态代理</h3><p>1.什么是CGLIB动态代理</p>
+<p>　　原理：利用asm开源包，对代理对象类的class文件加载进来，通过修改其字节码生成子类来处理。 使用cglib[Code Generation Library]实现动态代理，并不要求委托类必须实现接口，底层采用asm字节码生成框架生成代理类的字节码。</p>
+<p>使用cglib之前需要引入maven依赖。</p>
+<pre><code class="xml">&lt;dependency&gt;
+    &lt;groupId&gt;cglib&lt;/groupId&gt;
+    &lt;artifactId&gt;cglib&lt;/artifactId&gt;
+    &lt;version&gt;3.1&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>2.CGLIB动态代理代码实现</p>
+<pre><code class="Java">package com.designpattern.proxy.dynamicproxy.cglibproxy;
+
+import com.designpattern.proxy.dynamicproxy.IUserDao;
+import com.designpattern.proxy.dynamicproxy.UserDaoImpl;
+import net.sf.cglib.proxy.Enhancer;
+import net.sf.cglib.proxy.MethodInterceptor;
+import net.sf.cglib.proxy.MethodProxy;
+
+import java.lang.reflect.Method;
+
+/**
+ * @description: Cglib代理类，实现{@link MethodInterceptor#intercept(Object, Method, Object[], MethodProxy)}
+ * @author: Codegitz
+ * @create: 2020-05-18 12:54
+ **/
+public class CglibProxy implements MethodInterceptor {
+
+    private Object targetObject;
+
+    // 这里的目标类型为Object，则可以接受任意一种参数作为被代理类，实现了动态代理
+    public Object getInstance(Object target){
+        // 设置需要创建子类的类
+        this.targetObject = target;
+        //工具类
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(target.getClass());
+        enhancer.setCallback(this);
+        //创建子类对象代理
+        return enhancer.create();
+    }
+    @Override
+    public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
+        System.out.println(&quot;start invoke...&quot;);
+        // 获取代理对象
+        Object invoke = method.invoke(targetObject, objects);
+        System.out.println(&quot;finish invoke....&quot;);
+        return invoke;
+    }
+
+    public static void main(String[] args) {
+        CglibProxy cglibProxy = new CglibProxy();
+        IUserDao iUserDao = (IUserDao) cglibProxy.getInstance(new UserDaoImpl());
+        System.out.println(iUserDao.getClass());
+        iUserDao.save();
+    }
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="cmd">class com.designpattern.proxy.dynamicproxy.UserDaoImpl$$EnhancerByCGLIB$$5ffe5b89
+start invoke...
+UserDaoImpl.save execute....
+finish invoke....
+</code></pre>
+<p><a href="https://github.com/codegitz/designPattern" target="_blank" rel="external">附完整代码</a>，需要自取，顺便点个star。</p>
+<h2 id="６-CGLIB动态代理与JDK动态区别"><a href="#６-CGLIB动态代理与JDK动态区别" class="headerlink" title="６.CGLIB动态代理与JDK动态区别"></a>６.CGLIB动态代理与JDK动态区别</h2><p>　　java动态代理是利用反射机制生成一个实现代理接口的匿名类，在调用具体方法前调用InvokeHandler来处理。而cglib动态代理是利用asm开源包，对代理对象类的class文件加载进来，通过修改其字节码生成子类来处理。</p>
+<p>Spring中：</p>
+<p>　　1、如果目标对象实现了接口，默认情况下会采用JDK的动态代理实现AOP </p>
+<p>　　2、如果目标对象实现了接口，可以强制使用CGLIB实现AOP </p>
+<p>　　3、如果目标对象没有实现了接口，必须采用CGLIB库，spring会自动在JDK动态代理和CGLIB之间转换</p>
+<p>JDK动态代理只能对实现了接口的类生成代理，而不能针对类 。<br>CGLIB是针对类实现代理，主要是对指定的类生成一个子类，覆盖其中的方法 。<br>因为是继承，所以该类或方法最好不要声明成final ，final可以阻止继承和多态。</p>
+
+      
+
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励，是使我前进的力量<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://i.imgur.com/0n8b4DD.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/17/研磨设计模式系列-代理模式/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/05/17/研磨设计模式系列-建造者模式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          研磨设计模式系列--建造者模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/17/研磨设计模式系列-工厂模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">研磨设计模式系列--工厂模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'codegitz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2020/05/17/研磨设计模式系列-代理模式/",
+  owner: 'codegitz',
+  repo: 'codegitz.github.io',
+  oauth: {
+    client_id: '3111abe777f17a978418',
+    client_secret: 'a793e7d23aa376586e7493cf997ae4b7f3cf5cd7',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
+
+
           </div>
         </div>
       </div>

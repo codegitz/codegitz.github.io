@@ -168,7 +168,329 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-研磨设计模式系列-策略模式" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      研磨设计模式系列--策略模式
+    </h1>
+  
+
+        
+        <a href="/2020/05/19/研磨设计模式系列-策略模式/" class="archive-article-date">
+  	<time datetime="2020-05-19T08:06:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="1-什么是策略模式"><a href="#1-什么是策略模式" class="headerlink" title="1.什么是策略模式"></a>1.什么是策略模式</h2><p>　　定义了一系列的算法，并将每一个算法封装起来，而且使它们还可以相互替换。策略模式让算法独立于使用它的客户而独立变化。</p>
+<h2 id="2-策略模式应用场景"><a href="#2-策略模式应用场景" class="headerlink" title="2.策略模式应用场景"></a>2.策略模式应用场景</h2><p>　　策略模式的用意是针对一组算法或逻辑，将每一个算法或逻辑封装到具有共同接口的独立的类中，从而使得它们之间可以相互替换。策略模式使得算法或逻辑可以在不影响到客户端的情况下发生变化。说到策略模式就不得不</p>
+<a id="more"></a>
+<p>提及OCP(Open Closed Principle) 开闭原则，即对扩展开放，对修改关闭。策略模式的出现很好地诠释了开闭原则，有效地减少了分支语句。</p>
+<h2 id="3-策略模式代码"><a href="#3-策略模式代码" class="headerlink" title="3.策略模式代码"></a>3.策略模式代码</h2><p>此代码通过模拟不同会员购物车打折力度不同分为三种策略，初级会员，中级会员，高级会员。</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/08/strategy_pattern_uml_diagram.jpg" alt=""></p>
+<p>首先定义一个抽象接口<code>Strategy</code>。</p>
+<pre><code class="Java">package com.designpattern.strategy;
+
+/**
+ * @description: 策略模式 定义抽象方法 所有支持公共接口
+ * @author: Codegitz
+ * @create: 2020-05-19 17:10
+ **/
+public interface Strategy {
+    void gogogo();
+}
+</code></pre>
+<p>三种策略实现：</p>
+<pre><code class="Java">package com.designpattern.strategy;
+
+/**
+ * @description: 初级会员
+ * @author: Codegitz
+ * @create: 2020-05-19 17:12
+ **/
+public class JuniorStrategy implements Strategy {
+    @Override
+    public void gogogo() {
+        System.out.println(&quot;JuniorStrategy discount....&quot;);
+    }
+}
+</code></pre>
+<pre><code class="Java">package com.designpattern.strategy;
+
+/**
+ * @description: 中级会员
+ * @author: Codegitz
+ * @create: 2020-05-19 17:12
+ **/
+public class InterMediateStrategy implements Strategy {
+    @Override
+    public void gogogo() {
+        System.out.println(&quot;InterMediateStrategy InterMediateStrategy....&quot;);
+    }
+}
+</code></pre>
+<pre><code class="Java">package com.designpattern.strategy;
+
+/**
+ * @description: 高级会员
+ * @author: Codegitz
+ * @create: 2020-05-19 17:12
+ **/
+public class SeniorStrategy implements Strategy {
+    @Override
+    public void gogogo() {
+        System.out.println(&quot;SeniorStrategy discount....&quot;);
+    }
+}
+</code></pre>
+<pre><code class="java">package com.designpattern.strategy;
+
+/**
+ * @description: 上下文匹配策略类
+ * @author: Codegitz
+ * @create: 2020-05-19 17:14
+ **/
+public class Context {
+    //维护一个策略对象
+    private Strategy strategy;
+
+    public Context(Strategy strategy){
+        this.strategy = strategy;
+    }
+
+    public void discount(){
+        strategy.gogogo();
+    }
+}
+</code></pre>
+<p>测试类</p>
+<pre><code class="Java">package com.designpattern.strategy;
+
+/**
+ * @description: 测试类
+ * @author: Codegitz
+ * @create: 2020-05-19 17:16
+ **/
+public class TestStrategy {
+    public static void main(String[] args) {
+        //通过传入对象的不同进行不同的处理
+        Context context = new Context(new JuniorStrategy());
+        System.out.println(&quot;========JuniorStrategy========&quot;);
+        context.discount();
+        System.out.println(&quot;==========InterMediateStrategy========&quot;);
+        context = new Context(new InterMediateStrategy());
+        context.discount();
+        System.out.println(&quot;=======SeniorStrategy=========&quot;);
+        context = new Context(new SeniorStrategy());
+        context.discount();
+    }
+}
+</code></pre>
+<p>运行结果如下：</p>
+<pre><code class="cmd">========JuniorStrategy========
+JuniorStrategy discount....
+==========InterMediateStrategy========
+InterMediateStrategy InterMediateStrategy....
+=======SeniorStrategy=========
+SeniorStrategy discount....
+</code></pre>
+<p><a href="https://github.com/codegitz/designPattern" target="_blank" rel="external">附完整代码</a>，需要自取，顺便点个star。</p>
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h2><p>　　策略模式比较简单，通过把相似的算法操作封装成类，可以进行任意的替换，解决了在有多种算法相似的情况下，使用 if…else 所带来的代码复杂和难以维护的问题。如果一个系统的策略多于四个，就需要考虑使用混合模式，解决策略类膨胀的问题。</p>
+
+      
+
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励，是使我前进的力量<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://i.imgur.com/0n8b4DD.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/19/研磨设计模式系列-策略模式/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/05/19/研磨设计模式系列-观察者模式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          研磨设计模式系列--观察者模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/19/研磨设计模式系列-装饰模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">研磨设计模式系列--装饰模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'codegitz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2020/05/19/研磨设计模式系列-策略模式/",
+  owner: 'codegitz',
+  repo: 'codegitz.github.io',
+  oauth: {
+    client_id: '3111abe777f17a978418',
+    client_secret: 'a793e7d23aa376586e7493cf997ae4b7f3cf5cd7',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
+
+
           </div>
         </div>
       </div>

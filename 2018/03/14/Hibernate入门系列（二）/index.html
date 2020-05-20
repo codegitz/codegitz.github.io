@@ -173,7 +173,336 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Hibernate入门系列（二）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Hibernate入门系列（二）
+    </h1>
+  
+
+        
+        <a href="/2018/03/14/Hibernate入门系列（二）/" class="archive-article-date">
+  	<time datetime="2018-03-13T16:48:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Hibernate入门系列（二）"><a href="#Hibernate入门系列（二）" class="headerlink" title="Hibernate入门系列（二）"></a>Hibernate入门系列（二）</h1><h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><h3 id="Session-概述"><a href="#Session-概述" class="headerlink" title="Session 概述"></a>Session 概述</h3><ul>
+<li>Session 接口是 Hibernate 向应用程序提供的操纵数据库的最主要的接口, 它提供了基本的保存, 更新, 删除和加载 Java 对象的方法.</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li>Session 具有一个缓存, 位于缓存中的对象称为持久化对象, 它和数据库中的相关记录对应. Session 能够在某些时间点, 按照缓存中对象的变化来执行相关的 SQL 语句, 来同步更新数据库, 这一过程被称为刷新缓存(flush)</li>
+<li>站在持久化的角度, Hibernate 把对象分为 4 种状态: 持久化状态, 临时状态, 游离状态, 删除状态. Session 的特定方法能使对象从一个状态转换到另一个状态. <h3 id="Session-缓存"><a href="#Session-缓存" class="headerlink" title="Session 缓存"></a>Session 缓存</h3></li>
+<li>在 Session 接口的实现中包含一系列的 Java 集合, 这些 Java 集合构成了 Session 缓存. 只要 Session 实例没有结束生命周期, 且没有清理缓存，则存放在它缓存中的对象也不会结束生命周期</li>
+<li><p>Session 缓存可减少 Hibernate 应用程序访问数据库的频率。<br><img src="https://i.imgur.com/ImtQv3c.png" alt=""></p>
+<pre><code>  News news1=(News) session.get(News.class, 2);
+  News news2=(News) session.get(News.class, 2);
+</code></pre><p>例如执行上面这两行代码，hibernate只会向数据库发送一次SQL语句。<br><br>操作session缓存模型<br><img src="https://i.imgur.com/lNSw9XC.png" alt=""></p>
+<h4 id="flush-缓存"><a href="#flush-缓存" class="headerlink" title="flush 缓存"></a>flush 缓存</h4><p>flush：Session 按照缓存中对象的属性变化来同步更新数据库<br>默认情况下 Session 在以下时间点刷新缓存：</p>
+</li>
+<li><p>显式调用 Session 的 flush() 方法</p>
+</li>
+<li>当应用程序调用 Transaction 的 commit（）方法的时, 该方法先 flush ，然后在向数据库提交事务</li>
+<li>当应用程序执行一些查询(HQL, Criteria)操作时，如果缓存中持久化对象的属性已经发生了变化，会先 flush 缓存，以保证查询结果能够反映持久化对象的最新状态<br>注：若希望改变 flush 的默认时间点, 可以通过 Session 的 setFlushMode() 方法显式设定 flush 的时间点</li>
+</ul>
+<p><strong>flush 缓存的例外情况: 如果对象使用 native 生成器生成 OID, 那么当调用 Session 的 save() 方法保存对象时, 会立即执行向数据库插入该实体的 insert 语句.</strong><br><br>commit() 和 flush() 方法的区别：flush 执行一系列 sql 语句，但不提交事务；commit 方法先调用flush() 方法，然后提交事务. 意味着提交事务意味着对数据库操作永久保存下来。<br><br><strong>Hibernate 主键生成策略:</strong></p>
+<p>increment：代理主键，适合于所有数据库，由hibernate维护主键自增，和底层数据库无关，但是不适合于2个或以上hibernate进程。(少用)</p>
+<p>identity：代理主键，适合于Mysql或ms sql server等支持自增的dbms，主键值不由hibernate维护。</p>
+<p>sequence：代理主键，适合于oracle等支持序列的dbms，主键值不由hibernate维护，由序列产生。</p>
+<p>native：代理主键，根据底层数据库的具体特性选择适合的主键生成策略，如果是mysql或sqlserver，选择identity，如果是oracle，选择sequence。</p>
+<p>hilo：代理主键，hibernate把特定表的字段作为hign值，生成主键值</p>
+<p>uuid.hex：代理主键，hibernate采用uuid 128位算法生成基于字符串的主键值</p>
+<p>assign：适合于应用程序维护的自然主键。</p>
+<p>注：代理主键是指与业务无关且能唯一标识数据库中记录,一般是数据库自动生成的,比如mysql可以使用auto_increment,Sql2000可以使用identity生成方式,oracle可以使用sequence生成方式 自然主键指业务相关,由用户指定,且能唯一标识数据库中的任意一条记录<br><br><strong>数据库的隔离级别</strong><br><br>数据库事务的隔离级别有4个，由低到高依次为Read uncommitted、Read committed、Repeatable read、Serializable，这四个级别可以逐个解决脏读、不可重复读、幻读这几类问题。<br>对于同时运行的多个事务, 当这些事务访问数据库中相同的数据时, 如果没有采取必要的隔离机制, 就会导致各种并发问题:<br><br><strong>脏读</strong>: 对于两个事物 T1, T2, T1 读取了已经被 T2 更新但还没有被提交的字段. 之后, 若 T2 回滚, T1读取的内容就是临时且无效的.<br></p>
+<p><strong>不可重复读</strong>: 对于两个事物 T1, T2, T1 读取了一个字段, 然后 T2 更新了该字段. 之后, T1再次读取同一个字段, 值就不同了.<br></p>
+<p><strong>幻读</strong>: 对于两个事物 T1, T2, T1 从一个表中读取了一个字段, 然后 T2 在该表中插入了一些新的行. 之后, 如果 T1 再次读取同一个表, 就会多出几行.<br></p>
+<p>数据库事务的隔离性: 数据库系统必须具有隔离并发运行各个事务的能力, 使它们不会相互影响, 避免各种并发问题. <br><br>一个事务与其他事务隔离的程度称为隔离级别. 数据库规定了多种事务隔离级别, 不同隔离级别对应不同的干扰程度, 隔离级别越高, 数据一致性就越好, 但并发性越弱<br></p>
+<p><span style="background-color:inherit;font-size:16px;">√: 可能出现    ×: 不会出现</span></p><p></p>
+<table border="1" cellpadding="2" cellspacing="0" style="border-collapse:collapse;color:rgb(51,51,51);"><tbody style="background-color:inherit;"><tr style="background-color:inherit;"><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><div style="min-width:2px;background-color:inherit;"><br style="background-color:inherit;"></div><br></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">脏读</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">不可重复读</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">幻读</span></td><br></tr><tr style="background-color:inherit;"><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">Read uncommitted</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">√</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">√</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">√</span></td><br></tr><tr style="background-color:inherit;"><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">Read committed–<span style="background-color:rgb();">Sql Server , Oracle</span></span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;****min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">×</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">√</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">√</span></td><br></tr><tr style="background-color:inherit;"><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">Repeatable read–<a rel="nofollow" style="color;font-weight:bold;">MySQL</a></span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">×</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">×</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">√</span></td><br></tr><tr style="background-color:inherit;"><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">Serializable</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">×</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">×</span></td><br><td style="border:1px solid rgb(153,153,153);min-height:25px;min-width:25px;background-color:inherit;"><br><span style="background-color:inherit;font-size:16px;">×</span></td><br></tr></tbody></table>
+
+<p>Oracle 支持的 2 种事务隔离级别：READ COMMITED, SERIALIZABLE. Oracle 默认的事务隔离级别为: READ COMMITED <br><br>Mysql 支持 4 中事务隔离级别. Mysql 默认的事务隔离级别为: REPEATABLE READ、<br></p>
+<p><strong>在 MySql 中设置隔离级别</strong><br><br>每启动一个 mysql 程序, 就会获得一个单独的数据库连接. 每个数据库连接都有一个全局变量 @@tx_isolation, 表示当前的事务隔离级别. MySQL 默认的隔离级别为 Repeatable Read<br><br>查看当前的隔离级别: SELECT @@tx_isolation;<br><br>设置当前 mySQL 连接的隔离级别:  <br><br>set transaction isolation level read committed;<br><br>设置数据库系统的全局的隔离级别:<br><br> set global transaction isolation level read committed;<br><br><strong>在 Hibernate 中设置隔离级别</strong><br><br>JDBC 数据库连接使用数据库系统默认的隔离级别. 在 Hibernate 的配置文件中可以显式的设置隔离级别. 每一个隔离级别都对应一个整数:<br></p>
+<ol>
+<li>READ UNCOMMITED<br></li>
+<li>READ COMMITED<br></li>
+<li>REPEATABLE READ<br></li>
+<li>SERIALIZEABLE<br><br>Hibernate 通过为 Hibernate 映射文件指定 hibernate.connection.isolation 属性来设置事务的隔离级别<br><br>例如：<br><pre><code>&lt;property name=&quot;hibernate.connection.isolation&quot;&gt;2&lt;/property&gt;
+</code></pre><h3 id="持久化对象的状态"><a href="#持久化对象的状态" class="headerlink" title="持久化对象的状态"></a>持久化对象的状态</h3>站在持久化的角度, Hibernate 把对象分为 4 种状态: 持久化状态, 临时状态, 游离状态, 删除状态. Session 的特定方法能使对象从一个状态转换到另一个状态. <br></li>
+</ol>
+<p><strong>临时对象（Transient）:</strong></p>
+<ul>
+<li>在使用代理主键的情况下, OID 通常为 null<br></li>
+<li>不处于 Session 的缓存中<br></li>
+<li>在数据库中没有对应的记录<br><br><strong>持久化对象(也叫”托管”)（Persist）：</strong><br></li>
+<li>OID 不为 null<br></li>
+<li>位于 Session 缓存中<br></li>
+<li>若在数据库中已经有和其对应的记录, 持久化对象和数据库中的相关记录对应<br></li>
+<li>Session 在 flush 缓存时, 会根据持久化对象的属性变化, 来同步更新数据库<br></li>
+<li>在同一个 Session 实例的缓存中, 数据库表中的每条记录只对应唯一的持久化对象<br><br><strong>删除对象(Removed)</strong><br></li>
+<li>在数据库中没有和其 OID 对应的记录<br></li>
+<li>不再处于 Session 缓存中<br></li>
+<li>一般情况下, 应用程序不该再使用被删除的对象<br><br><strong>游离对象(也叫”脱管”) （Detached）：</strong><br></li>
+<li>OID 不为 null</li>
+<li>不再处于 Session 缓存中<br></li>
+<li>一般情况需下, 游离对象是由持久化对象转变过来的, 因此在数据库中可能还存在与它对应的记录<br><br><img src="https://i.imgur.com/iA4KR6U.png" alt=""></li>
+</ul>
+<h3 id="session的核心方法"><a href="#session的核心方法" class="headerlink" title="session的核心方法"></a>session的核心方法</h3><h4 id="save-方法"><a href="#save-方法" class="headerlink" title="save() 方法"></a>save() 方法</h4><p><strong>1.</strong>Session 的 save() 方法使一个临时对象转变为持久化对象<br><br><strong>2.</strong>Session 的 save() 方法完成以下操作:<br></p>
+<ul>
+<li>把 News 对象加入到 Session 缓存中, 使它进入持久化状态<br></li>
+<li>选用映射文件指定的标识符生成器, 为持久化对象分配唯一的 OID. 在 使用代理主键的情况下, setId() 方法为 News 对象设置 OID 使无效的.<br></li>
+<li>计划执行一条 insert 语句：在 flush 缓存的时候<br></li>
+</ul>
+<p><strong>3.</strong>Hibernate 通过持久化对象的 OID 来维持它和数据库相关记录的对应关系. 当 News 对象处于持久化状态时, 不允许程序随意修改它的 ID<br><br><strong>4.</strong>persist() 和 save() 区别：<br><br>当对一个 OID 不为 Null 的对象执行 save() 方法时, 会把该对象以一个新的 oid 保存到数据库中;  但执行 persist() 方法时会抛出一个异常<br></p>
+<h4 id="get-和-load-方法"><a href="#get-和-load-方法" class="headerlink" title="get() 和 load() 方法"></a>get() 和 load() 方法</h4><p>都可以根据跟定的 OID 从数据库中加载一个持久化对象<br><br>区别:<br><br>当数据库中不存在与 OID 对应的记录时, load() 方法抛出 ObjectNotFoundException 异常, 而 get() 方法返回 null<br><br>两者采用不同的延迟检索策略：load 方法支持延迟加载策略。而 get 不支持。<br><br> 1.执行get方法会立即加载对象<br><br> 执行load方法，若不使用该对象，则不会立即进行查询操作，而是返回一个代理对象<br><br> <strong>get是立即检索，load是延时检索</strong><br><br> 2.load方法可能会抛出LazyInitializationException异常：在需要初始化代理对象之前就已经关闭了session<br></p>
+<p>3.若数据表中没有相应的记录,且session也没有被关闭，同时需要使用该对象时get返回null<br><br> load在使用对象时抛出异常，若不使用，没问题<br></p>
+<h4 id="update-方法"><a href="#update-方法" class="headerlink" title="update() 方法"></a>update() 方法</h4><ul>
+<li>Session 的 update() 方法使一个游离对象转变为持久化对象, 并且计划执行一条 update 语句.<br>若希望 Session 仅当修改了 News 对象的属性时, 才执行 update() 语句, 可以把映射文件中 <class> 元素的 select-before-update 设为 true. 该属性的默认值为 false</class></li>
+<li>当 update() 方法关联一个游离对象时, 如果在 Session 的缓存中已经存在相同 OID 的持久化对象, 会抛出异常</li>
+<li>当 update() 方法关联一个游离对象时, 如果在数据库中不存在相应的记录, 也会抛出异常. <h4 id="saveOrUpdate-方法"><a href="#saveOrUpdate-方法" class="headerlink" title="saveOrUpdate() 方法"></a>saveOrUpdate() 方法</h4>Session 的 saveOrUpdate() 方法同时包含了 save() 与 update() 方法的功能<br>判定对象为临时对象的标准<br><img src="https://i.imgur.com/6kpGR9e.png" alt=""></li>
+<li>Java 对象的 OID 为 null</li>
+<li><p>映射文件中为 <id> 设置了 unsaved-value  属性, 并且 Java 对象的 OID 取值与这个 unsaved-value 属性值匹配</id></p>
+<h4 id="merge-方法"><a href="#merge-方法" class="headerlink" title="merge() 方法"></a>merge() 方法</h4><p><img src="https://i.imgur.com/A6E9FUJ.png" alt=""></p>
+<h4 id="delete-方法"><a href="#delete-方法" class="headerlink" title="delete() 方法"></a>delete() 方法</h4><p><strong>1.</strong>Session 的 delete() 方法既可以删除一个游离对象, 也可以删除一个持久化对象<br><strong>2.</strong>Session 的 delete() 方法处理过程</p>
+</li>
+<li><p>计划执行一条 delete 语句</p>
+</li>
+<li>把对象从 Session 缓存中删除, 该对象进入删除状态.<br></li>
+</ul>
+<p><strong>3.</strong>Hibernate 的 cfg.xml 配置文件中有一个 hibernate.use_identifier_rollback 属性, 其默认值为 false, 若把它设为 true, 将改变 delete() 方法的运行行为: delete() 方法会把持久化对象或游离对象的 OID 设置为 null, 使它们变为临时对象</p>
+<h4 id="通过-Hibernate-调用存储过程"><a href="#通过-Hibernate-调用存储过程" class="headerlink" title="通过 Hibernate 调用存储过程"></a>通过 Hibernate 调用存储过程</h4><p>Work 接口: 直接通过 JDBC API 来访问数据库的操作<br></p>
+<pre><code>public interface Work {
+    /**
+     * Execute the discrete work encapsulated by this work instance using the supplied connection.
+     *
+     * @param connection The connection on which to perform the work.
+     * @throws SQLException Thrown during execution of the underlying JDBC interaction.
+     * @throws HibernateException Generally indicates a wrapped SQLException.
+     */
+    public void execute(Connection connection) throws SQLException;
+}
+</code></pre><p>Session 的 doWork(Work) 方法用于执行 Work 对象指定的操作, 即调用 Work 对象的 execute() 方法. Session 会把当前使用的数据库连接传递给 execute() 方法.</p>
+<pre><code>@Test
+    public void testdoWork(){
+        session.doWork(new Work(){
+
+            @Override
+            public void execute(Connection connection) throws SQLException {
+                System.out.println(connection);//调用存储过程
+            }
+
+        });
+    }
+</code></pre><p>返回连接实例</p>
+<pre><code>七月 16, 2018 5:17:38 下午 org.hibernate.tool.hbm2ddl.SchemaUpdate execute
+INFO: HHH000232: Schema update complete
+com.mysql.jdbc.JDBC4Connection@6c130c45
+</code></pre><h4 id="Hibernate-与触发器协同工作"><a href="#Hibernate-与触发器协同工作" class="headerlink" title="Hibernate 与触发器协同工作"></a>Hibernate 与触发器协同工作</h4><p>1.Hibernate 与数据库中的触发器协同工作时, 会造成两类问题</p>
+<ul>
+<li>触发器使 Session 的缓存中的持久化对象与数据库中对应的数据不一致:触发器运行在数据库中, 它执行的操作对 Session 是透明的</li>
+<li><p>Session 的 update() 方法盲目地激发触发器: 无论游离对象的属性是否发生变化, 都会执行 update 语句, 而 update 语句会激发数据库中相应的触发器<br>2.解决方案: </p>
+</li>
+<li><p>在执行完 Session 的相关操作后, 立即调用 Session 的 flush() 和 refresh() 方法, 迫使 Session 的缓存与数据库同步(refresh() 方法重新从数据库中加载对象)<br><img src="https://i.imgur.com/G3xJbG1.png" alt=""></p>
+</li>
+<li><p>在映射文件的的 <class> 元素中设置 select-before-update 属性: 当 Session 的 update 或 saveOrUpdate() 方法更新一个游离对象时, 会先执行 Select 语句, 获得当前游离对象在数据库中的最新数据, 只有在不一致的情况下才会执行 update 语句</class></p>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>session的方法调用都是现成的方法，不用自己写SQL语句，相对于mybatis，开发速度快了不少，并且API简单明了，方便使用。</p>
+
+      
+
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励，是使我前进的力量<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://i.imgur.com/0n8b4DD.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/03/14/Hibernate入门系列（二）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/03/17/Hibernate入门系列（三）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Hibernate入门系列（三）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/13/Hibernate入门系列（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hibernate入门系列（一）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'codegitz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2018/03/14/Hibernate入门系列（二）/",
+  owner: 'codegitz',
+  repo: 'codegitz.github.io',
+  oauth: {
+    client_id: '3111abe777f17a978418',
+    client_secret: 'a793e7d23aa376586e7493cf997ae4b7f3cf5cd7',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
+
+
           </div>
         </div>
       </div>

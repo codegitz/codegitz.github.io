@@ -168,7 +168,339 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-研磨设计模式系列-建造者模式" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      研磨设计模式系列--建造者模式
+    </h1>
+  
+
+        
+        <a href="/2020/05/17/研磨设计模式系列-建造者模式/" class="archive-article-date">
+  	<time datetime="2020-05-17T14:12:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="1-什么是建造者模式"><a href="#1-什么是建造者模式" class="headerlink" title="1.什么是建造者模式"></a>1.什么是建造者模式</h2><p>建造者模式继承关系图如下</p>
+<p><img src="https://live.staticflickr.com/65535/49905098306_6387425541_o.png" alt=""></p>
+<p>　　建造者模式：是将一个复杂的对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</p>
+<a id="more"></a>
+<p>　　工厂类模式提供的是创建单个类的模式，而建造者模式则是将各种产品集中起来进行管理，用来创建复合对象，所谓复合对象就是指某个类具有不同的属性，其实建造者模式就是前面抽象工厂模式和最后的Test结合起来得到的。</p>
+<p>建造者模式通常包括下面几个角色：</p>
+<p>　　1、Builder：给出一个抽象接口，以规范产品对象的各个组成成分的建造。这个接口规定要实现复杂对象的哪些部分的创建，并不涉及具体的对象部件的创建。</p>
+<p>　　2、ConcreteBuilder：实现Builder接口，针对不同的商业逻辑，具体化复杂对象的各部分的创建。 在建造过程完成后，提供产品的实例。</p>
+<p>　　3、Director：调用具体建造者来创建复杂对象的各个部分，在指导者中不涉及具体产品的信息，只负责保证对象各部分完整创建或按某种顺序创建。</p>
+<p>　　4、Product：要创建的复杂对象。</p>
+<h2 id="2-建造者应用场景"><a href="#2-建造者应用场景" class="headerlink" title="2.建造者应用场景"></a>2.建造者应用场景</h2><p>1、去肯德基，汉堡、可乐、薯条、炸鸡翅等是不变的，而其组合是经常变化的，生成出所谓的”套餐”。</p>
+<p> 19元每周三 汉堡+可乐+薯条=套餐可能会发生改变。</p>
+<p>2、JAVA 中的 StringBuilder 数组（单个字符）字整合在一起 字符串</p>
+<p>使用场景： </p>
+<p>1、需要生成的对象具有复杂的内部结构。 </p>
+<p>2、需要生成的对象内部属性本身相互依赖。</p>
+<p>与工厂模式的区别是：建造者模式更加关注与零件装配的顺序。</p>
+<h2 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3.代码实现"></a>3.代码实现</h2><p>　　这里以游戏开发中人物的构造过程为例。在游戏中创建一个形象时，需要对每个部位进行创建。简化而言，需要创建头部，身体和四肢。</p>
+<pre><code class="java">package com.designpattern.builder;
+
+/**
+ * @description: 假设这是一个复杂的对象，由各个部分组成
+ * @author: Codegitz
+ * @create: 2020-05-18 15:28
+ **/
+public class Person {
+    private String head;
+    private String body;
+    private String foot;
+
+    @Override
+    public String toString() {
+        return &quot;Person{&quot; +
+                &quot;head=&#39;&quot; + head + &#39;\&#39;&#39; +
+                &quot;, body=&#39;&quot; + body + &#39;\&#39;&#39; +
+                &quot;, foot=&#39;&quot; + foot + &#39;\&#39;&#39; +
+                &#39;}&#39;;
+    }
+
+//省略get set方法
+}
+</code></pre>
+<p>　　<code>Builder</code>给出一个抽象接口，以规范产品对象的各个组成成分的建造。这个接口规定要实现复杂对象的哪些部分的创建，并不涉及具体的对象部件的创建。</p>
+<pre><code class="Java">package com.designpattern.builder;
+
+/**
+ * @description: 抽象的{@link Builder}类，需要{@link ManBuilder}具体实现
+ * @author: Codegitz
+ * @create: 2020-05-18 15:28
+ **/
+public interface Builder {
+    void buildHead();
+    void buildBody();
+    void buildFoot();
+    Person buildPerson();
+}
+</code></pre>
+<p>　　<code>ManBuilder</code>实现<code>Builder</code>接口，针对不同的商业逻辑，具体化复杂对象的各部分的创建。 在建造过程完成后，提供产品的实例。</p>
+<pre><code class="java">package com.designpattern.builder;
+
+/**
+ * @description: 抽象{@link Builder}类的具体实现
+ * @author: Codegitz
+ * @create: 2020-05-18 15:28
+ **/
+public class ManBuilder implements Builder {
+
+    private Person person;
+
+    public ManBuilder(){
+        //创建对象，用set方法赋值
+        this.person = new Person();
+    }
+    @Override
+    public void buildHead() {
+        person.setHead(&quot;headA&quot;);
+    }
+
+    @Override
+    public void buildBody() {
+        person.setBody(&quot;bodyA&quot;);
+    }
+
+    @Override
+    public void buildFoot() {
+        person.setFoot(&quot;footA&quot;);
+    }
+
+    @Override
+    public Person buildPerson() {
+        //返回对象
+        return person;
+    }
+}
+</code></pre>
+<p>　　<code>PersonDirector</code>调用具体建造者来创建复杂对象的各个部分，在指导者中不涉及具体产品的信息，只负责保证对象各部分完整创建或按某种顺序创建。</p>
+<pre><code class="java">package com.designpattern.builder;
+
+/**
+ * @description: {@link PersonDirector}调用{@link Builder}的实现类去创建具体对象
+ * @author: Codegitz
+ * @create: 2020-05-18 15:28
+ **/
+public class PersonDirector {
+    public Person creatPerson(Builder builder){
+        builder.buildHead();
+        builder.buildBody();
+        builder.buildFoot();
+        return builder.buildPerson();
+    }
+
+    public static void main(String[] args) {
+        PersonDirector personDirector = new PersonDirector();
+        //传入Builder实现类ManBuilder
+        Person person = personDirector.creatPerson(new ManBuilder());
+        System.out.println(person.toString());
+    }
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="json">Person{head=&#39;headA&#39;, body=&#39;bodyA&#39;, foot=&#39;footA&#39;}
+</code></pre>
+<p><a href="https://github.com/codegitz/designPattern" target="_blank" rel="external">附完整代码</a>，需要自取，顺便点个star。</p>
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h2><p>　　建造者模式主要用了创建复杂对象，其通常由各个部分的子对象用一定的算法构成；由于需求的变化，这个复杂对象的各个部分经常面临着剧烈的变化，但是将它们组合在一起的算法却相对稳定。</p>
+
+      
+
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励，是使我前进的力量<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://i.imgur.com/0n8b4DD.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/17/研磨设计模式系列-建造者模式/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/05/18/研磨设计模式系列-模板方法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          研磨设计模式系列--模板方法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/17/研磨设计模式系列-代理模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">研磨设计模式系列--代理模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'codegitz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2020/05/17/研磨设计模式系列-建造者模式/",
+  owner: 'codegitz',
+  repo: 'codegitz.github.io',
+  oauth: {
+    client_id: '3111abe777f17a978418',
+    client_secret: 'a793e7d23aa376586e7493cf997ae4b7f3cf5cd7',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
+
+
           </div>
         </div>
       </div>

@@ -166,7 +166,445 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-正则表达式" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      正则表达式
+    </h1>
+  
+
+        
+        <a href="/2017/09/28/正则表达式/" class="archive-article-date">
+  	<time datetime="2017-09-28T13:48:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>正则表达式的基本语法</p>
+<h1 id="字符"><a href="#字符" class="headerlink" title="字符"></a>字符</h1><a id="more"></a>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th style="text-align:left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.</td>
+<td style="text-align:left">任意英文字母</td>
+</tr>
+<tr>
+<td>\</td>
+<td style="text-align:left">反斜杠, 单独的反斜杠做为转义字符,与其他特殊字符一起使用。如果想匹配反斜杠本身,需要转义。两个反斜杠实际匹配一个反斜杠n字符的8进制表示.n 在0至7之间取值</td>
+</tr>
+<tr>
+<td>nn</td>
+<td style="text-align:left">字符的8进制表示.n 在0至7之间取值</td>
+</tr>
+<tr>
+<td>mnn</td>
+<td style="text-align:left">字符的8进制表示. m 在0至3之间取值, n 在0至7之间取值</td>
+</tr>
+<tr>
+<td>\xhh</td>
+<td style="text-align:left">字符的16进制表示.</td>
+</tr>
+<tr>
+<td>\uhh hh</td>
+<td style="text-align:left">字符的16进制表示 0xhhhh. 对应unicode 编码字符</td>
+</tr>
+<tr>
+<td>\t</td>
+<td style="text-align:left">缩进符.</td>
+</tr>
+<tr>
+<td>\n</td>
+<td style="text-align:left">换行符 (unicode: ‘\u000A’)</td>
+</tr>
+<tr>
+<td>\r</td>
+<td style="text-align:left">回车符 (unicode: ‘\u000D’)</td>
+</tr>
+<tr>
+<td>\f</td>
+<td style="text-align:left">制表符 (unicode: ‘\u000C’)</td>
+</tr>
+<tr>
+<td>\a</td>
+<td style="text-align:left">警报（铃声）字符 (unicode: ‘\u0007′)</td>
+</tr>
+<tr>
+<td>\e</td>
+<td style="text-align:left">转义符 (unicode: ‘\u001B’)</td>
+</tr>
+<tr>
+<td>\cx</td>
+<td style="text-align:left">控制符 x</td>
+</tr>
+</tbody>
+</table>
+<h1 id="字符分类"><a href="#字符分类" class="headerlink" title="字符分类"></a>字符分类</h1><table>
+<thead>
+<tr>
+<th>表达式</th>
+<th style="text-align:left">意义   </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[abc]</td>
+<td style="text-align:left">匹配 a, 或 b 或 c</td>
+</tr>
+<tr>
+<td>[^abc]</td>
+<td style="text-align:left">匹配不是a,b,c 的字符，是否定匹配</td>
+</tr>
+<tr>
+<td>[a-zA-Z]</td>
+<td style="text-align:left">匹配a 到 z ，A到Z 直接的字符，是范围匹配</td>
+</tr>
+<tr>
+<td>[a-d[m-p]]</td>
+<td style="text-align:left">匹配a到d之间字符或 m到p之间字符，是并集匹配</td>
+</tr>
+<tr>
+<td>[a-z&amp;&amp;[def]]</td>
+<td style="text-align:left">匹配 d, e, 或 f. 是交集匹配 (这里是在范围 a-z和字符def之间取交集).</td>
+</tr>
+<tr>
+<td>[a-z&amp;&amp;[^bc]]</td>
+<td style="text-align:left">匹配a-z 之间所有字符，排除bc的字符。是减法匹配</td>
+</tr>
+<tr>
+<td>[a-z&amp;&amp;[^m-p]]</td>
+<td style="text-align:left">匹配a-z 之间所有字符,排除m-p之间的字符是减法匹配</td>
+</tr>
+</tbody>
+</table>
+<h1 id="内置字符分类"><a href="#内置字符分类" class="headerlink" title="内置字符分类"></a>内置字符分类</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">字符</th>
+<th style="text-align:left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">.</td>
+<td style="text-align:left">匹配任意一个字符,根据创建Pattern是传入的标志,可能匹配行结尾符</td>
+</tr>
+<tr>
+<td style="text-align:center">\d</td>
+<td style="text-align:left">匹配任意数字 [0-9]</td>
+</tr>
+<tr>
+<td style="text-align:center">\D</td>
+<td style="text-align:left">匹配任意非数字 [^0-9]</td>
+</tr>
+<tr>
+<td style="text-align:center">\s</td>
+<td style="text-align:left">匹配任意空白符 (空格, 缩进, 换行,回车)</td>
+</tr>
+<tr>
+<td style="text-align:center">\S</td>
+<td style="text-align:left">匹配任意非空白符</td>
+</tr>
+<tr>
+<td style="text-align:center">\w</td>
+<td style="text-align:left">匹配任意单词</td>
+</tr>
+<tr>
+<td style="text-align:center">\W</td>
+<td style="text-align:left">匹配任意非单词</td>
+</tr>
+</tbody>
+</table>
+<h1 id="边界匹配"><a href="#边界匹配" class="headerlink" title="边界匹配"></a>边界匹配</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">符号</th>
+<th style="text-align:left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">^</td>
+<td style="text-align:left">匹配行首</td>
+</tr>
+<tr>
+<td style="text-align:center">$</td>
+<td style="text-align:left">匹配行尾</td>
+</tr>
+<tr>
+<td style="text-align:center">\b</td>
+<td style="text-align:left">匹配单词边界</td>
+</tr>
+<tr>
+<td style="text-align:center">\B</td>
+<td style="text-align:left">匹配非单词边界</td>
+</tr>
+<tr>
+<td style="text-align:center">\A</td>
+<td style="text-align:left">匹配文本开头</td>
+</tr>
+<tr>
+<td style="text-align:center">\G</td>
+<td style="text-align:left">匹配前一匹配项结尾</td>
+</tr>
+<tr>
+<td style="text-align:center">\Z</td>
+<td style="text-align:left">Matches the end of the input text except the final terminator if any</td>
+</tr>
+<tr>
+<td style="text-align:center">\z</td>
+<td style="text-align:left">匹配文本结尾</td>
+</tr>
+</tbody>
+</table>
+<h1 id="量词"><a href="#量词" class="headerlink" title="量词"></a>量词</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">贪婪模式</th>
+<th style="text-align:center">饥饿模式</th>
+<th style="text-align:center">独占模式</th>
+<th>意义     </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">X?</td>
+<td style="text-align:center">X??</td>
+<td style="text-align:center">X?+</td>
+<td>匹配0或1次</td>
+</tr>
+<tr>
+<td style="text-align:center">X*</td>
+<td style="text-align:center">X*?</td>
+<td style="text-align:center">X*+</td>
+<td>匹配0或多次</td>
+</tr>
+<tr>
+<td style="text-align:center">X+</td>
+<td style="text-align:center">X+?</td>
+<td style="text-align:center">X++</td>
+<td>匹配1或多次</td>
+</tr>
+<tr>
+<td style="text-align:center">X{n}</td>
+<td style="text-align:center">X{n}?</td>
+<td style="text-align:center">X{n}+</td>
+<td>匹配n次</td>
+</tr>
+<tr>
+<td style="text-align:center">X{n,}</td>
+<td style="text-align:center">X{n,}?</td>
+<td style="text-align:center">X{n,}+</td>
+<td>匹配最少n次</td>
+</tr>
+<tr>
+<td style="text-align:center">X{n, m}</td>
+<td style="text-align:center">X{n, m}?</td>
+<td style="text-align:center">X{n, m}+</td>
+<td>匹配最少n次，最多m次</td>
+</tr>
+</tbody>
+</table>
+
+      
+
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励，是使我前进的力量<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://i.imgur.com/0n8b4DD.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/09/28/正则表达式/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/10/03/String类和Object类/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          String类和Object类
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/23/java代码如何打包成jar文件并且装换成可执行的exe文件/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java代码如何打包成jar文件并且装换成可执行的exe文件</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'codegitz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2017/09/28/正则表达式/",
+  owner: 'codegitz',
+  repo: 'codegitz.github.io',
+  oauth: {
+    client_id: '3111abe777f17a978418',
+    client_secret: 'a793e7d23aa376586e7493cf997ae4b7f3cf5cd7',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
+
+
           </div>
         </div>
       </div>

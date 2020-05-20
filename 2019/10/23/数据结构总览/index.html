@@ -165,7 +165,1026 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="w-数据结构总览" class="article article-type-w " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据结构总览
+    </h1>
+  
+
+        
+        <a href="/2019/10/23/数据结构总览/" class="archive-article-date">
+  	<time datetime="2019-10-23T13:31:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="一、二叉树"><a href="#一、二叉树" class="headerlink" title="一、二叉树"></a>一、二叉树</h2><h3 id="1、二叉树的存储结构"><a href="#1、二叉树的存储结构" class="headerlink" title="1、二叉树的存储结构"></a>1、二叉树的存储结构</h3><h4 id="1-1-二叉链表存储结构"><a href="#1-1-二叉链表存储结构" class="headerlink" title="1.1 二叉链表存储结构"></a>1.1 二叉链表存储结构</h4><a id="more"></a>
+<pre><code class="c++">typedef struct BTNode{
+    char data;    
+    struct BTNode *lchild;
+    struct BTNode *rchild;
+}
+</code></pre>
+<h3 id="2、-二叉树的遍历算法"><a href="#2、-二叉树的遍历算法" class="headerlink" title="2、 二叉树的遍历算法"></a>2、 二叉树的遍历算法</h3><h4 id="2-1-先序遍历"><a href="#2-1-先序遍历" class="headerlink" title="2.1 先序遍历"></a>2.1 先序遍历</h4><pre><code class="c++">void preorder(BTNode *P)
+{
+    if(p!==NULL)
+    {
+        visit(p);
+        preorder(p-&gt;lchild);   //遍历左子树
+        preorder(p-&gt;rchild);
+    }
+}
+</code></pre>
+<h4 id="2-2-中序遍历"><a href="#2-2-中序遍历" class="headerlink" title="2.2 中序遍历"></a>2.2 中序遍历</h4><pre><code class="c++">void inorder(BTNode *P)
+{
+    if(p!==NULL)
+    {
+        inorder(p-&gt;lchild);   //遍历左子树
+        visit(p);
+        inorder(p-&gt;rchild);
+    }
+}
+</code></pre>
+<!-- more -->
+<h4 id="2-3-应用"><a href="#2-3-应用" class="headerlink" title="2.3 应用"></a>2.3 应用</h4><p><strong>1、计算 A*B的表达式，该表达式存储在二叉树中</strong></p>
+<pre><code class="c++">int comp(BTNode *p)
+{
+    if(p!=NULL)
+    {
+        if(p-&gt;lchild!=NULL&amp;&amp;P-&gt;rchild!=NULL) //运算符
+        {
+            A = comp(p-&gt;lchild);
+            B = comp(p-&gt;rchild);
+            return op(A, B, p-&gt;data);
+        }
+        else
+        {
+            return p-&gt;data - &#39;0&#39;    //转化为int
+        }
+    }
+    else return 0;
+}
+</code></pre>
+<p><strong>2、求二叉树的深度，二叉链表为存储结构</strong></p>
+<pre><code class="c++">int getDepth(BTNode *p)
+{
+    int LD,RD;
+    if(p==NULL)
+    {
+        return 0;
+    }
+    else
+    {
+         LD = getDepth(p-&gt;lchild);
+        RD = getDepth(p-&gt;rchild);
+        return (LD &gt; RD ? LD: RD) + 1;  //左右子树深度最大值+1
+    }
+}
+</code></pre>
+<p><strong>3、在一颗以二叉链表为存储结构，查找data域等于key节点是否存在</strong></p>
+<pre><code class="c++">void search(BTNode *p, BTNode *&amp;q, int key)
+{
+    if(p!=NULL)
+    {
+        if(p-&gt;data == key) q=p;
+        else
+        {
+            search(p-&gt;lchild, q, key);  //左子树查找
+            if(q==NULL){    
+                search(p-&gt;rchild, q, key);        //若左子树查找不到，右子树查找
+            }
+        }
+    }
+}
+</code></pre>
+<p><strong>4、二叉树采取二叉链表存储结构，输出先序序列中第k个结点的值，k不大于总结点的个数</strong></p>
+<pre><code class="c++">int n=0;    //全局变量
+void trave(BTNode *p, int k){
+    if(p!=NULL)
+    {
+        ++n;        //第一次来到一个结点时，进行计数，表示第n个结点
+        if(k==n){
+            print(&amp;d, p-&gt;data);
+            return;
+        }
+        trave(p-&gt;lchild, k);
+        trave(p-&gt;rchild, k);
+    }
+}
+</code></pre>
+<h4 id="2-4-层次遍历"><a href="#2-4-层次遍历" class="headerlink" title="2.4 层次遍历"></a>2.4 层次遍历</h4><p>使用循环队列，自左向右的层次遍历</p>
+<pre><code class="c++">void level(BTNode *p)
+{
+    if(p!=NULL){    //非空才需要往下运行
+        BTNode *que[maxsize];     //定义一个循环队列，用来记录将要访问的结点
+        BTNode *q;
+        int front=0, rear=0;
+        //关键代码
+        rear = (rear+1) % maxsize;    //根节点入队
+        que[rear] = p;
+        while(front!=rear){
+            front = (front+1) % maxsize;    //队头结点出队
+            q = que[front];
+            visit(q);
+            if(q-&gt;lchild!=NULL){    //结点的左子树不空，入队
+                rear = (rear+1)%maxsize;
+                que[rear] = p-&gt;lchild;
+            }
+            if(q-&gt;rchild!=NULL){    //结点的右子树不空，入队
+                rear = (rear+1) % maxsize;
+                que[rear] = p-&gt;rchild;
+            }
+        }
+    }
+}
+</code></pre>
+<h3 id="3、二叉树非递归遍历算法"><a href="#3、二叉树非递归遍历算法" class="headerlink" title="3、二叉树非递归遍历算法"></a>3、二叉树非递归遍历算法</h3><h4 id="3-1-先序遍历"><a href="#3-1-先序遍历" class="headerlink" title="3.1 先序遍历"></a>3.1 先序遍历</h4><pre><code class="c++">void preorderNonrecursion(BTNode *bt)
+{
+    if(bt!=NULL){
+        BTNode *stack[maxsize];    //定义一个栈    
+        int top = -1;
+        BTNode *p;
+        stack[++top] = bt;        //根结点入栈
+        while(top!=-1)
+        {
+            p = stack[top--];    //出栈并输出栈顶点
+            visit(p);
+            if(p-&gt;rchild!=NULL){    //右孩子存在
+                stack[++top] = p-&gt;rchild; 
+            }
+            if(p-&gt;lchild!=NULL){    //左孩子存在
+                stack[++top] = p-&gt;lchild;
+            }
+        }
+    }
+}
+</code></pre>
+<h4 id="3-2-中序遍历"><a href="#3-2-中序遍历" class="headerlink" title="3.2 中序遍历"></a>3.2 中序遍历</h4><pre><code class="c++">void inorderNonrecursion(BTNode *bt)
+{
+    if(bt!=NULL){
+        BTNode *stack[maxsize];
+        int top = -1;
+        BTNode *p;
+        p = bt;
+        while(top!=-1 || p!=NULL)    //遍历过程中有可能出现栈空，但是没有遍历完的情况
+        {
+            while(p!=NULL)
+            {
+                stack[++top] = p;
+                p = p-&gt;lchild;
+            }
+            if(top!=-1)        // 栈不空的情况下，出栈并且访问        
+            {
+                p = stack[top--];    
+                visit(p);
+                p = p-&gt;rchild;
+            }
+        }
+    }
+}
+</code></pre>
+<h4 id="3-3-后序遍历"><a href="#3-3-后序遍历" class="headerlink" title="3.3 后序遍历"></a>3.3 后序遍历</h4><pre><code class="c++">void postorderNonrecursion(BTNode *bt)
+{
+    if(bt!=NULL)
+    {
+        BTNode *stack1[maxisize];
+        BTNode *stack2[maxisize];
+        BTNode *p;
+        int top1 = -1,top2 = -1;
+        stack1[++top1] = bt;
+        while(top1!=-1){    //逆后序 根右左 ，后序是左右根
+            p = stack[top1--];  //栈顶出栈并访问
+            stack2[++top2] = p;  //入栈
+            if(p-&gt;lchild!=NULL){
+                stack[++top1] = p-&gt;lchild;        
+            }
+            if(p-&gt;rchild!=NULL){
+                stack[++top1] = p-&gt;rchild;
+            }
+        }
+        while(top!=-1)
+        {
+            p = stack2[top--];    //出栈即为后序访问
+            visit(p);   
+        }
+    }
+}
+</code></pre>
+<h3 id="4、树与二叉树的应用"><a href="#4、树与二叉树的应用" class="headerlink" title="4、树与二叉树的应用"></a>4、树与二叉树的应用</h3><h4 id="4-1-构造哈夫曼树和求各个字符的哈夫曼编码"><a href="#4-1-构造哈夫曼树和求各个字符的哈夫曼编码" class="headerlink" title="4.1 构造哈夫曼树和求各个字符的哈夫曼编码"></a>4.1 构造哈夫曼树和求各个字符的哈夫曼编码</h4><pre><code class="c++">typedef struct{
+    int weight;        //结点的权值
+    int parent, lchild, rchild;
+}HTNode, *HuffmanTree;     //动态分配数组存储赫夫曼树
+typedef char* *HuffmanCode  //动态分配数组存储赫夫曼编码表
+
+//构造算法
+void HuffmanCoding(HuffmanTree &amp;HT, HuffmanCode &amp;HC, int *w, int n)
+{
+    //w中存储n个字符的权值，构造哈夫曼树HT,并求出n个字符的赫夫曼树HC;
+    if(n &lt;= 1) return ;
+    int m = 2*n - 1;
+    int i;
+    HTNode *p;
+    HT = (HuffmanTree)malloc((m+1)*sizeof(HTNode)); //从1开始
+    for(p=HT,i=1; i&lt;=n; ++w,++i,++p)  *p ={*w, 0, 0, 0}; //初始化叶子结点
+    for(;i&lt;=m; ++i,++p) *p = {0, 0, 0, 0};
+    for(i=n+1; i&lt;=m; ++i)  //建哈夫曼树
+    {
+         //在HT[1...i-1]选择parent为0且weight最小的两个结点，其序号分别为S1和S2
+        select(HT, i-1, s1, s2);
+        HT[s1].parent = i;
+        HT[s2].parent = i;
+        HT[i].lchild = s1;
+        HT[i].rchild = s2;
+        HT[i].weight = HT[s1].weight + HT[s2].weight
+    }
+    // ---从叶子到根逆向求每个字符的赫夫曼编码
+    HC = (HuffmanCode)malloc((n+1)*sizeof(char *));//分配n个字符编码的头指针向量
+    cd = (char*)malloc(n*sizeof(char));             //分配求编码的工作空间
+    cd[n-1] = &#39;\0&#39;;                                    //编码的结束符
+    for(i=1; i&lt;=n ; ++i)                            //逐个求编码
+    {
+        start = n-1;                                //编码的结束位置
+        for(c=i,f = HT[i].parent; f!=0; c=f,f=HT[i].parent)
+        {
+            if(HT[f].lchild == c)
+            {
+                cd[--start] = &#39;0&#39;;
+            }else
+            {
+                cd[--start] = &#39;1&#39;;    
+            }
+            HC[i] = (char*)malloc((n-start)*sizeof(char))) //为第i个字符分配空间
+            strcpy(HC[i],&amp;cd[start]);  //从cd复制到编码hc
+        }
+    }
+    free(cd);        
+}
+</code></pre>
+<h2 id="二、图"><a href="#二、图" class="headerlink" title="二、图"></a>二、图</h2><h3 id="1、图的存储结构"><a href="#1、图的存储结构" class="headerlink" title="1、图的存储结构"></a>1、图的存储结构</h3><h4 id="1-1-邻接矩阵"><a href="#1-1-邻接矩阵" class="headerlink" title="1.1 邻接矩阵"></a>1.1 邻接矩阵</h4><p>图的顺序存储结构</p>
+<pre><code class="c++">typedef struct 
+{
+    int no;        //顶点编号
+    char info;    //顶点的其他信息，可以不写
+}VertexType;    //顶点类型
+
+typedef struct     //图的定义
+{
+    int edges[maxsize][maxsize];    //邻居矩阵的定义
+    int n,e;                      //顶点数和边数
+    VextexType vex[maxsize];        //存放的结点信息
+}MGragh;                          //图的邻接矩阵类型
+</code></pre>
+<h4 id="1-2-领接表"><a href="#1-2-领接表" class="headerlink" title="1.2 领接表"></a>1.2 领接表</h4><pre><code class="c++">//结点
+typedef struct ArcNode      
+{
+    int adjvex;            //指向结点的位置
+    ArcNode *nextarc;     //指向下一条边的信息
+    int info;            //可以不写
+}ArcNode;
+//顶点信息 
+typedef struct            
+{
+    char data;                //顶点信息
+    ArcNode *firstarc;         //指向第一条边的信息
+}VNode;
+
+typedef struct
+{
+    VNode adjlist[maxsize];  //邻接表
+    int n,e                    //顶点数和边数
+}AGragh;
+</code></pre>
+<h3 id="2、图的遍历算法"><a href="#2、图的遍历算法" class="headerlink" title="2、图的遍历算法"></a>2、图的遍历算法</h3><h4 id="2-1-深度优先搜索遍历"><a href="#2-1-深度优先搜索遍历" class="headerlink" title="2.1 深度优先搜索遍历"></a>2.1 深度优先搜索遍历</h4><p>以邻接表为存储结构的图的深度优先搜索算法</p>
+<pre><code class="c++">int visit[maxsize]; //访问标记
+void DFS(AGragh *G, int v)    //v是起点编号
+{
+    ArcNode *p;
+    visit[v] = 1;     //设置已访问
+    Visit(v);        //访问结点操作
+    p = G-&gt;adjlist[v].firstarc;   //指向顶点v的第一条边
+    while(p!=NULL){
+        if(visit[p-&gt;adjvex]==0)        //若顶点没访问，递归访问它
+        {
+            DFS(G, p-&gt;adjvex);
+        }
+        p = p-&gt;nextarc;          //p指向顶点v的下一条边
+    }
+}
+</code></pre>
+<h4 id="2-2-广度优先搜索遍历"><a href="#2-2-广度优先搜索遍历" class="headerlink" title="2.2 广度优先搜索遍历"></a>2.2 广度优先搜索遍历</h4><p>类似树的层次遍历，需要一个队列</p>
+<p>以邻接表为存储结构的图的广度优先搜索算法</p>
+<pre><code class="c++">void BFS(AGragh *G, int v, int visit[maxsize])
+{
+    ArcNode *p;
+    int que[maxsize], front=0, rear=0;
+    int j;
+    Visit(v);        //访问顶点v的函数
+    visit[v];        //标记已经访问过的结点
+    rear = (rear+1) % maxsize;
+    que[rear] = v;        //顶点v入队列
+    while(front!=rear)    //栈空说明已经遍历完
+    {
+        front = (front+1) % maxsize;    //顶点出队
+        j = que[front];
+        p = G-&gt;adjlist[j].firstarc;        //p指向出队顶点j的第一条边
+        while(p!=NULL){
+            if(visit[p-&gt;adjvex]==0){    //若顶点没访问则访问
+                Visit(p-&gt;adjvex);    
+                visit[p-&gt;adjvex] = 1;
+                rear = (rear+1) % maxsize;    //顶点入队
+                que[rear] = p-&gt;adjvex;
+            }
+            p = p-&gt;nextarc;             //p指向j的下一条边
+        }
+    }
+}
+</code></pre>
+<h4 id="2-3-例题"><a href="#2-3-例题" class="headerlink" title="2.3 例题"></a>2.3 例题</h4><p><strong>1. 设计一个算法，求不带权无向连通图距离顶点最远的点</strong></p>
+<pre><code class="c++">int BFS(AGragh *G, int v)
+{
+    ArcNode *p;
+    int que[maxsize],front=0,rear=0;
+    int visit[maxsize];
+    int i,j;
+    for(i=0; i &lt; G.n; ++i){      //初始化
+        visit[i] = 0;
+    }
+    rear = (rear+1) % maxsize;
+    que[rear] = v;
+    visit[v] = 1;
+    while(front!=rear){
+        front = (front+1) % maxsize;
+        j = que[front];
+        p = G-&gt;agjlist[j].firstarc;
+        while(p!=NULL)
+        {
+            if(visit[p-&gt;adjvex]==0)
+            {
+                visit[p-&gt;adjvex] = 1;
+                rear = (rear+1) % maxsize;
+                que[rear] = p-&gt;adjvex;
+            }
+            p = p-&gt;nextarc;
+        }
+    }
+    return j;  //队为空时，j保存了遍历过程中的最后一个结点
+}
+</code></pre>
+<p><strong>2. 判断一个无向图G是否是一棵树，若是树，返回1，否则返回0</strong></p>
+<p>分析：无向图的一棵树的条件是有n-1条边的连通图，n为图中顶点的个数</p>
+<pre><code class="c++">void DFS1(AGragh *G, int v, int &amp;vn, int &amp;en){
+    ArcNode *p;
+    visit[v] = 1;
+    ++vn;        //顶点数增1
+    p = G-&gt;adjlist[v].firstarc;
+    while(p!=NULL){
+        ++en;     //边数自增1
+        if(visit[p-&gt;adjvex] == 0){
+            DFS(G, p-&gt;adjvex, vn, en)
+        }
+        p = p-&gt;nextarc;
+    }
+}
+int GisTree(AGragh *G)
+{
+    int vn =0, en =0;
+    for(int i=0; i&lt;G.n; ++i){
+        visit[i] = 0;
+    }
+    DFS2(G, 1, vn, en);
+    if(G-&gt;n == vn &amp;&amp; (G-&gt;n - 1)== en/2) //顶点数等于遍历后的顶点数，边数等于顶点数减1
+        return 1;
+    else
+        return 0;
+}
+</code></pre>
+<p><strong>3. 判断顶点i 和顶点j (i!=j)之间存在路径</strong></p>
+<p>分析：从顶点i开始进行深度优先遍历，遍历过程中遇到j说明i与j之间存在路径，否则没有路径。</p>
+<pre><code class="c++">int DFStrave(AGragh *G, int i, int j)
+{
+    for(int k=0; k&lt; G.n; ++k) visit[k] = 0;
+    DFS(G,i);    //BFS(G, i)
+    if(visit[j]=1){        //说明遇到了j
+        return 1;
+    }else{
+        return 0;
+    }
+}
+</code></pre>
+<h3 id="3、最小生成树"><a href="#3、最小生成树" class="headerlink" title="3、最小生成树"></a>3、最小生成树</h3><h4 id="3-1-普里姆算法"><a href="#3-1-普里姆算法" class="headerlink" title="3.1 普里姆算法"></a>3.1 普里姆算法</h4><p>执行过程：</p>
+<ol>
+<li>将v0到其他顶点的所有边当做候选边；</li>
+<li>重复一下操作n-1次，使得其他n-1个顶点并入到生成树中：<ol>
+<li>从候选边中挑选出权值最小的边输出，并将与该边另一端相接的顶点v并入生成树中</li>
+<li>考察所有剩余顶点vi, 如果(v, vi)的权值比lowcost[vi]小，则用(v, vi)的权值更新lowcost[vi]；</li>
+</ol>
+</li>
+</ol>
+<pre><code class="c++">void Prim(MGragh g, int v0, int &amp;sum)
+{
+    //初始化
+    int lowcost[maxsize], vset[maxsize], v;
+    v = v0;
+    int i, j, k, min;
+    for(i = 0; i&lt; g.n; ++i)
+    {
+        lostcost[i] = g.edges[v][i];
+         vset[i] = 0;
+    }
+    vset[v] = 1;    //将v0并入树中
+    sum = 0;        //累计树的权值
+
+    for(i = 0; i&lt; g.n - 1; ++i)
+    {
+        min = INF        //inf比定义图中所有边的权值都大的常量
+        //在候选边中选出权值最小的边
+        for(j=0; j&lt;g.n; ++j)
+        {
+            if(vset[j]==0 &amp;&amp; lowcost[j] &lt; min)
+            {
+                min = lowcost[j];
+                k = j;
+            }
+        }
+        v = k;
+        vset[v] = 1;
+        sum += min;
+
+        //更新候选边的最小权值
+        for(j=0; j&lt;g.n; ++j)
+        {
+            if(vset[j]==0 &amp;&amp; lowcost[j]&gt; g.edges[v][j]){
+                lowcost[j] = g.edges[v][j];    //更新
+            }
+        }
+    }
+}
+</code></pre>
+<h4 id="3-2-克鲁斯卡尔算法"><a href="#3-2-克鲁斯卡尔算法" class="headerlink" title="3.2 克鲁斯卡尔算法"></a>3.2 克鲁斯卡尔算法</h4><p>执行过程：</p>
+<ol>
+<li>按照权值从小到大排序，然后从最小边开始扫描各边，并检测当前边是否为候选边，即是否该边的并入会构成回路，若不构成则并入。</li>
+<li>检查是否产生回路要用到并查集</li>
+</ol>
+<pre><code class="c++">typedef struct
+{
+    int a, b;        //a和b为一条边所连的两个顶点
+    int w;            //边的权值
+}Road;
+Road road[maxsize];
+int v[maxsize];        //并查集数组
+
+//判断是否在一个集合中的函数
+int getRoot(int a)        //查找根结点
+{
+    while(a!=v[a]){
+        a=v[a];
+    }
+    return a;
+}
+
+void Kruskal(MGragh g, int &amp;sum , Road road[])    //road存放着各边所连接的顶点信息
+{
+    int i;
+    int N,E,a,b;
+    N = g.n;
+    E = g.e;
+    for(i=0; i&lt;N; ++i) v[i]=i;
+    sort(road, E);  //根据E中边的权值从小到大排序
+    for(i=0; i&lt; E; i++)
+    {
+        a = getRoot(road[i].a);
+        b = getRoot(road[i].b);
+        if (a!=b){
+            v[a] = b;
+            sum += road[i].w;    //可以换成其他的
+        }
+    }  
+}
+</code></pre>
+<h3 id="4、最短路径"><a href="#4、最短路径" class="headerlink" title="4、最短路径"></a>4、最短路径</h3><h4 id="4-1-迪杰斯特拉算法"><a href="#4-1-迪杰斯特拉算法" class="headerlink" title="4.1 迪杰斯特拉算法"></a>4.1 迪杰斯特拉算法</h4><p><strong>某一顶点到其余顶点的最短路径</strong></p>
+<pre><code class="c++">void Dijkstra(MGragh g, int v, int dist[], int path[])
+{
+    int set[maxsize];
+    int min, i, j, u;
+    //初始化
+    for(i=0; i&lt; g.n; ++i)
+    {
+        set[i] = 0;
+        dist[i] = g.edges[v][i];
+        if(g.edges[v][i]&lt;INF){
+            path[i] = v;
+        }else{
+            path[i] = -1;
+        }
+    }
+    set[v] = 1;
+    path[v] = -1;
+    //初始化结束
+    for(i = 0; i&lt;g.n - 1; ++i){
+        min = INF;
+        //通往最短的顶点
+        for(j=0; j&lt;g.n, ++j){
+            if(set[j]==0 &amp;&amp; dist[j]&lt; min){
+                min = dist[j];
+                u = j;
+            }
+        }
+        set[u] = 1;    //将选出的顶点并入到最短路径中
+        //这个循环以刚并入的顶点作为中间点，对所有通往剩余结点的路径进行检测
+        for(j = 0; j &lt; g.n; ++j){
+            if(set[j] == 0 &amp;&amp; dist[j]&gt;dist[u] + g.edges[u][j]){
+                dist[j] = dist[u] + g.edges[u][j];
+                path[j] = u;
+            }
+        }
+    }
+}
+//函数结束时，dist[]存放着v点到其余各顶点的最短路径长度，path[]存放着v点到其余各顶点的最短路径
+</code></pre>
+<h4 id="4-2-弗洛伊德算法"><a href="#4-2-弗洛伊德算法" class="headerlink" title="4.2 弗洛伊德算法"></a>4.2 弗洛伊德算法</h4><p><strong>任意一对顶点间的最短路径</strong></p>
+<p>执行过程：</p>
+<ol>
+<li>设置两个矩阵A和path，初始时将邻接矩阵赋值给A, 将path设置成-1；</li>
+<li>以顶点k为中间顶点，k取 0 ~ n-1 ,对图中所有顶点{i,j}进行检测与修改：<ol>
+<li>若<code>A[i][j]&gt; A[i][k] + A[k][j]</code> ,则修改值，将path路径设为k; 否则什么都不做</li>
+</ol>
+</li>
+</ol>
+<pre><code class="c++">void Floyd(MGragh g, int Path[][maxsize])
+{
+    int i,j,k;
+    int A[maxsize][maxsize];
+    //初始化A[]和path[]
+    for(i = 0; i&lt; g.n; ++i){
+        for(j = 0; j&lt; g.n; ++j){
+            A[i][j] = g.edges[i][j];
+            Path[i][j] = -1;
+        }
+    }
+    //以k为中间点对{i, j} 进行遍历修改
+    for(k = 0; k&lt; g.n; ++k){
+        for(i = 0; i&lt; g.n; ++i){
+            for(j = 0; j&lt; g.n; ++j){
+                if(A[i][j]&gt; A[i][k] + A[k][j]){
+                    A[i][j]&gt; A[i][k] + A[k][j];
+                    Path = k;
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<h3 id="5、拓扑排序"><a href="#5、拓扑排序" class="headerlink" title="5、拓扑排序"></a>5、拓扑排序</h3><h4 id="5-1-AOV-网"><a href="#5-1-AOV-网" class="headerlink" title="5.1 AOV-网"></a>5.1 AOV-网</h4><p>执行过程：</p>
+<ol>
+<li>扫描所有顶点，并将入度为0的顶点入栈，循环执行以下操作<ol>
+<li>出栈，并将栈顶点输出，执行++n，并将由此顶点指向的顶点的入度减1；</li>
+<li>将入度 为 0的顶点入栈</li>
+</ol>
+</li>
+</ol>
+<pre><code class="c++">typedef struct     
+{
+    char data;
+    int count;    //统计结点的当前的入度
+    ArcNode *firstNode;
+}VNode;
+
+//设置一个栈，用来记录当前入度为0的结点，再设置一个计数器，用来记录已经输出的顶点个数
+
+int Topsort(AGragh *G){
+    int i, j, n =0;
+    int stack[maxsize], top=-1;        //定义并初始化栈
+    ArcNode *p;
+    //将入度为0的结点入栈
+    for(i=0; i&lt; g.n; ++i){    //图中顶点从0开始编号
+        if(G-&gt;adjlist[i].count == 0){
+            stack[++top] = i;
+        }
+    }
+    //关键操作
+    while(top != -1){
+        i = stack[top--];    //顶点出栈
+        ++n;               //计数器+1
+        p = G-&gt;adjlist[i].firstArc;
+        //并将由此顶点指向的顶点的入度减1
+        while(p!=NULL){
+            j = p-&gt;adjvex;
+            --(G-&gt;adjlist[j].count);
+            if(G-&gt;adjlist[j].count == 0){
+                stack[++top] = j;
+            }
+            p = p-&gt;nextarc;
+        }
+    }
+    //关键操作结束
+    if(n == G.n){
+        return 1;
+    }else{
+        return 0;
+    }
+}
+</code></pre>
+<h2 id="三、排序"><a href="#三、排序" class="headerlink" title="三、排序"></a>三、排序</h2><h3 id="1、插入类排序"><a href="#1、插入类排序" class="headerlink" title="1、插入类排序"></a>1、插入类排序</h3><h4 id="1-1-直接插入排序"><a href="#1-1-直接插入排序" class="headerlink" title="1.1 直接插入排序"></a>1.1 直接插入排序</h4><p>平均时间复杂度O(n^2)，最好是O(n)，空间复杂度为O(1)</p>
+<pre><code class="c++">void insertSort(int R[], int n)        //待排序列个数为n
+{
+    int i,j;
+    int temp;
+    for(i = 1; i&lt; n; ++i){
+        temp = R[i];
+        j = i - 1;
+        //从待排关键字之前开始扫描，如果大于待排关键字，则后移一位
+        while( j&gt;=0 &amp;&amp; temp &lt; R[j]){
+            R[j+1] =R[j];
+            --j;
+        }
+        R[j+1] = temp;    //找到插入的位置，将temp插入
+    }
+}
+</code></pre>
+<h4 id="1-2-折半插入排序"><a href="#1-2-折半插入排序" class="headerlink" title="1.2 折半插入排序"></a>1.2 折半插入排序</h4><ol>
+<li>时间复杂度<ol>
+<li>平均复杂度O(n^2)，最好是O(nlog2n)，最坏是O(n^2)</li>
+</ol>
+</li>
+<li>空间复杂度O(1)</li>
+</ol>
+<h4 id="1-3-希尔排序"><a href="#1-3-希尔排序" class="headerlink" title="1.3 希尔排序"></a>1.3 希尔排序</h4><p>缩小增量排序，本质是插入排序，将待排序列按某种规则分成好几个子序列。是不稳定的算法。</p>
+<p>增量选取注意的地方：</p>
+<ol>
+<li>增量序列最后一个值一定取1；</li>
+<li>增量序列中的值尽量没有除1之外的公因子；</li>
+</ol>
+<p>空间复杂度O(1)</p>
+<h3 id="2、交换类排序"><a href="#2、交换类排序" class="headerlink" title="2、交换类排序"></a>2、交换类排序</h3><h4 id="2-1-冒泡排序"><a href="#2-1-冒泡排序" class="headerlink" title="2.1 冒泡排序"></a>2.1 冒泡排序</h4><pre><code class="c++">void BubbleSort(int R[], int n){
+    int i, j, flag;
+    int temp;
+    for(i = n-1 ; i&gt; =1; --i){
+        flag = 0;        //flag用来标记本趟排序是否发生了交换
+        for(j = 1; j&lt; = i; ++j)
+        {
+            if(R[j-1]&gt;R[j]){
+                temp = R[j];
+                R[j] = R[j-1];
+                R[j-1] =  temp;
+                flag = 1;        //如果没发生交换，则flag的值为0;
+            }
+            if (flag == 0){
+                return ;
+            }
+        }
+    }
+}
+</code></pre>
+<p>时间复杂度最好是O(n), 最差是O(n^2), 平均时间复杂度是O(n^2);</p>
+<p>空间复杂度是O(1)</p>
+<h4 id="2-2-快速排序"><a href="#2-2-快速排序" class="headerlink" title="2.2 快速排序"></a>2.2 快速排序</h4><pre><code class="c++">void QuickSort(int R[], int low, int high){
+    int temp;
+    int i = low, j = high;
+    if(low&lt;high)
+    {
+        temp = R[low];
+        //完成一次排序，将数组中小于temp的放在左边，大于temp的放在右边
+        while(i &lt; j)
+        {
+            while(j &gt; i &amp;&amp; temp &lt; R[j]) --j;    //从右往左扫描
+            if(i &lt; j)
+            {
+                R[i] = R[j];    //放在temp的左边
+                ++i;            //i右移一位
+            }
+            while(j &gt; i &amp;&amp; temp &gt; R[i]) ++i;
+            if(i &lt; j)
+            {
+                 R[j] = R[i];
+                --j;
+            }
+        }
+        R[i] = temp;  //将temp放在最终位置
+        QuickSort(R, low, i-1);
+        QuickSort(R, i+1, high);
+    }
+}
+</code></pre>
+<p>时间复杂度最好是O(nlog2n),  最差是O(n^2), 平均时间复杂度是O(nlog2n);</p>
+<p>空间复杂度是O(log2n)</p>
+<h3 id="3、选择类排序"><a href="#3、选择类排序" class="headerlink" title="3、选择类排序"></a>3、选择类排序</h3><h4 id="3-1-简单选择排序"><a href="#3-1-简单选择排序" class="headerlink" title="3.1 简单选择排序"></a>3.1 简单选择排序</h4><pre><code class="C++">void SelectSort(int R[], int n)
+{
+    int i,j, k;
+    int temp;
+    for(i = 0; i&lt; n; ++i)
+    {
+        //选出关键字最小的
+        k = i;
+        for(j = i+1; j&lt; n; ++j){
+            if(R[k] &gt; R[j]){
+                k = j;
+            }
+        }
+        //最小的关键字与无序中第一个关键字交换序列
+        temp = R[k];
+        R[k] = R[i];
+        R[i] = temp;
+    }
+}
+</code></pre>
+<p>平均时间复杂度是O(n^2);</p>
+<p>空间复杂度是O(1)</p>
+<h4 id="3-2-堆排序"><a href="#3-2-堆排序" class="headerlink" title="3.2 堆排序"></a>3.2 堆排序</h4><pre><code class="c++">//调整函数
+void Sift(int R[], int low, int high) //关键词的存储从1开始
+{
+    int i= low, j = 2*i;    //R[j]是R[i]的左孩子
+    int temp = R[i];
+    while(j&lt;=high)
+    {
+        if(j&lt;high &amp;&amp; R[j+1] &gt; R[j]){    //先选出左右子树的最大值
+            ++j;
+        }
+        if(temp &lt; R[j]){
+            R[i] = R[j];
+            i = j;                //调整i的值，继续往下调整
+            j = 2*i;
+        }else{
+            break;
+        }
+    }
+    R[i] = temp;
+}
+//堆排序函数
+void heapSort(int R[], int n)
+{
+    int i;
+    int temp; 
+    for(i = n/2; i&gt;=1; --i)    //从最后一个非零叶子结点开始调整
+        Sift(R, i, n);
+    for(i = n; i &gt;=2; --i){
+        //根节点的关键字，放到最终的位置
+        temp = R[1];
+        R[1] = R[i];
+        R[i] = temp;
+        Sift(R, 1, i-1);     //减少了1个关键字的无序序列进行调整
+    }
+}
+</code></pre>
+<h4 id="3-3-归并排序"><a href="#3-3-归并排序" class="headerlink" title="3.3 归并排序"></a>3.3 归并排序</h4><p>例题：A与B是两个单链表，其中元素递增有序，设计一个算法，将A和B归并成一个按元素值非递减有序的链表C，C由A和B中的结点组成。</p>
+<pre><code class="c++">void merge(LNode *A, LNode *B, LNode *&amp;c)
+{
+    LNode *p = A-&gt;next; //p来跟踪A的最小值的结点
+    LNode *q = B-&gt;next; //q来跟踪B的最小值的结点
+    LNode *r;             //指向C的终端结点
+    C = A;                //C的头结点指向A的头结点
+    C-&gt;next = NULL;
+    free(B);             //B的头结点已经没用
+    r = C;
+    while(p!=null&amp;&amp;q!=null)
+    {
+        if(p-&gt;data &lt;= q-&gt;data)
+        {
+            r-&gt;next = p;
+            p = p-&gt;next;
+            r = r-&gt;next;
+        }else{
+            r-&gt;next = q;
+            q = q-&gt;next;
+            r = r-&gt;next;
+        }
+    }
+
+    //两个if将剩余的结点链接在C的尾部；
+    if(p!=NULL){
+        r-&gt; next = p;
+    }
+    if(q!=NULL){
+        r-&gt; next = q;
+    }
+}
+</code></pre>
+<p><strong>二路归并排序：</strong></p>
+<pre><code class="c++">void mergeSort(int A[], int low, int high)
+{
+    if(low&lt;high)
+    {
+        int mid = (low + high)/2;
+        mergeSort(A, low, mid);
+        mergeSort(B, mid+1, high);
+        merge(A, low, mid, high);     //将上面算法稍作修改
+    }    
+}
+</code></pre>
+<h2 id="四、查找"><a href="#四、查找" class="headerlink" title="四、查找"></a>四、查找</h2><h3 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h3><pre><code class="c++">int Bsearch(int R[], int low, int high, int k)
+{
+    int mid ;
+    while(low &lt;= high){
+        mid = (low+high)/2;
+        if(R[mid] == k){
+            return mid;
+        }else if(R[mid] &lt; k){
+            high = mid -1;
+        }else{
+             low = mid+1;   
+        }
+    }
+    return 0;
+}
+</code></pre>
+<h3 id="二叉排序树-查找"><a href="#二叉排序树-查找" class="headerlink" title="二叉排序树 查找"></a>二叉排序树 查找</h3><pre><code class="c++">BTNode* BSTSearch(BTNode* bt, int key)
+{
+    if(bt==NULL){
+        return NULL;
+    }else
+    {
+        if(bt-&gt;key == key)
+            return bt;
+        else if(key &lt; bt-&gt;key)
+            return BSTSearch(bt-&gt;lchild, key);
+        else return BSTSearch(bt-&gt;rchild, key);
+    }
+}
+</code></pre>
+
+      
+
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励，是使我前进的力量<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://i.imgur.com/0n8b4DD.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/23/数据结构总览/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/12/26/2019总结/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          2019总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/23/计算机组成原理总览/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">计算机组成原理总览</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'codegitz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2019/10/23/数据结构总览/",
+  owner: 'codegitz',
+  repo: 'codegitz.github.io',
+  oauth: {
+    client_id: '3111abe777f17a978418',
+    client_secret: 'a793e7d23aa376586e7493cf997ae4b7f3cf5cd7',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
+
+
           </div>
         </div>
       </div>

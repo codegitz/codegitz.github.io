@@ -168,7 +168,310 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-tomcat启动报错" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      tomcat启动报错
+    </h1>
+  
+
+        
+        <a href="/2018/01/13/tomcat启动报错/" class="archive-article-date">
+  	<time datetime="2018-01-13T06:58:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="启动错误"><a href="#启动错误" class="headerlink" title="启动错误"></a>启动错误</h1><p>tomcat启动报错：Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/tab]]<br>Tomcat日志如下：</p>
+<a id="more"></a>
+<pre><code>严重: ContainerBase.addChild: start: 
+org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/tab]]
+    at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:154)
+    at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:866)
+    at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:842)
+    at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:615)
+    at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1095)
+    at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1617)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.tomcat.util.bcel.classfile.ClassFormatException: Invalid byte tag in constant pool: 15
+    at org.apache.tomcat.util.bcel.classfile.Constant.readConstant(Constant.java:131)
+    at org.apache.tomcat.util.bcel.classfile.ConstantPool.&lt;init&gt;(ConstantPool.java:60)
+    at org.apache.tomcat.util.bcel.classfile.ClassParser.readConstantPool(ClassParser.java:209)
+    at org.apache.tomcat.util.bcel.classfile.ClassParser.parse(ClassParser.java:119)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsStream(ContextConfig.java:1949)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsJar(ContextConfig.java:1840)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsUrl(ContextConfig.java:1808)
+    at org.apache.catalina.startup.ContextConfig.processAnnotations(ContextConfig.java:1794)
+    at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1214)
+    at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:828)
+    at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:302)
+    at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+    at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+    at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5148)
+    at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+    ... 10 more
+
+一月 13, 2018 2:57:45 下午 org.apache.catalina.startup.HostConfig deployDirectory
+严重: Error deploying web application directory E:\devtool\tomcat-7.0.23\webapps\tab
+java.lang.IllegalStateException: ContainerBase.addChild: start: org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/tab]]
+    at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:869)
+    at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:842)
+    at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:615)
+    at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1095)
+    at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1617)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:748)
+
+一月 13, 2018 2:57:45 下午 org.apache.catalina.startup.HostConfig deployDirectory
+信息: Deploying web application directory E:\devtool\tomcat-7.0.23\webapps\theme
+一月 13, 2018 2:57:46 下午 org.apache.catalina.core.ContainerBase addChildInternal
+严重: ContainerBase.addChild: start: 
+org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/theme]]
+    at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:154)
+    at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:866)
+    at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:842)
+    at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:615)
+    at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1095)
+    at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1617)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.tomcat.util.bcel.classfile.ClassFormatException: Invalid byte tag in constant pool: 15
+    at org.apache.tomcat.util.bcel.classfile.Constant.readConstant(Constant.java:131)
+    at org.apache.tomcat.util.bcel.classfile.ConstantPool.&lt;init&gt;(ConstantPool.java:60)
+    at org.apache.tomcat.util.bcel.classfile.ClassParser.readConstantPool(ClassParser.java:209)
+    at org.apache.tomcat.util.bcel.classfile.ClassParser.parse(ClassParser.java:119)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsStream(ContextConfig.java:1949)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsJar(ContextConfig.java:1840)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsUrl(ContextConfig.java:1808)
+    at org.apache.catalina.startup.ContextConfig.processAnnotations(ContextConfig.java:1794)
+    at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1214)
+    at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:828)
+    at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:302)
+    at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+    at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+    at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5148)
+    at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+    ... 10 more
+
+一月 13, 2018 2:57:46 下午 org.apache.catalina.startup.HostConfig deployDirectory
+严重: Error deploying web application directory E:\devtool\tomcat-7.0.23\webapps\theme
+java.lang.IllegalStateException: ContainerBase.addChild: start: org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/theme]]
+    at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:869)
+    at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:842)
+    at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:615)
+    at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1095)
+    at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1617)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:748)
+</code></pre><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>修改catalina.properties配置文件<br>在tomcat.util.scan.DefaultJarScanner.jarsToSkip=\ 值后面加”*”<br><img src="https://i.imgur.com/w9avEGT.png" alt=""></p>
+
+      
+
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励，是使我前进的力量<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://i.imgur.com/0n8b4DD.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/01/13/tomcat启动报错/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/01/24/spring配置文件找不到标签错误/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          spring配置文件找不到标签错误
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/01/致过去的2017/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">致过去的2017</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'codegitz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2018/01/13/tomcat启动报错/",
+  owner: 'codegitz',
+  repo: 'codegitz.github.io',
+  oauth: {
+    client_id: '3111abe777f17a978418',
+    client_secret: 'a793e7d23aa376586e7493cf997ae4b7f3cf5cd7',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
+
+
           </div>
         </div>
       </div>

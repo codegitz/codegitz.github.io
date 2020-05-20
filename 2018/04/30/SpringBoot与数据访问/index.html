@@ -171,7 +171,717 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-SpringBoot与数据访问" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SpringBoot与数据访问
+    </h1>
+  
+
+        
+        <a href="/2018/04/30/SpringBoot与数据访问/" class="archive-article-date">
+  	<time datetime="2018-04-30T12:20:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="SpringBoot与数据访问"><a href="#SpringBoot与数据访问" class="headerlink" title="SpringBoot与数据访问"></a>SpringBoot与数据访问</h2><h3 id="1-JDBC"><a href="#1-JDBC" class="headerlink" title="1.JDBC"></a>1.JDBC</h3><a id="more"></a>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-jdbc&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+            &lt;scope&gt;runtime&lt;/scope&gt;
+        &lt;/dependency&gt;
+</code></pre><pre><code class="yaml">spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.15.22:3306/jdbc
+    driver-class-name: com.mysql.jdbc.Driver
+</code></pre>
+<p>效果：</p>
+<p>​    默认是用org.apache.tomcat.jdbc.pool.DataSource作为数据源；</p>
+<p>​    数据源的相关配置都在DataSourceProperties里面；</p>
+<p>自动配置原理：</p>
+<p>org.springframework.boot.autoconfigure.jdbc：</p>
+<p>1、参考DataSourceConfiguration，根据配置创建数据源，默认使用Tomcat连接池；可以使用spring.datasource.type指定自定义的数据源类型；</p>
+<p>2、SpringBoot默认可以支持；</p>
+<pre><code>org.apache.tomcat.jdbc.pool.DataSource、HikariDataSource、BasicDataSource、
+</code></pre><p>3、自定义数据源类型</p>
+<pre><code class="java">/**
+ * Generic DataSource configuration.
+ */
+@ConditionalOnMissingBean(DataSource.class)
+@ConditionalOnProperty(name = &quot;spring.datasource.type&quot;)
+static class Generic {
+
+   @Bean
+   public DataSource dataSource(DataSourceProperties properties) {
+       //使用DataSourceBuilder创建数据源，利用反射创建响应type的数据源，并且绑定相关属性
+      return properties.initializeDataSourceBuilder().build();
+   }
+
+}
+</code></pre>
+<p>4、<strong>DataSourceInitializer：ApplicationListener</strong>；</p>
+<p>​    作用：</p>
+<p>​        1）、runSchemaScripts();运行建表语句；</p>
+<p>​        2）、runDataScripts();运行插入数据的sql语句；</p>
+<p>默认只需要将文件命名为：</p>
+<pre><code class="properties">schema-*.sql、data-*.sql
+默认规则：schema.sql，schema-all.sql；
+可以使用   
+    schema:
+      - classpath:department.sql
+      指定位置
+</code></pre>
+<p>5、操作数据库：自动配置了JdbcTemplate操作数据库</p>
+<h3 id="2-整合Druid数据源"><a href="#2-整合Druid数据源" class="headerlink" title="2.整合Druid数据源"></a>2.整合Druid数据源</h3><pre><code class="java">导入druid数据源
+@Configuration
+public class DruidConfig {
+
+    @ConfigurationProperties(prefix = &quot;spring.datasource&quot;)
+    @Bean
+    public DataSource druid(){
+       return  new DruidDataSource();
+    }
+
+    //配置Druid的监控
+    //1、配置一个管理后台的Servlet
+    @Bean
+    public ServletRegistrationBean statViewServlet(){
+        ServletRegistrationBean bean = new ServletRegistrationBean(new StatViewServlet(), &quot;/druid/*&quot;);
+        Map&lt;String,String&gt; initParams = new HashMap&lt;&gt;();
+
+        initParams.put(&quot;loginUsername&quot;,&quot;admin&quot;);
+        initParams.put(&quot;loginPassword&quot;,&quot;123456&quot;);
+        initParams.put(&quot;allow&quot;,&quot;&quot;);//默认就是允许所有访问
+        initParams.put(&quot;deny&quot;,&quot;192.168.15.21&quot;);
+
+        bean.setInitParameters(initParams);
+        return bean;
+    }
+
+
+    //2、配置一个web监控的filter
+    @Bean
+    public FilterRegistrationBean webStatFilter(){
+        FilterRegistrationBean bean = new FilterRegistrationBean();
+        bean.setFilter(new WebStatFilter());
+
+        Map&lt;String,String&gt; initParams = new HashMap&lt;&gt;();
+        initParams.put(&quot;exclusions&quot;,&quot;*.js,*.css,/druid/*&quot;);
+
+        bean.setInitParameters(initParams);
+
+        bean.setUrlPatterns(Arrays.asList(&quot;/*&quot;));
+
+        return  bean;
+    }
+}
+</code></pre>
+<h3 id="3-整合MyBatis"><a href="#3-整合MyBatis" class="headerlink" title="3.整合MyBatis"></a>3.整合MyBatis</h3><pre><code class="xml">        &lt;dependency&gt;
+            &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;
+            &lt;version&gt;1.3.1&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<p><img src="https://i.imgur.com/vurJVYF.png" alt=""></p>
+<p>步骤：</p>
+<p>​    1）、配置数据源相关属性（见上一节Druid）</p>
+<p>​    2）、给数据库建表</p>
+<p>​    3）、创建JavaBean</p>
+<h3 id="4、注解版"><a href="#4、注解版" class="headerlink" title="4、注解版"></a>4、注解版</h3><pre><code class="java">//指定这是一个操作数据库的mapper
+@Mapper
+public interface DepartmentMapper {
+
+    @Select(&quot;select * from department where id=#{id}&quot;)
+    public Department getDeptById(Integer id);
+
+    @Delete(&quot;delete from department where id=#{id}&quot;)
+    public int deleteDeptById(Integer id);
+
+    @Options(useGeneratedKeys = true,keyProperty = &quot;id&quot;)
+    @Insert(&quot;insert into department(departmentName) values(#{departmentName})&quot;)
+    public int insertDept(Department department);
+
+    @Update(&quot;update department set departmentName=#{departmentName} where id=#{id}&quot;)
+    public int updateDept(Department department);
+}
+</code></pre>
+<p>问题：</p>
+<p>自定义MyBatis的配置规则；给容器中添加一个ConfigurationCustomizer；</p>
+<pre><code class="java">@org.springframework.context.annotation.Configuration
+public class MyBatisConfig {
+
+    @Bean
+    public ConfigurationCustomizer configurationCustomizer(){
+        return new ConfigurationCustomizer(){
+
+            @Override
+            public void customize(Configuration configuration) {
+                configuration.setMapUnderscoreToCamelCase(true);
+            }
+        };
+    }
+}
+</code></pre>
+<pre><code class="java">使用MapperScan批量扫描所有的Mapper接口；
+@MapperScan(value = &quot;com.atguigu.springboot.mapper&quot;)
+@SpringBootApplication
+public class SpringBoot06DataMybatisApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBoot06DataMybatisApplication.class, args);
+    }
+}
+</code></pre>
+<h3 id="5、配置文件版"><a href="#5、配置文件版" class="headerlink" title="5、配置文件版"></a>5、配置文件版</h3><pre><code class="yaml">mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml 指定全局配置文件的位置
+  mapper-locations: classpath:mybatis/mapper/*.xml  指定sql映射文件的位置
+</code></pre>
+<p>更多使用参照</p>
+<p><a href="http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/" target="_blank" rel="external">链接</a></p>
+<h2 id="4、整合SpringData-JPA"><a href="#4、整合SpringData-JPA" class="headerlink" title="4、整合SpringData JPA"></a>4、整合SpringData JPA</h2><h3 id="1、SpringData简介"><a href="#1、SpringData简介" class="headerlink" title="1、SpringData简介"></a>1、SpringData简介</h3><p><img src="https://i.imgur.com/Tq3nASv.png" alt=""></p>
+<h3 id="2、整合SpringData-JPA"><a href="#2、整合SpringData-JPA" class="headerlink" title="2、整合SpringData JPA"></a>2、整合SpringData JPA</h3><p>JPA:ORM（Object Relational Mapping）；</p>
+<p>1）、编写一个实体类（bean）和数据表进行映射，并且配置好映射关系；</p>
+<pre><code class="java">//使用JPA注解配置映射关系
+@Entity //告诉JPA这是一个实体类（和数据表映射的类）
+@Table(name = &quot;tbl_user&quot;) //@Table来指定和哪个数据表对应;如果省略默认表名就是user；
+public class User {
+
+    @Id //这是一个主键
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//自增主键
+    private Integer id;
+
+    @Column(name = &quot;last_name&quot;,length = 50) //这是和数据表对应的一个列
+    private String lastName;
+    @Column //省略默认列名就是属性名
+    private String email;
+</code></pre>
+<p>2）、编写一个Dao接口来操作实体类对应的数据表（Repository）</p>
+<pre><code class="java">//继承JpaRepository来完成对数据库的操作
+public interface UserRepository extends JpaRepository&lt;User,Integer&gt; {
+}
+</code></pre>
+<p>3）、基本的配置JpaProperties</p>
+<pre><code class="yaml">spring:  
+ jpa:
+    hibernate:
+#     更新或者创建数据表结构
+      ddl-auto: update
+#    控制台显示SQL
+    show-sql: true
+</code></pre>
+<h1 id="七、启动配置原理"><a href="#七、启动配置原理" class="headerlink" title="七、启动配置原理"></a>七、启动配置原理</h1><p>几个重要的事件回调机制</p>
+<p>配置在META-INF/spring.factories</p>
+<p><strong>ApplicationContextInitializer</strong></p>
+<p><strong>SpringApplicationRunListener</strong></p>
+<p>只需要放在ioc容器中</p>
+<p><strong>ApplicationRunner</strong></p>
+<p><strong>CommandLineRunner</strong></p>
+<p>启动流程：</p>
+<h2 id="1、创建SpringApplication对象"><a href="#1、创建SpringApplication对象" class="headerlink" title="1、创建SpringApplication对象"></a><strong>1、创建SpringApplication对象</strong></h2><pre><code class="java">initialize(sources);
+private void initialize(Object[] sources) {
+    //保存主配置类
+    if (sources != null &amp;&amp; sources.length &gt; 0) {
+        this.sources.addAll(Arrays.asList(sources));
+    }
+    //判断当前是否一个web应用
+    this.webEnvironment = deduceWebEnvironment();
+    //从类路径下找到META-INF/spring.factories配置的所有ApplicationContextInitializer；然后保存起来
+    setInitializers((Collection) getSpringFactoriesInstances(
+        ApplicationContextInitializer.class));
+    //从类路径下找到ETA-INF/spring.factories配置的所有ApplicationListener
+    setListeners((Collection) getSpringFactoriesInstances(ApplicationListener.class));
+    //从多个配置类中找到有main方法的主配置类
+    this.mainApplicationClass = deduceMainApplicationClass();
+}
+</code></pre>
+<p><img src="https://i.imgur.com/c3rkrHd.png" alt=""></p>
+<p><img src="https://i.imgur.com/MuMtxb9.png" alt=""></p>
+<h2 id="2、运行run方法"><a href="#2、运行run方法" class="headerlink" title="2、运行run方法"></a>2、运行run方法</h2><pre><code class="java">public ConfigurableApplicationContext run(String... args) {
+   StopWatch stopWatch = new StopWatch();
+   stopWatch.start();
+   ConfigurableApplicationContext context = null;
+   FailureAnalyzers analyzers = null;
+   configureHeadlessProperty();
+
+   //获取SpringApplicationRunListeners；从类路径下META-INF/spring.factories
+   SpringApplicationRunListeners listeners = getRunListeners(args);
+    //回调所有的获取SpringApplicationRunListener.starting()方法
+   listeners.starting();
+   try {
+       //封装命令行参数
+      ApplicationArguments applicationArguments = new DefaultApplicationArguments(
+            args);
+      //准备环境
+      ConfigurableEnvironment environment = prepareEnvironment(listeners,
+            applicationArguments);
+               //创建环境完成后回调SpringApplicationRunListener.environmentPrepared()；表示环境准备完成
+
+      Banner printedBanner = printBanner(environment);
+
+       //创建ApplicationContext；决定创建web的ioc还是普通的ioc
+      context = createApplicationContext();
+
+      analyzers = new FailureAnalyzers(context);
+       //准备上下文环境;将environment保存到ioc中；而且applyInitializers()；
+       //applyInitializers()：回调之前保存的所有的ApplicationContextInitializer的initialize方法
+       //回调所有的SpringApplicationRunListener的contextPrepared()；
+       //
+      prepareContext(context, environment, listeners, applicationArguments,
+            printedBanner);
+       //prepareContext运行完成以后回调所有的SpringApplicationRunListener的contextLoaded（）；
+
+       //s刷新容器；ioc容器初始化（如果是web应用还会创建嵌入式的Tomcat）；Spring注解版
+       //扫描，创建，加载所有组件的地方；（配置类，组件，自动配置）
+      refreshContext(context);
+       //从ioc容器中获取所有的ApplicationRunner和CommandLineRunner进行回调
+       //ApplicationRunner先回调，CommandLineRunner再回调
+      afterRefresh(context, applicationArguments);
+       //所有的SpringApplicationRunListener回调finished方法
+      listeners.finished(context, null);
+      stopWatch.stop();
+      if (this.logStartupInfo) {
+         new StartupInfoLogger(this.mainApplicationClass)
+               .logStarted(getApplicationLog(), stopWatch);
+      }
+       //整个SpringBoot应用启动完成以后返回启动的ioc容器；
+      return context;
+   }
+   catch (Throwable ex) {
+      handleRunFailure(context, listeners, analyzers, ex);
+      throw new IllegalStateException(ex);
+   }
+}
+</code></pre>
+<h2 id="3、事件监听机制"><a href="#3、事件监听机制" class="headerlink" title="3、事件监听机制"></a>3、事件监听机制</h2><p>配置在META-INF/spring.factories</p>
+<p><strong>ApplicationContextInitializer</strong></p>
+<pre><code class="java">public class HelloApplicationContextInitializer implements ApplicationContextInitializer&lt;ConfigurableApplicationContext&gt; {
+    @Override
+    public void initialize(ConfigurableApplicationContext applicationContext) {
+        System.out.println(&quot;ApplicationContextInitializer...initialize...&quot;+applicationContext);
+    }
+}
+</code></pre>
+<p><strong>SpringApplicationRunListener</strong></p>
+<pre><code class="java">public class HelloSpringApplicationRunListener implements SpringApplicationRunListener {
+
+    //必须有的构造器
+    public HelloSpringApplicationRunListener(SpringApplication application, String[] args){
+
+    }
+
+    @Override
+    public void starting() {
+        System.out.println(&quot;SpringApplicationRunListener...starting...&quot;);
+    }
+
+    @Override
+    public void environmentPrepared(ConfigurableEnvironment environment) {
+        Object o = environment.getSystemProperties().get(&quot;os.name&quot;);
+        System.out.println(&quot;SpringApplicationRunListener...environmentPrepared..&quot;+o);
+    }
+
+    @Override
+    public void contextPrepared(ConfigurableApplicationContext context) {
+        System.out.println(&quot;SpringApplicationRunListener...contextPrepared...&quot;);
+    }
+
+    @Override
+    public void contextLoaded(ConfigurableApplicationContext context) {
+        System.out.println(&quot;SpringApplicationRunListener...contextLoaded...&quot;);
+    }
+
+    @Override
+    public void finished(ConfigurableApplicationContext context, Throwable exception) {
+        System.out.println(&quot;SpringApplicationRunListener...finished...&quot;);
+    }
+}
+</code></pre>
+<p>配置（META-INF/spring.factories）</p>
+<pre><code class="properties">org.springframework.context.ApplicationContextInitializer=\
+com.atguigu.springboot.listener.HelloApplicationContextInitializer
+
+org.springframework.boot.SpringApplicationRunListener=\
+com.atguigu.springboot.listener.HelloSpringApplicationRunListener
+</code></pre>
+<p>只需要放在ioc容器中</p>
+<p><strong>ApplicationRunner</strong></p>
+<pre><code class="java">@Component
+public class HelloApplicationRunner implements ApplicationRunner {
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+        System.out.println(&quot;ApplicationRunner...run....&quot;);
+    }
+}
+</code></pre>
+<p><strong>CommandLineRunner</strong></p>
+<pre><code class="java">@Component
+public class HelloCommandLineRunner implements CommandLineRunner {
+    @Override
+    public void run(String... args) throws Exception {
+        System.out.println(&quot;CommandLineRunner...run...&quot;+ Arrays.asList(args));
+    }
+}
+</code></pre>
+<h1 id="八、自定义starter"><a href="#八、自定义starter" class="headerlink" title="八、自定义starter"></a>八、自定义starter</h1><p>starter：</p>
+<p>​    1、这个场景需要使用到的依赖是什么？</p>
+<p>​    2、如何编写自动配置</p>
+<pre><code class="java">@Configuration  //指定这个类是一个配置类
+@ConditionalOnXXX  //在指定条件成立的情况下自动配置类生效
+@AutoConfigureAfter  //指定自动配置类的顺序
+@Bean  //给容器中添加组件
+
+@ConfigurationPropertie结合相关xxxProperties类来绑定相关的配置
+@EnableConfigurationProperties //让xxxProperties生效加入到容器中
+
+自动配置类要能加载
+将需要启动就加载的自动配置类，配置在META-INF/spring.factories
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration,\
+org.springframework.boot.autoconfigure.aop.AopAutoConfiguration,\
+</code></pre>
+<p>​    3、模式：</p>
+<p>启动器只用来做依赖导入；</p>
+<p>专门来写一个自动配置模块；</p>
+<p>启动器依赖自动配置；别人只需要引入启动器（starter）</p>
+<p>mybatis-spring-boot-starter；自定义启动器名-spring-boot-starter</p>
+<p>步骤：</p>
+<p>1）、启动器模块</p>
+<pre><code class="xml"> &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+         x mlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+    &lt;groupId&gt;com.atguigu.starter&lt;/groupId&gt;
+    &lt;artifactId&gt;atguigu-spring-boot-starter&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+
+    &lt;!--启动器--&gt;
+    &lt;dependencies&gt;
+
+        &lt;!--引入自动配置模块--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.atguigu.starter&lt;/groupId&gt;
+            &lt;artifactId&gt;atguigu-spring-boot-starter-autoconfigurer&lt;/artifactId&gt;
+            &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+
+&lt;/project&gt;
+</code></pre>
+<p>2）、自动配置模块</p>
+<pre><code class="xml">&lt; ?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;project x mlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+   xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+   &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+   &lt;groupId&gt;com.atguigu.starter&lt;/groupId&gt;
+   &lt;artifactId&gt;atguigu-spring-boot-starter-autoconfigurer&lt;/artifactId&gt;
+   &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+   &lt;packaging&gt;jar&lt;/packaging&gt;
+
+   &lt;name&gt;atguigu-spring-boot-starter-autoconfigurer&lt;/name&gt;
+   &lt;description&gt;Demo project for Spring Boot&lt;/description&gt;
+
+   &lt;parent&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+      &lt;version&gt;1.5.10.RELEASE&lt;/version&gt;
+      &lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;
+   &lt;/parent&gt;
+
+   &lt;properties&gt;
+      &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+      &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
+      &lt;java.version&gt;1.8&lt;/java.version&gt;
+   &lt;/properties&gt;
+
+   &lt;dependencies&gt;
+
+      &lt;!--引入spring-boot-starter；所有starter的基本配置--&gt;
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+         &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+
+   &lt;/dependencies&gt;
+
+
+
+&lt;/project&gt;
+</code></pre>
+<pre><code class="java">package com.atguigu.starter;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
+@ConfigurationProperties(prefix = &quot;atguigu.hello&quot;)
+public class HelloProperties {
+
+    private String prefix;
+    private String suffix;
+
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
+    public String getSuffix() {
+        return suffix;
+    }
+
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
+    }
+}
+</code></pre>
+<pre><code class="java">package com.atguigu.starter;
+
+public class HelloService {
+
+    HelloProperties helloProperties;
+
+    public HelloProperties getHelloProperties() {
+        return helloProperties;
+    }
+
+    public void setHelloProperties(HelloProperties helloProperties) {
+        this.helloProperties = helloProperties;
+    }
+
+    public String sayHellAtguigu(String name){
+        return helloProperties.getPrefix()+&quot;-&quot; +name + helloProperties.getSuffix();
+    }
+}
+</code></pre>
+<pre><code class="java">package com.atguigu.starter;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ConditionalOnWebApplication //web应用才生效
+@EnableConfigurationProperties(HelloProperties.class)
+public class HelloServiceAutoConfiguration {
+
+    @Autowired
+    HelloProperties helloProperties;
+    @Bean
+    public HelloService helloService(){
+        HelloService service = new HelloService();
+        service.setHelloProperties(helloProperties);
+        return service;
+    }
+}
+</code></pre>
+<h1 id="更多SpringBoot整合示例"><a href="#更多SpringBoot整合示例" class="headerlink" title="更多SpringBoot整合示例"></a>更多SpringBoot整合示例</h1><p><a href="https://github.com/spring-projects/spring-boot/tree/master/spring-boot-samples" target="_blank" rel="external">链接</a></p>
+
+      
+
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励，是使我前进的力量<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://i.imgur.com/0n8b4DD.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Java,Springboot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/30/SpringBoot与数据访问/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/05/01/升级Centos7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          升级记录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/27/Linux系统/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux入门</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'codegitz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2018/04/30/SpringBoot与数据访问/",
+  owner: 'codegitz',
+  repo: 'codegitz.github.io',
+  oauth: {
+    client_id: '3111abe777f17a978418',
+    client_secret: 'a793e7d23aa376586e7493cf997ae4b7f3cf5cd7',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
+
+
           </div>
         </div>
       </div>
