@@ -994,7 +994,7 @@ body {
 }
 
 .article-entry .highlight,.article-entry pre {
-	background: #272822;
+	background: rgb(40,44,52);
 	margin: 10px 0;
 	padding: 10px;
 	overflow: auto;
@@ -1073,7 +1073,7 @@ body {
 }
 
 .article-entry .highlight .line {
-	color: #fff;
+	color: rgb(182,182,182);
 	min-height: 19px
 }
 
